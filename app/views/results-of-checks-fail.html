@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Result of checks
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Step 4 of 5</span>
+    <h1 class="govuk-heading-l">
+      Results of your checks
+    </h1>
+
+    <div class="govuk-error-summary" aria-labelledby="success-error-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+      <h2 class="govuk-error-summary__title" id="success-error-title">
+        There is a problem
+      </h2>
+      <div class="govuk-error-summary__body">
+        <p class="govuk-body">One or more files you uploaded have failed our checks.
+          We cannot proceed with your consignment. Please see below a list of files that have failed.
+        </p>
+        <p class="govuk-body">To resolve this problem, please ensure your files are not corrupted, password protected or compressed (zipped)
+          and try uploading the files again. Alternatively, <a class="govuk-link govuk-link--no-visited-state" href="/contact">contact</a> us.
+        </p>
+      </div>
+    </div>
+
+    <div class="govuk-info-summary" aria-labelledby="success-info-title" role="alert" tabindex="-1" data-module="govuk-info-summary">
+      <h2 class="govuk-info-summary__title" id="success-info-title">
+        Incompatible files identified
+      </h2>
+      <div class="govuk-info-summary__body">
+        <p class="govuk-body">We have identified file formats we cannot accept. In most cases, these could
+          be system files, executable files, 0 byte files or files with an unknown type of format. Please see below a list of
+          files that have failed the file format check.
+        </p>
+        <p class="govuk-body">These files have been flagged and will be removed from your consignment.
+          If you would like them not to be removed, please <a class="govuk-link govuk-link--no-visited-state" href="/contact">contact</a> us before you proceed.
+        </p>
+      </div>
+    </div>
+
+    <h2 class="govuk-heading-m">Failed files</h2>
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Anti-virus
+        </dt>
+        <dd class="govuk-summary-list__value">
+          testfile.doc
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Checksum
+        </dt>
+        <dd class="govuk-summary-list__value">
+          testreport.pdf
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          File format
+        </dt>
+        <dd class="govuk-summary-list__value">
+          passwordprotectedFile.docx<br/>
+          zippedFile.zip<br/>
+          systemFile.sys<br/>
+          executableFile.exe<br/>
+          zerobyteFile.pdf<br/>
+          unknowntypeFile.hqkl
+        </dd>
+      </div>
+    </dl>
+
+    <a href="dashboard.html" role="button" draggable="false" class="govuk-button govuk-button--secondary"  data-module="govuk-button">
+      Return to start
+    </a>
+
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Consignment reference
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        MOCK-123-TDR
+      </div>
+    </details>
+</div>
+</div>
+
+{% endblock %}

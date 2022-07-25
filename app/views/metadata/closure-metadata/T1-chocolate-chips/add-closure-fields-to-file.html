@@ -1,0 +1,45 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Add closure fields to 'Chocolate-chips.docx'
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Add closure fields to 'Chocolate-chips.docx'
+      </h1>{{releaseVersion | log }}
+      <p class="govuk-body">You must enter metadata for all fields as they are mandatory for closure.</p>
+
+      <p class="govuk-body">You must provide the following information:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+          <li>
+            FOI decision asserted, this is the date of the Advisory Council approval
+          </li>
+          <li>
+              Closure start date, this is the date the record starts
+          </li>
+          <li>
+              Closure period
+          </li>
+          <li>
+            FOI exemption code
+          </li>
+          <li>
+              Title public
+          </li>
+      </ul>
+
+      <a href="./add-closure.html" role="button" draggable="false" class="govuk-button"
+          data-module="govuk-button">
+          Continue
+      </a>
+      </form>
+      
+    </div>
+  </div>
+
+{% endblock %}

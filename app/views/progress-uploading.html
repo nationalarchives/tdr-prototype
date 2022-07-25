@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block header %}
+{# Set serviceName in config.js. #}
+{{ govukHeader({
+  homepageUrl: "http://localhost:3000/",
+  serviceName: serviceName,
+  serviceUrl: "http://localhost:3000/",
+  containerClasses: "govuk-width-container"
+}) }}
+<meta http-equiv="refresh" content="30; url=/progress-checks">
+<div class="govuk-width-container app-width-container">
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">BETA</strong>
+      <span class="govuk-phase-banner__text">This is a new service – your feedback will help us to improve it. Please
+            <a class="govuk-link" target="_blank" rel="noreferrer noopener" href="/contact">get in touch (opens in new tab).</a>
+          </span>
+    </p>
+  </div>
+</div>
+{% endblock %}
+
+{% block pageTitle %}
+  Uploading records
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Step 3 of 6</span>
+      <h1 class="govuk-heading-l">
+        Uploading your records
+      </h1>
+
+      <form class="form" action="/progress-checks" method="post">
+
+        <p>Do not close your browser window while your files are being uploaded. This could take a few minutes.</p>
+        <label class="govuk-label progress-label">
+          Uploading records <span id="upload-percentage" role="status" aria-live="polite"></span>
+        </label>
+        <div class="progress-bar-container">
+          <span style="width:100%;">
+            <span class="progress"></span>
+          </span>
+        </div>
+
+      </form>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+  </div>
+  </div>
+
+{% endblock %}

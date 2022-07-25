@@ -1,0 +1,59 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Add metadata fields to all files
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Add metadata fields to all files
+      </h1>{{releaseVersion | log }}
+      <p class="govuk-body">You must enter metadata for all fields.</p>
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+            Please note that this action applies to all 2500 items in this folder.
+        </strong>
+    </div>
+
+      <p class="govuk-body">You must provide the following information:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+          <li>
+           Start date
+          </li>
+          <li>
+              Creation date
+          </li>
+          <li>
+              Date range
+          </li>
+          <li>
+            End date
+          </li>
+          <li>
+             Description
+          </li>
+          <li>
+            Language
+         </li>
+         <li>
+          Former reference
+       </li>
+      </ul>
+
+      <a href="#" role="button" draggable="false" class="govuk-button"
+          data-module="govuk-button">
+          Continue
+      </a>
+      </form>
+      
+    </div>
+  </div>
+
+{% endblock %}
