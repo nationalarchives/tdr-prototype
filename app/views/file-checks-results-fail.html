@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Results of checks
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Step 4 of 5</span>
+      <h1 class="govuk-heading-l">
+        Results of your checks
+      </h1>
+
+        <div class="govuk-error-summary" aria-labelledby="success-error-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+          <h2 class="govuk-error-summary__title" id="success-error-title">
+           There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <p class="govuk-body">One or more files you uploaded have failed our checks. Please <a class="govuk-link" href="/contact">contact</a> us to resolve this issue.</p>
+            <p class="govuk-body">Possible failure causes:</p>
+            <ul>
+              <li>Password protected files</li>
+              <li>Zip files</li>
+              <li>Corrupted files</li>
+            </ul>
+          </div>
+      </div>
+
+      <a href="dashboard.html" role="button" draggable="false" class="govuk-button govuk-button--secondary"  data-module="govuk-button">
+      Return to start
+    </a>
+
+    </div>
+  </div>
+
+{% endblock %}

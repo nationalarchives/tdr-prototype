@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Review metadata added
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+        Review closure metadata changes
+      </h1>{{releaseVersion | log }}
+      <p class="govuk-body">You can edit, save or abandon any changes to closure metadata here. </p>
+  
+      <div class="govuk-button-group">
+        <a href="./add-closure.html" role="button" draggable="false" class="govuk-button govuk-button--secondary"
+          data-module="govuk-button">
+          Edit properties
+        </a>
+        <a href="./abandon-changes-warning.html" role="button" draggable="false" class="govuk-button govuk-button--warning" >
+          Abandon changes
+        </a>
+      </div>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Name
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Flour.docx
+        </dd>
+        <dd class="govuk-summary-list__actions">
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Closure status
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Closed
+        </dd>
+      </div>
+
+<!-- closure stuff here -->
+<div class="govuk-summary-list__row" style="border-bottom: none;">
+    <dt class="govuk-summary-list__key">
+      FOI decision asserted
+    </dt>
+    <dd class="govuk-summary-list__value">
+      01/09/2021
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row" style="border-bottom: none;">
+    <dt class="govuk-summary-list__key">
+      Closure start date
+    </dt>
+    <dd class="govuk-summary-list__value">
+      12/07/2022
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row" style="border-bottom: none;">
+    <dt class="govuk-summary-list__key">
+      Closure period
+    </dt>
+    <dd class="govuk-summary-list__value">
+      82 years
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row" style="border-bottom: none;">
+    <dt class="govuk-summary-list__key">
+        FOI exemption code
+    </dt>
+    <dd class="govuk-summary-list__value">
+      40(2)
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row" style="border-bottom: none;">
+    <dt class="govuk-summary-list__key">
+      Title public
+    </dt>
+    <dd class="govuk-summary-list__value">
+      the [Name withheld] new recipes.docx
+    </dd>
+  </div>
+    </dl>
+
+    <a href="../file-level.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+      Save and return to all files
+    </a>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Add, edit or delete metadata
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Step 5 of 6</span>
+      <h1 class="govuk-heading-l">Add, edit or delete metadata</h1>
+      <h1 class="govuk-heading-s">Folder uploaded: Recipes and ingredients</h1>
+
+      <p class="govuk-body">You can now add or edit closure and descriptive metadata to your records. Or you can proceed without by clicking ‘Continue’ at the bottom of this page.
+
+      </p>
+
+      <div class="nhsuk-card nhsuk-card--clickable">
+        <div class="nhsuk-card__content">
+          <h2 class="nhsuk-card__heading nhsuk-heading-m">
+            <a class="nhsuk-card__link" href="descriptive-metadata/file-level.html">Descriptive metadata</a>
+          </h2>
+          <p class="nhsuk-card__description">If you'd like to add or edit descriptive metadata to your records, you can do so here.</p>
+        </div>
+      </div>
+
+      <div class="nhsuk-card nhsuk-card--clickable">
+        <div class="nhsuk-card__content">
+          <h2 class="nhsuk-card__heading nhsuk-heading-m">
+            <a class="nhsuk-card__link" href="closure-metadata/file-level.html">Closure metadata</a>
+          </h2>
+          <p class="nhsuk-card__description">If you'd like to add or edit closure metadata to your records, you can do so here.</p>
+        </div>
+      </div>
+
+      <!-- <p class="govuk-body">For all files, you can add, edit or delete descriptive data (such as summary or closure). You can choose the properties that are required.</p>
+
+      <p class="govuk-body"><a class="govuk-link" href="folder-level/folder-level.html">Add, edit or delete metadata for all files in the folder</a></p>
+      
+      <p class="govuk-body">For individual files or subfolders, you can add, edit or delete descriptive data (such as summary or closure). You can choose the properties that are required. You can also delete individual files from this consignment.</p>
+
+      <p class="govuk-body"><a class="govuk-link" href="file-level/file-level.html">Add, edit or delete metadata for individual files or folders</a></p> -->
+
+      <a href="../summary.html" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+        Continue
+      </a>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+  </div>
+  </div>
+{% endblock %}

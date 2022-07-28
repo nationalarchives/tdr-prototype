@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Check your answers
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Step 6 of 6</span>
+      <h1 class="govuk-heading-l">Confirm transfer</h1>
+
+      <p class="govuk-body">Here is a summary of the records you have uploaded.</p>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-half">
+            Series reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            TEST123
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+           Consignment reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            MOCK-123-TDR
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Transferring body
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Test Department
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Files uploaded for transfer
+          </dt>
+          <dd class="govuk-summary-list__value">
+            2500 files uploaded
+          </dd>
+        </div>
+      </dl>
+
+      <p>Please confirm you would like to transfer ownership of the records to The National Archives.</p>
+
+      <form class="form" action="/end-confirmation" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+            <div class="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
+                <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+                  I confirm that I am transferring legal ownership of these records to The National Archives.
+                </label>
+              </div>
+            </div>
+
+          </fieldset>
+        </div>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Transfer your records
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

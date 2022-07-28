@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Add or edit descriptive data
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">Add or edit descriptive data</h1>
+      <p class="govuk-body">You can add new properties or edit existing ones here.</p>
+
+      <a href="add-metadata-fields-to-folder.html" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+        Add metadata
+      </a>
+      <a href="descriptive-metadata.html" role="button" draggable="false" class="govuk-button govuk-button--secondary"  data-module="govuk-button">
+        Back to overview
+      </a>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name of folder
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Recipes and ingredients
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Total files
+          </dt>
+          <dd class="govuk-summary-list__value">
+            2500
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Language
+          </dt>
+          <dd class="govuk-summary-list__value">
+            English
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="edit-description-bulk">
+              Edit<span class="govuk-visually-hidden"> contact information</span>
+            </a> <br>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Legal status
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Public
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Copyright
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Crown copyright
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+      </dl>
+
+    </div>
+  </div>
+{% endblock %}

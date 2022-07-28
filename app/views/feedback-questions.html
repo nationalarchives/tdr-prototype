@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Feedback questions
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Give feedback on the Transfer Digital Records service
+    </h1>
+
+    <h2 class="govuk-heading-m">Satisfaction survey</h2>
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="satisfactory-level-hint">
+        <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">
+          Overall, how satisfied are you with the service you received today?
+        </legend>
+        <div class="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="very-satisfied" name="very-satisfied" type="radio" value="very-satisfied">
+            <label class="govuk-label govuk-radios__label" for="very-satisfied">
+              Very satisfied
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="satisfied" name="satisfied" type="radio" value="satisfied">
+            <label class="govuk-label govuk-radios__label" for="satisfied">
+              Satisfied
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="neither" name="neither" type="radio" value="neither">
+            <label class="govuk-label govuk-radios__label" for="neither">
+              Neither satisfied nor dissatisfied
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="dissatisfied" name="dissatisfied" type="radio" value="dissatisfied">
+            <label class="govuk-label govuk-radios__label" for="dissatisfied">
+              Dissatisfied
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="very-dissatisfied" name="very-dissatisfied" type="radio" value="very-dissatisfied">
+            <label class="govuk-label govuk-radios__label" for="very-dissatisfied">
+              Very dissatisfied
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label govuk-!-font-weight-bold" for="more-detail">
+        How could we improve this service?
+      </label>
+      <div id="more-detail-hint" class="govuk-hint">
+        Do not include any personal information such as sign-in details.
+      </div>
+      <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5"></textarea>
+    </div>
+
+    <button class="govuk-button" data-module="govuk-button">
+      Send feedback
+    </button>
+
+  </div>
+</div>
+
+{% endblock %}

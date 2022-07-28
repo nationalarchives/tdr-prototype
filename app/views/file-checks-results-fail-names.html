@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Results of checks
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Step 4 of 5</span>
+      <h1 class="govuk-heading-l">
+        Results of your checks
+      </h1>
+
+        <div class="govuk-error-summary" aria-labelledby="success-error-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+          <h2 class="govuk-error-summary__title" id="success-error-title">
+           There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <p class="govuk-body">One or more files you uploaded have failed our checks.
+              Below, you can see a list of files that failed. Choose an option to proceed.
+              <ul class="govuk-list govuk-list--bullet">
+                <li>Option 1: Confirm to delete failed files below by checking the checkbox and continue this transfer with passed files.<br>Afterwards, you can start a new transfer with the replaced files only.</li>
+                <li>Option 2: Replace the failed files on your machine and start a new transfer. If helpful, download the list of failed files as PDF and leave this transfer by clicking 'Return to start'.</li>
+              </ul>
+            </p>
+          </div>
+      </div>
+
+      <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Download list of failed files as PDF
+      </button>
+
+      <h2 class="govuk-heading-m">
+        Failed files
+      </h2>
+
+      <h3 class="govuk-heading-s">Anti-virus</h3>
+      <ul class="app-task-list__items" style="padding-left: 0; margin-bottom: 20px">
+        <li class="app-task-list__item govuk-body-s"><strong>thisFolder/anotherFolder/</strong>thisFileFailed.jhgf</li>
+        <li class="app-task-list__item govuk-body-s"><strong>one/two/three/four/</strong>thisFileFailed.jhgf</li>
+        <li class="app-task-list__item govuk-body-s"><strong>abcdefg/twothreefour/xyz/</strong>thisFileFailed.jhgf</li>
+        <li class="app-task-list__item govuk-body-s"><strong>xyz/abc/</strong>thisFileFailed.jhgf</li>
+      </ul>
+      <div class="govuk-checkboxes__item" style="margin-bottom: 60px">
+        <input class="govuk-checkboxes__input" id="antivirusfiles" name="files" type="checkbox" value="avf">
+        <label class="govuk-label govuk-checkboxes__label" for="antivirusfiles">
+          I confirm that above files can be deleted from this consignment.
+        </label>
+      </div>
+
+      <h3 class="govuk-heading-s">File format (Group 1: zip / password protected)</h3>
+      <ul class="app-task-list__items" style="padding-left: 0; margin-bottom: 20px">
+        <li class="app-task-list__item govuk-body-s"><strong>thisFolder/anotherFolder/anotherFolder/anotherFolder/anotherFolder/anotherFolder/anotherFolder/anotherFolder/anotherFolder/</strong>thisFileFailed.tar</li>
+        <li class="app-task-list__item govuk-body-s"><strong>one/two/three/four/</strong>thisFileFailed.zip</li>
+        <li class="app-task-list__item govuk-body-s"><strong>abcdefg/twothreefour/xyz/</strong>thisFileFailed.pp</li>
+      </ul>
+      <div class="govuk-checkboxes__item" style="margin-bottom: 60px">
+        <input class="govuk-checkboxes__input" id="fileformatfiles" name="files" type="checkbox" value="fff">
+        <label class="govuk-label govuk-checkboxes__label" for="fileformatfiles">
+          I confirm that above files can be deleted from this consignment.
+        </label>
+      </div>
+
+      <h3 class="govuk-heading-s">File format (Group 2: system file / exe / unidentified / 0 Byte)</h3>
+      <ul class="app-task-list__items" style="padding-left: 0; margin-bottom: 20px">
+        <li class="app-task-list__item govuk-body-s"><strong>thisFolder/anotherFolder/</strong>thisFileFailed.sys</li>
+        <li class="app-task-list__item govuk-body-s"><strong>thisFolder/anotherFolder/</strong>thisOneFailed.sys</li>
+        <li class="app-task-list__item govuk-body-s"><strong>thisFolder/</strong>thisOneAlsoFailed.sys</li>
+        <li class="app-task-list__item govuk-body-s"><strong>one/two/three/four/</strong>thisFileFailed.exe</li>
+        <li class="app-task-list__item govuk-body-s"><strong>abcdefg/twothreefour/xyz/</strong>thisFileFailed.iokl</li>
+      </ul>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="fileformatfiles" name="files" type="checkbox" value="fff">
+        <label class="govuk-label govuk-checkboxes__label" for="fileformatfiles">
+          I confirm that above files can be deleted from this consignment.
+        </label>
+      </div>
+
+      <div class="govuk-button-group govuk-!-margin-top-9">
+        <button class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+        <a href="dashboard.html" role="button" draggable="false" class="govuk-button govuk-button--secondary"  data-module="govuk-button">
+        Return to start
+      </a>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

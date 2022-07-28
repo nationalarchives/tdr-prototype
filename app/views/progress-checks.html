@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Checking records
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Step 4 of 6</span>
+      <h1 class="govuk-heading-l">
+        Checking your records
+      </h1>
+
+      <form class="form" action="/file-checks-results" method="post">
+        
+        <p class="govuk-body">Please wait while your records are being checked. This may take a few minutes. </p>
+        <p class="govuk-body">The following checks are now being performed:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Anti-virus scanning</li>
+            <li>Identifying file formats</li>
+            <li>Validating data integrity</li>
+          </ul>
+
+        <p class="govuk-body govuk-!-margin-bottom-7">For more information on these checks, please see our
+          <a class="govuk-link" target="_blank" rel="noopener noreferrer" href="/faq">FAQ (opens in new tab)</a> for this service.
+        </p>
+
+        <div class="showBanner">
+          <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+            <div class="govuk-notification-banner__header">
+              <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                Important
+              </h2>
+            </div>
+            <div class="govuk-notification-banner__content">
+              <h3 class="govuk-notification-banner__heading">
+                Your records have been checked.
+              </h3>
+              <p class="govuk-body">Please click 'Continue' to see your results.</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="govuk-button" id="next-step-btn" data-module="govuk-button" disabled>Continue</button>
+
+      </form>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+  </div>
+  </div>
+
+
+  <script type="text/javascript">
+    setTimeout(() => {
+      document.getElementById("next-step-btn").disabled = false;
+    }, 10000);
+  </script>
+
+{% endblock %}

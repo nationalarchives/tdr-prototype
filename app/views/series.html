@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Series
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Step 1 of 6</span>
+      <h1 class="govuk-heading-l">Choose a series</h1>
+
+      <form class="form" action="/transfer-agreement" method="post">
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="sort">
+            Please choose an existing series reference for the records you would like to transfer.
+          </label>
+          <select class="govuk-select" id="sort" name="sort">
+            <option>Please choose...</option>
+            <option value="test123">MOCK-123-TDR</option>
+          </select>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+  </div>
+  </div>
+
+{% endblock %}

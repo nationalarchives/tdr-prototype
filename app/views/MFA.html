@@ -1,0 +1,64 @@
+{% extends "layout-without-sign-out.html" %}
+
+{% block pageTitle %}
+MFA
+{% endblock %}
+
+{% block content %}
+<!--MFA QR-Code-->
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Sign in to your account
+    </h1>
+
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        You need to set up Mobile Authenticator to activate your account.
+      </strong>
+    </div>
+
+    <ol class="govuk-list govuk-list&#45;&#45;number">
+      <li>Install one of the following applications on your mobile:
+        <ul class="govuk-list govuk-list&#45;&#45;bullet">
+          <li>FreeOTP</li>
+          <li>Google Authenticator</li>
+        </ul>
+      </li>
+      <li><p>Open the application and scan the QR code:</p>
+        <img src="/public/images/barcode.png" alt="QR code">
+        <p><a href="/MFA-key" class="govuk-link govuk-body-s">I want to enter a key instead</a></p>
+      </li>
+      <li><p>Enter the one time code provided by the application and click Submit to finish the setup.</p>
+        <p>Provide a device name to help you manage your OTP (One-time password) devices.</p>
+        <form action="/MFA-otp" method="post" novalidate>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="code">
+              One-time code
+            </label>
+            <input class="govuk-input govuk-!-width-one-half" id="code" name="event-name" type="text">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="device-name">
+              Device name
+            </label>
+            <input class="govuk-input govuk-!-width-one-half" id="device-name" name="event-name" type="text">
+          </div>
+
+          <button class="govuk-button" data-module="govuk-button">
+            Submit
+          </button>
+        </form>
+      </li>
+    </ol>
+
+
+  </div>
+</div>
+
+{% endblock %}
