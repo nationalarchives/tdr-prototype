@@ -16,9 +16,9 @@ Check closure status
     <div class="govuk-form-group">
       <fieldset class="govuk-fieldset">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h1 class="govuk-fieldset__heading">
+          <h2 class="govuk-heading-m">
             Is the record you are adding metadata to closed?
-          </h1>
+          </h2>
         </legend>
         <div class="govuk-radios" data-module="govuk-radios">
           <div class="govuk-radios__item">
@@ -37,26 +37,32 @@ Check closure status
     
       </fieldset>
     </div>
-    <p class="govuk-body">You must enter metadata for all fields as they are mandatory for closure.</p>
-
-    <p class="govuk-body">You must provide the following information:</p>
-    <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
-        <li>
-          FOI decision asserted, this is the date of the Advisory Council approval
-        </li>
-        <li>
-            Closure start date, this is the date the record starts
-        </li>
-        <li>
-            Closure period
-        </li>
-        <li>
-          FOI exemption code
-        </li>
-        <li>
-            Title public
-        </li>
-    </ul>
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          You must provide the following information, as they are mandatory for closure.
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+          <li>
+            FOI decision asserted, this is the date of the Advisory Council approval (or SIRO approval if appropriate)
+          </li>
+          <li>
+              Closure start date, this is the date the record starts
+          </li>
+          <li>
+              Closure period
+          </li>
+          <li>
+            FOI exemption code
+          </li>
+          <li>
+              Title public
+          </li>
+      </ul>
+    </details>
+    
 
     <div class="govuk-button-group">
     <a href="../file-level.html" role="button" draggable="false" class="govuk-button govuk-button--secondary"

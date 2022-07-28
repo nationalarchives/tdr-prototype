@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-Add descriptive metadata'
+Add descriptive metadata
 {% endblock %}
 
 {% block content %}
@@ -9,58 +9,77 @@ Add descriptive metadata'
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <a href="./overview-of-metadata-fields.html" class="govuk-back-link">Back</a>
+        <a href="./open-lemonade.html" class="govuk-back-link">Back</a>
         <h1 class="govuk-heading-l">
             Add descriptive metadata to 'Lemonade.jpg'
         </h1>{{releaseVersion | log }}
-        <p class="govuk-body">Enter metadata for closure fields here.</p>
+        <p class="govuk-body">Enter metadata for descriptive fields here.</p>
+
+        <div class="govuk-form-group">
+            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="event-name">
+                Description
+            </label>
+            </h2>
+            <div id="foi-codes-hint" class="govuk-hint">
+                This is the description of your record the public see on Discovery
+            </div>
+                <textarea class="govuk-textarea" id="address" name="address" rows="5" autocomplete="street-address"></textarea>
+        </div>
 
         <div class="govuk-form-group">
             <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="event-name">
                     Date last modified
                 </label>
                 <div id="passport-issued-hint" class="govuk-hint">
-                    This has been defaulted, if this is not correct, amend the field below.
+                    This is date last modified of this record. If you want to add a more representative date of your record, use the field other date metadata to add it.
                 </div>
             </h2>
-            <div class="govuk-date-input" id="passport-issued">
-                <div class="govuk-date-input__item">
-                    <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="passport-issued-day" >
-                            Day
-                        </label>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day"
-                            name="passport-issued-day" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="dd">
-                    </div>
-                </div>
-                <div class="govuk-date-input__item">
-                    <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
-                            Month
-                        </label>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                            id="passport-issued-month" name="passport-issued-month" type="text" pattern="[0-9]*"
-                            inputmode="numeric" placeholder="mm">
-                    </div>
-                </div>
-                <div class="govuk-date-input__item">
-                    <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
-                            Year
-                        </label>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-4"
-                            id="passport-issued-year" name="passport-issued-year" type="text" pattern="[0-9]*"
-                            inputmode="numeric" placeholder="yyyy">
-                    </div>
+            <p class="govuk-body-l">12 July 2022</p>
+        </div>
+        <div class="govuk-form-group">
+            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="event-name">
+                Other date(s) metadata
+                </label>
+            </h2>
+            <p class="govuk-body">If the date last modified isn’t representative of the true date of your record, select from the dropdown menu the relevant one that applies and fill in the field.</p>
+                <select class="govuk-select" id="sort" name="sort">
+                  <option value="published" selected>Please choose...</option>
+                  <option value="updated">Date created - The date the record has been uploaded or created in a system</option>
+                  <option value="updated">End date - best estimation of the record date where date last modified is known as incorrect</option>
+                  <option value="updated">Start date - Beginning date of a date range</option>
+                </select>
+        </div>
+        <div class="govuk-date-input">
+            <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="passport-issued-day" >
+                        Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day"
+                        name="passport-issued-day" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="dd">
                 </div>
             </div>
-            <br/>
-            <p class="govuk-body">If you want to enter additional date(s) metadata for this record, select the relevant one(s) from the dropdown menu and fill in the fields</p>
-            <div>
-                <input class="govuk-input" type="date" id="date" name="date" value="" placeholder="DD/MM/YYYY">
-              </div>
+            <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+                        Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                        id="passport-issued-month" name="passport-issued-month" type="text" pattern="[0-9]*"
+                        inputmode="numeric" placeholder="mm">
+                </div>
+            </div>
+            <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                        Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4"
+                        id="passport-issued-year" name="passport-issued-year" type="text" pattern="[0-9]*"
+                        inputmode="numeric" placeholder="yyyy">
+                </div>
+            </div>
         </div>
-    
 
         <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint">

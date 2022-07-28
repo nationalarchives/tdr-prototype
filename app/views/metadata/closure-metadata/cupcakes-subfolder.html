@@ -13,7 +13,16 @@ File level closure metadata
     <p class="govuk-body">You can now add or edit closure metadata to individual files or folders.</p>
     <p class="govuk-body">You can do this by selecting the relevant record(s) from the table below and proceed by clicking "Add closure properties".</p>
 
-    <h2 class="app-task-list__section">Folder uploaded: Recipes and ingredients</h2>
+    <div class="govuk-breadcrumbs">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link govuk-heading-m" href="./file-level.html">Recipes and ingredients</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link govuk-heading-m" href="./cupcakes-subfolder.html">Cupcakes</a>
+        </li>
+      </ol>
+    </div>
 
     <div class="govuk-button-group">
       <button class="govuk-button govuk-button--secondary" data-module="govuk-button" type="button" name="selectAll"
@@ -24,17 +33,6 @@ File level closure metadata
       <a href="./T2-flour/check-closure-status.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
         Add closure properties
       </a>
-    </div>
-
-    <div class="govuk-breadcrumbs">
-      <ol class="govuk-breadcrumbs__list">
-        <li class="govuk-breadcrumbs__list-item">
-          <a class="govuk-breadcrumbs__link" href="./file-level.html">Recipes and ingredients</a>
-        </li>
-        <li class="govuk-breadcrumbs__list-item">
-          <a class="govuk-breadcrumbs__link" href="./cupcakes-subfolder.html">Cupcakes</a>
-        </li>
-      </ol>
     </div>
 
     <div class="govuk-grid-row">
@@ -58,7 +56,7 @@ File level closure metadata
                 <input class="govuk-checkboxes__input" id="Subfolder-Lemon-drizzle" name="organisation" type="checkbox"
                   value="hmrc">
                 <label class="govuk-label govuk-checkboxes__label" for="Subfolder-Lemon-drizzle">
-                  <a href="#">📁 Recipes</a>
+                  <a>📁 Recipes</a>
                 </label>
               </div>
             </td>
@@ -69,7 +67,7 @@ File level closure metadata
                 <input class="govuk-checkboxes__input" id="Subfolder-Chocolate-banana-bread" name="organisation"
                   type="checkbox" value="hmrc">
                 <label class="govuk-label govuk-checkboxes__label" for="Subfolder-Chocolate-banana-bread">
-                  <a href="#">📁 Ingredients</a>
+                  <a>📁 Ingredients</a>
                 </label>
               </div>
             </td>
@@ -91,7 +89,7 @@ File level closure metadata
                 <input class="govuk-checkboxes__input" id="Flour" name="organisation" type="checkbox"
                   value="hmrc">
                 <label class="govuk-label govuk-checkboxes__label" for="Flour">
-                  <a href="./T2-flour/check-closure-status.html">📊 Flour.docx</a>
+                  <a>📊 Flour.docx</a>
                 </label>
               </div>
             </td>
@@ -102,7 +100,7 @@ File level closure metadata
                 <input class="govuk-checkboxes__input" id="Lemonade" name="organisation" type="checkbox" value="flour"
                   onchange="changeLinkBack()">
                 <label class="govuk-label govuk-checkboxes__label" for="Lemonade">
-                  <a href="/file-summary-flour.html">🖼️ Lemonade.jpg</a>
+                  <a>🖼️ Lemonade.jpg</a>
                 </label>
               </div>
             </td>
