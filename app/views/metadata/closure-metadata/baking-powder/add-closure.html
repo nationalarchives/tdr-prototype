@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-Add closure fields to 'Chocolate-chips.docx'
+Add closure fields to 'Baking-powder.jpg'
 {% endblock %}
 
 {% block content %}
@@ -9,8 +9,9 @@ Add closure fields to 'Chocolate-chips.docx'
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+        <a href="./check-closure-status.html" class="govuk-back-link">Back</a>
         <h1 class="govuk-heading-l">
-            Add closure fields to 'Chocolate-chips.docx'
+            Add closure metadata to 'Baking-powder.jpg'
         </h1>{{releaseVersion | log }}
         <p class="govuk-body">Enter metadata for closure fields here.</p>
 
@@ -19,13 +20,13 @@ Add closure fields to 'Chocolate-chips.docx'
                     FOI decision asserted
                 </label>
                 <div id="passport-issued-hint" class="govuk-hint">
-                    Date of the Advisory Council Approval
+                    Date of the Advisory Council Approval (or SIRO approval if appropriate)
                 </div>
             </h2>
             <div class="govuk-date-input" id="passport-issued">
                 <div class="govuk-date-input__item">
                     <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+                        <label class="govuk-label govuk-date-input__label" for="passport-issued-day" >
                             Day
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day"
@@ -63,7 +64,7 @@ Add closure fields to 'Chocolate-chips.docx'
                     </h2>
                 </legend>
                 <div id="passport-issued-hint" class="govuk-hint">
-                    Date of the record from when the closure starts. It is usually the last date modified.
+                    This has been defaulted to the last date modified, if this is not correct, amend the field below.
                 </div>
                 <div class="govuk-date-input" id="passport-issued">
                     <div class="govuk-date-input__item">
@@ -73,7 +74,7 @@ Add closure fields to 'Chocolate-chips.docx'
                             </label>
                             <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                                 id="passport-issued-day" name="passport-issued-day" type="text" pattern="[0-9]*"
-                                inputmode="numeric" placeholder="dd">
+                                inputmode="numeric" placeholder="dd" value="12">
                         </div>
                     </div>
                     <div class="govuk-date-input__item">
@@ -83,7 +84,7 @@ Add closure fields to 'Chocolate-chips.docx'
                             </label>
                             <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                                 id="passport-issued-month" name="passport-issued-month" type="text" pattern="[0-9]*"
-                                inputmode="numeric" placeholder="mm">
+                                inputmode="numeric" placeholder="mm" value="07">
                         </div>
                     </div>
                     <div class="govuk-date-input__item">
@@ -93,7 +94,7 @@ Add closure fields to 'Chocolate-chips.docx'
                             </label>
                             <input class="govuk-input govuk-date-input__input govuk-input--width-4"
                                 id="passport-issued-year" name="passport-issued-year" type="text" pattern="[0-9]*"
-                                inputmode="numeric" placeholder="yyyy">
+                                inputmode="numeric" placeholder="yyyy" value="2022">
                         </div>
                     </div>
                 </div>
@@ -123,21 +124,61 @@ Add closure fields to 'Chocolate-chips.docx'
             <div id="foi-codes-hint" class="govuk-hint">
                 Select the exemption code that applies
             </div>
-            <div class="govuk-form-group">
+            <div class="govuk-form-group" id="foiForm">
                 <select class="govuk-select" id="sort" name="sort">
-                    <option value="please-choose" selected>Please choose...</option>
-                    <option value="33">33</option>
-                    <option value="36">36</option>
-                    <option value="37(1)">37(1)</option>
-                    <option value="37(2)">37(2)</option>
-                    <option value="38">38</option>
-                    <option value="40(2)">40(2)</option>
-                    <option value="43(1)">43(1)</option>
-                    <option value="43(2)">43(2)</option>
-                  </select>
+                  <option value="please-choose" selected>Please choose...</option>
+                  <option value="27(1)">27(1)</option>
+                  <option value="27(2)">27(2)</option>
+                  <option value="31">31</option>
+                  <option value="33">33</option>
+                  <option value="36">36</option>
+                  <option value="38(1a)">38(1a)</option>
+                  <option value="38(1b)">38(1b)</option>
+                  <option value="38(2)">38(2)</option>
+                  <option value="40(2)">40(2)</option>
+                  <option value="43(1)">43(1)</option>
+                  <option value="43(2)">43(2)</option>
+                  <option value="---------">---------</option>
+                  <option value="22">22</option>
+                  <option value="22A">22A</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="23/24 – In the alternative">23/24 – In the alternative</option>
+                  <option value="26">26</option>
+                  <option value="27(1)">27(1)</option>
+                  <option value="27(2)">27(2)</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="32">32</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="37(1)(a)">37(1)(a)</option>
+                  <option value="37(1)(aa)">37(1)(aa)</option>
+                  <option value="37(1)(ab)">37(1)(ab)</option>
+                  <option value="37(1)(ac)">37(1)(ac)</option>
+                  <option value="37(1)(ad)">37(1)(ad)</option>
+                  <option value="37(1)(b)">37(1)(b)</option>
+                  <option value="37(2)">37(2)</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43(1)">43(1)</option>
+                  <option value="43(2)">43(2)</option>
+                  <option value="44">44</option>
+                  <option value="---------">---------</option>
+                  <option value="EIRs 12(3) & 13">EIRs 12(3) & 13</option>
+                  <option value="EIR 12(5)(a)">EIR 12(5)(a)</option>
+                  <option value="EIR 12(5)(b)">EIR 12(5)(b)</option>
+                  <option value="EIR 12(5)(c)">EIR 12(5)(c)</option>
+                  <option value="EIR 12(5)(d)">EIR 12(5)(d)</option>
+                  <option value="EIR 12(5)(e)">EIR 12(5)(e)</option>
+                  <option value="EIR 12(5)(f)">EIR 12(5)(f)</option>
+                  <option value="EIR 12(5)(g)">EIR 12(5)(g)</option>
+                </select>
               </div>
               <br/>
-              <a href="#" class="govuk-link">Add another exemption code</a>
+              <a id='anotherCode' class="govuk-link">Add another exemption code</a>
         </div>
 
         <div class="govuk-form-group">
@@ -188,6 +229,10 @@ Add closure fields to 'Chocolate-chips.docx'
             $('#show-me').hide();
         });
     });
+
+    $('#anotherCode').on('click',function() {
+
+$('#foiForm').append('<div class="govuk-form-group"><select class="govuk-select" id="sort" name="sort"><option value="please-choose" selected>Please choose...</option><option value="33">33</option><option value="36">36</option><option value="37(1)">37(1)</option><option value="37(2)">37(2)</option><option value="38">38</option><option value="40(2)">40(2)</option><option value="43(1)">43(1)</option><option value="43(2)">43(2)</option><option value="---------">---------</option><option value="22">22</option><option value="22A">22A</option><option value="23">23</option><option value="24">24</option><option value="23/24 – In the alternative">23/24 – In the alternative</option><option value="27(1)">27(1)</option><option value="27(2)">27(2)</option><option value="28">28</option><option value="29">29</option><option value="31">31</option><option value="32">32</option><option value="34">34</option><option value="35">35</option><option value="37(1)(a)">37(1)(a)</option><option value="37(1)(aa)">37(1)(aa)</option><option value="37(1)(ab)">37(1)(ab)</option><option value="37(1)(ac)">37(1)(ac)</option><option value="37(1)(ad)">37(1)(ad)</option><option value="37(1)(b)">37(1)(b)</option><option value="37(2)">37(2)</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43(1)">43(1)</option><option value="43(2)">43(2)</option><option value="44">44</option><option value="---------">---------</option><option value="EIRs 12(3) & 13">EIRs 12(3) & 13</option><option value="EIR 12(5)(a)">EIR 12(5)(a)</option><option value="EIR 12(5)(b)">EIR 12(5)(b)</option><option value="EIR 12(5)(c)">EIR 12(5)(c)</option><option value="EIR 12(5)(d)">EIR 12(5)(d)</option><option value="EIR 12(5)(e)">EIR 12(5)(e)</option></select></div>');});
 </script>
 
 {% endblock %}
