@@ -19,6 +19,7 @@ $govuk-assets-path: '/govuk/assets/';
 @import 'node_modules/nhsuk-frontend/packages/nhsuk';
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+@import 'patterns/_breadcrumbs-for-file-navigation';
 
 //Header
 

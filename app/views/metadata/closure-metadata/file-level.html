@@ -7,19 +7,12 @@ File level closure metadata
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+    <a href="../additional-metadata.html.html" class="govuk-back-link">Back</a>
     <h1 class="govuk-heading-l">
       Add or edit closure metadata on file basis
     </h1>{{releaseVersion | log }}
     <p class="govuk-body">You can now add or edit closure metadata to individual files or folders.</p>
     <p class="govuk-body">You can do this by selecting the relevant record(s) from the table below and proceed by clicking "Add closure properties".</p>
-
-    <div class="govuk-breadcrumbs">
-      <ol class="govuk-breadcrumbs__list">
-        <li class="govuk-breadcrumbs__list-item">
-          <a class="govuk-breadcrumbs__link govuk-heading-m" href="#">Recipes and ingredients</a>
-        </li>
-      </ol>
-    </div>
 
     <div class="govuk-button-group">
       <button class="govuk-button govuk-button--secondary" data-module="govuk-button" type="button" name="selectAll"
@@ -43,6 +36,15 @@ File level closure metadata
     </div>
 
       <p class="govuk-pagination__results">Showing <b>1</b> to <b>5</b> of <b>2500</b> results</p>
+
+      <div class="govuk-breadcrumbs govuk-breadcrumbs-file-navigation">
+        <ol class="govuk-breadcrumbs__list govuk-breadcrumbs__list--is-root">
+          <li class="govuk-breadcrumbs__list-item">
+            <span class="govuk-heading-s">Recipes and ingredients</span >
+          </li>
+        </ol>
+      </div>
+
       <table class="govuk-table">
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
@@ -141,12 +143,6 @@ File level closure metadata
       </ul>
       <br/>
 
-    <div class="govuk-button-group">
-      <a href="../additional-metadata.html" role="button" draggable="false" class="govuk-button govuk-button--secondary"
-      data-module="govuk-button">
-      Back to overview
-    </a>
-    </div>
 
   </div>
 </div>
