@@ -8,35 +8,33 @@ Check closure status
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+    <a href="../file-level.html" class="govuk-back-link">Back</a>
     <h1 class="govuk-heading-xl">
       Update the closure status of your record
     </h1>{{releaseVersion | log }}
     <p class="govuk-body">You are updating the status for the selected file 'Cocoa.docx'</p>
 
+
     <div class="govuk-form-group">
-      <fieldset class="govuk-fieldset">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h2 class="govuk-heading-m">
+      <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+          <h2 class="govuk-fieldset__heading">
             Has this closure been approved by Advisory Council?
           </h2>
         </legend>
-        <div class="govuk-radios" data-module="govuk-radios">
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="where-do-you-live" name="where-do-you-live" type="radio" value="england">
-            <label class="govuk-label govuk-radios__label" for="where-do-you-live">
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
+            <label class="govuk-label govuk-checkboxes__label" for="waste">
               Yes
-            </label>
-          </div>
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland" checked>
-            <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
-              No
             </label>
           </div>
         </div>
     
       </fieldset>
     </div>
+
+
     <details class="govuk-details" data-module="govuk-details">
       <summary class="govuk-details__summary">
         <span class="govuk-details__summary-text">
@@ -65,13 +63,14 @@ Check closure status
     
 
     <div class="govuk-button-group">
+    <a href="add-closure.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+      Continue
+    </a>
     <a href="../file-level.html" role="button" draggable="false" class="govuk-button govuk-button--secondary"
     data-module="govuk-button">
     Back to all records
   </a>
-  <a href="add-closure.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-    Continue
-  </a>
+
     </div>
 
   </div>
