@@ -16,15 +16,15 @@ Check closure status
       Edit the closure metadata
     </h1>{{releaseVersion | log }}
 
-    <div class="govuk-form-group {% if data.error != '' %}govuk-form-group--error{% endif %}">
+    <div class="govuk-form-group {% if data.error %}govuk-form-group--error{% endif %}">
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-      <div class="govuk-warning-text">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <strong class="govuk-warning-text__text">
-          <span class="govuk-warning-text__assistive">Warning</span>
-          You have previously added closure metadata to this file.
-        </strong>
-      </div>
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+            You have previously added closure metadata to this file.
+          </strong>
+        </div>
       </legend>
 
       <div class="govuk-button-group">
@@ -115,16 +115,16 @@ Check closure status
 
     <p class="govuk-body">You are updating the status for the selected file 'Cocoa.docx'</p>
 
-    <div class="govuk-form-group {% if data.error !== undefined %} govuk-form-group--error {% endif %}">
+    <div class="govuk-form-group {% if data.error %}govuk-form-group--error{% endif %}">
       <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
           <h2 class="govuk-fieldset__heading">
-            Has this closure been approved by Advisory Council?
+            Has this closure been approved by Advisory Council or SIRO if appropriate?
           </h2>
         </legend>
         {% if data.error == 'no-confirmation' %}    
         <p id="passport-issued-error" class="govuk-error-message">
-          <span class="govuk-visually-hidden">Error:</span> You must confirm that the Advisory Council has approved this closure before continuing. 
+          <span class="govuk-visually-hidden">Error:</span> You must confirm this closure has been approved before continuing. 
         </p>
         {% endif %}
         <div class="govuk-checkboxes" data-module="govuk-checkboxes">
@@ -170,10 +170,7 @@ Check closure status
     <button role="button" draggable="false" class="govuk-button" data-module="govuk-button">
       Continue
     </button>
-    <a href="../file-level.html" role="button" draggable="false" class="govuk-button govuk-button--secondary"
-      data-module="govuk-button">
-      Back to all records
-    </a>
+    <a class="govuk-link" href="../file-level.html">Cancel</a>
 
     {% endif %}
   </form>
