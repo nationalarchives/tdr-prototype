@@ -92,32 +92,35 @@ Add descriptive metadata
                     If your record is in a different language than English
                 </div>
                 <div class="govuk-form-group">
-                    <fieldset class="govuk-fieldset">
-                      <div class="govuk-radios" data-module="govuk-radios">
-                        <div class="govuk-radios__item">
-                          <input class="govuk-radios__input" id="where-do-you-live" name="where-do-you-live" type="radio" value="england">
-                          <label class="govuk-label govuk-radios__label" for="where-do-you-live">
-                            Welsh
-                          </label>
-                        </div>
-                        <div class="govuk-radios__item">
-                          <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland">
-                          <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
-                            Irish
-                          </label>
-                        </div>
-                        <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland">
-                            <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
-                              Other
-                            </label>
-                          </div>
-                      </div>
-                      <br/>
-                      <input class="govuk-input" placeholder="Enter other language">
-                    </fieldset>
-                  </div>
-            </fieldset>
+                <select class="govuk-select" id="sort" name="sort">
+                    <option value="updated" selected>Please choose...</option>
+                  <option value="published">English</option>
+                  <option value="updated">Welsh</option>
+                  <option value="views">Scottish</option>
+                </select>
+              </div>
+        </div>
+
+        <div class="govuk-form-group">
+            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="years">
+                Title of record
+            </label>
+            </h2>
+            <div id="closure-period-hint" class="govuk-hint">
+                If the title is in another language and you would like to provide a translation
+            </div>
+            <input class="govuk-input">
+        </div>
+
+        <div class="govuk-form-group">
+            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="years">
+                Related materials
+            </label>
+            </h2>
+            <!-- <div id="closure-period-hint" class="govuk-hint">
+                
+            </div> -->
+            <input class="govuk-input">
         </div>
 
         <div class="govuk-form-group">
@@ -139,7 +142,14 @@ Add descriptive metadata
             <div id="foi-codes-hint" class="govuk-hint">
                 If different to the transferring body - where the record is inherited from
             </div>
-            <input class="govuk-input">
+            <div class="govuk-form-group">
+                <select class="govuk-select" id="sort" name="sort">
+                    <option value="updated" selected>Please choose...</option>
+                  <option value="published">Creating body 1</option>
+                  <option value="updated">Creating body 2</option>
+                  <option value="views">Creating body 3</option>
+                </select>
+              </div>
         </div>
 
         
