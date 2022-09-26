@@ -221,3 +221,30 @@ $govuk-assets-path: '/govuk/assets/';
   }
 }
 
+.icon svg {
+  fill: white;
+  line-height: 1;
+  height: 1em;
+  width: 1em; 
+}
+
+.icon {
+  display: inline-flex;
+  height: 24px;
+  background: green;
+  border-radius: 50%;
+  padding: 3px;
+  margin: 0 0 0 15px;
+}
+
+.govuk-checkboxes__label--withicon {
+  display: flex;
+}
+
+.govuk-tdr-metadata__search a {
+  // margin-bottom: 0;
+}
+
+.govuk-tdr-metadata__file-selection-btns .govuk-button {
+  margin-bottom: 0;
+}

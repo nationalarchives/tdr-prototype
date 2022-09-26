@@ -12,30 +12,33 @@ File level closure metadata
       Add or edit closure metadata on file basis
     </h1>{{releaseVersion | log }}
     <p class="govuk-body">You can now add or edit closure metadata to individual files or folders.</p>
-    <p class="govuk-body">You can do this by selecting the relevant record(s) from the table below and proceed by clicking "Add closure properties".</p>
+    <p class="govuk-body">Select the relevant record(s) from the table below and proceed by clicking "Add or Edit metadata".</p>
 
-    <div class="govuk-button-group">
+    <div class="govuk-button-group govuk-tdr-metadata__file-selection-btns">
       <button class="govuk-button govuk-button--secondary" data-module="govuk-button" type="button" name="selectAll"
         value="select-all" onClick="check_all()">
         Select all
       </button>
 
-      <a href="./T2-flour/check-closure-status.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Add closure properties
-      </a>
+      <button class="govuk-button govuk-button--secondary" data-module="govuk-button" type="button" name="selectAll"
+        value="select-all" onClick="deselect_all()">
+        Clear selection
+      </button>
     </div>
 
-    <div class="govuk-grid-row">
+    <div class="govuk-grid-row govuk-tdr-metadata__search">
       <div class="govuk-grid-column-two-thirds">
-    <input class="govuk-input" id="event-name" name="event-name" type="text" placeholder="Enter a file or folder name">
+      <input class="govuk-input" id="event-name" name="event-name" type="text" placeholder="Enter a file or folder name">
       </div>
-      <div class="govuk-grid-column-one-third"></div>
+      <div class="govuk-grid-column-one-third">
       <a href="file-level#page-2" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
         Search
       </a>
+      </div>
     </div>
+    {# <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"> #}
 
-      <p class="govuk-pagination__results">Showing <b>1</b> to <b>5</b> of <b>2500</b> results</p>
+      {# <p class="govuk-pagination__results">Showing <b>1</b> to <b>5</b> of <b>2500</b> results</p>
 
       <div class="govuk-breadcrumbs govuk-breadcrumbs-file-navigation">
         <ol class="govuk-breadcrumbs__list govuk-breadcrumbs__list--is-root">
@@ -43,7 +46,7 @@ File level closure metadata
             <span class="govuk-heading-s">Recipes and ingredients</span >
           </li>
         </ol>
-      </div>
+      </div> #}
 
       <table class="govuk-table">
         <tbody class="govuk-table__body">
@@ -85,8 +88,12 @@ File level closure metadata
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="Flour" name="organisation" type="checkbox"
                   value="hmrc">
-                <label class="govuk-label govuk-checkboxes__label" for="Flour">
-                  📊 Cocoa.docx
+                <label class="govuk-label govuk-checkboxes__label govuk-checkboxes__label--withicon" for="Flour">
+                  📊 Cocoa.docx {% if data['cocao'][0] === 'true' %} 
+                  <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                  </span> 
+                  <span class="govuk-visually-hidden">Has existing metadata</span>  
+                  {% endif %}
                 </label>
               </div>
             </td>
@@ -105,8 +112,17 @@ File level closure metadata
         </tbody>
       </table>
 
-    
-      <ul class="govuk-pagination__list">
+      <div class="govuk-button-group">
+        <a href="./T2-flour/check-closure-status.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+          Add or Edit metadata
+        </a>
+  
+        <a href="./abandon-changes-warning.html" role="button" draggable="false" class="govuk-button govuk-button--warning" >
+          Delete metadata
+        </a>
+      </div>
+
+      {# <ul class="govuk-pagination__list">
         <li class="govuk-pagination__item govuk-pagination__item--prev">
           <!-- <a class="govuk-pagination__link" href="#" id="prev"> -->
             <span class="govuk-pagination__link-title">
@@ -140,7 +156,7 @@ File level closure metadata
             </span>
           <!-- </a> -->
         </li>
-      </ul>
+      </ul> #}
       <br/>
 
 
@@ -171,6 +187,14 @@ File level closure metadata
     checkboxes = [...checkboxes];
     for (var i = 0; i < checkboxes.length; i++) {
       checkboxes[i].checked = true
+    }
+  }
+
+  function deselect_all() {
+    var checkboxes = document.getElementsByName('organisation');
+    checkboxes = [...checkboxes];
+    for (var i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].checked = false
     }
   }
 

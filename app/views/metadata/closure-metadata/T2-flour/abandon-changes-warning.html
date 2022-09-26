@@ -5,21 +5,32 @@ Remove metadata properties
 {% endblock %}
 
 {% block content %}
+<form action="confirm-closure-status">
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">
-      Remove metadata properties
-    </h1>{{releaseVersion | log }}
-    <p class="govuk-body">If you proceed, closure metadata for file 'cocoa.docx' will be removed. Are you sure you would like to proceed?</p>
-    <a href="../file-level.html" role="button" draggable="false" class="govuk-button govuk-button govuk-button--warning" data-module="govuk-button">
-      Remove and return to all files
-    </a>
-    <a href="./closure-added.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-      Cancel
-    </a>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Remove metadata properties
+      </h1>{{releaseVersion | log }}
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          If you proceed, closure metadata for file 'cocoa.docx' will be removed. Are you sure you would like to proceed?
+        </strong>
+      </div>
 
+
+      <input type="hidden" id="cocao" name="cocao" value="false"> 
+
+      <button role="button" draggable="false" class="govuk-button govuk-button--warning" data-module="govuk-button">
+        Delete metadata
+      </button>
+      <a href="./closure-added.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Cancel
+      </a>
+
+    </div>
   </div>
-</div>
-
+</form>
 {% endblock %}

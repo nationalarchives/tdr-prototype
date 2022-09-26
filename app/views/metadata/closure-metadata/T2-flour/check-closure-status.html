@@ -6,34 +6,138 @@ Check closure status
 
 {% block content %}
 
+<form action="confirm-closure-status">
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+
+    {% if data['cocao'][0] === 'true' %} 
+      
+    <h1 class="govuk-heading-xl">
+      Edit the closure metadata
+    </h1>{{releaseVersion | log }}
+
+    <div class="govuk-form-group {% if data.error != '' %}govuk-form-group--error{% endif %}">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          You have previously added closure metadata to this file.
+        </strong>
+      </div>
+      </legend>
+
+      <div class="govuk-button-group">
+        <a href="./add-closure.html" role="button" draggable="false" class="govuk-button"
+          data-module="govuk-button">
+          Edit metadata
+        </a>
+        <a href="./abandon-changes-warning.html" role="button" draggable="false" class="govuk-button govuk-button--warning" >
+          Delete metadata
+        </a>
+      </div>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Cocoa.docx
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Closure status
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Closed
+          </dd>
+        </div>
+  
+         <!-- closure stuff here -->
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
+            FOI decision asserted
+          </dt>
+          <dd class="govuk-summary-list__value">
+            20/04/2022
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
+            Closure start date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            09/02/2009
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
+            Closure period
+          </dt>
+          <dd class="govuk-summary-list__value">
+            20 years
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
+              FOI exemption code
+          </dt>
+          <dd class="govuk-summary-list__value">
+            33
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
+            Title public
+          </dt>
+          <dd class="govuk-summary-list__value">
+            the [Name withheld] ingredient
+          </dd>
+        </div>
+      </dl>
+
+      <a href="../file-level.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Cancel and return to all files
+      </a>
+    </div>
+      
+    {% else %}
     <a href="../file-level.html" class="govuk-back-link">Back</a>
+
     <h1 class="govuk-heading-xl">
       Confirm the closure status of your record
     </h1>{{releaseVersion | log }}
+
+
     <p class="govuk-body">You are updating the status for the selected file 'Cocoa.docx'</p>
 
-
-    <div class="govuk-form-group">
+    <div class="govuk-form-group {% if data.error !== undefined %} govuk-form-group--error {% endif %}">
       <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
           <h2 class="govuk-fieldset__heading">
             Has this closure been approved by Advisory Council?
           </h2>
         </legend>
+        {% if data.error == 'no-confirmation' %}    
+        <p id="passport-issued-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> You must confirm that the Advisory Council has approved this closure before continuing. 
+        </p>
+        {% endif %}
         <div class="govuk-checkboxes" data-module="govuk-checkboxes">
           <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="confirm-closure" name="confirm-closure" type="checkbox" value="1">
+            <input class="govuk-checkboxes__input" id="cocao" name="cocao" type="checkbox" value="true">
             <label class="govuk-label govuk-checkboxes__label" for="confirm-closure">
               Yes, I confirm
             </label>
           </div>
         </div>
-    
       </fieldset>
     </div>
-
+    
 
     <details class="govuk-details" data-module="govuk-details">
       <summary class="govuk-details__summary">
@@ -63,14 +167,16 @@ Check closure status
     
 
     <div class="govuk-button-group">
-    <a href="add-closure.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+    <button role="button" draggable="false" class="govuk-button" data-module="govuk-button">
       Continue
-    </a>
+    </button>
     <a href="../file-level.html" role="button" draggable="false" class="govuk-button govuk-button--secondary"
-    data-module="govuk-button">
-    Back to all records
-  </a>
+      data-module="govuk-button">
+      Back to all records
+    </a>
 
+    {% endif %}
+  </form>
     </div>
 
   </div>
