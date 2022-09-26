@@ -9,7 +9,6 @@ Add closure fields to 'Baking-powder.jpg'
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <a href="./check-closure-status.html" class="govuk-back-link">Back</a>
         <h1 class="govuk-heading-l">
             Add closure metadata to 'Baking-powder.jpg'
         </h1>{{releaseVersion | log }}
@@ -184,7 +183,7 @@ Add closure fields to 'Baking-powder.jpg'
         <div class="govuk-form-group">
             <fieldset class="govuk-fieldset">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                    Is the title closed?
+                    Are the title and/or description closed?
                 </legend>
                 <div class="govuk-radios">
                     <div class="govuk-radios__item">
@@ -202,19 +201,13 @@ Add closure fields to 'Baking-powder.jpg'
                 </div>
             </fieldset>
         </div>
-        <div id="show-me">
-            <div class="govuk-form-group">
-                <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="event-name">
-                    Alternative Title
-                    </label>
-                </h2>
-                <input class="govuk-input" id="event-name" name="event-name" type="text">
-            </div>
-        </div>
 
-        <a href="./closure-added.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-            Continue
-        </a>
+        <div class="govuk-button-group">
+            <a href="./closure-alternative-title.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+                Continue
+            </a>
+            <a class="govuk-link govuk-link--no-visited-state" href="../file-level.html">Cancel</a>
+          </div>
 
     </div>
 </div>
