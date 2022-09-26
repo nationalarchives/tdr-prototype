@@ -9,7 +9,6 @@ Add closure fields to 'Baking-powder.jpg'
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <a href="./check-closure-status.html" class="govuk-back-link">Back</a>
         <h1 class="govuk-heading-l">
             Add closure metadata to 'Baking-powder.jpg'
         </h1>{{releaseVersion | log }}
@@ -212,9 +211,12 @@ Add closure fields to 'Baking-powder.jpg'
             </div>
         </div>
 
-        <a href="./closure-added.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-            Continue
-        </a>
+        <div class="govuk-button-group">
+            <a href="./closure-added.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+                Continue
+            </a>
+            <a class="govuk-link govuk-link--no-visited-state" href="../file-level.html">Cancel</a>
+          </div>
 
     </div>
 </div>
