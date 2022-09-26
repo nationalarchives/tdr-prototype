@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-Remove metadata properties
+Remove properties
 {% endblock %}
 
 {% block content %}
@@ -11,13 +11,14 @@ Remove metadata properties
     <h1 class="govuk-heading-xl">
       Remove metadata properties
     </h1>{{releaseVersion | log }}
-    <p class="govuk-body">If you proceed, closure metadata for file 'cocoa.docx' will be removed. Are you sure you would like to proceed?</p>
-    <a href="../file-level.html" role="button" draggable="false" class="govuk-button govuk-button govuk-button--warning" data-module="govuk-button">
-      Remove and return to all files
-    </a>
-    <a href="./closure-added.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-      Cancel
-    </a>
+    <p class="govuk-body">If you proceed, closure metadata for file 'Cocoa.docx' will be removed. Are you sure you would like to proceed?</p>
+
+    <div class="govuk-button-group">
+      <a href="../file-level.html" role="button" draggable="false" class="govuk-button govuk-button" data-module="govuk-button">
+        Remove and return to all files
+      </a>
+      <a class="govuk-link govuk-link--no-visited-state" href="./closure-added.html">Cancel</a>
+    </div>
 
   </div>
 </div>
