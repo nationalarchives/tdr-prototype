@@ -191,12 +191,10 @@ Add closure fields to 'Cocoa.docx'
             selects.forEach((s)=>{
                 ids.push(s.options[s.selectedIndex].text)
             })
-            console.log(ids);
             return ids;
         }
 
         const postAllIds = (ids) => {
-            console.log(`add-multiple-FOI/update/${JSON.stringify(ids)}`);
             let xhr = new XMLHttpRequest();
             xhr.open("GET", `add-multiple-FOI/update/${JSON.stringify(ids)}`);
             xhr.send();
