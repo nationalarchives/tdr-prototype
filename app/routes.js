@@ -23,4 +23,31 @@ router.get('/metadata/closure-metadata/T2-flour/confirm-closure-status', functio
     }
   
   })
+
+  router.get('/metadata/closure-metadata/T2-flour/confirm-multiple-FOI/', function (req, res) {
+    console.log(req.session.data.foi_id_selection);
+    // req.session.data.foi_id_selection = JSON.parse(req.params.ids);
+    res.redirect('/metadata/closure-metadata/T2-flour/add-closure')
+
+})
+
+// XHR update
+router.get('/metadata/closure-metadata/T2-flour/add-multiple-FOI/update/:ids', function (req, res) {
+    req.session.data.foi_id_selection = JSON.parse(req.params.ids);
+    // To store sesssion data need an arbritrary redirect
+    res.redirect('/metadata/closure-metadata/T2-flour/add-multiple-FOI')
+})
+
+router.get('/metadata/closure-metadata/T2-flour/add-multiple-FOI/clear', function (req, res) {
+    req.session.data.foi_id_selection = []
+    res.redirect('/metadata/closure-metadata/T2-flour/add-multiple-FOI')
+})
+
+router.get('/metadata/closure-metadata/T2-flour/remove-FOI/:foiId', function (req, res) {    
+    req.session.data.foi_id_selection = req.session.data.foi_id_selection.filter(
+        code => code !== req.params.foiId.toString()
+    );    
+    res.redirect('/metadata/closure-metadata/T2-flour/add-closure')
+})
+
 module.exports = router

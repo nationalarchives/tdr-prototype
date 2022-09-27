@@ -5,8 +5,7 @@ Add closure fields to 'Cocoa.docx'
 {% endblock %}
 
 {% block content %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-{{data.closures.length}} 
+
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -124,60 +123,30 @@ Add closure fields to 'Cocoa.docx'
             <div id="foi-codes-hint" class="govuk-hint">
                 Select the exemption code(s) that apply. Here is a <a href="#">full list of FOI codes and their designated exemptions</a>.
             </div>
-            <div class="govuk-form-group" id="foiForm">
-                <select class="govuk-select" id="sort" name="sort">
+
+              {% for id in data.foi_id_selection %}
+              {% set parentIndex = loop.index0 %}
+              <div class="govuk-form-group govuk-form-group--tight">
+                <select class="govuk-select foi-selects" name="sort-{{loop.index0}}" id="sort-{{loop.index0}}-{{data.foi_id_selection[parentIndex]}}">
+                  <option value="please-choose">Please choose...</option>
+                   
+                    {% for id in data.foi_exemption_codes %}
+                        <option {% if data.foi_id_selection[parentIndex] == id %}selected{% endif %} value="{{id}}">{{id}}</option>
+                    {% endfor %}
+                </select> {% if loop.first != true %}<a class="govuk-body-s" href="./remove-FOI/{{data.foi_id_selection[parentIndex]}}">Remove</a>{% endif %}
+              </div>
+              {% else %}
+              <div class="govuk-form-group" id="foiForm">
+                <select class="govuk-select foi-selects" id="sort" name="sort">
                   <option value="please-choose" selected>Please choose...</option>
-                  <option value="27(1)">27(1)</option>
-                  <option value="27(2)">27(2)</option>
-                  <option value="31">31</option>
-                  <option value="33">33</option>
-                  <option value="36">36</option>
-                  <option value="38(1a)">38(1a)</option>
-                  <option value="38(1b)">38(1b)</option>
-                  <option value="38(2)">38(2)</option>
-                  <option value="40(2)">40(2)</option>
-                  <option value="43(1)">43(1)</option>
-                  <option value="43(2)">43(2)</option>
-                  <option value="---------">---------</option>
-                  <option value="22">22</option>
-                  <option value="22A">22A</option>
-                  <option value="23">23</option>
-                  <option value="24">24</option>
-                  <option value="23/24 – In the alternative">23/24 – In the alternative</option>
-                  <option value="26">26</option>
-                  <option value="27(1)">27(1)</option>
-                  <option value="27(2)">27(2)</option>
-                  <option value="28">28</option>
-                  <option value="29">29</option>
-                  <option value="32">32</option>
-                  <option value="34">34</option>
-                  <option value="35">35</option>
-                  <option value="37(1)(a)">37(1)(a)</option>
-                  <option value="37(1)(aa)">37(1)(aa)</option>
-                  <option value="37(1)(ab)">37(1)(ab)</option>
-                  <option value="37(1)(ac)">37(1)(ac)</option>
-                  <option value="37(1)(ad)">37(1)(ad)</option>
-                  <option value="37(1)(b)">37(1)(b)</option>
-                  <option value="37(2)">37(2)</option>
-                  <option value="39">39</option>
-                  <option value="40">40</option>
-                  <option value="41">41</option>
-                  <option value="42">42</option>
-                  <option value="43(1)">43(1)</option>
-                  <option value="43(2)">43(2)</option>
-                  <option value="44">44</option>
-                  <option value="---------">---------</option>
-                  <option value="EIRs 12(3) & 13">EIRs 12(3) & 13</option>
-                  <option value="EIR 12(5)(a)">EIR 12(5)(a)</option>
-                  <option value="EIR 12(5)(b)">EIR 12(5)(b)</option>
-                  <option value="EIR 12(5)(c)">EIR 12(5)(c)</option>
-                  <option value="EIR 12(5)(d)">EIR 12(5)(d)</option>
-                  <option value="EIR 12(5)(e)">EIR 12(5)(e)</option>
-                  <option value="EIR 12(5)(f)">EIR 12(5)(f)</option>
-                  <option value="EIR 12(5)(g)">EIR 12(5)(g)</option>
+                    {% for id in data.foi_exemption_codes %}
+                        <option value="{{id}}">{{id}}</option>
+                    {% endfor %}
                 </select>
               </div>
+              {% endfor %}
               <br/>
+              
               <a class="govuk-link" href="./add-multiple-FOI.html">Add another exemption code</a>
         </div>
 
@@ -214,19 +183,37 @@ Add closure fields to 'Cocoa.docx'
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#show-me').hide();
-        $('#yes').click(function () {
-            $('#show-me').show();
-        });
-        $('#no').click(function () {
-            $('#show-me').hide();
-        });
-    });
 
-    $('#anotherCode').on('click',function() {
+    document.addEventListener('DOMContentLoaded', function () {
+        
+        const getAllFOIids = (selects) => {
+            const ids = []
+            selects.forEach((s)=>{
+                ids.push(s.options[s.selectedIndex].text)
+            })
+            console.log(ids);
+            return ids;
+        }
 
-$('#foiForm').append('<div class="govuk-form-group" id="foiForm"><select class="govuk-select" id="sort" name="sort"><option value="please-choose" selected>Please choose...</option><option value="27(1)">27(1)</option><option value="27(2)">27(2)</option><option value="31">31</option><option value="33">33</option><option value="36">36</option><option value="38(1a)">38(1a)</option><option value="38(1b)">38(1b)</option><option value="38(2)">38(2)</option><option value="40(2)">40(2)</option><option value="43(1)">43(1)</option><option value="43(2)">43(2)</option><option value="---------">---------</option><option value="22">22</option><option value="22A">22A</option><option value="23">23</option><option value="24">24</option><option value="23/24 – In the alternative">23/24 – In the alternative</option><option value="26">26</option><option value="27(1)">27(1)</option><option value="27(2)">27(2)</option><option value="28">28</option><option value="29">29</option><option value="32">32</option><option value="34">34</option><option value="35">35</option><option value="37(1)(a)">37(1)(a)</option><option value="37(1)(aa)">37(1)(aa)</option><option value="37(1)(ab)">37(1)(ab)</option><option value="37(1)(ac)">37(1)(ac)</option><option value="37(1)(ad)">37(1)(ad)</option><option value="37(1)(b)">37(1)(b)</option><option value="37(2)">37(2)</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43(1)">43(1)</option><option value="43(2)">43(2)</option><option value="44">44</option><option value="---------">---------</option><option value="EIRs 12(3) & 13">EIRs 12(3) & 13</option><option value="EIR 12(5)(a)">EIR 12(5)(a)</option><option value="EIR 12(5)(b)">EIR 12(5)(b)</option><option value="EIR 12(5)(c)">EIR 12(5)(c)</option><option value="EIR 12(5)(d)">EIR 12(5)(d)</option><option value="EIR 12(5)(e)">EIR 12(5)(e)</option><option value="EIR 12(5)(f)">EIR 12(5)(f)</option><option value="EIR 12(5)(g)">EIR 12(5)(g)</option></select></div>');});
+        const postAllIds = (ids) => {
+            console.log(`add-multiple-FOI/update/${JSON.stringify(ids)}`);
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", `add-multiple-FOI/update/${JSON.stringify(ids)}`);
+            xhr.send();
+            xhr.onload = () => console.log(xhr.responseText);
+        }
+        
+        const foiSelects = document.querySelectorAll(".foi-selects");
+
+        foiSelects.forEach((el) => {
+            el.addEventListener("change", () => {
+                const ids = getAllFOIids(foiSelects);
+                postAllIds(ids);
+            })
+        })
+    }, false);
+
+
 </script>
 
 {% endblock %}

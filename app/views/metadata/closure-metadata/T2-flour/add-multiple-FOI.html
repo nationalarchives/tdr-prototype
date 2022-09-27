@@ -5,8 +5,10 @@ Add FOI codes to 'Baking-powder.jpg'
 {% endblock %}
 
 {% block content %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{# <form action="add-closure"> #}
+<form action="confirm-multiple-FOI">
 <div class="govuk-grid-row">
 <div class="govuk-grid-column-full">
         <a href="./add-closure.html" class="govuk-back-link">Back</a>
@@ -18,95 +20,95 @@ Add FOI codes to 'Baking-powder.jpg'
 <div class="govuk-form-group">
       <div class="govuk-checkboxes" data-module="govuk-checkboxes">
         <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
+          <input {% if data.foi_id_selection and "27(1)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="27(1)">
           <label class="govuk-label govuk-checkboxes__label" for="waste">
             27(1)
           </label>
         </div>
         <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
+          <input {% if data.foi_id_selection and "27(2)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste-2" name="foi_id_selection" type="checkbox" value="27(2)">
           <label class="govuk-label govuk-checkboxes__label" for="waste-2">
             27(2)
           </label>
         </div>
         <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm" checked>
-          <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+          <input {% if data.foi_id_selection and "31" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="31" checked>
+          <label class="govuk-label govuk-checkboxes__label" for="waste">
             31
           </label>
         </div>
         <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+            <input {% if data.foi_id_selection and "33" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="33">
+            <label class="govuk-label govuk-checkboxes__label" for="waste">
               33
             </label>
           </div>
           <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+            <input {% if data.foi_id_selection and "36" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="36">
+            <label class="govuk-label govuk-checkboxes__label" for="waste">
               36
             </label>
           </div>
           <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+            <input {% if data.foi_id_selection and "38(1a)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="38(1a)">
+            <label class="govuk-label govuk-checkboxes__label" for="waste">
               38(1a)
             </label>
           </div>
           <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+            <input {% if data.foi_id_selection and "38(1b)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="38(1b)">
+            <label class="govuk-label govuk-checkboxes__label" for="waste">
             38(1b)
             </label>
           </div>
           <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+            <input {% if data.foi_id_selection and "38(2)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="38(2)">
+            <label class="govuk-label govuk-checkboxes__label" for="waste">
                 38(2)
             </label>
           </div>
           <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+            <input {% if data.foi_id_selection and "40(2)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="40(2)">
+            <label class="govuk-label govuk-checkboxes__label" for="waste">
               40(2)
             </label>
           </div>
           <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+            <input {% if data.foi_id_selection and "43(1)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="43(1)">
+            <label class="govuk-label govuk-checkboxes__label" for="waste">
               43(1)
             </label>
           </div>
           <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+            <input {% if data.foi_id_selection and "43(2)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="43(2)">
+            <label class="govuk-label govuk-checkboxes__label" for="waste">
               43(2)
             </label>
           </div>
-            <label class="govuk-label" for="waste-3">
+            <label class="govuk-label" for="waste">
                 ---------
             </label>
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-              <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+              <input {% if data.foi_id_selection and "22" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="22">
+              <label class="govuk-label govuk-checkboxes__label" for="waste">
                 22
               </label>
             </div>
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-              <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+              <input {% if data.foi_id_selection and "22A" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="22A">
+              <label class="govuk-label govuk-checkboxes__label" for="waste">
                 22A
               </label>
             </div>
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-              <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+              <input {% if data.foi_id_selection and "23" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="23">
+              <label class="govuk-label govuk-checkboxes__label" for="waste">
                 23
               </label>
             </div>
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-              <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+              <input {% if data.foi_id_selection and "24" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="24">
+              <label class="govuk-label govuk-checkboxes__label" for="waste">
                 24
               </label>
             </div>
@@ -118,98 +120,98 @@ Add FOI codes to 'Baking-powder.jpg'
 
 <div class="govuk-grid-column-one-third">
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+        <input {% if data.foi_id_selection and "23/24 - In the alternative" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="23/24 - In the alternative">
+        <label class="govuk-label govuk-checkboxes__label" for="waste">
           23/24 - In the alternative
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+        <input {% if data.foi_id_selection and "26" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="26">
+        <label class="govuk-label govuk-checkboxes__label" for="26">
           26
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+        <input {% if data.foi_id_selection and "27(1)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="27(1)">
+        <label class="govuk-label govuk-checkboxes__label" for="27(1)">
           27(1)
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+        <input {% if data.foi_id_selection and "27(2)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="27(2)">
+        <label class="govuk-label govuk-checkboxes__label" for="27(2)">
           27(2)
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+        <input {% if data.foi_id_selection and "28" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="28">
+        <label class="govuk-label govuk-checkboxes__label" for="28">
           28
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+        <input {% if data.foi_id_selection and "29" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="29">
+        <label class="govuk-label govuk-checkboxes__label" for="29">
           29
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+        <input {% if data.foi_id_selection and "32" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="32">
+        <label class="govuk-label govuk-checkboxes__label" for="32">
           32
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+        <input {% if data.foi_id_selection and "34" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="34">
+        <label class="govuk-label govuk-checkboxes__label" for="34">
           34
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+        <input {% if data.foi_id_selection and "35" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="35">
+        <label class="govuk-label govuk-checkboxes__label" for="35">
           35
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+        <input {% if data.foi_id_selection and " 37(1)(a)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value=" 37(1)(a)">
+        <label class="govuk-label govuk-checkboxes__label" for=" 37(1)(a)">
           37(1)(a)
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+        <input {% if data.foi_id_selection and "37(1)(aa)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="37(1)(aa)">
+        <label class="govuk-label govuk-checkboxes__label" for="37(1)(aa)">
             37(1)(aa)
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+        <input {% if data.foi_id_selection and "37(1)(ab)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="37(1)(ab)">
+        <label class="govuk-label govuk-checkboxes__label" for="37(1)(ab)">
             37(1)(ab)
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+        <input {% if data.foi_id_selection and "37(1)(ab)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="37(1)(ab)">
+        <label class="govuk-label govuk-checkboxes__label" for="37(1)(ab)">
             37(1)(ab)
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+        <input {% if data.foi_id_selection and "37(1)(ac)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="37(1)(ac)">
+        <label class="govuk-label govuk-checkboxes__label" for="37(1)(ac)">
             37(1)(ac)
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+        <input {% if data.foi_id_selection and "37(1)(ad)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="37(1)(ad)">
+        <label class="govuk-label govuk-checkboxes__label" for="37(1)(ad)">
             37(1)(ad)
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+        <input {% if data.foi_id_selection and "37(1)(b)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="37(1)(b)">
+        <label class="govuk-label govuk-checkboxes__label" for="37(1)(b)">
             37(1)(b)
         </label>
       </div>
@@ -219,107 +221,108 @@ Add FOI codes to 'Baking-powder.jpg'
 
 <div class="govuk-grid-column-one-third">
   <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+    <input {% if data.foi_id_selection and "37(2)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="37(2)">
+    <label class="govuk-label govuk-checkboxes__label" for="37(2)">
         37(2)
     </label>
   </div>
   <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+    <input {% if data.foi_id_selection and "39" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="39">
+    <label class="govuk-label govuk-checkboxes__label" for="39">
       39
     </label>
   </div>
   <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+    <input {% if data.foi_id_selection and "40" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="40">
+    <label class="govuk-label govuk-checkboxes__label" for="40">
       40
     </label>
   </div>
   <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+    <input {% if data.foi_id_selection and "41" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="41">
+    <label class="govuk-label govuk-checkboxes__label" for="41">
       41
     </label>
   </div>
   <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+    <input {% if data.foi_id_selection and "42" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="42">
+    <label class="govuk-label govuk-checkboxes__label" for="42">
       42
     </label>
   </div>
   <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+    <input {% if data.foi_id_selection and "43(1)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="43(1)">
+    <label class="govuk-label govuk-checkboxes__label" for="43(1)">
       43(1)
     </label>
   </div>
   <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+    <input {% if data.foi_id_selection and "43(2)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="43(2)">
+    <label class="govuk-label govuk-checkboxes__label" for="43(2)">
       43(2)
     </label>
   </div>
   <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+    <input {% if data.foi_id_selection and "44" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="44">
+    <label class="govuk-label govuk-checkboxes__label" for="44">
       44
     </label>
   </div>
-  <label class="govuk-label" for="waste-3">
+  <label class="govuk-label" for="waste">
     ---------
 </label>
   <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+    <input {% if data.foi_id_selection and "EIRs 12(3) & 13" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="EIRs 12(3) & 13">
+    <label class="govuk-label govuk-checkboxes__label" for="EIRs 12(3) & 13">
         EIRs 12(3) & 13
     </label>
   </div>
   <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+    <input {% if data.foi_id_selection and "EIRs 12(5)(a)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="EIRs 12(5)(a)">
+    <label class="govuk-label govuk-checkboxes__label" for="EIRs 12(5)(a)">
         EIRs 12(5)(a)
     </label>
   </div>
   <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+    <input {% if data.foi_id_selection and "EIRs 12(5)(b)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="EIRs 12(5)(b)">
+    <label class="govuk-label govuk-checkboxes__label" for="EIRs 12(5)(b)">
         EIRs 12(5)(b)
     </label>
   </div>
   <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+    <input {% if data.foi_id_selection and "EIRs 12(5)(c)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="EIRs 12(5)(c)">
+    <label class="govuk-label govuk-checkboxes__label" for="EIRs 12(5)(c)">
         EIRs 12(5)(c)
     </label>
   </div>
-    <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-            EIRs 12(5)(d)
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-            EIRs 12(5)(e)
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-            EIRs 12(5)(f)
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-            EIRs 12(5)(g)
-        </label>
-      </div>
+  <div class="govuk-checkboxes__item">
+    <input {% if data.foi_id_selection and "EIRs 12(5)(d)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="EIRs 12(5)(d)">
+    <label class="govuk-label govuk-checkboxes__label" for="EIRs 12(5)(d)">
+        EIRs 12(5)(d)
+    </label>
+  </div>
+  <div class="govuk-checkboxes__item">
+    <input {% if data.foi_id_selection and "EIRs 12(5)(e)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="EIRs 12(5)(e)">
+    <label class="govuk-label govuk-checkboxes__label" for="EIRs 12(5)(e)">
+        EIRs 12(5)(e)
+    </label>
+  </div>
+  <div class="govuk-checkboxes__item">
+    <input {% if data.foi_id_selection and "EIRs 12(5)(f)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="EIRs 12(5)(f)">
+    <label class="govuk-label govuk-checkboxes__label" for="EIRs 12(5)(f)">
+        EIRs 12(5)(f)
+    </label>
+  </div>
+  <div class="govuk-checkboxes__item">
+    <input {% if data.foi_id_selection and "EIRs 12(5)(g)" in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="waste" name="foi_id_selection" type="checkbox" value="EIRs 12(5)(g)">
+    <label class="govuk-label govuk-checkboxes__label" for="EIRs 12(5)(g)">
+        EIRs 12(5)(g)
+    </label>
+  </div>
 </div>
-<a href="./add-closure.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+<button role="button" draggable="false" class="govuk-button" data-module="govuk-button">
   Save
-</a>
+</button>
 </div>
+</form>
 {% endblock %}
