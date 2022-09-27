@@ -200,7 +200,7 @@ Add closure fields to 'Cocoa.docx'
             let xhr = new XMLHttpRequest();
             xhr.open("GET", `add-multiple-FOI/update/${JSON.stringify(ids)}`);
             xhr.send();
-            xhr.onload = () => console.log(xhr.responseText);
+            xhr.onload = () => console.log("updated");
         }
         
         const foiSelects = document.querySelectorAll(".foi-selects");
