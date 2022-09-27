@@ -4,22 +4,30 @@
   Transfer summary
 {% endblock %}
 
+{% block beforeContent %}
+  <a href="#" class="govuk-back-link">Back</a>
+{% endblock %}
+
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <span class="govuk-caption-l">Step 6 of 7</span>
       <h1 class="govuk-heading-l">Download or view metadata</h1>
-      <a href="./metadata-csv.html" class="">
-        <img style="width: 100%" src="/public/images/download-metadata.png" class="" alt="">
-      </a>
-      <br>
-      <br>
+
+      <div class="govuk-grid-row">
+       <div class="govuk-grid-column-full govuk-tdr-download-csv-row"> 
+         <a href="./metadata-csv.html" >
+           <img src="/public/images/download-metadata-icon.png" class="" alt="">
+          </a>
+          <p class="govuk-body"><a href="./metadata-csv.html" >Download a .csv</a> showing all the metadata added to these records and optionally review before continuing </p>
+        </div>    
+      </div>
+      
       <div class="govuk-button-group">
-              <a href="./summary.html" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
-        Continue
-      </a>
-      <a class="govuk-link govuk-link--no-visited-state" href="./metadata/additional-metadata.html">Return to edit metadata</a>
+        <a href="./summary.html" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+          Continue
+        </a>
       </div>
 
 

@@ -248,3 +248,18 @@ $govuk-assets-path: '/govuk/assets/';
 .govuk-form-group .govuk-form-group--tight:last-of-type {
   @include govuk-responsive-margin(2, "bottom");
 }
+
+.govuk-tdr-download-csv-row {
+  display: flex;
+  gap: 15px;
+  @include govuk-responsive-margin(3, "bottom");
+}
+
+.govuk-tdr-download-csv-row a {
+  flex-basis: content;
+}
+
+.govuk-tdr-download-csv-row img {
+  max-width: 100%;
+  display: inline-block;
+}
