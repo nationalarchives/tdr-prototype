@@ -8,23 +8,10 @@ Remove properties
 <form action="confirm-closure-status">
   
   <input type="hidden" id="cocao" name="cocao" value="false"> 
-
-  {# <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">
-        Remove metadata properties
-      </h1>{{releaseVersion | log }}
-      <div class="govuk-warning-text">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <strong class="govuk-warning-text__text">
-          <span class="govuk-warning-text__assistive">Warning</span>
-          If you proceed, closure metadata for file 'cocoa.docx' will be removed. Are you sure you would like to proceed?
-        </strong>
-      </div> #}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">
-        Remove metadata properties
+        Delete closure metadata
       </h1>{{releaseVersion | log }}
       <div class="govuk-warning-text">
         <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
@@ -37,7 +24,7 @@ Remove properties
 
       <div class="govuk-button-group">
         <button role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-          Remove and return to all files
+          Delete and return to all files
         </button>
         <a class="govuk-link govuk-link--no-visited-state" href="./closure-added.html">Cancel</a>
       </div>
