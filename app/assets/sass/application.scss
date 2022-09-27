@@ -263,3 +263,16 @@ $govuk-assets-path: '/govuk/assets/';
   max-width: 100%;
   display: inline-block;
 }
+
+.gem-c-attachment__thumbnail-image {
+  display: block;
+  width: auto;
+  max-width: 99px;
+  height: 140px;
+  border: rgba(11,12,12,0.1);
+  outline: 5px solid rgba(11,12,12,0.1);
+  background: #fff;
+  box-shadow: 0 2px 2px rgba(11,12,12,0.4);
+  fill: #b1b4b6;
+  stroke: #b1b4b6;
+}
