@@ -143,7 +143,7 @@ Add closure fields to 'Cocoa.docx'
                 </select> {% if loop.first != true %}<a class="govuk-body-s" href="./remove-FOI/{{data.foi_id_selection[parentIndex]}}">Remove</a>{% endif %}
               </div>
               {% else %}
-              <div class="govuk-form-group" id="foiForm">
+              <div class="govuk-form-group govuk-form-group--tight" id="foiForm">
                 <select class="govuk-select foi-selects" id="sort" name="sort">
                   <option value="please-choose" selected>Please choose...</option>
                     {% for id in data.foi_exemption_codes %}
