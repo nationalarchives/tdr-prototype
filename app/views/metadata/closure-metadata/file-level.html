@@ -1,7 +1,14 @@
-{% extends "layout.html" %} {% block pageTitle %} File level closure metadata {%
-endblock %} {% block beforeContent %}
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+File level closure metadata
+{% endblock %}
+
+{% block beforeContent %}
 <a href="../additional-metadata.html" class="govuk-back-link">Back</a>
-{% endblock %} {% block content %}
+{% endblock %}
+
+{% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">Add or edit closure metadata on file basis</h1>
@@ -63,11 +70,11 @@ endblock %} {% block beforeContent %}
 
     <h2 id="top-level-folder">My Pantry</h2>
     <div class="govuk-tna-tree">
-      <ul role="tree" aria-labelledby="top-level-folder">
+      <ul class="govuk-tna-tree__nested-file-list" id="parent-list" role="tree" aria-labelledby="top-level-folder">
         <li
           class="govuk-tna-tree__folder-item"
           role="treeitem"
-          aria-expanded="false"
+          aria-expanded="true"
         >
           <div class="govuk-tna-tree__folder-item__container">
             <button
@@ -79,7 +86,7 @@ endblock %} {% block beforeContent %}
             </button>
             <div class="govuk-checkboxes__item">
               <input
-                class="govuk-checkboxes__input"
+                class="govuk-checkboxes__input folder-checkbox"
                 id="recipes"
                 type="checkbox"
               />
@@ -88,21 +95,20 @@ endblock %} {% block beforeContent %}
               </label>
             </div>
           </div>
-          <ul role="group" id="folder-group-recipes">
+          <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-recipes">
             <li
               class="govuk-tna-tree__file-item"
               role="treeitem"
-              aria-expanded="false"
             >
               <div class="govuk-checkboxes__item">
                 <input
                   class="govuk-checkboxes__input"
-                  id="recipes"
+                  id="carrot-cake"
                   type="checkbox"
                 />
                 <label
                   class="govuk-label govuk-checkboxes__label"
-                  for="recipes"
+                  for="carrot-cake"
                 >
                   Carrot cake.docx
                 </label>
@@ -113,7 +119,6 @@ endblock %} {% block beforeContent %}
         <li
           class="govuk-tna-tree__file-item"
           role="treeitem"
-          aria-expanded="false"
         >
           <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input" id="cocao" type="checkbox" />
@@ -125,19 +130,64 @@ endblock %} {% block beforeContent %}
         <li
           class="govuk-tna-tree__folder-item"
           role="treeitem"
-          aria-expanded="false"
+          aria-expanded="true"
         >
           <div class="govuk-tna-tree__folder-item__container">
             <button
               class="govuk-tna-tree__file-expander"
               tabindex="0"
-              id="expander-recipes"
+              id="expander-hot-drinks"
             >
               <span class="govuk-visually-hidden">Expand</span>
             </button>
             <div class="govuk-checkboxes__item">
               <input
-                class="govuk-checkboxes__input"
+                class="govuk-checkboxes__input folder-checkbox"
+                id="hot-drinks"
+                type="checkbox"
+              />
+              <label class="govuk-label govuk-checkboxes__label" for="hot-drinks">
+                Hot Drinks
+              </label>
+            </div>
+          </div>
+          <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-hot-drinks">
+            <li
+              class="govuk-tna-tree__file-item"
+              role="treeitem"
+            >
+              <div class="govuk-checkboxes__item">
+                <input
+                  class="govuk-checkboxes__input"
+                  id="tea"
+                  type="checkbox"
+                />
+                <label
+                  class="govuk-label govuk-checkboxes__label"
+                  for="tea"
+                >
+                  Tea.mov
+                </label>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li
+          class="govuk-tna-tree__folder-item"
+          role="treeitem"
+          aria-expanded="true"
+        >
+          <div class="govuk-tna-tree__folder-item__container">
+            <button
+              class="govuk-tna-tree__file-expander"
+              tabindex="0"
+              id="expander-cake-basics"
+            >
+              <span class="govuk-visually-hidden">Expand</span>
+            </button>
+            <div class="govuk-checkboxes__item">
+              <input
+                class="govuk-checkboxes__input folder-checkbox"
                 id="cake-basics"
                 type="checkbox"
               />
@@ -149,11 +199,10 @@ endblock %} {% block beforeContent %}
               </label>
             </div>
           </div>
-          <ul role="group" id="folder-group-recipes">
+          <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-cake-basics">
             <li
               class="govuk-tna-tree__file-item"
               role="treeitem"
-              aria-expanded="false"
             >
               <div class="govuk-checkboxes__item">
                 <input
@@ -172,7 +221,6 @@ endblock %} {% block beforeContent %}
             <li
               class="govuk-tna-tree__file-item"
               role="treeitem"
-              aria-expanded="false"
             >
               <div class="govuk-checkboxes__item">
                 <input
@@ -191,7 +239,6 @@ endblock %} {% block beforeContent %}
             <li
               class="govuk-tna-tree__file-item"
               role="treeitem"
-              aria-expanded="false"
             >
               <div class="govuk-checkboxes__item">
                 <input
@@ -210,7 +257,6 @@ endblock %} {% block beforeContent %}
             <li
               class="govuk-tna-tree__file-item"
               role="treeitem"
-              aria-expanded="false"
             >
               <div class="govuk-checkboxes__item">
                 <input
@@ -228,19 +274,19 @@ endblock %} {% block beforeContent %}
         <li
           class="govuk-tna-tree__folder-item"
           role="treeitem"
-          aria-expanded="false"
+          aria-expanded="true"
         >
           <div class="govuk-tna-tree__folder-item__container">
             <button
               class="govuk-tna-tree__file-expander"
               tabindex="0"
-              id="expander-recipes"
+              id="expander-cupcakes"
             >
               <span class="govuk-visually-hidden">Expand</span>
             </button>
             <div class="govuk-checkboxes__item">
               <input
-                class="govuk-checkboxes__input"
+                class="govuk-checkboxes__input folder-checkbox"
                 id="cupcakes"
                 type="checkbox"
               />
@@ -249,11 +295,10 @@ endblock %} {% block beforeContent %}
               </label>
             </div>
           </div>
-          <ul role="group" id="folder-group-recipes">
+          <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-cupcakes">
             <li
               class="govuk-tna-tree__file-item"
               role="treeitem"
-              aria-expanded="false"
             >
               <div class="govuk-checkboxes__item">
                 <input
@@ -272,20 +317,20 @@ endblock %} {% block beforeContent %}
             <li
               class="govuk-tna-tree__folder-item"
               role="treeitem"
-              aria-expanded="false"
+              aria-expanded="true"
             >
               <div class="govuk-tna-tree__folder-item__container">
                 <button
                   class="govuk-tna-tree__file-expander"
                   tabindex="0"
-                  id="expander-recipes"
+                  id="expander-non-dairy"
                 >
                   <span class="govuk-visually-hidden">Expand</span>
                 </button>
                 <div class="govuk-checkboxes__item">
                   <input
-                    class="govuk-checkboxes__input"
-                    id="non-dairy"
+                  class="govuk-checkboxes__input folder-checkbox"
+                  id="non-dairy"
                     type="checkbox"
                   />
                   <label
@@ -296,11 +341,10 @@ endblock %} {% block beforeContent %}
                   </label>
                 </div>
               </div>
-              <ul role="group" id="folder-group-recipes">
+              <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-non-dairy">
                 <li
                   class="govuk-tna-tree__file-item"
                   role="treeitem"
-                  aria-expanded="false"
                 >
                   <div class="govuk-checkboxes__item">
                     <input
@@ -316,12 +360,29 @@ endblock %} {% block beforeContent %}
                     </label>
                   </div>
                 </li>
+                <li
+                  class="govuk-tna-tree__file-item"
+                  role="treeitem"
+                >
+                  <div class="govuk-checkboxes__item">
+                    <input
+                      class="govuk-checkboxes__input"
+                      id="dark-chocolate"
+                      type="checkbox"
+                    />
+                    <label
+                      class="govuk-label govuk-checkboxes__label"
+                      for="dark-chocolate"
+                    >
+                      Dark-chocolate.png
+                    </label>
+                  </div>
+                </li>
               </ul>
             </li>
             <li
               class="govuk-tna-tree__file-item"
               role="treeitem"
-              aria-expanded="false"
             >
               <div class="govuk-checkboxes__item">
                 <input
@@ -340,7 +401,6 @@ endblock %} {% block beforeContent %}
             <li
               class="govuk-tna-tree__file-item"
               role="treeitem"
-              aria-expanded="false"
             >
               <div class="govuk-checkboxes__item">
                 <input
@@ -358,116 +418,6 @@ endblock %} {% block beforeContent %}
       </ul>
     </div>
     <br /><br />
-    {#
-    <table class="govuk-table">
-      <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">
-            <div class="govuk-checkboxes__item">
-              <input
-                class="govuk-checkboxes__input"
-                id="Subfolder-Lemon-drizzle"
-                name="organisation"
-                type="checkbox"
-                value="hmrc"
-              />
-              <label
-                class="govuk-label govuk-checkboxes__label"
-                for="Subfolder-Lemon-drizzle"
-              >
-                <a>📁 Recipes</a>
-              </label>
-            </div>
-          </td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">
-            <div class="govuk-checkboxes__item">
-              <input
-                class="govuk-checkboxes__input"
-                id="Subfolder-Chocolate-banana-bread"
-                name="organisation"
-                type="checkbox"
-                value="hmrc"
-              />
-              <label
-                class="govuk-label govuk-checkboxes__label"
-                for="Subfolder-Chocolate-banana-bread"
-              >
-                <a href="./cake-basics-subfolder.html">📁 Cake basics</a>
-              </label>
-            </div>
-          </td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">
-            <div class="govuk-checkboxes__item">
-              <input
-                class="govuk-checkboxes__input"
-                onchange="changeLink()"
-                id="choc-chips"
-                name="organisation"
-                type="checkbox"
-                value="cc"
-                data-href="cc"
-              />
-              <label
-                class="govuk-label govuk-checkboxes__label"
-                for="choc-chips"
-              >
-                <a href="./cupcakes-subfolder.html">📁 Main cakes</a>
-              </label>
-            </div>
-          </td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">
-            <div class="govuk-checkboxes__item">
-              <input
-                class="govuk-checkboxes__input"
-                id="Flour"
-                name="organisation"
-                type="checkbox"
-                value="hmrc"
-              />
-              <label
-                class="govuk-label govuk-checkboxes__label govuk-checkboxes__label--withicon"
-                for="Flour"
-              >
-                📊 Cocoa.docx {% if data['cocao'][0] === 'true' %}
-                <span class="icon"
-                  ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                      d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"
-                    />
-                  </svg>
-                </span>
-                <span class="govuk-visually-hidden">Has existing metadata</span>
-                {% endif %}
-              </label>
-            </div>
-          </td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">
-            <div class="govuk-checkboxes__item">
-              <input
-                class="govuk-checkboxes__input"
-                id="Lemonade"
-                name="organisation"
-                type="checkbox"
-                value="flour"
-                onchange="changeLinkBack()"
-              />
-              <label class="govuk-label govuk-checkboxes__label" for="Lemonade">
-                🖼️ Lemonade.jpg
-              </label>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    #}
 
     <div class="govuk-button-group">
       <a
@@ -494,37 +444,11 @@ endblock %} {% block beforeContent %}
   </div>
 </div>
 
-<style>
-  section {
-    display: none;
-  }
-
-  .page-1 {
-    display: block;
-  }
-
-  section:target {
-    display: block;
-  }
-
-  section:target ~ #page-1 {
-    display: none;
-  }
-</style>
-
 <script type="text/javascript">
   function check_all() {
     var checkboxes = document.getElementsByName("organisation");
     checkboxes = [...checkboxes];
-    for (var i = 0; i < checkboxes.length; i<span class="govuk-visually-hidden">Expand</span><span class="govuk-visually-hidden">Expand</span>) {
-      checkboxes[i].checked = true;
-    }
-  }
-
-  function deselect_all() {
-    var checkboxes = document.getElementsByName("organisation");
-    checkboxes = [...checkboxes];
-    for (var i = 0; i < checkboxes.length; i<span class="govuk-visually-hidden">Expand</span><span class="govuk-visually-hidden">Expand</span>) {
+    for (var i = 0; i < checkboxes.length; i++) {
       checkboxes[i].checked = false;
     }
   }
@@ -532,5 +456,11 @@ endblock %} {% block beforeContent %}
   if (!window.location.hash) {
     window.location.href = "file-level#page-1";
   }
+
+
 </script>
+{% endblock %}
+
+{% block pageScripts %}
+<script src="/public/javascripts/tree-view.js"></script>
 {% endblock %}
