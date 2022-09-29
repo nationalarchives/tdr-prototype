@@ -1,0 +1,87 @@
+
+.govuk-tna-tree {
+    --checkbox-width: 40px;
+    --file-expander-btn-width: 40px;
+  }
+  
+  .govuk-tna-tree ul[role="tree"],
+  .govuk-tna-tree ul[role="tree"] li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .govuk-tna-tree ul[role="group"] li {
+    margin-left: var(--file-expander-btn-width);
+  }
+  
+  .govuk-tna-tree ul[role="tree"] li {
+    margin-top: 5px;
+  }
+  
+  .govuk-tna-tree ul[role="tree"] li ul {
+    margin: 0 0 0 var(--file-expander-btn-width);
+    padding: 0;
+  }
+  
+  .govuk-tna-tree ul[role="tree"] ul {
+    position: relative;
+  }
+  
+  .govuk-tna-tree ul[role="tree"] ul:before {
+    content: "";
+    margin: 4px 0 0 calc(-2px + var(--checkbox-width)/2);
+    border-left: 4px solid #B1B4B6;
+    position: absolute;
+    height: calc(100% - 8px);
+  }
+  
+  /* Accomodate for lack of button so alignment is ok */
+  .govuk-tna-tree__file-item > .govuk-checkboxes__item {
+    margin-left: var(--file-expander-btn-width);;
+  }
+  
+  button.govuk-tna-tree__file-expander {
+    width: var(--file-expander-btn-width);;
+    height: var(--file-expander-btn-width);;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .govuk-tna-tree__folder-item__container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .govuk-tna-tree__folder-item__container, .govuk-tna-tree__file-item {
+    height: 40px;
+  }
+  
+  .govuk-tna-tree__file-expander {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .govuk-tna-tree__file-expander::before {
+    content: "";
+    position: absolute;
+  
+    top: -1px;
+    bottom: 0;
+    left: 10px;
+  
+    margin: auto;
+    @include govuk-shape-arrow($direction: right, $base: 20px);
+    border-color: $govuk-link-colour;
+  }
+  
+  .govuk-tna-tree [role="treeitem"][aria-expanded="false"] > ul {
+    display: none;
+  }
+  
+  .govuk-tna-tree [role="treeitem"][aria-expanded="true"] > ul {
+    display: block;
+  }
