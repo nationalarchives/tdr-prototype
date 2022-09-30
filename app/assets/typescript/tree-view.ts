@@ -119,8 +119,7 @@ if (fileNavigationContainer) {
       ).length;
       const parentCheckbox: HTMLInputElement | null =
         input.parentNode!.querySelector("input[type=checkbox]");
-      console.log(countChecked, all.length, input);
-      if (parentCheckbox) {
+      if (parentCheckbox && input.id !== "parent-list") {
         if (countChecked > 0 && countChecked < all.length) {
           parentCheckbox.indeterminate = true;
         }
@@ -134,11 +133,58 @@ if (fileNavigationContainer) {
         }
         const nextEl: HTMLInputElement | null | undefined =
           input.parentElement?.closest(".govuk-tna-tree__nested-file-list");
-        if (nextEl) console.log(nextEl.id != "parent-list");
         if (nextEl && nextEl.id != "parent-list") {
           setState(nextEl);
         }
       }
     }
   };
+
+  document
+    .querySelector("[role=tree]")
+    .addEventListener("keydown", (ev: KeyboardEvent) => {
+      const currentItem = document.activeElement;
+      // console.log(ev.key);
+
+      switch (ev.key) {
+        case "RETURN":
+        case "SPACE":
+          // Check or uncheck checkbox
+          break;
+
+        case "ArrowUp":
+          // Moves focus to the previous node that is focusable without opening or closing a node.
+          break;
+
+        case "ArrowDown":
+          // Moves focus to the next node that is focusable without opening or closing a node.
+          break;
+
+        case "ArrowRight":
+          // When focus is on a closed node, opens the node; focus does not move.
+          // When focus is on a open node, moves focus to the first child node.
+          // When focus is on an end node (a tree item with no children), does nothing.
+
+          break;
+
+        case "ArrowLeft":
+          // When focus is on an open node, closes the node.
+          // When focus is on a child node that is also either an end node or a closed node, moves focus to its parent node.
+          // When focus is on a closed `tree`, does nothing.
+
+          break;
+
+        case "Home":
+          // Moves focus to the first node in the tree without opening or closing a node.
+          break;
+
+        case "End":
+          // Moves focus to the last node in the tree that is focusable without opening the node.
+          break;
+
+        default:
+          break;
+      }
+      // ev.preventDefault();
+    });
 }
