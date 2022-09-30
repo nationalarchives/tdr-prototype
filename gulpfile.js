@@ -21,6 +21,7 @@ gulp.task('generate-assets', gulp.series(
   'sass-extensions',
   gulp.parallel(
     'sass',
+    'typescript',
     'copy-assets',
     'sass-documentation',
     'copy-assets-documentation',
