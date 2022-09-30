@@ -119,6 +119,7 @@ if (fileNavigationContainer) {
       ).length;
       const parentCheckbox: HTMLInputElement | null =
         input.parentNode!.querySelector("input[type=checkbox]");
+      console.log(countChecked, all.length, input);
       if (parentCheckbox) {
         if (countChecked > 0 && countChecked < all.length) {
           parentCheckbox.indeterminate = true;
@@ -133,6 +134,7 @@ if (fileNavigationContainer) {
         }
         const nextEl: HTMLInputElement | null | undefined =
           input.parentElement?.closest(".govuk-tna-tree__nested-file-list");
+        if (nextEl) console.log(nextEl.id != "parent-list");
         if (nextEl && nextEl.id != "parent-list") {
           setState(nextEl);
         }
