@@ -44,8 +44,8 @@
 
   button.govuk-tna-tree__file-expander {
     width: var(--file-expander-btn-width);
-    height: var(--file-expander-btn-width);
-    margin: 0;
+    height: calc(var(--file-expander-btn-width) - 6px);
+    margin: 2px 0 0;
     padding: 0;
   }
 
@@ -64,6 +64,10 @@
     background-color: transparent;
     cursor: pointer;
     position: relative;
+  }
+
+  .govuk-tna-tree__file-expander:focus {
+    @include govuk-focused-text;
   }
 
   .govuk-tna-tree__file-expander::before {
