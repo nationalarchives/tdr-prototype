@@ -21,7 +21,7 @@ if (fileNavigationContainer) {
         i
       ) as HTMLInputElement | null;
       if (item) {
-        if (item.getAttribute("aria-expanded") === null) {
+        if (item.nodeName == "LI") {
           const itemCheckbox: HTMLInputElement | null = item.querySelector(
             ".govuk-checkboxes__input"
           );
@@ -114,10 +114,11 @@ if (fileNavigationContainer) {
   const setState: (input: HTMLInputElement | null) => void = (input) => {
     if (input) {
       const all = allCheckboxes(input, []);
-      const countChecked = all.filter((a) => a.checked).length;
+      const countChecked = all.filter(
+        (a) => a.checked || a.indeterminate
+      ).length;
       const parentCheckbox: HTMLInputElement | null =
         input.parentNode!.querySelector("input[type=checkbox]");
-      console.log(countChecked, all.length, input);
       if (parentCheckbox) {
         if (countChecked > 0 && countChecked < all.length) {
           parentCheckbox.indeterminate = true;
