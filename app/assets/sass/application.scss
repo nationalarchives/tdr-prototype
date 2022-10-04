@@ -21,7 +21,9 @@ $govuk-assets-path: '/govuk/assets/';
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 @import 'patterns/_breadcrumbs-for-file-navigation';
 
-//Header
+// Accessible autocomplete field
+// https://github.com/alphagov/accessible-autocomplete
+@import "node_modules/accessible-autocomplete/src/autocomplete";
 
 // menu button in header (now 'Sign out' button)
 .govuk-header__menu-button::after {

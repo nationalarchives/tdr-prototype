@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block content %}
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -283,7 +282,7 @@
         Choose the language this record is written in.
       </div>
         <div class="govuk-form-group">
-          <select class="govuk-select" id="sort" name="sort">
+          <select class="govuk-select" id="language-select" name="sort">
             <option value="updated">Please choose...</option>
             {% for l in data.languages %}
               <option value="{{l.iso_code}}"{% if l.iso_code == "eng" %} selected{%endif%}>{{l.language_desc}}</option>
@@ -366,5 +365,15 @@
     </a>
     </div>
   </div>
+
+  {% block pageScripts %}
+  <script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+  <script>
+    accessibleAutocomplete.enhanceSelectElement({
+      selectElement: document.querySelector('#language-select'),
+      showAllValues: true
+    })
+  </script>
+  {% endblock %}
 
 {% endblock %}
