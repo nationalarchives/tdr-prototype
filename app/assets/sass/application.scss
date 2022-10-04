@@ -22,7 +22,9 @@ $govuk-assets-path: '/govuk/assets/';
 @import 'patterns/_breadcrumbs-for-file-navigation';
 @import 'patterns/_tree-view-file-navigation';
 
-//Header
+// Accessible autocomplete field
+// https://github.com/alphagov/accessible-autocomplete
+@import "node_modules/accessible-autocomplete/src/autocomplete";
 
 // menu button in header (now 'Sign out' button)
 .govuk-header__menu-button::after {
@@ -194,7 +196,7 @@ $govuk-assets-path: '/govuk/assets/';
 .progress {
   background-color: #505a5f;
   animation: progressBar 10s ease-in-out;
-  animation-fill-mode:both; 
+  animation-fill-mode:both;
 }
 
 @keyframes progressBar {
@@ -209,8 +211,8 @@ $govuk-assets-path: '/govuk/assets/';
 }
 
 @keyframes showBlock {
-  to { 
-    visibility: visible; 
+  to {
+    visibility: visible;
     height: 100%;
   }
 }
@@ -219,7 +221,7 @@ $govuk-assets-path: '/govuk/assets/';
   fill: white;
   line-height: 1;
   height: 1em;
-  width: 1em; 
+  width: 1em;
 }
 
 .icon {
@@ -269,4 +271,26 @@ $govuk-assets-path: '/govuk/assets/';
   box-shadow: 0 2px 2px rgba(11,12,12,0.4);
   fill: #b1b4b6;
   stroke: #b1b4b6;
+}
+
+.govuk-date-input__multi-date-container {
+  display: flex;
+  gap: 15px;
+  @include govuk-responsive-margin(3, "bottom");
+}
+
+.govuk-date-input__multi-date-label {
+  align-self: flex-end;
+  margin-bottom: 0;
+}
+
+.govuk-fieldset--horizontal-align {
+  display: flex;
+  gap: 15px;
+}
+
+.govuk-fieldset--horizontal-align legend {
+  float: left;
+  align-self: flex-end;
+  margin: 0;
 }
