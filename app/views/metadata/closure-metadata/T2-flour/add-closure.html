@@ -25,7 +25,7 @@ Add closure fields to 'Cocoa.docx'
                     </h2>
                 </legend>
                 <div id="foi-decision-hint" class="govuk-hint">
-                    Date of the Advisory Council or DRO (Departmental Record Officer) approval
+                    Date of the Advisory Council approval
                   </div>
                 <div class="govuk-date-input" id="passport-issued">
                     <div class="govuk-date-input__item">
@@ -136,7 +136,7 @@ Add closure fields to 'Cocoa.docx'
               <div class="govuk-form-group govuk-form-group--tight">
                 <select class="govuk-select foi-selects" name="sort-{{loop.index0}}" id="sort-{{loop.index0}}-{{data.foi_id_selection[parentIndex]}}">
                   <option value="please-choose">Please choose...</option>
-                   
+
                     {% for id in data.foi_exemption_codes %}
                         <option {% if data.foi_id_selection[parentIndex] == id %}selected{% endif %} value="{{id}}">{{id}}</option>
                     {% endfor %}
@@ -152,7 +152,7 @@ Add closure fields to 'Cocoa.docx'
                 </select>
               </div>
               {% endfor %}
-              
+
               <a class="govuk-link" href="./add-multiple-FOI.html">Add another exemption code</a>
             </fieldset>
         </div>
@@ -192,7 +192,7 @@ Add closure fields to 'Cocoa.docx'
 <script type="text/javascript">
 
     document.addEventListener('DOMContentLoaded', function () {
-        
+
         const getAllFOIids = (selects) => {
             const ids = []
             selects.forEach((s)=>{
@@ -207,7 +207,7 @@ Add closure fields to 'Cocoa.docx'
             xhr.send();
             xhr.onload = () => console.log("updated");
         }
-        
+
         const foiSelects = document.querySelectorAll(".foi-selects");
 
         foiSelects.forEach((el) => {
