@@ -68,8 +68,6 @@ File level closure metadata
       </div>
     </div>
 
-    <h2 id="top-level-folder">My Pantry</h2>
-
 {% macro fileItem(item) %}
     {% if item.type == 'file' or item.children.length == 0 %}
       <li
@@ -128,7 +126,7 @@ File level closure metadata
 
 
     {# <div class="govuk-tna-tree">
-      <ul class="govuk-tna-tree__nested-file-list" id="parent-list" role="tree" aria-labelledby="top-level-folder">
+      <ul class="govuk-tna-tree__nested-file-list" id="parent-list" role="tree">
         <li
           class="govuk-tna-tree__folder-item"
           role="treeitem"
