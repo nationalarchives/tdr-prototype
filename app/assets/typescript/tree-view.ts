@@ -123,7 +123,7 @@ if (tree) {
       if (li.previousElementSibling.getAttribute("aria-expanded") == "true") {
         // Go to sibling's last child
         setFocusToItem(
-          li.previousElementSibling.querySelector("ul > li:last-child")
+          li.previousElementSibling.querySelector(":scope > ul > li:last-child")
         );
       } else {
         // Go to previous sibling
