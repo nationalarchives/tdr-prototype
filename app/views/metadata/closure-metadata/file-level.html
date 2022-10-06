@@ -10,7 +10,7 @@ File level closure metadata
 
 {% block content %}
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-full">
     <h1 class="govuk-heading-l">Add or edit closure metadata on file basis</h1>
     {{releaseVersion | log }}
     <p class="govuk-body">
@@ -69,7 +69,65 @@ File level closure metadata
     </div>
 
     <h2 id="top-level-folder">My Pantry</h2>
+
+{% macro fileItem(item) %}
+    {% if item.type == 'file' or item.children.length == 0 %}
+      <li
+        class="govuk-tna-tree__file-item"
+        role="treeitem"
+      >
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="{{item.ino}}" type="checkbox" />
+          <label class="govuk-label govuk-checkboxes__label" for="{{item.ino}}">
+            {{item.name}}
+          </label>
+        </div>
+      </li>
+
+    {% elif item.type == 'directory' %}
+     <li
+          class="govuk-tna-tree__folder-item"
+          role="treeitem"
+          aria-expanded="true"
+        >
+        <div class="govuk-tna-tree__folder-item__container">
+          <button
+            class="govuk-tna-tree__file-expander"
+            tabindex="-1"
+            id="expander-{{item.ino}}"
+          >
+            <span class="govuk-visually-hidden">Expand</span>
+          </button>
+          <div class="govuk-checkboxes__item">
+            <input
+              class="govuk-checkboxes__input"
+              id="{{item.ino}}"
+              type="checkbox"
+            />
+            <label class="govuk-label govuk-checkboxes__label" for="{{item.ino}}">
+              {{item.name}}
+            </label>
+          </div>
+        </div>
+        <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-{{item.ino}}">
+          {% for child in item.children %}
+          {{ fileItem(child) }}
+          {% endfor %}
+        </ul>
+      </li>
+    {% endif %}
+{% endmacro %}
+
     <div class="govuk-tna-tree">
+      <ul class="govuk-tna-tree__nested-file-list" role="tree">
+        {% for node in data.dummyfiles %}
+        {{ fileItem(node) }}
+        {% endfor %}
+      </ul>
+    </div>
+
+
+    {# <div class="govuk-tna-tree">
       <ul class="govuk-tna-tree__nested-file-list" id="parent-list" role="tree" aria-labelledby="top-level-folder">
         <li
           class="govuk-tna-tree__folder-item"
@@ -401,7 +459,7 @@ File level closure metadata
           </ul>
         </li>
       </ul>
-    </div>
+    </div> #}
     <br /><br />
 
     <div class="govuk-button-group">
