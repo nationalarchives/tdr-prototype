@@ -66,10 +66,6 @@
     position: relative;
   }
 
-  .govuk-tna-tree__file-expander:focus {
-    @include govuk-focused-text;
-  }
-
   .govuk-tna-tree__file-expander::before {
     content: "";
     position: absolute;
