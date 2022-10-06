@@ -3,6 +3,8 @@
     /* Can I use this instead? $govuk-checkboxes-size */
     --checkbox-width: 40px;
     --file-expander-btn-width: 40px;
+      overflow: auto;
+      height: 90vh;
   }
 
   .govuk-tna-tree ul[role="tree"],
@@ -43,6 +45,7 @@
   }
 
   button.govuk-tna-tree__file-expander {
+    flex-basis: auto;
     width: var(--file-expander-btn-width);
     height: calc(var(--file-expander-btn-width) - 6px);
     margin: 2px 0 0;
@@ -53,6 +56,10 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+  }
+
+  .govuk-tna-tree__folder-item__container > * {
+    flex-shrink: 0;
   }
 
   .govuk-tna-tree__folder-item__container, .govuk-tna-tree__file-item {
@@ -103,4 +110,8 @@
     width: 22px;
     background: currentColor;
     opacity: 1;
+  }
+
+  .govuk-tna-tree .govuk-checkboxes__label {
+    white-space: nowrap;
   }
