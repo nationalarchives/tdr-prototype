@@ -1,41 +1,35 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-Abandon changes
+Remove properties
 {% endblock %}
 
 {% block content %}
+  <form action="../file-level">
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">
-        Abandon changes
+    <input type="hidden" id="lemonade" name="lemonade" value="delete">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">
+        Delete closure metadata
       </h1>{{releaseVersion | log }}
-      <p class="govuk-body">If you proceed to abandon your changes, any additional descriptive metadata that was added to your record(s) will be discarded. Are you sure you would like to proceed?</p>
-<div class="govuk-form-group">
-  <fieldset class="govuk-fieldset">
-    </legend>
-    <div class="govuk-radios" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="where-do-you-live" name="where-do-you-live" type="radio" value="england">
-        <label class="govuk-label govuk-radios__label" for="where-do-you-live">
-          No
-        </label>
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+          If you proceed, closure metadata for file 'lemonade.jpg' will be removed.
+        </strong>
+        </div>
+        <p class="govuk-body">Are you sure you would like to proceed?</p>
+
+        <div class="govuk-button-group">
+          <button role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+          Delete and return to all files
+        </button>
+          <a class="govuk-link govuk-link--no-visited-state" href="./descriptive-added">Cancel</a>
+        </div>
+
       </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland">
-        <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
-          Yes
-        </label>
-      </div>
-  </fieldset>
-</div>
-
-    <a href="../file-level.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-      Save and return to all files
-    </a>
-
-  </div>
-</div>
-
+    </div>
+  </form>
 {% endblock %}
