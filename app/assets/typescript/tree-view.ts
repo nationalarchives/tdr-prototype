@@ -37,8 +37,14 @@ if (tree) {
   };
 
   const setCheckbox: (input: HTMLInputElement) => void = (input) => {
+    const li: HTMLLIElement | null = input.parentElement.closest("li");
+    li.setAttribute(
+      "aria-selected",
+      li.getAttribute("aria-selected") == "false" ? "true" : "false"
+    );
+
     // If this is a folder, traverse down
-    if (input.parentElement.closest("li").hasAttribute("aria-expanded")) {
+    if (li.hasAttribute("aria-expanded")) {
       const childrenGroup: HTMLUListElement | null = document.querySelector(
         `#folder-group-${input.id}`
       );
@@ -161,7 +167,16 @@ if (tree) {
     .addEventListener("keydown", (ev: KeyboardEvent) => {
       const currentItem = document.activeElement;
       let li;
+      console.log(ev.key);
       switch (ev.key) {
+        case "Home":
+          const first: HTMLInputElement = (
+            ev.currentTarget as HTMLElement
+          ).querySelector("input[type=checkbox]");
+          first.tabIndex = 0;
+          first.focus();
+
+          break;
         case "Enter":
         case " ":
           // Check or uncheck checkbox

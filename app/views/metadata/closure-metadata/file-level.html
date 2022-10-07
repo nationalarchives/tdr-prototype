@@ -73,6 +73,7 @@ File level closure metadata
       <li
         class="govuk-tna-tree__file-item"
         role="treeitem"
+        aria-selected="false"
       >
         <div class="govuk-checkboxes__item">
           <input class="govuk-checkboxes__input" id="{{item.ino}}" type="checkbox" />
@@ -87,6 +88,7 @@ File level closure metadata
           class="govuk-tna-tree__folder-item"
           role="treeitem"
           aria-expanded="true"
+          aria-selected="false"
         >
         <div class="govuk-tna-tree__folder-item__container">
           <button
@@ -117,7 +119,7 @@ File level closure metadata
 {% endmacro %}
 
     <div class="govuk-tna-tree">
-      <ul class="govuk-tna-tree__nested-file-list" role="tree">
+      <ul class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
         {% for node in data.dummyfiles %}
         {{ fileItem(node) }}
         {% endfor %}
