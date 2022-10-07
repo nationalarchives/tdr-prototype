@@ -1,164 +1,372 @@
 {% extends "layout.html" %}
+{% block pageTitle %} Add descriptive metadata {% endblock %}
 
-{% block pageTitle %}
-Add descriptive metadata
+{% block beforeContent %}
+  <a href="./open-lemonade.html" class="govuk-back-link">Back</a>
 {% endblock %}
 
 {% block content %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<div class="govuk-grid-row">
+  <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <a href="./open-lemonade.html" class="govuk-back-link">Back</a>
-        <h1 class="govuk-heading-l">
-            Add descriptive metadata to 'Lemonade.jpg'
-        </h1>{{releaseVersion | log }}
-        <p class="govuk-body">Enter metadata for descriptive fields here.</p>
+      <h1 class="govuk-heading-l">Add descriptive metadata to 'Lemonade.jpg'</h1>
+      {{releaseVersion | log }}
+      <p class="govuk-body">Enter metadata for descriptive fields here.</p>
 
-        <div class="govuk-form-group">
-            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="event-name">
-                Description
-            </label>
-            </h2>
-            <div id="foi-codes-hint" class="govuk-hint">
-                This is the description of your record the public see on Discovery
-            </div>
-                <textarea class="govuk-textarea" id="address" name="address" rows="5" autocomplete="street-address"></textarea>
-        </div>
+      <div class="govuk-form-group">
+        <h2 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--m" for="event-name">
+          Description
+        </label>
+        </h2>
+        <div id="foi-codes-hint" class="govuk-hint">
+        This description will be visible on Discovery and help explain the
+        content of your file(s).
+      </div>
+        <textarea
+        class="govuk-textarea"
+        id="address"
+        name="address"
+        rows="5"
+        autocomplete="street-address"
+      ></textarea>
+      </div>
 
-        <div class="govuk-form-group">
-            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="event-name">
-                    Date last modified
-                </label>
-                <div id="passport-issued-hint" class="govuk-hint">
-                    This is date last modified of this record. If you want to add a more representative date of your record, use the field other date metadata to add it.
-                </div>
-            </h2>
-            <p class="govuk-body-l">12 July 2022</p>
-        </div>
-        <div class="govuk-form-group">
-            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="event-name">
-                Other date(s) metadata
-                </label>
-            </h2>
-            <p class="govuk-body">If the date last modified isn’t representative of the true date of your record, select from the dropdown menu the relevant one that applies and fill in the field.</p>
-                <select class="govuk-select" id="sort" name="sort">
-                  <option value="published" selected>Please choose...</option>
-                  <option value="updated">Date created - The date the record has been uploaded or created in a system</option>
-                  <option value="updated">End date - best estimation of the record date where date last modified is known as incorrect</option>
-                  <option value="updated">Start date - Beginning date of a date range</option>
-                </select>
-        </div>
-        <div class="govuk-date-input">
-            <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="passport-issued-day" >
-                        Day
-                    </label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day"
-                        name="passport-issued-day" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="dd">
-                </div>
-            </div>
-            <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
-                        Month
-                    </label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                        id="passport-issued-month" name="passport-issued-month" type="text" pattern="[0-9]*"
-                        inputmode="numeric" placeholder="mm">
-                </div>
-            </div>
-            <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
-                        Year
-                    </label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-4"
-                        id="passport-issued-year" name="passport-issued-year" type="text" pattern="[0-9]*"
-                        inputmode="numeric" placeholder="yyyy">
-                </div>
-            </div>
-        </div>
+      <div class="govuk-form-group">
+        <h2 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--m" for="event-name">
+          Date last modified
+        </label>
 
-        <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                    <h2 class="govuk-label govuk-label--m">
-                        Language
-                    </h2>
-                </legend>
-                <div id="passport-issued-hint" class="govuk-hint">
-                    If your record is in a different language than English
-                </div>
-                <div class="govuk-form-group">
-                <select class="govuk-select" id="sort" name="sort">
-                    <option value="updated" selected>Please choose...</option>
-                  <option value="published">English</option>
-                  <option value="updated">Welsh</option>
-                  <option value="views">Scottish</option>
-                </select>
+          <div id="passport-issued-hint" class="govuk-hint">
+          This date has been automatically determined from your upload. If the
+          date is incorrect or you would like to add extra date information to this record you can add a
+          <b>specific date</b> or a <b>date range</b>.
+        </div>
+        </h2>
+        <p class="govuk-body-l">12 July 2022</p>
+      </div>
+
+      <div class="govuk-form-group">
+        <fieldset
+        class="govuk-fieldset"
+        role="group"
+        aria-describedby="passport-issued-hint"
+      >
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+            <h1 class="govuk-fieldset__heading">Specific date (optional)</h1>
+          </legend>
+          <div id="passport-issued-hint" class="govuk-hint">
+          Enter the the specific date the record was uploaded or created.
+        </div>
+          <div class="govuk-date-input" id="passport-issued">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label
+                class="govuk-label govuk-date-input__label"
+                for="passport-issued-day"
+              >
+                Day
+              </label>
+                <input
+                class="govuk-input govuk-date-input__input govuk-input--width-2"
+                id="passport-issued-day"
+                name="passport-issued-day"
+                type="text"
+                inputmode="numeric"
+                placeholder="dd"
+/>
               </div>
-        </div>
-
-        <div class="govuk-form-group">
-            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="years">
-                Title of record
-            </label>
-            </h2>
-            <div id="closure-period-hint" class="govuk-hint">
-                If the title is in another language and you would like to provide a translation
             </div>
-            <input class="govuk-input">
-        </div>
-
-        <div class="govuk-form-group">
-            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="years">
-                Related materials
-            </label>
-            </h2>
-            <!-- <div id="closure-period-hint" class="govuk-hint">
-                
-            </div> -->
-            <input class="govuk-input">
-        </div>
-
-        <div class="govuk-form-group">
-            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="years">
-                Former reference
-            </label>
-            </h2>
-            <div id="closure-period-hint" class="govuk-hint">
-                Reference when the record(s) was being held by the department
-            </div>
-            <input class="govuk-input">
-        </div>
-
-        <div class="govuk-form-group">
-            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="event-name">
-                Creating body
-            </label>
-            </h2>
-            <div id="foi-codes-hint" class="govuk-hint">
-                If different to the transferring body - where the record is inherited from
-            </div>
-            <div class="govuk-form-group">
-                <select class="govuk-select" id="sort" name="sort">
-                    <option value="updated" selected>Please choose...</option>
-                  <option value="published">Creating body 1</option>
-                  <option value="updated">Creating body 2</option>
-                  <option value="views">Creating body 3</option>
-                </select>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label
+                class="govuk-label govuk-date-input__label"
+                for="passport-issued-month"
+              >
+                Month
+              </label>
+                <input
+                class="govuk-input govuk-date-input__input govuk-input--width-2"
+                id="passport-issued-month"
+                name="passport-issued-month"
+                type="text"
+                inputmode="numeric"
+                placeholder="mm"
+/>
               </div>
-        </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label
+                class="govuk-label govuk-date-input__label"
+                for="passport-issued-year"
+              >
+                Year
+              </label>
+                <input
+                class="govuk-input govuk-date-input__input govuk-input--width-4"
+                id="passport-issued-year"
+                name="passport-issued-year"
+                type="text"
+                inputmode="numeric"
+                placeholder="yyyy"
+/>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
 
-        
-
-        <a href="./descriptive-added.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-            Continue
-        </a>
-
+      <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+      Date range (optional)
+    </h2>
+      <div id="passport-issued-hint" class="govuk-hint">
+      Enter an approximate start and end date range within which the record was
+      created.
     </div>
-</div>
+
+      <div class="govuk-form-group">
+        <fieldset
+        class="govuk-fieldset govuk-fieldset--horizontal-align"
+        role="group"
+        aria-describedby="passport-issued-hint"
+      >
+          <legend
+          class="govuk-fieldset__legend govuk-fieldset__legend--s govuk-hint"
+        >
+            <h1 class="govuk-fieldset__heading">Start date</h1>
+          </legend>
+          <div class="govuk-date-input" id="passport-issued">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label
+                class="govuk-label govuk-date-input__label"
+                for="passport-issued-day"
+              >
+                Day
+              </label>
+                <input
+                class="govuk-input govuk-date-input__input govuk-input--width-2"
+                id="passport-issued-day"
+                name="passport-issued-day"
+                type="text"
+                inputmode="numeric"
+                placeholder="dd"
+/>
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label
+                class="govuk-label govuk-date-input__label"
+                for="passport-issued-month"
+              >
+                Month
+              </label>
+                <input
+                class="govuk-input govuk-date-input__input govuk-input--width-2"
+                id="passport-issued-month"
+                name="passport-issued-month"
+                type="text"
+                inputmode="numeric"
+                placeholder="mm"
+/>
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label
+                class="govuk-label govuk-date-input__label"
+                for="passport-issued-year"
+              >
+                Year
+              </label>
+                <input
+                class="govuk-input govuk-date-input__input govuk-input--width-4"
+                id="passport-issued-year"
+                name="passport-issued-year"
+                type="text"
+                inputmode="numeric"
+                placeholder="yyyy"
+/>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group">
+        <fieldset
+        class="govuk-fieldset govuk-fieldset--horizontal-align"
+        role="group"
+        aria-describedby="passport-issued-hint"
+      >
+          <legend
+          class="govuk-fieldset__legend govuk-fieldset__legend--s govuk-hint"
+        >
+            <h1 class="govuk-fieldset__heading">End date</h1>
+          </legend>
+          <div class="govuk-date-input" id="passport-issued">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label
+                class="govuk-label govuk-date-input__label"
+                for="passport-issued-day"
+              >
+                Day
+              </label>
+                <input
+                class="govuk-input govuk-date-input__input govuk-input--width-2"
+                id="passport-issued-day"
+                name="passport-issued-day"
+                type="text"
+                inputmode="numeric"
+                placeholder="dd"
+/>
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label
+                class="govuk-label govuk-date-input__label"
+                for="passport-issued-month"
+              >
+                Month
+              </label>
+                <input
+                class="govuk-input govuk-date-input__input govuk-input--width-2"
+                id="passport-issued-month"
+                name="passport-issued-month"
+                type="text"
+                inputmode="numeric"
+                placeholder="mm"
+/>
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label
+                class="govuk-label govuk-date-input__label"
+                for="passport-issued-year"
+              >
+                Year
+              </label>
+                <input
+                class="govuk-input govuk-date-input__input govuk-input--width-4"
+                id="passport-issued-year"
+                name="passport-issued-year"
+                type="text"
+                inputmode="numeric"
+                placeholder="yyyy"
+/>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <hr
+      class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"
+/>
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--m"> Language </label>
+        <div id="passport-issued-hint" class="govuk-hint">
+        Choose the language this record is written in.
+      </div>
+        <div class="govuk-form-group">
+          <select class="govuk-select" id="language-select" name="sort">
+            <option value="updated">Please choose...</option>
+            {% for l in data.languages %}
+              <option value="{{l.iso_code}}"{% if l.iso_code == "eng" %} selected{%endif%}>{{l.language_desc}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--m" for="years">
+        Translated title of record (optional)
+      </label>
+        <div id="closure-period-hint" class="govuk-hint">
+        If the title is not in English you can provide a translation.
+      </div>
+        <input class="govuk-input"/>
+      </div>
+
+      <hr
+      class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"
+/>
+
+      <div class="govuk-form-group">
+        <h2 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--m" for="years">
+          Related materials (optional)
+        </label>
+        </h2>
+        <div id="closure-period-hint" class="govuk-hint">
+        If you wish to provide a link to material inside another series or
+        within a hybrid series, use this field to provide a related reference.
+        This must be discussed with the Senior Digital Transfer Advisor and
+        signed off by cataloguing prior to use. If the file has multiple
+        references they can be comma separated with no spaces e.g.
+        ABC1,ABC2,ABC3
+      </div>
+        <input class="govuk-input"/>
+      </div>
+
+      <div class="govuk-form-group">
+        <h2 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--m" for="years">
+          Former reference (optional)
+        </label>
+        </h2>
+        <div id="closure-period-hint" class="govuk-hint">
+        Reference when the record(s) was being held by the department
+      </div>
+        <input class="govuk-input"/>
+      </div>
+
+      <div class="govuk-form-group">
+        <h2 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--m" for="event-name">
+          Creating body (optional)
+        </label>
+        </h2>
+        <div id="foi-codes-hint" class="govuk-hint">
+        If different to the transferring body - where the record is inherited
+        from
+      </div>
+        <div class="govuk-form-group">
+          <select class="govuk-select" id="sort" name="sort">
+            <option value="updated" selected>Please choose...</option>
+            <option value="published">Creating body 1</option>
+            <option value="updated">Creating body 2</option>
+            <option value="views">Creating body 3</option>
+          </select>
+        </div>
+      </div>
+
+      <a
+      href="./descriptive-added.html"
+      role="button"
+      draggable="false"
+      class="govuk-button"
+      data-module="govuk-button"
+    >
+      Continue
+    </a>
+    </div>
+  </div>
+
+  {% block pageScripts %}
+  <script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+  <script>
+    accessibleAutocomplete.enhanceSelectElement({
+      selectElement: document.querySelector('#language-select'),
+      showAllValues: true
+    })
+  </script>
+  {% endblock %}
 
 {% endblock %}
