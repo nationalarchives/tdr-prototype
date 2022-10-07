@@ -2,12 +2,21 @@ const express = require("express");
 const router = express.Router();
 
 // Add your routes here - above the module.exports line
+
+/* Cocao closure */
+router.get(
+  "/metadata/closure-metadata/T2-flour/confirm-closure-redir",
+  function (req, res) {
+    console.log(req.session.data);
+  }
+);
+
 router.get(
   "/metadata/closure-metadata/T2-flour/confirm-closure-status",
   function (req, res) {
-    // file[] is open/undefined && data[] is open/undefined ( intention is to continue without confirmation - needs error warning )
+    // file[] is open/undefined && data[] is open/undefined
+    // ( intention is to continue without confirmation - needs error warning )
     if (req.session.data["cocao"] === undefined) {
-      // console.log("send to /check-closure-status?error=no-confirmation")
       req.session.data["error"] = "no-confirmation";
       res.redirect("/metadata/closure-metadata/T2-flour/check-closure-status");
     } else if (req.session.data["cocao"][0] === "true") {
@@ -27,7 +36,9 @@ router.get(
 router.get(
   "/metadata/closure-metadata/T2-flour/add-closure-confirm/",
   function (req, res) {
-    if (req.session.data["is-the-title-sensitive"] == "yes") {
+    if (req.session.data["exemption-code-redir"] == "true") {
+      res.redirect("/metadata/closure-metadata/T2-flour/add-multiple-FOI");
+    } else if (req.session.data["is-the-title-sensitive"] == "yes") {
       req.session.data["error"] = "";
       res.redirect(
         "/metadata/closure-metadata/T2-flour/closure-alternative-title"

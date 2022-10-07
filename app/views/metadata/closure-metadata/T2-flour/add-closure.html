@@ -30,31 +30,31 @@ Add closure fields to 'Cocoa.docx'
             <div class="govuk-date-input" id="passport-issued">
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="passport-issued-day" >
+                  <label class="govuk-label govuk-date-input__label" for="foi-asserted-day" >
                                 Day
                             </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day"
-                                name="passport-issued-day" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="dd">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="foi-asserted-day"
+                                name="foi-asserted-day" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="dd" value="{% if data['foi-asserted-day'] %}{{data['foi-asserted-day']}}{%endif%}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+                  <label class="govuk-label govuk-date-input__label" for="foi-asserted-month">
                                 Month
                             </label>
                   <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                id="passport-issued-month" name="passport-issued-month" type="text" pattern="[0-9]*"
-                                inputmode="numeric" placeholder="mm">
+                                id="foi-asserted-month" name="foi-asserted-month" type="text" pattern="[0-9]*"
+                                inputmode="numeric" placeholder="mm" value="{% if data['foi-asserted-month'] %}{{data['foi-asserted-month']}}{%endif%}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                  <label class="govuk-label govuk-date-input__label" for="foi-asserted-year">
                                 Year
                             </label>
                   <input class="govuk-input govuk-date-input__input govuk-input--width-4"
-                                id="passport-issued-year" name="passport-issued-year" type="text" pattern="[0-9]*"
-                                inputmode="numeric" placeholder="yyyy">
+                                id="foi-asserted-year" name="foi-asserted-year" type="text" pattern="[0-9]*"
+                                inputmode="numeric" placeholder="yyyy" value="{% if data['foi-asserted-year'] %}{{data['foi-asserted-year']}}{%endif%}">
                 </div>
               </div>
             </div>
@@ -74,32 +74,32 @@ Add closure fields to 'Cocoa.docx'
             <div class="govuk-date-input" id="passport-issued">
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+                  <label class="govuk-label govuk-date-input__label" for="closure-start-day">
                                 Day
                             </label>
                   <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                id="passport-issued-day" name="passport-issued-day" type="text" pattern="[0-9]*"
-                                inputmode="numeric" placeholder="dd" value="12">
+                                id="closure-start-day" name="closure-start-day" type="text" pattern="[0-9]*"
+                                inputmode="numeric" placeholder="dd"  value="{% if data['closure-start-day'] %}{{data['closure-start-day']}}{% else %}12{%endif%}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+                  <label class="govuk-label govuk-date-input__label" for="closure-start-month">
                                 Month
                             </label>
                   <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                id="passport-issued-month" name="passport-issued-month" type="text" pattern="[0-9]*"
-                                inputmode="numeric" placeholder="mm" value="07">
+                                id="closure-start-month" name="closure-start-month" type="text" pattern="[0-9]*"
+                                inputmode="numeric" placeholder="mm"  value="{% if data['closure-start-month'] %}{{data['closure-start-month']}}{% else %}07{%endif%}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                  <label class="govuk-label govuk-date-input__label" for="closure-start-year">
                                 Year
                             </label>
                   <input class="govuk-input govuk-date-input__input govuk-input--width-4"
-                                id="passport-issued-year" name="passport-issued-year" type="text" pattern="[0-9]*"
-                                inputmode="numeric" placeholder="yyyy" value="2010">
+                                id="closure-start-year" name="closure-start-year" type="text" pattern="[0-9]*"
+                                inputmode="numeric" placeholder="yyyy" value="{% if data['closure-start-year'] %}{{data['closure-start-year']}}{% else %}2010{%endif%}">
                 </div>
               </div>
             </div>
@@ -108,15 +108,14 @@ Add closure fields to 'Cocoa.docx'
 
         <div class="govuk-form-group">
           <h2 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--m" for="years">
+            <label class="govuk-label govuk-label--m" for="closure-period">
                 Closure period
             </label>
           </h2>
           <div id="closure-period-hint" class="govuk-hint">
                 Number of years the record is closed from the closure start date
             </div>
-          <div class="govuk-input__wrapper"><input class="govuk-input govuk-input--width-5" id="years" name="years"
-                                                     type="text" spellcheck="false">
+          <div class="govuk-input__wrapper"><input class="govuk-input govuk-input--width-5" id="closure-period" name="closure-period" type="text" spellcheck="false" value="{% if data['closure-period'] %}{{data['closure-period']}}{%endif%}">
             <div class="govuk-input__suffix" aria-hidden="true">years</div>
           </div>
         </div>
@@ -130,7 +129,7 @@ Add closure fields to 'Cocoa.docx'
 
           {% if data.foi_id_selection == undefined %}
             <p>
-              <a class="govuk-link" href="./add-multiple-FOI.html">Add exemption code(s)</a>
+              <a class="govuk-link" id="foi-exemption-link" href="./add-multiple-FOI.html">Add exemption code(s)</a>
             </p>
           {% else %}
             <ul class="govuk-list govuk-list--bullet">
@@ -142,6 +141,7 @@ Add closure fields to 'Cocoa.docx'
               <a class="govuk-link" href="./add-multiple-FOI.html">Edit or remove exemption code(s)</a>
             </p>
           {% endif %}
+          <input id="exemption-code-redir" type="hidden" name="exemption-code-redir" value="false"/>
         </div>
 
         <div class="govuk-form-group{% if data['error'] %} govuk-form-group--error{% endif %}">
@@ -185,7 +185,18 @@ Add closure fields to 'Cocoa.docx'
   <script type="text/javascript">
 
     document.addEventListener('DOMContentLoaded', function () {
+      const foiLink = document.querySelector("#foi-exemption-link");
+      foiLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        document
+          .querySelector("#exemption-code-redir")
+          .value = "true";
+        document
+          .querySelector("form")
+          .submit()
+      })
 
+      /*
       const getAllFOIids = (selects) => {
         const ids = []
         selects.forEach((s) => {
@@ -209,6 +220,7 @@ Add closure fields to 'Cocoa.docx'
           postAllIds(ids);
         })
       })
+  */
     }, false);
   </script>
 
