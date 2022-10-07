@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 // Add your routes here - above the module.exports line
-// Run this code when a form is submitted to 'juggling-balls-answer'
 router.get(
   "/metadata/closure-metadata/T2-flour/confirm-closure-status",
   function (req, res) {
@@ -14,12 +13,31 @@ router.get(
     } else if (req.session.data["cocao"][0] === "true") {
       req.session.data["error"] = "";
       res.redirect("/metadata/closure-metadata/T2-flour/add-closure");
-    } else if (req.session.data["cocao"] === "false") {
+    } else if (req.session.data["cocao"] === "delete") {
       req.session.data["error"] = "";
+      delete req.session.data["is-the-title-sensitive"];
       res.redirect("/metadata/closure-metadata/file-level");
     } else {
       // req.session.files['cocao'] = undefined;
       res.redirect("/metadata/closure-metadata/T2-flour/huh");
+    }
+  }
+);
+
+router.get(
+  "/metadata/closure-metadata/T2-flour/add-closure-confirm/",
+  function (req, res) {
+    if (req.session.data["is-the-title-sensitive"] == "yes") {
+      req.session.data["error"] = "";
+      res.redirect(
+        "/metadata/closure-metadata/T2-flour/closure-alternative-title"
+      );
+    } else if (req.session.data["is-the-title-sensitive"] == "no") {
+      req.session.data["error"] = "";
+      res.redirect("/metadata/closure-metadata/T2-flour/closure-added");
+    } else {
+      req.session.data["error"] = "no-alternative-choice";
+      res.redirect("/metadata/closure-metadata/T2-flour/add-closure");
     }
   }
 );
