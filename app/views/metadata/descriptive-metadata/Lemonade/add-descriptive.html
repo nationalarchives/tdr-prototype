@@ -132,11 +132,12 @@
         role="group"
         aria-describedby="passport-issued-hint"
       >
-          <legend
+          <legend class="govuk-visually-hidden" aria-hidden="true">Start date</legend>
+          <div
           class="govuk-fieldset__legend govuk-fieldset__legend--s govuk-hint"
         >
             <h1 class="govuk-fieldset__heading">Start date</h1>
-          </legend>
+          </div>
           <div class="govuk-date-input" id="passport-issued">
             <div class="govuk-date-input__item">
               <div class="govuk-form-group">
@@ -202,11 +203,12 @@
         role="group"
         aria-describedby="passport-issued-hint"
       >
-          <legend
+          <legend class="govuk-visually-hidden" aria-hidden="true">End date</legend>
+          <div
           class="govuk-fieldset__legend govuk-fieldset__legend--s govuk-hint"
         >
             <h1 class="govuk-fieldset__heading">End date</h1>
-          </legend>
+          </div>
           <div class="govuk-date-input" id="passport-issued">
             <div class="govuk-date-input__item">
               <div class="govuk-form-group">
@@ -360,13 +362,10 @@
   </div>
 
   {% block pageScripts %}
-  <script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
-  <script>
-    accessibleAutocomplete.enhanceSelectElement({
-      selectElement: document.querySelector('#language-select'),
-      showAllValues: true
-    })
-  </script>
+    <script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+    <script>
+      accessibleAutocomplete.enhanceSelectElement({selectElement: document.querySelector('#language-select'), showAllValues: true})
+    </script>
   {% endblock %}
 
 {% endblock %}
