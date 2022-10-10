@@ -49,66 +49,7 @@ File level descriptive metadata
           </li>
         </ol>
       </div> #}
-
-      <table class="govuk-table">
-        <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="Subfolder-Lemon-drizzle" name="organisation" type="checkbox"
-                  value="hmrc">
-                <label class="govuk-label govuk-checkboxes__label" for="Subfolder-Lemon-drizzle">
-                  <a>📁 Recipes</a>
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="Subfolder-Chocolate-banana-bread" name="organisation"
-                  type="checkbox" value="hmrc">
-                <label class="govuk-label govuk-checkboxes__label" for="Subfolder-Chocolate-banana-bread">
-                  <a href="./cake-basics-subfolder.html">📁 Cake basics</a>
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" onchange="changeLink()" id="choc-chips" name="organisation"
-                  type="checkbox" value="cc" data-href="cc">
-                <label class="govuk-label govuk-checkboxes__label" for="choc-chips">
-                  <a href="./cupcakes-subfolder.html">📁 Main cakes</a>
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="Flour" name="organisation" type="checkbox"
-                  value="hmrc">
-                <label class="govuk-label govuk-checkboxes__label govuk-checkboxes__label--withicon" for="Flour">
-                  📊 Baking powder.docx
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="Lemonade" name="organisation" type="checkbox" value="flour"
-                  onchange="changeLinkBack()">
-                <label class="govuk-label govuk-checkboxes__label" for="Lemonade">
-                  🖼️ Lemonade.jpg
-                </label>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      {% include "./descriptive-files-table.html" %}
 
       <div class="govuk-button-group">
         <a href="./Lemonade/open-lemonade" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
