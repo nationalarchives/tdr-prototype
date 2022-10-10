@@ -16,20 +16,19 @@ router.get(
   function (req, res) {
     // file[] is open/undefined && data[] is open/undefined
     // ( intention is to continue without confirmation - needs error warning )
-    if (req.session.data["baking-powder"] === undefined) {
+    if (req.session.data["closure"]["baking-powder"] === undefined) {
       req.session.data["error"] = "no-confirmation";
       res.redirect(
         "/metadata/closure-metadata/baking-powder/check-closure-status"
       );
-    } else if (req.session.data["baking-powder"][0] === "true") {
+    } else if (req.session.data["closure"]["baking-powder"][0] === "true") {
       req.session.data["error"] = "";
       res.redirect("/metadata/closure-metadata/baking-powder/add-closure");
-    } else if (req.session.data["baking-powder"] === "delete") {
+    } else if (req.session.data["closure"]["baking-powder"] === "delete") {
       req.session.data["error"] = "";
       delete req.session.data["is-the-title-sensitive"];
       res.redirect("/metadata/closure-metadata/file-level");
     } else {
-      // req.session.files['baking-powder'] = undefined;
       res.redirect("/metadata/closure-metadata/baking-powder/huh");
     }
   }

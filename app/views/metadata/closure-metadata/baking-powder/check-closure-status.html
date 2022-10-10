@@ -10,7 +10,7 @@ Check closure status
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-        {% if data['baking-powder'][0] === 'true' %}
+        {% if data['closure']['baking-powder'][0] === 'true' %}
 
           <h1 class="govuk-heading-xl">
       Edit the closure metadata
@@ -126,7 +126,7 @@ Check closure status
               {% endif %}
               <div class="govuk-checkboxes" data-module="govuk-checkboxes">
                 <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="baking-powder" name="baking-powder" type="checkbox" value="true">
+                  <input class="govuk-checkboxes__input" id="baking-powder" name="closure[baking-powder]" type="checkbox" value="true">
                   <label class="govuk-label govuk-checkboxes__label" for="confirm-closure">
               Yes, I confirm
             </label>
