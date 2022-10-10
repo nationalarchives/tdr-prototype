@@ -19,6 +19,13 @@ Example usage:
 
 module.exports = {
   // Insert values here
+  creating_bodies: [
+    "Department of Cake",
+    "Department of Pasta",
+    "Department of Wines and Spirits",
+    "Department of Dairy",
+    "Department of Vegetables and Fruits",
+  ],
   files: [
     "Chocolate chips.xlsx",
     "Baking soda.xlsx",

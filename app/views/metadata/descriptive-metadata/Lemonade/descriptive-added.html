@@ -14,7 +14,7 @@ Review descriptive metadata added
       <p class="govuk-body">You can edit, save or abandon any changes to descriptive metadata here. </p>
 
       <div class="govuk-button-group">
-        <a href="./add-closure.html" role="button" draggable="false" class="govuk-button"
+        <a href="./add-descriptive.html" role="button" draggable="false" class="govuk-button"
           data-module="govuk-button">
           Edit properties
         </a>
@@ -58,64 +58,64 @@ Review descriptive metadata added
     Description
   </dt>
           <dd class="govuk-summary-list__value">
-    This is the description of your record the public see on Discovery
-  </dd>
+            {{data.description}}
+          </dd>
         </div>
         <div class="govuk-summary-list__row" style="border-bottom: none;">
           <dt class="govuk-summary-list__key">
-      Start date
+      Date Last Modified
     </dt>
           <dd class="govuk-summary-list__value">
-      01/09/2021
-    </dd>
+            {{data['specific-day']}}/{{data['specific-month']}}/{{data['specific-year']}}
+          </dd>
         </div>
-        <div class="govuk-summary-list__row" style="border-bottom: none;">
+        {# <div class="govuk-summary-list__row" style="border-bottom: none;">
           <dt class="govuk-summary-list__key">
       Date created
     </dt>
           <dd class="govuk-summary-list__value">
       12/07/2022
     </dd>
-        </div>
+        </div> #}
         <div class="govuk-summary-list__row" style="border-bottom: none;">
           <dt class="govuk-summary-list__key">
       Language
     </dt>
           <dd class="govuk-summary-list__value">
-      Welsh
-    </dd>
+            {{data['language-select'] | langNameFromIso(data.languages)}}
+          </dd>
         </div>
         <div class="govuk-summary-list__row" style="border-bottom: none;">
           <dt class="govuk-summary-list__key">
-      Title of record
+      Translated title of record
     </dt>
           <dd class="govuk-summary-list__value">
-      If translation req
-    </dd>
+            {{data['translation']|d("-", true)}}
+          </dd>
         </div>
         <div class="govuk-summary-list__row" style="border-bottom: none;">
           <dt class="govuk-summary-list__key">
       Relating materials
     </dt>
           <dd class="govuk-summary-list__value">
-      Paper documents/hybrid
-    </dd>
+            {{data['related']|d("-", true)}}
+          </dd>
         </div>
         <div class="govuk-summary-list__row" style="border-bottom: none;">
           <dt class="govuk-summary-list__key">
         Former reference
     </dt>
           <dd class="govuk-summary-list__value">
-      Reference from department
-    </dd>
+            {{data['former-refs']|d("-", true)}}
+          </dd>
         </div>
         <div class="govuk-summary-list__row" style="border-bottom: none;">
           <dt class="govuk-summary-list__key">
       Creating body
     </dt>
           <dd class="govuk-summary-list__value">
-      Where the record is from
-    </dd>
+            {{data['creating-body']|d("-", true)}}
+          </dd>
         </div>
       </dl>
 
