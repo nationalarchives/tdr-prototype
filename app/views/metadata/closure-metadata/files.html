@@ -1,0 +1,19 @@
+<table class="govuk-table">
+  <tbody class="govuk-table__body">
+
+    {% for file in data.files %}
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="{{ file | urlencode }}" name="closure" type="checkbox"
+                  value="true">
+            <label class="govuk-label govuk-checkboxes__label" for="{{ file | urlencode }}">
+              {{file}}
+            </label>
+          </div>
+        </td>
+      </tr>
+    {% endfor %}
+
+  </tbody>
+</table>

@@ -5,22 +5,31 @@ Remove properties
 {% endblock %}
 
 {% block content %}
+  <form action="confirm-closure-status">
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">
-      Remove metadata properties
-    </h1>{{releaseVersion | log }}
-    <p class="govuk-body">If you proceed, closure metadata for file 'Baking-powder.jpg' will be removed. Are you sure you would like to proceed?</p>
+    <input type="hidden" id="baking-powder" name="baking-powder" value="delete">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">
+        Delete closure metadata
+      </h1>{{releaseVersion | log }}
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+          If you proceed, all closure metadata for file 'Baking powder.docx' will be removed.
+        </strong>
+        </div>
+        <p class="govuk-body">Are you sure you would like to proceed?</p>
 
-    <div class="govuk-button-group">
-      <a href="../file-level.html" role="button" draggable="false" class="govuk-button govuk-button" data-module="govuk-button">
-        Remove and return to all files
-      </a>
-      <a class="govuk-link govuk-link--no-visited-state" href="./closure-added.html">Cancel</a>
+        <div class="govuk-button-group">
+          <button role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+          Delete and return to all files
+        </button>
+          <a class="govuk-link govuk-link--no-visited-state" href="./closure-added.html">Cancel</a>
+        </div>
+
+      </div>
     </div>
-
-  </div>
-</div>
-
+  </form>
 {% endblock %}

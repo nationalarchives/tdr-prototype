@@ -19,6 +19,19 @@ Example usage:
 
 module.exports = {
   // Insert values here
+  files: [
+    "Chocolate chips.xlsx",
+    "Baking soda.xlsx",
+    "Baking powder.docx",
+    "Baking powder1.pdf",
+    "Cookie dough.pdf",
+    "Baking powder2.xlsx",
+    "Flour.jpg",
+    "Sugar.jpg",
+    "Milk and cream.jpg",
+    "Cocoa.jpg",
+    "Bananas.jpg",
+  ],
   foi_exemption_codes: [
     "27(1)",
     "27(2)",

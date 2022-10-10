@@ -6,99 +6,105 @@ Review metadata added
 
 {% block content %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
         Review closure metadata changes
       </h1>{{releaseVersion | log }}
-      <p class="govuk-body">You can edit, save or abandon any changes to closure metadata here. </p>
-  
+      <p class="govuk-body">You can edit, remove or save closure metadata here. </p>
+
       <div class="govuk-button-group">
-        <a href="./add-closure.html" role="button" draggable="false" class="govuk-button govuk-button--secondary"
+        <a href="./add-closure.html" role="button" draggable="false" class="govuk-button govuk-button"
           data-module="govuk-button">
-          Edit properties
+          Edit metadata
         </a>
         <a href="./abandon-changes-warning.html" role="button" draggable="false" class="govuk-button govuk-button--warning" >
-          Abandon changes
+          Delete metadata
         </a>
       </div>
 
-    <dl class="govuk-summary-list">
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
           Name
         </dt>
-        <dd class="govuk-summary-list__value">
-          Baking-powder.jpg
+          <dd class="govuk-summary-list__value">
+          Baking powder.docx
         </dd>
-        <dd class="govuk-summary-list__actions">
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
+          <dd class="govuk-summary-list__actions"></dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
           Closure status
         </dt>
-        <dd class="govuk-summary-list__value">
+          <dd class="govuk-summary-list__value">
           Closed
         </dd>
-      </div>
+        </div>
 
-<!-- closure stuff here -->
-<div class="govuk-summary-list__row" style="border-bottom: none;">
-    <dt class="govuk-summary-list__key">
+        <!-- closure stuff here -->
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
       FOI decision asserted
     </dt>
-    <dd class="govuk-summary-list__value">
-      20/04/2022
-    </dd>
-  </div>
-  <div class="govuk-summary-list__row" style="border-bottom: none;">
-    <dt class="govuk-summary-list__key">
+          <dd class="govuk-summary-list__value">
+            {{data['foi-asserted-day']}}/{{data['foi-asserted-month']}}/{{data['foi-asserted-year']}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
       Closure start date
     </dt>
-    <dd class="govuk-summary-list__value">
-      09/02/2009
-    </dd>
-  </div>
-  <div class="govuk-summary-list__row" style="border-bottom: none;">
-    <dt class="govuk-summary-list__key">
+          <dd class="govuk-summary-list__value">
+            {{data['closure-start-day']}}/{{data['closure-start-month']}}/{{data['closure-start-year']}}
+
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
       Closure period
     </dt>
-    <dd class="govuk-summary-list__value">
-      100 years
+          <dd class="govuk-summary-list__value">
+            {{data['closure-period']}} years
     </dd>
-  </div>
-  <div class="govuk-summary-list__row" style="border-bottom: none;">
-    <dt class="govuk-summary-list__key">
-        FOI exemption code
+        </div>
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
+        FOI exemption code(s)
     </dt>
-    <dd class="govuk-summary-list__value">
-      33
-    </dd>
-  </div>
-  <div class="govuk-summary-list__row" style="border-bottom: none;">
-    <dt class="govuk-summary-list__key">
-        FOI exemption code
-    </dt>
-    <dd class="govuk-summary-list__value">
-      31
-    </dd>
-  </div>
-  <div class="govuk-summary-list__row" style="border-bottom: none;">
-    <dt class="govuk-summary-list__key">
-      Title public
-    </dt>
-    <dd class="govuk-summary-list__value">
-      the [Name withheld] ingredient
-    </dd>
-  </div>
-    </dl>
+          <dd class="govuk-summary-list__value">
+            <ul class="govuk-list govuk-list--bullet">
+              {% for id in data.foi_id_selection %}
+                <li>{{id}}</li>
+              {% endfor %}
+            </ul>
+          </dd>
+        </div>
+        {% if data["is-the-title-sensitive"] == "yes" %}
+          <div class="govuk-summary-list__row" style="border-bottom: none;">
+            <dt class="govuk-summary-list__key">
+            Alternative title
+          </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['alternative-title'] }}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row" style="border-bottom: none;">
+            <dt class="govuk-summary-list__key">
+            Alternative description
+          </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['alternative-description'] }}
+            </dd>
+          </div>
+        {% endif %}
+      </dl>
 
-    <a href="../file-level.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+      <a href="../file-level.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
       Save and return to all files
     </a>
 
+    </div>
   </div>
-</div>
 
 {% endblock %}
