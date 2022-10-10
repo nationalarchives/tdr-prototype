@@ -43,7 +43,6 @@ module.exports = function (env) {
   ------------------------------------------------------------------ */
 
   filters.langNameFromIso = function (iso, languages) {
-    console.log(languages.find((l) => l.iso_code === iso));
     return languages.find((l) => l.iso_code === iso).language_desc;
   };
 
