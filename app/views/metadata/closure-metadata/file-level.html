@@ -88,7 +88,7 @@ File level closure metadata
 
   <script type="text/javascript">
     function check_all() {
-      var checkboxes = document.getElementsByName('organisation');
+      var checkboxes = document.getElementsByName('closure');
       checkboxes = [...checkboxes];
       for (var i = 0; i < checkboxes.length; i++) {
         checkboxes[i].checked = true
@@ -96,59 +96,11 @@ File level closure metadata
     }
 
     function deselect_all() {
-      var checkboxes = document.getElementsByName('organisation');
+      var checkboxes = document.getElementsByName('closure');
       checkboxes = [...checkboxes];
       for (var i = 0; i < checkboxes.length; i++) {
         checkboxes[i].checked = false
       }
-    }
-
-    if (!window.location.hash) {
-      window.location.href = "file-level#page-1"
-    }
-
-    addCurrentPage("page-1-item");
-
-    function addCurrentPage(page_item) {
-      const selectedPage = page_item.split("-")[1];
-      document
-        .getElementById("page-1-item")
-        .classList
-        .remove("govuk-pagination__item--current");
-      document
-        .getElementById("page-2-item")
-        .classList
-        .remove("govuk-pagination__item--current");
-      document
-        .getElementById("page-3-item")
-        .classList
-        .remove("govuk-pagination__item--current");
-
-      document
-        .getElementById(page_item)
-        .classList
-        .add("govuk-pagination__item--current");
-
-      document
-        .getElementById("page-1-item")
-        .innerHTML = '<a class="govuk-pagination__link" href="#page-1" id="page-1"><span class="govuk-visually-hidden">Page</span>1</a>';
-      document
-        .getElementById("page-2-item")
-        .innerHTML = '<a class="govuk-pagination__link" href="#page-2" id="page-2"><span class="govuk-visually-hidden">Page</span>2</a>';
-      document
-        .getElementById("page-3-item")
-        .innerHTML = '<a class="govuk-pagination__link" href="#page-3" id="page-3"><span class="govuk-visually-hidden">Page</span>3</a>';
-
-      document
-        .getElementById(page_item)
-        .innerHTML = '<span class="govuk-visually-hidden">Page</span>' + selectedPage;
-
-      document.getElementById("prev")
-
-      document
-        .getElementById("next")
-        .href = "#page-" + (
-      Number(selectedPage) + 1);
     }
   </script>
 {% endblock %}
