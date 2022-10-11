@@ -1,0 +1,7 @@
+{
+    "include": ["app/assets/typescript/**/*"],
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "target": "es5"
+    }
+}
