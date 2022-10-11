@@ -79,6 +79,11 @@ File level closure metadata
               <input class="govuk-checkboxes__input" id="{{item.ino}}" type="checkbox"/>
               <label class="govuk-label govuk-checkboxes__label" for="{{item.ino}}">
                 {{item.name}}
+                {% if item.name == "Baking powder.docx" and data['closure']['baking-powder'][0] === 'true' %}
+                  <span class="icon" aria-label="Has existing metadata">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                  </span>
+                {% endif %}
               </label>
             </div>
           </li>
@@ -106,6 +111,11 @@ File level closure metadata
 />
                 <label class="govuk-label govuk-checkboxes__label" for="{{item.ino}}">
                   {{item.name}}
+                  {% if item.name == "Baking powder.docx" and data['closure']['baking-powder'][0] === 'true' %}
+                    <span class="icon" aria-label="Has existing metadata">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                    </span>
+                  {% endif %}
                 </label>
               </div>
             </div>
@@ -120,350 +130,17 @@ File level closure metadata
 
       <div class="govuk-tna-tree">
         <ul class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
-          {% for node in data.dummyfiles %}
+          {% for node in data.files %}
             {{ fileItem(node) }}
           {% endfor %}
         </ul>
       </div>
 
-      {# <div class="govuk-tna-tree">
-      <ul class="govuk-tna-tree__nested-file-list" id="parent-list" role="tree">
-        <li
-          class="govuk-tna-tree__folder-item"
-          role="treeitem"
-          aria-expanded="true"
-        >
-          <div class="govuk-tna-tree__folder-item__container">
-            <button
-              class="govuk-tna-tree__file-expander"
-              tabindex="-1"
-              id="expander-recipes"
-            >
-              <span class="govuk-visually-hidden">Expand</span>
-            </button>
-            <div class="govuk-checkboxes__item">
-              <input
-                class="govuk-checkboxes__input"
-                id="recipes"
-                type="checkbox"
-              />
-              <label class="govuk-label govuk-checkboxes__label" for="recipes">
-                Recipes
-              </label>
-            </div>
-          </div>
-          <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-recipes">
-            <li
-              class="govuk-tna-tree__file-item"
-              role="treeitem"
-            >
-              <div class="govuk-checkboxes__item">
-                <input
-                  class="govuk-checkboxes__input"
-                  id="carrot-cake"
-                  type="checkbox"
-                />
-                <label
-                  class="govuk-label govuk-checkboxes__label"
-                  for="carrot-cake"
-                >
-                  Carrot cake.docx
-                </label>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li
-          class="govuk-tna-tree__file-item"
-          role="treeitem"
-        >
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="cocao" type="checkbox" />
-            <label class="govuk-label govuk-checkboxes__label" for="cocao">
-              Cocao.docx
-            </label>
-          </div>
-        </li>
-        <li
-          class="govuk-tna-tree__folder-item"
-          role="treeitem"
-          aria-expanded="true"
-        >
-          <div class="govuk-tna-tree__folder-item__container">
-            <button
-              class="govuk-tna-tree__file-expander"
-              tabindex="-1"
-              id="expander-hot-drinks"
-            >
-              <span class="govuk-visually-hidden">Expand</span>
-            </button>
-            <div class="govuk-checkboxes__item">
-              <input
-                class="govuk-checkboxes__input"
-                id="hot-drinks"
-                type="checkbox"
-              />
-              <label class="govuk-label govuk-checkboxes__label" for="hot-drinks">
-                Hot Drinks
-              </label>
-            </div>
-          </div>
-          <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-hot-drinks">
-            <li
-              class="govuk-tna-tree__file-item"
-              role="treeitem"
-            >
-              <div class="govuk-checkboxes__item">
-                <input
-                  class="govuk-checkboxes__input"
-                  id="tea"
-                  type="checkbox"
-                />
-                <label
-                  class="govuk-label govuk-checkboxes__label"
-                  for="tea"
-                >
-                  Tea.mov
-                </label>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li
-          class="govuk-tna-tree__folder-item"
-          role="treeitem"
-          aria-expanded="true"
-        >
-          <div class="govuk-tna-tree__folder-item__container">
-            <button
-              class="govuk-tna-tree__file-expander"
-              tabindex="-1"
-              id="expander-cake-basics"
-            >
-              <span class="govuk-visually-hidden">Expand</span>
-            </button>
-            <div class="govuk-checkboxes__item">
-              <input
-                class="govuk-checkboxes__input"
-                id="cake-basics"
-                type="checkbox"
-              />
-              <label
-                class="govuk-label govuk-checkboxes__label"
-                for="cake-basics"
-              >
-                Cake basics
-              </label>
-            </div>
-          </div>
-          <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-cake-basics">
-            <li
-              class="govuk-tna-tree__file-item"
-              role="treeitem"
-            >
-              <div class="govuk-checkboxes__item">
-                <input
-                  class="govuk-checkboxes__input"
-                  id="baking-powder"
-                  type="checkbox"
-                />
-                <label
-                  class="govuk-label govuk-checkboxes__label"
-                  for="baking-powder"
-                >
-                  Baking-powder.jpg
-                </label>
-              </div>
-            </li>
-            <li
-              class="govuk-tna-tree__file-item"
-              role="treeitem"
-            >
-              <div class="govuk-checkboxes__item">
-                <input
-                  class="govuk-checkboxes__input"
-                  id="pantry-audit"
-                  type="checkbox"
-                />
-                <label
-                  class="govuk-label govuk-checkboxes__label"
-                  for="pantry-audit"
-                >
-                  Pantry-audit.xlsx
-                </label>
-              </div>
-            </li>
-            <li
-              class="govuk-tna-tree__file-item"
-              role="treeitem"
-            >
-              <div class="govuk-checkboxes__item">
-                <input
-                  class="govuk-checkboxes__input"
-                  id="self-raising-flour"
-                  type="checkbox"
-                />
-                <label
-                  class="govuk-label govuk-checkboxes__label"
-                  for="self-raising-flour"
-                >
-                  Self-raising-flower.jpg
-                </label>
-              </div>
-            </li>
-            <li
-              class="govuk-tna-tree__file-item"
-              role="treeitem"
-            >
-              <div class="govuk-checkboxes__item">
-                <input
-                  class="govuk-checkboxes__input"
-                  id="lemons"
-                  type="checkbox"
-                />
-                <label class="govuk-label govuk-checkboxes__label" for="lemons">
-                  Lemons.mp4
-                </label>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li
-          class="govuk-tna-tree__folder-item"
-          role="treeitem"
-          aria-expanded="true"
-        >
-          <div class="govuk-tna-tree__folder-item__container">
-            <button
-              class="govuk-tna-tree__file-expander"
-              tabindex="-1"
-              id="expander-cupcakes"
-            >
-              <span class="govuk-visually-hidden">Expand</span>
-            </button>
-            <div class="govuk-checkboxes__item">
-              <input
-                class="govuk-checkboxes__input"
-                id="cupcakes"
-                type="checkbox"
-              />
-              <label class="govuk-label govuk-checkboxes__label" for="cupcakes">
-                Cupcakes
-              </label>
-            </div>
-          </div>
-          <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-cupcakes">
-            <li
-              class="govuk-tna-tree__file-item"
-              role="treeitem"
-            >
-              <div class="govuk-checkboxes__item">
-                <input
-                  class="govuk-checkboxes__input"
-                  id="red-velvet"
-                  type="checkbox"
-                />
-                <label
-                  class="govuk-label govuk-checkboxes__label"
-                  for="red-velvet"
-                >
-                  Red-velvet.pptx
-                </label>
-              </div>
-            </li>
-            <li
-              class="govuk-tna-tree__folder-item"
-              role="treeitem"
-              aria-expanded="true"
-            >
-              <div class="govuk-tna-tree__folder-item__container">
-                <button
-                  class="govuk-tna-tree__file-expander"
-                  tabindex="-1"
-                  id="expander-non-dairy"
-                >
-                  <span class="govuk-visually-hidden">Expand</span>
-                </button>
-                <div class="govuk-checkboxes__item">
-                  <input
-                  class="govuk-checkboxes__input"
-                  id="non-dairy"
-                    type="checkbox"
-                  />
-                  <label
-                    class="govuk-label govuk-checkboxes__label"
-                    for="non-dairy"
-                  >
-                    Non-dairy
-                  </label>
-                </div>
-              </div>
-              <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-non-dairy">
-                <li
-                  class="govuk-tna-tree__file-item"
-                  role="treeitem"
-                >
-                  <div class="govuk-checkboxes__item">
-                    <input
-                      class="govuk-checkboxes__input"
-                      id="vegan-banana"
-                      type="checkbox"
-                    />
-                    <label
-                      class="govuk-label govuk-checkboxes__label"
-                      for="vegan-banana"
-                    >
-                      Vegan-banana.png
-                    </label>
-                  </div>
-                </li>
-                <li
-                  class="govuk-tna-tree__file-item"
-                  role="treeitem"
-                >
-                  <div class="govuk-checkboxes__item">
-                    <input
-                      class="govuk-checkboxes__input"
-                      id="dark-chocolate"
-                      type="checkbox"
-                    />
-                    <label
-                      class="govuk-label govuk-checkboxes__label"
-                      for="dark-chocolate"
-                    >
-                      Dark-chocolate.png
-                    </label>
-                  </div>
-                </li>
-              </ul>
-            </li>
-            <li
-              class="govuk-tna-tree__file-item"
-              role="treeitem"
-            >
-              <div class="govuk-checkboxes__item">
-                <input
-                  class="govuk-checkboxes__input"
-                  id="flexseed"
-                  type="checkbox"
-                />
-                <label
-                  class="govuk-label govuk-checkboxes__label"
-                  for="flexseed"
-                >
-                  Flaxseed.jpg
-                </label>
-              </div>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div> #}
       <br/><br/>
 
       <div class="govuk-button-group">
         <a
-        href="./T2-flour/check-closure-status.html"
+        href="./baking-powder/check-closure-status.html"
         role="button"
         draggable="false"
         class="govuk-button"
@@ -473,7 +150,7 @@ File level closure metadata
       </a>
 
         <a
-        href="./T2-flour/abandon-changes-warning.html"
+        href="./baking-powder/abandon-changes-warning.html"
         role="button"
         draggable="false"
         class="govuk-button govuk-button--warning"
@@ -488,15 +165,19 @@ File level closure metadata
 
   <script type="text/javascript">
     function check_all() {
-      var checkboxes = document.getElementsByName("organisation");
+      var checkboxes = document.getElementsByName('organisation');
       checkboxes = [...checkboxes];
       for (var i = 0; i < checkboxes.length; i++) {
-        checkboxes[i].checked = false;
+        checkboxes[i].checked = true
       }
     }
 
-    if (!window.location.hash) {
-      window.location.href = "file-level#page-1";
+    function deselect_all() {
+      var checkboxes = document.getElementsByName('organisation');
+      checkboxes = [...checkboxes];
+      for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = false
+      }
     }
   </script>
 {% endblock %}

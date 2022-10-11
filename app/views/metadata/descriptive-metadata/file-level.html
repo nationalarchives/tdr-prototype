@@ -38,19 +38,76 @@ File level descriptive metadata
       </a>
         </div>
       </div>
-      {# <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"> #}
 
-      {# <p class="govuk-pagination__results">Showing <b>1</b> to <b>5</b> of <b>2500</b> results</p>
-
-      <div class="govuk-breadcrumbs govuk-breadcrumbs-file-navigation">
-        <ol class="govuk-breadcrumbs__list govuk-breadcrumbs__list--is-root">
-          <li class="govuk-breadcrumbs__list-item">
-            <span class="govuk-heading-s">Recipes and ingredients</span >
+      {% macro fileItem(item) %}
+        {% if item.type == 'file' or item.children.length == 0 %}
+          <li
+        class="govuk-tna-tree__file-item"
+        role="treeitem"
+        aria-selected="false"
+      >
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="{{item.ino}}" type="checkbox"/>
+              <label class="govuk-label govuk-checkboxes__label" for="{{item.ino}}">
+                {{item.name}}
+                {% if item.name == "Baking powder.docx" and data['descriptive']['baking-powder'][0] === 'true' %}
+                  <span class="icon" aria-label="Has existing metadata">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                  </span>
+                {% endif %}
+              </label>
+            </div>
           </li>
-        </ol>
-      </div> #}
-      {% include "./descriptive-files-table.html" %}
 
+        {% elif item.type == 'directory' %}
+          <li
+          class="govuk-tna-tree__folder-item"
+          role="treeitem"
+          aria-expanded="true"
+          aria-selected="false"
+        >
+            <div class="govuk-tna-tree__folder-item__container">
+              <button
+            class="govuk-tna-tree__file-expander"
+            tabindex="-1"
+            id="expander-{{item.ino}}"
+          >
+                <span class="govuk-visually-hidden">Expand</span>
+              </button>
+              <div class="govuk-checkboxes__item">
+                <input
+              class="govuk-checkboxes__input"
+              id="{{item.ino}}"
+              type="checkbox"
+/>
+                <label class="govuk-label govuk-checkboxes__label" for="{{item.ino}}">
+                  {{item.name}}
+                  {% if item.name == "Baking powder.docx" and data['descriptive']['baking-powder'][0] === 'true' %}
+                    <span class="icon" aria-label="Has existing metadata">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                    </span>
+                  {% endif %}
+                </label>
+              </div>
+            </div>
+            <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-{{item.ino}}">
+              {% for child in item.children %}
+                {{ fileItem(child) }}
+              {% endfor %}
+            </ul>
+          </li>
+        {% endif %}
+      {% endmacro %}
+
+      <div class="govuk-tna-tree">
+        <ul class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
+          {% for node in data.files %}
+            {{ fileItem(node) }}
+          {% endfor %}
+        </ul>
+      </div>
+
+      <br/><br/>
       <div class="govuk-button-group">
         <a href="./baking-powder/open-baking-powder" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
           Add or Edit metadata
