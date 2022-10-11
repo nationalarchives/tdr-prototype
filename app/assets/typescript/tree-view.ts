@@ -167,16 +167,8 @@ if (tree) {
     .addEventListener("keydown", (ev: KeyboardEvent) => {
       const currentItem = document.activeElement;
       let li;
-      console.log(ev.key);
+      // console.log(ev.key);
       switch (ev.key) {
-        case "Home":
-          const first: HTMLInputElement = (
-            ev.currentTarget as HTMLElement
-          ).querySelector("input[type=checkbox]");
-          first.tabIndex = 0;
-          first.focus();
-
-          break;
         case "Enter":
         case " ":
           // Check or uncheck checkbox
@@ -229,10 +221,16 @@ if (tree) {
 
         case "Home":
           // Moves focus to the first node in the tree without opening or closing a node.
+          setFocusToItem(tree.firstElementChild as HTMLLIElement);
           break;
 
         case "End":
           // Moves focus to the last node in the tree that is focusable without opening the node.
+          let lastLi: HTMLLIElement = tree.lastElementChild as HTMLLIElement;
+          while (lastLi && lastLi.getAttribute("aria-expanded") == "true") {
+            lastLi = lastLi.lastElementChild.lastElementChild as HTMLLIElement;
+          }
+          setFocusToItem(lastLi);
           break;
 
         default:
