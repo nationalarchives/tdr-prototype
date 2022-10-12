@@ -4,320 +4,140 @@
 File level descriptive metadata
 {% endblock %}
 
+{% block beforeContent %}
+  <a href="../additional-metadata.html" class="govuk-back-link">Back</a>
+{% endblock %}
+
 {% block content %}
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <a href="../additional-metadata.html" class="govuk-back-link">Back</a>
-    <h1 class="govuk-heading-l">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
       Add or edit descriptive data on file basis
     </h1>{{releaseVersion | log }}
-    <p class="govuk-body">You can now add or edit descriptive metadata to individual files or folders.</p>
-    <p class="govuk-body">You can do this by selecting the relevant record(s) from the table below and proceed by clicking "Add descriptive metadata".</p>
-
-    <div class="govuk-breadcrumbs">
-      <ol class="govuk-breadcrumbs__list">
-        <li class="govuk-breadcrumbs__list-item">
-          <a class="govuk-breadcrumbs__link govuk-heading-m" href="#">Recipes and ingredients</a>
-        </li>
-      </ol>
-    </div>
-
-    <div class="govuk-button-group">
-      <button class="govuk-button govuk-button--secondary" data-module="govuk-button" type="button" name="selectAll"
+      <p class="govuk-body">You can now add or edit descriptive metadata to individual files or folders.</p>
+      <p class="govuk-body">You can do this by selecting the relevant record(s) from the table below and proceed by clicking "Add descriptive metadata".</p>
+      <div class="govuk-button-group govuk-tdr-metadata__file-selection-btns">
+        <button class="govuk-button govuk-button--secondary" data-module="govuk-button" type="button" name="selectAll"
         value="select-all" onClick="check_all()">
         Select all
       </button>
 
-      <a href="./Lemonade/open-lemonade.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Add descriptive metadata
+        <button class="govuk-button govuk-button--secondary" data-module="govuk-button" type="button" name="selectAll"
+        value="select-all" onClick="deselect_all()">
+        Clear selection
+      </button>
+      </div>
+
+      <div class="govuk-grid-row govuk-tdr-metadata__search">
+        <div class="govuk-grid-column-two-thirds">
+          <input class="govuk-input" id="event-name" name="event-name" type="text" placeholder="Enter a file or folder name">
+        </div>
+        <div class="govuk-grid-column-one-third">
+          <a href="file-level#page-2" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Search
       </a>
-    </div>
+        </div>
+      </div>
 
+      {% macro fileItem(item) %}
+        {% if item.type == 'file' or item.children.length == 0 %}
+          <li
+        class="govuk-tna-tree__file-item"
+        role="treeitem"
+        aria-selected="false"
+      >
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="{{item.ino}}" type="checkbox"/>
+              <label class="govuk-label govuk-checkboxes__label" for="{{item.ino}}">
+                {{item.name}}
+                {% if item.name == "Baking powder.docx" and data['descriptive']['baking-powder'][0] === 'true' %}
+                  <span class="icon" aria-label="Has existing metadata">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                  </span>
+                {% endif %}
+              </label>
+            </div>
+          </li>
 
+        {% elif item.type == 'directory' %}
+          <li
+          class="govuk-tna-tree__folder-item"
+          role="treeitem"
+          aria-expanded="true"
+          aria-selected="false"
+        >
+            <div class="govuk-tna-tree__folder-item__container">
+              <button
+            class="govuk-tna-tree__file-expander"
+            tabindex="-1"
+            id="expander-{{item.ino}}"
+          >
+                <span class="govuk-visually-hidden">Expand</span>
+              </button>
+              <div class="govuk-checkboxes__item">
+                <input
+              class="govuk-checkboxes__input"
+              id="{{item.ino}}"
+              type="checkbox"
+/>
+                <label class="govuk-label govuk-checkboxes__label" for="{{item.ino}}">
+                  {{item.name}}
+                  {% if item.name == "Baking powder.docx" and data['descriptive']['baking-powder'][0] === 'true' %}
+                    <span class="icon" aria-label="Has existing metadata">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                    </span>
+                  {% endif %}
+                </label>
+              </div>
+            </div>
+            <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-{{item.ino}}">
+              {% for child in item.children %}
+                {{ fileItem(child) }}
+              {% endfor %}
+            </ul>
+          </li>
+        {% endif %}
+      {% endmacro %}
 
-    <section id="page-1">
-      <p class="govuk-pagination__results">Showing <b>1</b> to <b>5</b> of <b>15</b> results</p>
-      <table class="govuk-table">
-        <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="Subfolder-Lemon-drizzle" name="organisation" type="checkbox"
-                  value="hmrc">
-                <label class="govuk-label govuk-checkboxes__label" for="Subfolder-Lemon-drizzle">
-                  <a href="#">📁 Recipes</a>
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="Subfolder-Chocolate-banana-bread" name="organisation"
-                  type="checkbox" value="hmrc">
-                <label class="govuk-label govuk-checkboxes__label" for="Subfolder-Chocolate-banana-bread">
-                  <a href="#">📁 Ingredients</a>
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" onchange="changeLink()" id="choc-chips" name="organisation"
-                  type="checkbox" value="cc" data-href="cc">
-                <label class="govuk-label govuk-checkboxes__label" for="choc-chips">
-                  <a href="/file-summary-cc.html">📁 Cupcakes</a>
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="Cacao-powder" name="organisation" type="checkbox"
-                  value="hmrc">
-                <label class="govuk-label govuk-checkboxes__label" for="Cacao-powder">
-                  <a href="#">📊 Flour.docx</a>
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="flour" name="organisation" type="checkbox" value="flour"
-                  onchange="changeLinkBack()">
-                <label class="govuk-label govuk-checkboxes__label" for="flour">
-                  <a href="/file-summary-flour.html">🖼️ Lemonade.jpg</a>
-                </label>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+      <div class="govuk-tna-tree">
+        <ul class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
+          {% for node in data.files %}
+            {{ fileItem(node) }}
+          {% endfor %}
+        </ul>
+      </div>
 
-    <section id="page-2">
-      <p class="govuk-pagination__results">Showing <b>6</b> to <b>10</b> of <b>15</b> results</p>
-      <table class="govuk-table">
-        <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="Subfolder-Lemon-drizzle" name="organisation" type="checkbox"
-                  value="hmrc">
-                <label class="govuk-label govuk-checkboxes__label" for="Subfolder-Lemon-drizzle">
-                  <a href="#">📁 Cacao</a>
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="Subfolder-Chocolate-banana-bread" name="organisation"
-                  type="checkbox" value="hmrc">
-                <label class="govuk-label govuk-checkboxes__label" for="Subfolder-Chocolate-banana-bread">
-                  <a href="#">🧾 Chocolate-chips.docx</a>
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" onchange="changeLink()" id="choc-chips" name="organisation"
-                  type="checkbox" value="cc" data-href="cc">
-                <label class="govuk-label govuk-checkboxes__label" for="choc-chips">
-                  <a href="/file-summary-cc.html">📁 Brownies</a>
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="Cacao-powder" name="organisation" type="checkbox"
-                  value="hmrc">
-                <label class="govuk-label govuk-checkboxes__label" for="Cacao-powder">
-                  <a href="#">🧾 Doughnuts.rtf</a>
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="flour" name="organisation" type="checkbox" value="flour"
-                  onchange="changeLinkBack()">
-                <label class="govuk-label govuk-checkboxes__label" for="flour">
-                  <a href="/file-summary-flour.html">🧾 Cinnamon-rolls.doc</a>
-                </label>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+      <br/><br/>
+      <div class="govuk-button-group">
+        <a href="./baking-powder/open-baking-powder" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+          Add or Edit metadata
+        </a>
 
-    <section id="page-3">
-      <p class="govuk-pagination__results">Showing <b>11</b> to <b>15</b> of <b>15</b> results</p>
+        <a href="./baking-powder/abandon-changes-warning.html" role="button" draggable="false" class="govuk-button govuk-button--warning" >
+          Delete metadata
+        </a>
+      </div>
 
-      <table class="govuk-table">
-        <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="Subfolder-Lemon-drizzle" name="organisation" type="checkbox"
-                  value="hmrc">
-                <label class="govuk-label govuk-checkboxes__label" for="Subfolder-Lemon-drizzle">
-                  <a href="#">📁 Biscuits</a>
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="Subfolder-Chocolate-banana-bread" name="organisation"
-                  type="checkbox" value="hmrc">
-                <label class="govuk-label govuk-checkboxes__label" for="Subfolder-Chocolate-banana-bread">
-                  <a href="#">📁 Cheesecake</a>
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" onchange="changeLink()" id="choc-chips" name="organisation"
-                  type="checkbox" value="cc" data-href="cc">
-                <label class="govuk-label govuk-checkboxes__label" for="choc-chips">
-                  <a href="/file-summary-cc.html">🧾 Banana-bread.doc</a>
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="Cacao-powder" name="organisation" type="checkbox"
-                  value="hmrc">
-                <label class="govuk-label govuk-checkboxes__label" for="Cacao-powder">
-                  <a href="#">🖼️ Muffins.png</a>
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="flour" name="organisation" type="checkbox" value="flour"
-                  onchange="changeLinkBack()">
-                <label class="govuk-label govuk-checkboxes__label" for="flour">
-                  <a href="/file-summary-flour.html">🖼️ Cookies.png</a>
-                </label>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <!-- <nav class="govuk-pagination" id="pagination-label" aria-label="results navigation"> -->
-
-      <ul class="govuk-pagination__list">
-        <li class="govuk-pagination__item govuk-pagination__item--prev">
-          <!-- <a class="govuk-pagination__link" href="#" id="prev"> -->
-            <span class="govuk-pagination__link-title">
-              <!-- <svg class="govuk-pagination__icon" xmlns="http://www.w3.org/2000/svg" height="13" width="17"> -->
-                <path
-                  d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z">
-                </path>
-              </svg>Previous
-              <span class="govuk-visually-hidden">page</span>
-            </span>
-          <!-- </a> -->
-        </li>
-
-        <li class="govuk-pagination__item" id="page-1-item" onclick="addCurrentPage(this.id)">
-        </li>
-
-        <li class="govuk-pagination__item" id="page-2-item" onclick="addCurrentPage(this.id)">
-        </li>
-
-        <li class="govuk-pagination__item" id="page-3-item" onclick="addCurrentPage(this.id)">
-        </li>
-
-        <li class="govuk-pagination__item govuk-pagination__item--next">
-          <!-- <a class="govuk-pagination__link" href="#" id="next"> -->
-            <span class="govuk-pagination__link-title">
-              <!-- <svg class="govuk-pagination__icon" xmlns="http://www.w3.org/2000/svg" height="13" width="17"> -->
-                <path
-                  d="m10.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z">
-                </path>
-              </svg> Next <span class="govuk-visually-hidden">page</span>
-            </span>
-          <!-- </a> -->
-        </li>
-      </ul>
       <br/>
 
+    </div>
   </div>
-</div>
 
-<style>
-  section {
-    display: none;
-  }
-
-  .page-1 {
-    display: block;
-  }
-
-  section:target {
-    display: block;
-  }
-
-  section:target~#page-1 {
-    display: none;
-  }
-</style>
-
-<script type="text/javascript">
-  function check_all() {
-    var checkboxes = document.getElementsByName('organisation');
-    checkboxes = [...checkboxes];
-    for (var i = 0; i < checkboxes.length; i++) {
-      checkboxes[i].checked = true
+  <script type="text/javascript">
+    function check_all() {
+      var checkboxes = document.getElementsByName('organisation');
+      checkboxes = [...checkboxes];
+      for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = true
+      }
     }
-  }
 
-  if(!window.location.hash) {
-    window.location.href = "file-level#page-1"
-  }
-
-  addCurrentPage("page-1-item");
-
-  function addCurrentPage(page_item) {
-    const selectedPage = page_item.split("-")[1];
-    document.getElementById("page-1-item").classList.remove("govuk-pagination__item--current");
-    document.getElementById("page-2-item").classList.remove("govuk-pagination__item--current");
-    document.getElementById("page-3-item").classList.remove("govuk-pagination__item--current");
-
-    document.getElementById(page_item).classList.add("govuk-pagination__item--current");
-
-    document.getElementById("page-1-item").innerHTML = '<a class="govuk-pagination__link" href="#page-1" id="page-1"><span class="govuk-visually-hidden">Page</span>1</a>';
-    document.getElementById("page-2-item").innerHTML = '<a class="govuk-pagination__link" href="#page-2" id="page-2"><span class="govuk-visually-hidden">Page</span>2</a>';
-    document.getElementById("page-3-item").innerHTML = '<a class="govuk-pagination__link" href="#page-3" id="page-3"><span class="govuk-visually-hidden">Page</span>3</a>';
-
-    document.getElementById(page_item).innerHTML = '<span class="govuk-visually-hidden">Page</span>'+selectedPage;
-
-    document.getElementById("prev")
-
-    document.getElementById("next").href = "#page-" + (Number(selectedPage) + 1);
-  }
-
-</script>
+    function deselect_all() {
+      var checkboxes = document.getElementsByName('organisation');
+      checkboxes = [...checkboxes];
+      for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = false
+      }
+    }
+  </script>
 {% endblock %}

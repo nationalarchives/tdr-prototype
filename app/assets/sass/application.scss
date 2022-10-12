@@ -289,8 +289,7 @@ $govuk-assets-path: '/govuk/assets/';
   gap: 15px;
 }
 
-.govuk-fieldset--horizontal-align legend {
-  float: left;
+.govuk-fieldset--horizontal-align .govuk-fieldset__legend {
   align-self: flex-end;
   margin: 0;
 }

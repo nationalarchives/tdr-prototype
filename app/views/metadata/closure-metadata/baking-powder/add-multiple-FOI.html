@@ -4,322 +4,60 @@
 Add FOI codes to 'Baking-powder.jpg'
 {% endblock %}
 
-{% block content %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% block beforeContent %}
+  <a href="./add-closure.html" class="govuk-back-link">Back</a>
+{% endblock %}
 
-<div class="govuk-grid-row">
-<div class="govuk-grid-column-full">
-        <a href="./add-closure.html" class="govuk-back-link">Back</a>
+{% block content %}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <form action="confirm-multiple-FOI">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-l">
             Select FOI exemption codes for 'Baking-powder.jpg'
         </h1>{{releaseVersion | log }}
-        <p class="govuk-body">Select the exemption code(s) that apply. Here is a <a href="#">full list of FOI codes and their designated exemptions</a>.
-<div class="govuk-grid-column-one-third">
-<div class="govuk-form-group">
-      <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
-          <label class="govuk-label govuk-checkboxes__label" for="waste">
-            27(1)
-          </label>
+        <p class="govuk-body govuk-!-margin-bottom-6">Select the exemption code(s) that apply. Here is a <a href="https://cdn.nationalarchives.gov.uk/documents/information-management/freedom-of-information-exemptions.pdf">full list of FOI codes and their designated exemptions</a>.</p>
+
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-one-third">
+            <div class="govuk-form-group">
+              <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                {% for code in data.foi_exemption_codes %}
+
+                  {% if code == "-" %}
+                    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                  {% else %}
+                    <div class="govuk-checkboxes__item">
+                      <input {% if data.foi_id_selection and code in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="{{loop.index}}" name="foi_id_selection" type="checkbox" value="{{code}}">
+                      <label class="govuk-label govuk-checkboxes__label" for="{{loop.index}}">
+                        {{code}}
+                      </label>
+                    </div>
+                  {% endif %}
+                  {% if loop.index % ((loop.length / 3) | round) == 0 %}
+                  </div>
+                </div>
+              </div>
+              <div class="govuk-grid-column-one-third">
+                <div class="govuk-form-group">
+                  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
-          <label class="govuk-label govuk-checkboxes__label" for="waste-2">
-            27(2)
-          </label>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full">
+            <button role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+              Save and return
+            </button>
+          </div>
         </div>
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm" checked>
-          <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-            31
-          </label>
-        </div>
-        <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-              33
-            </label>
-          </div>
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-              36
-            </label>
-          </div>
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-              38(1a)
-            </label>
-          </div>
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-            38(1b)
-            </label>
-          </div>
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-                38(2)
-            </label>
-          </div>
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-              40(2)
-            </label>
-          </div>
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-              43(1)
-            </label>
-          </div>
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-              43(2)
-            </label>
-          </div>
-            <label class="govuk-label" for="waste-3">
-                ---------
-            </label>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-              <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-                22
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-              <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-                22A
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-              <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-                23
-              </label>
-            </div>
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-              <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-                24
-              </label>
-            </div>
-      </div>
-  </div>
-</div>
 
+      </div>
+    </div>
 
-
-<div class="govuk-grid-column-one-third">
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-          23/24 - In the alternative
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-          26
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-          27(1)
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-          27(2)
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-          28
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-          29
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-          32
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-          34
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-          35
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-          37(1)(a)
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-            37(1)(aa)
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-            37(1)(ab)
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-            37(1)(ab)
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-            37(1)(ac)
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-            37(1)(ad)
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-            37(1)(b)
-        </label>
-      </div>
-
-</div>
-
-
-<div class="govuk-grid-column-one-third">
-  <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-        37(2)
-    </label>
-  </div>
-  <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-      39
-    </label>
-  </div>
-  <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-      40
-    </label>
-  </div>
-  <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-      41
-    </label>
-  </div>
-  <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-      42
-    </label>
-  </div>
-  <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-      43(1)
-    </label>
-  </div>
-  <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-      43(2)
-    </label>
-  </div>
-  <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-      44
-    </label>
-  </div>
-  <label class="govuk-label" for="waste-3">
-    ---------
-</label>
-  <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-        EIRs 12(3) & 13
-    </label>
-  </div>
-  <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-        EIRs 12(5)(a)
-    </label>
-  </div>
-  <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-        EIRs 12(5)(b)
-    </label>
-  </div>
-  <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-    <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-        EIRs 12(5)(c)
-    </label>
-  </div>
-    <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-            EIRs 12(5)(d)
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-            EIRs 12(5)(e)
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-            EIRs 12(5)(f)
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="farm">
-        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
-            EIRs 12(5)(g)
-        </label>
-      </div>
-</div>
-<a href="./add-closure.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-  Save
-</a>
-</div>
+  </form>
 {% endblock %}

@@ -5,9 +5,9 @@ Remove properties
 {% endblock %}
 
 {% block content %}
-  <form action="confirm-closure-status">
+  <form action="../file-level">
 
-    <input type="hidden" id="cocao" name="cocao" value="delete">
+    <input type="hidden" id="baking-powder" name="baking-powder" value="delete">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-xl">
@@ -17,7 +17,7 @@ Remove properties
           <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
           <strong class="govuk-warning-text__text">
             <span class="govuk-warning-text__assistive">Warning</span>
-          If you proceed, closure metadata for file 'cocoa.docx' will be removed.
+          If you proceed, all descriptive metadata for file 'baking-powder.jpg' will be removed.
         </strong>
         </div>
         <p class="govuk-body">Are you sure you would like to proceed?</p>
@@ -26,7 +26,7 @@ Remove properties
           <button role="button" draggable="false" class="govuk-button" data-module="govuk-button">
           Delete and return to all files
         </button>
-          <a class="govuk-link govuk-link--no-visited-state" href="./closure-added.html">Cancel</a>
+          <a class="govuk-link govuk-link--no-visited-state" href="./descriptive-added">Cancel</a>
         </div>
 
       </div>
