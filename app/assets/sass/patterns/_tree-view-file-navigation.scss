@@ -5,8 +5,8 @@
     --file-expander-btn-width: 40px;
     overflow-x: auto;
     overflow-y: auto;
-    max-height: 80vh;
-    transform: translate(calc(0px - var(--file-expander-btn-width)), 0);
+    max-height: 85vh;
+    // transform: translate(calc(0px - var(--file-expander-btn-width)), 0);
   }
 
   .govuk-tna-tree ul[role="tree"],
