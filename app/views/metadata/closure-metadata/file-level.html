@@ -129,10 +129,141 @@ File level closure metadata
       {% endmacro %}
 
       <div class="govuk-tna-tree">
-        <ul class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
+        {# <ul class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
           {% for node in data.files %}
             {{ fileItem(node) }}
           {% endfor %}
+        </ul> #}
+        <ul class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
+
+          <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="1" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label" for="1">
+                Chocolate chips.xls
+
+              </label>
+            </div>
+          </li>
+
+          <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="2" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label" for="2">
+                Baking soda.xlsx
+
+              </label>
+            </div>
+          </li>
+
+          <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="13" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label" for="13">
+                Baking powder.docx
+
+              </label>
+            </div>
+          </li>
+
+          <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="3" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label" for="3">
+                Baking powder1.pdf
+
+              </label>
+            </div>
+          </li>
+
+          <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="4" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label" for="4">
+                Cookie dough.pdf
+
+              </label>
+            </div>
+          </li>
+
+          <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="5" type="checkbox">
+              <label class="govuk-label govuk-checkboxes__label" for="5">
+                Baking powder2.xlsx
+
+              </label>
+            </div>
+          </li>
+
+          <li class="govuk-tna-tree__folder-item" role="treeitem" aria-expanded="false" aria-selected="false">
+            <div class="govuk-tna-tree__folder-item__container">
+              <button class="govuk-tna-tree__file-expander" tabindex="-1" id="expander-6">
+                <span class="govuk-visually-hidden">Expand</span>
+              </button>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="6" type="checkbox" tabindex="0">
+                <label class="govuk-label govuk-checkboxes__label" for="6">
+                  Images
+
+                </label>
+              </div>
+            </div>
+            <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-6">
+
+              <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="7" type="checkbox">
+                  <label class="govuk-label govuk-checkboxes__label" for="7">
+                Flour.jpg
+
+              </label>
+                </div>
+              </li>
+
+              <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="8" type="checkbox">
+                  <label class="govuk-label govuk-checkboxes__label" for="8">
+                Sugar.jpg
+
+              </label>
+                </div>
+              </li>
+
+              <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="9" type="checkbox">
+                  <label class="govuk-label govuk-checkboxes__label" for="9">
+                Milk and cream.jpg
+
+              </label>
+                </div>
+              </li>
+
+              <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="10" type="checkbox">
+                  <label class="govuk-label govuk-checkboxes__label" for="10">
+                Cocoa.jpg
+
+              </label>
+                </div>
+              </li>
+
+              <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="11" type="checkbox">
+                  <label class="govuk-label govuk-checkboxes__label" for="11">
+                Bananas.jpg
+
+              </label>
+                </div>
+              </li>
+
+            </ul>
+          </li>
+
         </ul>
       </div>
 
