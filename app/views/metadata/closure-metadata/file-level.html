@@ -79,8 +79,8 @@ File level closure metadata
         aria-posinset="{{pos}}"
       >
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="{{item.ino}}" type="checkbox"/>
-              <label class="govuk-label govuk-checkboxes__label" for="{{item.ino}}">
+              <input class="govuk-checkboxes__input" id="{{level}}-{{pos}}" type="checkbox"/>
+              <label class="govuk-label govuk-checkboxes__label" for="{{level}}-{{pos}}">
                 {{item.name}}
                 {% if item.name == "Baking powder.docx" and data['closure']['baking-powder'][0] === 'true' %}
                   <span class="icon" aria-label="Has existing metadata">
@@ -105,17 +105,17 @@ File level closure metadata
               <button
             class="govuk-tna-tree__file-expander"
             tabindex="-1"
-            id="expander-{{item.ino}}"
+            id="expander-{{level}}-{{pos}}"
           >
                 <span class="govuk-visually-hidden">Expand</span>
               </button>
               <div class="govuk-checkboxes__item">
                 <input
               class="govuk-checkboxes__input"
-              id="{{item.ino}}"
+              id="{{level}}-{{pos}}"
               type="checkbox"
 />
-                <label class="govuk-label govuk-checkboxes__label" for="{{item.ino}}">
+                <label class="govuk-label govuk-checkboxes__label" for="{{level}}-{{pos}}">
                   {{item.name}}
                   {% if item.name == "Baking powder.docx" and data['closure']['baking-powder'][0] === 'true' %}
                     <span class="icon" aria-label="Has existing metadata">
@@ -125,7 +125,7 @@ File level closure metadata
                 </label>
               </div>
             </div>
-            <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-{{item.ino}}">
+            <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-{{level}}-{{pos}}">
               {% set nextLevel = level + 1 %}
               {% for child in item.children %}
                 {{ fileItem(child, nextLevel, loop.length, loop.index) }}

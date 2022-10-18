@@ -30,74 +30,83 @@ module.exports = {
     {
       name: "Chocolate chips.xls",
       type: "file",
-      ino: 1,
     },
     {
       name: "Baking soda.xlsx",
       children: [],
       type: "file",
-      ino: 2,
     },
     {
       name: "Baking powder.docx",
       children: [],
       type: "file",
-      ino: 13,
     },
     {
       name: "Baking powder1.pdf",
       children: [],
       type: "file",
-      ino: 3,
     },
     {
       name: "Cookie dough.pdf",
       children: [],
       type: "file",
-      ino: 4,
     },
     {
       name: "Baking powder2.xlsx",
       children: [],
       type: "file",
-      ino: 5,
     },
     {
-      name: "Images",
+      name: "Ingredients",
       children: [
         {
           name: "Flour.jpg",
           children: [],
           type: "file",
-          ino: 7,
         },
         {
           name: "Sugar.jpg",
           children: [],
           type: "file",
-          ino: 8,
         },
         {
           name: "Milk and cream.jpg",
           children: [],
           type: "file",
-          ino: 9,
+        },
+        {
+          name: "Utensils",
+          children: [
+            {
+              name: "Cake tin.jpg",
+              children: [],
+              type: "file",
+            },
+            {
+              name: "Sieve.jpg",
+              children: [],
+              type: "file",
+            },
+          ],
+          type: "directory",
         },
         {
           name: "Cocoa.jpg",
           children: [],
           type: "file",
-          ino: 10,
         },
         {
           name: "Bananas.jpg",
           children: [],
           type: "file",
-          ino: 11,
         },
       ],
       type: "directory",
-      ino: 6,
+    },
+    {
+      name: "Baking powder3.xlsx",
+      children: [],
+      type: "file",
     },
   ],
   foi_exemption_codes: [
