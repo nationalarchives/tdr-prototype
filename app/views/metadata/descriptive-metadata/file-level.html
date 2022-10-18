@@ -39,12 +39,15 @@ File level descriptive metadata
         </div>
       </div>
 
-      {% macro fileItem(item) %}
+      {% macro fileItem(item, level, size, pos) %}
         {% if item.type == 'file' or item.children.length == 0 %}
           <li
         class="govuk-tna-tree__file-item"
         role="treeitem"
         aria-selected="false"
+        aria-level="{{level}}"
+        aria-setsize="{{size}}"
+        aria-posinset="{{pos}}"
       >
             <div class="govuk-checkboxes__item">
               <input class="govuk-checkboxes__input" id="{{item.ino}}" type="checkbox"/>
@@ -65,6 +68,9 @@ File level descriptive metadata
           role="treeitem"
           aria-expanded="true"
           aria-selected="false"
+          aria-level="{{level}}"
+          aria-setsize="{{size}}"
+          aria-posinset="{{pos}}"
         >
             <div class="govuk-tna-tree__folder-item__container">
               <button
@@ -91,8 +97,9 @@ File level descriptive metadata
               </div>
             </div>
             <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-{{item.ino}}">
+              {% set nextLevel = level + 1 %}
               {% for child in item.children %}
-                {{ fileItem(child) }}
+                {{ fileItem(child, nextLevel, loop.length, loop.index) }}
               {% endfor %}
             </ul>
           </li>
@@ -102,7 +109,7 @@ File level descriptive metadata
       <div class="govuk-tna-tree">
         <ul class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
           {% for node in data.files %}
-            {{ fileItem(node) }}
+            {{ fileItem(node, 1, loop.length, loop.index) }}
           {% endfor %}
         </ul>
         {# <ul class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
