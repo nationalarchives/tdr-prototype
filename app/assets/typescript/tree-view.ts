@@ -53,6 +53,7 @@ if (tree) {
         for (let checkbox of checkboxes) {
           checkbox.checked = input.checked;
           checkbox.indeterminate = false;
+          checkbox.setAttribute("aria-checked", input.checked.toString());
         }
       }
     }
@@ -63,15 +64,20 @@ if (tree) {
 
   const toggleFolder: (li: HTMLLIElement, id: string) => void = (li, id) => {
     const expanded = getExpanded();
+    const buttonSpan: HTMLElement = document.querySelector(
+      `#expander-${id} span`
+    );
 
     if (li.getAttribute("aria-expanded") == "false") {
       // Expand
       li.setAttribute("aria-expanded", "true");
       expanded.push(id);
+      buttonSpan.innerText = "Collapse";
     } else {
       // Collapse
       li.setAttribute("aria-expanded", "false");
       expanded.splice(expanded.indexOf(id));
+      buttonSpan.innerText = "Expand";
     }
     localStorage.setItem("state", JSON.stringify({ expanded }));
   };
@@ -90,16 +96,19 @@ if (tree) {
         // One or more children but less than all
         if (countChecked > 0 && countChecked < all.length) {
           parentCheckbox.indeterminate = true;
+          parentCheckbox.setAttribute("aria-checked", "mixed");
         }
         // All children checked
         if (countChecked == all.length) {
           parentCheckbox.indeterminate = false;
           parentCheckbox.checked = true;
+          parentCheckbox.setAttribute("aria-checked", "true");
         }
         // None checked
         if (countChecked == 0) {
           parentCheckbox.checked = false;
           parentCheckbox.indeterminate = false;
+          parentCheckbox.setAttribute("aria-checked", "false");
         }
         // Recursively call closest parent folder.
         const nextEl: HTMLUListElement | null | undefined =
@@ -181,11 +190,13 @@ if (tree) {
         case "ArrowUp":
           // Moves focus to the previous node that is focusable without opening or closing a node.
           setFocusToPreviousItem(ev.target as HTMLElement);
+          ev.preventDefault();
           break;
 
         case "ArrowDown":
           // Moves focus to the next node that is focusable without opening or closing a node.
           setFocusToNextItem(ev.target as HTMLElement);
+          ev.preventDefault();
           break;
 
         case "ArrowRight":
@@ -202,6 +213,7 @@ if (tree) {
             setFocusToNextItem(ev.target as HTMLElement);
           }
           // When focus is on an end node (a tree item with no children), does nothing.
+          ev.preventDefault();
           break;
 
         case "ArrowLeft":
@@ -217,11 +229,13 @@ if (tree) {
             setFocusToItem(li.parentElement.closest("li") as HTMLElement);
           }
           // When focus is on a closed `tree`, does nothing.
+          ev.preventDefault();
           break;
 
         case "Home":
           // Moves focus to the first node in the tree without opening or closing a node.
           setFocusToItem(tree.firstElementChild as HTMLLIElement);
+          ev.preventDefault();
           break;
 
         case "End":
@@ -231,12 +245,12 @@ if (tree) {
             lastLi = lastLi.lastElementChild.lastElementChild as HTMLLIElement;
           }
           setFocusToItem(lastLi);
+          ev.preventDefault();
           break;
 
         default:
           break;
       }
-      ev.preventDefault();
     });
 
   document
