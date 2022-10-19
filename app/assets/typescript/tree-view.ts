@@ -185,6 +185,7 @@ if (tree) {
           input.checked = !input.checked;
           input.indeterminate = false;
           setCheckbox(input);
+          ev.preventDefault();
           break;
 
         case "ArrowUp":
@@ -301,4 +302,15 @@ if (tree) {
         }
       });
     });
+
+  tree.addEventListener("focus", () => {
+    const firstSelected = document.querySelector(
+      "[role=treeitem][aria-selected=true]"
+    );
+    if (firstSelected) {
+      setFocusToItem(firstSelected as HTMLElement);
+    } else {
+      setFocusToItem(tree.firstElementChild as HTMLElement);
+    }
+  });
 }

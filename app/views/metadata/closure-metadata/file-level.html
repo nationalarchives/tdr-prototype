@@ -79,7 +79,7 @@ File level closure metadata
         aria-posinset="{{pos}}"
       >
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="{{level}}-{{pos}}" type="checkbox"/>
+              <input class="govuk-checkboxes__input" id="{{level}}-{{pos}}" tabindex="-1" type="checkbox"/>
               <label class="govuk-label govuk-checkboxes__label" for="{{level}}-{{pos}}">
                 {{item.name}}
                 {% if item.name == "Baking powder.docx" and data['closure']['baking-powder'][0] === 'true' %}
@@ -104,7 +104,7 @@ File level closure metadata
             <div class="govuk-tna-tree__folder-item__container">
               <button
             class="govuk-tna-tree__file-expander"
-            tabindex="0"
+            tabindex="-1"
             id="expander-{{level}}-{{pos}}"
           >
                 <span class="govuk-visually-hidden">Expand</span>
@@ -113,6 +113,7 @@ File level closure metadata
                 <input
               class="govuk-checkboxes__input"
               id="{{level}}-{{pos}}"
+              tabindex="-1"
               type="checkbox"
 />
                 <label class="govuk-label govuk-checkboxes__label" for="{{level}}-{{pos}}">
@@ -137,7 +138,7 @@ File level closure metadata
       {% endmacro %}
 
       <div class="govuk-tna-tree">
-        <ul class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
+        <ul tabindex="0" class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
           {% for node in data.files %}
             {{ fileItem(node, 1, loop.length, loop.index) }}
           {% endfor %}
