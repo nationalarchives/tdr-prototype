@@ -159,806 +159,197 @@ module.exports = {
     "EIRs 12(5)(g)",
   ],
   languages: [
-    {
-      language_desc: "Amharic",
-      iso_code: "amh",
-    },
-    {
-      language_desc: "Arabic and English",
-      iso_code: "ara eng",
-    },
-    {
-      language_desc: "Chinese",
-      iso_code: "chi",
-    },
-    {
-      language_desc: "Chinese and English",
-      iso_code: "chi eng",
-    },
-    {
-      language_desc: "Danish and German",
-      iso_code: "dan ger",
-    },
-    {
-      language_desc: "Dutch, English and French",
-      iso_code: "dut eng fre",
-    },
-    {
-      language_desc: "Dutch, English, French and Latin",
-      iso_code: "dut eng fre lat",
-    },
-    {
-      language_desc: "Dutch, French and Italian",
-      iso_code: "dut fre ita",
-    },
-    {
-      language_desc: "Dutch, French, Latin and Spanish",
-      iso_code: "dut fre lat spa",
-    },
-    {
-      language_desc: "English",
-      iso_code: "eng",
-    },
-    {
-      language_desc: "English and French",
-      iso_code: "eng fre",
-    },
-    {
-      language_desc: "English, French and German",
-      iso_code: "eng fre ger",
-    },
-    {
-      language_desc: "English, French, German and Italian",
-      iso_code: "eng fre ger ita",
-    },
-    {
-      language_desc: "English, French, German and Latin",
-      iso_code: "eng fre ger lat",
-    },
-    {
-      language_desc: "English, French, German and Russian",
-      iso_code: "eng fre ger rus",
-    },
-    {
-      language_desc: "English, French and Italian",
-      iso_code: "eng fre ita",
-    },
-    {
-      language_desc: "English, French, Italian and Latin",
-      iso_code: "eng fre ita lat",
-    },
-    {
-      language_desc: "English, French and Latin",
-      iso_code: "eng fre lat",
-    },
-    {
-      language_desc: "English, French and Spanish",
-      iso_code: "eng fre spa",
-    },
-    {
-      language_desc: "English and German",
-      iso_code: "eng ger",
-    },
-    {
-      language_desc: "English, German and Italian",
-      iso_code: "eng ger ita",
-    },
-    {
-      language_desc: "English and Greek",
-      iso_code: "eng gre",
-    },
-    {
-      language_desc: "English and Italian",
-      iso_code: "eng ita",
-    },
-    {
-      language_desc: "English, Italian and Latin",
-      iso_code: "eng ita lat",
-    },
-    {
-      language_desc: "English and Japanese",
-      iso_code: "eng jpn",
-    },
-    {
-      language_desc: "English and Latin",
-      iso_code: "eng lat",
-    },
-    {
-      language_desc: "English and Portuguese",
-      iso_code: "eng por",
-    },
-    {
-      language_desc: "English and Welsh",
-      iso_code: "eng wel",
-    },
-    {
-      language_desc: "French",
-      iso_code: "fre",
-    },
-    {
-      language_desc: "French and Latin",
-      iso_code: "fre lat",
-    },
-    {
-      language_desc: "German",
-      iso_code: "ger",
-    },
-    {
-      language_desc: "German, Italian and Japanese",
-      iso_code: "ger ita jpn",
-    },
-    {
-      language_desc: "German, Italian, Latin and Swedish",
-      iso_code: "ger ita lat swe",
-    },
-    {
-      language_desc: "Italian and Latin",
-      iso_code: "ita lat",
-    },
-    {
-      language_desc: "Latin",
-      iso_code: "lat",
-    },
-    {
-      language_desc: "Miscellaneous",
-      iso_code: "mul",
-    },
-    {
-      language_desc: "Portuguese",
-      iso_code: "por",
-    },
-    {
-      language_desc: "Spanish",
-      iso_code: "spa",
-    },
-    {
-      language_desc: "Danish",
-      iso_code: "dan",
-    },
-    {
-      language_desc: "Dutch",
-      iso_code: "dut",
-    },
-    {
-      language_desc: "Swedish",
-      iso_code: "swe",
-    },
-    {
-      language_desc: "English and Russian",
-      iso_code: "eng rus",
-    },
-    {
-      language_desc: "English and Spanish",
-      iso_code: "eng spa",
-    },
-    {
-      language_desc: "English and Norwegian",
-      iso_code: "eng nor",
-    },
-    {
-      language_desc: "Italian",
-      iso_code: "ita",
-    },
-    {
-      language_desc: "Tibetan",
-      iso_code: "tib",
-    },
-    {
-      language_desc: "Dutch and Japanese",
-      iso_code: "dut jpn",
-    },
-    {
-      language_desc: "Chinese, English, Malay and Tamil",
-      iso_code: "chi eng may tam",
-    },
-    {
-      language_desc: "Chinese and Malay",
-      iso_code: "chi may",
-    },
-    {
-      language_desc: "Chinese, English and Malay",
-      iso_code: "chi eng may",
-    },
-    {
-      language_desc: "English and Tamil",
-      iso_code: "eng tam",
-    },
-    {
-      language_desc: "English and Gaelic",
-      iso_code: "eng gla",
-    },
-    {
-      language_desc: "Dutch and English",
-      iso_code: "dut eng",
-    },
-    {
-      language_desc: "Arabic",
-      iso_code: "ara",
-    },
-    {
-      language_desc: "French and German",
-      iso_code: "fre ger",
-    },
-    {
-      language_desc: "Dutch and Spanish",
-      iso_code: "dut spa",
-    },
-    {
-      language_desc: "English and Swedish",
-      iso_code: "eng swe",
-    },
-    {
-      language_desc: "French, German and Latin",
-      iso_code: "fre ger lat",
-    },
-    {
-      language_desc: "English and Icelandic",
-      iso_code: "eng ice",
-    },
-    {
-      language_desc: "Dutch and French",
-      iso_code: "dut fre",
-    },
-    {
-      language_desc: "Danish and Latin",
-      iso_code: "dan lat",
-    },
-    {
-      language_desc: "English and Polish",
-      iso_code: "eng pol",
-    },
-    {
-      language_desc: "Arabic, English and French",
-      iso_code: "ara eng fre",
-    },
-    {
-      language_desc: "Norwegian",
-      iso_code: "nor",
-    },
-    {
-      language_desc: "Divehi and English",
-      iso_code: "div eng",
-    },
-    {
-      language_desc: "Russian",
-      iso_code: "rus",
-    },
-    {
-      language_desc: "Amharic and English",
-      iso_code: "amh eng",
-    },
-    {
-      language_desc: "French and Swedish",
-      iso_code: "fre swe",
-    },
-    {
-      language_desc: "English, German and Russian",
-      iso_code: "eng ger rus",
-    },
-    {
-      language_desc: "French and Russian",
-      iso_code: "fre rus",
-    },
-    {
-      language_desc: "Italian and Spanish",
-      iso_code: "ita spa",
-    },
-    {
-      language_desc: "Malay",
-      iso_code: "may",
-    },
-    {
-      language_desc: "Greek",
-      iso_code: "gre",
-    },
-    {
-      language_desc: "English, Hungarian and Polish",
-      iso_code: "eng hun pol",
-    },
-    {
-      language_desc: "Bulgarian and French",
-      iso_code: "bul fre",
-    },
-    {
-      language_desc: "French and Greek",
-      iso_code: "fre gre",
-    },
-    {
-      language_desc: "Japanese",
-      iso_code: "jpn",
-    },
-    {
-      language_desc: "English and Miscellaneous",
-      iso_code: "eng mul",
-    },
-    {
-      language_desc: "English and Turkish",
-      iso_code: "eng tur",
-    },
-    {
-      language_desc: "Persian",
-      iso_code: "per",
-    },
-    {
-      language_desc: "English and Persian",
-      iso_code: "eng per",
-    },
-    {
-      language_desc: "Dutch, English, French and German",
-      iso_code: "dut eng fre ger",
-    },
-    {
-      language_desc: "Turkish",
-      iso_code: "tur",
-    },
-    {
-      language_desc: "English, French and Russian",
-      iso_code: "eng fre rus",
-    },
-    {
-      language_desc: "Arabic, English and German",
-      iso_code: "ara eng ger",
-    },
-    {
-      language_desc: "Arabic, English, French and Italian",
-      iso_code: "ara eng fre ita",
-    },
-    {
-      language_desc: "English, Italian, Latin and Turkish",
-      iso_code: "eng ita lat tur",
-    },
-    {
-      language_desc: "English, French, Latin and Russian",
-      iso_code: "eng fre lat rus",
-    },
-    {
-      language_desc: "French and Italian",
-      iso_code: "fre ita",
-    },
-    {
-      language_desc: "Serbo-Croatian",
-      iso_code: "scr",
-    },
-    {
-      language_desc: "English and Korean",
-      iso_code: "eng kor",
-    },
-    {
-      language_desc: "German and Latin",
-      iso_code: "ger lat",
-    },
-    {
-      language_desc: "English and Urdu",
-      iso_code: "eng urd",
-    },
-    {
-      language_desc: "Bulgarian and English",
-      iso_code: "bul eng",
-    },
-    {
-      language_desc: "French, German and Italian",
-      iso_code: "fre ger ita",
-    },
-    {
-      language_desc: "French, German and Romanian",
-      iso_code: "fre ger rum",
-    },
-    {
-      language_desc: "French and Polish",
-      iso_code: "fre pol",
-    },
-    {
-      language_desc: "Romanian",
-      iso_code: "rum",
-    },
-    {
-      language_desc: "Czech",
-      iso_code: "cze",
-    },
-    {
-      language_desc: "English and Hungarian",
-      iso_code: "eng hun",
-    },
-    {
-      language_desc: "Czech, English, French and Hungarian",
-      iso_code: "cze eng fre hun",
-    },
-    {
-      language_desc: "Persian and Russian",
-      iso_code: "per rus",
-    },
-    {
-      language_desc: "Arabic, English, Persian and Turkish",
-      iso_code: "ara eng per tur",
-    },
-    {
-      language_desc: "Arabic, English and Italian",
-      iso_code: "ara eng ita",
-    },
-    {
-      language_desc: "Dutch and German",
-      iso_code: "dut ger",
-    },
-    {
-      language_desc: "English, French and Greek",
-      iso_code: "eng fre gre",
-    },
-    {
-      language_desc: "Danish, English and French",
-      iso_code: "dan eng fre",
-    },
-    {
-      language_desc: "English, French, Portuguese and Spanish",
-      iso_code: "eng fre por spa",
-    },
-    {
-      language_desc: "English, French, Italian and Spanish",
-      iso_code: "eng fre ita spa",
-    },
-    {
-      language_desc: "Dutch, English and Latin",
-      iso_code: "dut eng lat",
-    },
-    {
-      language_desc: "French and Turkish",
-      iso_code: "fre tur",
-    },
-    {
-      language_desc: "English, French and Swedish",
-      iso_code: "eng fre swe",
-    },
-    {
-      language_desc: "Danish, English and Latin",
-      iso_code: "dan eng lat",
-    },
-    {
-      language_desc: "Chinese, Latin and Manchu",
-      iso_code: "chi lat mnc",
-    },
-    {
-      language_desc: "German and Italian",
-      iso_code: "ger ita",
-    },
-    {
-      language_desc: "Dutch and Latin",
-      iso_code: "dut lat",
-    },
-    {
-      language_desc: "Greek and Latin",
-      iso_code: "gre lat",
-    },
-    {
-      language_desc: "Dutch, French and German",
-      iso_code: "dut fre ger",
-    },
-    {
-      language_desc: "French and Spanish",
-      iso_code: "fre spa",
-    },
-    {
-      language_desc: "Dutch, French and Portuguese",
-      iso_code: "dut fre por",
-    },
-    {
-      language_desc: "Dutch, French and Spanish",
-      iso_code: "dut fre spa",
-    },
-    {
-      language_desc: "Dutch, English, French and Portuguese",
-      iso_code: "dut eng fre por",
-    },
-    {
-      language_desc: "Dutch, English and Yiddish",
-      iso_code: "dut eng yid",
-    },
-    {
-      language_desc: "Portuguese and Spanish",
-      iso_code: "por spa",
-    },
-    {
-      language_desc: "Arabic, English and Hebrew",
-      iso_code: "ara eng heb",
-    },
-    {
-      language_desc: "Dutch, English, French and Spanish",
-      iso_code: "dut eng fre spa",
-    },
-    {
-      language_desc: "Dutch, English and Spanish",
-      iso_code: "dut eng spa",
-    },
-    {
-      language_desc: "English, French and Polish",
-      iso_code: "eng fre pol",
-    },
-    {
-      language_desc: "Polish",
-      iso_code: "pol",
-    },
-    {
-      language_desc: "English, German, Polish and Russian",
-      iso_code: "eng ger pol rus",
-    },
-    {
-      language_desc: "English, Hebrew and Polish",
-      iso_code: "eng heb pol",
-    },
-    {
-      language_desc: "English, Italian and Polish",
-      iso_code: "eng ita pol",
-    },
-    {
-      language_desc: "Chinese, English and French",
-      iso_code: "chi eng fre",
-    },
-    {
-      language_desc: "Polish and Russian",
-      iso_code: "pol rus",
-    },
-    {
-      language_desc: "Dutch, Portuguese and Yiddish",
-      iso_code: "dut por yid",
-    },
-    {
-      language_desc: "Ladino",
-      iso_code: "lad",
-    },
-    {
-      language_desc: "Hebrew, Ladino and Spanish",
-      iso_code: "heb lad spa",
-    },
-    {
-      language_desc: "Hebrew",
-      iso_code: "heb",
-    },
-    {
-      language_desc: "English, German, Italian and Japanese",
-      iso_code: "eng ger ita jap",
-    },
-    {
-      language_desc: "Dutch, English and German",
-      iso_code: "dut eng ger",
-    },
-    {
-      language_desc: "Dutch, German and Latin",
-      iso_code: "dut ger lat",
-    },
-    {
-      language_desc: "Czech, English, French and Latin",
-      iso_code: "cze eng fre lat",
-    },
-    {
-      language_desc: "Hungarian",
-      iso_code: "hun",
-    },
-    {
-      language_desc: "Estonian",
-      iso_code: "est",
-    },
-    {
-      language_desc: "Latvian",
-      iso_code: "lav",
-    },
-    {
-      language_desc: "Lithuanian",
-      iso_code: "lit",
-    },
-    {
-      language_desc: "Maltese",
-      iso_code: "mal",
-    },
-    {
-      language_desc: "Slovakian",
-      iso_code: "slk",
-    },
-    {
-      language_desc: "Slovenian",
-      iso_code: "slv",
-    },
-    {
-      language_desc: "Finnish",
-      iso_code: "fin",
-    },
-    {
-      language_desc: "English, French and Romanian",
-      iso_code: "eng fre rum",
-    },
-    {
-      language_desc: "English, French, German and Serbian",
-      iso_code: "eng fre ger srp",
-    },
-    {
-      language_desc: "Serbian",
-      iso_code: "srp",
-    },
-    {
-      language_desc: "Arabic, English, French and Spanish",
-      iso_code: "ara eng fre spa",
-    },
-    {
-      language_desc: "Arabic and French",
-      iso_code: "ara fre",
-    },
-    {
-      language_desc: "French and Portuguese",
-      iso_code: "fre por",
-    },
-    {
-      language_desc: "English, French and Portuguese",
-      iso_code: "eng fre por",
-    },
-    {
-      language_desc: "English, Portuguese and Spanish",
-      iso_code: "eng por spa",
-    },
-    {
-      language_desc: "French, Portuguese and Spanish",
-      iso_code: "fre por spa",
-    },
-    {
-      language_desc: "English and Maltese",
-      iso_code: "eng mal",
-    },
-    {
-      language_desc: "Welsh",
-      iso_code: "wel",
-    },
-    {
-      language_desc: "Thai",
-      iso_code: "tha",
-    },
-    {
-      language_desc: "French, Latin and Spanish",
-      iso_code: "fre lat spa",
-    },
-    {
-      language_desc: "English, French, Latin and Spanish",
-      iso_code: "eng fre lat spa",
-    },
-    {
-      language_desc: "Armenian, Ottoman Turkish, Persian and Spanish",
-      iso_code: "arm ota per spa",
-    },
-    {
-      language_desc: "Spanish and Miscellaneous",
-      iso_code: "spa mul",
-    },
-    {
-      language_desc: "Armenian, French, Portuguese and Spanish",
-      iso_code: "arm fre por spa",
-    },
-    {
-      language_desc: "Dutch, French, Italian and Spanish",
-      iso_code: "dut fre ita spa",
-    },
-    {
-      language_desc: "Basque, French and Italian",
-      iso_code: "bas fre ita",
-    },
-    {
-      language_desc: "Arabic, Armenian, Persian and Others",
-      iso_code: "ara arm per oth",
-    },
-    {
-      language_desc: "Afrikaans and English",
-      iso_code: "afr eng",
-    },
-    {
-      language_desc: "Danish and English",
-      iso_code: "dan eng",
-    },
-    {
-      language_desc: "Amharic, English and French",
-      iso_code: "amh eng fre",
-    },
-    {
-      language_desc: "English and Thai",
-      iso_code: "eng tha",
-    },
-    {
-      language_desc: "English, French, Russian and Spanish",
-      iso_code: "eng fre rus spa",
-    },
-    {
-      language_desc: "English, German and Japanese",
-      iso_code: "eng ger jpn",
-    },
-    {
-      language_desc: "English and Romanian",
-      iso_code: "eng rum",
-    },
-    {
-      language_desc: "Hebrew and Latin",
-      iso_code: "heb lat",
-    },
-    {
-      language_desc: "Croatian, English and Serbian",
-      iso_code: "hrv eng srp",
-    },
-    {
-      language_desc: "English, German, Greek and Spanish",
-      iso_code: "eng ger gre spa",
-    },
-    {
-      language_desc: "English, Flemish and French",
-      iso_code: "eng fle fre",
-    },
-    {
-      language_desc: "English, Hindi and Tamil",
-      iso_code: "eng hin tam",
-    },
-    {
-      language_desc: "English and Arabic",
-      iso_code: "eng, ara",
-    },
-    {
-      language_desc: "English, French and Arabic",
-      iso_code: "eng, fre, ara",
-    },
-    {
-      language_desc: "English and Swahili",
-      iso_code: "eng swa",
-    },
-    {
-      language_desc: "English, Hindi and Urdu",
-      iso_code: "eng hin urd",
-    },
-    {
-      language_desc: "English, Danish and German",
-      iso_code: "eng dan ger",
-    },
-    {
-      language_desc: "Danish, English, French and German",
-      iso_code: "dan eng fre ger",
-    },
-    {
-      language_desc: "Danish, English and German",
-      iso_code: "dan eng ger",
-    },
-    {
-      language_desc: "Basque, English and French",
-      iso_code: "bas eng fre",
-    },
-    {
-      language_desc: "Greek, Italian and Latin",
-      iso_code: "gre ita lat",
-    },
-    {
-      language_desc: "English and others",
-      iso_code: "eng oth",
-    },
-    {
-      language_desc: "Various",
-      iso_code: "var",
-    },
-    {
-      language_desc: "French and Dutch",
-      iso_code: "fre dut",
-    },
-    {
-      language_desc: "French and English",
-      iso_code: "fre eng",
-    },
-    {
-      language_desc: "French, Dutch and German",
-      iso_code: "fre dut ger",
-    },
-    {
-      language_desc: "German and French",
-      iso_code: "ger fre",
-    },
-    {
-      language_desc: "Dutch, German and French",
-      iso_code: "dut ger fre",
-    },
-    {
-      language_desc: "English, Dutch and French",
-      iso_code: "eng dut fre",
-    },
-    {
-      language_desc: "English, French and Ottoman Turkish",
-      iso_code: "eng fre ota",
-    },
+    { English: "Afar", alpha2: "aa" },
+    { English: "Abkhazian", alpha2: "ab" },
+    { English: "Avestan", alpha2: "ae" },
+    { English: "Afrikaans", alpha2: "af" },
+    { English: "Akan", alpha2: "ak" },
+    { English: "Amharic", alpha2: "am" },
+    { English: "Aragonese", alpha2: "an" },
+    { English: "Arabic", alpha2: "ar" },
+    { English: "Assamese", alpha2: "as" },
+    { English: "Avaric", alpha2: "av" },
+    { English: "Aymara", alpha2: "ay" },
+    { English: "Azerbaijani", alpha2: "az" },
+    { English: "Bashkir", alpha2: "ba" },
+    { English: "Belarusian", alpha2: "be" },
+    { English: "Bulgarian", alpha2: "bg" },
+    { English: "Bihari languages", alpha2: "bh" },
+    { English: "Bislama", alpha2: "bi" },
+    { English: "Bambara", alpha2: "bm" },
+    { English: "Bengali", alpha2: "bn" },
+    { English: "Tibetan", alpha2: "bo" },
+    { English: "Breton", alpha2: "br" },
+    { English: "Bosnian", alpha2: "bs" },
+    { English: "Catalan; Valencian", alpha2: "ca" },
+    { English: "Chechen", alpha2: "ce" },
+    { English: "Chamorro", alpha2: "ch" },
+    { English: "Corsican", alpha2: "co" },
+    { English: "Cree", alpha2: "cr" },
+    { English: "Czech", alpha2: "cs" },
+    {
+      English:
+        "Church Slavic; Old Slavonic; Church Slavonic; Old Bulgarian; Old Church Slavonic",
+      alpha2: "cu",
+    },
+    { English: "Chuvash", alpha2: "cv" },
+    { English: "Welsh", alpha2: "cy" },
+    { English: "Danish", alpha2: "da" },
+    { English: "German", alpha2: "de" },
+    { English: "Divehi; Dhivehi; Maldivian", alpha2: "dv" },
+    { English: "Dzongkha", alpha2: "dz" },
+    { English: "Ewe", alpha2: "ee" },
+    { English: "Greek, Modern (1453-)", alpha2: "el" },
+    { English: "English", alpha2: "en" },
+    { English: "Esperanto", alpha2: "eo" },
+    { English: "Spanish; Castilian", alpha2: "es" },
+    { English: "Estonian", alpha2: "et" },
+    { English: "Basque", alpha2: "eu" },
+    { English: "Persian", alpha2: "fa" },
+    { English: "Fulah", alpha2: "ff" },
+    { English: "Finnish", alpha2: "fi" },
+    { English: "Fijian", alpha2: "fj" },
+    { English: "Faroese", alpha2: "fo" },
+    { English: "French", alpha2: "fr" },
+    { English: "Western Frisian", alpha2: "fy" },
+    { English: "Irish", alpha2: "ga" },
+    { English: "Gaelic; Scottish Gaelic", alpha2: "gd" },
+    { English: "Galician", alpha2: "gl" },
+    { English: "Guarani", alpha2: "gn" },
+    { English: "Gujarati", alpha2: "gu" },
+    { English: "Manx", alpha2: "gv" },
+    { English: "Hausa", alpha2: "ha" },
+    { English: "Hebrew", alpha2: "he" },
+    { English: "Hindi", alpha2: "hi" },
+    { English: "Hiri Motu", alpha2: "ho" },
+    { English: "Croatian", alpha2: "hr" },
+    { English: "Haitian; Haitian Creole", alpha2: "ht" },
+    { English: "Hungarian", alpha2: "hu" },
+    { English: "Armenian", alpha2: "hy" },
+    { English: "Herero", alpha2: "hz" },
+    {
+      English: "Interlingua (International Auxiliary Language Association)",
+      alpha2: "ia",
+    },
+    { English: "Indonesian", alpha2: "id" },
+    { English: "Interlingue; Occidental", alpha2: "ie" },
+    { English: "Igbo", alpha2: "ig" },
+    { English: "Sichuan Yi; Nuosu", alpha2: "ii" },
+    { English: "Inupiaq", alpha2: "ik" },
+    { English: "Ido", alpha2: "io" },
+    { English: "Icelandic", alpha2: "is" },
+    { English: "Italian", alpha2: "it" },
+    { English: "Inuktitut", alpha2: "iu" },
+    { English: "Japanese", alpha2: "ja" },
+    { English: "Javanese", alpha2: "jv" },
+    { English: "Georgian", alpha2: "ka" },
+    { English: "Kongo", alpha2: "kg" },
+    { English: "Kikuyu; Gikuyu", alpha2: "ki" },
+    { English: "Kuanyama; Kwanyama", alpha2: "kj" },
+    { English: "Kazakh", alpha2: "kk" },
+    { English: "Kalaallisut; Greenlandic", alpha2: "kl" },
+    { English: "Central Khmer", alpha2: "km" },
+    { English: "Kannada", alpha2: "kn" },
+    { English: "Korean", alpha2: "ko" },
+    { English: "Kanuri", alpha2: "kr" },
+    { English: "Kashmiri", alpha2: "ks" },
+    { English: "Kurdish", alpha2: "ku" },
+    { English: "Komi", alpha2: "kv" },
+    { English: "Cornish", alpha2: "kw" },
+    { English: "Kirghiz; Kyrgyz", alpha2: "ky" },
+    { English: "Latin", alpha2: "la" },
+    { English: "Luxembourgish; Letzeburgesch", alpha2: "lb" },
+    { English: "Ganda", alpha2: "lg" },
+    { English: "Limburgan; Limburger; Limburgish", alpha2: "li" },
+    { English: "Lingala", alpha2: "ln" },
+    { English: "Lao", alpha2: "lo" },
+    { English: "Lithuanian", alpha2: "lt" },
+    { English: "Luba-Katanga", alpha2: "lu" },
+    { English: "Latvian", alpha2: "lv" },
+    { English: "Malagasy", alpha2: "mg" },
+    { English: "Marshallese", alpha2: "mh" },
+    { English: "Maori", alpha2: "mi" },
+    { English: "Macedonian", alpha2: "mk" },
+    { English: "Malayalam", alpha2: "ml" },
+    { English: "Mongolian", alpha2: "mn" },
+    { English: "Marathi", alpha2: "mr" },
+    { English: "Malay", alpha2: "ms" },
+    { English: "Maltese", alpha2: "mt" },
+    { English: "Burmese", alpha2: "my" },
+    { English: "Nauru", alpha2: "na" },
+    { English: "Bokm\u00e5l, Norwegian; Norwegian Bokm\u00e5l", alpha2: "nb" },
+    { English: "Ndebele, North; North Ndebele", alpha2: "nd" },
+    { English: "Nepali", alpha2: "ne" },
+    { English: "Ndonga", alpha2: "ng" },
+    { English: "Dutch; Flemish", alpha2: "nl" },
+    { English: "Norwegian Nynorsk; Nynorsk, Norwegian", alpha2: "nn" },
+    { English: "Norwegian", alpha2: "no" },
+    { English: "Ndebele, South; South Ndebele", alpha2: "nr" },
+    { English: "Navajo; Navaho", alpha2: "nv" },
+    { English: "Chichewa; Chewa; Nyanja", alpha2: "ny" },
+    { English: "Occitan (post 1500)", alpha2: "oc" },
+    { English: "Ojibwa", alpha2: "oj" },
+    { English: "Oromo", alpha2: "om" },
+    { English: "Oriya", alpha2: "or" },
+    { English: "Ossetian; Ossetic", alpha2: "os" },
+    { English: "Panjabi; Punjabi", alpha2: "pa" },
+    { English: "Pali", alpha2: "pi" },
+    { English: "Polish", alpha2: "pl" },
+    { English: "Pushto; Pashto", alpha2: "ps" },
+    { English: "Portuguese", alpha2: "pt" },
+    { English: "Quechua", alpha2: "qu" },
+    { English: "Romansh", alpha2: "rm" },
+    { English: "Rundi", alpha2: "rn" },
+    { English: "Romanian; Moldavian; Moldovan", alpha2: "ro" },
+    { English: "Russian", alpha2: "ru" },
+    { English: "Kinyarwanda", alpha2: "rw" },
+    { English: "Sanskrit", alpha2: "sa" },
+    { English: "Sardinian", alpha2: "sc" },
+    { English: "Sindhi", alpha2: "sd" },
+    { English: "Northern Sami", alpha2: "se" },
+    { English: "Sango", alpha2: "sg" },
+    { English: "Sinhala; Sinhalese", alpha2: "si" },
+    { English: "Slovak", alpha2: "sk" },
+    { English: "Slovenian", alpha2: "sl" },
+    { English: "Samoan", alpha2: "sm" },
+    { English: "Shona", alpha2: "sn" },
+    { English: "Somali", alpha2: "so" },
+    { English: "Albanian", alpha2: "sq" },
+    { English: "Serbian", alpha2: "sr" },
+    { English: "Swati", alpha2: "ss" },
+    { English: "Sotho, Southern", alpha2: "st" },
+    { English: "Sundanese", alpha2: "su" },
+    { English: "Swedish", alpha2: "sv" },
+    { English: "Swahili", alpha2: "sw" },
+    { English: "Tamil", alpha2: "ta" },
+    { English: "Telugu", alpha2: "te" },
+    { English: "Tajik", alpha2: "tg" },
+    { English: "Thai", alpha2: "th" },
+    { English: "Tigrinya", alpha2: "ti" },
+    { English: "Turkmen", alpha2: "tk" },
+    { English: "Tagalog", alpha2: "tl" },
+    { English: "Tswana", alpha2: "tn" },
+    { English: "Tonga (Tonga Islands)", alpha2: "to" },
+    { English: "Turkish", alpha2: "tr" },
+    { English: "Tsonga", alpha2: "ts" },
+    { English: "Tatar", alpha2: "tt" },
+    { English: "Twi", alpha2: "tw" },
+    { English: "Tahitian", alpha2: "ty" },
+    { English: "Uighur; Uyghur", alpha2: "ug" },
+    { English: "Ukrainian", alpha2: "uk" },
+    { English: "Urdu", alpha2: "ur" },
+    { English: "Uzbek", alpha2: "uz" },
+    { English: "Venda", alpha2: "ve" },
+    { English: "Vietnamese", alpha2: "vi" },
+    { English: "Volap\u00fck", alpha2: "vo" },
+    { English: "Walloon", alpha2: "wa" },
+    { English: "Wolof", alpha2: "wo" },
+    { English: "Xhosa", alpha2: "xh" },
+    { English: "Yiddish", alpha2: "yi" },
+    { English: "Yoruba", alpha2: "yo" },
+    { English: "Zhuang; Chuang", alpha2: "za" },
+    { English: "Chinese", alpha2: "zh" },
+    { English: "Zulu", alpha2: "zu" },
   ],
   dummyfiles: [
     {

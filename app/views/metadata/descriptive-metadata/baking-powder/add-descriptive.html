@@ -275,20 +275,20 @@
       class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"
 />
         <div class="govuk-form-group">
-          <label class="govuk-label govuk-label--m"> Language </label>
+          <label class="govuk-label govuk-label--m">Language</label>
           <div id="passport-issued-hint" class="govuk-hint">
-        Choose the language this record is written in.
-      </div>
+            Choose one or more languages used in this record.
+          </div>
           <div class="govuk-form-group">
-            <select class="govuk-select" id="language-select" name="language-select">
+            <select class="govuk-select" id="language-select" name="language-select" multiple>
               <option value="updated">Please choose...</option>
               {% if data['language-select'] %}
                 {% for l in data.languages %}
-                  <option value="{{l.iso_code}}"{% if l.iso_code == data['language-select'] %} selected{%endif%}>{{l.language_desc}}</option>
+                  <option value="{{l.alpha2}}"{% if l.alpha2 == data['language-select'] %} selected{%endif%}>{{l.English}}</option>
                 {% endfor %}
               {% else %}
                 {% for l in data.languages %}
-                  <option value="{{l.iso_code}}"{% if l.iso_code == "eng" %} selected{%endif%}>{{l.language_desc}}</option>
+                  <option value="{{l.alpha2}}"{% if l.alpha2 == "en" %} selected{%endif%}>{{l.English}}</option>
                 {% endfor %}
               {% endif %}
             </select>
@@ -371,9 +371,15 @@
     </div>
   </form>
   {% block pageScripts %}
-    <script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+    <script src = "https://unpkg.com/aria-autocomplete" type = "text/javascript"></script>
     <script>
-      accessibleAutocomplete.enhanceSelectElement({selectElement: document.querySelector('#language-select'), showAllValues: true})
+      AriaAutocomplete(document.querySelector('#language-select'), {
+        placeholder: 'Enter a language',
+        deleteOnBackspace: true,
+        showAllControl: true,
+        autoGrow: false,
+        cssNameSpace: "govuk-multi-autocomplete"
+      });
     </script>
   {% endblock %}
 
