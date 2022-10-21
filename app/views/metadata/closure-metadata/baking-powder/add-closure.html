@@ -149,6 +149,9 @@ Add closure metadata to 'Baking powder.docx'
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                     Are the title and/or description closed?
                 </legend>
+            <div class="govuk-hint">
+              If there is sensitive information in the title/filename or description select 'yes'. You will be given an opportunity to enter alternative public titles and/or description.
+          </div>
             {% if data['error'] == 'no-alternative-choice' %}
               <p id="no-alternative-choice" class="govuk-error-message">
                 <span class="govuk-visually-hidden">Error:</span> Please choose if there is an alternative title and/or description for this record
