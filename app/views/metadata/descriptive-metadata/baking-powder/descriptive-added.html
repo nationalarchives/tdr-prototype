@@ -79,10 +79,13 @@ Review descriptive metadata added
         </div> #}
         <div class="govuk-summary-list__row" style="border-bottom: none;">
           <dt class="govuk-summary-list__key">
-      Language
+      Language(s)
     </dt>
           <dd class="govuk-summary-list__value">
-            {{data['language-select'] | langNameFromIso(data.languages)}}
+            {% for l in data['language-select']%}
+              {{l | langNameFromCode(data.languages)}}
+              {% if loop.last != true %},{% endif %}
+            {% endfor %}
           </dd>
         </div>
         <div class="govuk-summary-list__row" style="border-bottom: none;">
