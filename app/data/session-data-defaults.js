@@ -21,7 +21,6 @@ module.exports = {
   // Insert values here
   foi_exemption_codes: [
     "27(1)",
-    "27(2)",
     "31",
     "33",
     "36",
@@ -31,7 +30,6 @@ module.exports = {
     "40(2)",
     "43(1)",
     "43(2)",
-    "-",
     "22",
     "22A",
     "23",
@@ -58,7 +56,6 @@ module.exports = {
     "43(1)",
     "43(2)",
     "44",
-    "-",
     "EIRs 12(3) & 13",
     "EIRs 12(5)(a)",
     "EIRs 12(5)(b)",

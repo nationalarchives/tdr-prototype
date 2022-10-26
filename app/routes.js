@@ -25,6 +25,36 @@ router.get(
 );
 
 router.get(
+  "/metadata/closure-metadata/baking-powder/confirm-closure-status",
+  function (req, res) {
+    // file[] is open/undefined && data[] is open/undefined ( intention is to continue without confirmation - needs error warning )
+    if (req.session.data["cocao"] === undefined) {
+      // console.log("send to /check-closure-status?error=no-confirmation")
+      req.session.data["error"] = "no-confirmation";
+      res.redirect("/metadata/closure-metadata/T2-flour/check-closure-status");
+    } else if (req.session.data["cocao"][0] === "true") {
+      req.session.data["error"] = "";
+      res.redirect("/metadata/closure-metadata/T2-flour/add-closure");
+    } else if (req.session.data["cocao"] === "false") {
+      req.session.data["error"] = "";
+      res.redirect("/metadata/closure-metadata/file-level");
+    } else {
+      // req.session.files['cocao'] = undefined;
+      res.redirect("/metadata/closure-metadata/T2-flour/huh");
+    }
+  }
+);
+
+router.get(
+  "/metadata/closure-metadata/baking-powder/confirm-multiple-FOI/",
+  function (req, res) {
+    // console.log(req.session.data.foi_id_selection);
+    // req.session.data.foi_id_selection = JSON.parse(req.params.ids);
+    res.redirect("/metadata/closure-metadata/T2-flour/add-closure");
+  }
+);
+
+router.get(
   "/metadata/closure-metadata/T2-flour/confirm-multiple-FOI/",
   function (req, res) {
     // console.log(req.session.data.foi_id_selection);
