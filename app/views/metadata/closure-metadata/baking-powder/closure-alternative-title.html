@@ -14,9 +14,13 @@ Add alternative title to your record
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-l">
-            Add an alternative title and/or description to your record
+            Add an alternative {% if data['is-the-title-sensitive'] == "yes" %}title{% endif %}
+          {% if data['is-the-title-sensitive'] == "yes" and data['is-the-description-sensitive'] == "yes" %}and{% endif %}
+          {% if data['is-the-description-sensitive'] == "yes" %}description{% endif %} to your record
         </h1>{{releaseVersion | log }}
-        <p class="govuk-body">Enter an alternative publicly visible title and/or description if, for example, they contain sensitive information. For guidance on how to create an alternative title and description <a target="_blank" class="govuk-link" href="/faq">read our FAQs (opens in a new tab)</a>.</p>
+        <p class="govuk-body">Enter an alternative publicly visible {% if data['is-the-title-sensitive'] == "yes" %}title{% endif %}
+          {% if data['is-the-title-sensitive'] == "yes" and data['is-the-description-sensitive'] == "yes" %}and{% endif %}
+          {% if data['is-the-description-sensitive'] == "yes" %}description{% endif %} if, for example, {% if data['is-the-title-sensitive'] == "yes" and data['is-the-description-sensitive'] == "yes" %}they contain{% else %}it contains{% endif %} sensitive information. For guidance on how to create an alternative title and description <a target="_blank" class="govuk-link" href="/faq">read our FAQs (opens in a new tab)</a>.</p>
 
         {% if data['is-the-title-sensitive'] == "yes" %}
           <div>

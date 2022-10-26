@@ -10,7 +10,7 @@ Check closure status
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-        {% if data['baking-powder'][0] === 'true' %}
+        {% if data['closure']['baking-powder'][0] === 'true' %}
 
           <h1 class="govuk-heading-xl">
       Edit the closure metadata
@@ -43,7 +43,7 @@ Check closure status
             Name
           </dt>
                 <dd class="govuk-summary-list__value">
-            Baking-powder.docx
+            Baking powder.docx
           </dd>
                 <dd class="govuk-summary-list__actions"></dd>
               </div>
@@ -62,23 +62,25 @@ Check closure status
             FOI decision asserted
           </dt>
                 <dd class="govuk-summary-list__value">
-            20/04/2022
-          </dd>
+                  {{data['foi-asserted-day']}}/{{data['foi-asserted-month']}}/{{data['foi-asserted-year']}}
+
+                </dd>
               </div>
               <div class="govuk-summary-list__row" style="border-bottom: none;">
                 <dt class="govuk-summary-list__key">
             Closure start date
           </dt>
                 <dd class="govuk-summary-list__value">
-            09/02/2009
-          </dd>
+                  {{data['closure-start-day']}}/{{data['closure-start-month']}}/{{data['closure-start-year']}}
+
+                </dd>
               </div>
               <div class="govuk-summary-list__row" style="border-bottom: none;">
                 <dt class="govuk-summary-list__key">
             Closure period
           </dt>
                 <dd class="govuk-summary-list__value">
-            20 years
+                  {{data['closure-period']}} years
           </dd>
               </div>
               <div class="govuk-summary-list__row" style="border-bottom: none;">
@@ -86,17 +88,31 @@ Check closure status
               FOI exemption code
           </dt>
                 <dd class="govuk-summary-list__value">
-            33
-          </dd>
+                  <ul class="govuk-list govuk-list--bullet">
+                    {% for id in data.foi_id_selection %}
+                      <li>{{id}}</li>
+                    {% endfor %}
+                  </ul>
+                </dd>
               </div>
-              <div class="govuk-summary-list__row" style="border-bottom: none;">
-                <dt class="govuk-summary-list__key">
-            Title public
+              {% if data["is-the-title-sensitive"] == "yes" %}
+                <div class="govuk-summary-list__row" style="border-bottom: none;">
+                  <dt class="govuk-summary-list__key">
+            Alternative title
           </dt>
-                <dd class="govuk-summary-list__value">
-            the [Name withheld] ingredient
-          </dd>
-              </div>
+                  <dd class="govuk-summary-list__value">
+                    {{ data['alternative-title'] }}
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row" style="border-bottom: none;">
+                  <dt class="govuk-summary-list__key">
+            Alternative description
+          </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{ data['alternative-description'] }}
+                  </dd>
+                </div>
+              {% endif %}
             </dl>
 
             <a href="../file-level.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
@@ -110,7 +126,7 @@ Check closure status
       Confirm the closure status of your record
     </h1>{{releaseVersion | log }}
 
-          <p class="govuk-body">You are updating the status for the selected file 'Baking-powder.docx'</p>
+          <p class="govuk-body">You are updating the status for the selected file 'Baking powder.docx'</p>
 
           <div class="govuk-form-group {% if data.error %}govuk-form-group--error{% endif %}">
             <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
@@ -126,7 +142,7 @@ Check closure status
               {% endif %}
               <div class="govuk-checkboxes" data-module="govuk-checkboxes">
                 <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="baking-powder" name="baking-powder" type="checkbox" value="true">
+                  <input class="govuk-checkboxes__input" id="baking-powder" name="closure[baking-powder]" type="checkbox" value="true">
                   <label class="govuk-label govuk-checkboxes__label" for="confirm-closure">
               Yes, I confirm
             </label>
@@ -154,9 +170,6 @@ Check closure status
           </li>
                 <li>
             FOI exemption code
-          </li>
-                <li>
-              Title public
           </li>
               </ul>
             </details>

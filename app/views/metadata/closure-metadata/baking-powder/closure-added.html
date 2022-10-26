@@ -89,6 +89,8 @@ Review metadata added
               {{ data['alternative-title'] }}
             </dd>
           </div>
+        {% endif %}
+        {% if data["is-the-description-sensitive"] == "yes" %}
           <div class="govuk-summary-list__row" style="border-bottom: none;">
             <dt class="govuk-summary-list__key">
             Alternative description
