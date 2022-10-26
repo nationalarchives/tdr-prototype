@@ -42,8 +42,9 @@ module.exports = function (env) {
     keep the following line to return your filters to the app
   ------------------------------------------------------------------ */
 
-  filters.langNameFromIso = function (iso, languages) {
-    return languages.find((l) => l.iso_code === iso).language_desc;
+  filters.langNameFromCode = function (code, languages) {
+    const language = languages.find((l) => l.alpha2 === code);
+    return language ? language.English : "";
   };
 
   return filters;

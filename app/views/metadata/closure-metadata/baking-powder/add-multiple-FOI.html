@@ -23,7 +23,7 @@ Add FOI codes to 'Baking-powder.jpg'
           <div class="govuk-grid-column-one-third">
             <div class="govuk-form-group">
               <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-                {% for code in data.foi_exemption_codes %}
+                {% for code in data.foi_exemption_codes | sort %}
 
                   {% if code == "-" %}
                     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">

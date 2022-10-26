@@ -68,16 +68,20 @@ File level closure metadata
         </div>
       </div>
 
-      {% macro fileItem(item) %}
+      {% macro fileItem(item, level, size, pos) %}
         {% if item.type == 'file' or item.children.length == 0 %}
           <li
         class="govuk-tna-tree__file-item"
         role="treeitem"
+        id="{{level}}-{{pos}}"
         aria-selected="false"
+        aria-level="{{level}}"
+        aria-setsize="{{size}}"
+        aria-posinset="{{pos}}"
       >
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="{{item.ino}}" type="checkbox"/>
-              <label class="govuk-label govuk-checkboxes__label" for="{{item.ino}}">
+              <input class="govuk-checkboxes__input" id="checkbox-{{level}}-{{pos}}" tabindex="-1" type="checkbox"/>
+              <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{level}}-{{pos}}">
                 {{item.name}}
                 {% if item.name == "Baking powder.docx" and data['closure']['baking-powder'][0] === 'true' %}
                   <span class="icon" aria-label="Has existing metadata">
@@ -92,24 +96,28 @@ File level closure metadata
           <li
           class="govuk-tna-tree__folder-item"
           role="treeitem"
+          id="{{level}}-{{pos}}"
           aria-expanded="true"
           aria-selected="false"
+          aria-level="{{level}}"
+          aria-setsize="{{size}}"
+          aria-posinset="{{pos}}"
         >
             <div class="govuk-tna-tree__folder-item__container">
               <button
             class="govuk-tna-tree__file-expander"
             tabindex="-1"
-            id="expander-{{item.ino}}"
+            id="expander-{{level}}-{{pos}}"
           >
                 <span class="govuk-visually-hidden">Expand</span>
               </button>
               <div class="govuk-checkboxes__item">
                 <input
               class="govuk-checkboxes__input"
-              id="{{item.ino}}"
-              type="checkbox"
-/>
-                <label class="govuk-label govuk-checkboxes__label" for="{{item.ino}}">
+              id="checkbox-{{level}}-{{pos}}"
+              tabindex="-1"
+              type="checkbox"/>
+                <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{level}}-{{pos}}">
                   {{item.name}}
                   {% if item.name == "Baking powder.docx" and data['closure']['baking-powder'][0] === 'true' %}
                     <span class="icon" aria-label="Has existing metadata">
@@ -119,9 +127,10 @@ File level closure metadata
                 </label>
               </div>
             </div>
-            <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-{{item.ino}}">
+            <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-{{level}}-{{pos}}">
+              {% set nextLevel = level + 1 %}
               {% for child in item.children %}
-                {{ fileItem(child) }}
+                {{ fileItem(child, nextLevel, loop.length, loop.index) }}
               {% endfor %}
             </ul>
           </li>
@@ -129,9 +138,10 @@ File level closure metadata
       {% endmacro %}
 
       <div class="govuk-tna-tree">
-        {# <ul class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
+        <ul tabindex="0" class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
+        {# <ul tabindex="0"class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
           {% for node in data.files %}
-            {{ fileItem(node) }}
+            {{ fileItem(node, 1, loop.length, loop.index) }}
           {% endfor %}
         </ul> #}
         <ul class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
@@ -265,6 +275,7 @@ File level closure metadata
           </li>
 
         </ul>
+
       </div>
 
       <br/><br/>
