@@ -39,16 +39,27 @@ router.get(
   function (req, res) {
     if (req.session.data["exemption-code-redir"] == "true") {
       res.redirect("/metadata/closure-metadata/baking-powder/add-multiple-FOI");
-    } else if (req.session.data["is-the-title-sensitive"] == "yes") {
-      req.session.data["error"] = "";
-      res.redirect(
-        "/metadata/closure-metadata/baking-powder/closure-alternative-title"
-      );
-    } else if (req.session.data["is-the-title-sensitive"] == "no") {
-      req.session.data["error"] = "";
-      res.redirect("/metadata/closure-metadata/baking-powder/closure-added");
+    } else if (
+      req.session.data["is-the-title-sensitive"] &&
+      req.session.data["is-the-description-sensitive"]
+    ) {
+      if (
+        req.session.data["is-the-title-sensitive"] == "yes" ||
+        req.session.data["is-the-description-sensitive"] == "yes"
+      ) {
+        req.session.data["error"] = "";
+        res.redirect(
+          "/metadata/closure-metadata/baking-powder/closure-alternative-title"
+        );
+      } else if (
+        req.session.data["is-the-title-sensitive"] == "no" &&
+        req.session.data["is-the-description-sensitive"] == "no"
+      ) {
+        req.session.data["error"] = "";
+        res.redirect("/metadata/closure-metadata/baking-powder/closure-added");
+      }
     } else {
-      req.session.data["error"] = "no-alternative-choice";
+      req.session.data["error"] = "no-alternative";
       res.redirect("/metadata/closure-metadata/baking-powder/add-closure");
     }
   }

@@ -143,17 +143,16 @@ Add closure metadata to 'Baking powder.docx'
           {% endif %}
           <input id="exemption-code-redir" type="hidden" name="exemption-code-redir" value="false"/>
         </div>
-
-        <div class="govuk-form-group{% if data['error'] %} govuk-form-group--error{% endif %}">
+        <div class="govuk-form-group{% if data['error'] == 'no-alternative' and data['is-the-title-sensitive'] == undefined  %} govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                    Are the title and/or description closed?
+                    Is the title closed?
                 </legend>
             <div class="govuk-hint">
-              If there is sensitive information in the title/filename or description select 'yes'. You will be given an opportunity to enter alternative public titles and/or description.
-          </div>
-            {% if data['error'] == 'no-alternative-choice' %}
-              <p id="no-alternative-choice" class="govuk-error-message">
+              If there is sensitive information in the title of this file select 'yes'. You will be given an opportunity to add an alternative public title to this record.
+            </div>
+            {% if data['error'] == 'no-alternative' and data['is-the-title-sensitive'] == undefined %}
+              <p id="no-alternative-title" class="govuk-error-message">
                 <span class="govuk-visually-hidden">Error:</span> Please choose if there is an alternative title and/or description for this record
             </p>
             {% endif %}
@@ -173,6 +172,35 @@ Add closure metadata to 'Baking powder.docx'
             </div>
           </fieldset>
         </div>
+        <div class="govuk-form-group{% if data['error'] == 'no-alternative' and data['is-the-description-sensitive'] == undefined %} govuk-form-group--error{% endif %}">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    Is the description closed?
+                </legend>
+            <div class="govuk-hint">
+              If there is sensitive information in the description select 'yes'. You will be given an opportunity to add an alternative public description to this record.
+          </div>
+            {% if data['error'] == 'no-alternative' and data['is-the-description-sensitive'] == undefined %}
+              <p id="no-alternative-description" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Please choose if there is an alternative title and/or description for this record
+            </p>
+            {% endif %}
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input {% if data["is-the-description-sensitive"] == "yes" %}checked{%endif%} class="govuk-radios__input" id="yes" name="is-the-description-sensitive" type="radio" value="yes">
+                <label class="govuk-label govuk-radios__label" for="yes">
+                            Yes
+                        </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input {% if data["is-the-description-sensitive"] == "no" %}checked{%endif%} class="govuk-radios__input" id="no" name="is-the-description-sensitive" type="radio" value="no">
+                <label class="govuk-label govuk-radios__label" for="no">
+                            No
+                        </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
 
         <div class="govuk-button-group">
           <button role="button" draggable="false" class="govuk-button" data-module="govuk-button">
@@ -184,47 +212,5 @@ Add closure metadata to 'Baking powder.docx'
       </div>
     </div>
   </form>
-
-  <script type="text/javascript">
-
-    document.addEventListener('DOMContentLoaded', function () {
-      const foiLink = document.querySelector("#foi-exemption-link");
-      foiLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        document
-          .querySelector("#exemption-code-redir")
-          .value = "true";
-        document
-          .querySelector("form")
-          .submit()
-      })
-
-      /*
-      const getAllFOIids = (selects) => {
-        const ids = []
-        selects.forEach((s) => {
-          ids.push(s.options[s.selectedIndex].text)
-        })
-        return ids;
-      }
-
-      const postAllIds = (ids) => {
-        let xhr = new XMLHttpRequest();
-        xhr.open("GET", `add-multiple-FOI/update/${JSON.stringify(ids)}`);
-        xhr.send();
-        xhr.onload = () => console.log("updated");
-      }
-
-      const foiSelects = document.querySelectorAll(".foi-selects");
-
-      foiSelects.forEach((el) => {
-        el.addEventListener("change", () => {
-          const ids = getAllFOIids(foiSelects);
-          postAllIds(ids);
-        })
-      })
-  */
-    }, false);
-  </script>
 
 {% endblock %}
