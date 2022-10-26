@@ -9,47 +9,277 @@ File level closure metadata
 {% endblock %}
 
 {% block content %}
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-l">
-      Add or edit closure metadata on file basis
-    </h1>{{releaseVersion | log }}
-    <p class="govuk-body">You can now add or edit closure metadata to individual files or folders.</p>
-    <p class="govuk-body">Select the relevant record(s) from the table below and proceed by clicking "Add or Edit metadata".</p>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-l">Add or edit closure metadata on file basis</h1>
+      {{releaseVersion | log }}
+      <p class="govuk-body">
+      You can now add or edit closure metadata to individual files or folders.
+    </p>
+      <p class="govuk-body">
+      Select the relevant record(s) from the table below and proceed by clicking
+      "Add or Edit metadata".
+    </p>
 
-    <div class="govuk-button-group govuk-tdr-metadata__file-selection-btns">
-      <button class="govuk-button govuk-button--secondary" data-module="govuk-button" type="button" name="selectAll"
-        value="select-all" onClick="check_all()">
+      <div class="govuk-button-group govuk-tdr-metadata__file-selection-btns">
+        <button
+        class="govuk-button govuk-button--secondary"
+        data-module="govuk-button"
+        type="button"
+        name="selectAll"
+        value="select-all"
+        onClick="check_all()"
+      >
         Select all
       </button>
 
-      <button class="govuk-button govuk-button--secondary" data-module="govuk-button" type="button" name="selectAll"
-        value="select-all" onClick="deselect_all()">
+        <button
+        class="govuk-button govuk-button--secondary"
+        data-module="govuk-button"
+        type="button"
+        name="selectAll"
+        value="select-all"
+        onClick="deselect_all()"
+      >
         Clear selection
       </button>
-    </div>
-
-    <div class="govuk-grid-row govuk-tdr-metadata__search">
-      <div class="govuk-grid-column-two-thirds">
-      <input class="govuk-input" id="event-name" name="event-name" type="text" placeholder="Enter a file or folder name">
       </div>
-      <div class="govuk-grid-column-one-third">
-      <a href="file-level#page-2" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Search
-      </a>
+
+      <div class="govuk-grid-row govuk-tdr-metadata__search">
+        <div class="govuk-grid-column-two-thirds">
+          <input
+          class="govuk-input"
+          id="event-name"
+          name="event-name"
+          type="text"
+          placeholder="Enter a file or folder name"
+/>
+        </div>
+        <div class="govuk-grid-column-one-third">
+          <a
+          href="file-level#page-2"
+          role="button"
+          draggable="false"
+          class="govuk-button"
+          data-module="govuk-button"
+        >
+          Search
+        </a>
+        </div>
       </div>
-    </div>
-    {# <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"> #}
 
-      {# <p class="govuk-pagination__results">Showing <b>1</b> to <b>5</b> of <b>2500</b> results</p>
-
-      <div class="govuk-breadcrumbs govuk-breadcrumbs-file-navigation">
-        <ol class="govuk-breadcrumbs__list govuk-breadcrumbs__list--is-root">
-          <li class="govuk-breadcrumbs__list-item">
-            <span class="govuk-heading-s">Recipes and ingredients</span >
+      {% macro fileItem(item, level, size, pos) %}
+        {% if item.type == 'file' or item.children.length == 0 %}
+          <li
+        class="govuk-tna-tree__file-item"
+        role="treeitem"
+        id="{{level}}-{{pos}}"
+        aria-selected="false"
+        aria-level="{{level}}"
+        aria-setsize="{{size}}"
+        aria-posinset="{{pos}}"
+      >
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="checkbox-{{level}}-{{pos}}" tabindex="-1" type="checkbox"/>
+              <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{level}}-{{pos}}">
+                {{item.name}}
+                {% if item.name == "Baking powder.docx" and data['closure']['baking-powder'][0] === 'true' %}
+                  <span class="icon" aria-label="Has existing metadata">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                  </span>
+                {% endif %}
+              </label>
+            </div>
           </li>
-        </ol>
-      </div> #}
+
+        {% elif item.type == 'directory' %}
+          <li
+          class="govuk-tna-tree__folder-item"
+          role="treeitem"
+          id="{{level}}-{{pos}}"
+          aria-expanded="true"
+          aria-selected="false"
+          aria-level="{{level}}"
+          aria-setsize="{{size}}"
+          aria-posinset="{{pos}}"
+        >
+            <div class="govuk-tna-tree__folder-item__container">
+              <button
+            class="govuk-tna-tree__file-expander"
+            tabindex="-1"
+            id="expander-{{level}}-{{pos}}"
+          >
+                <span class="govuk-visually-hidden">Expand</span>
+              </button>
+              <div class="govuk-checkboxes__item">
+                <input
+              class="govuk-checkboxes__input"
+              id="checkbox-{{level}}-{{pos}}"
+              tabindex="-1"
+              type="checkbox"/>
+                <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{level}}-{{pos}}">
+                  {{item.name}}
+                  {% if item.name == "Baking powder.docx" and data['closure']['baking-powder'][0] === 'true' %}
+                    <span class="icon" aria-label="Has existing metadata">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                    </span>
+                  {% endif %}
+                </label>
+              </div>
+            </div>
+            <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-{{level}}-{{pos}}">
+              {% set nextLevel = level + 1 %}
+              {% for child in item.children %}
+                {{ fileItem(child, nextLevel, loop.length, loop.index) }}
+              {% endfor %}
+            </ul>
+          </li>
+        {% endif %}
+      {% endmacro %}
+
+      {# <ul tabindex="0"class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
+          {% for node in data.files %}
+            {{ fileItem(node, 1, loop.length, loop.index) }}
+          {% endfor %}
+            </ul> #}
+
+      {# <div class="govuk-tna-tree">
+        <ul tabindex="0" class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
+          <ul class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
+
+            <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="1" type="checkbox">
+                <label class="govuk-label govuk-checkboxes__label" for="1">
+                Chocolate chips.xls
+
+              </label>
+              </div>
+            </li>
+
+            <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="2" type="checkbox">
+                <label class="govuk-label govuk-checkboxes__label" for="2">
+                Baking soda.xlsx
+
+              </label>
+              </div>
+            </li>
+
+            <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="13" type="checkbox">
+                <label class="govuk-label govuk-checkboxes__label" for="13">
+                Baking powder.docx
+
+              </label>
+              </div>
+            </li>
+
+            <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="3" type="checkbox">
+                <label class="govuk-label govuk-checkboxes__label" for="3">
+                Baking powder1.pdf
+
+              </label>
+              </div>
+            </li>
+
+            <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="4" type="checkbox">
+                <label class="govuk-label govuk-checkboxes__label" for="4">
+                Cookie dough.pdf
+
+              </label>
+              </div>
+            </li>
+
+            <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="5" type="checkbox">
+                <label class="govuk-label govuk-checkboxes__label" for="5">
+                Baking powder2.xlsx
+
+              </label>
+              </div>
+            </li>
+
+            <li class="govuk-tna-tree__folder-item" role="treeitem" aria-expanded="false" aria-selected="false">
+              <div class="govuk-tna-tree__folder-item__container">
+                <button class="govuk-tna-tree__file-expander" tabindex="-1" id="expander-6">
+                  <span class="govuk-visually-hidden">Expand</span>
+                </button>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="6" type="checkbox" tabindex="0">
+                  <label class="govuk-label govuk-checkboxes__label" for="6">
+                  Images
+
+                </label>
+                </div>
+              </div>
+              <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-6">
+
+                <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="7" type="checkbox">
+                    <label class="govuk-label govuk-checkboxes__label" for="7">
+                Flour.jpg
+
+              </label>
+                  </div>
+                </li>
+
+                <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="8" type="checkbox">
+                    <label class="govuk-label govuk-checkboxes__label" for="8">
+                Sugar.jpg
+
+              </label>
+                  </div>
+                </li>
+
+                <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="9" type="checkbox">
+                    <label class="govuk-label govuk-checkboxes__label" for="9">
+                Milk and cream.jpg
+
+              </label>
+                  </div>
+                </li>
+
+                <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="10" type="checkbox">
+                    <label class="govuk-label govuk-checkboxes__label" for="10">
+                Cocoa.jpg
+
+              </label>
+                  </div>
+                </li>
+
+                <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="11" type="checkbox">
+                    <label class="govuk-label govuk-checkboxes__label" for="11">
+                Bananas.jpg
+
+              </label>
+                  </div>
+                </li>
+
+              </ul>
+            </li>
+
+        </ul>
+
+      </div>
+      <br/><br/>
+      #}
 
       <table class="govuk-table">
         <tbody class="govuk-table__body">
@@ -92,10 +322,11 @@ File level closure metadata
                 <input class="govuk-checkboxes__input" id="Flour" name="organisation" type="checkbox"
                   value="hmrc">
                 <label class="govuk-label govuk-checkboxes__label govuk-checkboxes__label--withicon" for="Flour">
-                  📊 Cocoa.docx {% if data['cocao'][0] === 'true' %} 
-                  <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
-                  </span> 
-                  <span class="govuk-visually-hidden">Has existing metadata</span>  
+                  📊 Cocoa.docx {% if data['cocao'][0] === 'true' %}
+                    <span class="icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                    </span>
+                    <span class="govuk-visually-hidden">Has existing metadata</span>
                   {% endif %}
                 </label>
               </div>
@@ -116,81 +347,49 @@ File level closure metadata
       </table>
 
       <div class="govuk-button-group">
-        <a href="./T2-flour/check-closure-status.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-          Add or Edit metadata
-        </a>
-  
-        <a href="./T2-flour/abandon-changes-warning.html" role="button" draggable="false" class="govuk-button govuk-button--warning" >
-          Delete metadata
-        </a>
+        <a
+        href="./baking-powder/check-closure-status.html"
+        role="button"
+        draggable="false"
+        class="govuk-button"
+        data-module="govuk-button"
+      >
+        Add or Edit metadata
+      </a>
+
+        <a
+        href="./baking-powder/abandon-changes-warning.html"
+        role="button"
+        draggable="false"
+        class="govuk-button govuk-button--warning"
+      >
+        Delete metadata
+      </a>
       </div>
 
       <br/>
-
-
+    </div>
   </div>
-</div>
 
-<style>
-  section {
-    display: none;
-  }
-
-  .page-1 {
-    display: block;
-  }
-
-  section:target {
-    display: block;
-  }
-
-  section:target~#page-1 {
-    display: none;
-  }
-</style>
-
-<script type="text/javascript">
-  function check_all() {
-    var checkboxes = document.getElementsByName('organisation');
-    checkboxes = [...checkboxes];
-    for (var i = 0; i < checkboxes.length; i++) {
-      checkboxes[i].checked = true
+  <script type="text/javascript">
+    function check_all() {
+      var checkboxes = document.getElementsByName('organisation');
+      checkboxes = [...checkboxes];
+      for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = true
+      }
     }
-  }
 
-  function deselect_all() {
-    var checkboxes = document.getElementsByName('organisation');
-    checkboxes = [...checkboxes];
-    for (var i = 0; i < checkboxes.length; i++) {
-      checkboxes[i].checked = false
+    function deselect_all() {
+      var checkboxes = document.getElementsByName('organisation');
+      checkboxes = [...checkboxes];
+      for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = false
+      }
     }
-  }
+  </script>
+{% endblock %}
 
-  if(!window.location.hash) {
-    window.location.href = "file-level#page-1"
-  }
-
-  addCurrentPage("page-1-item");
-
-  function addCurrentPage(page_item) {
-    const selectedPage = page_item.split("-")[1];
-    document.getElementById("page-1-item").classList.remove("govuk-pagination__item--current");
-    document.getElementById("page-2-item").classList.remove("govuk-pagination__item--current");
-    document.getElementById("page-3-item").classList.remove("govuk-pagination__item--current");
-
-    document.getElementById(page_item).classList.add("govuk-pagination__item--current");
-
-    document.getElementById("page-1-item").innerHTML = '<a class="govuk-pagination__link" href="#page-1" id="page-1"><span class="govuk-visually-hidden">Page</span>1</a>';
-    document.getElementById("page-2-item").innerHTML = '<a class="govuk-pagination__link" href="#page-2" id="page-2"><span class="govuk-visually-hidden">Page</span>2</a>';
-    document.getElementById("page-3-item").innerHTML = '<a class="govuk-pagination__link" href="#page-3" id="page-3"><span class="govuk-visually-hidden">Page</span>3</a>';
-
-    document.getElementById(page_item).innerHTML = '<span class="govuk-visually-hidden">Page</span>'+selectedPage;
-
-    document.getElementById("prev")
-
-    document.getElementById("next").href = "#page-" + (Number(selectedPage) + 1);
-  }
-
-
-</script>
+{% block pageScripts %}
+  <script src="/public/javascripts/tree-view.js"></script>
 {% endblock %}

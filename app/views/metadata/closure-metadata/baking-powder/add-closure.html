@@ -1,193 +1,216 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-Add closure fields to 'Baking-powder.jpg'
+Add closure metadata to 'Baking powder.docx'
 {% endblock %}
 
 {% block content %}
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">
-            Add closure metadata to 'Baking-powder.jpg'
+  <form action="./add-closure-confirm" >
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            Add closure metadata to 'Baking powder.docx'
         </h1>{{releaseVersion | log }}
-      <p class="govuk-body">Enter metadata for closure fields here.</p>
-
-      <div class="govuk-form-group">
-        <h2 class="govuk-label-wrapper">
-          <label class="govuk-label govuk-label--m" for="event-name">
-                    FOI decision asserted
-                </label>
-          <div id="passport-issued-hint" class="govuk-hint">
-                    Date of the Advisory Council Approval (or DIRO approval if appropriate)
-                </div>
-        </h2>
-        <div class="govuk-date-input" id="passport-issued">
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <label class="govuk-label govuk-date-input__label" for="passport-issued-day" >
-                            Day
-                        </label>
-              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day"
-                            name="passport-issued-day" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="dd">
-            </div>
-          </div>
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
-                            Month
-                        </label>
-              <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                            id="passport-issued-month" name="passport-issued-month" type="text" pattern="[0-9]*"
-                            inputmode="numeric" placeholder="mm">
-            </div>
-          </div>
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
-                            Year
-                        </label>
-              <input class="govuk-input govuk-date-input__input govuk-input--width-4"
-                            id="passport-issued-year" name="passport-issued-year" type="text" pattern="[0-9]*"
-                            inputmode="numeric" placeholder="yyyy">
-            </div>
-          </div>
-        </div>
+        <p class="govuk-body">Enter closure metadata for your file(s).</p>
       </div>
-
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h2 class="govuk-label govuk-label--m">
-                        Closure start date
+    </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="foi-decision-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              <h2 class="govuk-fieldset__heading">
+                        FOI decision asserted
                     </h2>
-          </legend>
-          <div id="passport-issued-hint" class="govuk-hint">
-                    This has been defaulted to the last date modified, if this is not correct, amend the field below.
-                </div>
-          <div class="govuk-date-input" id="passport-issued">
-            <div class="govuk-date-input__item">
-              <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+            </legend>
+            <div id="foi-decision-hint" class="govuk-hint">
+                    Date of the Advisory Council approval
+                  </div>
+            <div class="govuk-date-input" id="passport-issued">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="foi-asserted-day" >
                                 Day
                             </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                id="passport-issued-day" name="passport-issued-day" type="text" pattern="[0-9]*"
-                                inputmode="numeric" placeholder="dd" value="09">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="foi-asserted-day"
+                                name="foi-asserted-day" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="dd" value="{% if data['foi-asserted-day'] %}{{data['foi-asserted-day']}}{%endif%}">
+                </div>
               </div>
-            </div>
-            <div class="govuk-date-input__item">
-              <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="foi-asserted-month">
                                 Month
                             </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                id="passport-issued-month" name="passport-issued-month" type="text" pattern="[0-9]*"
-                                inputmode="numeric" placeholder="mm" value="02">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                id="foi-asserted-month" name="foi-asserted-month" type="text" pattern="[0-9]*"
+                                inputmode="numeric" placeholder="mm" value="{% if data['foi-asserted-month'] %}{{data['foi-asserted-month']}}{%endif%}">
+                </div>
               </div>
-            </div>
-            <div class="govuk-date-input__item">
-              <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="foi-asserted-year">
                                 Year
                             </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-4"
-                                id="passport-issued-year" name="passport-issued-year" type="text" pattern="[0-9]*"
-                                inputmode="numeric" placeholder="yyyy" value="2009">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4"
+                                id="foi-asserted-year" name="foi-asserted-year" type="text" pattern="[0-9]*"
+                                inputmode="numeric" placeholder="yyyy" value="{% if data['foi-asserted-year'] %}{{data['foi-asserted-year']}}{%endif%}">
+                </div>
               </div>
             </div>
-          </div>
+          </fieldset>
+        </div>
 
-        </fieldset>
-      </div>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="closure-start-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              <h2 class="govuk-fieldset__heading">
+                        Closure start date
+                    </h2>
+            </legend>
+            <div id="closure-start-hint" class="govuk-hint">
+                    This has been defaulted to the last date modified, if this is not correct, amend the field below.
+                </div>
+            <div class="govuk-date-input" id="passport-issued">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="closure-start-day">
+                                Day
+                            </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                id="closure-start-day" name="closure-start-day" type="text" pattern="[0-9]*"
+                                inputmode="numeric" placeholder="dd"  value="{% if data['closure-start-day'] %}{{data['closure-start-day']}}{% else %}12{%endif%}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="closure-start-month">
+                                Month
+                            </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                                id="closure-start-month" name="closure-start-month" type="text" pattern="[0-9]*"
+                                inputmode="numeric" placeholder="mm"  value="{% if data['closure-start-month'] %}{{data['closure-start-month']}}{% else %}07{%endif%}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="closure-start-year">
+                                Year
+                            </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4"
+                                id="closure-start-year" name="closure-start-year" type="text" pattern="[0-9]*"
+                                inputmode="numeric" placeholder="yyyy" value="{% if data['closure-start-year'] %}{{data['closure-start-year']}}{% else %}1998{%endif%}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
 
-      <div class="govuk-form-group">
-        <h2 class="govuk-label-wrapper">
-          <label class="govuk-label govuk-label--m" for="years">
+        <div class="govuk-form-group">
+          <h2 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--m" for="closure-period">
                 Closure period
             </label>
-        </h2>
-        <div id="closure-period-hint" class="govuk-hint">
+          </h2>
+          <div id="closure-period-hint" class="govuk-hint">
                 Number of years the record is closed from the closure start date
             </div>
-        <div class="govuk-input__wrapper"><input class="govuk-input govuk-input--width-5" id="years" name="years"
-                                                     type="text" spellcheck="false">
-          <div class="govuk-input__suffix" aria-hidden="true">years</div>
+          <div class="govuk-input__wrapper"><input class="govuk-input govuk-input--width-5" id="closure-period" name="closure-period" type="text" spellcheck="false" value="{% if data['closure-period'] %}{{data['closure-period']}}{%endif%}">
+            <div class="govuk-input__suffix" aria-hidden="true">years</div>
+          </div>
         </div>
-      </div>
 
-      <div class="govuk-form-group">
-        <h2 class="govuk-heading-m">FOI exemption code(s)</h2>
+        <div class="govuk-form-group">
+          <h2 class="govuk-heading-m">FOI exemption code(s)</h2>
 
-        <div class="govuk-hint">
+          <div class="govuk-hint">
               Add one or more exemption code to this closure.
           </div>
 
-        {% if data.foi_id_selection == undefined %}
-          <p>
-            <a class="govuk-link" id="foi-exemption-link" href="./add-multiple-FOI.html">Add exemption code(s)</a>
-          </p>
-        {% else %}
-          <ul class="govuk-list govuk-list--bullet">
-            {% for id in data.foi_id_selection %}
-              <li>{{id}}</li>
-            {% endfor %}
-          </ul>
-          <p>
-            <a class="govuk-link" href="./add-multiple-FOI.html">Edit or remove exemption code(s)</a>
-          </p>
-        {% endif %}
-        <input id="exemption-code-redir" type="hidden" name="exemption-code-redir" value="false"/>
-      </div>
-
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                    Are the title and/or description closed?
+          {% if data.foi_id_selection == undefined %}
+            <p>
+              <a class="govuk-link" id="foi-exemption-link" href="./add-multiple-FOI.html">Add exemption code(s)</a>
+            </p>
+          {% else %}
+            <ul class="govuk-list govuk-list--bullet">
+              {% for id in data.foi_id_selection %}
+                <li>{{id}}</li>
+              {% endfor %}
+            </ul>
+            <p>
+              <a class="govuk-link" href="./add-multiple-FOI.html">Edit or remove exemption code(s)</a>
+            </p>
+          {% endif %}
+          <input id="exemption-code-redir" type="hidden" name="exemption-code-redir" value="false"/>
+        </div>
+        <div class="govuk-form-group{% if data['error'] == 'no-alternative' and data['is-the-title-sensitive'] == undefined  %} govuk-form-group--error{% endif %}">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    Is the title closed?
                 </legend>
-          <div class="govuk-radios">
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="yes" name="is-the-title-sensitive" type="radio" value="yes">
-              <label class="govuk-label govuk-radios__label" for="yes">
+            <div class="govuk-hint">
+              If there is sensitive information in the title of this file select 'yes'. You will be given an opportunity to add an alternative public title to this record.
+            </div>
+            {% if data['error'] == 'no-alternative' and data['is-the-title-sensitive'] == undefined %}
+              <p id="no-alternative-title" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Please choose if there is an alternative title and/or description for this record
+            </p>
+            {% endif %}
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input {% if data["is-the-title-sensitive"] == "yes" %}checked{%endif%} class="govuk-radios__input" id="yes" name="is-the-title-sensitive" type="radio" value="yes">
+                <label class="govuk-label govuk-radios__label" for="yes">
                             Yes
                         </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="no" name="is-the-title-sensitive" type="radio" value="no">
-              <label class="govuk-label govuk-radios__label" for="no">
+              </div>
+              <div class="govuk-radios__item">
+                <input {% if data["is-the-title-sensitive"] == "no" %}checked{%endif%} class="govuk-radios__input" id="no" name="is-the-title-sensitive" type="radio" value="no">
+                <label class="govuk-label govuk-radios__label" for="no">
                             No
                         </label>
+              </div>
             </div>
+          </fieldset>
+        </div>
+        <div class="govuk-form-group{% if data['error'] == 'no-alternative' and data['is-the-description-sensitive'] == undefined %} govuk-form-group--error{% endif %}">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    Is the description closed?
+                </legend>
+            <div class="govuk-hint">
+              If there is sensitive information in the description select 'yes'. You will be given an opportunity to add an alternative public description to this record.
           </div>
-        </fieldset>
-      </div>
+            {% if data['error'] == 'no-alternative' and data['is-the-description-sensitive'] == undefined %}
+              <p id="no-alternative-description" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Please choose if there is an alternative title and/or description for this record
+            </p>
+            {% endif %}
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input {% if data["is-the-description-sensitive"] == "yes" %}checked{%endif%} class="govuk-radios__input" id="yes" name="is-the-description-sensitive" type="radio" value="yes">
+                <label class="govuk-label govuk-radios__label" for="yes">
+                            Yes
+                        </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input {% if data["is-the-description-sensitive"] == "no" %}checked{%endif%} class="govuk-radios__input" id="no" name="is-the-description-sensitive" type="radio" value="no">
+                <label class="govuk-label govuk-radios__label" for="no">
+                            No
+                        </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
 
-      <div class="govuk-button-group">
-        <a href="./closure-alternative-title.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        <div class="govuk-button-group">
+          <button role="button" draggable="false" class="govuk-button" data-module="govuk-button">
                 Continue
-            </a>
-        <a class="govuk-link govuk-link--no-visited-state" href="../file-level.html">Cancel</a>
+            </button>
+          <a class="govuk-link govuk-link--no-visited-state" href="../file-level.html">Cancel</a>
+        </div>
+
       </div>
-
     </div>
-  </div>
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      $('#show-me').hide();
-      $('#yes').click(function () {
-        $('#show-me').show();
-      });
-      $('#no').click(function () {
-        $('#show-me').hide();
-      });
-    });
-
-    $('#anotherCode').on('click', function () {
-
-      $('#foiForm').append('<div class="govuk-form-group" id="foiForm"><select class="govuk-select" id="sort" name="sort"><option value="please-choose" selected>Please choose...</option><option value="27(1)">27(1)</option><option value="27(2)">27(2)</option><option value="31">31</option><option value="33">33</option><option value="36">36</option><option value="38(1a)">38(1a)</option><option value="38(1b)">38(1b)</option><option value="38(2)">38(2)</option><option value="40(2)">40(2)</option><option value="43(1)">43(1)</option><option value="43(2)">43(2)</option><option value="---------">---------</option><option value="22">22</option><option value="22A">22A</option><option value="23">23</option><option value="24">24</option><option value="23/24 – In the alternative">23/24 – In the alternative</option><option value="26">26</option><option value="27(1)">27(1)</option><option value="27(2)">27(2)</option><option value="28">28</option><option value="29">29</option><option value="32">32</option><option value="34">34</option><option value="35">35</option><option value="37(1)(a)">37(1)(a)</option><option value="37(1)(aa)">37(1)(aa)</option><option value="37(1)(ab)">37(1)(ab)</option><option value="37(1)(ac)">37(1)(ac)</option><option value="37(1)(ad)">37(1)(ad)</option><option value="37(1)(b)">37(1)(b)</option><option value="37(2)">37(2)</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43(1)">43(1)</option><option value="43(2)">43(2)</option><option value="44">44</option><option value="---------">---------</option><option value="EIRs 12(3) & 13">EIRs 12(3) & 13</option><option value="EIR 12(5)(a)">EIR 12(5)(a)</option><option value="EIR 12(5)(b)">EIR 12(5)(b)</option><option value="EIR 12(5)(c)">EIR 12(5)(c)</option><option value="EIR 12(5)(d)">EIR 12(5)(d)</option><option value="EIR 12(5)(e)">EIR 12(5)(e)</option><option value="EIR 12(5)(f)">EIR 12(5)(f)</option><option value="EIR 12(5)(g)">EIR 12(5)(g)</option></select></div>');
-    });
-  </script>
+  </form>
 
 {% endblock %}

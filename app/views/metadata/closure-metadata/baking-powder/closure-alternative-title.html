@@ -18,39 +18,43 @@ Add alternative title to your record
         </h1>{{releaseVersion | log }}
         <p class="govuk-body">Enter an alternative publicly visible title and/or description if, for example, they contain sensitive information. For guidance on how to create an alternative title and description <a target="_blank" class="govuk-link" href="/faq">read our FAQs (opens in a new tab)</a>.</p>
 
-        <div>
+        {% if data['is-the-title-sensitive'] == "yes" %}
+          <div>
+            <div class="govuk-form-group">
+              <h2 class="govuk-label-wrapper">
+                <label class="govuk-label govuk-label--m" for="alternative-title">
+                Alternative title
+                    </label>
+              </h2>
+              <input class="govuk-input" id="alternative-title" name="alternative-title" type="text" value="{{ data['alternative-title'] }}">
+            </div>
+          </div>
+        {% endif %}
+        {% if data['is-the-description-sensitive'] == "yes" %}
           <div class="govuk-form-group">
             <h2 class="govuk-label-wrapper">
-              <label class="govuk-label govuk-label--m" for="alternative-title">
-                Alternative title (optional)
-                    </label>
-            </h2>
-            <input class="govuk-input" id="alternative-title" name="alternative-title" type="text" value="{{ data['alternative-title'] }}">
-          </div>
-        </div>
-        <div class="govuk-form-group">
-          <h2 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--m" for="alternative-description">
+              <label class="govuk-label govuk-label--m" for="alternative-description">
             Alternative description (optional)
           </label>
-          </h2>
-          <div id="foi-decision-hint" class="govuk-hint">
+            </h2>
+            <div id="foi-decision-hint" class="govuk-hint">
           If you write an alternative description you will also need to fill in the Description field below. This will replace the undisclosed description of the record.
         </div>
-          <textarea class="govuk-textarea" id="alternative-description" name="alternative-description" rows="5" aria-describedby="more-detail-hint">{{ data['alternative-description'] }}</textarea>
-        </div>
+            <textarea class="govuk-textarea" id="alternative-description" name="alternative-description" rows="5" aria-describedby="more-detail-hint">{{ data['alternative-description'] }}</textarea>
+          </div>
 
-        <div class="govuk-form-group">
-          <h2 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--m" for="description">
+          <div class="govuk-form-group">
+            <h2 class="govuk-label-wrapper">
+              <label class="govuk-label govuk-label--m" for="description">
             Description
           </label>
-          </h2>
-          <div id="foi-decision-hint" class="govuk-hint">
-            <b>This field is mandatory if you have written an alternative description above.</b> This is the undisclosed description of the record.
+            </h2>
+            <div id="foi-decision-hint" class="govuk-hint">
+              <b>This field is mandatory if you have written an alternative description above.</b> This is the undisclosed description of the record.
         </div>
-          <textarea class="govuk-textarea" id="description" name="description" rows="5" aria-describedby="more-detail-hint">{{ data['description'] }}</textarea>
-        </div>
+            <textarea class="govuk-textarea" id="description" name="description" rows="5" aria-describedby="more-detail-hint">{{ data['description'] }}</textarea>
+          </div>
+        {% endif %}
 
         <button href="./closure-added.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
             Continue

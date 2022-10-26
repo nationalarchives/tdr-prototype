@@ -6,75 +6,172 @@ Check closure status
 
 {% block content %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">
-      Update the closure status of your record
-    </h1>{{releaseVersion | log }}
-    <p class="govuk-body">You are updating the status for the selected file 'Baking-powder.jpg'</p>
+  <form action="confirm-closure-status">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
 
-    <div class="govuk-form-group">
-      <fieldset class="govuk-fieldset">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h2 class="govuk-heading-m">
-            Has this closure been approved by Advisory Council or the DRO (Departmental Record Officer)?
+        {% if data['baking-powder'][0] === 'true' %}
+
+          <h1 class="govuk-heading-xl">
+      Edit the closure metadata
+    </h1>{{releaseVersion | log }}
+
+          <div class="govuk-form-group {% if data.error %}govuk-form-group--error{% endif %}">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              <div class="govuk-warning-text">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                  <span class="govuk-warning-text__assistive">Warning</span>
+            You have previously added closure metadata to this file.
+          </strong>
+              </div>
+            </legend>
+
+            <div class="govuk-button-group">
+              <a href="./add-closure.html" role="button" draggable="false" class="govuk-button"
+          data-module="govuk-button">
+          Edit metadata
+        </a>
+              <a href="./abandon-changes-warning.html" role="button" draggable="false" class="govuk-button govuk-button--warning" >
+          Delete metadata
+        </a>
+            </div>
+
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+                <dd class="govuk-summary-list__value">
+            Baking-powder.docx
+          </dd>
+                <dd class="govuk-summary-list__actions"></dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+            Closure status
+          </dt>
+                <dd class="govuk-summary-list__value">
+            Closed
+          </dd>
+              </div>
+
+              <!-- closure stuff here -->
+              <div class="govuk-summary-list__row" style="border-bottom: none;">
+                <dt class="govuk-summary-list__key">
+            FOI decision asserted
+          </dt>
+                <dd class="govuk-summary-list__value">
+            20/04/2022
+          </dd>
+              </div>
+              <div class="govuk-summary-list__row" style="border-bottom: none;">
+                <dt class="govuk-summary-list__key">
+            Closure start date
+          </dt>
+                <dd class="govuk-summary-list__value">
+            09/02/2009
+          </dd>
+              </div>
+              <div class="govuk-summary-list__row" style="border-bottom: none;">
+                <dt class="govuk-summary-list__key">
+            Closure period
+          </dt>
+                <dd class="govuk-summary-list__value">
+            20 years
+          </dd>
+              </div>
+              <div class="govuk-summary-list__row" style="border-bottom: none;">
+                <dt class="govuk-summary-list__key">
+              FOI exemption code
+          </dt>
+                <dd class="govuk-summary-list__value">
+            33
+          </dd>
+              </div>
+              <div class="govuk-summary-list__row" style="border-bottom: none;">
+                <dt class="govuk-summary-list__key">
+            Title public
+          </dt>
+                <dd class="govuk-summary-list__value">
+            the [Name withheld] ingredient
+          </dd>
+              </div>
+            </dl>
+
+            <a href="../file-level.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Cancel and return to all files
+      </a>
+          </div>
+
+        {% else %}
+
+          <h1 class="govuk-heading-xl">
+      Confirm the closure status of your record
+    </h1>{{releaseVersion | log }}
+
+          <p class="govuk-body">You are updating the status for the selected file 'Baking-powder.docx'</p>
+
+          <div class="govuk-form-group {% if data.error %}govuk-form-group--error{% endif %}">
+            <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h2 class="govuk-fieldset__heading">
+            Has this closure been approved by the Advisory Council?
           </h2>
-        </legend>
-        <div class="govuk-radios" data-module="govuk-radios">
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="where-do-you-live" name="where-do-you-live" type="radio" value="england">
-            <label class="govuk-label govuk-radios__label" for="where-do-you-live">
-              Yes
+              </legend>
+              {% if data.error == 'no-confirmation' %}
+                <p id="passport-issued-error" class="govuk-error-message">
+                  <span class="govuk-visually-hidden">Error:</span> You must confirm this closure has been approved before continuing.
+        </p>
+              {% endif %}
+              <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="baking-powder" name="baking-powder" type="checkbox" value="true">
+                  <label class="govuk-label govuk-checkboxes__label" for="confirm-closure">
+              Yes, I confirm
             </label>
+                </div>
+              </div>
+            </fieldset>
           </div>
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland" checked>
-            <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
-              No
-            </label>
-          </div>
-        </div>
-    
-      </fieldset>
-    </div>
-    <details class="govuk-details" data-module="govuk-details">
-      <summary class="govuk-details__summary">
-        <span class="govuk-details__summary-text">
+
+          <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
           You must provide the following information, as they are mandatory for closure.
         </span>
-      </summary>
-      <div class="govuk-details__text">
-        <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
-          <li>
-            FOI decision asserted, this is the date of the Advisory Council approval (or DRO approval if appropriate)
+            </summary>
+            <div class="govuk-details__text">
+              <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+                <li>
+            FOI decision asserted, this is the date of the Advisory Council approval
           </li>
-          <li>
+                <li>
               Closure start date, this is the date the record starts
           </li>
-          <li>
+                <li>
               Closure period
           </li>
-          <li>
+                <li>
             FOI exemption code
           </li>
-          <li>
+                <li>
               Title public
           </li>
-      </ul>
-    </details>
-    
+              </ul>
+            </details>
 
-    <div class="govuk-button-group">
-    <a href="../file-level.html" role="button" draggable="false" class="govuk-button govuk-button--secondary"
-    data-module="govuk-button">
-    Back to all records
-  </a>
-  <a href="add-closure.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-    Continue
-  </a>
+            <div class="govuk-button-group">
+              <button role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+      Continue
+    </button>
+              <a class="govuk-link" href="../file-level.html">Cancel</a>
+
+            {% endif %}
+          </form>
+        </div>
+
+      </div>
     </div>
 
-  </div>
-</div>
-
-{% endblock %}
+  {% endblock %}
