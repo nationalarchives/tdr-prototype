@@ -280,7 +280,7 @@
             Choose one or more languages used in this record.
           </div>
           <div class="govuk-form-group">
-            <select class="govuk-select" id="language-select" name="language-select" multiple>
+            <select class="govuk-select govuk-tdr-multi-select" id="language-select" name="language-select" multiple>
               <option value="updated">Please choose...</option>
               {% if data['language-select'] %}
                 {% for l in data.languages %}
