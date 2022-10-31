@@ -121,27 +121,34 @@ Add closure metadata to 'Baking powder.docx'
         </div>
 
         <div class="govuk-form-group">
-          <h2 class="govuk-heading-m">FOI exemption code(s)</h2>
-
-          <div class="govuk-hint">
+          <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              <h2 class="govuk-fieldset__heading">
+                FOI exemption code(s)
+              </h2>
+            </legend>
+            <div class="govuk-hint">
               Add one or more exemption code to this closure.
-          </div>
-
-          {% if data.foi_id_selection == undefined %}
-            <p>
-              <a class="govuk-link" id="foi-exemption-link" href="./add-multiple-FOI.html">Add exemption code(s)</a>
-            </p>
-          {% else %}
-            <ul class="govuk-list govuk-list--bullet">
-              {% for id in data.foi_id_selection %}
-                <li>{{id}}</li>
-              {% endfor %}
-            </ul>
-            <p>
-              <a class="govuk-link" href="./add-multiple-FOI.html">Edit or remove exemption code(s)</a>
-            </p>
-          {% endif %}
-          <input id="exemption-code-redir" type="hidden" name="exemption-code-redir" value="false"/>
+            </div>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes" id="foi-exemption-codes">
+              <div class="govuk-grid-row">
+                <div class="govuk-grid-column-one-third">
+                  {% for code in data.foi_exemption_codes | sort %}
+                    <div class="govuk-checkboxes__item">
+                      <input {% if data.foi_id_selection and code in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="{{loop.index}}" name="foi_id_selection" type="checkbox" value="{{code}}">
+                      <label class="govuk-label govuk-checkboxes__label" for="{{loop.index}}">
+                        {{code}}
+                      </label>
+                    </div>
+                    {% if loop.index % ((loop.length / 3) | round) == 0 %}
+                    </div>
+                    <div class="govuk-grid-column-one-third">
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </fieldset>
         </div>
         <div class="govuk-form-group{% if data['error'] == 'no-alternative' and data['is-the-title-sensitive'] == undefined  %} govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset">
@@ -212,5 +219,17 @@ Add closure metadata to 'Baking powder.docx'
       </div>
     </div>
   </form>
+  {% block pageScripts %}
+    <script src = "https://unpkg.com/aria-autocomplete" type = "text/javascript"></script>
+    <script>
+      AriaAutocomplete(document.querySelector('#foi-exemption-codes'), {
+        placeholder: 'Search for FOI Exemption codes',
+        deleteOnBackspace: true,
+        showAllControl: true,
+        autoGrow: false,
+        cssNameSpace: "govuk-multi-autocomplete"
+      });
+    </script>
+  {% endblock %}
 
 {% endblock %}
