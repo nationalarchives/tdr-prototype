@@ -35,13 +35,7 @@ $govuk-assets-path: '/govuk/assets/';
 .govuk-header__tna-logo-image {
   width:220px
 }
-/*.govuk-header__tna-content {
-  margin:0 auto;
-  position:relative
-}*/
-/*.tna-header {
-  display:flex
-}*/
+
 .govuk-header__tna_link {
   text-decoration:none
 }
@@ -293,4 +287,15 @@ $govuk-assets-path: '/govuk/assets/';
 
 .govuk-tdr-multi-select {
   height: 200px;
+}
+
+.govuk-tdr-file-selection-panel__search {
+  display: flex;
+  gap: govuk-spacing(2);
+  @include govuk-responsive-margin(2, "bottom");
+}
+
+.govuk-tdr-file-selection-panel__search .govuk-button {
+  margin-bottom: 0;
+  flex-basis: content;
 }
