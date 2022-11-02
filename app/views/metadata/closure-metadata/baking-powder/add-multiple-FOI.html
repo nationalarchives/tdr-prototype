@@ -24,17 +24,12 @@ Add FOI codes to 'Baking-powder.jpg'
             <div class="govuk-form-group">
               <div class="govuk-checkboxes" data-module="govuk-checkboxes">
                 {% for code in data.foi_exemption_codes | sort %}
-
-                  {% if code == "-" %}
-                    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-                  {% else %}
-                    <div class="govuk-checkboxes__item">
-                      <input {% if data.foi_id_selection and code in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="{{loop.index}}" name="foi_id_selection" type="checkbox" value="{{code}}">
-                      <label class="govuk-label govuk-checkboxes__label" for="{{loop.index}}">
-                        {{code}}
-                      </label>
-                    </div>
-                  {% endif %}
+                  <div class="govuk-checkboxes__item">
+                    <input {% if data.foi_id_selection and code in data.foi_id_selection %}checked{% endif %} class="govuk-checkboxes__input" id="{{loop.index}}" name="foi_id_selection" type="checkbox" value="{{code}}">
+                    <label class="govuk-label govuk-checkboxes__label" for="{{loop.index}}">
+                      {{code}}
+                    </label>
+                  </div>
                   {% if loop.index % ((loop.length / 3) | round) == 0 %}
                   </div>
                 </div>
