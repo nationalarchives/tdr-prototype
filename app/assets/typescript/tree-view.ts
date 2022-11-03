@@ -323,8 +323,8 @@ if (tree) {
         }
         spanInput.setAttribute("aria-hidden", "true");
       }
-
       input.parentElement.appendChild(spanInput);
+      spanInput.append(...Array.from(input.childNodes));
       input.remove();
 
       const spanLabel = document.createElement("span");
@@ -333,8 +333,8 @@ if (tree) {
           spanLabel.setAttribute(name, label.getAttribute(name));
         }
       }
-      spanLabel.appendChild(document.createTextNode(label.textContent));
       label.parentElement.appendChild(spanLabel);
+      spanLabel.append(...Array.from(label.childNodes));
       label.remove();
     });
 }
