@@ -300,15 +300,6 @@ $govuk-assets-path: '/govuk/assets/';
   flex-basis: content;
 }
 
-.govuk-tna-tree__folder-item__container .govuk-checkboxes__label {
-  display: flex;
-  height: 100%;
-  gap: 10px;
-}
-
-.govuk-tna-tree__svg-directory {
-  height: 22px;
-  width: 24px;
-  display: inline-block;
-  align-self: baseline;
+.govuk-tdr-file-selection-panel .govuk-button-group {
+  margin-bottom: 0;
 }
