@@ -5,8 +5,14 @@
     --file-expander-btn-width: 40px;
     overflow-x: auto;
     overflow-y: auto;
-    max-height: 85vh;
-    // transform: translate(calc(0px - var(--file-expander-btn-width)), 0);
+    max-height: 75vh;
+    @include govuk-responsive-margin(4, "bottom");
+  }
+
+  .govuk-tna-tree > .govuk-tna-tree__nested-file-list {
+    background-image: linear-gradient(0deg, #F2F2F2 22.22%, #ffffff 22.22%, #ffffff 50%, #F2F2F2 50%, #F2F2F2 72.22%, #ffffff 72.22%, #ffffff 100%);
+    background-size: 100% 180px;
+    background-position-y: -5px;
   }
 
   .govuk-tna-tree ul[role="tree"],
@@ -155,4 +161,21 @@
     width: 22px;
     background: currentColor;
     opacity: 1;
+  }
+
+  .govuk-tna-tree .govuk-checkboxes__label::before {
+    background: white;
+  }
+
+  .govuk-tna-tree__folder-item__container .govuk-checkboxes__label {
+    display: flex;
+    height: 100%;
+    gap: 10px;
+  }
+
+  .govuk-tna-tree__svg-directory {
+    height: 22px;
+    width: 24px;
+    display: inline-block;
+    align-self: baseline;
   }
