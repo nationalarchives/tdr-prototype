@@ -1,0 +1,30 @@
+<div class="govuk-form-group">
+  <label class="govuk-label govuk-label--m">Language</label>
+  <div id="passport-issued-hint" class="govuk-hint">
+    Choose one or more languages used in this record.
+  </div>
+  <div class="govuk-form-group">
+    <select class="govuk-select govuk-tdr-multi-select" id="language-select" name="language-select" multiple>
+      <option value="updated">Please choose...</option>
+      {% if data['language-select'] %}
+        {% for l in data.languages %}
+          <option value="{{l.alpha2}}"{% if l.alpha2 == data['language-select'] %} selected{%endif%}>{{l.English}}</option>
+        {% endfor %}
+      {% else %}
+        {% for l in data.languages %}
+          <option value="{{l.alpha2}}"{% if l.alpha2 == "en" %} selected{%endif%}>{{l.English}}</option>
+        {% endfor %}
+      {% endif %}
+    </select>
+  </div>
+</div>
+
+<div class="govuk-form-group">
+  <label class="govuk-label govuk-label--m" for="years">
+    Translated title of record (optional)
+  </label>
+  <div id="closure-period-hint" class="govuk-hint">
+    If the title is not in English you can provide a translation.
+  </div>
+  <input class="govuk-input" name="translation" value="{{data['translation']}}"/>
+</div>

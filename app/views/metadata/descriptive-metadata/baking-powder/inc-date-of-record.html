@@ -1,0 +1,156 @@
+<h2 class="govuk-heading-m" >
+  Date of the record
+</h2>
+
+<div class="govuk-body">
+  Review the last date modified we have determined from your upload and add corrected or supplementary dates to this record.
+</div>
+
+{# <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
+  Date last modified
+</h3> #}
+<div class="govuk-body">
+  The <b>date last modified</b> has been automatically extracted during your file upload:
+  {# Date last modified has been automatically extracted from your upload. #}</div>
+<p class="govuk-body-l">12 July 1998</p>
+
+{# <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
+  Is the date last modifed incorrect?
+</h3> #}
+
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Warning</span>
+    If the date last modified is not correct please add accurate date information below.
+  </strong>
+</div>
+
+{% set dateSingle %}
+{{ govukDateInput({
+      id: id,
+      namePrefix: id,
+      items: [
+        {
+          name: "Day",
+          classes: "govuk-input--width-2",
+          attributes: { "placeholder" : "dd" }
+        },
+        {
+          name: "Month",
+          classes: "govuk-input--width-2",
+          attributes: { "placeholder" : "mm" }
+        },
+        {
+          name: "Year",
+          classes: "govuk-input--width-4",
+          attributes: { "placeholder" : "yyyy" }
+        }
+      ]
+    }) }}
+{% endset -%}
+
+{% set dateRange %}
+{{ govukDateInput({
+      id: id,
+      namePrefix: id,
+      fieldset: {
+        legend: {
+          text: "Start date",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--s"
+        }
+      },
+      hint: {
+        text: hint
+      },
+      items: [
+        {
+          name: "Day",
+          classes: "govuk-input--width-2",
+          attributes: { "placeholder" : "dd" }
+        },
+        {
+          name: "Month",
+          classes: "govuk-input--width-2",
+          attributes: { "placeholder" : "mm" }
+        },
+        {
+          name: "Year",
+          classes: "govuk-input--width-4",
+          attributes: { "placeholder" : "yyyy" }
+        }
+      ]
+    }) }}
+
+{{ govukDateInput({
+      id: id,
+      namePrefix: id,
+      fieldset: {
+        legend: {
+          text: "End Date",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--s"
+        }
+      },
+      hint: {
+        text: hint
+      },
+      items: [
+        {
+          name: "Day",
+          classes: "govuk-input--width-2",
+          attributes: { "placeholder" : "dd" }
+        },
+        {
+          name: "Month",
+          classes: "govuk-input--width-2",
+          attributes: { "placeholder" : "mm" }
+        },
+        {
+          name: "Year",
+          classes: "govuk-input--width-4",
+          attributes: { "placeholder" : "yyyy" }
+        }
+      ]
+    }) }}
+{% endset -%}
+
+{{ govukRadios({
+  name: "contact",
+  fieldset: {
+    legend: {
+      text: "How would you like to enter date information?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [
+    {
+      value: "single",
+      text: "As a single, specific date",
+      conditional: {
+        html: dateSingle
+      }
+    },
+    {
+      value: "phone",
+      text: "As a date range with a start and end date",
+      conditional: {
+        html: dateRange
+      }
+    }
+  ]
+}) }}
+
+{# <div class="govuk-form-group">
+  <label class="govuk-label" for="national-insurance-number">
+    Would you like to enter
+  </label>
+  <div id="national-insurance-number-hint" class="govuk-hint">
+    It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’.
+  </div>
+  <input class="govuk-input govuk-input--width-10" id="national-insurance-number" name="national-insurance-number" type="text" spellcheck="false" aria-describedby="national-insurance-number-hint">
+</div> #}
+
+{# {{ tdrMetadataDate("specific-date", "Specific date (optional)", "Enter the the specific date the record was created.") }} #}
