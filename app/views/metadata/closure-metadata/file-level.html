@@ -10,75 +10,80 @@ File level closure metadata
 
 {% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">Add or edit closure metadata on file basis</h1>
       {{releaseVersion | log }}
       <p class="govuk-body">
-      You can now add or edit closure metadata to individual files or folders.
-    </p>
+        You can now add or edit closure metadata to individual files or folders.
+      </p>
       <p class="govuk-body">
-      Select the relevant record(s) from the table below and proceed by clicking
-      "Add or Edit metadata".
-    </p>
+        Select the relevant record(s) from the table below and proceed by clicking
+        "Add or Edit metadata".
+      </p>
 
-      <div class="govuk-button-group govuk-tdr-metadata__file-selection-btns">
-        <button
-        class="govuk-button govuk-button--secondary"
-        data-module="govuk-button"
-        type="button"
-        name="selectAll"
-        value="select-all"
-        onClick="check_all()"
-      >
-        Select all
-      </button>
-
-        <button
-        class="govuk-button govuk-button--secondary"
-        data-module="govuk-button"
-        type="button"
-        name="selectAll"
-        value="select-all"
-        onClick="deselect_all()"
-      >
-        Clear selection
-      </button>
-      </div>
-
-      <div class="govuk-grid-row govuk-tdr-metadata__search">
-        <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-tdr-file-selection-panel">
+        <div class="govuk-tdr-file-selection-panel__search">
           <input
-          class="govuk-input"
-          id="event-name"
-          name="event-name"
-          type="text"
-          placeholder="Enter a file or folder name"
+            class="govuk-input"
+            id="event-name"
+            name="event-name"
+            type="search"
+            placeholder="Enter a file or folder name"
 />
-        </div>
-        <div class="govuk-grid-column-one-third">
           <a
-          href="file-level#page-2"
-          role="button"
-          draggable="false"
-          class="govuk-button"
-          data-module="govuk-button"
-        >
-          Search
-        </a>
+              href="file-level"
+              role="button"
+              draggable="false"
+              class="govuk-button"
+              data-module="govuk-button"
+            >
+              Search
+          </a>
+        </div>
+        <div class="govuk-button-group">
+          <a
+              href="./baking-powder/check-closure-status.html"
+              role="button"
+              draggable="false"
+              class="govuk-button"
+              data-module="govuk-button"
+            >
+              Add or Edit metadata
+          </a>
+
+          <button
+            class="govuk-button govuk-button--secondary"
+            data-module="govuk-button"
+            type="button"
+            name="select-all"
+            value="true"
+            >
+            Select all
+          </button>
+
+          <button
+            class="govuk-button govuk-button--secondary"
+            data-module="govuk-button"
+            type="button"
+            name="deselect-all"
+            value="true"
+          >
+            Clear selection
+          </button>
         </div>
       </div>
 
       {% macro fileItem(item, level, size, pos) %}
         {% if item.type == 'file' or item.children.length == 0 %}
           <li
-        class="govuk-tna-tree__file-item"
-        role="treeitem"
-        id="{{level}}-{{pos}}"
-        aria-selected="false"
-        aria-level="{{level}}"
-        aria-setsize="{{size}}"
-        aria-posinset="{{pos}}"
-      >
+              class="govuk-tna-tree__file-item"
+              role="treeitem"
+              id="{{level}}-{{pos}}"
+              aria-selected="false"
+              aria-level="{{level}}"
+              aria-setsize="{{size}}"
+              aria-posinset="{{pos}}"
+            >
             <div class="govuk-checkboxes__item">
               <input class="govuk-checkboxes__input" id="checkbox-{{level}}-{{pos}}" tabindex="-1" type="checkbox"/>
               <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{level}}-{{pos}}">
@@ -94,30 +99,31 @@ File level closure metadata
 
         {% elif item.type == 'directory' %}
           <li
-          class="govuk-tna-tree__folder-item"
-          role="treeitem"
-          id="{{level}}-{{pos}}"
-          aria-expanded="true"
-          aria-selected="false"
-          aria-level="{{level}}"
-          aria-setsize="{{size}}"
-          aria-posinset="{{pos}}"
-        >
+              class="govuk-tna-tree__folder-item"
+              role="treeitem"
+              id="{{level}}-{{pos}}"
+              aria-expanded="true"
+              aria-selected="false"
+              aria-level="{{level}}"
+              aria-setsize="{{size}}"
+              aria-posinset="{{pos}}"
+            >
             <div class="govuk-tna-tree__folder-item__container">
               <button
-            class="govuk-tna-tree__file-expander"
-            tabindex="-1"
-            id="expander-{{level}}-{{pos}}"
-          >
+                class="govuk-tna-tree__file-expander"
+                tabindex="-1"
+                id="expander-{{level}}-{{pos}}"
+              >
                 <span class="govuk-visually-hidden">Expand</span>
               </button>
               <div class="govuk-checkboxes__item">
                 <input
-              class="govuk-checkboxes__input"
-              id="checkbox-{{level}}-{{pos}}"
-              tabindex="-1"
-              type="checkbox"/>
+                  class="govuk-checkboxes__input"
+                  id="checkbox-{{level}}-{{pos}}"
+                  tabindex="-1"
+                  type="checkbox"/>
                 <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{level}}-{{pos}}">
+                  <img class="govuk-tna-tree__svg-directory" role="img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyMiI+PHBhdGggZmlsbD0iIzAwMCIgZD0iTTIyIDMuNUgxMC42ODNMOC43NTguODVhMS42NjcgMS42NjcgMCAwIDAtMS4zNS0uNjgzSDJBMS42NjcgMS42NjcgMCAwIDAgLjMzMyAxLjgzM3YxOC4zMzRBMS42NjcgMS42NjcgMCAwIDAgMiAyMS44MzNoMjBhMS42NjcgMS42NjcgMCAwIDAgMS42NjctMS42NjZ2LTE1QTEuNjY2IDEuNjY2IDAgMCAwIDIyIDMuNVptMCAxNi42NjdIMlY2LjgzM2g2LjA5MmExLjY2NyAxLjY2NyAwIDAgMCAxLjY2Ni0xLjY2NkgyVjEuODMzaDUuNDA4bDIuMTc1IDIuOTkyYS44MzMuODMzIDAgMCAwIC42NzUuMzQySDIydjE1WiIvPjwvc3ZnPg==" alt="Directory"/>
                   {{item.name}}
                   {% if item.name == "Baking powder.docx" and data['closure']['baking-powder'][0] === 'true' %}
                     <span class="icon" aria-label="Has existing metadata">
@@ -136,14 +142,15 @@ File level closure metadata
           </li>
         {% endif %}
       {% endmacro %}
-
+    </div>
+    <div class="govuk-grid-column-full">
       <div class="govuk-tna-tree">
-        {# <ul tabindex="0"class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
+        <ul tabindex="0"class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
           {% for node in data.files %}
             {{ fileItem(node, 1, loop.length, loop.index) }}
           {% endfor %}
-        </ul> #}
-        <ul class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
+        </ul>
+        {# <ul class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
 
           <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
             <div class="govuk-checkboxes__item">
@@ -273,11 +280,9 @@ File level closure metadata
             </ul>
           </li>
 
-        </ul>
+        </ul> #}
 
       </div>
-
-      <br/><br/>
 
       <div class="govuk-button-group">
         <a
@@ -290,14 +295,14 @@ File level closure metadata
         Add or Edit metadata
       </a>
 
-        <a
-        href="./baking-powder/abandon-changes-warning.html"
-        role="button"
-        draggable="false"
-        class="govuk-button govuk-button--warning"
-      >
-        Delete metadata
-      </a>
+        {# <a
+          href="./baking-powder/abandon-changes-warning.html"
+          role="button"
+          draggable="false"
+          class="govuk-button govuk-button--warning"
+        >
+          Delete metadata
+        </a> #}
       </div>
 
       <br/>
