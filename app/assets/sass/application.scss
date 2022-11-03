@@ -299,3 +299,16 @@ $govuk-assets-path: '/govuk/assets/';
   margin-bottom: 0;
   flex-basis: content;
 }
+
+.govuk-tna-tree__folder-item__container .govuk-checkboxes__label {
+  display: flex;
+  height: 100%;
+  gap: 10px;
+}
+
+.govuk-tna-tree__svg-directory {
+  height: 22px;
+  width: 24px;
+  display: inline-block;
+  align-self: baseline;
+}
