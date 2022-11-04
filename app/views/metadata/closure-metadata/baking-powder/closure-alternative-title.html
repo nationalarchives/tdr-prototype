@@ -30,6 +30,9 @@ Add alternative title to your record
                 Alternative title
                     </label>
               </h2>
+              <div id="foi-decision-hint" class="govuk-hint">
+              The publicly visible title to be displayed on Discovery.
+              </div>
               <input class="govuk-input" id="alternative-title" name="alternative-title" type="text" value="{{ data['alternative-title'] }}">
             </div>
           </div>
@@ -37,26 +40,24 @@ Add alternative title to your record
         {% if data['is-the-description-sensitive'] == "yes" %}
           <div class="govuk-form-group">
             <h2 class="govuk-label-wrapper">
-              <label class="govuk-label govuk-label--m" for="alternative-description">
-            Alternative description (optional)
-          </label>
-            </h2>
-            <div id="foi-decision-hint" class="govuk-hint">
-          If you write an alternative description you will also need to fill in the Description field below. This will replace the undisclosed description of the record.
-        </div>
-            <textarea class="govuk-textarea" id="alternative-description" name="alternative-description" rows="5" aria-describedby="more-detail-hint">{{ data['alternative-description'] }}</textarea>
-          </div>
-
-          <div class="govuk-form-group">
-            <h2 class="govuk-label-wrapper">
               <label class="govuk-label govuk-label--m" for="description">
-            Description
+              Description
+            </label>
+            </h2>
+            <div id="foi-decision-hint" class="govuk-hint">
+              The undisclosed description of the record which will be displayed on Discovery.
+            </div>
+            <textarea class="govuk-textarea" id="description" name="description" rows="5" aria-describedby="more-detail-hint">{{ data['description'] }}</textarea>
+
+            <h2 class="govuk-label-wrapper">
+              <label class="govuk-label govuk-label--m" for="alternative-description">
+            Alternative description
           </label>
             </h2>
             <div id="foi-decision-hint" class="govuk-hint">
-              <b>This field is mandatory if you have written an alternative description above.</b> This is the undisclosed description of the record.
-        </div>
-            <textarea class="govuk-textarea" id="description" name="description" rows="5" aria-describedby="more-detail-hint">{{ data['description'] }}</textarea>
+            This will replace the undisclosed description.
+            </div>
+            <textarea class="govuk-textarea" id="alternative-description" name="alternative-description" rows="5" aria-describedby="more-detail-hint">{{ data['alternative-description'] }}</textarea>
           </div>
         {% endif %}
 
