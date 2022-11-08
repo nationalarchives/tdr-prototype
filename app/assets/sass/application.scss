@@ -283,6 +283,15 @@ $govuk-assets-path: '/govuk/assets/';
 .govuk-fieldset--horizontal-align .govuk-fieldset__legend {
   align-self: flex-end;
   margin: 0;
+  width: 100px
+}
+
+.govuk-fieldset--horizontal-align .govuk-form-group {
+  margin-bottom: 0;
+}
+
+.govuk-fieldset--horizontal-align  {
+  @include govuk-responsive-margin(5, "bottom");
 }
 
 .govuk-tdr-multi-select {
