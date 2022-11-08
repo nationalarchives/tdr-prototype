@@ -2,29 +2,39 @@
   Date of the record
 </h2>
 
-<div class="govuk-body">
+<p class="govuk-body">
   Review the last date modified we have determined from your upload and add corrected or supplementary dates to this record.
-</div>
+</p>
 
-<div class="govuk-body">
+<p class="govuk-body">
   The <b>date last modified</b> has been automatically extracted during your file upload:
+</p>
 <p class="govuk-body-l">12 July 1998</p>
 
-  <div class="govuk-warning-text">
-    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-    <strong class="govuk-warning-text__text">
-      <span class="govuk-warning-text__assistive">Warning</span>
-    If the date last modified is not correct please add accurate date information below.
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Warning</span>
+    If the date last modified is not correct please add accurate date information below. Choose either a single specific date or date range below.
   </strong>
-  </div>
+</div>
 
-  {% set dateSingle %}
+{% set dateSingle %}
+<fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+    <h2 class="govuk-fieldset__heading">
+      A specific date
+    </h2>
+  </legend>
+  <div id="passport-issued-hint" class="govuk-hint">
+    Enter a specific date for the record.
+  </div>
   <div class="govuk-date-input">
     <div class="govuk-date-input__item">
       <div class="govuk-form-group">
         <label class="govuk-label govuk-date-input__label" for="undefined-Day">
-          Day
-        </label>
+            Day
+          </label>
         <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="undefined-Day" name="Day" type="text" inputmode="numeric" placeholder="dd">
       </div>
     </div>
@@ -32,8 +42,8 @@
     <div class="govuk-date-input__item">
       <div class="govuk-form-group">
         <label class="govuk-label govuk-date-input__label" for="undefined-Month">
-          Month
-        </label>
+            Month
+          </label>
         <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="undefined-Month" name="Month" type="text" inputmode="numeric" placeholder="mm">
       </div>
     </div>
@@ -41,112 +51,91 @@
     <div class="govuk-date-input__item">
       <div class="govuk-form-group">
         <label class="govuk-label govuk-date-input__label" for="undefined-Year">
-          Year
-        </label>
+            Year
+          </label>
         <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="undefined-Year" name="Year" type="text" inputmode="numeric" placeholder="yyyy">
       </div>
     </div>
   </div>
+</fieldset>
+{% endset -%}
 
-  {% endset -%}
+{% set dateRange %}
 
-  {% set dateRange %}
-
-  <div class="govuk-date-input govuk-!-margin-bottom-5">
-    <h3 class="govuk-heading-s govuk-!-margin-bottom-1" >
-    Start date
-  </h3>
-    <div class="govuk-date-input__item">
-      <div class="govuk-form-group">
-        <label class="govuk-label govuk-date-input__label" for="undefined-Day">
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset govuk-fieldset--horizontal-align" role="group" aria-describedby="passport-issued-hint">
+    <legend class="govuk-visually-hidden" aria-hidden="true">Start date</legend>
+    <div class="govuk-fieldset__legend govuk-fieldset__legend--s govuk-hint">
+      <h1 class="govuk-fieldset__heading">Start date</h1>
+    </div>
+    <div class="govuk-date-input" id="passport-issued">
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+          Day
+        </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day" name="passport-issued-day" type="text" inputmode="numeric" placeholder="dd">
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+          Month
+        </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-month" name="passport-issued-month" type="text" inputmode="numeric" placeholder="mm">
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+          Year
+        </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="passport-issued-year" type="text" inputmode="numeric" placeholder="yyyy">
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset govuk-fieldset--horizontal-align" role="group" aria-describedby="passport-issued-hint">
+    <legend class="govuk-visually-hidden" aria-hidden="true">End date</legend>
+    <div class="govuk-fieldset__legend govuk-fieldset__legend--s govuk-hint">
+      <h1 class="govuk-fieldset__heading">End date</h1>
+    </div>
+    <div class="govuk-date-input" id="passport-issued">
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
         Day
       </label>
-
-        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="undefined-Day" name="Day" type="text" inputmode="numeric" placeholder="dd">
-
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day" name="passport-issued-day" type="text" inputmode="numeric" placeholder="dd">
+        </div>
       </div>
-    </div>
-
-    <div class="govuk-date-input__item">
-      <div class="govuk-form-group">
-        <label class="govuk-label govuk-date-input__label" for="undefined-Month">
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
         Month
       </label>
-
-        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="undefined-Month" name="Month" type="text" inputmode="numeric" placeholder="mm">
-
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-month" name="passport-issued-month" type="text" inputmode="numeric" placeholder="mm">
+        </div>
       </div>
-    </div>
-
-    <div class="govuk-date-input__item">
-      <div class="govuk-form-group">
-        <label class="govuk-label govuk-date-input__label" for="undefined-Year">
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
         Year
       </label>
-
-        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="undefined-Year" name="Year" type="text" inputmode="numeric" placeholder="yyyy">
-
+          <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="passport-issued-year" type="text" inputmode="numeric" placeholder="yyyy">
+        </div>
       </div>
     </div>
-  </div>
+  </fieldset>
+</div>
+{% endset -%}
 
-  <div class="govuk-date-input">
-    <h3 class="govuk-heading-s govuk-!-margin-bottom-1" >
-    End date
-  </h3>
-    <div class="govuk-date-input__item">
-      <div class="govuk-form-group">
-        <label class="govuk-label govuk-date-input__label" for="undefined-Day">
-          Day
-        </label>
-        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="undefined-Day" name="Day" type="text" inputmode="numeric" placeholder="dd">
-      </div>
-    </div>
+{{dateSingle  | safe }}
 
-    <div class="govuk-date-input__item">
-      <div class="govuk-form-group">
-        <label class="govuk-label govuk-date-input__label" for="undefined-Month">
-          Month
-        </label>
-        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="undefined-Month" name="Month" type="text" inputmode="numeric" placeholder="mm">
-      </div>
-    </div>
-
-    <div class="govuk-date-input__item">
-      <div class="govuk-form-group">
-        <label class="govuk-label govuk-date-input__label" for="undefined-Year">
-          Year
-        </label>
-        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="undefined-Year" name="Year" type="text" inputmode="numeric" placeholder="yyyy">
-      </div>
-    </div>
-  </div>
-
-  {% endset -%}
-
-  {{ govukRadios({
-  name: "contact",
-  fieldset: {
-    legend: {
-      text: "How would you like to enter date information?",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--s"
-    }
-  },
-  items: [
-    {
-      value: "single",
-      text: "As a single, specific date",
-      conditional: {
-        html: dateSingle
-      }
-    },
-    {
-      value: "phone",
-      text: "As a date range with a start and end date",
-      conditional: {
-        html: dateRange
-      }
-    }
-  ]
-}) }}
+<h3 class="govuk-heading-s govuk-!-margin-bottom-1">A date range</h3>
+<div id="passport-issued-hint" class="govuk-hint">
+  Enter a start and end date for the record.
+</div>
+{{dateRange  | safe }}
