@@ -30,11 +30,7 @@
             rows="5">{{data.description}}</textarea>
         </div>
 
-        {% if data['version'] %}
-          {% include ['./inc-date-of-record-',data['version'],'.html'] | join %}
-        {% else %}
-          {% include './inc-date-of-record-4.html' %}
-        {% endif %}
+        {% include './inc-date-of-record-4.html' %}
 
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"/>
 
