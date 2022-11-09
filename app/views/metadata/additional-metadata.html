@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="govuk-grid-row">
+  <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <span class="govuk-caption-l">Step 5 of 7</span>
@@ -22,6 +22,21 @@
             <a class="nhsuk-card__link" href="descriptive-metadata/file-level.html">Descriptive metadata</a>
           </h2>
           <p class="nhsuk-card__description">If you'd like to add or edit descriptive metadata to your records, you can do so here.</p>
+          <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+            Descriptive metadata includes the following fields.
+            </span>
+            </summary>
+            <div class="govuk-details__text">
+              <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+                <li>FOI decision asserted, this is the date of the Advisory Council approval</li>
+                <li>Closure start date, this is the date the record starts </li>
+                <li>Closure period</li>
+                <li>FOI exemption code</li>
+              </ul>
+            </div>
+          </details>
         </div>
       </div>
 
@@ -31,7 +46,24 @@
             <a class="nhsuk-card__link" href="closure-metadata/file-level.html">Closure metadata</a>
           </h2>
           <p class="nhsuk-card__description">If you'd like to add or edit closure metadata to your records, you can do so here.</p>
+
+          <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+            Closure metadata includes the following fields.
+            </span>
+            </summary>
+            <div class="govuk-details__text">
+              <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+                <li>FOI decision asserted, this is the date of the Advisory Council approval</li>
+                <li>Closure start date, this is the date the record starts </li>
+                <li>Closure period</li>
+                <li>FOI exemption code</li>
+              </ul>
+            </div>
+          </details>
         </div>
+
       </div>
 
       <div class="govuk-warning-text">
@@ -58,6 +90,6 @@
           MOCK-123-TDR
         </div>
       </details>
-  </div>
+    </div>
   </div>
 {% endblock %}
