@@ -113,9 +113,14 @@ const redirectAddClosure = (req, res) => {
 router.get(
   "/metadata/closure-metadata/confirm-file-level",
   function (req, res) {
-    const selected = req.session.data["file-selection"];
+    let selected = req.session.data["file-selection"];
     const closed = req.session.data["closedFiles"];
 
+    if (
+      selected.length &&
+      (typeof selected == "string" || selected instanceof String)
+    )
+      selected = [selected];
     if (!req.session.data.closedFiles) req.session.data.closedFiles = {};
 
     if (selected === undefined) {
