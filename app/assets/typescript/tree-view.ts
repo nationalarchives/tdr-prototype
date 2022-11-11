@@ -310,31 +310,31 @@ if (tree) {
    * both converted to spans and attributes copied
    * excluding those that do not exist on spans.
    * */
-  document
-    .querySelectorAll("[role=tree] .govuk-checkboxes__item")
-    .forEach((checkbox: HTMLElement) => {
-      const input: HTMLInputElement = checkbox.querySelector("input");
-      const label: HTMLLabelElement = checkbox.querySelector("label");
+  // document
+  //   .querySelectorAll("[role=tree] .govuk-checkboxes__item")
+  //   .forEach((checkbox: HTMLElement) => {
+  //     const input: HTMLInputElement = checkbox.querySelector("input");
+  //     const label: HTMLLabelElement = checkbox.querySelector("label");
 
-      const spanInput = document.createElement("span");
-      for (const name of input.getAttributeNames()) {
-        if (!["type"].includes(name)) {
-          spanInput.setAttribute(name, input.getAttribute(name));
-        }
-        spanInput.setAttribute("aria-hidden", "true");
-      }
-      input.parentElement.appendChild(spanInput);
-      spanInput.append(...Array.from(input.childNodes));
-      input.remove();
+  //     const spanInput = document.createElement("span");
+  //     for (const name of input.getAttributeNames()) {
+  //       if (!["type"].includes(name)) {
+  //         spanInput.setAttribute(name, input.getAttribute(name));
+  //       }
+  //       spanInput.setAttribute("aria-hidden", "true");
+  //     }
+  //     input.parentElement.appendChild(spanInput);
+  //     spanInput.append(...Array.from(input.childNodes));
+  //     input.remove();
 
-      const spanLabel = document.createElement("span");
-      for (const name of label.getAttributeNames()) {
-        if (!["for"].includes(name)) {
-          spanLabel.setAttribute(name, label.getAttribute(name));
-        }
-      }
-      label.parentElement.appendChild(spanLabel);
-      spanLabel.append(...Array.from(label.childNodes));
-      label.remove();
-    });
+  //     const spanLabel = document.createElement("span");
+  //     for (const name of label.getAttributeNames()) {
+  //       if (!["for"].includes(name)) {
+  //         spanLabel.setAttribute(name, label.getAttribute(name));
+  //       }
+  //     }
+  //     label.parentElement.appendChild(spanLabel);
+  //     spanLabel.append(...Array.from(label.childNodes));
+  //     label.remove();
+  //   });
 }
