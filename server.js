@@ -181,7 +181,7 @@ if (useCookieSessionStore === 'true') {
 } else {
   app.use(sessionInMemory(Object.assign(sessionOptions, {
     name: sessionName,
-    resave: false,
+    resave: true,
     saveUninitialized: false
   })))
 }
