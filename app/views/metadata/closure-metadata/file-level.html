@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% include "../dummyfiles.html" %}
 
 {% block pageTitle %}
 File level closure metadata
@@ -9,28 +10,28 @@ File level closure metadata
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Add or edit closure metadata on file basis</h1>
-      {{releaseVersion | log }}
-      <p class="govuk-body">
+  <form action="/metadata/closure-metadata/confirm-file-level">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">Add or edit closure metadata on file basis</h1>
+        {{releaseVersion | log }}
+        <p class="govuk-body">
         You can now add or edit closure metadata to individual files or folders.
       </p>
-      <p class="govuk-body">
+        <p class="govuk-body">
         Select the relevant record(s) from the table below and proceed by clicking
         "Add or Edit metadata".
       </p>
 
-      <div class="govuk-tdr-file-selection-panel">
-        <div class="govuk-tdr-file-selection-panel__search">
-          <input
+        <div class="govuk-tdr-file-selection-panel">
+          <div class="govuk-tdr-file-selection-panel__search">
+            <input
             class="govuk-input"
             id="event-name"
             name="event-name"
             type="search"
-            placeholder="Enter a file or folder name"
-/>
-          <a
+            placeholder="Enter a file or folder name"/>
+            <a
               href="file-level"
               role="button"
               draggable="false"
@@ -39,19 +40,16 @@ File level closure metadata
             >
               Search
           </a>
-        </div>
-        <div class="govuk-button-group">
-          <a
-              href="./baking-powder/check-closure-status.html"
-              role="button"
+          </div>
+          <div class="govuk-button-group">
+            <button
               draggable="false"
               class="govuk-button"
               data-module="govuk-button"
             >
               Add or Edit metadata
-          </a>
-
-          <button
+            </button>
+            <button
             class="govuk-button govuk-button--secondary"
             data-module="govuk-button"
             type="button"
@@ -61,7 +59,7 @@ File level closure metadata
             Select all
           </button>
 
-          <button
+            <button
             class="govuk-button govuk-button--secondary"
             data-module="govuk-button"
             type="button"
@@ -70,8 +68,8 @@ File level closure metadata
           >
             Clear selection
           </button>
+          </div>
         </div>
-      </div>
 
       {% macro navigationItem(item, level, size, pos) %}
         {% if item.type == 'item' or item.children.length == 0 %}
@@ -148,19 +146,25 @@ File level closure metadata
           {% endfor %}
         </ul>
       </div>
+      <div class="govuk-grid-column-full">
+        <div class="govuk-tna-tree">
+          <ul tabindex="0"class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
+            {% for node in data.files %}
+              {{ fileItem(node, 1, loop.length, loop.index) }}
+            {% endfor %}
+          </ul>
+        </div>
 
-      <div class="govuk-button-group">
-        <a
-        href="./baking-powder/check-closure-status.html"
-        role="button"
+        <div class="govuk-button-group">
+          <button
         draggable="false"
         class="govuk-button"
         data-module="govuk-button"
       >
         Add or Edit metadata
-      </a>
+      </button>
 
-        {# <a
+          {# <a
           href="./baking-powder/abandon-changes-warning.html"
           role="button"
           draggable="false"
@@ -168,12 +172,12 @@ File level closure metadata
         >
           Delete metadata
         </a> #}
+        </div>
+
+        <br/>
       </div>
-
-      <br/>
     </div>
-  </div>
-
+  </form>
   <script type="text/javascript">
     function check_all() {
       var checkboxes = document.getElementsByName('organisation');

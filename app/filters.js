@@ -42,10 +42,29 @@ module.exports = function (env) {
     keep the following line to return your filters to the app
   ------------------------------------------------------------------ */
 
+  filters.filterOpen = function (selection, closed) {
+    if (selection === undefined) return [];
+    return selection.filter((fn) => {
+      return closed[fn] === undefined;
+    });
+  };
+
+  filters.filterClosed = function (selection, closed) {
+    if (selection === undefined) return [];
+    return selection.filter((fn) => {
+      return closed[fn] !== undefined;
+    });
+  };
+
   filters.langNameFromCode = function (code, languages) {
     const language = languages.find((l) => l.alpha2 === code);
     return language ? language.English : "";
   };
 
+  filters.decodeFilename = function (encodedName) {
+    const fileName = encodedName.split("-").pop();
+
+    return decodeURI(fileName);
+  };
   return filters;
 };
