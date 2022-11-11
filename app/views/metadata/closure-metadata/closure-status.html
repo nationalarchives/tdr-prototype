@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Check closure status
+{% endblock %}
+
+{% block content %}
+
+  <form action="confirm-closure-status">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl">
+          Confirm the closure status of the selected files
+        </h1>{{releaseVersion | log }}
+
+        <div class="tdr-card">
+          <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding closure to the following files:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            {% for f in data['file-selection']| filterOpen(data.closedFiles) %}
+              <li>{{f|decodeFilename}}</li>
+            {% endfor %}
+          </ul>
+          {% set alreadyClosed =  data['file-selection']| filterClosed(data.closedFiles) %}
+          {% if alreadyClosed.length > 0 %}
+            <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">The following selected files are already closed:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              {% for f in data['file-selection']| filterClosed(data.closedFiles) %}
+                <li>{{f|decodeFilename}}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+
+        <div class="govuk-form-group {% if error %}govuk-form-group--error{% endif %}">
+          <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              <h2 class="govuk-fieldset__heading">Has this closure been approved by the Advisory Council?</h2>
+            </legend>
+            {% if error == 'no-confirmation' %}
+              <p id="passport-issued-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> You must confirm this closure has been approved before continuing.
+              </p>
+            {% endif %}
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                {% for f in fileSelection %}
+                  <input class="govuk-checkboxes__input" id="close-{{f}}" name="requestClose[{{f}}]" type="hidden" value="true">
+                {% endfor %}
+                <input class="govuk-checkboxes__input" id="closed" name="confirm-closure" type="checkbox" value="true">
+                <label class="govuk-label govuk-checkboxes__label" for="confirm-closure">
+                  Yes, I confirm
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+            You must provide the following information, as they are mandatory for closure.
+          </span>
+          </summary>
+          <div class="govuk-details__text">
+            <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+              <li>FOI decision asserted, this is the date of the Advisory Council approval</li>
+              <li>Closure start date, this is the date the record starts </li>
+              <li>Closure period</li>
+              <li>FOI exemption code</li>
+            </ul>
+          </div>
+        </details>
+
+        <div class="govuk-button-group">
+          <button role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+          <a class="govuk-link" href="./file-level.html">Cancel</a>
+        </div>
+
+      </div>
+    </div>
+  </form>
+
+{% endblock %}
