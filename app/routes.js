@@ -68,6 +68,7 @@ router.get(
 router.get(
   "/metadata/closure-metadata/confirm-closure-status",
   function (req, res) {
+    console.log(req.session.data["file-selection"]);
     if (req.session.data["confirm-closure"] === undefined) {
       res.render("metadata/closure-metadata/closure-status", {
         error: "no-confirmation",
@@ -81,7 +82,7 @@ router.get(
 const redirectAddClosure = (req, res) => {
   const selected = req.session.data["file-selection"];
   const closed = req.session.data["closedFiles"];
-
+  console.log(selected);
   let matching = true;
   selected.forEach((selectedFile1) => {
     selected.forEach((selectedFile2) => {
@@ -115,12 +116,14 @@ router.get(
   function (req, res) {
     let selected = req.session.data["file-selection"];
     const closed = req.session.data["closedFiles"];
-
+    console.log(selected);
     if (
       selected.length &&
       (typeof selected == "string" || selected instanceof String)
-    )
+    ) {
       selected = [selected];
+      req.session.data["file-selection"] = selected;
+    }
     if (!req.session.data.closedFiles) req.session.data.closedFiles = {};
 
     if (selected === undefined) {
