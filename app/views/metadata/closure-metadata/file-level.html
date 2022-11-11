@@ -73,22 +73,22 @@ File level closure metadata
         </div>
       </div>
 
-      {% macro fileItem(item, level, size, pos) %}
-        {% if item.type == 'file' or item.children.length == 0 %}
+      {% macro navigationItem(item, level, size, pos) %}
+        {% if item.type == 'item' or item.children.length == 0 %}
           <li
-              class="govuk-tna-tree__file-item"
-              role="treeitem"
-              id="{{level}}-{{pos}}"
-              aria-selected="false"
-              aria-level="{{level}}"
-              aria-setsize="{{size}}"
-              aria-posinset="{{pos}}"
-            >
+                class="govuk-tna-tree__item"
+                role="treeitem"
+                id="{{ item.id }}"
+                aria-level="{{level}}"
+                aria-setsize="{{size}}"
+                aria-posinset="{{pos}}"
+                aria-selected="false"
+        >
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="checkbox-{{level}}-{{pos}}" tabindex="-1" type="checkbox"/>
-              <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{level}}-{{pos}}">
+              <input name="file-selection" class="govuk-checkboxes__input" tabindex="-1" id="checkbox-{{ item.id }}" type="checkbox"/>
+              <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{ item.id }}">
                 {{item.name}}
-                {% if item.name == "Baking powder.docx" and data['closure']['baking-powder'][0] === 'true' %}
+                {% if data['closedFiles'][itemName] !== undefined %}
                   <span class="icon" aria-label="Has existing metadata">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
                   </span>
@@ -97,46 +97,43 @@ File level closure metadata
             </div>
           </li>
 
-        {% elif item.type == 'directory' %}
+        {% elif item.type == 'node' %}
           <li
-              class="govuk-tna-tree__folder-item"
-              role="treeitem"
-              id="{{level}}-{{pos}}"
-              aria-expanded="true"
-              aria-selected="false"
-              aria-level="{{level}}"
-              aria-setsize="{{size}}"
-              aria-posinset="{{pos}}"
-            >
-            <div class="govuk-tna-tree__folder-item__container">
+                class="govuk-tna-tree__node-item"
+                role="treeitem"
+                id="{{ item.id }}"
+                aria-expanded="true"
+                aria-selected="false"
+                aria-level="{{level}}"
+                aria-setsize="{{size}}"
+                aria-posinset="{{pos}}"
+        >
+            <div class="govuk-tna-tree__node-item__container">
               <button
-                class="govuk-tna-tree__file-expander"
-                tabindex="-1"
-                id="expander-{{level}}-{{pos}}"
-              >
+                        class="govuk-tna-tree__expander"
+                        tabindex="-1"
+                        id="expander-{{ item.id }}"
+                >
                 <span class="govuk-visually-hidden">Expand</span>
               </button>
               <div class="govuk-checkboxes__item">
                 <input
-                  class="govuk-checkboxes__input"
-                  id="checkbox-{{level}}-{{pos}}"
-                  tabindex="-1"
-                  type="checkbox"/>
-                <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{level}}-{{pos}}">
+                            class="govuk-checkboxes__input"
+                            id="checkbox-{{ item.id }}"
+                            tabindex="-1"
+                            type="checkbox"
+                            name="file-selection-directory"
+/>
+                <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{ item.id }}">
                   <img class="govuk-tna-tree__svg-directory" role="img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyMiI+PHBhdGggZmlsbD0iIzAwMCIgZD0iTTIyIDMuNUgxMC42ODNMOC43NTguODVhMS42NjcgMS42NjcgMCAwIDAtMS4zNS0uNjgzSDJBMS42NjcgMS42NjcgMCAwIDAgLjMzMyAxLjgzM3YxOC4zMzRBMS42NjcgMS42NjcgMCAwIDAgMiAyMS44MzNoMjBhMS42NjcgMS42NjcgMCAwIDAgMS42NjctMS42NjZ2LTE1QTEuNjY2IDEuNjY2IDAgMCAwIDIyIDMuNVptMCAxNi42NjdIMlY2LjgzM2g2LjA5MmExLjY2NyAxLjY2NyAwIDAgMCAxLjY2Ni0xLjY2NkgyVjEuODMzaDUuNDA4bDIuMTc1IDIuOTkyYS44MzMuODMzIDAgMCAwIC42NzUuMzQySDIydjE1WiIvPjwvc3ZnPg==" alt="Directory"/>
                   {{item.name}}
-                  {% if item.name == "Baking powder.docx" and data['closure']['baking-powder'][0] === 'true' %}
-                    <span class="icon" aria-label="Has existing metadata">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
-                    </span>
-                  {% endif %}
                 </label>
               </div>
             </div>
-            <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-{{level}}-{{pos}}">
+            <ul class="govuk-tna-tree__nested-item-list" role="group" id="node-group-{{ item.id }}">
               {% set nextLevel = level + 1 %}
               {% for child in item.children %}
-                {{ fileItem(child, nextLevel, loop.length, loop.index) }}
+                {{ navigationItem(child, nextLevel, loop.length, loop.index) }}
               {% endfor %}
             </ul>
           </li>
@@ -145,143 +142,11 @@ File level closure metadata
     </div>
     <div class="govuk-grid-column-full">
       <div class="govuk-tna-tree">
-        <ul tabindex="0"class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
-          {% for node in data.files %}
-            {{ fileItem(node, 1, loop.length, loop.index) }}
+        <ul tabindex="0" class="govuk-tna-tree__nested-item-list" role="tree" aria-multiselectable="true">
+          {% for node in data.files_v01 %}
+            {{ navigationItem(node, 1, loop.length, loop.index) }}
           {% endfor %}
         </ul>
-        {# <ul class="govuk-tna-tree__nested-file-list" role="tree" aria-multiselectable="true">
-
-          <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="1" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label" for="1">
-                Chocolate chips.xls
-
-              </label>
-            </div>
-          </li>
-
-          <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="2" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label" for="2">
-                Baking soda.xlsx
-
-              </label>
-            </div>
-          </li>
-
-          <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="13" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label" for="13">
-                Baking powder.docx
-
-              </label>
-            </div>
-          </li>
-
-          <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="3" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label" for="3">
-                Baking powder1.pdf
-
-              </label>
-            </div>
-          </li>
-
-          <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="4" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label" for="4">
-                Cookie dough.pdf
-
-              </label>
-            </div>
-          </li>
-
-          <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
-            <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="5" type="checkbox">
-              <label class="govuk-label govuk-checkboxes__label" for="5">
-                Baking powder2.xlsx
-
-              </label>
-            </div>
-          </li>
-
-          <li class="govuk-tna-tree__folder-item" role="treeitem" aria-expanded="false" aria-selected="false">
-            <div class="govuk-tna-tree__folder-item__container">
-              <button class="govuk-tna-tree__file-expander" tabindex="-1" id="expander-6">
-                <span class="govuk-visually-hidden">Expand</span>
-              </button>
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="6" type="checkbox" tabindex="0">
-                <label class="govuk-label govuk-checkboxes__label" for="6">
-                  Images
-
-                </label>
-              </div>
-            </div>
-            <ul class="govuk-tna-tree__nested-file-list" role="group" id="folder-group-6">
-
-              <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="7" type="checkbox">
-                  <label class="govuk-label govuk-checkboxes__label" for="7">
-                Flour.jpg
-
-              </label>
-                </div>
-              </li>
-
-              <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="8" type="checkbox">
-                  <label class="govuk-label govuk-checkboxes__label" for="8">
-                Sugar.jpg
-
-              </label>
-                </div>
-              </li>
-
-              <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="9" type="checkbox">
-                  <label class="govuk-label govuk-checkboxes__label" for="9">
-                Milk and cream.jpg
-
-              </label>
-                </div>
-              </li>
-
-              <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="10" type="checkbox">
-                  <label class="govuk-label govuk-checkboxes__label" for="10">
-                Cocoa.jpg
-
-              </label>
-                </div>
-              </li>
-
-              <li class="govuk-tna-tree__file-item" role="treeitem" aria-selected="false">
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="11" type="checkbox">
-                  <label class="govuk-label govuk-checkboxes__label" for="11">
-                Bananas.jpg
-
-              </label>
-                </div>
-              </li>
-
-            </ul>
-          </li>
-
-        </ul> #}
-
       </div>
 
       <div class="govuk-button-group">
@@ -330,4 +195,16 @@ File level closure metadata
 
 {% block pageScripts %}
   <script src="/public/javascripts/tree-view.js"></script>
+  <script>
+    window.onload = () => {
+      const treeItems = document.querySelectorAll('[role=tree]')
+      const tree = document.querySelector('[role=tree]')
+      const treeItemList = []
+      if (tree != null) {
+        treeItems.forEach(item => treeItemList.push(item))
+        const nestedNavigation = new NestedNavigation(tree, treeItemList)
+        nestedNavigation.initialiseFormListeners()
+      }
+    }
+  </script>
 {% endblock %}
