@@ -172,9 +172,12 @@ class NestedNavigation {
 
   setSelected: (li: HTMLLIElement | null) => void = (li) => {
     if (li != null) {
+      let input;
       const isSelected: boolean = li.getAttribute("aria-selected") === "true";
       li.setAttribute("aria-selected", !isSelected ? "true" : "false");
       li.setAttribute("aria-checked", !isSelected ? "true" : "false");
+      input = li.querySelector("input");
+      if (input) input.checked = !isSelected ? true : false;
       // If this is a node, traverse down
       if (li.hasAttribute("aria-expanded")) {
         const childrenGroup: HTMLUListElement | null = document.querySelector(
@@ -185,6 +188,8 @@ class NestedNavigation {
           for (const child of children) {
             child.setAttribute("aria-selected", !isSelected ? "true" : "false");
             child.setAttribute("aria-checked", !isSelected ? "true" : "false");
+            input = child.querySelector("input");
+            if (input) input.checked = !isSelected ? true : false;
           }
         }
       }
@@ -205,6 +210,7 @@ class NestedNavigation {
         ul.parentNode as HTMLLIElement;
       if (parentLI !== null) {
         if (ul.getAttribute("role") !== "tree") {
+          let input = parentLI.querySelector("input");
           if (countChecked > 0 && countChecked < all.length) {
             parentLI.setAttribute("aria-checked", "mixed");
           }
@@ -212,11 +218,13 @@ class NestedNavigation {
           if (countChecked === all.length) {
             parentLI.setAttribute("aria-checked", "true");
             parentLI.setAttribute("aria-selected", "true");
+            if (input) input.checked = true;
           }
           // None checked
           if (countChecked === 0) {
             parentLI.setAttribute("aria-selected", "false");
             parentLI.setAttribute("aria-checked", "false");
+            if (input) input.checked = false;
           }
           const nextEl: HTMLUListElement | null | undefined =
             ul.parentElement?.closest("[role=group]");
