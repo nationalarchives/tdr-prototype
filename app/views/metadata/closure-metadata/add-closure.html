@@ -15,8 +15,8 @@ Add closure metadata to 'Baking powder.docx'
         <div class="tdr-card">
           <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding/editing closure metadata for the following files:</p>
           <ul class="govuk-list govuk-list--bullet">
-            {% for f in data['file-selection'] %}
-              <li>{{f|decodeFilename}}</li>
+            {% for f in data['file-selection']| getFilenames(data.files) %}
+              <li>{{f}}</li>
             {% endfor %}
           </ul>
         </div>
@@ -95,7 +95,7 @@ Add closure metadata to 'Baking powder.docx'
                             </label>
                   <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                                 id="closure-start-day" name="addClosure-closure-start-day" type="text" pattern="[0-9]*"
-                                inputmode="numeric" placeholder="dd"  value="{% if data['addClosure-closure-start-day'] %}{{data['addClosure-closure-start-day']}}{% else %}12{%endif%}">
+                                inputmode="numeric" placeholder="dd"  value="{% if data['addClosure-closure-start-day'] %}{{data['addClosure-closure-start-day']}}{% elif data.error != "not-matching" %}12{%endif%}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -105,7 +105,7 @@ Add closure metadata to 'Baking powder.docx'
                             </label>
                   <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                                 id="closure-start-month" name="addClosure-closure-start-month" type="text" pattern="[0-9]*"
-                                inputmode="numeric" placeholder="mm"  value="{% if data['addClosure-closure-start-month'] %}{{data['addClosure-closure-start-month']}}{% else %}07{%endif%}">
+                                inputmode="numeric" placeholder="mm"  value="{% if data['addClosure-closure-start-month'] %}{{data['addClosure-closure-start-month']}}{% elif data.error != "not-matching" %}07{%endif%}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -115,7 +115,7 @@ Add closure metadata to 'Baking powder.docx'
                             </label>
                   <input class="govuk-input govuk-date-input__input govuk-input--width-4"
                                 id="closure-start-year" name="addClosure-closure-start-year" type="text" pattern="[0-9]*"
-                                inputmode="numeric" placeholder="yyyy" value="{% if data['addClosure-closure-start-year'] %}{{data['addClosure-closure-start-year']}}{% else %}1998{%endif%}">
+                                inputmode="numeric" placeholder="yyyy" value="{% if data['addClosure-closure-start-year'] %}{{data['addClosure-closure-start-year']}}{% elif data.error != "not-matching" %}1998{%endif%}">
                 </div>
               </div>
             </div>

@@ -68,7 +68,9 @@ router.get(
 router.get(
   "/metadata/closure-metadata/confirm-closure-status",
   function (req, res) {
-    console.log(req.session.data["file-selection"]);
+    if (req.session.data["file-selection"] === undefined) {
+      throw new Error("Missing file selection");
+    }
     if (req.session.data["confirm-closure"] === undefined) {
       res.render("metadata/closure-metadata/closure-status", {
         error: "no-confirmation",
@@ -79,22 +81,43 @@ router.get(
   }
 );
 
+const clearEmpties = (closedFiles) => {
+  if (closedFiles === undefined) return {};
+
+  for (const [fileKey, closedFile] of Object.entries(closedFiles)) {
+    for (const [fieldKey, fieldValue] of Object.entries(closedFile)) {
+      if (closedFile[fieldKey] == "") {
+        delete closedFile[fieldKey];
+      }
+    }
+  }
+
+  return closedFiles;
+};
+
 const redirectAddClosure = (req, res) => {
   const selected = req.session.data["file-selection"];
-  const closed = req.session.data["closedFiles"];
-  console.log(selected);
-  let matching = true;
-  selected.forEach((selectedFile1) => {
-    selected.forEach((selectedFile2) => {
-      if (selectedFile1 !== selectedFile2) {
-        matching =
-          JSON.stringify(closed[selectedFile1]) ===
-          JSON.stringify(closed[selectedFile2]);
-      }
+  let closed = req.session.data["closedFiles"];
+
+  // Add new selected files as empty objs to this array:
+  selected
+    .filter((fn) => closed[fn] === undefined)
+    .forEach((newFile) => {
+      closed[newFile] = {};
+    });
+  closed = clearEmpties(closed);
+
+  let notMatching = selected.some((selectedFile1) => {
+    return selected.some((selectedFile2) => {
+      // If any are not indentical
+      return (
+        JSON.stringify(closed[selectedFile1]) !==
+        JSON.stringify(closed[selectedFile2])
+      );
     });
   });
 
-  if (matching == false) {
+  if (notMatching == true) {
     req.session.data.error = "not-matching";
     // Clear form data so it does not prepopulate
     for (let key in req.session.data) {
@@ -114,9 +137,12 @@ const redirectAddClosure = (req, res) => {
 router.get(
   "/metadata/closure-metadata/confirm-file-level",
   function (req, res) {
+    if (req.session.data["file-selection"] === undefined) {
+      throw new Error("Missing file selection");
+    }
     let selected = req.session.data["file-selection"];
     const closed = req.session.data["closedFiles"];
-    console.log(selected);
+
     if (
       selected.length &&
       (typeof selected == "string" || selected instanceof String)

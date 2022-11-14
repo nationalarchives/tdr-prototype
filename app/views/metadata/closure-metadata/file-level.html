@@ -80,13 +80,12 @@ File level closure metadata
                 aria-level="{{level}}"
                 aria-setsize="{{size}}"
                 aria-posinset="{{pos}}"
-                aria-selected="false"
-        >
+                aria-selected="false">
               <div class="govuk-checkboxes__item">
                 <input name="file-selection" class="govuk-checkboxes__input" tabindex="-1" id="checkbox-{{ item.id }}" type="checkbox" value="{{item.id}}"/>
                 <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{ item.id }}">
                   {{item.name}}
-                  {% if data['closedFiles'][itemName] !== undefined %}
+                  {% if data['closedFiles'][item.id] !== undefined %}
                     <span class="icon" aria-label="Has existing metadata">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
                     </span>
@@ -104,8 +103,7 @@ File level closure metadata
                 aria-selected="false"
                 aria-level="{{level}}"
                 aria-setsize="{{size}}"
-                aria-posinset="{{pos}}"
-        >
+                aria-posinset="{{pos}}">
               <div class="govuk-tna-tree__node-item__container">
                 <button
                         class="govuk-tna-tree__expander"
@@ -121,8 +119,7 @@ File level closure metadata
                             tabindex="-1"
                             type="checkbox"
                             name="file-selection-directory"
-                            value="{{item.id}}"
-/>
+                            value="{{item.id}}"/>
                   <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{ item.id }}">
                     <img class="govuk-tna-tree__svg-directory" role="img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyMiI+PHBhdGggZmlsbD0iIzAwMCIgZD0iTTIyIDMuNUgxMC42ODNMOC43NTguODVhMS42NjcgMS42NjcgMCAwIDAtMS4zNS0uNjgzSDJBMS42NjcgMS42NjcgMCAwIDAgLjMzMyAxLjgzM3YxOC4zMzRBMS42NjcgMS42NjcgMCAwIDAgMiAyMS44MzNoMjBhMS42NjcgMS42NjcgMCAwIDAgMS42NjctMS42NjZ2LTE1QTEuNjY2IDEuNjY2IDAgMCAwIDIyIDMuNVptMCAxNi42NjdIMlY2LjgzM2g2LjA5MmExLjY2NyAxLjY2NyAwIDAgMCAxLjY2Ni0xLjY2NkgyVjEuODMzaDUuNDA4bDIuMTc1IDIuOTkyYS44MzMuODMzIDAgMCAwIC42NzUuMzQySDIydjE1WiIvPjwvc3ZnPg==" alt="Directory"/>
                     {{item.name}}
@@ -165,14 +162,6 @@ File level closure metadata
         Add or Edit metadata
       </button>
 
-            {# <a
-          href="./baking-powder/abandon-changes-warning.html"
-          role="button"
-          draggable="false"
-          class="govuk-button govuk-button--warning"
-        >
-          Delete metadata
-        </a> #}
           </div>
 
           <br/>
