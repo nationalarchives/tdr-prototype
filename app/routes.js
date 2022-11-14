@@ -1,21 +1,25 @@
 const express = require("express");
 const router = express.Router();
 
-// Add your routes here - above the module.exports line
-const getKeys = (obj) => {
-  let keys = [];
-  for (var key in obj) {
-    keys.push(key);
-  }
-  return keys;
-};
-
 router.get("/metadata/closure-metadata/clear", function (req, res) {
   delete req.session.data["file-selection"];
   delete req.session.data["closedFiles"];
 
+  for (let key in req.session.data) {
+    if (
+      key.split("-")[0] === "addClosure" ||
+      key.split("-")[0] === "addAlternative"
+    ) {
+      delete req.session.data[key];
+    }
+  }
+
   res.set("Content-Type", "text/html");
-  res.send(Buffer.from("<h2>deleted closure session data</h2>"));
+  res.send(
+    Buffer.from(
+      "<h2>deleted closure session data</h2><br><br><a href='/metadata/closure-metadata/file-level'>Return to file selection</a>"
+    )
+  );
 });
 
 router.get(
@@ -40,6 +44,23 @@ router.get(
   function (req, res) {
     if (req.session.data["file-selection"] === undefined) {
       throw new Error("Missing file selection");
+    }
+
+    const formFieldsTotal = 10;
+    const formFieldsComplete = [];
+    for (let key in req.session.data) {
+      if (key.split("-")[0] === "addClosure") {
+        if (req.session.data[key] !== "") {
+          formFieldsComplete.push(key);
+        }
+      }
+    }
+
+    if (formFieldsComplete.length < formFieldsTotal) {
+      res.render("metadata/closure-metadata/add-closure", {
+        error: "missing-fields",
+      });
+      return;
     }
 
     if (!req.session.data.closedFiles) req.session.data.closedFiles = {};
@@ -129,6 +150,11 @@ const redirectAddClosure = (req, res) => {
       }
     }
   } else {
+    // Populate the fields data with stored.
+    for (var key in closed[selected[0]]) {
+      req.session.data[key] = closed[selected[0]][key];
+    }
+
     delete req.session.data.error;
   }
   res.redirect("/metadata/closure-metadata/add-closure");

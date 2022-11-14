@@ -56,6 +56,14 @@ module.exports = function (env) {
     return result;
   }
 
+  filters.isFieldMissing = function (fields, data) {
+    fields = Array.isArray(fields) ? fields : [fields];
+
+    return fields.some((field) => {
+      return data[field] === undefined || data[field] === "";
+    });
+  };
+
   filters.filterOpen = function (selection, closed) {
     if (selection === undefined) return [];
     return selection.filter((fn) => {
