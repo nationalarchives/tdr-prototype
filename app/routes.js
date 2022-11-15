@@ -138,12 +138,6 @@ const redirectAddClosure = (req, res) => {
     });
   });
 
-  if (notMatching == true) {
-    req.session.data.error = "not-matching";
-  } else {
-    delete req.session.data.error;
-  }
-
   // Clear form data so it does not prepopulate
   for (let key in req.session.data) {
     if (
@@ -153,9 +147,14 @@ const redirectAddClosure = (req, res) => {
       delete req.session.data[key];
     }
   }
-  // Populate the fields data with stored.
-  for (var key in closed[selected[0]]) {
-    req.session.data[key] = closed[selected[0]][key];
+  if (notMatching == true) {
+    req.session.data.error = "not-matching";
+  } else {
+    // Populate the fields data with stored.
+    for (var key in closed[selected[0]]) {
+      req.session.data[key] = closed[selected[0]][key];
+    }
+    delete req.session.data.error;
   }
 
   console.log(closed, req.session.data["addClosure-closure-period"]);
