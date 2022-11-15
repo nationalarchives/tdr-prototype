@@ -138,25 +138,27 @@ const redirectAddClosure = (req, res) => {
     });
   });
 
+  // Clear form data so it does not prepopulate
+  for (let key in req.session.data) {
+    if (
+      key.split("-")[0] === "addClosure" ||
+      key.split("-")[0] === "addAlternative"
+    ) {
+      delete req.session.data[key];
+    }
+  }
   if (notMatching == true) {
     req.session.data.error = "not-matching";
-    // Clear form data so it does not prepopulate
-    for (let key in req.session.data) {
-      if (
-        key.split("-")[0] === "addClosure" ||
-        key.split("-")[0] === "addAlternative"
-      ) {
-        delete req.session.data[key];
-      }
-    }
   } else {
     // Populate the fields data with stored.
     for (var key in closed[selected[0]]) {
       req.session.data[key] = closed[selected[0]][key];
     }
-
     delete req.session.data.error;
   }
+
+  console.log(closed, req.session.data["addClosure-closure-period"]);
+
   res.redirect("/metadata/closure-metadata/add-closure");
 };
 
