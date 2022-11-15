@@ -25,8 +25,8 @@
           <h2 class="govuk-heading-s">
             <a class="govuk-link govuk-link--no-visited-state" href="closure-metadata/file-level">Closure metadata</a>
           </h2>
-          <strong class="tdr-metadata-card__state govuk-tag govuk-tag--grey">
-            Not entered
+          <strong class="tdr-metadata-card__state govuk-tag govuk-tag--{% if data.state == "entered" %}blue{% elif data.state == "incomplete" %}red{% else %}grey{% endif %}">
+            {% if data.state == "entered" %}Entered{% elif data.state == "incomplete" %}Incomplete{% else %}Not entered{% endif %}
           </strong>
           <p class="govuk-body">If you'd like to add or edit descriptive metadata to your records, you can do so here.</p>
         </div>
