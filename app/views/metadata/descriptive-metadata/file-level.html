@@ -14,8 +14,10 @@ File level descriptive metadata
       <h1 class="govuk-heading-l">
       Add or edit descriptive data on file basis
     </h1>{{releaseVersion | log }}
-      <p class="govuk-body">You can now add or edit descriptive metadata to individual files or folders.</p>
-      <p class="govuk-body">You can do this by selecting the relevant record(s) from the table below and proceed by clicking "Add descriptive metadata".</p>
+      <p class="govuk-body">You can now add or edit descriptive metadata to individual files or folders. Select the relevant record(s) from the table below and proceed by clicking "Add descriptive metadata".</p>
+      <div class="govuk-inset-text govuk-!-margin-top-0">
+        Once you have added all necessary descriptive metadata return to the <a href="../additional-metadata">previous page</a> to add closure metadata or continue with the transfer.
+      </div>
       <div class="govuk-button-group govuk-tdr-metadata__file-selection-btns">
         <button class="govuk-button govuk-button--secondary" data-module="govuk-button" type="button" name="selectAll"
         value="select-all" onClick="check_all()">
@@ -388,8 +390,11 @@ File level descriptive metadata
           Add or Edit metadata
         </a>
 
-        <a href="./baking-powder/abandon-changes-warning.html" role="button" draggable="false" class="govuk-button govuk-button--warning" >
-          Delete metadata
+        <a href="../additional-metadata"
+          draggable="false"
+          class="govuk-button govuk-button--secondary"
+          data-module="govuk-button">
+          Back
         </a>
       </div>
 

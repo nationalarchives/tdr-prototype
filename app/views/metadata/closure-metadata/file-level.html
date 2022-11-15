@@ -16,13 +16,12 @@ File level closure metadata
         <h1 class="govuk-heading-l">Add or edit closure metadata on file basis</h1>
         {{releaseVersion | log }}
         <p class="govuk-body">
-        You can now add or edit closure metadata to individual files or folders.
-      </p>
-        <p class="govuk-body">
-        Select the relevant record(s) from the table below and proceed by clicking
+        You can now add or edit closure metadata to individual files or folders. Select the relevant record(s) from the table below and proceed by clicking
         "Add or Edit metadata".
-      </p>
-
+        </p>
+        <div class="govuk-inset-text govuk-!-margin-top-0">
+          Once you have added all necessary closure metadata return to the <a href="../additional-metadata">previous page</a> to add descriptive metadata or continue with the transfer.
+        </div>
         <div class="govuk-tdr-file-selection-panel">
           <div class="govuk-tdr-file-selection-panel__search">
             <input
@@ -153,6 +152,12 @@ File level closure metadata
               data-module="govuk-button">
               Add or Edit metadata
             </button>
+            <a href="../additional-metadata"
+              draggable="false"
+              class="govuk-button govuk-button--secondary"
+              data-module="govuk-button">
+              Back
+            </a>
           </div>
 
           <br/>
