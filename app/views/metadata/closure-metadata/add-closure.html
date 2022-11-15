@@ -12,11 +12,25 @@ Add closure metadata to 'Baking powder.docx'
             Add or edit closure metadata
         </h1>{{releaseVersion | log }}
 
+        {% if error == "missing-fields" %}
+          <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="govuk-error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+            There is a problem
+          </h2>
+            <div class="govuk-error-summary__body">
+              <ul class="govuk-list govuk-error-summary__list">
+                <li>
+                  <a href="#passport-issued-day">Enter values for all the fields on this page</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        {% endif %}
         <div class="tdr-card">
           <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding/editing closure metadata for the following files:</p>
           <ul class="govuk-list govuk-list--bullet">
-            {% for f in data['file-selection'] %}
-              <li>{{f|decodeFilename}}</li>
+            {% for f in data['file-selection']| getFilenames(data.files) %}
+              <li>{{f}}</li>
             {% endfor %}
           </ul>
         </div>
@@ -25,7 +39,7 @@ Add closure metadata to 'Baking powder.docx'
             <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
             <strong class="govuk-warning-text__text">
               <span class="govuk-warning-text__assistive">Warning</span>
-            The selected files have different metadata therefore the fields below cannot be prepopulated. Continuing will replace all metadata for all selected files.
+            The selected files have different metadata therefore the fields below cannot be prepopulated. Continuing will replace the metadata for all selected files.
           </strong>
           </div>
         {% endif %}
@@ -33,7 +47,8 @@ Add closure metadata to 'Baking powder.docx'
     </div>
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <div class="govuk-form-group">
+        {% set errorFOIDate = error == "missing-fields" and ["addClosure-foi-asserted-day", "addClosure-foi-asserted-month", "addClosure-foi-asserted-year"] | isFieldMissing(data) == true %}
+        <div class="govuk-form-group {% if errorFOIDate == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset" role="group" aria-describedby="foi-decision-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading">
@@ -43,6 +58,11 @@ Add closure metadata to 'Baking powder.docx'
             <div id="foi-decision-hint" class="govuk-hint">
                     Date of the Advisory Council approval
                   </div>
+            {% if errorFOIDate == true %}
+              <p id="passport-issued-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Enter a value for FOI decision asserted date
+            </p>
+            {% endif %}
             <div class="govuk-date-input" id="passport-issued">
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
@@ -76,8 +96,8 @@ Add closure metadata to 'Baking powder.docx'
             </div>
           </fieldset>
         </div>
-
-        <div class="govuk-form-group">
+        {% set errorStartDate = error == "missing-fields" and ["addClosure-closure-start-day", "addClosure-closure-start-month", "addClosure-closure-start-year"] | isFieldMissing(data) == true %}
+        <div class="govuk-form-group {% if errorStartDate == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset" role="group" aria-describedby="closure-start-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading">
@@ -87,6 +107,11 @@ Add closure metadata to 'Baking powder.docx'
             <div id="closure-start-hint" class="govuk-hint">
                     This has been defaulted to the last date modified, if this is not correct, amend the field below.
                 </div>
+            {% if errorStartDate == true %}
+              <p id="passport-issued-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Enter a value for closure start date
+              </p>
+            {% endif %}
             <div class="govuk-date-input" id="passport-issued">
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
@@ -95,7 +120,7 @@ Add closure metadata to 'Baking powder.docx'
                             </label>
                   <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                                 id="closure-start-day" name="addClosure-closure-start-day" type="text" pattern="[0-9]*"
-                                inputmode="numeric" placeholder="dd"  value="{% if data['addClosure-closure-start-day'] %}{{data['addClosure-closure-start-day']}}{% else %}12{%endif%}">
+                                inputmode="numeric" placeholder="dd"  value="{% if data['addClosure-closure-start-day'] %}{{data['addClosure-closure-start-day']}}{%endif%}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -105,7 +130,7 @@ Add closure metadata to 'Baking powder.docx'
                             </label>
                   <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                                 id="closure-start-month" name="addClosure-closure-start-month" type="text" pattern="[0-9]*"
-                                inputmode="numeric" placeholder="mm"  value="{% if data['addClosure-closure-start-month'] %}{{data['addClosure-closure-start-month']}}{% else %}07{%endif%}">
+                                inputmode="numeric" placeholder="mm"  value="{% if data['addClosure-closure-start-month'] %}{{data['addClosure-closure-start-month']}}{%endif%}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -115,14 +140,15 @@ Add closure metadata to 'Baking powder.docx'
                             </label>
                   <input class="govuk-input govuk-date-input__input govuk-input--width-4"
                                 id="closure-start-year" name="addClosure-closure-start-year" type="text" pattern="[0-9]*"
-                                inputmode="numeric" placeholder="yyyy" value="{% if data['addClosure-closure-start-year'] %}{{data['addClosure-closure-start-year']}}{% else %}1998{%endif%}">
+                                inputmode="numeric" placeholder="yyyy" value="{% if data['addClosure-closure-start-year'] %}{{data['addClosure-closure-start-year']}}{%endif%}">
                 </div>
               </div>
             </div>
           </fieldset>
         </div>
 
-        <div class="govuk-form-group">
+        {% set errorClosurePeriod = error == "missing-fields" and "addClosure-closure-period" | isFieldMissing(data) == true %}
+        <div class="govuk-form-group {% if errorClosurePeriod == true %}govuk-form-group--error{% endif %}">
           <h2 class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--m" for="closure-period">
                 Closure period
@@ -131,12 +157,18 @@ Add closure metadata to 'Baking powder.docx'
           <div id="closure-period-hint" class="govuk-hint">
                 Number of years the record is closed from the closure start date
             </div>
+          {% if errorClosurePeriod == true %}
+            <p id="passport-issued-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Enter a value for closure period
+            </p>
+          {% endif %}
           <div class="govuk-input__wrapper"><input class="govuk-input govuk-input--width-5" id="closure-period" name="addClosure-closure-period" type="text" spellcheck="false" value="{% if data['addClosure-closure-period'] %}{{data['addClosure-closure-period']}}{%endif%}">
             <div class="govuk-input__suffix" aria-hidden="true">years</div>
           </div>
         </div>
 
-        <div class="govuk-form-group">
+        {% set errorFOICodes = error == "missing-fields" and "addClosure-foi_id_selection" | isFieldMissing(data) == true %}
+        <div class="govuk-form-group {% if errorFOICodes == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading">
@@ -144,8 +176,13 @@ Add closure metadata to 'Baking powder.docx'
               </h2>
             </legend>
             <div class="govuk-hint">
-              Add one or more exemption code to this closure.
+              Add one or more exemption code to this closure. Here is a <a target="_blank" href="https://www.legislation.gov.uk/ukpga/2000/36/contents">full list of FOI codes and their designated exemptions</a>.
             </div>
+            {% if errorFOICodes == true %}
+              <p id="passport-issued-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Enter a value for FOI exemption codes
+            </p>
+            {% endif %}
             <div class="govuk-checkboxes" data-module="govuk-checkboxes" id="foi-exemption-codes">
               <div class="govuk-grid-row">
                 <div class="govuk-grid-column-one-third">
@@ -166,17 +203,19 @@ Add closure metadata to 'Baking powder.docx'
             </div>
           </fieldset>
         </div>
-        <div class="govuk-form-group{% if data['error'] == 'no-alternative' and data['addClosure-is-the-title-sensitive'] == undefined  %} govuk-form-group--error{% endif %}">
+
+        {% set errorTitleClosed = error == "missing-fields" and "addClosure-is-the-title-sensitive" | isFieldMissing(data) == true %}
+        <div class="govuk-form-group {% if errorTitleClosed == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                    Is the title closed?
-                </legend>
+                Is the title closed?
+            </legend>
             <div class="govuk-hint">
               If there is sensitive information in the title of this file select 'yes'. You will be given an opportunity to add an alternative public title to this record.
             </div>
-            {% if data['error'] == 'no-alternative' and data['addClosure-is-the-title-sensitive'] == undefined %}
-              <p id="no-alternative-title" class="govuk-error-message">
-                <span class="govuk-visually-hidden">Error:</span> Please choose if there is an alternative title and/or description for this record
+            {% if errorTitleClosed == true %}
+              <p id="passport-issued-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Choose an option for this field
             </p>
             {% endif %}
             <div class="govuk-radios">
@@ -195,7 +234,9 @@ Add closure metadata to 'Baking powder.docx'
             </div>
           </fieldset>
         </div>
-        <div class="govuk-form-group{% if data['error'] == 'no-alternative' and data['addClosure-is-the-description-sensitive'] == undefined %} govuk-form-group--error{% endif %}">
+
+        {% set errorDescriptionClosed = error == "missing-fields" and "addClosure-is-the-description-sensitive" | isFieldMissing(data) == true %}
+        <div class="govuk-form-group {% if errorDescriptionClosed == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                     Is the description closed?
@@ -203,9 +244,9 @@ Add closure metadata to 'Baking powder.docx'
             <div class="govuk-hint">
               If there is sensitive information in the description select 'yes'. You will be given an opportunity to add an alternative public description to this record.
           </div>
-            {% if data['error'] == 'no-alternative' and data['addClosure-is-the-description-sensitive'] == undefined %}
-              <p id="no-alternative-description" class="govuk-error-message">
-                <span class="govuk-visually-hidden">Error:</span> Please choose if there is an alternative title and/or description for this record
+            {% if errorDescriptionClosed == true %}
+              <p id="passport-issued-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Choose an option for this field
             </p>
             {% endif %}
             <div class="govuk-radios">
