@@ -9,7 +9,7 @@
     @include govuk-responsive-margin(4, "bottom");
   }
 
-  .govuk-tna-tree > .govuk-tna-tree__nested-file-list {
+  .govuk-tna-tree > .govuk-tna-tree__nested-item-list {
     background-image: linear-gradient(0deg, #F2F2F2 22.22%, #ffffff 22.22%, #ffffff 50%, #F2F2F2 50%, #F2F2F2 72.22%, #ffffff 72.22%, #ffffff 100%);
     background-size: 100% 180px;
     background-position-y: -5px;
@@ -48,11 +48,11 @@
   }
 
   /* Accomodate for lack of button so alignment is ok */
-  .govuk-tna-tree__file-item > .govuk-checkboxes__item {
+  .govuk-tna-tree__item > .govuk-checkboxes__item {
     margin-left: var(--file-expander-btn-width);
   }
 
-  button.govuk-tna-tree__file-expander {
+  button.govuk-tna-tree__expander {
     flex-basis: auto;
     width: var(--file-expander-btn-width);
     height: calc(var(--file-expander-btn-width) - 6px);
@@ -60,28 +60,28 @@
     padding: 0;
   }
 
-  .govuk-tna-tree__folder-item__container {
+  .govuk-tna-tree__node-item__container {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
   }
 
-  .govuk-tna-tree__folder-item__container > * {
+  .govuk-tna-tree__node-item__container > * {
     flex-shrink: 0;
   }
 
-  .govuk-tna-tree__folder-item__container, .govuk-tna-tree__file-item {
+  .govuk-tna-tree__node-item__container, .govuk-tna-tree__item {
     height: 40px;
   }
 
-  .govuk-tna-tree__file-expander {
+  .govuk-tna-tree__expander {
     border: none;
     background-color: transparent;
     cursor: pointer;
     position: relative;
   }
 
-  .govuk-tna-tree__file-expander::before {
+  .govuk-tna-tree__expander::before {
     content: "";
     position: absolute;
 
@@ -102,7 +102,7 @@
     display: block;
   }
 
-  .govuk-tna-tree [role="treeitem"][aria-expanded="true"] > .govuk-tna-tree__folder-item__container > .govuk-tna-tree__file-expander::before {
+  .govuk-tna-tree [role="treeitem"][aria-expanded="true"] > .govuk-tna-tree__node-item__container > .govuk-tna-tree__expander::before {
     @include govuk-shape-arrow($direction: down, $base: 20px);
     border-color: $govuk-link-colour;
   }
@@ -119,7 +119,7 @@
    * */
 
   [role="treeitem"]:focus > .govuk-checkboxes__item > .govuk-checkboxes__label:before,
-  [role="treeitem"]:focus > .govuk-tna-tree__folder-item__container > .govuk-checkboxes__item > .govuk-checkboxes__label:before {
+  [role="treeitem"]:focus > .govuk-tna-tree__node-item__container > .govuk-checkboxes__item > .govuk-checkboxes__label:before {
     border-width: 4px;
 
     // When colours are overridden, the yellow box-shadow becomes invisible
@@ -141,7 +141,7 @@
 
 
   [role="treeitem"][aria-selected="true"] > .govuk-checkboxes__item > .govuk-checkboxes__label:after,
-  [role="treeitem"][aria-selected="true"] > .govuk-tna-tree__folder-item__container > .govuk-checkboxes__item > .govuk-checkboxes__label:after {
+  [role="treeitem"][aria-selected="true"] > .govuk-tna-tree__node-item__container > .govuk-checkboxes__item > .govuk-checkboxes__label:after {
     opacity: 1;
   }
 
@@ -151,7 +151,7 @@
    * https://github.com/alphagov/govuk-frontend/issues/1453#issue-455823968
    * */
   [role="treeitem"][aria-checked="mixed"] > .govuk-checkboxes__item > .govuk-checkboxes__label:after,
-  [role="treeitem"][aria-checked="mixed"] > .govuk-tna-tree__folder-item__container > .govuk-checkboxes__item > .govuk-checkboxes__label:after {
+  [role="treeitem"][aria-checked="mixed"] > .govuk-tna-tree__node-item__container > .govuk-checkboxes__item > .govuk-checkboxes__label:after {
     transform: rotate(0);
     border: none;
     top: 0;
@@ -167,7 +167,7 @@
     background: white;
   }
 
-  .govuk-tna-tree__folder-item__container .govuk-checkboxes__label {
+  .govuk-tna-tree__node-item__container .govuk-checkboxes__label {
     display: flex;
     height: 100%;
     gap: 10px;

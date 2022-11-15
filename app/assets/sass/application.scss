@@ -283,6 +283,15 @@ $govuk-assets-path: '/govuk/assets/';
 .govuk-fieldset--horizontal-align .govuk-fieldset__legend {
   align-self: flex-end;
   margin: 0;
+  width: 100px
+}
+
+.govuk-fieldset--horizontal-align .govuk-form-group {
+  margin-bottom: 0;
+}
+
+.govuk-fieldset--horizontal-align  {
+  @include govuk-responsive-margin(5, "bottom");
 }
 
 .govuk-tdr-multi-select {
@@ -302,4 +311,14 @@ $govuk-assets-path: '/govuk/assets/';
 
 .govuk-tdr-file-selection-panel .govuk-button-group {
   margin-bottom: 0;
+}
+
+.tdr-card {
+  @include govuk-responsive-padding(4);
+  @include govuk-responsive-margin(4, "bottom");
+  border: $govuk-border-colour 1px solid;
+}
+
+.tdr-card .govuk-list:last-of-type {
+margin-bottom: 0;
 }

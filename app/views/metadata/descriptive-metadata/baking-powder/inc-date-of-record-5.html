@@ -1,0 +1,95 @@
+<h2 class="govuk-heading-m govuk-!-margin-bottom-2">
+  Date of the record
+</h2>
+<div id="date-range-hint" class="govuk-hint">
+  Enter the date or date range of the last meaningful changes to this record.
+</div>
+
+<div class="govuk-warning-text govuk-!-margin-bottom-3">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Warning</span>
+    This date information will be associated with your file on Discovery so please ensure it is accurate.
+  </strong>
+</div>
+
+<div id="date-format-range" class="date-format">
+  {# <p id="date-range-hint" class="govuk-body">
+  Enter a specific date or a date range of the last meaningful changes to this record.
+  </p> #}
+  <fieldset class="govuk-fieldset" role="group" aria-describedby="date-range-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+      <h2 class="govuk-fieldset__heading">
+        Start date of range (optional)
+    </h2>
+    </legend>
+    <div id="date-range-hint" class="govuk-hint">
+      Enter the start date of a range.
+    </div>
+    <div class="govuk-date-input" id="passport-issued">
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group  govuk-!-margin-bottom-0">
+          <label class="govuk-label govuk-date-input__label" for="date-range-day">
+          Day
+        </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-range-start-day" name="date-range-start-day" type="text" inputmode="numeric" placeholder="dd">
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group  govuk-!-margin-bottom-0">
+          <label class="govuk-label govuk-date-input__label" for="date-range-start-month">
+          Month
+        </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-range-start-month" name="date-range-start-month" type="text" inputmode="numeric" placeholder="mm">
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group  govuk-!-margin-bottom-0">
+          <label class="govuk-label govuk-date-input__label" for="date-range-start-year">
+          Year
+        </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-range-start-year" name="date-range-start-year" type="text" inputmode="numeric" placeholder="yyyy">
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <div class="govuk-inset-text">
+  The prepopulated date (12/07/1998) is the Last Date Modified determined from your upload.
+</div>
+  <fieldset class="govuk-fieldset" role="group" aria-describedby="date-range-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+      <h2 class="govuk-fieldset__heading">
+        Specific date / End date of range
+    </h2>
+    </legend>
+    <div id="date-range-hint" class="govuk-hint">
+      Enter the specific date of the record or the end date of a range.
+    </div>
+    <div class="govuk-date-input" id="passport-issued">
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group govuk-!-margin-bottom-0">
+          <label class="govuk-label govuk-date-input__label" for="date-range-end-day">
+        Day
+      </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-range-end-day" name="date-range-end-day" type="text" inputmode="numeric" placeholder="dd" value="12">
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group govuk-!-margin-bottom-0">
+          <label class="govuk-label govuk-date-input__label" for="date-range-end-month">
+        Month
+      </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-range-end-month" name="date-range-end-month" type="text" inputmode="numeric" placeholder="mm" value="07">
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group govuk-!-margin-bottom-0">
+          <label class="govuk-label govuk-date-input__label" for="date-range-end-year">
+        Year
+      </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-range-end-year" name="date-range-end-year" type="text" inputmode="numeric" placeholder="yyyy" value="1998">
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
