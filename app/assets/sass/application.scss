@@ -312,3 +312,13 @@ $govuk-assets-path: '/govuk/assets/';
 .govuk-tdr-file-selection-panel .govuk-button-group {
   margin-bottom: 0;
 }
+
+.tdr-card {
+  @include govuk-responsive-padding(4);
+  @include govuk-responsive-margin(4, "bottom");
+  border: $govuk-border-colour 1px solid;
+}
+
+.tdr-card .govuk-list:last-of-type {
+margin-bottom: 0;
+}

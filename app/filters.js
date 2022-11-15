@@ -42,10 +42,56 @@ module.exports = function (env) {
     keep the following line to return your filters to the app
   ------------------------------------------------------------------ */
 
+  function findById(data, id) {
+    function iter(a) {
+      if (a.id == id) {
+        result = a;
+        return true;
+      }
+      return Array.isArray(a.children) && a.children.some(iter);
+    }
+
+    let result;
+    data.some(iter);
+    return result;
+  }
+
+  filters.isFieldMissing = function (fields, data) {
+    fields = Array.isArray(fields) ? fields : [fields];
+
+    return fields.some((field) => {
+      return data[field] === undefined || data[field] === "";
+    });
+  };
+
+  filters.filterOpen = function (selection, closed) {
+    if (selection === undefined) return [];
+    return selection.filter((fn) => {
+      return closed[fn] === undefined;
+    });
+  };
+
+  filters.filterClosed = function (selection, closed) {
+    if (selection === undefined) return [];
+    return selection.filter((fn) => {
+      return closed[fn] !== undefined;
+    });
+  };
+
+  filters.getFilenames = function (selection, allFiles) {
+    if (selection === undefined) return [];
+    return selection.map((id) => findById(allFiles, id).name);
+  };
+
   filters.langNameFromCode = function (code, languages) {
     const language = languages.find((l) => l.alpha2 === code);
     return language ? language.English : "";
   };
 
+  filters.decodeFilename = function (encodedName) {
+    const fileName = encodedName.split("-").pop();
+
+    return decodeURI(fileName);
+  };
   return filters;
 };
