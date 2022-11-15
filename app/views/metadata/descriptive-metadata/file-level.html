@@ -6,19 +6,20 @@ File level descriptive metadata
 {% endblock %}
 
 {% block beforeContent %}
-  <a href="../additional-metadata.html" class="govuk-back-link">Back</a>
+  <a href="../01-descriptive" class="govuk-back-link">Back</a>
 {% endblock %}
 
 {% block content %}
   <form action="/metadata/descriptive-metadata/add-descriptive">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-l">Add or edit descriptive data on file basis</h1>
+        <span class="govuk-caption-l">Descriptive metadata</span>
+        <h1 class="govuk-heading-l">Select files to edit</h1>
         {{releaseVersion | log }}
         <p class="govuk-body">
       You can now add or edit descriptive metadata to individual files or folders. Select the relevant record(s) from the table below and proceed by clicking "Add or edit metadata".</p>
         <div class="govuk-inset-text govuk-!-margin-top-0">
-        Once you have added all necessary descriptive metadata return to the <a href="../additional-metadata">previous page</a> to add closure metadata or continue with the transfer.
+        Once you have added all necessary descriptive metadata return to the <a href="../01-descriptive">previous page</a> to continue the transfer.
       </div>
       </div>
     </div>
@@ -85,7 +86,7 @@ File level descriptive metadata
         data-module="govuk-button">
         Add or Edit metadata
       </button>
-          <a href="../additional-metadata"
+          <a href="../01-descriptive"
         draggable="false"
         class="govuk-button govuk-button--secondary"
         data-module="govuk-button">

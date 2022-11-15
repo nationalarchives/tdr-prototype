@@ -78,6 +78,11 @@ module.exports = function (env) {
     });
   };
 
+  filters.getFilename = function (id, allFiles) {
+    if (id === undefined) return;
+    return findById(allFiles, id).name;
+  };
+
   filters.getFilenames = function (selection, allFiles) {
     if (selection === undefined) return [];
     return selection.map((id) => findById(allFiles, id).name);

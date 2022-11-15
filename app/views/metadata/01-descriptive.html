@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Add, edit or delete metadata
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Step 5 of 7</span>
+      <h1 class="govuk-heading-l">Add descriptive metadata</h1>
+      {# <h1 class="govuk-heading-s">Folder uploaded: Recipes and ingredients</h1> #}
+      {# <p class="govuk-body">Enhance your record by adding description, dates and other metadata. Add public alternatives for sensitive title and description.</p> #}
+
+      <div class="tdr-metadata-card ">
+        <div class="tdr-metadata-card__content">
+          <h2 class="govuk-heading-s">
+            <a class="govuk-link govuk-link--no-visited-state" href="descriptive-metadata/file-level">Descriptive metadata</a>
+          </h2>
+          <strong class="tdr-metadata-card__state govuk-tag govuk-tag{% if data.description != undefined %}--blue{% else %}--grey{% endif %}">
+            {% if data.description == undefined %}Not entered{% else %}Entered{% endif %}
+          </strong>
+          <p class="govuk-body">Add descriptive metadata to files in this consignment.</p>
+          <p class="govuk-inset-text govuk-!-margin-top-0">Providing descriptive metadata is <strong>not mandatory</strong> however does enhance your record.</p>
+          <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+            Descriptive metadata includes the following fields.
+            </span>
+            </summary>
+            <div class="govuk-details__text">
+              <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+                <li>FOI decision asserted, this is the date of the Advisory Council approval</li>
+                <li>Closure start date, this is the date the record starts </li>
+                <li>Closure period</li>
+                <li>FOI exemption code</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <a href="02-closure.html" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+        Continue
+      </a>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+    </div>
+  </div>
+{% endblock %}

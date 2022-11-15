@@ -1,0 +1,132 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Review descriptive metadata added
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Review descriptive metadata changes
+      </h1>{{releaseVersion | log }}
+      <p class="govuk-body">You can edit, save or abandon any changes to descriptive metadata here. </p>
+
+      <div class="govuk-button-group">
+        <a href="./add-descriptive.html" role="button" draggable="false" class="govuk-button"
+          data-module="govuk-button">
+          Edit properties
+        </a>
+        <a href="./abandon-changes-warning.html" role="button" draggable="false" class="govuk-button govuk-button--warning" >
+          Delete metadata
+        </a>
+      </div>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+          Name
+        </dt>
+          <dd class="govuk-summary-list__value">
+          Baking-powder.docx
+        </dd>
+          <dd class="govuk-summary-list__actions"></dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+          Legal status
+        </dt>
+          <dd class="govuk-summary-list__value">
+          Public record
+        </dd>
+          <dd class="govuk-summary-list__actions"></dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+          Copyright
+        </dt>
+          <dd class="govuk-summary-list__value">
+          Crown copyright
+        </dd>
+          <dd class="govuk-summary-list__actions"></dd>
+        </div>
+
+        <!-- descriptive stuff here -->
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
+    Description
+  </dt>
+          <dd class="govuk-summary-list__value">
+            {{data.description}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
+      Date Last Modified
+    </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['specific-day']}}/{{data['specific-month']}}/{{data['specific-year']}}
+          </dd>
+        </div>
+        {# <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
+      Date created
+    </dt>
+          <dd class="govuk-summary-list__value">
+      12/07/2022
+    </dd>
+        </div> #}
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
+      Language(s)
+    </dt>
+          <dd class="govuk-summary-list__value">
+            {% for l in data['language-select']%}
+              {{l | langNameFromCode(data.languages)}}
+              {% if loop.last != true %},{% endif %}
+            {% endfor %}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
+      Translated title of record
+    </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['translation']|d("-", true)}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
+      Relating materials
+    </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['related']|d("-", true)}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
+        Former reference
+    </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['former-refs']|d("-", true)}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
+      Creating body
+    </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['creating-body']|d("-", true)}}
+          </dd>
+        </div>
+      </dl>
+
+      <a href="./file-level" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+      Save and return to all files
+    </a>
+
+    </div>
+  </div>
+
+{% endblock %}

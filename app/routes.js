@@ -75,14 +75,16 @@ router.get(
       }
     }
 
-    if (
-      req.session.data["addClosure-is-the-title-sensitive"] == "yes" ||
-      req.session.data["addClosure-is-the-description-sensitive"] == "yes"
-    ) {
-      res.redirect("/metadata/closure-metadata/closure-alternatives");
-    } else {
-      res.redirect("/metadata/closure-metadata/review-metadata");
-    }
+    res.redirect("/metadata/closure-metadata/review-metadata");
+
+    // if (
+    //   req.session.data["addClosure-is-the-title-sensitive"] == "yes" ||
+    //   req.session.data["addClosure-is-the-description-sensitive"] == "yes"
+    // ) {
+    //   res.redirect("/metadata/closure-metadata/closure-alternatives");
+    // } else {
+    //   res.redirect("/metadata/closure-metadata/review-metadata");
+    // }
   }
 );
 
