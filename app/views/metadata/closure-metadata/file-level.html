@@ -137,13 +137,6 @@ File level closure metadata
         {% endmacro %}
       </div>
       <div class="govuk-grid-column-full">
-        {# <div class="govuk-tna-tree">
-          <ul tabindex="0" class="govuk-tna-tree__nested-item-list" role="tree" aria-multiselectable="true">
-            {% for node in data.files_v01 %}
-              {{ navigationItem(node, 1, loop.length, loop.index) }}
-            {% endfor %}
-          </ul>
-        </div> #}
         <div class="govuk-grid-column-full">
           <div class="govuk-tna-tree">
             <ul tabindex="0"class="govuk-tna-tree__nested-item-list" role="tree" aria-multiselectable="true">
@@ -155,13 +148,11 @@ File level closure metadata
 
           <div class="govuk-button-group">
             <button
-        draggable="false"
-        class="govuk-button"
-        data-module="govuk-button"
-      >
-        Add or Edit metadata
-      </button>
-
+              draggable="false"
+              class="govuk-button"
+              data-module="govuk-button">
+              Add or Edit metadata
+            </button>
           </div>
 
           <br/>
