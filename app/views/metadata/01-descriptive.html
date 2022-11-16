@@ -15,8 +15,8 @@
 
       <div class="tdr-metadata-card ">
         <div class="tdr-metadata-card__content">
-          <h2 class="govuk-heading-s">
-            <a class="govuk-link govuk-link--no-visited-state" href="descriptive-metadata/file-level">Descriptive metadata</a>
+          <h2 class="govuk-heading-m">
+            Descriptive metadata
           </h2>
           <strong class="tdr-metadata-card__state govuk-tag govuk-tag{% if data.description != undefined %}--blue{% else %}--grey{% endif %}">
             {% if data.description == undefined %}Not entered{% else %}Entered{% endif %}
@@ -38,11 +38,14 @@
               </ul>
             </div>
           </details>
+          <a href="descriptive-metadata/file-level" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+            Add descriptive metadata
+          </a>
         </div>
       </div>
 
       <a href="02-closure.html" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
-        Continue
+        Next
       </a>
 
     </div>

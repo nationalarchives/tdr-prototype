@@ -4,12 +4,12 @@
   Transfer summary
 {% endblock %}
 
-{% block beforeContent %}
+{# {% block beforeContent %}
   <a href="./download-metadata" class="govuk-back-link">Back</a>
-{% endblock %}
+{% endblock %} #}
 
 {% block content %}
-<div class="govuk-grid-row">
+  <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <span class="govuk-caption-l">Step 7 of 7</span>
@@ -52,7 +52,6 @@
         </div>
       </dl>
 
-
       <form class="form" action="/end-confirmation" method="post">
 
         <div class="govuk-form-group">
@@ -68,10 +67,14 @@
 
           </fieldset>
         </div>
-
-        <button type="submit" class="govuk-button" data-module="govuk-button">
-          Transfer your records
-        </button>
+        <div class="govuk-button-group">
+          <a href="./download-metadata" role="button" draggable="false" class="govuk-button govuk-button--secondary"  data-module="govuk-button">
+            Previous
+          </a>
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Transfer your records
+          </button>
+        </div>
 
       </form>
 

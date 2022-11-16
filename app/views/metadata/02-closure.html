@@ -20,8 +20,8 @@
 
       <div class="tdr-metadata-card">
         <div class="tdr-metadata-card__content">
-          <h2 class="govuk-heading-s">
-            <a class="govuk-link govuk-link--no-visited-state" href="closure-metadata/file-level">Closure metadata</a>
+          <h2 class="govuk-heading-m">
+            Closure metadata
           </h2>
           <strong class="tdr-metadata-card__state govuk-tag govuk-tag--{% if data.state == "entered" %}blue{% elif data.state == "incomplete" %}red{% else %}grey{% endif %}">
             {% if data.state == "entered" %}Entered{% elif data.state == "incomplete" %}Incomplete{% elif data.state == "not entered" or data.state == undefined %}Not entered{% endif %}
@@ -43,15 +43,18 @@
               </ul>
             </div>
           </details>
+          <a href="closure-metadata/file-level" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+            Add closure metadata
+          </a>
         </div>
       </div>
 
       <div class="govuk-button-group">
-        <a href="../download-metadata.html" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
-          Continue
-        </a>
         <a href="./01-descriptive.html" role="button" draggable="false" class="govuk-button govuk-button--secondary"  data-module="govuk-button">
-          Back
+          Previous
+        </a>
+        <a href="../download-metadata.html" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+          Next
         </a>
       </div>
 
