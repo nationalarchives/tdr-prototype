@@ -165,14 +165,11 @@ const redirectAddClosure = (req, res) => {
 router.get(
   "/metadata/closure-metadata/confirm-file-level",
   function (req, res) {
-    if (req.session.data["file-selection"] === undefined) {
-      throw new Error("Missing file selection");
-    }
     let selected = req.session.data["file-selection"];
     const closed = req.session.data["closedFiles"];
 
     if (
-      selected.length &&
+      selected &&
       (typeof selected == "string" || selected instanceof String)
     ) {
       selected = [selected];
