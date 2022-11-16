@@ -1,6 +1,17 @@
 const express = require("express");
 const router = express.Router();
 
+router.get("/metadata/descriptive-metadata/clear", function (req, res) {
+  delete req.session.data["description"];
+
+  res.set("Content-Type", "text/html");
+  res.send(
+    Buffer.from(
+      "<h2>deleted description session data</h2><br><br><a href='/metadata/descriptive-metadata/file-level'>Return to file selection</a>"
+    )
+  );
+});
+
 router.get("/metadata/closure-metadata/clear", function (req, res) {
   delete req.session.data["file-selection"];
   delete req.session.data["closedFiles"];
