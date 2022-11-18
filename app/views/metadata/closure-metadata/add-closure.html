@@ -11,7 +11,7 @@ Add or edit closure metadata
         <span class="govuk-caption-l">Closure metadata</span>
         <h1 class="govuk-heading-l">
             Add or edit metadata
-        </h1>{{releaseVersion | log }}
+        </h1>
 
         {% if error == "missing-fields" %}
           <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="govuk-error-summary">
@@ -213,9 +213,6 @@ Add or edit closure metadata
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h1 class="govuk-fieldset__heading">Is the title closed?</h1>
             </legend>
-            {# <div class="govuk-hint">
-              If there is sensitive information in the title select 'yes' to enter an alternative public title to this record.
-            </div> #}
             <p class="tdr-filename">baking powder.docx</p>
             {# <p class="tdr-filename">{{data['file-selection'][0] | getFilename(data.files)}}</p> #}
             {% if errorTitleClosed == true %}
@@ -225,17 +222,17 @@ Add or edit closure metadata
             {% endif %}
             <div class="govuk-radios" data-module="govuk-radios">
               <div class="govuk-radios__item">
-                <input {% if data["addClosure-is-the-title-sensitive"] == "yes" %}checked{%endif%} class="govuk-radios__input" id="closed-title" name="closed-title" type="radio" value="yes" aria-controls="conditional-closed-title" aria-expanded="true" data-enpassusermodified="yes">
+                <input {% if data["addClosure-is-the-title-sensitive"] == "yes" %}checked{%endif%} class="govuk-radios__input" id="closed-title" name="addClosure-is-the-title-sensitive" type="radio" value="yes" aria-controls="conditional-closed-title" aria-expanded="true" data-enpassusermodified="yes">
                 <label class="govuk-label govuk-radios__label" for="closed-title">Yes</label>
               </div>
               <div class="govuk-radios__conditional" id="conditional-closed-title">
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="alternative-title">Alternative title</label>
-                  <input class="govuk-input" id="alternative-title" name="alternative-title" type="text" value="">
+                  <input class="govuk-input" id="alternative-title" name="addClosure-alternative-title" type="text" value="{{data['addClosure-alternative-title']}}">
                 </div>
               </div>
               <div class="govuk-radios__item">
-                <input {% if data["addClosure-is-the-title-sensitive"] == "no" %}checked{%endif%} class="govuk-radios__input" id="closed-title-2" name="closed-title" type="radio" value="no">
+                <input {% if data["addClosure-is-the-title-sensitive"] == "no" %}checked{%endif%} class="govuk-radios__input" id="closed-title-2" name="addClosure-is-the-title-sensitive" type="radio" value="no">
                 <label class="govuk-label govuk-radios__label" for="closed-title-2">No, this title can be made public</label>
               </div>
             </div>
@@ -244,7 +241,7 @@ Add or edit closure metadata
 
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"/>
 
-        {% set errorDescriptionClosed = error == "missing-fields" and "addClosure-is-the-description-sensitive" | isFieldMissing(data) == true %}
+        {% set errorDescriptionClosed = data.description and error == "missing-fields" and "addClosure-is-the-description-sensitive" | isFieldMissing(data) == true %}
         <div class="govuk-form-group {% if errorDescriptionClosed == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
@@ -283,7 +280,7 @@ Add or edit closure metadata
                 </div>
               </div>
             {% else %}
-              <p class="govuk-body">To close a description you first need to add a description in the <strong>Descriptive metadata</strong> step.</p>
+              <p class="govuk-body">To close a description enter a description in the <strong>Descriptive metadata</strong> section.</p>
             {% endif %}
           </fieldset>
         </div>
