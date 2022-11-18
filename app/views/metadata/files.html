@@ -1,0 +1,67 @@
+{% macro navigationItem(item, level, size, pos) %}
+  {% if item.type == 'item' or item.children.length == 0 %}
+    <li
+                class="govuk-tna-tree__item"
+                role="treeitem"
+                id="{{ item.id }}"
+                aria-level="{{level}}"
+                aria-setsize="{{size}}"
+                aria-posinset="{{pos}}"
+                aria-selected="false">
+      <div class="govuk-checkboxes__item">
+        <input name="file-selection" class="govuk-checkboxes__input" tabindex="-1" id="checkbox-{{ item.id }}" type="checkbox" value="{{item.id}}"/>
+        <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{ item.id }}">
+          {{item.name}}
+          {% block tick %}{% endblock %}
+        </label>
+      </div>
+    </li>
+
+  {% elif item.type == 'node' %}
+    <li
+                class="govuk-tna-tree__node-item"
+                role="treeitem"
+                id="{{ item.id }}"
+                aria-expanded="true"
+                aria-selected="false"
+                aria-level="{{level}}"
+                aria-setsize="{{size}}"
+                aria-posinset="{{pos}}">
+      <div class="govuk-tna-tree__node-item__container">
+        <button
+                        class="govuk-tna-tree__expander"
+                        tabindex="-1"
+                        id="expander-{{ item.id }}"
+                >
+          <span class="govuk-visually-hidden">Expand</span>
+        </button>
+        <div class="govuk-checkboxes__item">
+          <input
+                            class="govuk-checkboxes__input"
+                            id="checkbox-{{ item.id }}"
+                            tabindex="-1"
+                            type="checkbox"
+                            name="file-selection-directory"
+                            value="{{item.id}}"/>
+          <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{ item.id }}">
+            <img class="govuk-tna-tree__svg-directory" role="img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyMiI+PHBhdGggZmlsbD0iIzAwMCIgZD0iTTIyIDMuNUgxMC42ODNMOC43NTguODVhMS42NjcgMS42NjcgMCAwIDAtMS4zNS0uNjgzSDJBMS42NjcgMS42NjcgMCAwIDAgLjMzMyAxLjgzM3YxOC4zMzRBMS42NjcgMS42NjcgMCAwIDAgMiAyMS44MzNoMjBhMS42NjcgMS42NjcgMCAwIDAgMS42NjctMS42NjZ2LTE1QTEuNjY2IDEuNjY2IDAgMCAwIDIyIDMuNVptMCAxNi42NjdIMlY2LjgzM2g2LjA5MmExLjY2NyAxLjY2NyAwIDAgMCAxLjY2Ni0xLjY2NkgyVjEuODMzaDUuNDA4bDIuMTc1IDIuOTkyYS44MzMuODMzIDAgMCAwIC42NzUuMzQySDIydjE1WiIvPjwvc3ZnPg==" alt="Directory"/>
+            {{item.name}}
+          </label>
+        </div>
+      </div>
+      <ul class="govuk-tna-tree__nested-item-list" role="group" id="node-group-{{ item.id }}">
+        {% set nextLevel = level + 1 %}
+        {% for child in item.children %}
+          {{ navigationItem(child, nextLevel, loop.length, loop.index) }}
+        {% endfor %}
+      </ul>
+    </li>
+  {% endif %}
+{% endmacro %}
+<div class="govuk-tna-tree">
+  <ul tabindex="0" class="govuk-tna-tree__nested-item-list" role="tree" aria-multiselectable="true">
+    {% for node in data.files %}
+      {{ navigationItem(node, 1, loop.length, loop.index) }}
+    {% endfor %}
+  </ul>
+</div>
