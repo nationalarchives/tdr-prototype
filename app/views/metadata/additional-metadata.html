@@ -4,9 +4,9 @@
   Add, edit or delete metadata
 {% endblock %}
 
-{% block beforeContent %}
+{# {% block beforeContent %}
   <a href="./add-closure.html" class="govuk-back-link">Back</a>
-{% endblock %}
+{% endblock %} #}
 
 {% block content %}
   <div class="govuk-grid-row">
@@ -16,9 +16,36 @@
       <h1 class="govuk-heading-l">Add, edit or delete metadata</h1>
       {# <h1 class="govuk-heading-s">Folder uploaded: Recipes and ingredients</h1> #}
 
-      <p class="govuk-body">You can now add or edit closure and descriptive metadata to your records.
+      <p class="govuk-body">You can now add or edit closure and descriptive metadata to your records.</p>
 
-      </p>
+      <div class="tdr-metadata-card ">
+        <div class="tdr-metadata-card__content">
+          <h2 class="govuk-heading-s">
+            <a class="govuk-link govuk-link--no-visited-state" href="descriptive-metadata/file-level">Descriptive metadata</a>
+          </h2>
+          <strong class="tdr-metadata-card__state govuk-tag govuk-tag--{% if data['descriptiveFiles'] === undefined %}grey{% else %}blue{%endif%}">
+            {% if data['descriptiveFiles'] === undefined %}Not entered{% else %}Entered{% endif %}
+          </strong>
+          <p class="govuk-body">Add descriptive metadata to files in this consignment.</p>
+          <p class="govuk-inset-text govuk-!-margin-top-0">Providing descriptive metadata is <strong>not mandatory</strong> however does enhance your record.</p>
+          <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">Descriptive metadata includes the following fields.</span>
+            </summary>
+            <div class="govuk-details__text">
+              <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+                <li>Description</li>
+                <li>Date of the record</li>
+                <li>Language</li>
+                <li>Translated title of record</li>
+                <li>Related materials</li>
+                <li>Former reference</li>
+                <li>Creating body</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
 
       <div class="tdr-metadata-card">
         <div class="tdr-metadata-card__content">
@@ -28,20 +55,25 @@
           <strong class="tdr-metadata-card__state govuk-tag govuk-tag--{% if data.state == "entered" %}blue{% elif data.state == "incomplete" %}red{% else %}grey{% endif %}">
             {% if data.state == "entered" %}Entered{% elif data.state == "incomplete" %}Incomplete{% else %}Not entered{% endif %}
           </strong>
-          <p class="govuk-body">Add closure and associated metadata to files in this consignment.</p>
-        </div>
-      </div>
+          <p class="govuk-body">Add closure and associated closure metadata to files in this consignment.</p>
 
-      <div class="tdr-metadata-card ">
-        <div class="tdr-metadata-card__content">
-          <h2 class="govuk-heading-s">
-            <a class="govuk-link govuk-link--no-visited-state" href="descriptive-metadata/file-level">Descriptive metadata</a>
-          </h2>
-          <strong class="tdr-metadata-card__state govuk-tag govuk-tag--grey">
-            Not entered
-          </strong>
-          <p class="govuk-body">Add descriptive metadata to files in this consignment.</p>
-          <p class="govuk-inset-text govuk-!-margin-top-0">Providing descriptive metadata is <strong>not mandatory</strong> however does enhance your record.</p>
+          <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+            Closure metadata includes the following fields.
+            </span>
+            </summary>
+            <div class="govuk-details__text">
+              <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+                <li>FOI decision asserted, this is the date of the Advisory Council approval</li>
+                <li>Closure start date, this is the date the record starts </li>
+                <li>Closure period</li>
+                <li>FOI exemption code</li>
+                <li>Alternative title</li>
+                <li>Alternative description</li>
+              </ul>
+            </div>
+          </details>
         </div>
       </div>
 

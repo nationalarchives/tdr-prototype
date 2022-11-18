@@ -12,11 +12,7 @@
         <input name="file-selection" class="govuk-checkboxes__input" tabindex="-1" id="checkbox-{{ item.id }}" type="checkbox" value="{{item.id}}"/>
         <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{ item.id }}">
           {{item.name}}
-          {% if data['closedFiles'][item.id] !== undefined %}
-            <span class="icon" aria-label="Has existing metadata">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
-            </span>
-          {% endif %}
+          {% block tick %}{% endblock %}
         </label>
       </div>
     </li>
