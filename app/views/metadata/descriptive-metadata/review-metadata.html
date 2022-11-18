@@ -29,8 +29,12 @@ Review descriptive metadata added
           Name
         </dt>
           <dd class="govuk-summary-list__value">
-          Baking-powder.docx
-        </dd>
+            <ul class="govuk-list govuk-list--bullet">
+              {% for f in data['file-selection']| getFilenames(data.files) %}
+                <li>{{f}}</li>
+              {% endfor %}
+            </ul>
+          </dd>
           <dd class="govuk-summary-list__actions"></dd>
         </div>
         <div class="govuk-summary-list__row">
