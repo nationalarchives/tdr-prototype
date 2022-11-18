@@ -15,6 +15,24 @@ const requireClosureFields = [
   "addClosure-is-the-title-sensitive",
 ];
 
+router.get(
+  "/metadata/descriptive-metadata/confirm-delete-metadata",
+  function (req, res) {
+    if (req.session.data["file-selection"] === undefined) {
+      throw new Error("Missing file selection");
+    }
+
+    const selected = req.session.data["file-selection"];
+    const descriptiveData = req.session.data["descriptiveFiles"];
+
+    Array.from(selected).forEach((file) => {
+      delete descriptiveData[selected];
+    });
+
+    res.redirect("/metadata/descriptive-metadata/file-level");
+  }
+);
+
 const redirectAddDescriptive = (req, res) => {
   const selected = req.session.data["file-selection"];
   let descriptive = req.session.data["descriptiveFiles"];
@@ -133,6 +151,24 @@ router.get("/metadata/descriptive-metadata/clear", function (req, res) {
     )
   );
 });
+
+router.get(
+  "/metadata/closure-metadata/confirm-delete-metadata",
+  function (req, res) {
+    if (req.session.data["file-selection"] === undefined) {
+      throw new Error("Missing file selection");
+    }
+
+    const selected = req.session.data["file-selection"];
+    const closedFiles = req.session.data["closedFiles"];
+
+    Array.from(selected).forEach((file) => {
+      delete closedFiles[selected];
+    });
+
+    res.redirect("/metadata/closure-metadata/file-level");
+  }
+);
 
 router.get("/metadata/closure-metadata/clear", function (req, res) {
   delete req.session.data["file-selection"];
