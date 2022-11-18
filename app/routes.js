@@ -1,5 +1,19 @@
 const express = require("express");
 const router = express.Router();
+const filters = require("./filters")();
+
+const requireClosureFields = [
+  "addClosure-foi-asserted-day",
+  "addClosure-foi-asserted-month",
+  "addClosure-foi-asserted-year",
+  "addClosure-closure-start-day",
+  "addClosure-closure-start-month",
+  "addClosure-closure-start-year",
+  "addClosure-closure-period",
+  "addClosure-foi_id_selection",
+  "addClosure-is-the-description-sensitive",
+  "addClosure-is-the-title-sensitive",
+];
 
 const redirectAddDescriptive = (req, res) => {
   const selected = req.session.data["file-selection"];
@@ -38,8 +52,6 @@ const redirectAddDescriptive = (req, res) => {
     }
     delete req.session.data.error;
   }
-
-  console.log(descriptive, req.session.data["addDescriptive-description"]);
 
   res.redirect("/metadata/descriptive-metadata/add-descriptive");
 };
@@ -147,17 +159,25 @@ router.get(
       throw new Error("Missing file selection");
     }
 
-    const formFieldsTotal = req.session.data.description === undefined ? 9 : 10;
-    const formFieldsComplete = [];
-    for (let key in req.session.data) {
-      if (key.split("-")[0] === "addClosure") {
-        if (req.session.data[key] !== "") {
-          formFieldsComplete.push(key);
-        }
-      }
+    let required = requireClosureFields;
+    if (
+      filters.hasDescription(
+        req.session.data["file-selection"],
+        req.session.data["descriptiveFiles"]
+      ) == false
+    ) {
+      required = requireClosureFields.filter(
+        (field) => field != "addClosure-is-the-description-sensitive"
+      );
     }
 
-    if (formFieldsComplete.length < formFieldsTotal) {
+    const complete = required.every((field) => {
+      return (
+        req.session.data[field] !== undefined && req.session.data[field] !== ""
+      );
+    });
+
+    if (complete !== true) {
       res.render("metadata/closure-metadata/add-closure", {
         error: "missing-fields",
       });
@@ -248,8 +268,6 @@ const redirectAddClosure = (req, res) => {
     delete req.session.data.error;
   }
 
-  console.log(closed, req.session.data["addClosure-closure-period"]);
-
   res.redirect("/metadata/closure-metadata/add-closure");
 };
 
@@ -292,9 +310,7 @@ router.get(
 /* baking-powder closure */
 router.get(
   "/metadata/closure-metadata/baking-powder/confirm-closure-redir",
-  function (req, res) {
-    // console.log(req.session.data);
-  }
+  function (req, res) {}
 );
 
 router.get(
@@ -354,7 +370,6 @@ router.get(
 router.get(
   "/metadata/closure-metadata/baking-powder/confirm-multiple-FOI/",
   function (req, res) {
-    // console.log(req.session.data.foi_id_selection);
     // req.session.data.foi_id_selection = JSON.parse(req.params.ids);
     res.redirect("/metadata/closure-metadata/baking-powder/add-closure");
   }

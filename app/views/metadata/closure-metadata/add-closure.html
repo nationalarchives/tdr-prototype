@@ -241,22 +241,34 @@ Add or edit closure metadata
 
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"/>
 
-        {% set errorDescriptionClosed = data.description and error == "missing-fields" and "addClosure-is-the-description-sensitive" | isFieldMissing(data) == true %}
+        {% set errorDescriptionClosed = data['file-selection']|hasDescription(data.descriptiveFiles) and error == "missing-fields" and "addClosure-is-the-description-sensitive" | isFieldMissing(data) == true %}
         <div class="govuk-form-group {% if errorDescriptionClosed == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <p class="govuk-fieldset__heading">Is the description closed?</p>
             </legend>
-            {% if data.description != undefined and data.description != "" %}
+            {% if data['file-selection']|hasDescription(data.descriptiveFiles) %}
               <div class="govuk-hint">
                 This field cannot be edited here. You can edit the description in the <strong>Descriptive metadata</strong> step.
               </div>
+              {% if data['file-selection']|notMatchingDescription(data.descriptiveFiles) %}
+                <div class="govuk-warning-text govuk-!-margin-bottom-2">
+                  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                  <strong class="govuk-warning-text__text">
+                    <span class="govuk-warning-text__assistive">Warning</span>
+                  The selected files have different descriptions therefore the field below cannot be prepopulated.
+                  </strong>
+                </div>
+              {% endif %}
               <textarea
                 class="govuk-textarea"
                 id="address"
-                name="description"
+                name="addDescriptive-description"
                 readonly="true"
-                rows="5">{{data.description}}</textarea>
+                rows="5" {% if data['file-selection']|notMatchingDescription(data.descriptiveFiles) %}disabled{% endif %}>
+                {%- if data['file-selection']|notMatchingDescription(data.descriptiveFiles) === false -%}{{data['addDescriptive-description']}}
+                {%- endif -%}
+              </textarea>
               {% if errorDescriptionClosed == true %}
                 <p id="passport-issued-error" class="govuk-error-message">
                   <span class="govuk-visually-hidden">Error:</span> Choose an option for this field
