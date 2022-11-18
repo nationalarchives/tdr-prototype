@@ -1,16 +1,17 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-Add closure metadata to 'Baking powder.docx'
+Add or edit closure metadata
 {% endblock %}
 
 {% block content %}
   <form action="confirm-add-closure" >
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
+        <span class="govuk-caption-l">Closure metadata</span>
         <h1 class="govuk-heading-l">
-            Add or edit closure metadata
-        </h1>{{releaseVersion | log }}
+            Add or edit metadata
+        </h1>
 
         {% if error == "missing-fields" %}
           <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="govuk-error-summary">
@@ -204,68 +205,99 @@ Add closure metadata to 'Baking powder.docx'
           </fieldset>
         </div>
 
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"/>
+
         {% set errorTitleClosed = error == "missing-fields" and "addClosure-is-the-title-sensitive" | isFieldMissing(data) == true %}
         <div class="govuk-form-group {% if errorTitleClosed == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                Is the title closed?
+              <h1 class="govuk-fieldset__heading">Is the title closed?</h1>
             </legend>
-            <div class="govuk-hint">
-              If there is sensitive information in the title of this file select 'yes'. You will be given an opportunity to add an alternative public title to this record.
-            </div>
+            <p class="tdr-filename">baking powder.docx</p>
+            {# <p class="tdr-filename">{{data['file-selection'][0] | getFilename(data.files)}}</p> #}
             {% if errorTitleClosed == true %}
               <p id="passport-issued-error" class="govuk-error-message">
                 <span class="govuk-visually-hidden">Error:</span> Choose an option for this field
             </p>
             {% endif %}
-            <div class="govuk-radios">
+            <div class="govuk-radios" data-module="govuk-radios">
               <div class="govuk-radios__item">
-                <input {% if data["addClosure-is-the-title-sensitive"] == "yes" %}checked{%endif%} class="govuk-radios__input" id="yes" name="addClosure-is-the-title-sensitive" type="radio" value="yes">
-                <label class="govuk-label govuk-radios__label" for="yes">
-                            Yes
-                        </label>
+                <input {% if data["addClosure-is-the-title-sensitive"] == "yes" %}checked{%endif%} class="govuk-radios__input" id="closed-title" name="addClosure-is-the-title-sensitive" type="radio" value="yes" aria-controls="conditional-closed-title" aria-expanded="true" data-enpassusermodified="yes">
+                <label class="govuk-label govuk-radios__label" for="closed-title">Yes</label>
+              </div>
+              <div class="govuk-radios__conditional" id="conditional-closed-title">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="alternative-title">Alternative title</label>
+                  <input class="govuk-input" id="alternative-title" name="addClosure-alternative-title" type="text" value="{{data['addClosure-alternative-title']}}">
+                </div>
               </div>
               <div class="govuk-radios__item">
-                <input {% if data["addClosure-is-the-title-sensitive"] == "no" %}checked{%endif%} class="govuk-radios__input" id="no" name="addClosure-is-the-title-sensitive" type="radio" value="no">
-                <label class="govuk-label govuk-radios__label" for="no">
-                            No
-                        </label>
+                <input {% if data["addClosure-is-the-title-sensitive"] == "no" or data["addClosure-is-the-title-sensitive"] == undefined  %}checked{%endif%} class="govuk-radios__input" id="closed-title-2" name="addClosure-is-the-title-sensitive" type="radio" value="no">
+                <label class="govuk-label govuk-radios__label" for="closed-title-2">No, this title can be made public</label>
               </div>
             </div>
           </fieldset>
         </div>
 
-        {% set errorDescriptionClosed = error == "missing-fields" and "addClosure-is-the-description-sensitive" | isFieldMissing(data) == true %}
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"/>
+
+        {% set errorDescriptionClosed = data['file-selection']|hasDescription(data.descriptiveFiles) and error == "missing-fields" and "addClosure-is-the-description-sensitive" | isFieldMissing(data) == true %}
         <div class="govuk-form-group {% if errorDescriptionClosed == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                    Is the description closed?
-                </legend>
-            <div class="govuk-hint">
-              If there is sensitive information in the description select 'yes'. You will be given an opportunity to add an alternative public description to this record.
-          </div>
-            {% if errorDescriptionClosed == true %}
-              <p id="passport-issued-error" class="govuk-error-message">
-                <span class="govuk-visually-hidden">Error:</span> Choose an option for this field
-            </p>
+              <p class="govuk-fieldset__heading">Is the description closed?</p>
+            </legend>
+            {% if data['file-selection']|hasDescription(data.descriptiveFiles) %}
+              <div class="govuk-hint">
+                This field cannot be edited here. You can edit the description in the <strong>Descriptive metadata</strong> step.
+              </div>
+              {% if data['file-selection']|notMatchingDescription(data.descriptiveFiles) %}
+                <div class="govuk-warning-text govuk-!-margin-bottom-2">
+                  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                  <strong class="govuk-warning-text__text">
+                    <span class="govuk-warning-text__assistive">Warning</span>
+                  The selected files have different descriptions therefore the field below cannot be prepopulated.
+                  </strong>
+                </div>
+              {% endif %}
+              <textarea
+                class="govuk-textarea"
+                id="address"
+                name="addDescriptive-description"
+                readonly="true"
+                rows="5" {% if data['file-selection']|notMatchingDescription(data.descriptiveFiles) %}disabled{% endif %}>
+                {%- if data['file-selection']|notMatchingDescription(data.descriptiveFiles) === false -%}{{data['addDescriptive-description']}}
+                {%- endif -%}
+              </textarea>
+              {% if errorDescriptionClosed == true %}
+                <p id="passport-issued-error" class="govuk-error-message">
+                  <span class="govuk-visually-hidden">Error:</span> Choose an option for this field
+                </p>
+              {% endif %}
+
+              <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="closed-description"  name="addClosure-is-the-description-sensitive" type="radio" {% if data["addClosure-is-the-description-sensitive"] == "yes" %}checked{%endif%} value="yes" aria-controls="conditional-closed-description" aria-expanded="true">
+                  <label class="govuk-label govuk-radios__label" for="closed-description">Yes</label>
+                </div>
+                <div class="govuk-radios__conditional" id="conditional-closed-description">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label" for="alternative-description">Alternative description</label>
+                    <textarea class="govuk-textarea" id="alternative-description" name="addClosure-alternative-description" rows="5" aria-describedby="more-detail-hint">{{data['addClosure-alternative-description']}}</textarea>
+                  </div>
+                </div>
+                <div class="govuk-radios__item">
+                  <input {% if data["addClosure-is-the-description-sensitive"] == "no" or data["addClosure-is-the-description-sensitive"] == undefined %}checked{%endif%} class="govuk-radios__input" id="closed-description-2"  name="addClosure-is-the-description-sensitive" type="radio" value="no">
+                  <label class="govuk-label govuk-radios__label" for="closed-description-2">No, this description can be made public</label>
+                </div>
+              </div>
+            {% else %}
+              <p class="govuk-body">To close a description enter a description in the <strong>Descriptive metadata</strong> section.</p>
             {% endif %}
-            <div class="govuk-radios">
-              <div class="govuk-radios__item">
-                <input {% if data["addClosure-is-the-description-sensitive"] == "yes" %}checked{%endif%} class="govuk-radios__input" id="yes" name="addClosure-is-the-description-sensitive" type="radio" value="yes">
-                <label class="govuk-label govuk-radios__label" for="yes">
-                            Yes
-                        </label>
-              </div>
-              <div class="govuk-radios__item">
-                <input {% if data["addClosure-is-the-description-sensitive"] == "no" %}checked{%endif%} class="govuk-radios__input" id="no" name="addClosure-is-the-description-sensitive" type="radio" value="no">
-                <label class="govuk-label govuk-radios__label" for="no">
-                            No
-                        </label>
-              </div>
-            </div>
           </fieldset>
         </div>
 
+        <br>
         <div class="govuk-button-group">
           <button role="button" draggable="false" class="govuk-button" data-module="govuk-button">
                 Continue
