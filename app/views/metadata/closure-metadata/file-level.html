@@ -11,6 +11,7 @@ File level closure metadata
 
 {% block content %}
   <form action="/metadata/closure-metadata/confirm-file-level">
+
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <span class="govuk-caption-l">Closure metadata</span>
@@ -25,6 +26,20 @@ File level closure metadata
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
+        {% if error == "no-selection" %}
+          <div class="govuk-error-summary govuk-!-margin-bottom-4" data-module="govuk-error-summary">
+            <div role="alert">
+              <h2 class="govuk-error-summary__title">There is a problem</h2>
+              <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                  <li>
+                    <a href="#file-selection">Select at least one file or folder</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        {% endif %}
         <div class="govuk-tdr-file-selection-panel">
           <div class="govuk-tdr-file-selection-panel__search">
             <input
@@ -71,7 +86,7 @@ File level closure metadata
     </div>
 
     <div class="govuk-grid-row">
-      <div class="govuk-grid-column-full">
+      <div class="govuk-grid-column-full" id="file-selection">
         {% include "./closure-files.html" %}
       </div>
     </div>
