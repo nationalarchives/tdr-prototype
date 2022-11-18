@@ -6,13 +6,28 @@
 {% endblock %}
 
 {% block content %}
-  <form action="./review-metadata">
+  <form action="./confirm-add-descriptive">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <span class="govuk-caption-l">Descriptive metadata</span>
         <h1 class="govuk-heading-l">Add metadata</h1>
-        {{releaseVersion | log }}
-        {# <p class="govuk-body">Enter metadata for descriptive fields.</p> #}
+        <div class="tdr-card">
+          <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding/editing closure metadata for the following files:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            {% for f in data['file-selection']| getFilenames(data.files) %}
+              <li>{{f}}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% if data.error == "not-matching" %}
+          <div class="govuk-warning-text">
+            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+            <strong class="govuk-warning-text__text">
+              <span class="govuk-warning-text__assistive">Warning</span>
+            The selected files have different metadata therefore the fields below cannot be prepopulated. Continuing will replace the metadata for all selected files.
+          </strong>
+          </div>
+        {% endif %}
 
         <div class="govuk-form-group">
           <h2 class="govuk-label-wrapper">
@@ -27,8 +42,8 @@
           <textarea
             class="govuk-textarea"
             id="address"
-            name="description"
-            rows="5">{{data.description}}</textarea>
+            name="addDescriptive-description"
+            rows="5">{{data['addDescriptive-description']}}</textarea>
         </div>
 
         {% include './inc-date-of-record.html' %}

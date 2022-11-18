@@ -12,7 +12,7 @@
     references they can be comma separated with no spaces e.g.
     ABC1,ABC2,ABC3
   </div>
-  <input class="govuk-input" name="related" value="{{data['related']}}"/>
+  <input class="govuk-input" name="addDescriptive-related" value="{{data['related']}}"/>
 </div>
 
 <div class="govuk-form-group">
@@ -24,7 +24,7 @@
   <div id="closure-period-hint" class="govuk-hint">
     Reference when the record(s) was being held by the department
   </div>
-  <input class="govuk-input" name="former-refs" value="{{data['former-refs']}}"/>
+  <input class="govuk-input" name="addDescriptive-former-refs" value="{{data['former-refs']}}"/>
 </div>
 
 <div class="govuk-form-group">
@@ -37,8 +37,9 @@
     If different to the transferring body - where the record is inherited from
   </div>
   <div class="govuk-form-group">
-    <select class="govuk-select" id="sort" name="creating-body">
-      <option value="false" selected>Please choose...</option>
+    <select class="govuk-select" id="sort" name="addDescriptive-creating-body">
+      <option value="" disabled selected hidden>Select your option</option>
+      <option value="-">None</option>
       {% for body in data.creating_bodies %}
         <option value="{{body}}"{% if body == data['creating-body'] %} selected{%endif%}>{{body}}</option>
       {% endfor %}

@@ -13,7 +13,7 @@
         <div class="govuk-grid-column-one-third">
           {% for l in data.languages %}
             <div class="govuk-checkboxes__item">
-              <input {% if (data['language-select'] and l.alpha2 in data['language-select']) or (not data['language-select'] and l.alpha2 == "en")  %}checked{% endif %} class="govuk-checkboxes__input" id="{{loop.index}}" name="language-select" type="checkbox" value="{{l.alpha2}}">
+              <input {% if (data['language-select'] and l.alpha2 in data['language-select']) or (not data['language-select'] and l.alpha2 == "en")  %}checked{% endif %} class="govuk-checkboxes__input" id="{{loop.index}}" name="addDescriptive-language-select" type="checkbox" value="{{l.alpha2}}">
               <label class="govuk-label govuk-checkboxes__label" for="{{loop.index}}">
                 {{l.English}}
               </label>
@@ -36,5 +36,5 @@
   <div id="closure-period-hint" class="govuk-hint">
     If the title is not in English you can provide a translation.
   </div>
-  <input class="govuk-input" name="translation" value="{{data['translation']}}"/>
+  <input class="govuk-input" name="addDescriptive-translation" value="{{data['translation']}}"/>
 </div>

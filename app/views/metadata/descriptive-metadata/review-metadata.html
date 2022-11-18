@@ -54,46 +54,36 @@ Review descriptive metadata added
 
         <!-- descriptive stuff here -->
         <div class="govuk-summary-list__row" style="border-bottom: none;">
-          <dt class="govuk-summary-list__key">
-    Description
-  </dt>
+          <dt class="govuk-summary-list__key">Description</dt>
           <dd class="govuk-summary-list__value">
-            {{data.description}}
+            {{data['addDescriptive-description']}}
           </dd>
         </div>
         <div class="govuk-summary-list__row" style="border-bottom: none;">
-          <dt class="govuk-summary-list__key">
-      Date Last Modified
-    </dt>
+          <dt class="govuk-summary-list__key">Date of the Record</dt>
           <dd class="govuk-summary-list__value">
-            {{data['specific-day']}}/{{data['specific-month']}}/{{data['specific-year']}}
+            {% if data['addDescriptive-range-start-year'] %}
+              {{data['addDescriptive-range-start-day']}}/{{data['addDescriptive-range-start-month']}}/{{data['addDescriptive-range-start-year']}} -{{ " "}}
+            {% endif %}
+            {{data['addDescriptive-Day']}}/{{data['addDescriptive-Month']}}/{{data['addDescriptive-Year']}}
           </dd>
         </div>
-        {# <div class="govuk-summary-list__row" style="border-bottom: none;">
-          <dt class="govuk-summary-list__key">
-      Date created
-    </dt>
-          <dd class="govuk-summary-list__value">
-      12/07/2022
-    </dd>
-        </div> #}
+
         <div class="govuk-summary-list__row" style="border-bottom: none;">
-          <dt class="govuk-summary-list__key">
-      Language(s)
-    </dt>
+          <dt class="govuk-summary-list__key">Language(s)</dt>
           <dd class="govuk-summary-list__value">
-            {% for l in data['language-select']%}
-              {{l | langNameFromCode(data.languages)}}
-              {% if loop.last != true %},{% endif %}
+            {% for l in data['addDescriptive-language-select'] %}
+              {{l | langNameFromCode(data.languages) -}}
+              {% if loop.last != true %}, {% endif %}
+            {% else %}
+            -
             {% endfor %}
           </dd>
         </div>
         <div class="govuk-summary-list__row" style="border-bottom: none;">
-          <dt class="govuk-summary-list__key">
-      Translated title of record
-    </dt>
+          <dt class="govuk-summary-list__key">Translated title of record</dt>
           <dd class="govuk-summary-list__value">
-            {{data['translation']|d("-", true)}}
+            {{data['addDescriptive-translation']|d("-", true)}}
           </dd>
         </div>
         <div class="govuk-summary-list__row" style="border-bottom: none;">
@@ -101,7 +91,7 @@ Review descriptive metadata added
       Relating materials
     </dt>
           <dd class="govuk-summary-list__value">
-            {{data['related']|d("-", true)}}
+            {{data['addDescriptive-related']|d("-", true)}}
           </dd>
         </div>
         <div class="govuk-summary-list__row" style="border-bottom: none;">
@@ -109,7 +99,7 @@ Review descriptive metadata added
         Former reference
     </dt>
           <dd class="govuk-summary-list__value">
-            {{data['former-refs']|d("-", true)}}
+            {{data['addDescriptive-former-refs']|d("-", true)}}
           </dd>
         </div>
         <div class="govuk-summary-list__row" style="border-bottom: none;">
@@ -117,7 +107,7 @@ Review descriptive metadata added
       Creating body
     </dt>
           <dd class="govuk-summary-list__value">
-            {{data['creating-body']|d("-", true)}}
+            {{data['addDescriptive-creating-body']|d("-", true)}}
           </dd>
         </div>
       </dl>
