@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Remove properties
+{% endblock %}
+
+{% block content %}
+  <form action="./confirm-delete-metadata">
+
+    <input type="hidden" id="baking-powder" name="closure[baking-powder]" value="delete">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">
+        Delete closure metadata
+      </h1>{{releaseVersion | log }}
+        <div class="tdr-card">
+          <p class="govuk-body govuk-!-margin-bottom-2">You are deleting closure metadata for the following files and setting them as open:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            {% for f in data['file-selection']| getFilenames(data.files) %}
+              <li>{{f}}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+          Once deleted closure metadata cannot be recovered.
+        </strong>
+        </div>
+
+        <p class="govuk-body">Are you sure you want to proceed?</p>
+
+        <div class="govuk-button-group">
+          <button role="button" draggable="false" class="govuk-button govuk-button--warning" data-module="govuk-button">
+          Delete and return to all files
+        </button>
+          <a class="govuk-link govuk-link--no-visited-state" href="./review-metadata">Cancel</a>
+        </div>
+
+      </div>
+    </div>
+  </form>
+{% endblock %}
