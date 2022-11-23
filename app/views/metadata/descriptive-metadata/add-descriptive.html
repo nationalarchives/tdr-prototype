@@ -11,14 +11,18 @@
       <div class="govuk-grid-column-two-thirds">
         <span class="govuk-caption-l">Descriptive metadata</span>
         <h1 class="govuk-heading-l">Add metadata</h1>
+
         <div class="tdr-card">
-          <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding/editing closure metadata for the following files:</p>
-          <ul class="govuk-list govuk-list--bullet">
-            {% for f in data['file-selection']| getFilenames(data.files) %}
-              <li>{{f}}</li>
-            {% endfor %}
-          </ul>
+          <div class="tdr-card__content">
+            <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding/editing descriptive metadata for the following files:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              {% for f in data['file-selection']| getFilenames(data.files) %}
+                <li>{{f}}</li>
+              {% endfor %}
+            </ul>
+          </div>
         </div>
+
         {% if data.error == "not-matching" %}
           <div class="govuk-warning-text">
             <span class="govuk-warning-text__icon" aria-hidden="true">!</span>

@@ -28,12 +28,14 @@ Add or edit closure metadata
           </div>
         {% endif %}
         <div class="tdr-card">
-          <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding/editing closure metadata for the following files:</p>
-          <ul class="govuk-list govuk-list--bullet">
-            {% for f in data['file-selection']| getFilenames(data.files) %}
-              <li>{{f}}</li>
-            {% endfor %}
-          </ul>
+          <div class="tdr-card__content">
+            <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding/editing closure metadata for the following files:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              {% for f in data['file-selection']| getFilenames(data.files) %}
+                <li>{{f}}</li>
+              {% endfor %}
+            </ul>
+          </div>
         </div>
         {% if data.error == "not-matching" %}
           <div class="govuk-warning-text">
