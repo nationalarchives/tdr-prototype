@@ -14,16 +14,6 @@ Review descriptive metadata added
       </h1>{{releaseVersion | log }}
       <p class="govuk-body">You can edit, save or abandon any changes to descriptive metadata here. </p>
 
-      <div class="govuk-button-group">
-        <a href="./add-descriptive.html" role="button" draggable="false" class="govuk-button"
-          data-module="govuk-button">
-          Edit properties
-        </a>
-        <a href="./delete-metadata" role="button" draggable="false" class="govuk-button govuk-button--warning" >
-          Delete metadata
-        </a>
-      </div>
-
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -117,9 +107,24 @@ Review descriptive metadata added
         </div>
       </dl>
 
-      <a href="./file-level" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-      Save and return to all files
-    </a>
+      <div class="govuk-button-group">
+        <a href="./add-descriptive.html" role="button" draggable="false" class="govuk-button"
+          data-module="govuk-button">
+          Edit descriptive metadata
+        </a>
+        <a href="./delete-metadata" role="button" draggable="false" class="govuk-button govuk-button">
+          Delete descriptive metadata
+        </a>
+      </div>
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"/>
+
+      <p class="govuk-text">To add or edit metadata to other files return to the file selection.</p>
+      <div class="govuk-button-group">
+        <a href="./file-level" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+          Return to all files
+        </a>
+      </div>
 
     </div>
   </div>
