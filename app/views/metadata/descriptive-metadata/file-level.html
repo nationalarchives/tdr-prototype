@@ -26,48 +26,56 @@ File level descriptive metadata
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <div class="govuk-tdr-file-selection-panel">
+        {% if error == "no-selection" %}
+          <div class="govuk-error-summary govuk-!-margin-bottom-4" data-module="govuk-error-summary">
+            <div role="alert">
+              <h2 class="govuk-error-summary__title">There is a problem</h2>
+              <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                  <li>
+                    <a href="#file-selection">Select at least one file or folder</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+        {# <div class="govuk-tdr-file-selection-panel">
           <div class="govuk-tdr-file-selection-panel__search">
             <input
-          class="govuk-input"
-          id="event-name"
-          name="event-name"
-          type="search"
-          placeholder="Enter a file or folder name"/>
+            class="govuk-input"
+            id="event-name"
+            name="event-name"
+            type="search"
+            placeholder="Enter a file or folder name"/>
             <a
-            href="file-level"
-            role="button"
-            draggable="false"
-            class="govuk-button"
-            data-module="govuk-button">
-            Search
-          </a>
+              href="file-level"
+              role="button"
+              draggable="false"
+              class="govuk-button"
+              data-module="govuk-button">
+              Search
+            </a>
           </div>
           <div class="govuk-button-group">
             <button
-            draggable="false"
-            class="govuk-button"
-            data-module="govuk-button">
-            Add or Edit metadata
-          </button>
+              class="govuk-button govuk-button--secondary"
+              data-module="govuk-button"
+              type="button"
+              name="select-all"
+              value="true">
+              Select all
+            </button>
             <button
-            class="govuk-button govuk-button--secondary"
-            data-module="govuk-button"
-            type="button"
-            name="select-all"
-            value="true">
-            Select all
-          </button>
-            <button
-            class="govuk-button govuk-button--secondary"
-            data-module="govuk-button"
-            type="button"
-            name="deselect-all"
-            value="true">
-            Clear selection
-          </button>
+              class="govuk-button govuk-button--secondary"
+              data-module="govuk-button"
+              type="button"
+              name="deselect-all"
+              value="true">
+              Clear selection
+            </button>
           </div>
-        </div>
+        </div>#}
       </div>
     </div>
 
@@ -78,21 +86,25 @@ File level descriptive metadata
     </div>
 
     <div class="govuk-grid-row">
-      <div class="govuk-grid-column-full">
-        <div class="govuk-button-group">
-          <button
-        draggable="false"
-        class="govuk-button"
-        data-module="govuk-button">
-        Add or Edit metadata
-      </button>
-          <a href="../additional-metadata""
-        draggable="false"
-        class="govuk-button govuk-button--secondary"
-        data-module="govuk-button">
-        Back
-      </a>
-        </div>
+      <div class="govuk-grid-column-two-thirds">
+        <p class="govuk-text">Once you have selected a file continue to add closure metadata or edit existing metadata.</p>
+        <button
+          draggable="false"
+          class="govuk-button govuk-!-margin-bottom-4"
+          data-module="govuk-button">
+          Continue
+        </button>
+
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"/>
+
+        <p class="govuk-text">When you have finished adding descriptive metadata, return to the metadata selection screen to continue with the transfer process.</p>
+        <p class="govuk-text">You will be able to review the metadata in a single .CSV before you complete the transfer.</p>
+        <a href="../additional-metadata"
+          draggable="false"
+          class="govuk-button govuk-button"
+          data-module="govuk-button">
+          Return to transfer
+        </a>
       </div>
     </div>
   </form>
