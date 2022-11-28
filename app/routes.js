@@ -33,7 +33,7 @@ router.get(
   }
 );
 
-const redirectAddDescriptive = (req, res) => {
+const addNewDescriptive = (req, res) => {
   const selected = req.session.data["file-selection"];
   let descriptive = req.session.data["descriptiveFiles"];
 
@@ -70,8 +70,6 @@ const redirectAddDescriptive = (req, res) => {
     }
     delete req.session.data.error;
   }
-
-  res.redirect("/metadata/descriptive-metadata/add-descriptive");
 };
 
 router.get(
@@ -101,13 +99,14 @@ router.get(
         return req.session.data.descriptiveFiles[fn] !== undefined;
       });
 
-      // Do the files we are about to show match? i.e. can we populate the form.
+      // Do selected files have existing data
       if (selectedWithExistingData.length > 0) {
-        // Redirect to summary??
-        redirectAddDescriptive(req, res);
+        // Has existing data.
+        addNewDescriptive(req, res);
+        res.redirect("/metadata/descriptive-metadata/summary-metadata");
       } else {
-        redirectAddDescriptive(req, res);
-        // res.redirect("/metadata/descriptive-metadata/add-descriptive");
+        addNewDescriptive(req, res);
+        res.redirect("/metadata/descriptive-metadata/add-descriptive");
       }
     }
   }
@@ -247,7 +246,8 @@ router.get(
         error: "no-confirmation",
       });
     } else {
-      redirectAddClosure(req, res);
+      addNewClosure(req, res);
+      res.redirect("/metadata/closure-metadata/add-closure");
     }
   }
 );
@@ -266,7 +266,7 @@ const clearEmpties = (files) => {
   return files;
 };
 
-const redirectAddClosure = (req, res) => {
+const addNewClosure = (req, res) => {
   const selected = req.session.data["file-selection"];
   let closed = req.session.data["closedFiles"];
 
@@ -278,6 +278,7 @@ const redirectAddClosure = (req, res) => {
     });
   closed = clearEmpties(closed);
 
+  // Do the files we are about to show match? i.e. can we populate the form.
   let notMatching = selected.some((selectedFile1) => {
     return selected.some((selectedFile2) => {
       // If any are not indentical
@@ -304,7 +305,7 @@ const redirectAddClosure = (req, res) => {
     delete req.session.data.error;
   }
 
-  res.redirect("/metadata/closure-metadata/add-closure");
+  // res.redirect(`/metadata/closure-metadata/${route}`);
 };
 
 router.get(
@@ -330,9 +331,12 @@ router.get(
         return req.session.data.closedFiles[fn] !== undefined;
       });
 
-      // Do the files we are about to show match? i.e. can we populate the form.
+      // Are all files closed already? If so, straight to the main form.
       if (selectedClosedFiles.length === selected.length) {
-        redirectAddClosure(req, res);
+        // Show summary page before main form
+        addNewClosure(req, res);
+        // redirect to summary
+        res.redirect("/metadata/closure-metadata/summary-metadata");
       } else {
         res.redirect("/metadata/closure-metadata/closure-status");
       }
