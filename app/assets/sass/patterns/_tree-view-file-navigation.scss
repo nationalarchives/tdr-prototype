@@ -10,9 +10,9 @@
   }
 
   .govuk-tna-tree > .govuk-tna-tree__nested-item-list {
-    background-image: linear-gradient(0deg, #F2F2F2 22.22%, #ffffff 22.22%, #ffffff 50%, #F2F2F2 50%, #F2F2F2 72.22%, #ffffff 72.22%, #ffffff 100%);
+    background-image: linear-gradient(180deg, #F2F2F2 22.22%, #ffffff 22.22%, #ffffff 50%, #F2F2F2 50%, #F2F2F2 72.22%, #ffffff 72.22%, #ffffff 100%);
     background-size: 100% 180px;
-    background-position-y: -5px;
+    // background-position-y: -5px;
   }
 
   .govuk-tna-tree ul[role="tree"],

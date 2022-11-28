@@ -58,7 +58,7 @@
     </li>
   {% endif %}
 {% endmacro %}
-<div class="govuk-tna-tree">
+<div class="govuk-tna-tree govuk-!-margin-bottom-6">
   <ul tabindex="0" class="govuk-tna-tree__nested-item-list" role="tree" aria-multiselectable="true">
     {% for node in data.files %}
       {{ navigationItem(node, 1, loop.length, loop.index) }}
