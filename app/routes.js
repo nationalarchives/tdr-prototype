@@ -235,9 +235,9 @@ router.get(
 router.get(
   "/metadata/closure-metadata/confirm-closure-status",
   function (req, res) {
-    if (req.session.data["file-selection"] === undefined) {
-      throw new Error("Missing file selection");
-    }
+    // if (req.session.data["file-selection"] === undefined) {
+    //   throw new Error("Missing file selection");
+    // }
     if (req.session.data["confirm-closure"] === undefined) {
       res.render("metadata/closure-metadata/closure-status", {
         error: "no-confirmation",
