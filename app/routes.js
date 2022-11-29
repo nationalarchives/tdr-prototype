@@ -75,15 +75,12 @@ const addNewDescriptive = (req, res) => {
 router.get(
   "/metadata/descriptive-metadata/confirm-file-level",
   function (req, res) {
-    if (req.session.data["file-selection"] === undefined) {
-      throw new Error("Missing file selection");
-    }
+    // if (req.session.data["file-selection"] === undefined) {
+    //   throw new Error("Missing file selection");
+    // }
     let selected = req.session.data["file-selection"];
 
-    if (
-      selected.length &&
-      (typeof selected == "string" || selected instanceof String)
-    ) {
+    if (typeof selected == "string" || selected instanceof String) {
       selected = [selected];
       req.session.data["file-selection"] = selected;
     }
