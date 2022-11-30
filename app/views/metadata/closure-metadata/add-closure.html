@@ -29,7 +29,7 @@ Add or edit closure metadata
         {% endif %}
         <div class="tdr-card">
           <div class="tdr-card__content">
-            <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding/editing closure metadata for the following files:</p>
+            <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding or editing closure metadata for the following files:</p>
             <ul class="govuk-list govuk-list--bullet">
               {% for f in data['file-selection']| getFilenames(data.files) %}
                 <li>{{f}}</li>
@@ -108,7 +108,7 @@ Add or edit closure metadata
                     </h2>
             </legend>
             <div id="closure-start-hint" class="govuk-hint">
-                    This has been defaulted to the last date modified, if this is not correct, amend the field below.
+                    This is the date the file became closed. The field has been prepopulated to the date the file was last modified. If this is not correct, you can amend the field.
                 </div>
             {% if errorStartDate == true %}
               <p id="passport-issued-error" class="govuk-error-message">
@@ -158,7 +158,7 @@ Add or edit closure metadata
             </label>
           </h2>
           <div id="closure-period-hint" class="govuk-hint">
-                Number of years the record is closed from the closure start date
+              This is the number of years the record is closed from the closure start date. If your file has multiple closure periods, enter the longest. 
             </div>
           {% if errorClosurePeriod == true %}
             <p id="passport-issued-error" class="govuk-error-message">
@@ -179,7 +179,7 @@ Add or edit closure metadata
               </h2>
             </legend>
             <div class="govuk-hint">
-              Add one or more exemption code to this closure. Here is a <a target="_blank" href="https://www.legislation.gov.uk/ukpga/2000/36/contents">full list of FOI codes and their designated exemptions</a>.
+              Add one or more exemption codes to this file. Here is a <a target="_blank" href="https://www.legislation.gov.uk/ukpga/2000/36/contents">full list of FOI codes and their designated exemptions</a>.
             </div>
             {% if errorFOICodes == true %}
               <p id="passport-issued-error" class="govuk-error-message">
@@ -213,10 +213,10 @@ Add or edit closure metadata
         <div class="govuk-form-group {% if errorTitleClosed == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-              <h1 class="govuk-fieldset__heading">Is the title closed?</h1>
+              <h1 class="govuk-fieldset__heading">Is the title sensitive for the public?</h1>
             </legend>
-            <p class="tdr-filename">baking powder.docx</p>
-            {# <p class="tdr-filename">{{data['file-selection'][0] | getFilename(data.files)}}</p> #}
+            <p class="tdr-filename">The current title of your record is: <em>{{data['file-selection'][0] | getFilename(data.files)}}</em>
+            </p>
             {% if errorTitleClosed == true %}
               <p id="passport-issued-error" class="govuk-error-message">
                 <span class="govuk-visually-hidden">Error:</span> Choose an option for this field
@@ -247,11 +247,11 @@ Add or edit closure metadata
         <div class="govuk-form-group {% if errorDescriptionClosed == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-              <p class="govuk-fieldset__heading">Is the description closed?</p>
+              <p class="govuk-fieldset__heading">Is the description sensitive for the public?</p>
             </legend>
             {% if data['file-selection']|hasDescription(data.descriptiveFiles) %}
               <div class="govuk-hint">
-                This field cannot be edited here. You can edit the description in the <strong>Descriptive metadata</strong> step.
+                You cannot edit the description here. You can edit it in the Descriptive metadata step.
               </div>
               {% if data['file-selection']|notMatchingDescription(data.descriptiveFiles) %}
                 <div class="govuk-warning-text govuk-!-margin-bottom-2">
@@ -294,7 +294,7 @@ Add or edit closure metadata
                 </div>
               </div>
             {% else %}
-              <p class="govuk-body">There is no description associated with this record. You can add a desription in the <strong>Descriptive metadata</strong> section.</p>
+              <p class="govuk-body">If you need to add a description, you can do so in the Descriptive metadata step.</p>
             {% endif %}
           </fieldset>
         </div>
