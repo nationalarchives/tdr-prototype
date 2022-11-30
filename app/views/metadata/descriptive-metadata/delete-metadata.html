@@ -14,8 +14,8 @@ Remove properties
         Delete descriptive metadata
       </h1>{{releaseVersion | log }}
         <div class="tdr-card">
-          <p class="govuk-body govuk-!-margin-bottom-2">You are deleting descriptive metadata for the following files:</p>
-          <ul class="govuk-list govuk-list--bullet">
+          <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You have chosen to delete the descriptive metadata you added for the following record:</p>
+          <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
             {% for f in data['file-selection']| getFilenames(data.files) %}
               <li>{{f}}</li>
             {% endfor %}
@@ -25,15 +25,15 @@ Remove properties
           <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
           <strong class="govuk-warning-text__text">
             <span class="govuk-warning-text__assistive">Warning</span>
-          Once deleted metadata cannot be recovered.
+          Once descriptive metadata is deleted, it cannot be recovered. 
         </strong>
         </div>
 
-        <p class="govuk-body">Are you sure you want to proceed?</p>
+        <p class="govuk-body">Confirm you wish to proceed.</p>
 
         <div class="govuk-button-group">
           <button role="button" draggable="false" class="govuk-button govuk-button--warning" data-module="govuk-button">
-          Delete and return to all files
+          Delete and return to files
         </button>
           <a class="govuk-link govuk-link--no-visited-state" href="./review-metadata">Cancel</a>
         </div>
