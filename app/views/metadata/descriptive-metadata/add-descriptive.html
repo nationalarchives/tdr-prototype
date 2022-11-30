@@ -14,7 +14,7 @@
 
         <div class="tdr-card">
           <div class="tdr-card__content">
-            <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding/editing descriptive metadata for the following files:</p>
+            <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding or editing descriptive metadata for the following file:</p>
             <ul class="govuk-list govuk-list--bullet">
               {% for f in data['file-selection']| getFilenames(data.files) %}
                 <li>{{f}}</li>
@@ -40,8 +40,7 @@
             </label>
           </h2>
           <div id="foi-codes-hint" class="govuk-hint">
-            This description will be visible on Discovery and help explain the
-            content of your file(s).
+            The description will be visible on Discovery to help explain the content of your file.
           </div>
           <textarea
             class="govuk-textarea"

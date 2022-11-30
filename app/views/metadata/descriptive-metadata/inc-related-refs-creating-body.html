@@ -5,14 +5,9 @@
     </label>
   </h2>
   <div id="closure-period-hint" class="govuk-hint">
-    If you wish to provide a link to material inside another series or
-    within a hybrid series, use this field to provide a related reference.
-    This must be discussed with the Senior Digital Transfer Advisor and
-    signed off by cataloguing prior to use. If the file has multiple
-    references they can be comma separated with no spaces e.g.
-    ABC1,ABC2,ABC3
+You can provide related references to materials inside another series or within a hybrid series. It must first be discussed with the Senior Digital Transfer Advisor and signed off by cataloguing. For multiple references, use a comma to separate them with no spaces. 
   </div>
-  <input class="govuk-input" name="addDescriptive-related" value="{{data['related']}}"/>
+  <input class="govuk-input" placeholder="ABC1,ABC2,ABC3" name="addDescriptive-related" value="{{data['related']}}"/>
 </div>
 
 <div class="govuk-form-group">
@@ -22,7 +17,7 @@
     </label>
   </h2>
   <div id="closure-period-hint" class="govuk-hint">
-    Reference when the record(s) was being held by the department
+    Add a reference for when the department was holding the record.
   </div>
   <input class="govuk-input" name="addDescriptive-former-refs" value="{{data['former-refs']}}"/>
 </div>
@@ -34,7 +29,7 @@
     </label>
   </h2>
   <div id="foi-codes-hint" class="govuk-hint">
-    If different to the transferring body - where the record is inherited from
+    Add where the record is inherited from if it is different to the transferring body.
   </div>
   <div class="govuk-form-group">
     <select class="govuk-select" id="sort" name="addDescriptive-creating-body">
