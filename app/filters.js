@@ -56,6 +56,16 @@ module.exports = function (env) {
     return result;
   }
 
+  filters.mapLanguages = function (languages, selected) {
+    return languages.map((l) => ({
+      value: l.alpha2,
+      text: l.English,
+      checked:
+        (selected && selected.includes(l.alpha2)) ||
+        (selected === undefined && l.alpha2 == "en"),
+    }));
+  };
+
   filters.isFieldMissing = function (fields, data) {
     fields = Array.isArray(fields) ? fields : [fields];
 

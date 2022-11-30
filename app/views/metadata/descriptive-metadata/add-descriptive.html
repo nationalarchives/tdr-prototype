@@ -76,14 +76,15 @@
 {% endblock %}
 
 {% block pageScripts %}
-  <script src = "https://unpkg.com/aria-autocomplete" type = "text/javascript"></script>
+
+  <script src="/public/javascripts/tdr-option-select.js"></script>
   <script>
-    AriaAutocomplete(document.querySelector('#language-select'), {
-      placeholder: 'Enter a language',
-      deleteOnBackspace: true,
-      showAllControl: true,
-      autoGrow: false,
-      cssNameSpace: "govuk-multi-autocomplete"
-    });
+    /* https://frontend.design-system.service.gov.uk/importing-css-assets-and-javascript/#javascript */
+    var OptionSelect = window.GOVUKFrontend.OptionSelect
+    var $checkboxes = document.querySelector('[data-module="govuk-radios"]')
+    if ($checkboxes) {
+      new OptionSelect($checkboxes).init()
+    }
   </script>
+
 {% endblock %}
