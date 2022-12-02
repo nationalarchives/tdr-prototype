@@ -74,17 +74,3 @@
     </div>
   </form>
 {% endblock %}
-
-{% block pageScripts %}
-
-  <script src="/public/javascripts/tdr-option-select.js"></script>
-  <script>
-    /* https://frontend.design-system.service.gov.uk/importing-css-assets-and-javascript/#javascript */
-    var OptionSelect = window.GOVUKFrontend.OptionSelect
-    var $checkboxes = document.querySelector('[data-module="govuk-radios"]')
-    if ($checkboxes) {
-      new OptionSelect($checkboxes).init()
-    }
-  </script>
-
-{% endblock %}

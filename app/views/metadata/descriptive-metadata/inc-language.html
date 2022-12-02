@@ -1,25 +1,14 @@
-<div class="govuk-form-group">
+{# @TODO: Add randomness to ID in case of multiple instances on 1 page #}
+{% set checkboxes_id = "checkboxes" %}
+{% set checkboxes_count_id = "checkboxes_count_id" %}
+{% set filter_id = "input_filter" %}
+{# I think this is added as a data attribute so it is only added if JS is enabled #}
+{# https://github.com/alphagov/finder-frontend/blob/main/app/views/components/_option-select.html.erb#L34 #}
 
-  <div role="group" class="app-c-option-select__container js-options-container" id="language-select" tabindex="-1">
-    <div class="app-c-option-select__container-inner js-auto-height-inner">
+<div
+  class="app-c-option-select govuk-!-margin-bottom-8" data-module="option-multi-select">
 
-      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
-      {{ govukCheckboxes({
-      name: "language-select",
-      fieldset: {
-        legend: {
-          text: "Language",
-          isPageHeading: true,
-          classes: "govuk-fieldset__legend--m"
-        }
-      },
-      hint: {
-        text: "Choose one or more languages used in this record."
-      },
-      items: data.languages | mapLanguages(data['language-select'])
-    }) }}
-
-      {# <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+  <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
       <h2 class="govuk-fieldset__heading">
         Language
@@ -28,9 +17,33 @@
     <div class="govuk-hint">
       Choose one or more languages used in this record.
     </div>
-    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes" id="language-select">
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-one-third">
+
+    {# Search filter #}
+    <div class="app-c-option-select__filter govuk-!-margin-bottom-2">
+      <label for="{{filter_id}}"
+        class="govuk-label govuk-visually-hidden">Filter Languages</label>
+      <input name="option-select-filter" id="{{filter_id}}"
+        class="app-c-option-select__filter-input govuk-input"
+        type="text" aria-describedby="{{checkboxes_count_id}}"
+        aria-controls="{{checkboxes_id}}">
+    </div>
+
+    {# Visible counter #}
+    <div class="app-c-option-select__selected-counter js-selected-counter"></div>
+
+    <div role="group" class="app-c-option-select__container js-options-container" tabindex="-1">
+      <div class="app-c-option-select__container-inner js-auto-height-inner">
+        {# Screen reader count #}
+        <span id="{{checkboxes_count_id}}"
+          class="app-c-option-select__count govuk-visually-hidden"
+          aria-live="polite"
+          data-single="language displayed"
+          data-multiple="languages displayed"
+          data-selected="selected"></span>
+        {# Checkboxes #}
+        <div class="govuk-checkboxes"
+          data-module="govuk-checkboxes"
+          id="language-select">
           {% for l in data.languages %}
             <div class="govuk-checkboxes__item">
               <input {% if (data['language-select'] and l.alpha2 in data['language-select']) or (not data['language-select'] and l.alpha2 == "en")  %}checked{% endif %} class="govuk-checkboxes__input" id="{{loop.index}}" name="language-select" type="checkbox" value="{{l.alpha2}}">
@@ -38,23 +51,30 @@
                 {{l.English}}
               </label>
             </div>
-            {% if loop.index % ((loop.length / 3) | round) == 0 %}
-            </div>
-            <div class="govuk-grid-column-one-third">
-            {% endif %}
           {% endfor %}
         </div>
       </div>
     </div>
-  </fieldset> #}
-    </div>
+  </fieldset>
 
-    <div class="govuk-form-group">
-      <label class="govuk-label govuk-label--m" for="years">
-    Translated title of record (optional)
-  </label>
-      <div id="closure-period-hint" class="govuk-hint">
-    If the title is not in English you can provide a translation.
-  </div>
-      <input class="govuk-input" name="translation" value="{{data['translation']}}"/>
-    </div>
+</div>
+
+<div class="govuk-form-group">
+  <label class="govuk-label govuk-label--m" for="years">Translated title of record (optional)</label>
+  <div id="closure-period-hint" class="govuk-hint">If the title is not in English you can provide a translation.</div>
+  <input class="govuk-input" name="translation" value="{{data['translation']}}"/>
+</div>
+
+{% block pageScripts %}
+
+  <script src="/public/javascripts/tdr-option-select.js"></script>
+  <script>
+    /* https://frontend.design-system.service.gov.uk/importing-css-assets-and-javascript/#javascript */
+    var OptionSelect = window.GOVUK.Modules.OptionSelect
+    var $checkboxes = document.querySelector('[data-module="option-multi-select"]')
+    if ($checkboxes) {
+      new OptionSelect($checkboxes).init()
+    }
+  </script>
+
+{% endblock %}

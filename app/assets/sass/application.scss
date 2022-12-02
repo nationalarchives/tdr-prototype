@@ -338,3 +338,13 @@ $govuk-assets-path: '/govuk/assets/';
 .tdr-metadata-card .govuk-inset-text {
   color: $govuk-secondary-text-colour
 }
+
+
+/* multi-select */
+.app-c-option-select__container {
+  position: relative;
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #fff;
+}
