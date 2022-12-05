@@ -217,6 +217,5 @@ module.exports = {
     { English: "Chamorro", alpha2: "ch" },
     { English: "Corsican", alpha2: "co" },
     { English: "Cree", alpha2: "cr" },
-    { English: "Czech", alpha2: "cs" },
   ],
 };
