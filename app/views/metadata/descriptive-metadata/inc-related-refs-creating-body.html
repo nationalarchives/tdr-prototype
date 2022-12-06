@@ -36,7 +36,7 @@ You can provide related references to materials inside another series or within 
       <option value="" disabled selected hidden>Select your option</option>
       <option value="-">None</option>
       {% for body in data.creating_bodies %}
-        <option value="{{body}}"{% if body == data['creating-body'] %} selected{%endif%}>{{body}}</option>
+        <option value="{{body}}"{% if body == data['addDescriptive-creating-body'] %} selected{%endif%}>{{body}}</option>
       {% endfor %}
     </select>
   </div>

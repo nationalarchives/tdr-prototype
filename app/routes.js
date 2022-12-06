@@ -33,17 +33,12 @@ router.get(
   }
 );
 
-const addNewDescriptive = (req, res) => {
+const populateWithDescriptive = (req, res) => {
   const selected = req.session.data["file-selection"];
   let descriptive = req.session.data["descriptiveFiles"];
 
-  // Add new selected files as empty objs to this array:
-  selected
-    .filter((fn) => descriptive[fn] === undefined)
-    .forEach((newFile) => {
-      descriptive[newFile] = {};
-    });
   descriptive = clearEmpties(descriptive);
+  let hasDescriptive = descriptive.hasOwnProperty(selected[0]);
 
   let notMatching = selected.some((selectedFile1) => {
     return selected.some((selectedFile2) => {
@@ -68,6 +63,8 @@ const addNewDescriptive = (req, res) => {
     for (var key in descriptive[selected[0]]) {
       req.session.data[key] = descriptive[selected[0]][key];
     }
+    req.session.data.status = hasDescriptive ? "has-data" : "no-data";
+
     delete req.session.data.error;
   }
 };
@@ -79,6 +76,7 @@ router.get(
     //   throw new Error("Missing file selection");
     // }
     let selected = req.session.data["file-selection"];
+    let doView = req.session.data["action"] === "view";
 
     if (typeof selected == "string" || selected instanceof String) {
       selected = [selected];
@@ -96,13 +94,13 @@ router.get(
         return req.session.data.descriptiveFiles[fn] !== undefined;
       });
 
+      populateWithDescriptive(req, res);
+
       // Do selected files have existing data
-      if (selectedWithExistingData.length > 0) {
+      if (doView === true) {
         // Has existing data.
-        addNewDescriptive(req, res);
         res.redirect("/metadata/descriptive-metadata/summary-metadata");
       } else {
-        addNewDescriptive(req, res);
         res.redirect("/metadata/descriptive-metadata/add-descriptive");
       }
     }
@@ -118,6 +116,7 @@ router.get(
 
     if (!req.session.data.descriptiveFiles)
       req.session.data.descriptiveFiles = {};
+
     for (let key in req.session.data) {
       if (key.split("-")[0] === "addDescriptive") {
         req.session.data["file-selection"].forEach((file, i) => {
@@ -244,6 +243,7 @@ router.get(
       });
     } else {
       addNewClosure(req, res);
+      populateWithClosureData(req, res);
       res.redirect("/metadata/closure-metadata/add-closure");
     }
   }
@@ -273,7 +273,14 @@ const addNewClosure = (req, res) => {
     .forEach((newFile) => {
       closed[newFile] = {};
     });
+};
+
+const populateWithClosureData = (req, res) => {
+  const selected = req.session.data["file-selection"];
+  let closed = req.session.data["closedFiles"];
   closed = clearEmpties(closed);
+
+  let isClosed = closed.hasOwnProperty(selected[0]);
 
   // Do the files we are about to show match? i.e. can we populate the form.
   let notMatching = selected.some((selectedFile1) => {
@@ -299,6 +306,8 @@ const addNewClosure = (req, res) => {
     for (var key in closed[selected[0]]) {
       req.session.data[key] = closed[selected[0]][key];
     }
+    req.session.data.status = isClosed ? "Closed" : "Open";
+
     delete req.session.data.error;
   }
 
@@ -309,6 +318,7 @@ router.get(
   "/metadata/closure-metadata/confirm-file-level",
   function (req, res) {
     let selected = req.session.data["file-selection"];
+    let doView = req.session.data["action"] === "view";
 
     if (
       selected &&
@@ -329,11 +339,16 @@ router.get(
       });
 
       // Are all files closed already? If so, straight to the main form.
-      if (selectedClosedFiles.length === selected.length) {
+      if (doView === true) {
         // Show summary page before main form
-        addNewClosure(req, res);
+        populateWithClosureData(req, res);
         // redirect to summary
         res.redirect("/metadata/closure-metadata/summary-metadata");
+      } else if (selectedClosedFiles.length === selected.length) {
+        // Show summary page before main form
+        populateWithClosureData(req, res);
+        // redirect to summary
+        res.redirect("/metadata/closure-metadata/add-closure");
       } else {
         res.redirect("/metadata/closure-metadata/closure-status");
       }
