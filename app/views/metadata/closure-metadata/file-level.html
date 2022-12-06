@@ -2,7 +2,7 @@
 {# {% include "../dummyfiles.html" %} #}
 
 {% block pageTitle %}
-File level closure metadata
+Closure metadata - Choose a file
 {% endblock %}
 
 {% block beforeContent %}
@@ -83,23 +83,35 @@ File level closure metadata
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <button
+        <div class="govuk-button-group">
+          <button
           draggable="false"
-          class="govuk-button govuk-!-margin-bottom-4"
+          class="govuk-button"
+          name="action" value="edit"
           data-module="govuk-button">
           Add or edit metadata
         </button>
+          <button
+          draggable="false"
+          class="govuk-button govuk-button--secondary"
+          name="action" value="view"
+          data-module="govuk-button">
+          View metadata
+        </button>
+        </div>
 
         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"/>
 
         <p class="govuk-text">Once you have finished adding closure metadata to all of the applicable files and folders, return to the metadata selection screen to continue with your transfer.</p>
         <p class="govuk-text">You will be able to review all metadata in a single .CSV before completing your transfer.</p>
-        <a href="../additional-metadata"
+        <p>
+          <a href="../additional-metadata"
           draggable="false"
           class="govuk-button govuk-button"
           data-module="govuk-button">
           Return to transfer
         </a>
+        </p>
       </div>
     </div>
 

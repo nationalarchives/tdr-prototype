@@ -2,7 +2,7 @@
 {# {% include "../dummyfiles.html" %} #}
 
 {% block pageTitle %}
-File level descriptive metadata
+Descriptive metadata - Choose a file
 {% endblock %}
 
 {% block beforeContent %}
@@ -85,13 +85,22 @@ File level descriptive metadata
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <button
-          draggable="false"
-          class="govuk-button govuk-!-margin-bottom-4"
-          data-module="govuk-button">
-          Add or edit metadata
-        </button>
-
+        <div class="govuk-button-group">
+          <button
+            draggable="false"
+            class="govuk-button"
+            name="action" value="edit"
+            data-module="govuk-button">
+            Add or edit metadata
+          </button>
+          <button
+            draggable="false"
+            class="govuk-button govuk-button--secondary"
+            name="action" value="view"
+            data-module="govuk-button">
+            View metadata
+          </button>
+        </div>
         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"/>
 
         <p class="govuk-text">Once you have finished adding descriptive metadata, return to the metadata selection screen to continue with your transfer.</p>

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-Review descriptive metadata added
+Descriptive metadata - Review changes to descriptive metadata
 {% endblock %}
 
 {% block content %}
@@ -20,11 +20,11 @@ Review descriptive metadata added
           Name
         </dt>
           <dd class="govuk-summary-list__value">
-            <ul class="govuk-list govuk-list--bullet">
-              {% for f in data['file-selection']| getFilenames(data.files) %}
-                <li>{{f}}</li>
-              {% endfor %}
-            </ul>
+            {# <ul class="govuk-list govuk-list--bullet"> #}
+            {% for f in data['file-selection']| getFilenames(data.files) %}
+              {{f}}
+            {% endfor %}
+            {# </ul> #}
           </dd>
           <dd class="govuk-summary-list__actions"></dd>
         </div>
@@ -112,7 +112,7 @@ Review descriptive metadata added
           data-module="govuk-button">
           Edit metadata
         </a>
-        <a href="./delete-metadata" role="button" draggable="false" class="govuk-button govuk-button">
+        <a href="./delete-metadata" role="button" draggable="false" class="govuk-button govuk-button--secondary">
           Delete metadata
         </a>
       </div>
