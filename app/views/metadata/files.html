@@ -12,7 +12,7 @@
         <input name="file-selection" class="govuk-checkboxes__input" tabindex="-1" id="checkbox-{{ item.id }}" type="checkbox" value="{{item.id}}"/>
         <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{ item.id }}">
           {{item.name}}
-          {% block tick %}{% endblock %}
+          {% block status %}{% endblock %}
         </label>
       </div>
     </li>
