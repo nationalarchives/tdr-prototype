@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-Review descriptive metadata added
+Descriptive metadata - Review changes to descriptive metadata
 {% endblock %}
 
 {% block content %}
@@ -10,9 +10,9 @@ Review descriptive metadata added
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Descriptive metadata</span>
       <h1 class="govuk-heading-l">
-        Review descriptive metadata
+        Review changes to descriptive metadata
       </h1>{{releaseVersion | log }}
-      <p class="govuk-body">You can edit, save or abandon any changes to descriptive metadata here. </p>
+      <p class="govuk-body">Edit, save or delete any changes you’ve made to descriptive metadata.</p>
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
@@ -20,11 +20,11 @@ Review descriptive metadata added
           Name
         </dt>
           <dd class="govuk-summary-list__value">
-            <ul class="govuk-list govuk-list--bullet">
-              {% for f in data['file-selection']| getFilenames(data.files) %}
-                <li>{{f}}</li>
-              {% endfor %}
-            </ul>
+            {# <ul class="govuk-list govuk-list--bullet"> #}
+            {% for f in data['file-selection']| getFilenames(data.files) %}
+              {{f}}
+            {% endfor %}
+            {# </ul> #}
           </dd>
           <dd class="govuk-summary-list__actions"></dd>
         </div>
@@ -110,10 +110,10 @@ Review descriptive metadata added
       <div class="govuk-button-group">
         <a href="./add-descriptive.html" role="button" draggable="false" class="govuk-button"
           data-module="govuk-button">
-          Edit descriptive metadata
+          Edit metadata
         </a>
-        <a href="./delete-metadata" role="button" draggable="false" class="govuk-button govuk-button">
-          Delete descriptive metadata
+        <a href="./delete-metadata" role="button" draggable="false" class="govuk-button govuk-button--secondary">
+          Delete metadata
         </a>
       </div>
 

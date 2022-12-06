@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-Review metadata added
+Closure metadata - Review changes to closure metadata
 {% endblock %}
 
 {% block content %}
@@ -10,9 +10,9 @@ Review metadata added
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Closure metadata</span>
       <h1 class="govuk-heading-l">
-        Review closure metadata
+        Review changes to closure metadata
       </h1>{{releaseVersion | log }}
-      <p class="govuk-body">You can edit, remove or save closure metadata here. </p>
+      <p class="govuk-body">Edit, save or delete any changes you’ve made to closure metadata.</p>
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
@@ -20,11 +20,11 @@ Review metadata added
           Name
         </dt>
           <dd class="govuk-summary-list__value">
-            <ul class="govuk-list govuk-list--bullet">
-              {% for f in data['file-selection']| getFilenames(data.files) %}
-                <li>{{f}}</li>
-              {% endfor %}
-            </ul>
+            {# <ul class="govuk-list govuk-list--bullet"> #}
+            {% for f in data['file-selection']| getFilenames(data.files) %}
+              {{f}}
+            {% endfor %}
+            {# </ul> #}
           </dd>
           <dd class="govuk-summary-list__actions"></dd>
         </div>
@@ -91,7 +91,7 @@ Review metadata added
             Description
           </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['description'] }}
+              {{ data['addDescriptive-description'] }}
             </dd>
           </div>
           <div class="govuk-summary-list__row" style="border-bottom: none;">
@@ -108,10 +108,10 @@ Review metadata added
       <div class="govuk-button-group">
         <a href="./add-closure" role="button" draggable="false" class="govuk-button"
           data-module="govuk-button">
-          Edit closure metadata
+          Edit metadata
         </a>
-        <a href="./delete-metadata" role="button" draggable="false" class="govuk-button govuk-button">
-          Delete closure metadata
+        <a href="./delete-metadata" role="button" draggable="false" class="govuk-button govuk-button--secondary">
+          Delete metadata
         </a>
       </div>
 

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-View existing metadata
+Closure Metadata - View existing metadata
 {% endblock %}
 
 {% block content %}
@@ -10,7 +10,7 @@ View existing metadata
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Closure metadata</span>
       <h1 class="govuk-heading-l">
-        View existing metadata
+        View metadata
       </h1>{{releaseVersion | log }}
       <p class="govuk-body">View existing closure metadata.</p>
 
@@ -20,11 +20,11 @@ View existing metadata
           Name
         </dt>
           <dd class="govuk-summary-list__value">
-            <ul class="govuk-list govuk-list--bullet">
-              {% for f in data['file-selection']| getFilenames(data.files) %}
-                <li>{{f}}</li>
-              {% endfor %}
-            </ul>
+            {# <ul class="govuk-list govuk-list--bullet"> #}
+            {% for f in data['file-selection']| getFilenames(data.files) %}
+              {{f}}
+            {% endfor %}
+            {# </ul> #}
           </dd>
           <dd class="govuk-summary-list__actions"></dd>
         </div>
@@ -33,91 +33,102 @@ View existing metadata
           Closure status
         </dt>
           <dd class="govuk-summary-list__value">
-          Closed
-        </dd>
+            {{data.status}}
+          </dd>
         </div>
 
-        <!-- closure stuff here -->
-        <div class="govuk-summary-list__row" style="border-bottom: none;">
-          <dt class="govuk-summary-list__key">
+        {% if data.status != 'Open' %}
+
+          <div class="govuk-summary-list__row" style="border-bottom: none;">
+            <dt class="govuk-summary-list__key">
             FOI decision asserted
           </dt>
-          <dd class="govuk-summary-list__value">
-            {{data['addClosure-foi-asserted-day']}}/{{data['addClosure-foi-asserted-month']}}/{{data['addClosure-foi-asserted-year']}}
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row" style="border-bottom: none;">
-          <dt class="govuk-summary-list__key">
+            <dd class="govuk-summary-list__value">
+              {{data['addClosure-foi-asserted-day']}}/{{data['addClosure-foi-asserted-month']}}/{{data['addClosure-foi-asserted-year']}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row" style="border-bottom: none;">
+            <dt class="govuk-summary-list__key">
             Closure start date
           </dt>
-          <dd class="govuk-summary-list__value">
-            {{data['addClosure-closure-start-day']}}/{{data['addClosure-closure-start-month']}}/{{data['addClosure-closure-start-year']}}
+            <dd class="govuk-summary-list__value">
+              {{data['addClosure-closure-start-day']}}/{{data['addClosure-closure-start-month']}}/{{data['addClosure-closure-start-year']}}
 
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row" style="border-bottom: none;">
-          <dt class="govuk-summary-list__key">
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row" style="border-bottom: none;">
+            <dt class="govuk-summary-list__key">
             Closure period
           </dt>
-          <dd class="govuk-summary-list__value">
-            {{data['addClosure-closure-period']}} years
+            <dd class="govuk-summary-list__value">
+              {{data['addClosure-closure-period']}} years
           </dd>
-        </div>
-        <div class="govuk-summary-list__row" style="border-bottom: none;">
-          <dt class="govuk-summary-list__key">
+          </div>
+          <div class="govuk-summary-list__row" style="border-bottom: none;">
+            <dt class="govuk-summary-list__key">
               FOI exemption code(s)
           </dt>
-          <dd class="govuk-summary-list__value">
-            <ul class="govuk-list govuk-list--bullet">
-              {% for id in data['addClosure-foi_id_selection'] %}
-                <li>{{id}}</li>
-              {% endfor %}
-            </ul>
-          </dd>
-        </div>
-        {% if data["addClosure-is-the-title-sensitive"] == "yes" %}
-          <div class="govuk-summary-list__row" style="border-bottom: none;">
-            <dt class="govuk-summary-list__key">
+            <dd class="govuk-summary-list__value">
+              <ul class="govuk-list govuk-list--bullet">
+                {% for id in data['addClosure-foi_id_selection'] %}
+                  <li>{{id}}</li>
+                {% endfor %}
+              </ul>
+            </dd>
+          </div>
+          {% if data["addClosure-is-the-title-sensitive"] == "yes" %}
+            <div class="govuk-summary-list__row" style="border-bottom: none;">
+              <dt class="govuk-summary-list__key">
             Alternative title
           </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['addClosure-alternative-title'] }}
-            </dd>
-          </div>
-        {% endif %}
-        {% if data["addClosure-is-the-description-sensitive"] == "yes" %}
-          <div class="govuk-summary-list__row" style="border-bottom: none;">
-            <dt class="govuk-summary-list__key">
+              <dd class="govuk-summary-list__value">
+                {{ data['addClosure-alternative-title'] }}
+              </dd>
+            </div>
+          {% endif %}
+          {% if data["addClosure-is-the-description-sensitive"] == "yes" %}
+            <div class="govuk-summary-list__row" style="border-bottom: none;">
+              <dt class="govuk-summary-list__key">
             Description
           </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['description'] }}
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row" style="border-bottom: none;">
-            <dt class="govuk-summary-list__key">
+              <dd class="govuk-summary-list__value">
+                {{ data['description'] }}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row" style="border-bottom: none;">
+              <dt class="govuk-summary-list__key">
             Alternative description
           </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['addClosure-alternative-description'] }}
-            </dd>
-          </div>
+              <dd class="govuk-summary-list__value">
+                {{ data['addClosure-alternative-description'] }}
+              </dd>
+            </div>
+          {% endif %}
         {% endif %}
       </dl>
+      <form action="/metadata/closure-metadata/confirm-file-level">
 
-      <div class="govuk-button-group">
-        <a href="./add-closure" role="button" draggable="false" class="govuk-button"
+        <div class="govuk-button-group">
+          <button
+          draggable="false"
+          class="govuk-button govuk-!-margin-bottom-4"
+          name="action" value="edit"
           data-module="govuk-button">
-          Edit closure metadata
-        </a>
-        <a href="./delete-metadata" role="button" draggable="false" class="govuk-button govuk-button">
-          Delete closure metadata
-        </a>
-        <a href="./file-level" draggable="false" class="govuk-link">
-          Cancel
-        </a>
-      </div>
+            {% if data.status != 'Open' %}Edit metadata{% else %}Add closure metadata{% endif %}
+          </button>
+          {% if data.status != 'Open' %}
 
+            <a href="./delete-metadata" role="button" draggable="false" class="govuk-button govuk-button--secondary">
+          Delete metadata
+        </a>
+          {% endif %}
+        </div>
+        <div class="govuk-button-group">
+          <a href="./file-level" draggable="false" class="govuk-link govuk-link--no-visited-state">
+          Return to all files
+          </a>
+        </div>
+      </form>
     </div>
   </div>
 

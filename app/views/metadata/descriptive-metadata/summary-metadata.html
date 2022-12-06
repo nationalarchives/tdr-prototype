@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-View existing metadata
+Descriptive metadata - View existing metadata
 {% endblock %}
 
 {% block content %}
@@ -20,11 +20,11 @@ View existing metadata
           Name
         </dt>
           <dd class="govuk-summary-list__value">
-            <ul class="govuk-list govuk-list--bullet">
-              {% for f in data['file-selection']| getFilenames(data.files) %}
-                <li>{{f}}</li>
-              {% endfor %}
-            </ul>
+            {# <ul class="govuk-list govuk-list--bullet"> #}
+            {% for f in data['file-selection']| getFilenames(data.files) %}
+              {{f}}
+            {% endfor %}
+            {# </ul> #}
           </dd>
           <dd class="govuk-summary-list__actions"></dd>
         </div>
@@ -51,7 +51,7 @@ View existing metadata
         <div class="govuk-summary-list__row" style="border-bottom: none;">
           <dt class="govuk-summary-list__key">Description</dt>
           <dd class="govuk-summary-list__value">
-            {{data['addDescriptive-description']}}
+            {{data['addDescriptive-description']|d("-", true)}}
           </dd>
         </div>
         <div class="govuk-summary-list__row" style="border-bottom: none;">
@@ -60,7 +60,12 @@ View existing metadata
             {% if data['addDescriptive-range-start-year'] %}
               {{data['addDescriptive-range-start-day']}}/{{data['addDescriptive-range-start-month']}}/{{data['addDescriptive-range-start-year']}} -{{ " "}}
             {% endif %}
-            {{data['addDescriptive-Day']}}/{{data['addDescriptive-Month']}}/{{data['addDescriptive-Year']}}
+            {% if data['addDescriptive-Day'] %}
+              {{data['addDescriptive-Day']}}/{{data['addDescriptive-Month']}}/{{data['addDescriptive-Year']}}
+            {% else %}
+            -
+            {% endif %}
+
           </dd>
         </div>
 
@@ -107,19 +112,29 @@ View existing metadata
         </div>
       </dl>
 
-      <div class="govuk-button-group">
-        <a href="./add-descriptive" role="button" draggable="false" class="govuk-button"
-          data-module="govuk-button">
-          Edit descriptive metadata
-        </a>
-        <a href="./delete-metadata" role="button" draggable="false" class="govuk-button govuk-button">
-          Delete descriptive metadata
-        </a>
-        <a href="./file-level" draggable="false" class="govuk-link">
-          Cancel
-        </a>
-      </div>
+      <form action="/metadata/descriptive-metadata/confirm-file-level">
 
+        <div class="govuk-button-group">
+          <button
+          draggable="false"
+          class="govuk-button govuk-!-margin-bottom-4"
+          name="action" value="edit"
+          data-module="govuk-button">
+            {% if data.status == 'has-data' %}Edit metadata{% else %}Add metadata{% endif %}
+          </button>
+          {% if data.status == 'has-data' %}
+
+            <a href="./delete-metadata" role="button" draggable="false" class="govuk-button govuk-button--secondary">
+            Delete metadata
+          </a>
+          {% endif %}
+        </div>
+        <div class="govuk-button-group">
+          <a href="./file-level" draggable="false" class="govuk-link govuk-link--no-visited-state">
+          Return to all files
+          </a>
+        </div>
+      </form>
     </div>
   </div>
 
