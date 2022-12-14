@@ -13,15 +13,28 @@ Check closure status
         <h1 class="govuk-heading-l">
           Confirm closure status
         </h1>{{releaseVersion | log }}
+        {% set exists = data['file-selection'] == undefined or data['file-selection']| filterClosed(data.closedFiles) | length > 0 %}
 
+        {% if exists %}
+          <div class="govuk-warning-text">
+            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+            <strong class="govuk-warning-text__text">
+              <span class="govuk-warning-text__assistive">Warning</span>
+              The  closure status of selected files is confirmed. To remove the closure status continue to the summary page and delete the closure metadata.
+          </strong>
+          </div>
+        {% endif %}
         <div class="tdr-card">
           <div class="tdr-card__content">
-            <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding closure status to the following files:</p>
-            <ul class="govuk-list govuk-list--bullet">
-              {% for f in data['file-selection']| filterOpen(data.closedFiles) | getFilenames(data.files) %}
-                <li>{{f|decodeFilename}}</li>
-              {% endfor %}
-            </ul>
+            {% set open =  data['file-selection']| filterOpen(data.closedFiles) %}
+            {% if open.length > 0 %}
+              <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding closure to the following files:</p>
+              <ul class="govuk-list govuk-list--bullet">
+                {% for f in data['file-selection']| filterOpen(data.closedFiles) | getFilenames(data.files) %}
+                  <li>{{f|decodeFilename}}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
             {% set alreadyClosed =  data['file-selection']| filterClosed(data.closedFiles) %}
             {% if alreadyClosed.length > 0 %}
               <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">The following selected files are already closed:</p>
@@ -49,7 +62,7 @@ Check closure status
                 {% for f in fileSelection %}
                   <input class="govuk-checkboxes__input" id="close-{{f}}" name="requestClose[{{f}}]" type="hidden" value="true">
                 {% endfor %}
-                <input class="govuk-checkboxes__input" id="closed" name="confirm-closure" type="checkbox" value="true">
+                <input {% if data['file-selection'] == undefined or exists %}disabled checked{% endif %} class="govuk-checkboxes__input" id="closed" name="confirm-closure" type="checkbox" value="true">
                 <label class="govuk-label govuk-checkboxes__label" for="confirm-closure">
                   Yes, I confirm
                 </label>
