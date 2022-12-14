@@ -14,10 +14,9 @@
 
       <span class="govuk-caption-l">Step 5 of 7</span>
       <h1 class="govuk-heading-l">Add, edit or delete metadata</h1>
-      {# <h1 class="govuk-heading-s">Folder uploaded: Recipes and ingredients</h1> #}
+      {% include "../banner-leave-return.html" %}
 
       <p class="govuk-body">You can now add or edit closure and descriptive metadata to your records.</p>
-
       <div class="tdr-card tdr-metadata-card">
         <div class="tdr-card__content">
           <h2 class="govuk-heading-s">
@@ -85,9 +84,12 @@
         </strong>
       </div>
 
-      <a href="../download-metadata.html" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
-        Continue
-      </a>
+      <div class="govuk-button-group">
+        <a href="../download-metadata.html" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+          Next
+        </a>
+
+      </div>
 
     </div>
     <div class="govuk-grid-column-one-third">

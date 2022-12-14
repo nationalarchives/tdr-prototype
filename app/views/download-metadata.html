@@ -4,16 +4,13 @@
   Transfer summary
 {% endblock %}
 
-{% block beforeContent %}
-  <a href="./metadata/additional-metadata" class="govuk-back-link">Back</a>
-{% endblock %}
-
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <span class="govuk-caption-l">Step 6 of 7</span>
       <h1 class="govuk-heading-l">Download or view metadata</h1>
+      {% include "./banner-leave-return.html" %}
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full govuk-tdr-download-csv-row">
@@ -37,7 +34,7 @@
           Back
         </a>
         <a href="./summary.html" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
-          Continue
+          Next
         </a>
       </div>
 
