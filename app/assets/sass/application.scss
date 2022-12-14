@@ -403,3 +403,14 @@ $govuk-assets-path: '/govuk/assets/';
   color: govuk-shade(govuk-colour("green"), 20);
   background: govuk-tint(govuk-colour("green"), 80);
 }
+
+.tna-button-icon {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.tna-button-icon svg {
+  max-height: 100%;
+}

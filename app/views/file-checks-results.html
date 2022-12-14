@@ -14,18 +14,33 @@
         Results of your checks
       </h1>
 
-      <div class="govuk-success-summary" aria-labelledby="success-summary-title" role="alert" tabindex="-1" data-module="govuk-success-summary">
+      {# <div class="govuk-success-summary" aria-labelledby="success-summary-title" role="alert" tabindex="-1" data-module="govuk-success-summary">
         <h2 class="govuk-success-summary__title" id="success-summary-title">
           Success
         </h2>
         <div class="govuk-success-summary__body">
           <p class="govuk-body">Your folder 'Recipes and Ingredients' containing 1200 items has been successfully checked and uploaded.</p>
-          <p class="govuk-body">Click 'Continue' to proceed with your transfer.</p>
+        </div>
+
+      </div> #}
+
+      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <h3 class="govuk-notification-banner__heading">
+            Your folder has been successfully uploaded
+          </h3>
+          <p class="govuk-body">Your folder 'Recipes and Ingredients' containing 1200 items has been successfully checked and uploaded.</p>
+          <p class="govuk-body">You can leave and return to this transfer at any time from the <a class="govuk-notification-banner__link" href="#">View Transfers</a> page.</p>
         </div>
       </div>
 
-        <a href="metadata/additional-metadata.html" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
-          Continue
+      <a href="metadata/additional-metadata.html" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+          Next
         </a>
 
     </div>
@@ -40,7 +55,7 @@
           MOCK-123-TDR
         </div>
       </details>
-  </div>
+    </div>
   </div>
 
 {% endblock %}
