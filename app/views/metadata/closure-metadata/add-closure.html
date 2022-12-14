@@ -215,8 +215,10 @@ Add or edit closure metadata
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h1 class="govuk-fieldset__heading">Is the title sensitive for the public?</h1>
             </legend>
-            <p class="tdr-filename">The current title of your record is: <em>{{data['file-selection'][0] | getFilename(data.files)}}</em>
-            </p>
+            <p id="current_title_label" class="govuk-body govuk-!-margin-bottom-1">The current title of your record is:</p>
+            <div aria-labelledby="current_title_label" class="govuk-inset-text govuk-!-margin-top-3">
+              {{data['file-selection'][0] | getFilename(data.files)}}
+            </div>
             {% if errorTitleClosed == true %}
               <p id="passport-issued-error" class="govuk-error-message">
                 <span class="govuk-visually-hidden">Error:</span> Choose an option for this field
@@ -250,9 +252,9 @@ Add or edit closure metadata
               <p class="govuk-fieldset__heading">Is the description sensitive for the public?</p>
             </legend>
             {% if data['file-selection']|hasDescription(data.descriptiveFiles) %}
-              <div class="govuk-hint">
-                You cannot edit the description here. You can edit it in the Descriptive metadata step.
-              </div>
+              <p class="govuk-body govuk-!-margin-bottom-1" id="current_description_label">
+                The current description of your record is below. You can edit it in the Descriptive metadata step.
+              </p>
               {% if data['file-selection']|notMatchingDescription(data.descriptiveFiles) %}
                 <div class="govuk-warning-text govuk-!-margin-bottom-2">
                   <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
@@ -262,15 +264,9 @@ Add or edit closure metadata
                   </strong>
                 </div>
               {% endif %}
-              <textarea
-                class="govuk-textarea"
-                id="address"
-                name="addDescriptive-description"
-                readonly="true"
-                rows="5" {% if data['file-selection']|notMatchingDescription(data.descriptiveFiles) %}disabled{% endif %}>
-                {%- if data['file-selection']|notMatchingDescription(data.descriptiveFiles) === false -%}{{data['addDescriptive-description']}}
-                {%- endif -%}
-              </textarea>
+              <div aria-labelledby="current_description_label" class="govuk-inset-text govuk-!-margin-top-3">
+                {{data['addDescriptive-description']}}
+              </div>
               {% if errorDescriptionClosed == true %}
                 <p id="passport-issued-error" class="govuk-error-message">
                   <span class="govuk-visually-hidden">Error:</span> Choose an option for this field
