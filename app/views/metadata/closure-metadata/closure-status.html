@@ -35,7 +35,6 @@ Check closure status
                 {% endfor %}
               </ul>
             {% endif %}
-
             {% set alreadyClosed =  data['file-selection']| filterClosed(data.closedFiles) %}
             {% if alreadyClosed.length > 0 %}
               <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">The following selected files are already closed:</p>
