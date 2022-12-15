@@ -9,16 +9,17 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Step 1 of 7</span>
-      <h1 class="govuk-heading-l">Choose a series</h1>
-
       <form class="form" action="/transfer-agreement" method="post">
 
         <div class="govuk-form-group">
-          <label class="govuk-label" for="sort">
-            Please choose an existing series reference for the records you would like to transfer.
-          </label>
-          <select class="govuk-select" id="sort" name="sort">
+          <span class="govuk-caption-l">Step 1 of 7</span>
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="choose-series">Choose a series reference</label>
+          </h1>
+          <p class="govuk-body">
+            If you cannot see the correct series reference for the records, you need a new one adding, or you’re transferring records on behalf of another transferring body, contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>.
+          </p>
+          <select class="govuk-select" id="choose-series" name="sort">
             <option>Please choose...</option>
             <option value="test123">TEST123</option>
           </select>
