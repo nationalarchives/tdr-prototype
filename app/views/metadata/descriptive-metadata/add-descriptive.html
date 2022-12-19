@@ -75,14 +75,6 @@
 {% endblock %}
 
 {% block pageScripts %}
-  <script src = "https://unpkg.com/aria-autocomplete" type = "text/javascript"></script>
-  <script>
-    AriaAutocomplete(document.querySelector('#language-select'), {
-      placeholder: 'Enter a language',
-      deleteOnBackspace: true,
-      showAllControl: true,
-      autoGrow: false,
-      cssNameSpace: "govuk-multi-autocomplete"
-    });
-  </script>
+  <script src="/public/javascripts/tdr-components.js"></script>
+  <script src="/public/javascripts/multi-select-search.js"></script>
 {% endblock %}

@@ -10,6 +10,8 @@ $govuk-assets-path: '/govuk/assets/';
 // Import GOV.UK Frontend and any extension styles if extensions have been configured
 @import "lib/extensions/extensions";
 
+@import 'node_modules/@nationalarchives/tdr-components/components/multi-select-search/_index';
+
 // Patterns that aren't in Frontend
 @import "patterns/step-by-step-header";
 @import "patterns/step-by-step-nav";
