@@ -1,24 +1,24 @@
 {% extends "layout.html" %}
 
 {% block header %}
-{# Set serviceName in config.js. #}
-{{ govukHeader({
+  {# Set serviceName in config.js. #}
+  {{ govukHeader({
   homepageUrl: "http://localhost:3000/",
   serviceName: serviceName,
   serviceUrl: "http://localhost:3000/",
   containerClasses: "govuk-width-container"
 }) }}
-<meta http-equiv="refresh" content="30; url=/progress-checks">
-<div class="govuk-width-container app-width-container">
-  <div class="govuk-phase-banner">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">BETA</strong>
-      <span class="govuk-phase-banner__text">This is a new service – Please
+  <meta http-equiv="refresh" content="10; url=/progress-checks">
+  <div class="govuk-width-container app-width-container">
+    <div class="govuk-phase-banner">
+      <p class="govuk-phase-banner__content">
+        <strong class="govuk-tag govuk-phase-banner__content__tag">BETA</strong>
+        <span class="govuk-phase-banner__text">This is a new service – Please
         <a class="govuk-link govuk-link--no-visited-state" target="_blank" rel="noreferrer noopener" href="/contact">get in touch (opens in new tab)</a>  with your questions, feedback or ideas.
       </span>
-    </p>
+      </p>
+    </div>
   </div>
-</div>
 {% endblock %}
 
 {% block pageTitle %}
@@ -61,7 +61,7 @@
           MOCK-123-TDR
         </div>
       </details>
-  </div>
+    </div>
   </div>
 
 {% endblock %}
