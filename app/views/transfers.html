@@ -1,0 +1,181 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Welcome
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <h1 class="govuk-heading-l">View Transfers</h1>
+      <p class="govuk-body">View the history of all the consignments you have uploaded and resume incomplete or failed
+      transfers.</p>
+
+      <table data-module="table-row-expander" class="govuk-table govuk-table--tdr-transfers">
+        <colgroup>
+          <col style="width:30px">
+          <col style="width:200px">
+          <col style="width:auto">
+          <col style="width:auto">
+          <col style="width:auto">
+          <col style="width:100px">
+        </colgroup>
+        <thead>
+          <tr>
+            <th class="govuk-visually-hidden" scope="col">Toggle</th>
+            <th scope="col">Reference</th>
+
+            <th scope="col">Date started</th>
+            <th scope="col">Date transferred</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-01">
+                <span class="govuk-visually-hidden">Reveal more details</span></button>
+            </td>
+            <th class="ref" rowspan="2" scope="rowgroup">MOCK-TDR-1234</th>
+            <td>12/11/22</td>
+            <td>
+              <span class="no-data">N/A<span class="govuk-visually-hidden">Transfer not complete yet</span></span></td>
+            <td>
+              <strong class="tdr-tag tdr-tag--red">failed</strong>
+            </td>
+            <td>
+              <div class="tdr-link-group">
+                <a href="#" class="govuk-link govuk-link--no-visited-state">View errors</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th class="govuk-visually-hidden" scope="row">More details about MOCK-TDR-1234</th>
+            <td colspan="5" id="details-01" hidden>
+              <dl class="tdr-horizontal-dlist">
+                <dt>Uploaded by</dt>
+                <dd>
+                  <a href="mailto:max@departmentofcookies.gov.uk">max@departmentofcookies.gov.uk</a>
+                </dd>
+                <dd>
+                  <a href="mailto:toni@departmentofcookies.gov.uk">toni@departmentofcookies.gov.uk</a>
+                </dd>
+                <dt>Number of files</dt>
+                <dd>1020</dd>
+                <dt>Error report</dt>
+                <dd>Many Many Many Many Many Many Many Many Many details<br>Many Many Many Many Many Many Many Many Many more details</dd>
+              </dl>
+            </td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>
+              <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-02">
+                <span class="govuk-visually-hidden">Reveal more details</span></button>
+            </td>
+            <th class="ref" rowspan="2" scope="rowgroup">MOCK-TDR-1235</th>
+            <td>09/10/22</td>
+            <td>
+              <span class="no-data">N/A<span class="govuk-visually-hidden">Transfer not complete yet</span></span></td>
+            <td>
+              <strong class="tdr-tag tdr-tag--orange">in progress</strong>
+            </td>
+            <td>
+              <div class="tdr-link-group">
+                <a href="#" class="govuk-link govuk-link--no-visited-state">Resume transfer</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th class="govuk-visually-hidden" scope="row">Details about MOCK-TDR-1235</th>
+            <td colspan="5" id="details-02" hidden>
+              <dl class="tdr-horizontal-dlist">
+                <dt>Uploaded by</dt>
+                <dd>
+                  <a href="mailto:johndoe@departmentofcookies.gov.uk">charlie@departmentofcookies.gov.uk</a>
+                </dd>
+                <dt>Number of files</dt>
+                <dd>5</dd>
+              </dl>
+            </td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>
+              <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-03">
+                <span class="govuk-visually-hidden">Reveal more details</span></button>
+            </td>
+            <th class="ref" rowspan="2" scope="rowgroup">MOCK-TDR-1235</th>
+            <td>21/09/22</td>
+            <td>11/10/22</td>
+            <td>
+              <strong class="tdr-tag tdr-tag--green">transferred</strong>
+            </td>
+            <td>
+              <div class="tdr-link-group">
+                <a href="#" class="govuk-link govuk-link--no-visited-state">Download report</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th class="govuk-visually-hidden" scope="row">Details about MOCK-TDR-1235</th>
+            <td colspan="5" id="details-03" hidden>
+              <dl class="tdr-horizontal-dlist">
+                <dt>Uploaded by</dt>
+                <dd>
+                  <a href="mailto:johndoe@departmentofcookies.gov.uk">jo@departmentofpasta.gov.uk</a>
+                </dd>
+                <dt>Number of files</dt>
+                <dd>80</dd>
+              </dl>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <a href="dashboard" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+        Back to homepage
+      </a>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    window.onload = () => {
+      const table = document.querySelector("[data-module=table-row-expander]");
+      if (table)
+        // For simplicity, attach a single event listener. When buttons are clicked, the event should bubble to this listener.
+        table.addEventListener('click', function (e) {
+
+          // Only act on a button click
+          if (e.target.tagName !== 'BUTTON') {
+            // a button was not clicked, return
+            return;
+          }
+
+          // Get the td that this button controls
+          const targetTD = document.getElementById(e.target.getAttribute('aria-controls'));
+
+          // Toggle
+          if (targetTD.hasAttribute('hidden')) {
+            targetTD.removeAttribute('hidden');
+            e
+              .target
+              .setAttribute('aria-expanded', 'true');
+          } else {
+            targetTD.setAttribute('hidden', null);
+            e
+              .target
+              .setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+  </script>
+{% endblock %}
