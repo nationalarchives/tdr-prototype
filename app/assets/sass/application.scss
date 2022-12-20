@@ -339,6 +339,7 @@ $govuk-assets-path: '/govuk/assets/';
   color: $govuk-secondary-text-colour
 }
 
+
 .tdr-tag {
   display: inline-block;
   // When a user customises their colours often the background is removed,
@@ -357,7 +358,6 @@ $govuk-assets-path: '/govuk/assets/';
   padding-bottom: 2px;
   padding-left: 8px;
 }
-
 
 .tdr-tag--grey {
   color: govuk-shade(govuk-colour("dark-grey", $legacy: "grey-1"), 30);
@@ -384,7 +384,7 @@ $govuk-assets-path: '/govuk/assets/';
   background: govuk-tint(govuk-colour("yellow"), 75);
 }
 
-.govuk-tag--orange {
+.tdr-tag--orange {
   color: govuk-shade(govuk-colour("orange"), 55);
   background: govuk-tint(govuk-colour("orange"), 70);
 }
@@ -413,4 +413,96 @@ $govuk-assets-path: '/govuk/assets/';
 
 .tna-button-icon svg {
   max-height: 100%;
+}
+
+.govuk-table--tdr-transfers {
+  position: relative;
+  width: calc(100% + 10px);
+  left: -10px;
+  @include govuk-media-query($from: tablet) {
+    width: calc(100% + 30px);
+    left: -30px;
+  }
+}
+
+.govuk-table--tdr-transfers tbody tr:first-child td:first-child {
+  border-bottom: none;
+}
+
+.govuk-table--tdr-transfers td:first-child {
+  padding-right: 10px;
+}
+
+.govuk-table--tdr-transfers tr td:first-child {
+  padding-right: 0;
+}
+
+.govuk-table--tdr-transfers tr td:first-child button {
+  position: relative;
+  top: -6px;
+  // left: -4px;
+}
+
+.govuk-table--tdr-transfers .no-data {
+  color:#6B7276;
+}
+
+.tdr-link-group a {
+  white-space: nowrap;
+}
+
+.tdr-link-group a:first-child {
+  margin-left: 0;
+}
+
+.tdr-arrow-expander {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  height: 26px;
+  width:30px;
+}
+
+.tdr-arrow-expander::before {
+  content: "";
+  position: absolute;
+
+  top: -1px;
+  bottom: 0;
+  left: 10px;
+
+  margin: auto;
+  @include govuk-shape-arrow($direction: right, $base: 15px);
+  border-color: $govuk-link-colour;
+}
+
+.tdr-arrow-expander:focus {
+  outline: 3px solid transparent;
+  color: $govuk-focus-text-colour;
+  background-color: $govuk-focus-colour;
+  box-shadow: 0 -2px $govuk-focus-colour,
+  0 4px $govuk-focus-text-colour;
+  text-decoration: none;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.tdr-arrow-expander[aria-expanded="true"]::before {
+  @include govuk-shape-arrow($direction: down, $base: 15px);
+  left: 7px;
+  border-color: $govuk-link-colour;
+}
+
+.tdr-horizontal-dlist {
+  margin: 0;
+}
+
+.tdr-horizontal-dlist dt {
+  font-weight: bold;
+}
+
+.tdr-horizontal-dlist dd {
+  margin: 0 0 0 20px;
+  padding: 0 0 0.5em 0;
 }
