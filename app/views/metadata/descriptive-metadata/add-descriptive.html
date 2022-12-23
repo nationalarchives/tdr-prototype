@@ -71,14 +71,15 @@
 {% endblock %}
 
 {% block pageScripts %}
-  <script src = "https://unpkg.com/aria-autocomplete" type = "text/javascript"></script>
+  <script src="/public/javascripts/tdr-components.js"></script>
   <script>
-    AriaAutocomplete(document.querySelector('#language-select'), {
-      placeholder: 'Enter a language',
-      deleteOnBackspace: true,
-      showAllControl: true,
-      autoGrow: false,
-      cssNameSpace: "govuk-multi-autocomplete"
-    });
+    window.onload = () => {
+      const multiSelects = document.querySelectorAll("[data-module=multi-select-search]");
+      console.log(multiSelects);
+      multiSelects.forEach((ms) => {
+        const multiSelectSearch = new MultiSelectSearch(ms);
+        multiSelectSearch.initialise();
+      });
+    };
   </script>
 {% endblock %}
