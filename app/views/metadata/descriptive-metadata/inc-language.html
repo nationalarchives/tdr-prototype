@@ -8,33 +8,50 @@
     <div class="govuk-hint">
       Choose one or more languages used in this record.
     </div>
-    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes" id="language-select">
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-one-third">
+
+    <div class="tna-multi-select-search"
+        data-module="multi-select-search"
+        data-copy-single="language"
+        data-copy-multiple="lanugages"
+        >
+
+      <div class="tna-multi-select-search__filter">
+        <label for="language-input-filter" class="govuk-label govuk-visually-hidden">Search by typing a language</label>
+        <input name="tna-multi-select-search" id="language-input-filter"
+            class="tna-multi-select-search__filter-input govuk-input"
+            placeholder="Search by typing a language"
+            type="text" aria-describedby="languages-filter-count">
+      </div>
+
+      <div class="govuk-body govuk-!-margin-bottom-0 js-selected-count"></div>
+
+      <span id="languages-filter-count"
+          class="govuk-visually-hidden js-filter-count"
+          aria-live="polite"></span>
+
+      <div class="tna-multi-select-search__list-container js-container">
+        <ul class="govuk-checkboxes tna-multi-select-search__list"
+            id="language-select" aria-describedby="languages-filter-count">
           {% for l in data.languages %}
-            <div class="govuk-checkboxes__item">
+            <li class="govuk-checkboxes__item">
               <input {% if (data['language-select'] and l.alpha2 in data['language-select']) or (not data['language-select'] and l.alpha2 == "en")  %}checked{% endif %} class="govuk-checkboxes__input" id="{{loop.index}}" name="addDescriptive-language-select" type="checkbox" value="{{l.alpha2}}">
               <label class="govuk-label govuk-checkboxes__label" for="{{loop.index}}">
                 {{l.English}}
               </label>
-            </div>
-            {% if loop.index % ((loop.length / 3) | round) == 0 %}
-            </div>
-            <div class="govuk-grid-column-one-third">
-            {% endif %}
+            </li>
           {% endfor %}
-        </div>
+        </ul>
       </div>
-    </div>
-  </fieldset>
-</div>
 
-<div class="govuk-form-group">
-  <label class="govuk-label govuk-label--m" for="years">
+    </fieldset>
+  </div>
+
+  <div class="govuk-form-group">
+    <label class="govuk-label govuk-label--m" for="years">
     Translated title of record
   </label>
-  <div id="closure-period-hint" class="govuk-hint">
+    <div id="closure-period-hint" class="govuk-hint">
     If the title is not in English you can provide a translation.
   </div>
-  <input class="govuk-input" name="addDescriptive-translation" value="{{data['translation']}}"/>
-</div>
+    <input class="govuk-input" name="addDescriptive-translation" value="{{data['translation']}}"/>
+  </div>

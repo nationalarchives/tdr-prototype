@@ -186,22 +186,39 @@ Add or edit closure metadata
                 <span class="govuk-visually-hidden">Error:</span> Enter a value for FOI exemption codes
             </p>
             {% endif %}
-            <div class="govuk-checkboxes" data-module="govuk-checkboxes" id="foi-exemption-codes">
-              <div class="govuk-grid-row">
-                <div class="govuk-grid-column-one-third">
+
+            <div class="tna-multi-select-search"
+                data-module="multi-select-search"
+                data-copy-single="foi-exemption"
+                data-copy-multiple="lanugages"
+                >
+
+              <div class="tna-multi-select-search__filter">
+                <label for="foi-exemption-input-filter" class="govuk-label govuk-visually-hidden">Search by typing a foi-exemption</label>
+                <input name="tna-multi-select-search" id="foi-exemption-input-filter"
+                    class="tna-multi-select-search__filter-input govuk-input"
+                    placeholder="Search by typing an FOI exemption code"
+                    type="text" aria-describedby="foi-exemptions-filter-count">
+              </div>
+
+              <div class="govuk-body govuk-!-margin-bottom-0 js-selected-count"></div>
+
+              <span id="foi-exemptions-filter-count"
+                  class="govuk-visually-hidden js-filter-count"
+                  aria-live="polite"></span>
+
+              <div class="tna-multi-select-search__list-container js-container">
+                <ul class="govuk-checkboxes tna-multi-select-search__list"
+                    id="language-select" aria-describedby="languages-filter-count">
                   {% for code in data.foi_exemption_codes | sort %}
-                    <div class="govuk-checkboxes__item">
-                      <input {% if data['addClosure-foi_id_selection'] and code in data['addClosure-foi_id_selection'] %}checked{% endif %} class="govuk-checkboxes__input" id="{{loop.index}}" name="addClosure-foi_id_selection" type="checkbox" value="{{code}}">
-                      <label class="govuk-label govuk-checkboxes__label" for="{{loop.index}}">
-                        {{code}}
-                      </label>
-                    </div>
-                    {% if loop.index % ((loop.length / 3) | round) == 0 %}
-                    </div>
-                    <div class="govuk-grid-column-one-third">
-                    {% endif %}
+                  <li class="govuk-checkboxes__item">
+                    <input {% if data['addClosure-foi_id_selection'] and code in data['addClosure-foi_id_selection'] %}checked{% endif %} class="govuk-checkboxes__input" id="{{loop.index}}" name="addClosure-foi_id_selection" type="checkbox" value="{{code}}">
+                    <label class="govuk-label govuk-checkboxes__label" for="{{loop.index}}">
+                      {{code}}
+                    </label>
+                  </li>
                   {% endfor %}
-                </div>
+                </ul>
               </div>
             </div>
           </fieldset>
@@ -306,17 +323,20 @@ Add or edit closure metadata
       </div>
     </div>
   </form>
-  {% block pageScripts %}
-    <script src = "https://unpkg.com/aria-autocomplete" type = "text/javascript"></script>
-    <script>
-      AriaAutocomplete(document.querySelector('#foi-exemption-codes'), {
-        placeholder: 'Search for FOI Exemption codes',
-        deleteOnBackspace: true,
-        showAllControl: true,
-        autoGrow: false,
-        cssNameSpace: "govuk-multi-autocomplete"
-      });
-    </script>
-  {% endblock %}
 
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/tdr-components.js"></script>
+  <script>
+    window.onload = () => {
+      const multiSelects = document.querySelectorAll("[data-module=multi-select-search]");
+      console.log(multiSelects);
+      multiSelects.forEach((ms) => {
+        const multiSelectSearch = new MultiSelectSearch(ms);
+        multiSelectSearch.initialise();
+      });
+    };
+  </script>
 {% endblock %}
