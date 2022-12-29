@@ -449,6 +449,17 @@ $govuk-assets-path: '/govuk/assets/';
   color:#6B7276;
 }
 
+@include govuk-media-query($from: tablet) {
+  .govuk-table--tdr-transfers td, th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .govuk-table--tdr-transfers td, th {
+    padding-right: 20px;
+  }
+}
+
 .tdr-link-group a {
   white-space: nowrap;
 }
