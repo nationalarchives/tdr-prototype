@@ -507,15 +507,15 @@ $govuk-assets-path: '/govuk/assets/';
   border-color: $govuk-link-colour;
 }
 
-.tdr-horizontal-dlist {
+.tdr-dlist {
   margin: 0;
 }
 
-.tdr-horizontal-dlist dt {
+.tdr-dlist dt {
   font-weight: bold;
 }
 
-.tdr-horizontal-dlist dd {
+.tdr-dlist dd {
   margin: 0 0 0 20px;
   padding: 0 0 0.5em 0;
 }
