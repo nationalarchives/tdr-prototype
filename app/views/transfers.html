@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-Welcome
+View Transfers
 {% endblock %}
 
 {% block content %}
@@ -54,7 +54,7 @@ Welcome
           </tr>
           <tr>
             <th class="govuk-visually-hidden" scope="row">More details about MOCK-TDR-1234</th>
-            <td colspan="5" id="details-01" hidden>
+            <td colspan="5" id="details-01" >
               <div class="govuk-warning-text govuk-!-margin-bottom-2">
                 <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
                 <strong class="govuk-warning-text__text">
@@ -99,7 +99,7 @@ Welcome
           </tr>
           <tr>
             <th class="govuk-visually-hidden" scope="row">Details about MOCK-TDR-1235</th>
-            <td colspan="5" id="details-02" hidden>
+            <td colspan="5" id="details-02" >
               <dl class="tdr-horizontal-dlist">
                 <dt>Uploaded by</dt>
                 <dd>
@@ -131,7 +131,7 @@ Welcome
           </tr>
           <tr>
             <th class="govuk-visually-hidden" scope="row">Details about MOCK-TDR-1235</th>
-            <td colspan="5" id="details-03" hidden>
+            <td colspan="5" id="details-03" >
               <dl class="tdr-horizontal-dlist">
                 <dt>Uploaded by</dt>
                 <dd>
@@ -154,35 +154,14 @@ Welcome
 {% endblock %}
 
 {% block pageScripts %}
+  <script src="/public/javascripts/disclosure.js"></script>
   <script>
     window.onload = () => {
-      const table = document.querySelector("[data-module=table-row-expander]");
-      if (table)
-        // For simplicity, attach a single event listener. When buttons are clicked, the event should bubble to this listener.
-        table.addEventListener('click', function (e) {
+      const tableRowExpanderButtons = document.querySelectorAll("[data-module=table-row-expander] button[aria-expanded][aria-controls]");
 
-          // Only act on a button click
-          if (e.target.tagName !== 'BUTTON') {
-            // a button was not clicked, return
-            return;
-          }
-
-          // Get the td that this button controls
-          const targetTD = document.getElementById(e.target.getAttribute('aria-controls'));
-
-          // Toggle
-          if (targetTD.hasAttribute('hidden')) {
-            targetTD.removeAttribute('hidden');
-            e
-              .target
-              .setAttribute('aria-expanded', 'true');
-          } else {
-            targetTD.setAttribute('hidden', null);
-            e
-              .target
-              .setAttribute('aria-expanded', 'false');
-          }
-        });
-      }
+      tableRowExpanderButtons.forEach((btn) => {
+        new Disclosure(btn);
+      })
+    }
   </script>
 {% endblock %}
