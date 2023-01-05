@@ -13,7 +13,7 @@ Check closure status
         <h1 class="govuk-heading-l">
           Confirm closure status
         </h1>{{releaseVersion | log }}
-        {% set exists = data['file-selection'] == undefined or data['file-selection']| filterClosed(data.closedFiles) | length > 0 %}
+        {% set exists = data['state'] == 'already-closed' or data['file-selection'] == undefined or data['file-selection']| filterClosed(data.closedFiles) | length > 0 %}
 
         {% if exists %}
           <div class="govuk-warning-text">
