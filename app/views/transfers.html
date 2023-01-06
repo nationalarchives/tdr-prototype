@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-Welcome
+View Transfers
 {% endblock %}
 
 {% block content %}
@@ -14,35 +14,28 @@ Welcome
       transfers.</p>
 
       <table data-module="table-row-expander" class="govuk-table govuk-table--tdr-transfers">
-        <colgroup>
-          <col style="width:30px">
-          <col style="width:200px">
-          <col style="width:auto">
-          <col style="width:auto">
-          <col style="width:auto">
-          <col style="width:100px">
-        </colgroup>
         <thead>
           <tr>
-            <th class="govuk-visually-hidden" scope="col">Toggle</th>
-            <th scope="col">Reference</th>
-
-            <th scope="col">Date started</th>
-            <th scope="col">Date transferred</th>
-            <th scope="col">Status</th>
-            <th scope="col">Actions</th>
+            <th style="width:30px" id="toggle">
+              <span class="govuk-visually-hidden">Expand</span></th>
+            <th style="width:200px">Reference</th>
+            <th style="width:200px">Date started</th>
+            <th style="width:200px">Date transferred</th>
+            <th style="width:200px">Status</th>
+            <th>Actions</th>
+            <th class="govuk-visually-hidden" id="more-details">More details</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>
+            <td rowspan="2">
               <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-01">
-                <span class="govuk-visually-hidden">Reveal more details</span></button>
+                <span class="govuk-visually-hidden">More details about MOCK-TDR-1234</span></button>
             </td>
-            <th class="ref" rowspan="2" scope="rowgroup">MOCK-TDR-1234</th>
+            <th>MOCK-TDR-1234</th>
             <td>12/11/22</td>
             <td>
-              <span class="no-data">N/A<span class="govuk-visually-hidden">Transfer not complete yet</span></span></td>
+              <span class="no-data">N/A <span class="govuk-visually-hidden">Transfer not complete yet</span></span></td>
             <td>
               <strong class="tdr-tag tdr-tag--red">failed</strong>
             </td>
@@ -53,31 +46,43 @@ Welcome
             </td>
           </tr>
           <tr>
-            <th class="govuk-visually-hidden" scope="row">More details about MOCK-TDR-1234</th>
-            <td colspan="5" id="details-01" hidden>
-              <dl class="tdr-horizontal-dlist">
-                <dt>Uploaded by</dt>
-                <dd>
-                  <a href="mailto:max@departmentofcookies.gov.uk">max@departmentofcookies.gov.uk</a>
-                </dd>
-                <dd>
-                  <a href="mailto:toni@departmentofcookies.gov.uk">toni@departmentofcookies.gov.uk</a>
-                </dd>
-                <dt>Number of files</dt>
-                <dd>1020</dd>
+            <td headers="more-details" colspan="5" id="details-01" >
+              <div class="govuk-warning-text govuk-!-margin-bottom-0">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                  <span class="govuk-warning-text__assistive">Warning</span>
+                  Please do not delete the original files you exported until you are notified that your records have been preserved.
+                </strong>
+              </div>
+              <div class="tdr-transfers-extra">
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Number of files</dt>
+                  <dd class="govuk-!-font-size-36">1050</dd>
+                </dl>
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Uploaded by</dt>
+                  <dd>
+                    <a href="mailto:max@departmentofcookies.gov.uk">max@departmentofcookies.gov.uk</a>
+                  </dd>
+                  <dd>
+                    <a href="mailto:toni@departmentofcookies.gov.uk">toni@departmentofcookies.gov.uk</a>
+                  </dd>
+                </dl>
+              </div>
+              <dl class="tdr-dlist govuk-!-margin-top-0 govuk-!-margin-bottom-2">
                 <dt>Error report</dt>
-                <dd>Many Many Many Many Many Many Many Many Many details<br>Many Many Many Many Many Many Many Many Many more details</dd>
+                <dd class="govuk-!-font-size-16">Many Many Many Many Many Many Many Many Many details<br>Many Many Many Many Many Many Many Many Many more details</dd>
               </dl>
             </td>
           </tr>
         </tbody>
         <tbody>
           <tr>
-            <td>
+            <td rowspan="2">
               <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-02">
-                <span class="govuk-visually-hidden">Reveal more details</span></button>
+                <span class="govuk-visually-hidden">More details about MOCK-TDR-1235</span></button>
             </td>
-            <th class="ref" rowspan="2" scope="rowgroup">MOCK-TDR-1235</th>
+            <th>MOCK-TDR-1235</th>
             <td>09/10/22</td>
             <td>
               <span class="no-data">N/A<span class="govuk-visually-hidden">Transfer not complete yet</span></span></td>
@@ -86,31 +91,41 @@ Welcome
             </td>
             <td>
               <div class="tdr-link-group">
-                <a href="#" class="govuk-link govuk-link--no-visited-state">Resume transfer</a>
+                <a href="/metadata/additional-metadata" class="govuk-link govuk-link--no-visited-state">Resume transfer</a>
               </div>
             </td>
           </tr>
           <tr>
-            <th class="govuk-visually-hidden" scope="row">Details about MOCK-TDR-1235</th>
-            <td colspan="5" id="details-02" hidden>
-              <dl class="tdr-horizontal-dlist">
-                <dt>Uploaded by</dt>
-                <dd>
-                  <a href="mailto:johndoe@departmentofcookies.gov.uk">charlie@departmentofcookies.gov.uk</a>
-                </dd>
-                <dt>Number of files</dt>
-                <dd>5</dd>
-              </dl>
+            <td headers="more-details" colspan="5" id="details-02">
+              <div class="govuk-warning-text govuk-!-margin-bottom-0">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                  <span class="govuk-warning-text__assistive">Warning</span>
+                  Please do not delete the original files you exported until you are notified that your records have been preserved.
+                </strong>
+              </div>
+              <div class="tdr-transfers-extra">
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Number of files</dt>
+                  <dd class="govuk-!-font-size-36">5</dd>
+                </dl>
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Uploaded by</dt>
+                  <dd>
+                    <a href="mailto:johndoe@departmentofcookies.gov.uk">charlie@departmentofcookies.gov.uk</a>
+                  </dd>
+                </dl>
+              </div>
             </td>
           </tr>
         </tbody>
         <tbody>
           <tr>
-            <td>
+            <td rowspan="2">
               <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-03">
-                <span class="govuk-visually-hidden">Reveal more details</span></button>
+                <span class="govuk-visually-hidden">More details about MOCK-TDR-1236</span></button>
             </td>
-            <th class="ref" rowspan="2" scope="rowgroup">MOCK-TDR-1235</th>
+            <th>MOCK-TDR-1236</th>
             <td>21/09/22</td>
             <td>11/10/22</td>
             <td>
@@ -123,22 +138,32 @@ Welcome
             </td>
           </tr>
           <tr>
-            <th class="govuk-visually-hidden" scope="row">Details about MOCK-TDR-1235</th>
-            <td colspan="5" id="details-03" hidden>
-              <dl class="tdr-horizontal-dlist">
-                <dt>Uploaded by</dt>
-                <dd>
-                  <a href="mailto:johndoe@departmentofcookies.gov.uk">jo@departmentofpasta.gov.uk</a>
-                </dd>
-                <dt>Number of files</dt>
-                <dd>80</dd>
-              </dl>
+            <td headers="more-details" colspan="5" id="details-03">
+              <div class="govuk-warning-text govuk-!-margin-bottom-0">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                  <span class="govuk-warning-text__assistive">Warning</span>
+                  Please do not delete the original files you exported until you are notified that your records have been preserved.
+                </strong>
+              </div>
+              <div class="tdr-transfers-extra">
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Number of files</dt>
+                  <dd class="govuk-!-font-size-36">80</dd>
+                </dl>
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Uploaded by</dt>
+                  <dd>
+                    <a href="mailto:johndoe@departmentofcookies.gov.uk">jo@departmentofpasta.gov.uk</a>
+                  </dd>
+                </dl>
+              </div>
             </td>
           </tr>
         </tbody>
       </table>
 
-      <a href="dashboard" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+      <a href="home" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
         Back to homepage
       </a>
     </div>
@@ -147,35 +172,14 @@ Welcome
 {% endblock %}
 
 {% block pageScripts %}
+  <script src="/public/javascripts/disclosure.js"></script>
   <script>
     window.onload = () => {
-      const table = document.querySelector("[data-module=table-row-expander]");
-      if (table)
-        // For simplicity, attach a single event listener. When buttons are clicked, the event should bubble to this listener.
-        table.addEventListener('click', function (e) {
+      const tableRowExpanderButtons = document.querySelectorAll("[data-module=table-row-expander] button[aria-expanded][aria-controls]");
 
-          // Only act on a button click
-          if (e.target.tagName !== 'BUTTON') {
-            // a button was not clicked, return
-            return;
-          }
-
-          // Get the td that this button controls
-          const targetTD = document.getElementById(e.target.getAttribute('aria-controls'));
-
-          // Toggle
-          if (targetTD.hasAttribute('hidden')) {
-            targetTD.removeAttribute('hidden');
-            e
-              .target
-              .setAttribute('aria-expanded', 'true');
-          } else {
-            targetTD.setAttribute('hidden', null);
-            e
-              .target
-              .setAttribute('aria-expanded', 'false');
-          }
-        });
-      }
+      tableRowExpanderButtons.forEach((btn) => {
+        new Disclosure(btn);
+      })
+    }
   </script>
 {% endblock %}
