@@ -10,9 +10,14 @@ Descriptive metadata - Review changes to descriptive metadata
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Descriptive metadata</span>
       <h1 class="govuk-heading-l">
-        Review changes to descriptive metadata
+        Review saved changes
       </h1>{{releaseVersion | log }}
-      <p class="govuk-body">Review the changes you’ve made to descriptive metadata.</p>
+      <p class="govuk-body govuk-!-margin-bottom-2">Review the changes you’ve made to this file below or continue to the file selection to add metadata to another file.</p>
+      <div class="govuk-button-group">
+        <a href="./file-level" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+          Select another file
+        </a>
+      </div>
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
@@ -117,14 +122,14 @@ Descriptive metadata - Review changes to descriptive metadata
         </a>
       </div>
 
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"/>
+      {# <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"/>
 
       <p class="govuk-text">To add or edit metadata to other files return to the file selection.</p>
       <div class="govuk-button-group">
         <a href="./file-level" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-          Return to all files
+          Continue to select another file
         </a>
-      </div>
+      </div> #}
 
     </div>
   </div>
