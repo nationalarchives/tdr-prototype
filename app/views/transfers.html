@@ -16,21 +16,23 @@ View Transfers
       <table data-module="table-row-expander" class="govuk-table govuk-table--tdr-transfers">
         <thead>
           <tr>
-            <th style="width:30px" class="govuk-visually-hidden" id="toggle">Expand</th>
+            <th style="width:30px" id="toggle">
+              <span class="govuk-visually-hidden">Expand</span></th>
             <th style="width:200px">Reference</th>
             <th style="width:200px">Date started</th>
             <th style="width:200px">Date transferred</th>
             <th style="width:200px">Status</th>
             <th>Actions</th>
+            <th class="govuk-visually-hidden" id="more-details">More details</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>
+            <td rowspan="2">
               <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-01">
                 <span class="govuk-visually-hidden">More details about MOCK-TDR-1234</span></button>
             </td>
-            <th rowspan="2">MOCK-TDR-1234</th>
+            <th>MOCK-TDR-1234</th>
             <td>12/11/22</td>
             <td>
               <span class="no-data">N/A <span class="govuk-visually-hidden">Transfer not complete yet</span></span></td>
@@ -44,38 +46,43 @@ View Transfers
             </td>
           </tr>
           <tr>
-            <th class="govuk-visually-hidden" id="more-details">More details</th>
             <td headers="more-details" colspan="5" id="details-01" >
-              <div class="govuk-warning-text govuk-!-margin-bottom-2">
+              <div class="govuk-warning-text govuk-!-margin-bottom-0">
                 <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
                 <strong class="govuk-warning-text__text">
                   <span class="govuk-warning-text__assistive">Warning</span>
                   Please do not delete the original files you exported until you are notified that your records have been preserved.
                 </strong>
               </div>
-              <dl class="tdr-dlist">
-                <dt>Uploaded by</dt>
-                <dd>
-                  <a href="mailto:max@departmentofcookies.gov.uk">max@departmentofcookies.gov.uk</a>
-                </dd>
-                <dd>
-                  <a href="mailto:toni@departmentofcookies.gov.uk">toni@departmentofcookies.gov.uk</a>
-                </dd>
-                <dt>Number of files</dt>
-                <dd>1020</dd>
+              <div class="tdr-transfers-extra">
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Number of files</dt>
+                  <dd class="govuk-!-font-size-36">1050</dd>
+                </dl>
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Uploaded by</dt>
+                  <dd>
+                    <a href="mailto:max@departmentofcookies.gov.uk">max@departmentofcookies.gov.uk</a>
+                  </dd>
+                  <dd>
+                    <a href="mailto:toni@departmentofcookies.gov.uk">toni@departmentofcookies.gov.uk</a>
+                  </dd>
+                </dl>
+              </div>
+              <dl class="tdr-dlist govuk-!-margin-top-0 govuk-!-margin-bottom-2">
                 <dt>Error report</dt>
-                <dd>Many Many Many Many Many Many Many Many Many details<br>Many Many Many Many Many Many Many Many Many more details</dd>
+                <dd class="govuk-!-font-size-16">Many Many Many Many Many Many Many Many Many details<br>Many Many Many Many Many Many Many Many Many more details</dd>
               </dl>
             </td>
           </tr>
         </tbody>
         <tbody>
           <tr>
-            <td>
+            <td rowspan="2">
               <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-02">
                 <span class="govuk-visually-hidden">More details about MOCK-TDR-1235</span></button>
             </td>
-            <th class="ref" rowspan="2">MOCK-TDR-1235</th>
+            <th>MOCK-TDR-1235</th>
             <td>09/10/22</td>
             <td>
               <span class="no-data">N/A<span class="govuk-visually-hidden">Transfer not complete yet</span></span></td>
@@ -89,26 +96,36 @@ View Transfers
             </td>
           </tr>
           <tr>
-            <th class="govuk-visually-hidden" id="more-details">More details</th>
             <td headers="more-details" colspan="5" id="details-02">
-              <dl class="tdr-dlist">
-                <dt>Uploaded by</dt>
-                <dd>
-                  <a href="mailto:johndoe@departmentofcookies.gov.uk">charlie@departmentofcookies.gov.uk</a>
-                </dd>
-                <dt>Number of files</dt>
-                <dd>5</dd>
-              </dl>
+              <div class="govuk-warning-text govuk-!-margin-bottom-0">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                  <span class="govuk-warning-text__assistive">Warning</span>
+                  Please do not delete the original files you exported until you are notified that your records have been preserved.
+                </strong>
+              </div>
+              <div class="tdr-transfers-extra">
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Number of files</dt>
+                  <dd class="govuk-!-font-size-36">5</dd>
+                </dl>
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Uploaded by</dt>
+                  <dd>
+                    <a href="mailto:johndoe@departmentofcookies.gov.uk">charlie@departmentofcookies.gov.uk</a>
+                  </dd>
+                </dl>
+              </div>
             </td>
           </tr>
         </tbody>
         <tbody>
           <tr>
-            <td>
+            <td rowspan="2">
               <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-03">
                 <span class="govuk-visually-hidden">More details about MOCK-TDR-1236</span></button>
             </td>
-            <th class="ref" rowspan="2">MOCK-TDR-1236</th>
+            <th>MOCK-TDR-1236</th>
             <td>21/09/22</td>
             <td>11/10/22</td>
             <td>
@@ -121,16 +138,26 @@ View Transfers
             </td>
           </tr>
           <tr>
-            <th class="govuk-visually-hidden" id="more-details">More details</th>
             <td headers="more-details" colspan="5" id="details-03">
-              <dl class="tdr-dlist">
-                <dt>Uploaded by</dt>
-                <dd>
-                  <a href="mailto:johndoe@departmentofcookies.gov.uk">jo@departmentofpasta.gov.uk</a>
-                </dd>
-                <dt>Number of files</dt>
-                <dd>80</dd>
-              </dl>
+              <div class="govuk-warning-text govuk-!-margin-bottom-0">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                  <span class="govuk-warning-text__assistive">Warning</span>
+                  Please do not delete the original files you exported until you are notified that your records have been preserved.
+                </strong>
+              </div>
+              <div class="tdr-transfers-extra">
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Number of files</dt>
+                  <dd class="govuk-!-font-size-36">80</dd>
+                </dl>
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Uploaded by</dt>
+                  <dd>
+                    <a href="mailto:johndoe@departmentofcookies.gov.uk">jo@departmentofpasta.gov.uk</a>
+                  </dd>
+                </dl>
+              </div>
             </td>
           </tr>
         </tbody>
