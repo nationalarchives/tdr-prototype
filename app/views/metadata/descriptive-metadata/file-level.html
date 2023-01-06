@@ -2,11 +2,11 @@
 {# {% include "../dummyfiles.html" %} #}
 
 {% block pageTitle %}
-File level descriptive metadata
+Descriptive metadata - Choose a file
 {% endblock %}
 
 {% block beforeContent %}
-  <a href="../additional-metadata" class="govuk-back-link">Back</a>
+  <a href="../additional-metadata" class="govuk-back-link">Return to transfer</a>
 {% endblock %}
 
 {% block content %}
@@ -16,7 +16,9 @@ File level descriptive metadata
         <span class="govuk-caption-l">Descriptive metadata</span>
         <h1 class="govuk-heading-l">Choose a file</h1>
         {{releaseVersion | log }}
-        <p class="govuk-body">Select a file you wish to add or edit descriptive metadata.</p>
+        <p class="govuk-body">
+          Select the file you wish to add or edit descriptive metadata.</p>
+
       </div>
     </div>
 
@@ -83,16 +85,25 @@ File level descriptive metadata
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <button
-          draggable="false"
-          class="govuk-button govuk-!-margin-bottom-4"
-          data-module="govuk-button">
-          Continue
-        </button>
-
+        <div class="govuk-button-group">
+          <button
+            draggable="false"
+            class="govuk-button"
+            name="action" value="edit"
+            data-module="govuk-button">
+            Add or edit metadata
+          </button>
+          <button
+            draggable="false"
+            class="govuk-button govuk-button--secondary"
+            name="action" value="view"
+            data-module="govuk-button">
+            View metadata
+          </button>
+        </div>
         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"/>
 
-        <p class="govuk-text">Once you have finished adding descriptive metadata to all of the applicable files and folders, return to the metadata selection screen to continue with your transfer.</p>
+        <p class="govuk-text">Once you have finished adding descriptive metadata, return to the metadata selection screen to continue with your transfer.</p>
         <p class="govuk-text">You will be able to review all metadata in a single .CSV before completing your transfer.</p>
         <a href="../additional-metadata"
           draggable="false"

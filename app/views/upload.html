@@ -12,25 +12,29 @@
       <span class="govuk-caption-l">Step 3 of 7</span>
       <h1 class="govuk-heading-l">Upload your records</h1>
 
-        <p class="govuk-body">Put the records (files and folders) you wish to include in this transfer into a single,
-          top-level folder. You can upload that folder here.</p>
+      <p class="govuk-body">Before uploading, all records (files and folders) you wish to transfer must be put into a single, top-level folder.</p>
 
-        <p class="govuk-body">There is no limit to the size of the files but larger files may take longer to be
-          uploaded and checked. If your folder contains files that we cannot accept, you may have to start again.</p>
+      <p class="govuk-body">There is a size limit of 2GB for an individual file. If you need to transfer larger files, contact us at <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>. If your folder contains files that we cannot accept, you may have to start again.</p>
 
-        <div class="govuk-inset-text govuk-body-s">
-          We cannot accept files or folders which are password protected, zipped or contain slashes (/ and \) in the name.
-          Empty folders will not be included. Also try and remove any thumbnail images (thumbs.db) and executable files (.exe) from the records before uploading.
-        </div>
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+          Check which files we accept
+        </span>
+        </summary>
+        <div class="govuk-details__text">
+        We cannot accept files and folders which are password protected, zipped or contain slashes (/ and \) in the name. You must remove all thumbnail images (thumbs.db) and executable files (.exe). Empty folders will not be transferred.
+      </div>
+      </details>
 
-        <form class="form" action="/progress-uploading" method="post" id="file-upload-form" data-consignment-id="@consignmentId">
-          <div class="govuk-form-group">
-            <div class="drag-and-drop">
+      <form class="form" action="/progress-uploading" method="post" id="file-upload-form" data-consignment-id="@consignmentId">
+        <div class="govuk-form-group">
+          <div class="drag-and-drop">
 
-              <div>
-                <div class="govuk-form-group">
-                  <div class="drag-and-drop__dropzone">
-                    <input type="file" id="file-selection" name="files"
+            <div>
+              <div class="govuk-form-group">
+                <div class="drag-and-drop__dropzone">
+                  <input type="file" id="file-selection" name="files"
                            class="govuk-file-upload drag-and-drop__input" webkitdirectory
                            @* Specify an arbitrary type in the 'accept' attribute to work around a bug in
                     Safari 14.0.1, which does not let the user browse for files if the 'accept'
@@ -38,37 +42,37 @@
                     'webkitdirectory' is specified. It just needs to be present to fix the Safari bug. *@
                     accept="image/jpeg" aria-hidden="true"
                     >
-                    <p class="govuk-body drag-and-drop__hint-text">Drag and drop a single folder here or</p>
-                    <a href="/upload-select" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="margin-top: 60px">
+                  <p class="govuk-body drag-and-drop__hint-text">Drag and drop a single top-level folder here or</p>
+                  <a href="/upload-select" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="margin-top: 60px">
                       Choose folder</a>
-                  </div>
-                  <p class="govuk-body">For more information on what metadata will be captured during the upload please visit our <a target="_blank" rel="noopener noreferrer" href="/faq" class="govuk-link">FAQ (opens in new tab)</a>.</p>
+                </div>
+                <p class="govuk-body">For information on what metadata will be captured during upload, visit the <a target="_blank" rel="noopener noreferrer" href="/faq" class="govuk-link">FAQ (opens in new tab)</a>.</p>
 
-                  <div class="govuk-form-group">
-                    <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
-                      <div class="govuk-checkboxes">
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
-                          <label class="govuk-label govuk-checkboxes__label" for="waste-2">
-                            If your top-level folder title is intended to be displayed as named in the public catalogue, check the box before you continue.
-                          </label>
-                        </div>
+                <div class="govuk-form-group">
+                  <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+                    <div class="govuk-checkboxes">
+                      <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
+                        <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+                            Check the box if you want to display the name of your top-level folder in the public catalogue.
+                        </label>
                       </div>
-                    </fieldset>
-                  </div>
+                    </div>
+                  </fieldset>
+                </div>
 
-                  <div class="govuk-button-group">
-                    <button class="govuk-button" type="submit" data-module="govuk-button" role="button">
+                <div class="govuk-button-group">
+                  <button class="govuk-button" type="submit" data-module="govuk-button" role="button">
                       Start upload
                     </button>
-                    <a class="govuk-link govuk-link--no-visited-state" href="/dashboard">Cancel</a>
-                  </div>
-
+                  <a class="govuk-link govuk-link--no-visited-state" href="/home">Cancel</a>
                 </div>
+
               </div>
             </div>
           </div>
-        </form>
+        </div>
+      </form>
 
     </div>
     <div class="govuk-grid-column-one-third">
@@ -82,7 +86,7 @@
           MOCK-123-TDR
         </div>
       </details>
-  </div>
+    </div>
   </div>
 
 {% endblock %}

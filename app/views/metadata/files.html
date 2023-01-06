@@ -12,7 +12,7 @@
         <input name="file-selection" class="govuk-checkboxes__input" tabindex="-1" id="checkbox-{{ item.id }}" type="checkbox" value="{{item.id}}"/>
         <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{ item.id }}">
           {{item.name}}
-          {% block tick %}{% endblock %}
+          {% block status %}{% endblock %}
         </label>
       </div>
     </li>
@@ -58,9 +58,38 @@
     </li>
   {% endif %}
 {% endmacro %}
+
+{% set files = [
+  {
+    "name": "baking powder.xls",
+    "type": "item",
+    "id": 0
+  }, {
+    name: "cocoa.xlsx",
+    children: [],
+    type: "item",
+    id: 1
+  }, {
+    name: "flour.xlsx",
+    children: [],
+    type: "item",
+    id: 2
+  }, {
+    name: "caster sugar.xlsx",
+    children: [],
+    type: "item",
+    id: 3
+  }, {
+    name: "eggs.xlsx",
+    children: [],
+    type: "item",
+    id: 4
+  }
+] %}
+
 <div class="govuk-tna-tree govuk-!-margin-bottom-6">
   <ul tabindex="0" class="govuk-tna-tree__nested-item-list" role="tree" aria-multiselectable="true">
-    {% for node in data.files %}
+    {% for node in files %}
       {{ navigationItem(node, 1, loop.length, loop.index) }}
     {% endfor %}
   </ul>

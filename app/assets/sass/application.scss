@@ -10,6 +10,8 @@ $govuk-assets-path: '/govuk/assets/';
 // Import GOV.UK Frontend and any extension styles if extensions have been configured
 @import "lib/extensions/extensions";
 
+@import 'node_modules/@nationalarchives/tdr-components/components/multi-select-search/_index';
+
 // Patterns that aren't in Frontend
 @import "patterns/step-by-step-header";
 @import "patterns/step-by-step-nav";
@@ -338,3 +340,191 @@ $govuk-assets-path: '/govuk/assets/';
 .tdr-metadata-card .govuk-inset-text {
   color: $govuk-secondary-text-colour
 }
+
+
+.tdr-tag {
+  display: inline-block;
+  // When a user customises their colours often the background is removed,
+  // by adding a outline we ensure that the tag component still keeps it's meaning.
+  // https://accessibility.blog.gov.uk/2017/03/27/how-users-change-colours-on-websites/
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+  color: govuk-colour("white");
+  background-color: govuk-colour("blue");
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-top: 3px;
+  padding-right: 8px;
+  padding-bottom: 2px;
+  padding-left: 8px;
+}
+
+.tdr-tag--grey {
+  color: govuk-shade(govuk-colour("dark-grey", $legacy: "grey-1"), 30);
+  background: govuk-tint(govuk-colour("dark-grey", $legacy: "grey-1"), 90);
+}
+
+.tdr-tag--purple {
+  color: govuk-shade(govuk-colour("purple"), 20);
+  background: govuk-tint(govuk-colour("purple"), 80);
+}
+
+.tdr-tag--turquoise {
+  color: govuk-shade(govuk-colour("turquoise"), 60);
+  background: govuk-tint(govuk-colour("turquoise"), 70);
+}
+
+.tdr-tag--blue {
+  color: govuk-shade(govuk-colour("blue"), 30);
+  background: govuk-tint(govuk-colour("blue"), 80);
+}
+
+.tdr-tag--yellow {
+  color: govuk-shade(govuk-colour("yellow"), 65);
+  background: govuk-tint(govuk-colour("yellow"), 75);
+}
+
+.tdr-tag--orange {
+  color: govuk-shade(govuk-colour("orange"), 55);
+  background: govuk-tint(govuk-colour("orange"), 70);
+}
+
+.tdr-tag--red {
+  color: govuk-shade(govuk-colour("red"), 30);
+  background: govuk-tint(govuk-colour("red"), 80);
+}
+
+.tdr-tag--pink {
+  color: govuk-shade(govuk-colour("pink"), 40);
+  background: govuk-tint(govuk-colour("pink"), 80);
+}
+
+.tdr-tag--green {
+  color: govuk-shade(govuk-colour("green"), 20);
+  background: govuk-tint(govuk-colour("green"), 80);
+}
+
+.tna-button-icon {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.tna-button-icon svg {
+  max-height: 100%;
+}
+
+
+.govuk-table--tdr-transfers tr:first-child td:first-child {
+  padding-right: 8px;
+  padding-left: 4px;
+}
+
+.govuk-table--tdr-transfers tr td:first-child button {
+  position: relative;
+  top: -6px;
+}
+
+.govuk-table--tdr-transfers .no-data {
+  color:#6B7276;
+}
+
+@include govuk-media-query($from: tablet) {
+  .govuk-table--tdr-transfers td, th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .govuk-table--tdr-transfers td, th {
+    padding-right: 20px;
+  }
+}
+
+.tdr-link-group a {
+  white-space: nowrap;
+}
+
+.tdr-link-group a:first-child {
+  margin-left: 0;
+}
+
+.tdr-arrow-expander {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  height: 26px;
+  width:30px;
+}
+
+.tdr-arrow-expander::before {
+  content: "";
+  position: absolute;
+
+  top: -1px;
+  bottom: 0;
+  left: 10px;
+
+  margin: auto;
+  @include govuk-shape-arrow($direction: right, $base: 15px);
+  border-color: $govuk-link-colour;
+}
+
+.tdr-arrow-expander:focus {
+  outline: 3px solid transparent;
+  color: $govuk-focus-text-colour;
+  background-color: $govuk-focus-colour;
+  box-shadow: 0 -2px $govuk-focus-colour,
+  0 4px $govuk-focus-text-colour;
+  text-decoration: none;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.tdr-arrow-expander[aria-expanded="true"]::before {
+  @include govuk-shape-arrow($direction: down, $base: 15px);
+  left: 7px;
+  border-color: $govuk-link-colour;
+}
+
+.tdr-transfers-extra {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  // justify-content: space-between;
+}
+
+.tdr-transfers-extra__list {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.tdr-transfers-extra__list:first-child {
+  flex-grow: 1;
+}
+
+.tdr-transfers-extra__list:last-child {
+  flex-grow: 3;
+}
+
+.tdr-dlist {
+  background-color: #f8f8f8;
+  padding: 20px;
+}
+
+.tdr-dlist dt {
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.tdr-dlist dd {
+  margin: 0;
+  padding: 0;
+}
+
+// .tdr-transfers-extra strong {
+
+// }

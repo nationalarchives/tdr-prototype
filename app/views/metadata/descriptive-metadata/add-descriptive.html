@@ -1,10 +1,6 @@
 {% extends "layout.html" %}
 {% block pageTitle %} Add descriptive metadata {% endblock %}
 
-{% block beforeContent %}
-  <a href="./file-level" class="govuk-back-link">Back</a>
-{% endblock %}
-
 {% block content %}
   <form action="./confirm-add-descriptive">
     <div class="govuk-grid-row">
@@ -14,7 +10,7 @@
 
         <div class="tdr-card">
           <div class="tdr-card__content">
-            <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding/editing descriptive metadata for the following files:</p>
+            <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding or editing descriptive metadata for the following file:</p>
             <ul class="govuk-list govuk-list--bullet">
               {% for f in data['file-selection']| getFilenames(data.files) %}
                 <li>{{f}}</li>
@@ -40,8 +36,7 @@
             </label>
           </h2>
           <div id="foi-codes-hint" class="govuk-hint">
-            This description will be visible on Discovery and help explain the
-            content of your file(s).
+            The description will be visible to the public to help explain the content of your file.
           </div>
           <textarea
             class="govuk-textarea"
@@ -76,14 +71,15 @@
 {% endblock %}
 
 {% block pageScripts %}
-  <script src = "https://unpkg.com/aria-autocomplete" type = "text/javascript"></script>
+  <script src="/public/javascripts/tdr-components.js"></script>
   <script>
-    AriaAutocomplete(document.querySelector('#language-select'), {
-      placeholder: 'Enter a language',
-      deleteOnBackspace: true,
-      showAllControl: true,
-      autoGrow: false,
-      cssNameSpace: "govuk-multi-autocomplete"
-    });
+    window.onload = () => {
+      const multiSelects = document.querySelectorAll("[data-module=multi-select-search]");
+      console.log(multiSelects);
+      multiSelects.forEach((ms) => {
+        const multiSelectSearch = new MultiSelectSearch(ms);
+        multiSelectSearch.initialise();
+      });
+    };
   </script>
 {% endblock %}

@@ -4,16 +4,13 @@
   Transfer summary
 {% endblock %}
 
-{% block beforeContent %}
-  <a href="./download-metadata" class="govuk-back-link">Back</a>
-{% endblock %}
-
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <span class="govuk-caption-l">Step 7 of 7</span>
       <h1 class="govuk-heading-l">Confirm transfer</h1>
+      {% include "./banner-leave-return.html" %}
 
       <p class="govuk-body">Here is a summary of the records you have uploaded.</p>
 
@@ -67,6 +64,7 @@
 
           </fieldset>
         </div>
+
         <div class="govuk-button-group">
           <a href="./download-metadata" role="button" draggable="false" class="govuk-button govuk-button--secondary"  data-module="govuk-button">
             Back

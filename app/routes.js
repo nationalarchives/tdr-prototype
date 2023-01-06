@@ -33,17 +33,12 @@ router.get(
   }
 );
 
-const redirectAddDescriptive = (req, res) => {
+const populateWithDescriptive = (req, res) => {
   const selected = req.session.data["file-selection"];
   let descriptive = req.session.data["descriptiveFiles"];
 
-  // Add new selected files as empty objs to this array:
-  selected
-    .filter((fn) => descriptive[fn] === undefined)
-    .forEach((newFile) => {
-      descriptive[newFile] = {};
-    });
   descriptive = clearEmpties(descriptive);
+  let hasDescriptive = descriptive.hasOwnProperty(selected[0]);
 
   let notMatching = selected.some((selectedFile1) => {
     return selected.some((selectedFile2) => {
@@ -68,24 +63,22 @@ const redirectAddDescriptive = (req, res) => {
     for (var key in descriptive[selected[0]]) {
       req.session.data[key] = descriptive[selected[0]][key];
     }
+    req.session.data.status = hasDescriptive ? "has-data" : "no-data";
+
     delete req.session.data.error;
   }
-
-  res.redirect("/metadata/descriptive-metadata/add-descriptive");
 };
 
 router.get(
   "/metadata/descriptive-metadata/confirm-file-level",
   function (req, res) {
-    if (req.session.data["file-selection"] === undefined) {
-      throw new Error("Missing file selection");
-    }
+    // if (req.session.data["file-selection"] === undefined) {
+    //   throw new Error("Missing file selection");
+    // }
     let selected = req.session.data["file-selection"];
+    let doView = req.session.data["action"] === "view";
 
-    if (
-      selected.length &&
-      (typeof selected == "string" || selected instanceof String)
-    ) {
+    if (typeof selected == "string" || selected instanceof String) {
       selected = [selected];
       req.session.data["file-selection"] = selected;
     }
@@ -101,13 +94,14 @@ router.get(
         return req.session.data.descriptiveFiles[fn] !== undefined;
       });
 
-      // Do the files we are about to show match? i.e. can we populate the form.
-      if (selectedWithExistingData.length > 0) {
-        // Redirect to summary??
-        redirectAddDescriptive(req, res);
+      populateWithDescriptive(req, res);
+
+      // Do selected files have existing data
+      if (doView === true) {
+        // Has existing data.
+        res.redirect("/metadata/descriptive-metadata/summary-metadata");
       } else {
-        redirectAddDescriptive(req, res);
-        // res.redirect("/metadata/descriptive-metadata/add-descriptive");
+        res.redirect("/metadata/descriptive-metadata/add-descriptive");
       }
     }
   }
@@ -122,6 +116,7 @@ router.get(
 
     if (!req.session.data.descriptiveFiles)
       req.session.data.descriptiveFiles = {};
+
     for (let key in req.session.data) {
       if (key.split("-")[0] === "addDescriptive") {
         req.session.data["file-selection"].forEach((file, i) => {
@@ -239,15 +234,17 @@ router.get(
 router.get(
   "/metadata/closure-metadata/confirm-closure-status",
   function (req, res) {
-    if (req.session.data["file-selection"] === undefined) {
-      throw new Error("Missing file selection");
-    }
+    // if (req.session.data["file-selection"] === undefined) {
+    //   throw new Error("Missing file selection");
+    // }
     if (req.session.data["confirm-closure"] === undefined) {
       res.render("metadata/closure-metadata/closure-status", {
         error: "no-confirmation",
       });
     } else {
-      redirectAddClosure(req, res);
+      addNewClosure(req, res);
+      populateWithClosureData(req, res);
+      res.redirect("/metadata/closure-metadata/add-closure");
     }
   }
 );
@@ -266,7 +263,7 @@ const clearEmpties = (files) => {
   return files;
 };
 
-const redirectAddClosure = (req, res) => {
+const addNewClosure = (req, res) => {
   const selected = req.session.data["file-selection"];
   let closed = req.session.data["closedFiles"];
 
@@ -276,8 +273,16 @@ const redirectAddClosure = (req, res) => {
     .forEach((newFile) => {
       closed[newFile] = {};
     });
+};
+
+const populateWithClosureData = (req, res) => {
+  const selected = req.session.data["file-selection"];
+  let closed = req.session.data["closedFiles"];
   closed = clearEmpties(closed);
 
+  let isClosed = closed.hasOwnProperty(selected[0]);
+
+  // Do the files we are about to show match? i.e. can we populate the form.
   let notMatching = selected.some((selectedFile1) => {
     return selected.some((selectedFile2) => {
       // If any are not indentical
@@ -301,16 +306,19 @@ const redirectAddClosure = (req, res) => {
     for (var key in closed[selected[0]]) {
       req.session.data[key] = closed[selected[0]][key];
     }
+    req.session.data.status = isClosed ? "Closed" : "Open";
+
     delete req.session.data.error;
   }
 
-  res.redirect("/metadata/closure-metadata/add-closure");
+  // res.redirect(`/metadata/closure-metadata/${route}`);
 };
 
 router.get(
   "/metadata/closure-metadata/confirm-file-level",
   function (req, res) {
     let selected = req.session.data["file-selection"];
+    let doView = req.session.data["action"] === "view";
 
     if (
       selected &&
@@ -330,9 +338,17 @@ router.get(
         return req.session.data.closedFiles[fn] !== undefined;
       });
 
-      // Do the files we are about to show match? i.e. can we populate the form.
-      if (selectedClosedFiles.length === selected.length) {
-        redirectAddClosure(req, res);
+      // Are all files closed already? If so, straight to the main form.
+      if (doView === true) {
+        // Show summary page before main form
+        populateWithClosureData(req, res);
+        // redirect to summary
+        res.redirect("/metadata/closure-metadata/summary-metadata");
+      } else if (selectedClosedFiles.length === selected.length) {
+        // Show summary page before main form
+        populateWithClosureData(req, res);
+        // redirect to summary
+        res.redirect("/metadata/closure-metadata/add-closure");
       } else {
         res.redirect("/metadata/closure-metadata/closure-status");
       }
