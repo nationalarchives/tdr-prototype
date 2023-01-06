@@ -58,9 +58,38 @@
     </li>
   {% endif %}
 {% endmacro %}
+
+{% set files = [
+  {
+    "name": "baking powder.xls",
+    "type": "item",
+    "id": 0
+  }, {
+    name: "cocoa.xlsx",
+    children: [],
+    type: "item",
+    id: 1
+  }, {
+    name: "flour.xlsx",
+    children: [],
+    type: "item",
+    id: 2
+  }, {
+    name: "caster sugar.xlsx",
+    children: [],
+    type: "item",
+    id: 3
+  }, {
+    name: "eggs.xlsx",
+    children: [],
+    type: "item",
+    id: 4
+  }
+] %}
+
 <div class="govuk-tna-tree govuk-!-margin-bottom-6">
   <ul tabindex="0" class="govuk-tna-tree__nested-item-list" role="tree" aria-multiselectable="true">
-    {% for node in data.files %}
+    {% for node in files %}
       {{ navigationItem(node, 1, loop.length, loop.index) }}
     {% endfor %}
   </ul>
