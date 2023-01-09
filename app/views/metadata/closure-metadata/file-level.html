@@ -86,14 +86,14 @@ Closure metadata - Choose a file
         <div class="govuk-button-group">
           <button
           draggable="false"
-          class="govuk-button"
+          class="govuk-button js-submit"
           name="action" value="edit"
           data-module="govuk-button">
           Add or edit metadata
         </button>
           <button
           draggable="false"
-          class="govuk-button govuk-button--secondary"
+          class="govuk-button govuk-button--secondary js-submit"
           name="action" value="view"
           data-module="govuk-button">
           View metadata
@@ -123,13 +123,13 @@ Closure metadata - Choose a file
   <script src="/public/javascripts/tree-view.js"></script>
   <script>
     window.onload = () => {
-      const treeItems = document.querySelectorAll('[role=tree]')
-      const tree = document.querySelector('[role=tree]')
-      const treeItemList = []
+      const treeItems = document.querySelectorAll("[role=tree]");
+      const tree = document.querySelector("[role=tree]");
+      const treeItemList = [];
       if (tree != null) {
-        treeItems.forEach(item => treeItemList.push(item))
-        const nestedNavigation = new NestedNavigation(tree, treeItemList)
-        nestedNavigation.initialiseFormListeners()
+        treeItems.forEach((item) => treeItemList.push(item));
+        const nestedNavigation = new NestedNavigation(tree, treeItemList);
+        nestedNavigation.initialiseFormListeners("radios");
       }
     }
   </script>

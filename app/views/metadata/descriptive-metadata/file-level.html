@@ -115,18 +115,17 @@ Descriptive metadata - Choose a file
     </form>
   {% endblock %}
 
-  {% block pageScripts %}
-    <script src="/public/javascripts/tree-view.js"></script>
-    <script>
-      window.onload = () => {
-        const treeItems = document.querySelectorAll('[role=tree]')
-        const tree = document.querySelector('[role=tree]')
-        const treeItemList = []
-        if (tree != null) {
-          treeItems.forEach(item => treeItemList.push(item))
-          const nestedNavigation = new NestedNavigation(tree, treeItemList)
-          nestedNavigation.initialiseFormListeners()
-        }
+{% block pageScripts %}
+  <script src="/public/javascripts/tree-view.js"></script>
+  <script>
+    window.onload = () => {
+      const treeItems = document.querySelectorAll("[role=tree]");
+      const tree = document.querySelector("[role=tree]");
+      const treeItemList = [];
+      if (tree != null) {
+        treeItems.forEach((item) => treeItemList.push(item));
+        const nestedNavigation = new NestedNavigation(tree, treeItemList);
+        nestedNavigation.initialiseFormListeners("radios");
       }
     </script>
   {% endblock %}
