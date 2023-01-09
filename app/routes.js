@@ -78,14 +78,17 @@ router.get(
     let selected = req.session.data["file-selection"];
     let doView = req.session.data["action"] === "view";
 
-    if (typeof selected == "string" || selected instanceof String) {
+    if (
+      (selected && typeof selected == "string") ||
+      selected instanceof String
+    ) {
       selected = [selected];
       req.session.data["file-selection"] = selected;
     }
     if (!req.session.data.descriptiveFiles)
       req.session.data.descriptiveFiles = {};
 
-    if (selected === undefined || selected[0] === "") {
+    if (selected === undefined || selected === "") {
       res.render("metadata/descriptive-metadata/file-level", {
         error: "no-selection",
       });
@@ -329,7 +332,7 @@ router.get(
     }
     if (!req.session.data.closedFiles) req.session.data.closedFiles = {};
 
-    if (selected === undefined) {
+    if (selected === undefined || selected === "") {
       res.render("metadata/closure-metadata/file-level", {
         error: "no-selection",
       });
