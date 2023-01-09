@@ -85,7 +85,7 @@ router.get(
     if (!req.session.data.descriptiveFiles)
       req.session.data.descriptiveFiles = {};
 
-    if (selected === undefined) {
+    if (selected === undefined || selected[0] === "") {
       res.render("metadata/descriptive-metadata/file-level", {
         error: "no-selection",
       });

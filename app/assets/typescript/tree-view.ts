@@ -7,11 +7,13 @@ class NestedNavigation {
   private readonly tree: HTMLUListElement;
   private readonly treeItems: HTMLUListElement[];
   private currentFocus: HTMLLIElement | null;
+  private hiddenElement: HTMLInputElement;
 
   constructor(tree: HTMLUListElement, treeItems: HTMLUListElement[]) {
     this.tree = tree;
     this.treeItems = treeItems;
     this.currentFocus = null;
+    this.hiddenElement = document.createElement("input");
   }
 
   getCurrentFocus: () => HTMLLIElement | null = () => {
@@ -30,6 +32,16 @@ class NestedNavigation {
         }
       });
     }
+
+    // Set input name on hidden input field. This mirrors the JS selection(s)
+    const inputName = this.tree
+      .querySelector(
+        `input[type=${inputType == "radios" ? "radio" : "checkboxes"}]`
+      )
+      .getAttribute("name");
+    this.hiddenElement.setAttribute("type", "hidden");
+    this.hiddenElement.setAttribute("name", inputName);
+    this.tree.appendChild(this.hiddenElement);
 
     // Make radio folders label/icon act as expanders as well since they are not selectable.
     const radioFolders = Array.from(
@@ -100,6 +112,9 @@ class NestedNavigation {
     label: HTMLLabelElement
   ) => void = (input, label) => {
     const spanInput = document.createElement("span");
+    // set value on parent for convenience access later.
+    // Also because spans are not meant to hold 'value' attributes.
+    input.closest("li").dataset.value = input.value;
     for (const name of input.getAttributeNames()) {
       if (!["type", "tabindex"].includes(name)) {
         const inputAttribute = input.getAttribute(name);
@@ -216,6 +231,12 @@ class NestedNavigation {
     const isSelected: boolean = li.getAttribute("aria-selected") === "true";
     li.setAttribute("aria-selected", !isSelected ? "true" : "false");
     li.setAttribute("aria-checked", !isSelected ? "true" : "false");
+    if (!isSelected) {
+      this.hiddenElement.value = li.dataset.value;
+    } else {
+      this.hiddenElement.value = "";
+    }
+
     if (inputType === InputType.radios && !isSelected) {
       // For radio buttons, deselect all others
       document.querySelectorAll("li[aria-selected=true]").forEach((el) => {

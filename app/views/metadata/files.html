@@ -10,7 +10,7 @@
                 aria-selected="false"
         >
       <div class="tna-tree__node-item__{{ inputType }} govuk-{{ className }}__item">
-        <input class="govuk-{{ className }}__input" tabindex="-1" id="{{ inputType }}-{{ item.id }}" type="{{ inputType }}" name="nested-navigation"/>
+        <input class="govuk-{{ className }}__input" tabindex="-1" id="{{ inputType }}-{{ item.id }}" type="{{ inputType }}" name="file-selection" value="{{ item.id }}"/>
         <label class="govuk-label govuk-{{ className }}__label" for="{{ inputType }}-{{ item.id }}">
           {{item.name}}
         </label>
@@ -43,7 +43,8 @@
                                 id="{{ inputType }}-{{ item.id }}"
                                 tabindex="-1"
                                 type="{{ inputType }}"
-                                name="nested-navigation"
+                                name="file-selection"
+                                value="{{ item.id }}"
 />
             <label class="govuk-label govuk-{{ className }}__label" for="{{ inputType }}-{{ item.id }}">
               {{item.name}}
