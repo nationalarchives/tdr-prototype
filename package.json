@@ -12,14 +12,14 @@
     "test": "npm run lint && gulp generate-assets && jest"
   },
   "dependencies": {
-    "@nationalarchives/tdr-components": "^1.0.16",
-    "@types/node": "^18.11.17",
+    "@nationalarchives/tdr-components": "^1.0.19",
+    "@types/node": "^18.11.18",
     "acorn": "^7.1.1",
     "ansi-colors": "^4.1.1",
     "basic-auth": "^2.0.0",
     "basic-auth-connect": "^1.0.0",
     "body-parser": "^1.20.1",
-    "browser-sync": "^2.11.1",
+    "browser-sync": "^2.27.11",
     "client-sessions": "^0.8.0",
     "cross-spawn": "^7.0.2",
     "del": "^5.1.0",

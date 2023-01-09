@@ -11,6 +11,7 @@ $govuk-assets-path: '/govuk/assets/';
 @import "lib/extensions/extensions";
 
 @import 'node_modules/@nationalarchives/tdr-components/components/multi-select-search/_index';
+@import 'node_modules/@nationalarchives/tdr-components/components/nested-navigation/_index';
 
 // Patterns that aren't in Frontend
 @import "patterns/step-by-step-header";
@@ -23,6 +24,7 @@ $govuk-assets-path: '/govuk/assets/';
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 @import 'patterns/_breadcrumbs-for-file-navigation';
 @import 'patterns/_tree-view-file-navigation';
+// @import 'patterns/_nested-navigation';
 @import 'patterns/_multi-autocomplete';
 
 // menu button in header (now 'Sign out' button)
@@ -528,3 +530,7 @@ $govuk-assets-path: '/govuk/assets/';
 // .tdr-transfers-extra strong {
 
 // }
+
+#file-selection .tna-tree {
+  max-height: 60vh;
+}

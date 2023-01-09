@@ -1,3 +1,8 @@
+enum InputType {
+  radios = "radios",
+  checkboxes = "checkboxes",
+}
+
 class NestedNavigation {
   private readonly tree: HTMLUListElement;
   private readonly treeItems: HTMLUListElement[];
@@ -17,20 +22,32 @@ class NestedNavigation {
     return this.tree;
   };
 
-  initialiseFormListeners: () => void = () => {
-    const tree = document.querySelector("[role=tree]");
-    if (tree !== null) {
-      tree.addEventListener("keydown", (ev: Event) => {
+  initialiseFormListeners: (inputType: InputType) => void = (inputType) => {
+    if (this.tree !== null) {
+      this.tree.addEventListener("keydown", (ev: Event) => {
         if (ev instanceof KeyboardEvent) {
-          this.handleKeyDown(ev);
+          this.handleKeyDown(ev, inputType);
         }
       });
     }
 
-    const button = document.querySelectorAll("[role=tree] button");
-    button.forEach((expander, _, __) => {
-      expander.addEventListener("click", (ev) => {
-        this.handleExpanders(ev.target as HTMLElement);
+    // Make radio folders label/icon act as expanders as well since they are not selectable.
+    const radioFolders = Array.from(
+      document.querySelectorAll(`.js-${inputType}-directory`)
+    );
+    const buttons = document.querySelectorAll(
+      `.js-tree__expander--${inputType}`
+    );
+    const allExpanders = [...radioFolders, ...Array.from(buttons)];
+    console.log(allExpanders);
+    allExpanders.forEach((expander, _, __) => {
+      (expander as HTMLElement).addEventListener("click", (ev) => {
+        let el: HTMLElement = ev.currentTarget as HTMLElement;
+        console.log(el);
+        if (el.id.includes("expander") === false) {
+          el = el.previousElementSibling as HTMLElement;
+        }
+        this.handleExpanders(el, inputType);
         ev.preventDefault();
         ev.stopPropagation();
       });
@@ -38,28 +55,37 @@ class NestedNavigation {
 
     // All nodes start open so need hiding on first load.
     document.querySelectorAll('[role="group"]').forEach((value, _, __) => {
-      this.updateExpanded(value as HTMLInputElement);
+      if (value.id.includes(inputType)) {
+        this.updateExpanded(value as HTMLInputElement, inputType);
+      }
     });
 
     document.querySelectorAll("[role=treeitem]").forEach((treeItem, _, __) => {
-      treeItem.addEventListener("click", (ev) => {
-        if (ev.currentTarget instanceof HTMLLIElement) {
-          this.setSelected(ev.currentTarget);
-          this.setFocusToItem(ev.currentTarget);
-        }
-        ev.stopImmediatePropagation();
-      });
+      // We do not want the radio buttons directories to be selectable.
+      if (
+        inputType == InputType.radios &&
+        treeItem.id.includes("folder") === true
+      )
+        return;
+      if (treeItem.id.includes(inputType)) {
+        treeItem.addEventListener("click", (ev) => {
+          if (ev.currentTarget instanceof HTMLLIElement) {
+            this.setSelected(ev.currentTarget, inputType);
+            this.setFocusToItem(ev.currentTarget);
+          }
+          ev.stopImmediatePropagation();
+        });
+      }
     });
-
-    // document
-    //   .querySelectorAll("[role=tree] .govuk-checkboxes__item")
-    //   .forEach((checkbox: Element, _, __) => {
-    //     const input: HTMLInputElement | null = checkbox.querySelector("input");
-    //     const label: HTMLLabelElement | null = checkbox.querySelector("label");
-    //     if (input != null && label != null) {
-    //       this.replaceCheckboxWithSpan(input, label);
-    //     }
-    //   });
+    document
+      .querySelectorAll(`[role=tree] .govuk-${inputType}__item`)
+      .forEach((checkbox: Element, _, __) => {
+        const input: HTMLInputElement | null = checkbox.querySelector("input");
+        const label: HTMLLabelElement | null = checkbox.querySelector("label");
+        if (input != null && label != null) {
+          this.replaceCheckboxWithSpan(input, label);
+        }
+      });
 
     this.tree.addEventListener("focus", () => {
       const firstSelected: HTMLLIElement | null = document.querySelector(
@@ -112,11 +138,14 @@ class NestedNavigation {
     }
   };
 
-  updateExpanded: (value: HTMLInputElement) => void = (value) => {
+  updateExpanded: (value: HTMLInputElement, inputType: InputType) => void = (
+    value,
+    inputType
+  ) => {
     const id = value.getAttribute("id");
     if (id !== null) {
-      const expanded = this.getExpanded();
-      if (!expanded.includes(id.replace("node-group-", ""))) {
+      const expanded = this.getExpanded(inputType);
+      if (!expanded.includes(id.replace("node-group", "list"))) {
         (value.parentNode as HTMLElement).setAttribute(
           "aria-expanded",
           "false"
@@ -125,8 +154,8 @@ class NestedNavigation {
     }
   };
 
-  getExpanded: () => string[] = () => {
-    const storageItem = localStorage.getItem("state");
+  getExpanded: (inputType: InputType) => string[] = (inputType) => {
+    const storageItem = localStorage.getItem(`${inputType}-state`);
     if (storageItem !== null) {
       return JSON.parse(storageItem).expanded;
     } else {
@@ -155,8 +184,12 @@ class NestedNavigation {
     return elements;
   };
 
-  toggleNode: (li: HTMLLIElement, id: string) => void = (li, id) => {
-    const expanded = this.getExpanded();
+  toggleNode: (li: HTMLLIElement, id: string, inputType: InputType) => void = (
+    li,
+    id,
+    inputType
+  ) => {
+    const expanded = this.getExpanded(inputType);
 
     if (li.getAttribute("aria-expanded") === "false") {
       // Expand
@@ -167,29 +200,41 @@ class NestedNavigation {
       li.setAttribute("aria-expanded", "false");
       expanded.splice(expanded.indexOf(id));
     }
-    localStorage.setItem("state", JSON.stringify({ expanded }));
+    localStorage.setItem(`${inputType}-state`, JSON.stringify({ expanded }));
   };
 
-  setSelected: (li: HTMLLIElement | null) => void = (li) => {
-    if (li != null) {
-      let input;
-      const isSelected: boolean = li.getAttribute("aria-selected") === "true";
-      li.setAttribute("aria-selected", !isSelected ? "true" : "false");
-      li.setAttribute("aria-checked", !isSelected ? "true" : "false");
-      input = li.querySelector("input");
-      if (input) input.checked = !isSelected ? true : false;
+  setSelected: (li: HTMLLIElement | null, inputType: InputType) => void = (
+    li,
+    inputType
+  ) => {
+    if (
+      li == null ||
+      (li.id.includes("folder") && inputType == InputType.radios)
+    ) {
+      return null;
+    }
+    const isSelected: boolean = li.getAttribute("aria-selected") === "true";
+    li.setAttribute("aria-selected", !isSelected ? "true" : "false");
+    li.setAttribute("aria-checked", !isSelected ? "true" : "false");
+    if (inputType === InputType.radios && !isSelected) {
+      // For radio buttons, deselect all others
+      document.querySelectorAll("li[aria-selected=true]").forEach((el) => {
+        if (el.id !== li.id) {
+          el.setAttribute("aria-selected", "false");
+          el.setAttribute("aria-checked", "false");
+        }
+      });
+    } else {
       // If this is a node, traverse down
       if (li.hasAttribute("aria-expanded")) {
         const childrenGroup: HTMLUListElement | null = document.querySelector(
-          `#node-group-${li.id}`
+          `#${inputType}-node-group-${li.id.replace(`${inputType}-list-`, "")}`
         );
         if (childrenGroup != null) {
           const children = this.allChildren(childrenGroup, []);
           for (const child of children) {
             child.setAttribute("aria-selected", !isSelected ? "true" : "false");
             child.setAttribute("aria-checked", !isSelected ? "true" : "false");
-            input = child.querySelector("input");
-            if (input) input.checked = !isSelected ? true : false;
           }
         }
       }
@@ -210,7 +255,6 @@ class NestedNavigation {
         ul.parentNode as HTMLLIElement;
       if (parentLI !== null) {
         if (ul.getAttribute("role") !== "tree") {
-          let input = parentLI.querySelector("input");
           if (countChecked > 0 && countChecked < all.length) {
             parentLI.setAttribute("aria-checked", "mixed");
           }
@@ -218,13 +262,11 @@ class NestedNavigation {
           if (countChecked === all.length) {
             parentLI.setAttribute("aria-checked", "true");
             parentLI.setAttribute("aria-selected", "true");
-            if (input) input.checked = true;
           }
           // None checked
           if (countChecked === 0) {
             parentLI.setAttribute("aria-selected", "false");
             parentLI.setAttribute("aria-checked", "false");
-            if (input) input.checked = false;
           }
           const nextEl: HTMLUListElement | null | undefined =
             ul.parentElement?.closest("[role=group]");
@@ -302,12 +344,15 @@ class NestedNavigation {
     }
   };
 
-  handleKeyDown: (ev: KeyboardEvent) => void = (ev) => {
+  handleKeyDown: (ev: KeyboardEvent, inputType: InputType) => void = (
+    ev,
+    inputType
+  ) => {
     switch (ev.key) {
       case "Enter":
       case " ":
         // Check or uncheck checkbox
-        this.setSelected(this.currentFocus);
+        this.setSelected(this.currentFocus, inputType);
         ev.preventDefault();
         break;
 
@@ -324,11 +369,11 @@ class NestedNavigation {
         break;
 
       case "ArrowRight":
-        this.processArrowRightEvent(ev);
+        this.processArrowRightEvent(ev, inputType);
         break;
 
       case "ArrowLeft":
-        this.processArrowLeftEvent(ev);
+        this.processArrowLeftEvent(ev, inputType);
         // When focus is on a closed `tree`, does nothing.
         break;
 
@@ -358,12 +403,13 @@ class NestedNavigation {
     ev.preventDefault();
   };
 
-  private readonly processArrowLeftEvent: (ev: KeyboardEvent) => void = (
-    ev
-  ) => {
+  private readonly processArrowLeftEvent: (
+    ev: KeyboardEvent,
+    inputType: InputType
+  ) => void = (ev, inputType) => {
     if (this.currentFocus?.getAttribute("aria-expanded") === "true") {
       // When focus is on an open node, closes the node.
-      this.toggleNode(this.currentFocus, this.currentFocus.id);
+      this.toggleNode(this.currentFocus, this.currentFocus.id, inputType);
     } else if (this.currentFocus?.getAttribute("role") !== "tree") {
       // When focus is on a child node that is also either an end node or a closed node, moves focus to its parent node.
       const parent = this.currentFocus?.parentElement;
@@ -374,12 +420,13 @@ class NestedNavigation {
     ev.preventDefault();
   };
 
-  private readonly processArrowRightEvent: (ev: KeyboardEvent) => void = (
-    ev
-  ) => {
+  private readonly processArrowRightEvent: (
+    ev: KeyboardEvent,
+    inputType: InputType
+  ) => void = (ev, inputType) => {
     if (this.currentFocus?.getAttribute("aria-expanded") === "false") {
       // When focus is on a closed node, opens the node; focus does not move.
-      this.toggleNode(this.currentFocus, this.currentFocus.id);
+      this.toggleNode(this.currentFocus, this.currentFocus.id, inputType);
     } else if (this.currentFocus?.getAttribute("aria-expanded") === "true") {
       // When focus is on an open node, moves focus to the first child node.
       this.setFocusToNextItem(this.currentFocus);
@@ -388,16 +435,21 @@ class NestedNavigation {
     ev.preventDefault();
   };
 
-  handleExpanders: (target: Element) => void = (target: Element) => {
+  handleExpanders: (target: Element, inputType: InputType) => void = (
+    target: Element,
+    inputType
+  ) => {
     const newId = target.id.replace("expander-", "node-group-");
     const nodeGroup: HTMLUListElement | null = document.querySelector(
       `#${newId}`
     );
+    console.log(target.id, newId, nodeGroup);
+
     if (nodeGroup !== null) {
       const parent: HTMLLIElement | null =
         nodeGroup.parentNode as HTMLLIElement;
       if (parent != null) {
-        this.toggleNode(parent, target.id.replace("expander-", ""));
+        this.toggleNode(parent, target.id.replace("expander-", ""), inputType);
         this.setFocusToItem(parent);
       }
     }
