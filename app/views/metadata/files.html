@@ -13,6 +13,7 @@
         <input class="govuk-{{ className }}__input" tabindex="-1" id="{{ inputType }}-{{ item.id }}" type="{{ inputType }}" name="file-selection" value="{{ item.id }}"/>
         <label class="govuk-label govuk-{{ className }}__label" for="{{ inputType }}-{{ item.id }}">
           {{item.name}}
+          {% block status %}{% endblock %}
         </label>
       </div>
     </li>
