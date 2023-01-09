@@ -103,29 +103,29 @@ Descriptive metadata - Choose a file
         </div>
         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"/>
 
-        <p class="govuk-text">Once you have finished adding descriptive metadata, return to metadata selection page to add closure metadata or continue with your transfer.</p>
+        <p class="govuk-text">Once you have finished adding descriptive metadata, return to metadata selection page to add descriptive metadata or continue with your transfer.</p>
         <p class="govuk-text">You can return to add more descriptive metadata later and you will be able to review all metadata in a single .CSV before completing your transfer.</p>
         <a href="../additional-metadata"
           draggable="false"
           class="govuk-button govuk-button"
           data-module="govuk-button">
-          Complete and continue with transfer
+            Return to transfer
         </a>
       </div>
     </form>
   {% endblock %}
 
-{% block pageScripts %}
-  <script src="/public/javascripts/tree-view.js"></script>
-  <script>
-    window.onload = () => {
-      const treeItems = document.querySelectorAll("[role=tree]");
-      const tree = document.querySelector("[role=tree]");
-      const treeItemList = [];
-      if (tree != null) {
-        treeItems.forEach((item) => treeItemList.push(item));
-        const nestedNavigation = new NestedNavigation(tree, treeItemList);
-        nestedNavigation.initialiseFormListeners("radios");
-      }
+  {% block pageScripts %}
+    <script src="/public/javascripts/tree-view.js"></script>
+    <script>
+      window.onload = () => {
+        const treeItems = document.querySelectorAll("[role=tree]");
+        const tree = document.querySelector("[role=tree]");
+        const treeItemList = [];
+        if (tree != null) {
+          treeItems.forEach((item) => treeItemList.push(item));
+          const nestedNavigation = new NestedNavigation(tree, treeItemList);
+          nestedNavigation.initialiseFormListeners("radios");
+        }
     </script>
   {% endblock %}
