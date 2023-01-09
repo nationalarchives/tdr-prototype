@@ -107,6 +107,17 @@ class NestedNavigation {
     });
   };
 
+  cloneChildren: (elFrom: HTMLElement, elTo: HTMLElement) => void = (
+    parentFrom,
+    copyTo
+  ) => {
+    const children = parentFrom.childNodes;
+    children.forEach((child) => {
+      const clonedNode = child.cloneNode(true);
+      copyTo.appendChild(clonedNode);
+    });
+  };
+
   replaceCheckboxWithSpan: (
     input: HTMLInputElement,
     label: HTMLLabelElement
@@ -136,8 +147,8 @@ class NestedNavigation {
         }
       }
     }
-    if (label.textContent != null) {
-      spanLabel.appendChild(document.createTextNode(label.textContent));
+    if (label.hasChildNodes() == true) {
+      this.cloneChildren(label, spanLabel);
     }
     if (label.parentElement != null) {
       label.parentElement.appendChild(spanLabel);
