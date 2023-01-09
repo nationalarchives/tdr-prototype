@@ -1,96 +1,84 @@
-{% macro navigationItem(item, level, size, pos) %}
+{% macro navigationItem(item, inputType, className, level, size, pos) %}
   {% if item.type == 'item' or item.children.length == 0 %}
     <li
-                class="govuk-tna-tree__item"
+                class="tna-tree__item{% if inputType == "radio" %} govuk-radios--small{% endif %}"
                 role="treeitem"
-                id="{{ item.id }}"
+                id="{{ className }}-list-{{ item.id }}"
                 aria-level="{{level}}"
                 aria-setsize="{{size}}"
                 aria-posinset="{{pos}}"
-                aria-selected="false">
-      <div class="govuk-checkboxes__item">
-        <input name="file-selection" class="govuk-checkboxes__input" tabindex="-1" id="checkbox-{{ item.id }}" type="checkbox" value="{{item.id}}"/>
-        <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{ item.id }}">
+                aria-selected="false"
+        >
+      <div class="tna-tree__node-item__{{ inputType }} govuk-{{ className }}__item">
+        <input class="govuk-{{ className }}__input" tabindex="-1" id="{{ inputType }}-{{ item.id }}" type="{{ inputType }}" name="nested-navigation"/>
+        <label class="govuk-label govuk-{{ className }}__label" for="{{ inputType }}-{{ item.id }}">
           {{item.name}}
-          {% block status %}{% endblock %}
         </label>
       </div>
     </li>
 
   {% elif item.type == 'node' %}
     <li
-                class="govuk-tna-tree__node-item"
+                class="tna-tree__node-item-{{ className }}"
                 role="treeitem"
-                id="{{ item.id }}"
+                id="{{ className }}-list-{{ item.id }}"
                 aria-expanded="true"
                 aria-selected="false"
                 aria-level="{{level}}"
                 aria-setsize="{{size}}"
-                aria-posinset="{{pos}}">
-      <div class="govuk-tna-tree__node-item__container">
+                aria-posinset="{{pos}}"
+        >
+      <div class="tna-tree__node-item__container">
         <button
-                        class="govuk-tna-tree__expander"
+                        class="tna-tree__expander js-tree__expander--{{ className }}"
                         tabindex="-1"
-                        id="expander-{{ item.id }}"
+                        id="{{ className }}-expander-{{ item.id }}"
                 >
           <span class="govuk-visually-hidden">Expand</span>
         </button>
-        <div class="govuk-checkboxes__item">
-          <input
-                            class="govuk-checkboxes__input"
-                            id="checkbox-{{ item.id }}"
-                            tabindex="-1"
-                            type="checkbox"
-                            name="file-selection-directory"
-                            value="{{item.id}}"/>
-          <label class="govuk-label govuk-checkboxes__label" for="checkbox-{{ item.id }}">
-            <img class="govuk-tna-tree__svg-directory" role="img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyMiI+PHBhdGggZmlsbD0iIzAwMCIgZD0iTTIyIDMuNUgxMC42ODNMOC43NTguODVhMS42NjcgMS42NjcgMCAwIDAtMS4zNS0uNjgzSDJBMS42NjcgMS42NjcgMCAwIDAgLjMzMyAxLjgzM3YxOC4zMzRBMS42NjcgMS42NjcgMCAwIDAgMiAyMS44MzNoMjBhMS42NjcgMS42NjcgMCAwIDAgMS42NjctMS42NjZ2LTE1QTEuNjY2IDEuNjY2IDAgMCAwIDIyIDMuNVptMCAxNi42NjdIMlY2LjgzM2g2LjA5MmExLjY2NyAxLjY2NyAwIDAgMCAxLjY2Ni0xLjY2NkgyVjEuODMzaDUuNDA4bDIuMTc1IDIuOTkyYS44MzMuODMzIDAgMCAwIC42NzUuMzQySDIydjE1WiIvPjwvc3ZnPg==" alt="Directory"/>
-            {{item.name}}
-          </label>
-        </div>
+        {% if className == 'checkboxes' %}
+          <div class="govuk-{{ className }}__item">
+            <input
+                                class="govuk-{{ className }}__input"
+                                id="{{ inputType }}-{{ item.id }}"
+                                tabindex="-1"
+                                type="{{ inputType }}"
+                                name="nested-navigation"
+/>
+            <label class="govuk-label govuk-{{ className }}__label" for="{{ inputType }}-{{ item.id }}">
+              {{item.name}}
+            </label>
+          </div>
+        {% else %}
+          <div class="js-radios-directory tna-radios-directory">
+            <span class="govuk-label tna-radios-directory__label" >
+              <img class="tna-tree__svg-directory" role="img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyMiI+PHBhdGggZmlsbD0iIzAwMCIgZD0iTTIyIDMuNUgxMC42ODNMOC43NTguODVhMS42NjcgMS42NjcgMCAwIDAtMS4zNS0uNjgzSDJBMS42NjcgMS42NjcgMCAwIDAgLjMzMyAxLjgzM3YxOC4zMzRBMS42NjcgMS42NjcgMCAwIDAgMiAyMS44MzNoMjBhMS42NjcgMS42NjcgMCAwIDAgMS42NjctMS42NjZ2LTE1QTEuNjY2IDEuNjY2IDAgMCAwIDIyIDMuNVptMCAxNi42NjdIMlY2LjgzM2g2LjA5MmExLjY2NyAxLjY2NyAwIDAgMCAxLjY2Ni0xLjY2NkgyVjEuODMzaDUuNDA4bDIuMTc1IDIuOTkyYS44MzMuODMzIDAgMCAwIC42NzUuMzQySDIydjE1WiIvPjwvc3ZnPg==" alt="Directory"/>
+              {{item.name}}
+            </span>
+          </div>
+        {% endif %}
+
       </div>
-      <ul class="govuk-tna-tree__nested-item-list" role="group" id="node-group-{{ item.id }}">
+      <ul class="tna-tree__nested-list tna-tree__nested-list--{{className}}" role="group" id="{{ className }}-node-group-{{ item.id }}">
         {% set nextLevel = level + 1 %}
         {% for child in item.children %}
-          {{ navigationItem(child, nextLevel, loop.length, loop.index) }}
+          {{ navigationItem(child, inputType, className, nextLevel, loop.length, loop.index) }}
         {% endfor %}
       </ul>
     </li>
   {% endif %}
 {% endmacro %}
 
-{% set files = [
-  {
-    "name": "baking powder.xls",
-    "type": "item",
-    "id": 0
-  }, {
-    name: "cocoa.xlsx",
-    children: [],
-    type: "item",
-    id: 1
-  }, {
-    name: "flour.xlsx",
-    children: [],
-    type: "item",
-    id: 2
-  }, {
-    name: "caster sugar.xlsx",
-    children: [],
-    type: "item",
-    id: 3
-  }, {
-    name: "eggs.xlsx",
-    children: [],
-    type: "item",
-    id: 4
-  }
-] %}
+<div class="tna-tree">
+  {% set inputType = 'radio' %}
+  {% set className = 'radios' %}
+  {% import "./files_data_sml.html" as globals %}
+  {# {% import "./files_data_med.html" as globals %} #}
+  {# {% import "./files_data_lrg.html" as globals %} #}
 
-<div class="govuk-tna-tree govuk-!-margin-bottom-6">
-  <ul tabindex="0" class="govuk-tna-tree__nested-item-list" role="tree" aria-multiselectable="true">
-    {% for node in files %}
-      {{ navigationItem(node, 1, loop.length, loop.index) }}
+  <ul tabindex="0" class="tna-tree__root-list" id="{{ inputType }}-tree" role="tree"{% if inputType == 'checkboxes' %} aria-multiselectable="true"{% endif %}>
+    {% for node in globals.files %}
+      {{ navigationItem(node, inputType, className, 1, loop.length, loop.index) }}
     {% endfor %}
   </ul>
 </div>
