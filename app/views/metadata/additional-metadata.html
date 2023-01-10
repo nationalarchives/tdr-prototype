@@ -51,8 +51,8 @@
           <h2 class="govuk-heading-s">
             <a class="govuk-link govuk-link--no-visited-state" href="closure-metadata/file-level">Closure metadata</a>
           </h2>
-          <strong class="tdr-metadata-card__state govuk-tag govuk-tag--{% if data.state == "entered" %}blue{% elif data.state == "incomplete" %}red{% else %}grey{% endif %}">
-            {% if data.state == "entered" %}Entered{% elif data.state == "incomplete" %}Incomplete{% else %}Not entered{% endif %}
+          <strong class="tdr-metadata-card__state govuk-tag govuk-tag--{% if data['closedFiles'] === undefined %}grey{% else %}blue{% endif %}">
+            {% if data['closedFiles'] === undefined %}Not Entered{% else %}Entered{% endif %}
           </strong>
           <p class="govuk-body">Add closure and associated metadata to your files</p>
           <p class="govuk-inset-text govuk-!-margin-top-0">You must add closure metadata to closed files and folders.</p>
