@@ -21,7 +21,7 @@ Closure Metadata - View existing metadata
         </dt>
           <dd class="govuk-summary-list__value">
             {# <ul class="govuk-list govuk-list--bullet"> #}
-            {% for f in data['file-selection']| getFilenames(data.files) %}
+            {% for f in data['file-selection']| getFilenames(globals.files) %}
               {{f}}
             {% endfor %}
             {# </ul> #}

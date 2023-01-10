@@ -16,7 +16,7 @@ Remove properties
         <div class="tdr-card">
           <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You have chosen to delete the descriptive metadata you added for the following record:</p>
           <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
-            {% for f in data['file-selection']| getFilenames(data.files) %}
+            {% for f in data['file-selection']| getFilenames(globals.files) %}
               <li>{{f}}</li>
             {% endfor %}
           </ul>
@@ -25,7 +25,7 @@ Remove properties
           <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
           <strong class="govuk-warning-text__text">
             <span class="govuk-warning-text__assistive">Warning</span>
-          Once descriptive metadata is deleted, it cannot be recovered. 
+          Once descriptive metadata is deleted, it cannot be recovered.
         </strong>
         </div>
 

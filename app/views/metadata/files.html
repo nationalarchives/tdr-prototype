@@ -74,9 +74,6 @@
 <div class="tna-tree">
   {% set inputType = 'radio' %}
   {% set className = 'radios' %}
-  {% import "./files_data_sml.html" as globals %}
-  {# {% import "./files_data_med.html" as globals %} #}
-  {# {% import "./files_data_lrg.html" as globals %} #}
 
   <ul tabindex="0" class="tna-tree__root-list" id="{{ inputType }}-tree" role="tree"{% if inputType == 'checkboxes' %} aria-multiselectable="true"{% endif %}>
     {% for node in globals.files %}
