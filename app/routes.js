@@ -7,7 +7,17 @@ const govukPrototypeKit = require("govuk-prototype-kit");
 const router = govukPrototypeKit.requests.setupRouter();
 
 // Add your routes here
-const filters = require("./filters")();
+
+const hasDescription = function (files, descriptiveFiles) {
+  if (descriptiveFiles === undefined) return false;
+  return Array.from(files).every((fileIndex) => {
+    return (
+      descriptiveFiles[fileIndex] &&
+      descriptiveFiles[fileIndex]["addDescriptive-description"] &&
+      descriptiveFiles[fileIndex]["addDescriptive-description"] !== ""
+    );
+  });
+};
 
 const requireClosureFields = [
   "addClosure-foi-asserted-day",
@@ -202,7 +212,7 @@ router.get(
 
     let required = requireClosureFields;
     if (
-      filters.hasDescription(
+      hasDescription(
         req.session.data["file-selection"],
         req.session.data["descriptiveFiles"]
       ) == false
