@@ -417,14 +417,15 @@
 .govuk-table--tdr-transfers .no-data {
   color:#6B7276;
 }
+.govuk-table--tdr-transfers td,
+.govuk-table--tdr-transfers th {
+  text-align: left;
+}
 
 @include govuk-media-query($from: tablet) {
-  .govuk-table--tdr-transfers td, th {
+  .govuk-table--tdr-transfers td, .govuk-table--tdr-transfers th {
     padding-top: 12px;
     padding-bottom: 12px;
-  }
-
-  .govuk-table--tdr-transfers td, th {
     padding-right: 20px;
   }
 }

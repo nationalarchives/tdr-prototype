@@ -14,39 +14,39 @@ View Transfers
       transfers.</p>
 
       <table data-module="table-row-expander" class="govuk-table govuk-table--tdr-transfers govuk-!-margin-bottom-2">
-        <thead>
-          <tr>
-            <th style="width:30px" id="toggle">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header" style="width:30px" id="toggle">
               <span class="govuk-visually-hidden">Expand</span></th>
-            <th style="width:200px">Reference</th>
-            <th style="width:200px">Date started</th>
-            <th style="width:200px">Date transferred</th>
-            <th style="width:200px">Status</th>
-            <th>Actions</th>
-            <th class="govuk-visually-hidden" id="more-details">More details</th>
+            <th scope="col" class="govuk-table__header" style="width:200px">Reference</th>
+            <th scope="col" class="govuk-table__header" style="width:200px">Date started</th>
+            <th scope="col" class="govuk-table__header" style="width:200px">Date transferred</th>
+            <th scope="col" class="govuk-table__header" style="width:200px">Status</th>
+            <th scope="col" class="govuk-table__header">Actions</th>
+            <th scope="col" class="govuk-table__header govuk-visually-hidden" id="more-details">More details</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td rowspan="2">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
               <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-01">
                 <span class="govuk-visually-hidden">More details about MOCK-TDR-1234</span></button>
             </td>
-            <th>MOCK-TDR-1294</th>
-            <td>12/11/22</td>
-            <td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1294</th>
+            <td class="govuk-table__cell">12/11/22</td>
+            <td class="govuk-table__cell">
               <span class="no-data">N/A <span class="govuk-visually-hidden">Transfer not complete yet</span></span></td>
-            <td>
+            <td class="govuk-table__cell">
               <strong class="tdr-tag tdr-tag--red">failed</strong>
             </td>
-            <td>
+            <td class="govuk-table__cell">
               <div class="tdr-link-group">
                 <a href="#" class="govuk-link govuk-link--no-visited-state">View errors</a>
               </div>
             </td>
           </tr>
-          <tr>
-            <td headers="more-details" colspan="5" id="details-01" >
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-01" >
               <div class="tdr-transfers-extra">
                 <dl class="tdr-dlist tdr-transfers-extra__list">
                   <dt class="govuk-body-m float govuk-!-margin-bottom-0">Number of files</dt>
@@ -70,26 +70,26 @@ View Transfers
           </tr>
         </tbody>
         <tbody>
-          <tr>
-            <td rowspan="2">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
               <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-02">
                 <span class="govuk-visually-hidden">More details about MOCK-TDR-1235</span></button>
             </td>
-            <th>MOCK-TDR-1291</th>
-            <td>09/10/22</td>
-            <td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1291</th>
+            <td class="govuk-table__cell">09/10/22</td>
+            <td class="govuk-table__cell">
               <span class="no-data">N/A<span class="govuk-visually-hidden">Transfer not complete yet</span></span></td>
-            <td>
+            <td class="govuk-table__cell">
               <strong class="tdr-tag tdr-tag--yellow">in progress</strong>
             </td>
-            <td>
+            <td class="govuk-table__cell">
               <div class="tdr-link-group">
                 <a href="/metadata/additional-metadata" class="govuk-link govuk-link--no-visited-state">Resume transfer</a>
               </div>
             </td>
           </tr>
-          <tr>
-            <td headers="more-details" colspan="5" id="details-02">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-02">
               <div class="tdr-transfers-extra">
                 <dl class="tdr-dlist tdr-transfers-extra__list">
                   <dt class="govuk-body-m float govuk-!-margin-bottom-0">Number of files</dt>
@@ -106,25 +106,25 @@ View Transfers
           </tr>
         </tbody>
         <tbody>
-          <tr>
-            <td rowspan="2">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
               <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-03">
                 <span class="govuk-visually-hidden">More details about MOCK-TDR-1236</span></button>
             </td>
-            <th>MOCK-TDR-1290</th>
-            <td>21/09/22</td>
-            <td>11/10/22</td>
-            <td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1290</th>
+            <td class="govuk-table__cell">21/09/22</td>
+            <td class="govuk-table__cell">11/10/22</td>
+            <td class="govuk-table__cell">
               <strong class="tdr-tag tdr-tag--green">transferred</strong>
             </td>
-            <td>
+            <td class="govuk-table__cell">
               <div class="tdr-link-group">
                 <a href="#" class="govuk-link govuk-link--no-visited-state">Download report</a>
               </div>
             </td>
           </tr>
-          <tr>
-            <td headers="more-details" colspan="5" id="details-03">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-03">
               <div class="govuk-warning-text govuk-!-margin-bottom-0">
                 <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
                 <strong class="govuk-warning-text__text">
@@ -148,25 +148,25 @@ View Transfers
           </tr>
         </tbody>
         <tbody>
-          <tr>
-            <td rowspan="2">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
               <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-04">
                 <span class="govuk-visually-hidden">More details about MOCK-TDR-1236</span></button>
             </td>
-            <th>MOCK-TDR-1279</th>
-            <td>21/09/22</td>
-            <td>11/10/22</td>
-            <td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1279</th>
+            <td class="govuk-table__cell">21/09/22</td>
+            <td class="govuk-table__cell">11/10/22</td>
+            <td class="govuk-table__cell">
               <strong class="tdr-tag tdr-tag--green">transferred</strong>
             </td>
-            <td>
+            <td class="govuk-table__cell">
               <div class="tdr-link-group">
                 <a href="#" class="govuk-link govuk-link--no-visited-state">Download report</a>
               </div>
             </td>
           </tr>
-          <tr>
-            <td headers="more-details" colspan="5" id="details-04">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-04">
               <div class="govuk-warning-text govuk-!-margin-bottom-0">
                 <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
                 <strong class="govuk-warning-text__text">
@@ -190,26 +190,26 @@ View Transfers
           </tr>
         </tbody>
         <tbody>
-          <tr>
-            <td rowspan="2">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
               <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-05">
                 <span class="govuk-visually-hidden">More details about MOCK-TDR-1236</span></button>
             </td>
-            <th>MOCK-TDR-1276</th>
-            <td>21/05/22</td>
-            <td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1276</th>
+            <td class="govuk-table__cell">21/05/22</td>
+            <td class="govuk-table__cell">
               <span class="no-data">N/A <span class="govuk-visually-hidden">Transfer not complete yet</span></span></td>
-            <td>
+            <td class="govuk-table__cell">
               <strong class="tdr-tag tdr-tag--red">failed</strong>
             </td>
-            <td>
+            <td class="govuk-table__cell">
               <div class="tdr-link-group">
                 <a href="#" class="govuk-link govuk-link--no-visited-state">View errors</a>
               </div>
             </td>
           </tr>
-          <tr>
-            <td headers="more-details" colspan="5" id="details-05">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-05">
               <div class="govuk-warning-text govuk-!-margin-bottom-0">
                 <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
                 <strong class="govuk-warning-text__text">
@@ -233,25 +233,25 @@ View Transfers
           </tr>
         </tbody>
         <tbody>
-          <tr>
-            <td rowspan="2">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
               <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-06">
                 <span class="govuk-visually-hidden">More details about MOCK-TDR-1236</span></button>
             </td>
-            <th>MOCK-TDR-1250</th>
-            <td>13/12/21</td>
-            <td>18/12/21</td>
-            <td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1250</th>
+            <td class="govuk-table__cell">13/12/21</td>
+            <td class="govuk-table__cell">18/12/21</td>
+            <td class="govuk-table__cell">
               <strong class="tdr-tag tdr-tag--green">transferred</strong>
             </td>
-            <td>
+            <td class="govuk-table__cell">
               <div class="tdr-link-group">
                 <a href="#" class="govuk-link govuk-link--no-visited-state">Download report</a>
               </div>
             </td>
           </tr>
-          <tr>
-            <td headers="more-details" colspan="5" id="details-06">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-06">
               <div class="govuk-warning-text govuk-!-margin-bottom-0">
                 <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
                 <strong class="govuk-warning-text__text">
@@ -275,25 +275,25 @@ View Transfers
           </tr>
         </tbody>
         <tbody>
-          <tr>
-            <td rowspan="2">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
               <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-07">
                 <span class="govuk-visually-hidden">More details about MOCK-TDR-1236</span></button>
             </td>
-            <th>MOCK-TDR-1242</th>
-            <td>21/08/21</td>
-            <td>11/09/21</td>
-            <td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1242</th>
+            <td class="govuk-table__cell">21/08/21</td>
+            <td class="govuk-table__cell">11/09/21</td>
+            <td class="govuk-table__cell">
               <strong class="tdr-tag tdr-tag--green">transferred</strong>
             </td>
-            <td>
+            <td class="govuk-table__cell">
               <div class="tdr-link-group">
                 <a href="#" class="govuk-link govuk-link--no-visited-state">Download report</a>
               </div>
             </td>
           </tr>
-          <tr>
-            <td headers="more-details" colspan="5" id="details-07">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-07">
               <div class="govuk-warning-text govuk-!-margin-bottom-0">
                 <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
                 <strong class="govuk-warning-text__text">
@@ -317,25 +317,25 @@ View Transfers
           </tr>
         </tbody>
         <tbody>
-          <tr>
-            <td rowspan="2">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
               <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-08">
                 <span class="govuk-visually-hidden">More details about MOCK-TDR-1236</span></button>
             </td>
-            <th>MOCK-TDR-1241</th>
-            <td>12/03/21</td>
-            <td>12/03/21</td>
-            <td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1241</th>
+            <td class="govuk-table__cell">12/03/21</td>
+            <td class="govuk-table__cell">12/03/21</td>
+            <td class="govuk-table__cell">
               <strong class="tdr-tag tdr-tag--green">transferred</strong>
             </td>
-            <td>
+            <td class="govuk-table__cell">
               <div class="tdr-link-group">
                 <a href="#" class="govuk-link govuk-link--no-visited-state">Download report</a>
               </div>
             </td>
           </tr>
-          <tr>
-            <td headers="more-details" colspan="5" id="details-08">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-08">
               <div class="govuk-warning-text govuk-!-margin-bottom-0">
                 <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
                 <strong class="govuk-warning-text__text">
@@ -359,27 +359,27 @@ View Transfers
           </tr>
         </tbody>
         <tbody>
-          <tr>
-            <td rowspan="2">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
               <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-09">
                 <span class="govuk-visually-hidden">More details about MOCK-TDR-1236</span></button>
             </td>
-            <th>MOCK-TDR-1240</th>
-            <td>12/03/21</td>
-            <td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1240</th>
+            <td class="govuk-table__cell">12/03/21</td>
+            <td class="govuk-table__cell">
               <span class="no-data">N/A <span class="govuk-visually-hidden">Transfer not complete yet</span></span>
             </td>
-            <td>
+            <td class="govuk-table__cell">
               <strong class="tdr-tag tdr-tag--red">failed</strong>
             </td>
-            <td>
+            <td class="govuk-table__cell">
               <div class="tdr-link-group">
                 <a href="#" class="govuk-link govuk-link--no-visited-state">View errors</a>
               </div>
             </td>
           </tr>
-          <tr>
-            <td headers="more-details" colspan="5" id="details-09">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-09">
               <div class="govuk-warning-text govuk-!-margin-bottom-0">
                 <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
                 <strong class="govuk-warning-text__text">
@@ -403,25 +403,25 @@ View Transfers
           </tr>
         </tbody>
         <tbody>
-          <tr>
-            <td rowspan="2">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
               <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-10">
                 <span class="govuk-visually-hidden">More details about MOCK-TDR-1236</span></button>
             </td>
-            <th>MOCK-TDR-1234</th>
-            <td>01/01/21</td>
-            <td>03/01/21</td>
-            <td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1234</th>
+            <td class="govuk-table__cell">01/01/21</td>
+            <td class="govuk-table__cell">03/01/21</td>
+            <td class="govuk-table__cell">
               <strong class="tdr-tag tdr-tag--green">transferred</strong>
             </td>
-            <td>
+            <td class="govuk-table__cell">
               <div class="tdr-link-group">
                 <a href="#" class="govuk-link govuk-link--no-visited-state">Download report</a>
               </div>
             </td>
           </tr>
-          <tr>
-            <td headers="more-details" colspan="5" id="details-10">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-10">
               <div class="govuk-warning-text govuk-!-margin-bottom-0">
                 <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
                 <strong class="govuk-warning-text__text">
