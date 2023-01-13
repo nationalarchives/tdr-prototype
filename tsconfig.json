@@ -1,7 +1,11 @@
 {
-    "include": ["app/assets/typescript/**/*"],
-    "compilerOptions": {
-        "noImplicitAny": true,
-        "target": "es5"
-    }
+  "compilerOptions": {
+    "target": "es2016",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "outDir": "app/assets/javascripts"
+  },
+  "include": ["app/assets/typescript/**/*"]
 }
