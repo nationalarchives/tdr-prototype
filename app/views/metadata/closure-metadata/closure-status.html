@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layouts/main.html" %}
 
 {% block pageTitle %}
 Check closure status
@@ -30,7 +30,7 @@ Check closure status
             {% if open.length > 0 %}
               <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding closure status to the following files:</p>
               <ul class="govuk-list govuk-list--bullet">
-                {% for f in data['file-selection']| filterOpen(data.closedFiles) | getFilenames(data.files) %}
+                {% for f in data['file-selection']| filterOpen(data.closedFiles) | getFilenames(globals.files) %}
                   <li>{{f|decodeFilename}}</li>
                 {% endfor %}
               </ul>
@@ -39,7 +39,7 @@ Check closure status
             {% if alreadyClosed.length > 0 %}
               <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">The following selected files are already closed:</p>
               <ul class="govuk-list govuk-list--bullet">
-                {% for f in data['file-selection']| filterClosed(data.closedFiles) | getFilenames(data.files) %}
+                {% for f in data['file-selection']| filterClosed(data.closedFiles) | getFilenames(globals.files) %}
                   <li>{{f|decodeFilename}}</li>
                 {% endfor %}
               </ul>

@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layouts/main.html" %}
 {% block pageTitle %} Add descriptive metadata {% endblock %}
 
 {% block content %}
@@ -12,7 +12,7 @@
           <div class="tdr-card__content">
             <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding or editing descriptive metadata for the following file:</p>
             <ul class="govuk-list govuk-list--bullet">
-              {% for f in data['file-selection']| getFilenames(data.files) %}
+              {% for f in data['file-selection']| getFilenames(globals.files) %}
                 <li>{{f}}</li>
               {% endfor %}
             </ul>
@@ -71,7 +71,7 @@
 {% endblock %}
 
 {% block pageScripts %}
-  <script src="/public/javascripts/tdr-components.js"></script>
+  <script src="/public/javascripts/mss.js"></script>
   <script>
     window.onload = () => {
       const multiSelects = document.querySelectorAll("[data-module=multi-select-search]");

@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layouts/main.html" %}
 
 {% block pageTitle %}
   Checking records
@@ -15,14 +15,14 @@
       </h1>
 
       <form class="form" action="/file-checks-results" method="post">
-        
+
         <p class="govuk-body">Please wait while your records are being checked. This may take a few minutes. </p>
         <p class="govuk-body">The following checks are now being performed:</p>
-          <ul class="govuk-list govuk-list--bullet">
-            <li>Anti-virus scanning</li>
-            <li>Identifying file formats</li>
-            <li>Validating data integrity</li>
-          </ul>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Anti-virus scanning</li>
+          <li>Identifying file formats</li>
+          <li>Validating data integrity</li>
+        </ul>
 
         <p class="govuk-body govuk-!-margin-bottom-7">For more information on these checks, please see our
           <a class="govuk-link" target="_blank" rel="noopener noreferrer" href="/faq">FAQ (opens in new tab)</a> for this service.
@@ -60,13 +60,14 @@
           MOCK-123-TDR
         </div>
       </details>
+    </div>
   </div>
-  </div>
-
 
   <script type="text/javascript">
     setTimeout(() => {
-      document.getElementById("next-step-btn").disabled = false;
+      document
+        .getElementById("next-step-btn")
+        .disabled = false;
     }, 10000);
   </script>
 

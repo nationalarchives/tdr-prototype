@@ -1,141 +1,146 @@
-{% extends "layout.html" %}
+{% extends "layouts/main.html" %}
 
 {% block pageTitle %}
 Add closure fields to 'Flour.docx'
 {% endblock %}
 
 {% block content %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<div class="govuk-grid-row">
+  <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-l">
+      <h1 class="govuk-heading-l">
             Add closure metadata to 'Flour.docx'
         </h1>{{releaseVersion | log }}
-        <p class="govuk-body">Enter metadata for closure fields here.</p>
+      <p class="govuk-body">Enter metadata for closure fields here.</p>
 
-        <div class="govuk-form-group">
-            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="event-name">
+      <div class="govuk-form-group">
+        <h2 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--m" for="event-name">
                     FOI decision asserted
                 </label>
-                <div id="passport-issued-hint" class="govuk-hint">
+          <div id="passport-issued-hint" class="govuk-hint">
                     Date of the Advisory Council Approval
                 </div>
-            </h2>
-            <div class="govuk-date-input" id="passport-issued">
-                <div class="govuk-date-input__item">
-                    <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+        </h2>
+        <div class="govuk-date-input" id="passport-issued">
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
                             Day
                         </label>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day"
+              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day"
                             name="passport-issued-day" type="text" pattern="[0-9]*" inputmode="numeric"
                             placeholder="dd">
-                    </div>
-                </div>
-                <div class="govuk-date-input__item">
-                    <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
                             Month
                         </label>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+              <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                             id="passport-issued-month" name="passport-issued-month" type="text" pattern="[0-9]*"
                             inputmode="numeric" placeholder="mm">
-                    </div>
-                </div>
-                <div class="govuk-date-input__item">
-                    <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
                             Year
                         </label>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-4"
+              <input class="govuk-input govuk-date-input__input govuk-input--width-4"
                             id="passport-issued-year" name="passport-issued-year" type="text" pattern="[0-9]*"
                             inputmode="numeric" placeholder="yyyy">
-                    </div>
-                </div>
             </div>
+          </div>
         </div>
+      </div>
 
-        <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                    <h2 class="govuk-label govuk-label--m">
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h2 class="govuk-label govuk-label--m">
                         Last modified date
                     </h2>
-                </legend>
-                <div id="passport-issued-hint" class="govuk-hint">
+          </legend>
+          <div id="passport-issued-hint" class="govuk-hint">
                     Date of the record from when the closure starts. It is usually the last date modified.
                 </div>
-                <div class="govuk-date-input" id="passport-issued">
-                    <div class="govuk-date-input__item">
-                        <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+          <div class="govuk-date-input" id="passport-issued">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
                                 Day
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                                 id="passport-issued-day" name="passport-issued-day" type="text" pattern="[0-9]*"
                                 inputmode="numeric" placeholder="dd">
-                        </div>
-                    </div>
-                    <div class="govuk-date-input__item">
-                        <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
                                 Month
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2"
                                 id="passport-issued-month" name="passport-issued-month" type="text" pattern="[0-9]*"
                                 inputmode="numeric" placeholder="mm">
-                        </div>
-                    </div>
-                    <div class="govuk-date-input__item">
-                        <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
                                 Year
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-4"
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4"
                                 id="passport-issued-year" name="passport-issued-year" type="text" pattern="[0-9]*"
                                 inputmode="numeric" placeholder="yyyy">
-                        </div>
-                    </div>
-                </div>
+              </div>
+            </div>
+          </div>
 
-            </fieldset>
-        </div>
+        </fieldset>
+      </div>
 
-        <div class="govuk-form-group">
-            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="years">
+      <div class="govuk-form-group">
+        <h2 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--m" for="years">
                     Closure period
                 </label>
-            </h2>
-            <div id="closure-period-hint" class="govuk-hint">
+        </h2>
+        <div id="closure-period-hint" class="govuk-hint">
                 Number of years the record is closed from the closure start date
             </div>
-            <div class="govuk-input__wrapper"><input class="govuk-input govuk-input--width-5" id="years" name="years"
+        <div class="govuk-input__wrapper"><input class="govuk-input govuk-input--width-5" id="years" name="years"
                     type="text" spellcheck="false">
-                <div class="govuk-input__suffix" aria-hidden="true">years</div>
-            </div>
+          <div class="govuk-input__suffix" aria-hidden="true">years</div>
         </div>
+      </div>
 
-        <div class="govuk-form-group" id="codes">
-            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="event-name">
+      <div class="govuk-form-group" id="codes">
+        <h2 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--m" for="event-name">
                     FOI exemption code
                 </label>
-            </h2>
-            <div id="foi-codes-hint" class="govuk-hint">
+        </h2>
+        <div id="foi-codes-hint" class="govuk-hint">
                 Select the exemption code that applies
             </div>
-            <div class="govuk-form-group">
-                <select class="govuk-select" id="sort" name="sort">
-                    <option value="please-choose" selected>Please choose...</option>
-                    <option value="33">33</option>
-                    <option value="36">36</option>
-                    <option value="37(1)">37(1)</option>
-                    <option value="37(2)">37(2)</option>
-                    <option value="38">38</option>
-                    <option value="40(2)">40(2)</option>
-                    <option value="43(1)">43(1)</option>
-                    <option value="43(2)">43(2)</option>
-                    <option value="divider">---------</option>
+        <div class="govuk-form-group">
+          <select class="govuk-select" id="sort" name="sort">
+            <option value="please-choose" selected>Please choose...</option>
+            <option value="33">33</option>
+            <option value="36">36</option>
+            <option value="37(1)">37(1)</option>
+            <option value="37(2)">37(2)</option>
+            <option value="38">38</option>
+            <option value="40(2)">40(2)</option>
+            <option value="43(1)">43(1)</option>
+            <option value="43(2)">43(2)</option>
+            <option value="divider">
+              -----
+              ----</option>
                     <option value="22">22</option>
                     <option value="22a">22A</option>
                     <option value="23">23</option>
@@ -164,78 +169,76 @@ Add closure fields to 'Flour.docx'
                     <option value="43(1)">43(1)</option>
                     <option value="43(2)">43(2)</option>
                     <option value="44">44</option>
-                    <option value="divider">---------</option>
-                    <option value="EIRs 12(3) & 13">EIRs 12(3) & 13</option>
-                    <option value="EIR 12(5)(a)">EIR 12(5)(a)</option>
-                    <option value="EIR 12(5)(b)">EIR 12(5)(b)</option>
-                    <option value="EIR 12(5)(c)">EIR 12(5)(c)</option>
-                    <option value="EIR 12(5)(d)">EIR 12(5)(d)</option>
-                    <option value="EIR 12(5)(e)">EIR 12(5)(e)</option>
+                    <option value="divider">---
+              ------</option>
+            <option value="EIRs 12(3) & 13">EIRs 12(3) & 13</option>
+            <option value="EIR 12(5)(a)">EIR 12(5)(a)</option>
+            <option value="EIR 12(5)(b)">EIR 12(5)(b)</option>
+            <option value="EIR 12(5)(c)">EIR 12(5)(c)</option>
+            <option value="EIR 12(5)(d)">EIR 12(5)(d)</option>
+            <option value="EIR 12(5)(e)">EIR 12(5)(e)</option>
 
-                </select>
-            </div>
+          </select>
         </div>
-        <p id="AnotherExemptionCode" class="govuk-link">Add another exemption code</p>
+      </div>
+      <p id="AnotherExemptionCode" class="govuk-link">Add another exemption code</p>
 
-        <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                     Is the title closed?
                 </legend>
-                <div class="govuk-radios">
-                    <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="yes" name="is-the-title-sensitive" type="radio"
+          <div class="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="yes" name="is-the-title-sensitive" type="radio"
                             value="yes">
-                        <label class="govuk-label govuk-radios__label" for="yes">
+              <label class="govuk-label govuk-radios__label" for="yes">
                             Yes
                         </label>
-                    </div>
-                    <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="no" name="is-the-title-sensitive" type="radio"
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="no" name="is-the-title-sensitive" type="radio"
                             value="no">
-                        <label class="govuk-label govuk-radios__label" for="no">
+              <label class="govuk-label govuk-radios__label" for="no">
                             No
                         </label>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-        <div id="show-me">
-            <div class="govuk-form-group">
-                <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="event-name">
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div id="show-me">
+        <div class="govuk-form-group">
+          <h2 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--m" for="event-name">
                         Alternative Title
                     </label>
-                </h2>
-                <input class="govuk-input" id="event-name" name="event-name" type="text">
-            </div>
+          </h2>
+          <input class="govuk-input" id="event-name" name="event-name" type="text">
         </div>
+      </div>
 
-        <a href="./closure-added.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+      <a href="./closure-added.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
             Continue
         </a>
 
     </div>
-</div>
+  </div>
 
-<script type="text/javascript">
+  <script type="text/javascript">
     $(document).ready(function () {
+      $('#show-me').hide();
+      $('#yes').click(function () {
+        $('#show-me').show();
+      });
+      $('#no').click(function () {
         $('#show-me').hide();
-        $('#yes').click(function () {
-            $('#show-me').show();
-        });
-        $('#no').click(function () {
-            $('#show-me').hide();
-        });
+      });
     });
 
-    src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" >
-        $('#AnotherExemptionCode').on('click', function () {
+    src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" > $('#AnotherExemptionCode').on('click', function () {
 
-            $('#codes').append('<div class="govuk-form-group"> <select class="govuk-select" id="sort" name="sort"><option value="please-choose" selected>Please choose...</option> <option value="33">33</option><option value="36">36</option><option value="37(1)">37(1)</option><option value="37(2)">37(2)</option><option value="38">38</option><option value="40(2)">40(2)</option><option value="43(1)">43(1)</option><option value="43(2)">43(2)</option></select></div>');
-        });
-</script>
-
-
-
+      $('#codes').append('<div class="govuk-form-group"> <select class="govuk-select" id="sort" name="sort"><option value="please-choose" selected>Please choose...</option> <option value="33">33</option><option value="36">36</option><option value="37(1)">37(1)</option><option value="37(2)">37(2)</option><option value="38">38</option><option value="40(2)">40(2)</option><option value="43(1)">43(1)</option><option value="43(2)">43(2)</option></select></div>');
+    });
+  </script>
 
 {% endblock %}

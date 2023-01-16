@@ -1,29 +1,12 @@
-// Override the default GOV.UK Frontend font stack
-$govuk-font-family: "Arial", "Helvetica", sans-serif;
+//
+// For guidance on how to add CSS and SCSS see:
+// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
+//
 
-// global styles for <a> and <p> tags
-$govuk-global-styles: true;
-
-// We can't mount GOV.UK Frontend's assets at root as it's done automatically by the extensions framework.
-$govuk-assets-path: '/govuk/assets/';
-
-// Import GOV.UK Frontend and any extension styles if extensions have been configured
-@import "lib/extensions/extensions";
-
+// Add extra styles here
 @import 'node_modules/@nationalarchives/tdr-components/components/multi-select-search/_index';
+@import 'node_modules/@nationalarchives/tdr-components/components/nested-navigation/_index';
 
-// Patterns that aren't in Frontend
-@import "patterns/step-by-step-header";
-@import "patterns/step-by-step-nav";
-@import "patterns/step-by-step-related";
-@import "patterns/task-list";
-@import "patterns/related-items";
-@import 'node_modules/nhsuk-frontend/packages/nhsuk';
-
-// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
-@import 'patterns/_breadcrumbs-for-file-navigation';
-@import 'patterns/_tree-view-file-navigation';
-@import 'patterns/_multi-autocomplete';
 
 // menu button in header (now 'Sign out' button)
 .govuk-header__menu-button::after {
@@ -71,6 +54,9 @@ $govuk-assets-path: '/govuk/assets/';
   text-decoration:none
 }
 
+.govuk-header__content--nav-right nav {
+  float: right;
+}
 
 //upload.html
 .drag-and-drop__success {
@@ -431,14 +417,15 @@ $govuk-assets-path: '/govuk/assets/';
 .govuk-table--tdr-transfers .no-data {
   color:#6B7276;
 }
+.govuk-table--tdr-transfers td,
+.govuk-table--tdr-transfers th {
+  text-align: left;
+}
 
 @include govuk-media-query($from: tablet) {
-  .govuk-table--tdr-transfers td, th {
+  .govuk-table--tdr-transfers td, .govuk-table--tdr-transfers th {
     padding-top: 12px;
     padding-bottom: 12px;
-  }
-
-  .govuk-table--tdr-transfers td, th {
     padding-right: 20px;
   }
 }
@@ -528,3 +515,12 @@ $govuk-assets-path: '/govuk/assets/';
 // .tdr-transfers-extra strong {
 
 // }
+
+#file-selection .tna-tree {
+  max-height: 60vh;
+}
+
+.govuk-pagination--centred {
+  justify-content: center;
+}
+

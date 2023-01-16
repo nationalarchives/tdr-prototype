@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layouts/main.html" %}
 
 {% block pageTitle %}
   Transfer summary
@@ -6,11 +6,10 @@
 
 {% block content %}
 
-<a href="./download-metadata.html" class="govuk-back-link">Back</a>
-<br>
-      <a href="/upload-folder-success" class="">
-        <img style="width: 100%" src="/public/images/csv-download.png" class="" alt="">
-      </a>
-
+  <a href="./download-metadata.html" class="govuk-back-link">Back</a>
+  <br>
+  <a href="/upload-folder-success" class="">
+    <img style="width: 100%" src="/public/images/csv-download.png" class="" alt="">
+  </a>
 
 {% endblock %}

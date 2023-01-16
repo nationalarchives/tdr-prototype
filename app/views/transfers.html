@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layouts/main.html" %}
 
 {% block pageTitle %}
 View Transfers
@@ -13,47 +13,40 @@ View Transfers
       <p class="govuk-body">View the history of all the consignments you have uploaded and resume incomplete or failed
       transfers.</p>
 
-      <table data-module="table-row-expander" class="govuk-table govuk-table--tdr-transfers">
-        <thead>
-          <tr>
-            <th style="width:30px" id="toggle">
+      <table data-module="table-row-expander" class="govuk-table govuk-table--tdr-transfers govuk-!-margin-bottom-2">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header" style="width:30px" id="toggle">
               <span class="govuk-visually-hidden">Expand</span></th>
-            <th style="width:200px">Reference</th>
-            <th style="width:200px">Date started</th>
-            <th style="width:200px">Date transferred</th>
-            <th style="width:200px">Status</th>
-            <th>Actions</th>
-            <th class="govuk-visually-hidden" id="more-details">More details</th>
+            <th scope="col" class="govuk-table__header" style="width:200px">Reference</th>
+            <th scope="col" class="govuk-table__header" style="width:200px">Date started</th>
+            <th scope="col" class="govuk-table__header" style="width:200px">Date transferred</th>
+            <th scope="col" class="govuk-table__header" style="width:200px">Status</th>
+            <th scope="col" class="govuk-table__header">Actions</th>
+            <th scope="col" class="govuk-table__header govuk-visually-hidden" id="more-details">More details</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td rowspan="2">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
               <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-01">
                 <span class="govuk-visually-hidden">More details about MOCK-TDR-1234</span></button>
             </td>
-            <th>MOCK-TDR-1234</th>
-            <td>12/11/22</td>
-            <td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1294</th>
+            <td class="govuk-table__cell">12/11/22</td>
+            <td class="govuk-table__cell">
               <span class="no-data">N/A <span class="govuk-visually-hidden">Transfer not complete yet</span></span></td>
-            <td>
+            <td class="govuk-table__cell">
               <strong class="tdr-tag tdr-tag--red">failed</strong>
             </td>
-            <td>
+            <td class="govuk-table__cell">
               <div class="tdr-link-group">
                 <a href="#" class="govuk-link govuk-link--no-visited-state">View errors</a>
               </div>
             </td>
           </tr>
-          <tr>
-            <td headers="more-details" colspan="5" id="details-01" >
-              <div class="govuk-warning-text govuk-!-margin-bottom-0">
-                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-                <strong class="govuk-warning-text__text">
-                  <span class="govuk-warning-text__assistive">Warning</span>
-                  Please do not delete the original files you exported until you are notified that your records have been preserved.
-                </strong>
-              </div>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-01" >
               <div class="tdr-transfers-extra">
                 <dl class="tdr-dlist tdr-transfers-extra__list">
                   <dt class="govuk-body-m float govuk-!-margin-bottom-0">Number of files</dt>
@@ -69,41 +62,34 @@ View Transfers
                   </dd>
                 </dl>
               </div>
-              <dl class="tdr-dlist govuk-!-margin-top-0 govuk-!-margin-bottom-2">
+              {# <dl class="tdr-dlist govuk-!-margin-top-0 govuk-!-margin-bottom-2">
                 <dt>Error report</dt>
                 <dd class="govuk-!-font-size-16">Many Many Many Many Many Many Many Many Many details<br>Many Many Many Many Many Many Many Many Many more details</dd>
-              </dl>
+              </dl> #}
             </td>
           </tr>
         </tbody>
         <tbody>
-          <tr>
-            <td rowspan="2">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
               <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-02">
                 <span class="govuk-visually-hidden">More details about MOCK-TDR-1235</span></button>
             </td>
-            <th>MOCK-TDR-1235</th>
-            <td>09/10/22</td>
-            <td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1291</th>
+            <td class="govuk-table__cell">09/10/22</td>
+            <td class="govuk-table__cell">
               <span class="no-data">N/A<span class="govuk-visually-hidden">Transfer not complete yet</span></span></td>
-            <td>
-              <strong class="tdr-tag tdr-tag--orange">in progress</strong>
+            <td class="govuk-table__cell">
+              <strong class="tdr-tag tdr-tag--yellow">in progress</strong>
             </td>
-            <td>
+            <td class="govuk-table__cell">
               <div class="tdr-link-group">
                 <a href="/metadata/additional-metadata" class="govuk-link govuk-link--no-visited-state">Resume transfer</a>
               </div>
             </td>
           </tr>
-          <tr>
-            <td headers="more-details" colspan="5" id="details-02">
-              <div class="govuk-warning-text govuk-!-margin-bottom-0">
-                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-                <strong class="govuk-warning-text__text">
-                  <span class="govuk-warning-text__assistive">Warning</span>
-                  Please do not delete the original files you exported until you are notified that your records have been preserved.
-                </strong>
-              </div>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-02">
               <div class="tdr-transfers-extra">
                 <dl class="tdr-dlist tdr-transfers-extra__list">
                   <dt class="govuk-body-m float govuk-!-margin-bottom-0">Number of files</dt>
@@ -120,25 +106,322 @@ View Transfers
           </tr>
         </tbody>
         <tbody>
-          <tr>
-            <td rowspan="2">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
               <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-03">
                 <span class="govuk-visually-hidden">More details about MOCK-TDR-1236</span></button>
             </td>
-            <th>MOCK-TDR-1236</th>
-            <td>21/09/22</td>
-            <td>11/10/22</td>
-            <td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1290</th>
+            <td class="govuk-table__cell">21/09/22</td>
+            <td class="govuk-table__cell">11/10/22</td>
+            <td class="govuk-table__cell">
               <strong class="tdr-tag tdr-tag--green">transferred</strong>
             </td>
-            <td>
+            <td class="govuk-table__cell">
               <div class="tdr-link-group">
                 <a href="#" class="govuk-link govuk-link--no-visited-state">Download report</a>
               </div>
             </td>
           </tr>
-          <tr>
-            <td headers="more-details" colspan="5" id="details-03">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-03">
+              <div class="govuk-warning-text govuk-!-margin-bottom-0">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                  <span class="govuk-warning-text__assistive">Warning</span>
+                  Please do not delete the original files you exported until you are notified that your records have been preserved.
+                </strong>
+              </div>
+              <div class="tdr-transfers-extra">
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Number of files</dt>
+                  <dd class="govuk-!-font-size-36">80</dd>
+                </dl>
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Uploaded by</dt>
+                  <dd>
+                    <a href="mailto:johndoe@departmentofcookies.gov.uk">jo@departmentofpasta.gov.uk</a>
+                  </dd>
+                </dl>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
+              <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-04">
+                <span class="govuk-visually-hidden">More details about MOCK-TDR-1236</span></button>
+            </td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1279</th>
+            <td class="govuk-table__cell">21/09/22</td>
+            <td class="govuk-table__cell">11/10/22</td>
+            <td class="govuk-table__cell">
+              <strong class="tdr-tag tdr-tag--green">transferred</strong>
+            </td>
+            <td class="govuk-table__cell">
+              <div class="tdr-link-group">
+                <a href="#" class="govuk-link govuk-link--no-visited-state">Download report</a>
+              </div>
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-04">
+              <div class="govuk-warning-text govuk-!-margin-bottom-0">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                  <span class="govuk-warning-text__assistive">Warning</span>
+                  Please do not delete the original files you exported until you are notified that your records have been preserved.
+                </strong>
+              </div>
+              <div class="tdr-transfers-extra">
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Number of files</dt>
+                  <dd class="govuk-!-font-size-36">80</dd>
+                </dl>
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Uploaded by</dt>
+                  <dd>
+                    <a href="mailto:johndoe@departmentofcookies.gov.uk">jo@departmentofpasta.gov.uk</a>
+                  </dd>
+                </dl>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
+              <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-05">
+                <span class="govuk-visually-hidden">More details about MOCK-TDR-1236</span></button>
+            </td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1276</th>
+            <td class="govuk-table__cell">21/05/22</td>
+            <td class="govuk-table__cell">
+              <span class="no-data">N/A <span class="govuk-visually-hidden">Transfer not complete yet</span></span></td>
+            <td class="govuk-table__cell">
+              <strong class="tdr-tag tdr-tag--red">failed</strong>
+            </td>
+            <td class="govuk-table__cell">
+              <div class="tdr-link-group">
+                <a href="#" class="govuk-link govuk-link--no-visited-state">View errors</a>
+              </div>
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-05">
+              <div class="govuk-warning-text govuk-!-margin-bottom-0">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                  <span class="govuk-warning-text__assistive">Warning</span>
+                  Please do not delete the original files you exported until you are notified that your records have been preserved.
+                </strong>
+              </div>
+              <div class="tdr-transfers-extra">
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Number of files</dt>
+                  <dd class="govuk-!-font-size-36">80</dd>
+                </dl>
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Uploaded by</dt>
+                  <dd>
+                    <a href="mailto:johndoe@departmentofcookies.gov.uk">jo@departmentofpasta.gov.uk</a>
+                  </dd>
+                </dl>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
+              <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-06">
+                <span class="govuk-visually-hidden">More details about MOCK-TDR-1236</span></button>
+            </td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1250</th>
+            <td class="govuk-table__cell">13/12/21</td>
+            <td class="govuk-table__cell">18/12/21</td>
+            <td class="govuk-table__cell">
+              <strong class="tdr-tag tdr-tag--green">transferred</strong>
+            </td>
+            <td class="govuk-table__cell">
+              <div class="tdr-link-group">
+                <a href="#" class="govuk-link govuk-link--no-visited-state">Download report</a>
+              </div>
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-06">
+              <div class="govuk-warning-text govuk-!-margin-bottom-0">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                  <span class="govuk-warning-text__assistive">Warning</span>
+                  Please do not delete the original files you exported until you are notified that your records have been preserved.
+                </strong>
+              </div>
+              <div class="tdr-transfers-extra">
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Number of files</dt>
+                  <dd class="govuk-!-font-size-36">80</dd>
+                </dl>
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Uploaded by</dt>
+                  <dd>
+                    <a href="mailto:johndoe@departmentofcookies.gov.uk">jo@departmentofpasta.gov.uk</a>
+                  </dd>
+                </dl>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
+              <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-07">
+                <span class="govuk-visually-hidden">More details about MOCK-TDR-1236</span></button>
+            </td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1242</th>
+            <td class="govuk-table__cell">21/08/21</td>
+            <td class="govuk-table__cell">11/09/21</td>
+            <td class="govuk-table__cell">
+              <strong class="tdr-tag tdr-tag--green">transferred</strong>
+            </td>
+            <td class="govuk-table__cell">
+              <div class="tdr-link-group">
+                <a href="#" class="govuk-link govuk-link--no-visited-state">Download report</a>
+              </div>
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-07">
+              <div class="govuk-warning-text govuk-!-margin-bottom-0">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                  <span class="govuk-warning-text__assistive">Warning</span>
+                  Please do not delete the original files you exported until you are notified that your records have been preserved.
+                </strong>
+              </div>
+              <div class="tdr-transfers-extra">
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Number of files</dt>
+                  <dd class="govuk-!-font-size-36">80</dd>
+                </dl>
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Uploaded by</dt>
+                  <dd>
+                    <a href="mailto:johndoe@departmentofcookies.gov.uk">jo@departmentofpasta.gov.uk</a>
+                  </dd>
+                </dl>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
+              <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-08">
+                <span class="govuk-visually-hidden">More details about MOCK-TDR-1236</span></button>
+            </td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1241</th>
+            <td class="govuk-table__cell">12/03/21</td>
+            <td class="govuk-table__cell">12/03/21</td>
+            <td class="govuk-table__cell">
+              <strong class="tdr-tag tdr-tag--green">transferred</strong>
+            </td>
+            <td class="govuk-table__cell">
+              <div class="tdr-link-group">
+                <a href="#" class="govuk-link govuk-link--no-visited-state">Download report</a>
+              </div>
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-08">
+              <div class="govuk-warning-text govuk-!-margin-bottom-0">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                  <span class="govuk-warning-text__assistive">Warning</span>
+                  Please do not delete the original files you exported until you are notified that your records have been preserved.
+                </strong>
+              </div>
+              <div class="tdr-transfers-extra">
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Number of files</dt>
+                  <dd class="govuk-!-font-size-36">80</dd>
+                </dl>
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Uploaded by</dt>
+                  <dd>
+                    <a href="mailto:johndoe@departmentofcookies.gov.uk">jo@departmentofpasta.gov.uk</a>
+                  </dd>
+                </dl>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
+              <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-09">
+                <span class="govuk-visually-hidden">More details about MOCK-TDR-1236</span></button>
+            </td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1240</th>
+            <td class="govuk-table__cell">12/03/21</td>
+            <td class="govuk-table__cell">
+              <span class="no-data">N/A <span class="govuk-visually-hidden">Transfer not complete yet</span></span>
+            </td>
+            <td class="govuk-table__cell">
+              <strong class="tdr-tag tdr-tag--red">failed</strong>
+            </td>
+            <td class="govuk-table__cell">
+              <div class="tdr-link-group">
+                <a href="#" class="govuk-link govuk-link--no-visited-state">View errors</a>
+              </div>
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-09">
+              <div class="govuk-warning-text govuk-!-margin-bottom-0">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                  <span class="govuk-warning-text__assistive">Warning</span>
+                  Please do not delete the original files you exported until you are notified that your records have been preserved.
+                </strong>
+              </div>
+              <div class="tdr-transfers-extra">
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Number of files</dt>
+                  <dd class="govuk-!-font-size-36">80</dd>
+                </dl>
+                <dl class="tdr-dlist tdr-transfers-extra__list">
+                  <dt class="govuk-body-m float govuk-!-margin-bottom-0">Uploaded by</dt>
+                  <dd>
+                    <a href="mailto:johndoe@departmentofcookies.gov.uk">jo@departmentofpasta.gov.uk</a>
+                  </dd>
+                </dl>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" rowspan="2">
+              <button class="tdr-arrow-expander" aria-expanded="false" aria-controls="details-10">
+                <span class="govuk-visually-hidden">More details about MOCK-TDR-1236</span></button>
+            </td>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1234</th>
+            <td class="govuk-table__cell">01/01/21</td>
+            <td class="govuk-table__cell">03/01/21</td>
+            <td class="govuk-table__cell">
+              <strong class="tdr-tag tdr-tag--green">transferred</strong>
+            </td>
+            <td class="govuk-table__cell">
+              <div class="tdr-link-group">
+                <a href="#" class="govuk-link govuk-link--no-visited-state">Download report</a>
+              </div>
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" headers="more-details" colspan="5" id="details-10">
               <div class="govuk-warning-text govuk-!-margin-bottom-0">
                 <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
                 <strong class="govuk-warning-text__text">
@@ -162,6 +445,41 @@ View Transfers
           </tr>
         </tbody>
       </table>
+
+      <nav class="govuk-pagination govuk-pagination--centred" role="navigation" aria-label="results">
+        <div class="govuk-pagination__prev">
+          <a class="govuk-link govuk-pagination__link" href="#" rel="prev">
+            <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+            </svg>
+            <span class="govuk-pagination__link-title">Previous</span></a>
+        </div>
+        <ul class="govuk-pagination__list">
+          <li class="govuk-pagination__item">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1">
+              1
+            </a>
+          </li>
+          <li class="govuk-pagination__item govuk-pagination__item--current">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 2" aria-current="page">
+              2
+            </a>
+          </li>
+          <li class="govuk-pagination__item">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 3">
+              3
+            </a>
+          </li>
+        </ul>
+        <div class="govuk-pagination__next">
+          <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+            <span class="govuk-pagination__link-title">Next</span>
+            <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+            </svg>
+          </a>
+        </div>
+      </nav>
 
       <a href="home" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
         Back to homepage

@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layouts/main.html" %}
 {# {% include "../dummyfiles.html" %} #}
 
 {% block pageTitle %}
@@ -103,31 +103,30 @@ Descriptive metadata - Choose a file
         </div>
         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"/>
 
-        <p class="govuk-text">Once you have finished adding descriptive metadata, return to the metadata selection screen to continue with your transfer.</p>
-        <p class="govuk-text">You will be able to review all metadata in a single .CSV before completing your transfer.</p>
+        <p class="govuk-text">Once you have finished adding descriptive metadata, return to metadata selection page to add descriptive metadata or continue with your transfer.</p>
+        <p class="govuk-text">You can return to add more descriptive metadata later and you will be able to review all metadata in a single .CSV before completing your transfer.</p>
         <a href="../additional-metadata"
           draggable="false"
           class="govuk-button govuk-button"
           data-module="govuk-button">
-          Return to transfer
+            Return to transfer
         </a>
       </div>
-    </div>
-  </form>
-{% endblock %}
+    </form>
+  {% endblock %}
 
-{% block pageScripts %}
-  <script src="/public/javascripts/tree-view.js"></script>
-  <script>
-    window.onload = () => {
-      const treeItems = document.querySelectorAll('[role=tree]')
-      const tree = document.querySelector('[role=tree]')
-      const treeItemList = []
-      if (tree != null) {
-        treeItems.forEach(item => treeItemList.push(item))
-        const nestedNavigation = new NestedNavigation(tree, treeItemList)
-        nestedNavigation.initialiseFormListeners()
+  {% block pageScripts %}
+    <script src="/public/javascripts/tree-view.js"></script>
+    <script>
+      window.onload = () => {
+        const treeItems = document.querySelectorAll("[role=tree]");
+        const tree = document.querySelector("[role=tree]");
+        const treeItemList = [];
+        if (tree != null) {
+          treeItems.forEach((item) => treeItemList.push(item));
+          const nestedNavigation = new NestedNavigation(tree, treeItemList);
+          nestedNavigation.initialiseFormListeners("radios");
+        }
       }
-    }
-  </script>
-{% endblock %}
+    </script>
+  {% endblock %}

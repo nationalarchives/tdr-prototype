@@ -1,6 +1,23 @@
-const express = require("express");
-const router = express.Router();
-const filters = require("./filters")();
+//
+// For guidance on how to create routes see:
+// https://prototype-kit.service.gov.uk/docs/create-routes
+//
+
+const govukPrototypeKit = require("govuk-prototype-kit");
+const router = govukPrototypeKit.requests.setupRouter();
+
+// Add your routes here
+
+const hasDescription = function (files, descriptiveFiles) {
+  if (descriptiveFiles === undefined) return false;
+  return Array.from(files).every((fileIndex) => {
+    return (
+      descriptiveFiles[fileIndex] &&
+      descriptiveFiles[fileIndex]["addDescriptive-description"] &&
+      descriptiveFiles[fileIndex]["addDescriptive-description"] !== ""
+    );
+  });
+};
 
 const requireClosureFields = [
   "addClosure-foi-asserted-day",
@@ -78,14 +95,17 @@ router.get(
     let selected = req.session.data["file-selection"];
     let doView = req.session.data["action"] === "view";
 
-    if (typeof selected == "string" || selected instanceof String) {
+    if (
+      (selected && typeof selected == "string") ||
+      selected instanceof String
+    ) {
       selected = [selected];
       req.session.data["file-selection"] = selected;
     }
     if (!req.session.data.descriptiveFiles)
       req.session.data.descriptiveFiles = {};
 
-    if (selected === undefined) {
+    if (selected === undefined || selected === "") {
       res.render("metadata/descriptive-metadata/file-level", {
         error: "no-selection",
       });
@@ -192,7 +212,7 @@ router.get(
 
     let required = requireClosureFields;
     if (
-      filters.hasDescription(
+      hasDescription(
         req.session.data["file-selection"],
         req.session.data["descriptiveFiles"]
       ) == false
@@ -329,7 +349,7 @@ router.get(
     }
     if (!req.session.data.closedFiles) req.session.data.closedFiles = {};
 
-    if (selected === undefined) {
+    if (selected === undefined || selected === "") {
       res.render("metadata/closure-metadata/file-level", {
         error: "no-selection",
       });
