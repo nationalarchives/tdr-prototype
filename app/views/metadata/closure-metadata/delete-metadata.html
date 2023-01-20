@@ -14,25 +14,33 @@ Remove properties
         Delete closure metadata
       </h1>{{releaseVersion | log }}
         <div class="tdr-card">
-          <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You have chosen to delete the closure metadata for the following records and set them as open:</p>
+          <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You have chosen to delete the closure metadata you added to the following record and set it as open:</p>
           <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+            {% if data['file-selection']|getFilenames(globals.files)|length == 0 %}
+              <li>example-file.xlsx</li>
+            {% endif %}
             {% for f in data['file-selection']| getFilenames(globals.files) %}
-              <li>{{f}}</li>
+              <li>baking-powder.xlsx</li>
             {% endfor %}
           </ul>
         </div>
+
         <div class="govuk-warning-text">
           <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
           <strong class="govuk-warning-text__text">
             <span class="govuk-warning-text__assistive">Warning</span>
+            {% if data['file-selection']|getFilenames(globals.files)|length > 0 %}
           Once closure metadata is deleted, it cannot be recovered. The selected file will be set to open.
-        </strong>
+          {% else %}
+          There is no metadata associated with this file. Return to the <a href="/metadata/closure-metadata/file-level">file selection page</a> to continue.
+            {% endif %}
+          </strong>
         </div>
 
         <p class="govuk-body">Confirm you wish to proceed.</p>
 
         <div class="govuk-button-group">
-          <button role="button" draggable="false" class="govuk-button govuk-button--warning" data-module="govuk-button">
+          <button role="button" draggable="false" class="govuk-button govuk-button--warning" data-module="govuk-button"{% if data['file-selection']|getFilenames(globals.files)|length == 0 %}disabled{% endif %}>
           Delete and return to files
         </button>
           <a class="govuk-link govuk-link--no-visited-state" href="./review-metadata">Cancel</a>

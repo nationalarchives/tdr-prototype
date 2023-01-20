@@ -14,16 +14,6 @@
         Results of your checks
       </h1>
 
-      {# <div class="govuk-success-summary" aria-labelledby="success-summary-title" role="alert" tabindex="-1" data-module="govuk-success-summary">
-        <h2 class="govuk-success-summary__title" id="success-summary-title">
-          Success
-        </h2>
-        <div class="govuk-success-summary__body">
-          <p class="govuk-body">Your folder 'Recipes and Ingredients' containing 1200 items has been successfully checked and uploaded.</p>
-        </div>
-
-      </div> #}
-
       <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
         <div class="govuk-notification-banner__header">
           <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
@@ -35,7 +25,6 @@
             Your folder 'Recipes and Ingredients' containing 1200 items has been successfully uploaded
           </h3>
 
-          {# <p class="govuk-body">Your folder   has been successfully checked and uploaded.</p> #}
           <p class="govuk-body">You can leave and return to this transfer at any time from the <a class="govuk-notification-banner__link" href="#">View Transfers</a> page.</p>
 
         </div>
@@ -47,11 +36,20 @@
           The transfer is not yet complete. Continue to the next step to add metadata and complete your transfer.</strong>
       </div>
 
-      <a href="metadata/additional-metadata.html" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
-        Next
-      </a>
+      <nav class="govuk-pagination govuk-pagination--block" role="navigation" aria-label="results">
+        <div class="govuk-pagination__next">
+          <a class="govuk-link govuk-pagination__link" href="/metadata/additional-metadata" rel="next">
+            <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+            </svg>
+            <span class="govuk-pagination__link-title">Next</span>
+            <span class="govuk-visually-hidden">:</span>
+            <span class="govuk-pagination__link-label">Step 5: Descriptive and closure metadata</span></a>
+        </div>
+      </nav>
 
     </div>
+
     <div class="govuk-grid-column-one-third">
       <details class="govuk-details" data-module="govuk-details">
         <summary class="govuk-details__summary">

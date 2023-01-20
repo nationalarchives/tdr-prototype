@@ -6,7 +6,7 @@ Closure metadata - Choose a file
 {% endblock %}
 
 {% block beforeContent %}
-  <a href="../additional-metadata" class="govuk-back-link">Return to transfer</a>
+  <a href="../additional-metadata" class="govuk-back-link">Step 5: Descriptive and closure metadata</a>
 {% endblock %}
 
 {% block content %}
@@ -16,13 +16,13 @@ Closure metadata - Choose a file
       <div class="govuk-grid-column-two-thirds">
         <span class="govuk-caption-l">Closure metadata</span>
         <h1 class="govuk-heading-l">Choose a file</h1>
-        <p class="govuk-body">
-        Select a file you wish to add or edit closure metadata.</p>
+        <p class="govuk-body">Select a file you wish to add or edit closure metadata.</p>
       </div>
     </div>
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
+        {# <h2 class="govuk-heading-m govuk-heading--underline">Select a file</h2> #}
         {% if error == "no-selection" %}
           <div class="govuk-error-summary govuk-!-margin-bottom-4" data-module="govuk-error-summary">
             <div role="alert">
@@ -101,17 +101,15 @@ Closure metadata - Choose a file
         </div>
 
         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"/>
+        <h2 class="govuk-heading-m">Finished editing closure metadata?</h2>
 
-        <p class="govuk-text">Once you have finished adding descriptive metadata, return to metadata selection page to add closure metadata or continue with your transfer.</p>
-        <p class="govuk-text">You can return to add more descriptive metadata later and you will be able to review all metadata in a single .CSV before completing your transfer.</p>
-        <p>
+        <p class="govuk-body">Once you have finished adding closure metadata, return to the
           <a href="../additional-metadata"
+            style="font-weight: bold;"
             draggable="false"
-            class="govuk-button govuk-button"
-            data-module="govuk-button">
-            Return to transfer
-          </a>
-        </p>
+            data-module="govuk-button">Descriptive and closure metadata page</a>.</p>
+
+        <p class="govuk-body">You will be able to review all metadata in a single .csv file and return to make amendments before completing your transfer.</p>
       </div>
     </div>
 

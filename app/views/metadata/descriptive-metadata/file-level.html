@@ -6,7 +6,7 @@ Descriptive metadata - Choose a file
 {% endblock %}
 
 {% block beforeContent %}
-  <a href="../additional-metadata" class="govuk-back-link">Return to transfer</a>
+  <a href="../additional-metadata" class="govuk-back-link">Step 5: Descriptive and closure metadata</a>
 {% endblock %}
 
 {% block content %}
@@ -102,15 +102,15 @@ Descriptive metadata - Choose a file
           </button>
         </div>
         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"/>
+        <h2 class="govuk-heading-m">Finished editing descriptive metadata?</h2>
 
-        <p class="govuk-text">Once you have finished adding descriptive metadata, return to metadata selection page to add descriptive metadata or continue with your transfer.</p>
-        <p class="govuk-text">You can return to add more descriptive metadata later and you will be able to review all metadata in a single .CSV before completing your transfer.</p>
-        <a href="../additional-metadata"
-          draggable="false"
-          class="govuk-button govuk-button"
-          data-module="govuk-button">
-            Return to transfer
-        </a>
+        <p class="govuk-body">Once you have finished adding descriptive metadata, return to the
+          <a href="../additional-metadata"
+            style="font-weight: bold;"
+            draggable="false"
+            data-module="govuk-button">Descriptive and closure metadata page</a>.</p>
+
+        <p class="govuk-body">You will be able to review all metadata in a single .csv file and return to make amendments before completing your transfer.</p>
       </div>
     </form>
   {% endblock %}
