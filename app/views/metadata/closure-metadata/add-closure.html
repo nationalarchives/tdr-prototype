@@ -51,7 +51,7 @@ Add or edit closure metadata
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         {% set errorFOIDate = error == "missing-fields" and ["addClosure-foi-asserted-day", "addClosure-foi-asserted-month", "addClosure-foi-asserted-year"] | isFieldMissing(data) == true %}
-        <div class="govuk-form-group {% if errorFOIDate == true %}govuk-form-group--error{% endif %}">
+        <div class="govuk-form-group govuk-!-margin-bottom-9 {% if errorFOIDate == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset" role="group" aria-describedby="foi-decision-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading">
@@ -100,7 +100,7 @@ Add or edit closure metadata
           </fieldset>
         </div>
         {% set errorStartDate = error == "missing-fields" and ["addClosure-closure-start-day", "addClosure-closure-start-month", "addClosure-closure-start-year"] | isFieldMissing(data) == true %}
-        <div class="govuk-form-group {% if errorStartDate == true %}govuk-form-group--error{% endif %}">
+        <div class="govuk-form-group govuk-!-margin-bottom-9 {% if errorStartDate == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset" role="group" aria-describedby="closure-start-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading">
@@ -108,8 +108,19 @@ Add or edit closure metadata
                     </h2>
             </legend>
             <div id="closure-start-hint" class="govuk-hint">
-                The date of the last meaningful change to this record.
+                The date the closure period begins.
               </div>
+            <div class="govuk-inset-text govuk-!-margin-top-3 govuk-!-margin-bottom-3">
+              The last modified date of this record was determined during upload. This date should be checked against your own records: <strong>12 Jul 2020</strong>
+            </div>
+            {% if data['addDescriptive-Year'] %}
+              <div class="govuk-inset-text govuk-!-margin-top-3 govuk-!-margin-bottom-3">
+              The date of this record entered in Descriptive metadata is: <br>
+                <strong>{{data['addDescriptive-Day']}}
+                  {{data['addDescriptive-Month']|getMonthName}}
+                  {{data['addDescriptive-Year']}}</strong>
+              </div>
+            {% endif %}
             {% if errorStartDate == true %}
               <p id="passport-issued-error" class="govuk-error-message">
                 <span class="govuk-visually-hidden">Error:</span> Enter a value for closure start date
@@ -151,7 +162,7 @@ Add or edit closure metadata
         </div>
 
         {% set errorClosurePeriod = error == "missing-fields" and "addClosure-closure-period" | isFieldMissing(data) == true %}
-        <div class="govuk-form-group {% if errorClosurePeriod == true %}govuk-form-group--error{% endif %}">
+        <div class="govuk-form-group govuk-!-margin-bottom-9 {% if errorClosurePeriod == true %}govuk-form-group--error{% endif %}">
           <h2 class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--m" for="closure-period">
                 Closure period

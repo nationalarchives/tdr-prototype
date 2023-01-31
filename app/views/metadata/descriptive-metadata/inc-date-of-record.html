@@ -5,17 +5,17 @@
     </h2>
   </legend>
   <div id="date-range-hint" class="govuk-hint">
-    This date is prepopulated and shows the date last modified. You must check this is correct and if it is not, enter the date or date range of the last meaningful change to this record. 
+    The date of the last change to this record.
   </div>
-  <div class="govuk-warning-text govuk-!-margin-bottom-3">
+  {# <div class="govuk-warning-text govuk-!-margin-bottom-3">
     <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
     <strong class="govuk-warning-text__text">
       <span class="govuk-warning-text__assistive">Warning</span>
       You must ensure this date is accurate as it will be associated with your file when visible to the public.
     </strong>
-  </div>
+  </div> #}
   <div class="govuk-inset-text govuk-!-margin-top-3 govuk-!-margin-bottom-3">
-    The last date modified is 12/07/1998
+    The last modified date of this record was determined during upload. This date should be checked against your own records: <strong>12 July 2020</strong>
   </div>
   <div class="govuk-date-input">
     <div class="govuk-date-input__item">
@@ -23,7 +23,7 @@
         <label class="govuk-label govuk-date-input__label" for="date-single-Day">
         Day
       </label>
-        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-singleDay" name="addDescriptive-Day" type="text" inputmode="numeric" placeholder="dd" value="12">
+        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-singleDay" name="addDescriptive-Day" type="text" inputmode="numeric" placeholder="dd" value="">
       </div>
     </div>
 
@@ -32,7 +32,7 @@
         <label class="govuk-label govuk-date-input__label" for="date-single-Month">
             Month
           </label>
-        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-single-Month" name="addDescriptive-Month" type="text" inputmode="numeric" placeholder="mm" value="07">
+        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-single-Month" name="addDescriptive-Month" type="text" inputmode="numeric" placeholder="mm" value="">
       </div>
     </div>
 
@@ -41,13 +41,13 @@
         <label class="govuk-label govuk-date-input__label" for="date-single-Year">
             Year
           </label>
-        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-single-Year" name="addDescriptive-Year" type="text" inputmode="numeric" placeholder="yyyy" value="1998">
+        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-single-Year" name="addDescriptive-Year" type="text" inputmode="numeric" placeholder="yyyy" value="">
       </div>
     </div>
   </div>
 </fieldset>
 
-<fieldset class="govuk-fieldset" role="group" aria-describedby="date-range-hint">
+{# <fieldset class="govuk-fieldset" role="group" aria-describedby="date-range-hint">
   <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
     <h2 class="govuk-fieldset__heading">Start date of range</h2>
   </legend>
@@ -80,4 +80,4 @@
       </div>
     </div>
   </div>
-</fieldset>
+</fieldset> #}

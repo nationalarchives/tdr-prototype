@@ -84,6 +84,12 @@ filters.decodeFilename = function (encodedName) {
   return decodeURI(fileName);
 };
 
+filters.getMonthName = function (monthNumber) {
+  const date = new Date();
+  date.setMonth(monthNumber - 1);
+  return date.toLocaleString("en-GB", { month: "short" });
+};
+
 for (let name in filters) {
   addFilter(name, filters[name]);
 }
