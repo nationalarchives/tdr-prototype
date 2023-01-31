@@ -243,7 +243,7 @@ Add or edit closure metadata
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h1 class="govuk-fieldset__heading">Is the title sensitive for the public?</h1>
             </legend>
-            <p id="current_title_label" class="govuk-body govuk-!-margin-bottom-1">The current title of your record is:</p>
+            <p id="current_title_label" class="govuk-hint">If the title of this record contains sensitive information you must select 'yes' and provide an alternative title.</p>
             <div aria-labelledby="current_title_label" class="govuk-inset-text govuk-!-margin-top-3">
               {{data['file-selection'][0] | getFilename(globals.files)}}
             </div>
@@ -260,6 +260,7 @@ Add or edit closure metadata
               <div class="govuk-radios__conditional" id="conditional-closed-title">
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="alternative-title">Add alternative title without file extension</label>
+                  <p class="govuk-hint">This will be the publicly visible title during the closure period.</p>
                   <input class="govuk-input" id="alternative-title" name="addClosure-alternative-title" type="text" value="{{data['addClosure-alternative-title']}}">
                 </div>
               </div>
@@ -281,72 +282,72 @@ Add or edit closure metadata
             </legend>
             {% if data['file-selection']|hasDescription(data.descriptiveFiles) %}
               <p class="govuk-body govuk-!-margin-bottom-1" id="current_description_label">
-                The current description of your record is below. You can edit it in the Descriptive metadata step.
-              </p>
-              {% if data['file-selection']|notMatchingDescription(data.descriptiveFiles) %}
-                <div class="govuk-warning-text govuk-!-margin-bottom-2">
-                  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-                  <strong class="govuk-warning-text__text">
-                    <span class="govuk-warning-text__assistive">Warning</span>
+                <p id="current_description_label" class="govuk-hint">If the description of this record contains sensitive information you must select 'yes' and provide an alternative description.</p>
+                {% if data['file-selection']|notMatchingDescription(data.descriptiveFiles) %}
+                  <div class="govuk-warning-text govuk-!-margin-bottom-2">
+                    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                    <strong class="govuk-warning-text__text">
+                      <span class="govuk-warning-text__assistive">Warning</span>
                   The selected files have different descriptions therefore the field below cannot be prepopulated.
                   </strong>
+                  </div>
+                {% endif %}
+                <div aria-labelledby="current_description_label" class="govuk-inset-text govuk-!-margin-top-3">
+                  {{data['addDescriptive-description']}}
                 </div>
-              {% endif %}
-              <div aria-labelledby="current_description_label" class="govuk-inset-text govuk-!-margin-top-3">
-                {{data['addDescriptive-description']}}
-              </div>
-              {% if errorDescriptionClosed == true %}
-                <p id="passport-issued-error" class="govuk-error-message">
-                  <span class="govuk-visually-hidden">Error:</span> Choose an option for this field
+                {% if errorDescriptionClosed == true %}
+                  <p id="passport-issued-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> Choose an option for this field
                 </p>
-              {% endif %}
+                {% endif %}
 
-              <div class="govuk-radios" data-module="govuk-radios">
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="closed-description"  name="addClosure-is-the-description-sensitive" type="radio" {% if data["addClosure-is-the-description-sensitive"] == "yes" %}checked{%endif%} value="yes" aria-controls="conditional-closed-description" aria-expanded="true">
-                  <label class="govuk-label govuk-radios__label" for="closed-description">Yes</label>
-                </div>
-                <div class="govuk-radios__conditional" id="conditional-closed-description">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label" for="alternative-description">Alternative description</label>
-                    <textarea class="govuk-textarea" id="alternative-description" name="addClosure-alternative-description" rows="5" aria-describedby="more-detail-hint">{{data['addClosure-alternative-description']}}</textarea>
+                <div class="govuk-radios" data-module="govuk-radios">
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="closed-description"  name="addClosure-is-the-description-sensitive" type="radio" {% if data["addClosure-is-the-description-sensitive"] == "yes" %}checked{%endif%} value="yes" aria-controls="conditional-closed-description" aria-expanded="true">
+                    <label class="govuk-label govuk-radios__label" for="closed-description">Yes</label>
+                  </div>
+                  <div class="govuk-radios__conditional" id="conditional-closed-description">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label" for="alternative-description">Alternative description</label>
+                      <p class="govuk-hint">This will be the publicly visible description during the closure period.</p>
+                      <textarea class="govuk-textarea" id="alternative-description" name="addClosure-alternative-description" rows="5" aria-describedby="more-detail-hint">{{data['addClosure-alternative-description']}}</textarea>
+                    </div>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input {% if data["addClosure-is-the-description-sensitive"] == "no" or data["addClosure-is-the-description-sensitive"] == undefined %}checked{%endif%} class="govuk-radios__input" id="closed-description-2"  name="addClosure-is-the-description-sensitive" type="radio" value="no">
+                    <label class="govuk-label govuk-radios__label" for="closed-description-2">No, this description can be made public</label>
                   </div>
                 </div>
-                <div class="govuk-radios__item">
-                  <input {% if data["addClosure-is-the-description-sensitive"] == "no" or data["addClosure-is-the-description-sensitive"] == undefined %}checked{%endif%} class="govuk-radios__input" id="closed-description-2"  name="addClosure-is-the-description-sensitive" type="radio" value="no">
-                  <label class="govuk-label govuk-radios__label" for="closed-description-2">No, this description can be made public</label>
-                </div>
-              </div>
-            {% else %}
-              <p class="govuk-body">If you need to add a description, you can do so in the Descriptive metadata step.</p>
-            {% endif %}
-          </fieldset>
-        </div>
+              {% else %}
+                <p class="govuk-body">If you need to add a description, you can do so in the Descriptive metadata step.</p>
+              {% endif %}
+            </fieldset>
+          </div>
 
-        <br>
-        <div class="govuk-button-group">
-          <button role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+          <br>
+          <div class="govuk-button-group">
+            <button role="button" draggable="false" class="govuk-button" data-module="govuk-button">
                 Save and review
             </button>
-          <a class="govuk-link govuk-link--no-visited-state" href="file-level.html">Cancel</a>
+            <a class="govuk-link govuk-link--no-visited-state" href="file-level.html">Cancel</a>
+          </div>
+
         </div>
-
       </div>
-    </div>
-  </form>
+    </form>
 
-{% endblock %}
+  {% endblock %}
 
-{% block pageScripts %}
-  <script src="/public/javascripts/mss.js"></script>
-  <script>
-    window.onload = () => {
-      const multiSelects = document.querySelectorAll("[data-module=multi-select-search]");
-      console.log(multiSelects);
-      multiSelects.forEach((ms) => {
-        const multiSelectSearch = new MultiSelectSearch(ms);
-        multiSelectSearch.initialise();
-      });
-    };
-  </script>
-{% endblock %}
+  {% block pageScripts %}
+    <script src="/public/javascripts/mss.js"></script>
+    <script>
+      window.onload = () => {
+        const multiSelects = document.querySelectorAll("[data-module=multi-select-search]");
+        console.log(multiSelects);
+        multiSelects.forEach((ms) => {
+          const multiSelectSearch = new MultiSelectSearch(ms);
+          multiSelectSearch.initialise();
+        });
+      };
+    </script>
+  {% endblock %}
