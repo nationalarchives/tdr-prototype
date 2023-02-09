@@ -242,7 +242,7 @@ Add or edit closure metadata
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h1 class="govuk-fieldset__heading">Is the title sensitive for the public?</h1>
             </legend>
-            <p id="current_title_label" class="govuk-hint">If the title of this record contains sensitive information you must select 'yes' and provide an alternative title.</p>
+            <p id="current_title_label" class="govuk-hint">If the title of this record contains sensitive information, you must select 'Yes' and provide an alternative title.</p>
             <div aria-labelledby="current_title_label" class="govuk-inset-text govuk-!-margin-top-3">
               {{data['file-selection'][0] | getFilename(globals.files)}}
             </div>
@@ -259,7 +259,7 @@ Add or edit closure metadata
               <div class="govuk-radios__conditional" id="conditional-closed-title">
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="alternative-title">Add alternative title without file extension</label>
-                  <p class="govuk-hint">This will be the publicly visible title during the closure period.</p>
+                  <p class="govuk-hint">This title will be visible to the public during the closure period.</p>
                   <input class="govuk-input" id="alternative-title" name="addClosure-alternative-title" type="text" value="{{data['addClosure-alternative-title']}}">
                 </div>
               </div>
@@ -281,7 +281,7 @@ Add or edit closure metadata
             </legend>
             {% if data['file-selection']|hasDescription(data.descriptiveFiles) %}
               <p class="govuk-body govuk-!-margin-bottom-1" id="current_description_label">
-                <p id="current_description_label" class="govuk-hint">If the description of this record contains sensitive information you must select 'yes' and provide an alternative description.</p>
+                <p id="current_description_label" class="govuk-hint">If the description of this record contains sensitive information, you must select 'Yes' and provide an alternative description.</p>
                 {% if data['file-selection']|notMatchingDescription(data.descriptiveFiles) %}
                   <div class="govuk-warning-text govuk-!-margin-bottom-2">
                     <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
@@ -308,7 +308,7 @@ Add or edit closure metadata
                   <div class="govuk-radios__conditional" id="conditional-closed-description">
                     <div class="govuk-form-group">
                       <label class="govuk-label" for="alternative-description">Alternative description</label>
-                      <p class="govuk-hint">This will be the publicly visible description during the closure period.</p>
+                      <p class="govuk-hint">This description will be visible to the public during the closure period.</p>
                       <textarea class="govuk-textarea" id="alternative-description" name="addClosure-alternative-description" rows="5" aria-describedby="more-detail-hint">{{data['addClosure-alternative-description']}}</textarea>
                     </div>
                   </div>
@@ -318,7 +318,7 @@ Add or edit closure metadata
                   </div>
                 </div>
               {% else %}
-                <p class="govuk-body">If the description of this record contains publicly sensitive information you need to add an uncensored description in Descriptive Metadata section and then enter an alternative description here.</p>
+                <p class="govuk-body">If the description of this record contains sensitive information you must add an uncensored description in Descriptive Metadata section before entering an alternative description here.</p>
               {% endif %}
             </fieldset>
           </div>
