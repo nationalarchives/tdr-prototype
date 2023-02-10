@@ -1,0 +1,39 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Your records have been uploaded
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Step 3 of 7</span>
+      <h1 class="govuk-heading-l">
+        Uploading your records
+      </h1>
+
+      <p class="govuk-body">Your records have been uploaded and saved. You cannot add additional files or folders to this transfer.</p>
+      <p class="govuk-body">Click 'Continue' to proceed with your transfer.</p>
+      <div class="govuk-button-group">
+        <a href="/metadata/additional-metadata" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+          Continue
+        </a>
+      </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+    </div>
+  </div>
+
+{% endblock %}
