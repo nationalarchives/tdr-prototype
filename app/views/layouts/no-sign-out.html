@@ -3,51 +3,8 @@ For guidance on how to use layouts see:
 https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 #}
 
-{% extends "govuk-prototype-kit/layouts/unbranded.html" %}
-
-{% import "metadata/files_data_sml.html" as globals %}
-{# {% import "./metadata/files_data_med.html" as globals %} #}
-{# {% import "./metadata/files_data_lrg.html" as globals %} #}
-
-{% block stylesheets %}
-  {{ super() }}
-{% endblock %}
+{% extends "layouts/main.html" %}
 
 {% block header %}
   {% include "./inc-header-no-sign-out.html" %}
-{% endblock %}
-
-{% if (GOVUKPrototypeKit.isDevelopment) %}
-  {% set footerItems = [
-    {
-      href: "/manage-prototype",
-      text: "Manage your prototype"
-    }, {
-      href: "/manage-prototype/clear-data",
-      text: "Clear data"
-    }
-  ] %}
-{% else %}
-  {% set footerItems = [
-    {
-      href: "/manage-prototype/clear-data",
-      text: "Clear data"
-    }
-  ] %}
-{% endif %}
-
-{% block footer %}
-  {{ govukFooter({
-    meta: {
-      items: footerItems,
-      visuallyHiddenTitle: "Footer links"
-    }
-  }) }}
-{% endblock %}
-
-{% block bodyEnd %}
-  {% block scripts %}
-    {% include "govuk-prototype-kit/includes/scripts.html" %}
-    {% block pageScripts %}{% endblock %}
-  {% endblock %}
 {% endblock %}
