@@ -26,7 +26,6 @@ Closure metadata - Review changes to closure metadata
             {% endfor %}
             {# </ul> #}
           </dd>
-          <dd class="govuk-summary-list__actions"></dd>
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -78,20 +77,37 @@ Closure metadata - Review changes to closure metadata
         {% if data["addClosure-is-the-title-sensitive"] == "yes" %}
           <div class="govuk-summary-list__row" style="border-bottom: none;">
             <dt class="govuk-summary-list__key">
+            Is the title sensitive for the public?
+          </dt>
+            <dd class="govuk-summary-list__value">
+              Yes
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row" style="border-bottom: none;">
+            <dt class="govuk-summary-list__key">
             Alternative title
           </dt>
             <dd class="govuk-summary-list__value">
               {{ data['addClosure-alternative-title'] }}
             </dd>
           </div>
+        {% else %}
+          <div class="govuk-summary-list__row" style="border-bottom: none;">
+            <dt class="govuk-summary-list__key">
+            Is the title sensitive for the public?
+          </dt>
+            <dd class="govuk-summary-list__value">
+              No
+            </dd>
+          </div>
         {% endif %}
         {% if data["addClosure-is-the-description-sensitive"] == "yes" %}
           <div class="govuk-summary-list__row" style="border-bottom: none;">
             <dt class="govuk-summary-list__key">
-            Description
+            Is the description sensitive for the public?
           </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['addDescriptive-description'] }}
+              Yes
             </dd>
           </div>
           <div class="govuk-summary-list__row" style="border-bottom: none;">
@@ -100,6 +116,15 @@ Closure metadata - Review changes to closure metadata
           </dt>
             <dd class="govuk-summary-list__value">
               {{ data['addClosure-alternative-description'] }}
+            </dd>
+          </div>
+        {% else %}
+          <div class="govuk-summary-list__row" style="border-bottom: none;">
+            <dt class="govuk-summary-list__key">
+            Is the description sensitive for the public?
+          </dt>
+            <dd class="govuk-summary-list__value">
+              No
             </dd>
           </div>
         {% endif %}
