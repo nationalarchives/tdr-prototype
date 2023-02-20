@@ -99,6 +99,7 @@ Add or edit closure metadata
             </div>
           </fieldset>
         </div>
+
         {% set errorStartDate = error == "missing-fields" and ["addClosure-closure-start-day", "addClosure-closure-start-month", "addClosure-closure-start-year"] | isFieldMissing(data) == true %}
         <div class="govuk-form-group govuk-!-margin-bottom-9 {% if errorStartDate == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset" role="group" aria-describedby="closure-start-hint">
@@ -181,7 +182,7 @@ Add or edit closure metadata
         </div>
 
         {% set errorFOICodes = error == "missing-fields" and "addClosure-foi_id_selection" | isFieldMissing(data) == true %}
-        <div class="govuk-form-group {% if errorFOICodes == true %}govuk-form-group--error{% endif %}">
+        <div class="govuk-form-group govuk-!-margin-bottom-9 {% if errorFOICodes == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading">
@@ -237,7 +238,7 @@ Add or edit closure metadata
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"/>
 
         {% set errorTitleClosed = error == "missing-fields" and "addClosure-is-the-title-sensitive" | isFieldMissing(data) == true %}
-        <div class="govuk-form-group {% if errorTitleClosed == true %}govuk-form-group--error{% endif %}">
+        <div class="govuk-form-group govuk-!-margin-bottom-9{% if errorTitleClosed == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h1 class="govuk-fieldset__heading">Is the title sensitive for the public?</h1>
@@ -270,8 +271,6 @@ Add or edit closure metadata
             </div>
           </fieldset>
         </div>
-
-        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"/>
 
         {% set errorDescriptionClosed = data['file-selection']|hasDescription(data.descriptiveFiles) and error == "missing-fields" and "addClosure-is-the-description-sensitive" | isFieldMissing(data) == true %}
         <div class="govuk-form-group {% if errorDescriptionClosed == true %}govuk-form-group--error{% endif %}">
