@@ -328,13 +328,13 @@
   margin: 0;
 }
 
-.tdr-metadata-card__state {
+.tdr-card--metadata__state {
   position: absolute;
   top: 0;
   right: 0;
 }
 
-.tdr-metadata-card__inset-text {
+.tdr-card--metadata__inset-text {
   color: $govuk-secondary-text-colour
 }
 
