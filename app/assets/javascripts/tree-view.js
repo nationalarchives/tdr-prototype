@@ -1,10 +1,10 @@
-var InputType;
+export var InputType;
 (function (InputType) {
     InputType["radios"] = "radios";
     InputType["checkboxes"] = "checkboxes";
 })(InputType || (InputType = {}));
-class NestedNavigation {
-    constructor(tree, treeItems) {
+export class NestedNavigation {
+    constructor(tree) {
         this.getCurrentFocus = () => {
             return this.currentFocus;
         };
@@ -19,20 +19,12 @@ class NestedNavigation {
                     }
                 });
             }
-            const inputName = this.tree
-                .querySelector(`input[type=${inputType == "radios" ? "radio" : "checkboxes"}]`)
-                .getAttribute("name");
-            this.hiddenElement.setAttribute("type", "hidden");
-            this.hiddenElement.setAttribute("name", inputName);
-            this.tree.appendChild(this.hiddenElement);
-            const radioFolders = Array.from(document.querySelectorAll(`.js-${inputType}-directory`));
-            const buttons = document.querySelectorAll(`.js-tree__expander--${inputType}`);
+            const radioFolders = Array.from(this.tree.querySelectorAll(`.js-${inputType}-directory`));
+            const buttons = this.tree.querySelectorAll(`.js-tree__expander--${inputType}`);
             const allExpanders = [...radioFolders, ...Array.from(buttons)];
-            console.log(allExpanders);
             allExpanders.forEach((expander, _, __) => {
                 expander.addEventListener("click", (ev) => {
                     let el = ev.currentTarget;
-                    console.log(el);
                     if (el.id.includes("expander") === false) {
                         el = el.previousElementSibling;
                     }
@@ -41,12 +33,12 @@ class NestedNavigation {
                     ev.stopPropagation();
                 });
             });
-            document.querySelectorAll('[role="group"]').forEach((value, _, __) => {
+            this.tree.querySelectorAll('[role="group"]').forEach((value, _, __) => {
                 if (value.id.includes(inputType)) {
                     this.updateExpanded(value, inputType);
                 }
             });
-            document.querySelectorAll("[role=treeitem]").forEach((treeItem, _, __) => {
+            this.tree.querySelectorAll("[role=treeitem]").forEach((treeItem, _, __) => {
                 if (inputType == InputType.radios &&
                     treeItem.id.includes("folder") === true)
                     return;
@@ -60,57 +52,10 @@ class NestedNavigation {
                     });
                 }
             });
-            document
-                .querySelectorAll(`[role=tree] .govuk-${inputType}__item`)
-                .forEach((checkbox, _, __) => {
-                const input = checkbox.querySelector("input");
-                const label = checkbox.querySelector("label");
-                if (input != null && label != null) {
-                    this.replaceCheckboxWithSpan(input, label);
-                }
-            });
-            this.tree.addEventListener("focus", () => {
-                const firstSelected = document.querySelector("[role=treeitem][aria-selected=true]");
-                this.updateFocus(firstSelected);
-            });
-        };
-        this.cloneChildren = (parentFrom, copyTo) => {
-            const children = parentFrom.childNodes;
-            children.forEach((child) => {
-                const clonedNode = child.cloneNode(true);
-                copyTo.appendChild(clonedNode);
-            });
-        };
-        this.replaceCheckboxWithSpan = (input, label) => {
-            var _a;
-            const spanInput = document.createElement("span");
-            input.closest("li").dataset.value = input.value;
-            for (const name of input.getAttributeNames()) {
-                if (!["type", "tabindex"].includes(name)) {
-                    const inputAttribute = input.getAttribute(name);
-                    if (inputAttribute != null) {
-                        spanInput.setAttribute(name, inputAttribute);
-                    }
-                }
-                spanInput.setAttribute("aria-hidden", "true");
-            }
-            (_a = input.parentElement) === null || _a === void 0 ? void 0 : _a.appendChild(spanInput);
-            input.remove();
-            const spanLabel = document.createElement("span");
-            for (const name of label.getAttributeNames()) {
-                if (!["for"].includes(name)) {
-                    const labelAttribute = label.getAttribute(name);
-                    if (labelAttribute != null) {
-                        spanLabel.setAttribute(name, labelAttribute);
-                    }
-                }
-            }
-            if (label.hasChildNodes() == true) {
-                this.cloneChildren(label, spanLabel);
-            }
-            if (label.parentElement != null) {
-                label.parentElement.appendChild(spanLabel);
-                label.remove();
+            const firstSelected = this.tree.querySelector("[role=treeitem]");
+            if (firstSelected) {
+                firstSelected.tabIndex = 0;
+                this.currentFocus = firstSelected;
             }
         };
         this.updateFocus = (element) => {
@@ -173,14 +118,8 @@ class NestedNavigation {
             const isSelected = li.getAttribute("aria-selected") === "true";
             li.setAttribute("aria-selected", !isSelected ? "true" : "false");
             li.setAttribute("aria-checked", !isSelected ? "true" : "false");
-            if (!isSelected) {
-                this.hiddenElement.value = li.dataset.value;
-            }
-            else {
-                this.hiddenElement.value = "";
-            }
             if (inputType === InputType.radios && !isSelected) {
-                document.querySelectorAll("li[aria-selected=true]").forEach((el) => {
+                this.tree.querySelectorAll("li[aria-selected=true]").forEach((el) => {
                     if (el.id !== li.id) {
                         el.setAttribute("aria-selected", "false");
                         el.setAttribute("aria-checked", "false");
@@ -239,22 +178,34 @@ class NestedNavigation {
                 this.currentFocus = element;
             }
         };
+        this.setFocusToLastExpandedChild = (li) => {
+            if (li && li.getAttribute("aria-expanded") === "true") {
+                const lastChild = li.querySelector(":scope > ul > li:last-child");
+                this.setFocusToLastExpandedChild(lastChild);
+            }
+            else if (li) {
+                this.setFocusToItem(li);
+            }
+        };
         this.setFocusToPreviousItem = (input) => {
             if (input != null) {
                 const li = input.closest("li");
                 if ((li === null || li === void 0 ? void 0 : li.previousElementSibling) != null) {
-                    if (li.previousElementSibling.getAttribute("aria-expanded") === "true") {
-                        const lastChild = li.previousElementSibling.querySelector(":scope > ul > li:last-child");
-                        if (lastChild !== null) {
-                            this.setFocusToItem(lastChild);
-                        }
-                    }
-                    else {
-                        this.setFocusToItem(li.previousElementSibling);
-                    }
+                    this.setFocusToLastExpandedChild(li.previousElementSibling);
                 }
                 else if ((li === null || li === void 0 ? void 0 : li.parentElement) != null) {
                     this.setFocusToItem(li.parentElement.closest("li"));
+                }
+            }
+        };
+        this.setFocusToNextParent = (ul) => {
+            if (ul.getAttribute("role") != "tree") {
+                const parent = ul.closest("li");
+                if ((parent === null || parent === void 0 ? void 0 : parent.nextElementSibling) != null) {
+                    this.setFocusToItem(parent.nextElementSibling);
+                }
+                else {
+                    this.setFocusToNextParent(parent.parentElement);
                 }
             }
         };
@@ -273,10 +224,7 @@ class NestedNavigation {
                             this.setFocusToItem(li.nextElementSibling);
                         }
                         else if (li.parentElement !== null) {
-                            const parent = li.parentElement.closest("li");
-                            if ((parent === null || parent === void 0 ? void 0 : parent.nextElementSibling) != null) {
-                                this.setFocusToItem(parent.nextElementSibling);
-                            }
+                            this.setFocusToNextParent(li.parentElement);
                         }
                     }
                 }
@@ -350,8 +298,7 @@ class NestedNavigation {
         };
         this.handleExpanders = (target, inputType) => {
             const newId = target.id.replace("expander-", "node-group-");
-            const nodeGroup = document.querySelector(`#${newId}`);
-            console.log(target.id, newId, nodeGroup);
+            const nodeGroup = this.tree.querySelector(`#${newId}`);
             if (nodeGroup !== null) {
                 const parent = nodeGroup.parentNode;
                 if (parent != null) {
@@ -361,9 +308,8 @@ class NestedNavigation {
             }
         };
         this.tree = tree;
-        this.treeItems = treeItems;
+        this.treeItems = this.tree.querySelectorAll("[role=treeitem]");
         this.currentFocus = null;
-        this.hiddenElement = document.createElement("input");
     }
 }
 //# sourceMappingURL=tree-view.js.map
