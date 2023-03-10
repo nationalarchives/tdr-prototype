@@ -75,7 +75,7 @@
   {% set inputType = 'radio' %}
   {% set className = 'radios' %}
 
-  <ul tabindex="0" class="tna-tree__root-list" id="{{ inputType }}-tree" role="tree"{% if inputType == 'checkboxes' %} aria-multiselectable="true"{% endif %}>
+  <ul class="tna-tree__root-list" id="{{ inputType }}-tree" role="tree"{% if inputType == 'checkboxes' %} aria-multiselectable="true"{% endif %}>
     {% for node in globals.files %}
       {{ navigationItem(node, inputType, className, 1, loop.length, loop.index) }}
     {% endfor %}
