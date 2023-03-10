@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es2016",
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "outDir": "app/assets/javascripts"
+    "outDir": "app/assets/javascripts",
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "es2017",
+    "lib": ["es2017", "dom"],
   },
   "include": ["app/assets/typescript/**/*"]
 }

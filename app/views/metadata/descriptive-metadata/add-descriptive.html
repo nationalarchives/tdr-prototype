@@ -87,15 +87,5 @@
 {% endblock %}
 
 {% block pageScripts %}
-  <script src="/public/javascripts/mss.js"></script>
-  <script>
-    window.onload = () => {
-      const multiSelects = document.querySelectorAll("[data-module=multi-select-search]");
-      console.log(multiSelects);
-      multiSelects.forEach((ms) => {
-        const multiSelectSearch = new MultiSelectSearch(ms);
-        multiSelectSearch.initialise();
-      });
-    };
-  </script>
+  {{ super() }}
 {% endblock %}

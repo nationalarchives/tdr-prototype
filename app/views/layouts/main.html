@@ -55,6 +55,8 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 {% block bodyEnd %}
   {% block scripts %}
     {% include "govuk-prototype-kit/includes/scripts.html" %}
-    {% block pageScripts %}{% endblock %}
+    {% block pageScripts %}
+      <script src="/public/javascripts/main.js"></script>
+    {% endblock %}
   {% endblock %}
 {% endblock %}

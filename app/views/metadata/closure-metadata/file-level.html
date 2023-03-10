@@ -118,14 +118,5 @@ Closure metadata - Choose a file
 {% endblock %}
 
 {% block pageScripts %}
-  <script src="/public/javascripts/tree-view.js"></script>
-  <script>
-    window.onload = () => {
-      const tree = document.querySelector("[role=tree]");
-      if (tree != null) {
-        const nestedNavigation = new NestedNavigation(tree);
-        nestedNavigation.initialiseFormListeners("radios");
-      }
-    }
-  </script>
+  {{ super() }}
 {% endblock %}
