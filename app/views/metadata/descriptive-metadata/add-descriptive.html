@@ -29,28 +29,34 @@
           </div>
         {% endif %}
 
-        <div class="govuk-form-group">
-          <h2 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--m" for="event-name">
-              Description
-            </label>
-          </h2>
-          <div id="foi-codes-hint" class="govuk-hint">
-            The description of this record will be visible to the public to help explain its content.
-          </div>
-          <details class="govuk-details govuk-!-margin-bottom-2" data-module="govuk-details">
-            <summary class="govuk-details__summary">
-              <span class="govuk-details__summary-text">Is the description sensitive to the public?</span>
-            </summary>
-            <div class="govuk-details__text">
-              <p class="govuk-body">If the description of this record contains sensitive information, you must enter the full uncensored version in this field. You can enter an alternative description on the Closure metadata page.</p>
+        <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="8000">
+          <div class="govuk-form-group">
+            <h2 class="govuk-label-wrapper">
+              <label class="govuk-label govuk-label--m" for="event-name">
+                Description
+              </label>
+            </h2>
+            <div id="description-hint" class="govuk-hint">
+              The description of this record will be visible to the public to help explain its content.
             </div>
-          </details>
-          <textarea
-            class="govuk-textarea"
-            id="address"
-            name="addDescriptive-description"
-            rows="5">{{data['addDescriptive-description']}}</textarea>
+            <details class="govuk-details govuk-!-margin-bottom-2" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">Is the description sensitive to the public?</span>
+              </summary>
+              <div class="govuk-details__text">
+                <p class="govuk-body">If the description of this record contains sensitive information, you must enter the full uncensored version in this field. You can enter an alternative description on the Closure metadata page.</p>
+              </div>
+            </details>
+            <textarea
+              aria-described-by="description-hint description-char-count-hint"
+              class="govuk-textarea govuk-js-character-count"
+              id="description"
+              name="addDescriptive-description"
+              rows="5">{{data['addDescriptive-description']}}</textarea>
+          </div>
+          <div id="description-info" class="govuk-hint govuk-character-count__message">
+              You can enter up to 8000 characters
+            </div>
         </div>
 
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"/>
