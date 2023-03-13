@@ -1,11 +1,9 @@
 {
   "scripts": {
     "dev": "npm-run-all -p gov-dev webpack",
-    "serve": "npm-run-all -p gov-serve webpack",
-    "start": "npm-run-all -p gov-start webpack",
+    "serve": "govuk-prototype-kit serve",
+    "start": "govuk-prototype-kit start",
     "gov-dev": "govuk-prototype-kit dev",
-    "gov-serve": "govuk-prototype-kit serve",
-    "gov-start": "govuk-prototype-kit start",
     "webpack": "webpack --mode development --watch"
   },
   "name": "govuk-prototype-kit",
