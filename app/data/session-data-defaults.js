@@ -202,6 +202,10 @@ module.exports = {
     "EIRs 12(5)(g)",
   ],
   languages: [
+    { English: "Welsh", alpha2: "cy" },
+    { English: "English", alpha2: "en" },
+  ],
+  languages_long: [
     { English: "Afar", alpha2: "aa" },
     { English: "Abkhazian", alpha2: "ab" },
     { English: "Avestan", alpha2: "ae" },
