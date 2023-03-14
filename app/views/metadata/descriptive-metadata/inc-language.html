@@ -9,27 +9,8 @@
       Choose one or more languages used in this record.
     </div>
 
-    <div class="tna-multi-select-search"
-        data-module="multi-select-search"
-        data-copy-single="language"
-        data-copy-multiple="lanugages"
-        >
-
-      <div class="tna-multi-select-search__filter">
-        <label for="language-input-filter" class="govuk-label govuk-visually-hidden">Search by typing a language</label>
-        <input name="tna-multi-select-search" id="language-input-filter"
-            class="tna-multi-select-search__filter-input govuk-input"
-            placeholder="Search by typing a language"
-            type="text" aria-describedby="languages-filter-count">
-      </div>
-
-      <div class="govuk-body govuk-!-margin-bottom-0 js-selected-count"></div>
-
-      <span id="languages-filter-count"
-          class="govuk-visually-hidden js-filter-count"
-          aria-live="polite"></span>
-
-      <div class="tna-multi-select-search__list-container js-container">
+    <div class="tna-multi-select-search">
+      <div class="tna-multi-select-search__list-container">
         <ul class="govuk-checkboxes tna-multi-select-search__list"
             id="language-select" aria-describedby="languages-filter-count">
           {% for l in data.languages %}
@@ -42,8 +23,7 @@
           {% endfor %}
         </ul>
       </div>
-
-    </fieldset>
+    </div>
   </div>
 
   <div class="govuk-form-group">
