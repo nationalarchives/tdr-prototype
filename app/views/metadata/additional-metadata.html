@@ -17,14 +17,16 @@
       {% include "../banner-leave-return.html" %}
       <p class="govuk-body">You can now add or edit closure and descriptive metadata to your records.</p>
 
-      <div class="tdr-card">
+      <section class="tdr-card">
         <div class="tdr-card__content">
-          <h2 class="govuk-heading-s">
-            <a class="govuk-link govuk-link--no-visited-state" href="descriptive-metadata/file-level">Descriptive metadata</a>
-          </h2>
-          <strong class="tdr-card--metadata__state govuk-tag govuk-tag--{% if data['descriptiveFiles'] === undefined %}grey{% else %}blue{%endif%}">
-            {% if data['descriptiveFiles'] === undefined %}Not entered{% else %}Entered{% endif %}
-          </strong>
+          <header>
+            <h2 class="govuk-heading-s">
+              <a class="govuk-link govuk-link--no-visited-state" href="descriptive-metadata/file-level">Descriptive metadata</a>
+            </h2>
+            <strong class="tdr-card--metadata__state govuk-tag govuk-tag--{% if data['descriptiveFiles'] === undefined %}grey{% else %}blue{%endif%}">
+              {% if data['descriptiveFiles'] === undefined %}Not entered{% else %}Entered{% endif %}
+            </strong>
+          </header>
           <p class="govuk-body">Add descriptive metadata to your files</p>
           <p class="tdr-card--metadata__inset-text govuk-inset-text govuk-!-margin-top-0">You do not need to add descriptive metadata but it can enhance your record.</p>
           <details class="govuk-details   govuk-!-margin-bottom-2" data-module="govuk-details">
@@ -52,16 +54,18 @@
             </div>
           </details>
         </div>
-      </div>
+      </section>
 
-      <div class="tdr-card tdr-metadata-card">
+      <section class="tdr-card tdr-metadata-card">
         <div class="tdr-card__content">
-          <h2 class="govuk-heading-s">
-            <a class="govuk-link govuk-link--no-visited-state" href="closure-metadata/file-level">Closure metadata</a>
-          </h2>
-          <strong class="tdr-card--metadata__state govuk-tag govuk-tag--{% if data['closedFiles'] === undefined %}grey{% else %}blue{% endif %}">
-            {% if data['closedFiles'] === undefined %}Not Entered{% else %}Entered{% endif %}
-          </strong>
+          <header>
+            <h2 class="govuk-heading-s">
+              <a class="govuk-link govuk-link--no-visited-state" href="closure-metadata/file-level">Closure metadata</a>
+            </h2>
+            <strong class="tdr-card--metadata__state govuk-tag govuk-tag--{% if data['closedFiles'] === undefined %}grey{% else %}blue{% endif %}">
+              {% if data['closedFiles'] === undefined %}Not Entered{% else %}Entered{% endif %}
+            </strong>
+          </header>
           <p class="govuk-body">Add closure and associated metadata to your files</p>
           <p class="tdr-card--metadata__inset-text govuk-inset-text govuk-!-margin-top-0">You must add closure metadata to closed files and folders.</p>
           <details class="govuk-details" data-module="govuk-details">
@@ -82,7 +86,7 @@
             </div>
           </details>
         </div>
-      </div>
+      </section>
 
       <div class="govuk-warning-text">
         <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
