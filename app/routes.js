@@ -5,8 +5,15 @@
 
 const govukPrototypeKit = require("govuk-prototype-kit");
 const router = govukPrototypeKit.requests.setupRouter();
+const readdirSync = require("fs").readdirSync;
+const path = require("path");
 
 // Add your routes here
+
+const getDirectories = (source) =>
+  readdirSync(source, { withFileTypes: true })
+    .filter((dirent) => dirent.isDirectory())
+    .map((dirent) => dirent.name);
 
 const hasDescription = function (files, descriptiveFiles) {
   if (descriptiveFiles === undefined) return false;
@@ -31,6 +38,14 @@ const requireClosureFields = [
   "addClosure-is-the-description-sensitive",
   "addClosure-is-the-title-sensitive",
 ];
+
+router.get("/static-prototypes/", function (req, res) {
+  res.render("static-prototypes/index", {
+    staticSites: getDirectories(
+      path.resolve(__dirname, "views/static-prototypes/")
+    ),
+  });
+});
 
 router.get(
   "/metadata/descriptive-metadata/confirm-delete-metadata",

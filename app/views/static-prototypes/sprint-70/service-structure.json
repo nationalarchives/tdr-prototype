@@ -1,0 +1,157 @@
+[
+    {
+        "pageID": "AM0.0",
+        "url": "index.html",
+        "name": "Home"
+    },
+    {
+        "pageID": "AM0.1",
+        "url": "faq.html",
+        "name": "FAQs"
+    },
+    {
+        "pageID": "AM0.2",
+        "url": "contact.html",
+        "name": "Contact"
+    },
+    {
+        "pageID": "AM1.0",
+        "url": "sign-in.html",
+        "name": "Sign in"
+    },
+    {
+        "pageID": "AM1.3",
+        "url": "MFA-otp.html",
+        "name": "Sign in - Enter you One-time Passcode"
+    },
+    {
+        "pageID": "AM2.0",
+        "url": "dashboard.html",
+        "name": "Dashboard"
+    },
+    {
+        "pageID": "AM2.1",
+        "url": "history.html",
+        "name": "View History"
+    },
+    {
+        "pageID": "AM3.0",
+        "url": "series.html",
+        "name": "Choose a series"
+    },
+    {
+        "pageID": "AM3.1",
+        "url": "transfer-agreement.html",
+        "name": "Transfer agreement - Part 1"
+    },
+    {
+        "pageID": "AM3.2",
+        "url": "transfer-agreement-continued.html",
+        "name": "Transfer agreement - Part 2"
+    },
+    {
+        "pageID": "AM4.0",
+        "url": "upload.html",
+        "name": "Upload your records"
+    },
+    {
+        "pageID": "AM4.1",
+        "url": "progress-uploading.html",
+        "name": "Uploading your records"
+    },
+    {
+        "pageID": "AM4.2",
+        "url": "progress-checks.html",
+        "name": "Checking your progress"
+    },
+    {
+        "pageID": "AM4.2.1",
+        "url": "file-checks-results.html",
+        "name": "File upload - success"
+    },
+    {
+        "pageID": "AM4.2.2",
+        "url": "file-checks-results-fail.html",
+        "name": "File upload - failure"
+    },
+    {
+        "pageID": "AM4.2.3",
+        "url": "file-checks-results-fail-names.html",
+        "name": "File upload - failure with names"
+    },
+    {
+        "pageID": "AM5.0",
+        "url": "metadata/additional-metadata.html",
+        "name": "Additional metadata"
+    },
+    {
+        "pageID": "AM5.1",
+        "url": "metadata/closure-metadata/file-level.html",
+        "name": "Closure file selection"
+    },
+    {
+        "pageID": "AM5.1.1",
+        "url": "metadata/closure-metadata/baking-powder/check-closure-status",
+        "name": "Confirm closure status"
+    },
+    {
+        "pageID": "AM5.1.1.1",
+        "url": "metadata/closure-metadata/baking-powder/add-closure",
+        "name": "Add closure - Closure main form"
+    },
+    {
+        "pageID": "AM5.1.1.1.1",
+        "url": "metadata/closure-metadata/baking-powder/closure-alternative-title",
+        "name": "Add closure - Closure alternative title & description"
+    },
+    {
+        "pageID": "AM5.1.1.2",
+        "url": "metadata/closure-metadata/baking-powder/closure-added",
+        "name": "Closure - Review metadata"
+    },
+    {
+        "pageID": "AM5.1.1.3",
+        "url": "metadata/closure-metadata/baking-powder/abandon-changes-warning",
+        "name": "Closure - Delete metadata"
+    },
+    {
+        "pageID": "AM5.2",
+        "url": "metadata/descriptive-metadata/file-level",
+        "name": "Descriptive file selection"
+    },
+    {
+        "pageID": "AM5.2.1",
+        "url": "metadata/descriptive-metadata/Lemonade/open-Lemonade",
+        "name": "Descriptive - open file"
+    },
+    {
+        "pageID": "AM5.2.1.1",
+        "url": "metadata/descriptive-metadata/Lemonade/add-descriptive",
+        "name": "Add descriptive - Descriptive main form"
+    },
+    {
+        "pageID": "AM5.2.1.2",
+        "url": "metadata/descriptive-metadata/Lemonade/descriptive-added",
+        "name": "Descriptive - Review metadata"
+    },
+    {
+        "pageID": "AM5.2.1.3",
+        "url": "metadata/descriptive-metadata/Lemonade/abandon-changes-warning",
+        "name": "Descriptive - Delete metadata"
+    },
+    {
+        "pageID": "AM6.0",
+        "url": "download-metadata.html",
+        "name": "Download and review metadata"
+    },
+    {
+        "pageID": "AM7.0",
+        "url": "summary.html",
+        "name": "Confirm transfer"
+    },
+    {
+        "pageID": "AM7.1",
+        "url": "end-confirmation.html",
+        "name": "Transfer confirmed"
+    }
+]
