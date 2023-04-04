@@ -324,14 +324,14 @@
   position: relative;
 }
 
-.tdr-card__content > *:last-child {
-  margin: 0;
+.tdr-card header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
-.tdr-card--metadata__state {
-  position: absolute;
-  top: 0;
-  right: 0;
+.tdr-card__content > *:last-child {
+  margin: 0;
 }
 
 .tdr-card--metadata__inset-text {
