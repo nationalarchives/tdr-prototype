@@ -1,0 +1,63 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your file before uploading
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Step 1 of 3</span>
+      <h1 class="govuk-heading-l">
+        Check your file before uploading
+      </h1>
+      <p class="govuk-body">
+        Your upload must contain the following information:
+      </p>
+      <ul class="govuk-list">
+        <li>neutral citation</li>
+        <li>name(s) of judge(s)</li>
+        <li>name(s) of parties</li>
+        <li>court and judgment date</li>
+      </ul>
+
+      <h2 class="govuk-heading-m">Contacting us about this transfer</h2>
+      <p class="govuk-body">
+        Send an email to <a class="govuk-link" href="mailto:judgments@nationalarchives.gov.uk?subject=Ref: TDR-2023-CKGN">judgments@nationalarchives.gov.uk</a> with <strong>Ref: TDR-2023-CKGN</strong> as the subject line if you need to:
+      </p>
+
+      {# <p class="govuk-body">Send an email to <a class="govuk-link" href="mailto:judgments@nationalarchives.gov.uk?subject=Ref: TDR-2023-CKGN">judgments@nationalarchives.gov.uk</a> with the subject line</p>
+      <p class="govuk-inset-text">
+        <strong>Ref: TDR-2023-CKGN</strong>
+      </p>
+      <p class="govuk-body">if you need to:</p> #}
+
+      <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+        <li>Attach and send supplementary material for this judgment.</li>
+        <li>Flag when your judgment is a new version; quote the details of the original document being replaced.</li>
+        <li>Flag when your judgment is subject to an anonymisation order.</li>
+      </ul>
+
+      <div class="govuk-button-group">
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        <a class="govuk-link govuk-link--no-visited-state" href="/home">Cancel</a>
+      </div>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+    </div>
+  </div>
+
+{% endblock %}
