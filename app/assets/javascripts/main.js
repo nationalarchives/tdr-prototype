@@ -28,8 +28,6 @@ function isFile(entry) {
 function isDirectory(entry) {
     return !isFile(entry);
 }
-const displaySelectionSuccessMessage = (folderName, numberOfFiles) => {
-};
 class FolderUpload {
     constructor(root) {
         this.initialise = () => {
@@ -39,6 +37,7 @@ class FolderUpload {
         };
         this.addFolderListener = () => {
             this.dropzone.addEventListener("drop", this.handleDroppedItems);
+            this.itemRetriever.addEventListener("change", this.handleSelectedItems);
         };
         this.addDropzoneHighlighter = () => {
             this.dropzone.addEventListener("dragover", (ev) => {
@@ -68,7 +67,15 @@ class FolderUpload {
             const droppedItem = items[0];
             const webkitEntry = droppedItem.webkitGetAsEntry();
             const filesAndFolders = await this.getAllFiles(webkitEntry, []);
-            displaySelectionSuccessMessage(webkitEntry.name, filesAndFolders.filter((f) => isFile(f)).length);
+            this.displaySelectionSuccessMessage(webkitEntry.name, filesAndFolders.filter((f) => isFile(f)).length);
+        };
+        this.handleSelectedItems = async (ev) => {
+            ev.preventDefault();
+            const form = this.itemRetriever.closest("form");
+            console.log(form.files.files, this.itemRetriever.files);
+            const selectedFiles = this.convertFilesToIfilesWithPath(form.files.files);
+            const parentFolder = this.getParentFolderName(selectedFiles);
+            this.displaySelectionSuccessMessage(parentFolder, selectedFiles.filter((f) => isFile(f)).length);
         };
         this.getEntryBatch = (reader) => {
             return new Promise((resolve) => {
@@ -109,14 +116,30 @@ class FolderUpload {
             }
             return fileInfoInput;
         };
+        this.displaySelectionSuccessMessage = (folderName, numberOfFiles) => {
+            this.removeDragover();
+            this.itemRetriever.blur();
+            this.selected.classList.remove("govuk-visually-hidden");
+            this.selectedFolderName.textContent = folderName;
+            this.selectedNumberOfFiles.textContent = numberOfFiles.toString();
+        };
         this.itemRetriever = root.querySelector(".js-drag-and-drop-input");
         this.dropzone = root.querySelector(".js-drag-and-drop-zone");
+        this.selected = root.querySelector(".js-drag-and-drop-selected");
+        this.selectedFolderName = root.querySelector(".js-drag-and-drop-folder-name");
+        this.selectedNumberOfFiles = root.querySelector(".js-drag-and-drop-no-of-files");
     }
     getParentFolderName(folder) {
         const firstItem = folder.filter((f) => isFile(f))[0];
         const relativePath = firstItem.path;
         const splitPath = relativePath.split("/");
         return splitPath[0];
+    }
+    convertFilesToIfilesWithPath(files) {
+        return [...files].map((file) => ({
+            file,
+            path: file.webkitRelativePath,
+        }));
     }
 }
 

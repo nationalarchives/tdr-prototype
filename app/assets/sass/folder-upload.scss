@@ -8,7 +8,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 10rem;
+  height: 12rem;
   margin-bottom: 20px;
   outline: 3px dashed #0b0c0c;
   padding: 15px 10px;
@@ -39,11 +39,12 @@
   gap: 15px;
   align-items: baseline;
   border-bottom: 1px solid #B1B4B6;
-  // padding-bottom: 15px;
 }
 
-.drag-and-drop__selected__folder {
-  font-weight: bold;
+.drag-and-drop__selected__description {
+  /* Close to govuk green but is AAA compliant
+  for normal sized text */
+  color: #006636;
 }
 
 .drag-and-drop__success {
@@ -59,12 +60,6 @@
   width: 25px
 }
 
-
-
-
-.drag-and-drop__button::before {
-  position: static
-}
 
 .drag-and-drop__button--highlight {
   background-color: #fd0;
@@ -83,23 +78,3 @@
   color: white;
 }
 
-.drag-and-drop__failure {
-  align-items: flex-end;
-  color: #d4351c;
-  display: flex;
-  flex-direction: row;
-  font-weight: 700
-}
-
-.drag-and-drop__input {
-  height: 0;
-  opacity: 0;
-  padding-top: 0;
-  position: absolute;
-  width: 0
-}
-
-.drag-and-drop__success {
-  color: #00703c;
-  font-weight: 700
-}

@@ -2,6 +2,9 @@ interface IFileWithPath {
   file: File;
   path: string;
 }
+interface FileWithRelativePath extends File {
+  webkitRelativePath: string;
+}
 
 type IEntryWithPath = IFileWithPath | IDirectoryWithPath;
 type IDirectoryWithPath = Pick<IFileWithPath, "path">;
@@ -26,32 +29,23 @@ interface IWebkitEntry extends DataTransferItem {
   file: (success: (file: File) => void) => void;
 }
 
-const displaySelectionSuccessMessage = (
-  folderName: string,
-  numberOfFiles: number
-) => {
-  // const selectionArea = document.querySelector("#selection-area");
-  // const successMessageContainer: HTMLElement | null = document.querySelector(
-  //   "#item-selection-success-container"
-  // );
-  // selectionArea?.classList.remove("govuk-form-group--error");
-  // Object.values(warningMessagesToHide).forEach(
-  //   (warningMessageElement: HTMLElement | null) => {
-  //     warningMessageElement?.setAttribute("hidden", "true");
-  //   }
-  // );
-  // successMessageContainer?.removeAttribute("hidden");
-  // successMessage?.removeAttribute("hidden");
-  // successMessage?.focus();
-};
-
 export class FolderUpload {
   private readonly dropzone: HTMLElement;
   private readonly itemRetriever: HTMLInputElement;
+  private readonly selected: HTMLElement;
+  private readonly selectedFolderName: HTMLElement;
+  private readonly selectedNumberOfFiles: HTMLElement;
 
   constructor(root: HTMLElement) {
     this.itemRetriever = root.querySelector(".js-drag-and-drop-input")!;
     this.dropzone = root.querySelector(".js-drag-and-drop-zone")!;
+    this.selected = root.querySelector(".js-drag-and-drop-selected")!;
+    this.selectedFolderName = root.querySelector(
+      ".js-drag-and-drop-folder-name"
+    )!;
+    this.selectedNumberOfFiles = root.querySelector(
+      ".js-drag-and-drop-no-of-files"
+    )!;
   }
 
   initialise: () => void = () => {
@@ -62,7 +56,7 @@ export class FolderUpload {
 
   addFolderListener: () => void = () => {
     this.dropzone.addEventListener("drop", this.handleDroppedItems);
-    // this.itemRetriever.addEventListener("change", this.handleSelectedItems);
+    this.itemRetriever.addEventListener("change", this.handleSelectedItems);
   };
 
   addDropzoneHighlighter: () => void = () => {
@@ -110,23 +104,24 @@ export class FolderUpload {
       []
     );
 
-    displaySelectionSuccessMessage(
+    this.displaySelectionSuccessMessage(
       webkitEntry!.name,
       filesAndFolders.filter((f) => isFile(f)).length
     );
-    // const files = filesAndFolders.filter((f) =>
-    //   isFile(f)
-    // ) as IFileWithPath[];
-    // const folderCheck = this.checkIfFolderHasFiles(files);
-    // if (!isError(folderCheck)) {
-    //   this.selectedFiles = filesAndFolders;
-    //   addFolderSelectionSuccessMessage(
-    //     webkitEntry!.name,
-    //     this.selectedFiles.filter((f) => isFile(f)).length
-    //   );
-    // } else {
-    //   return folderCheck;
-    // }
+  };
+
+  handleSelectedItems: (ev: Event) => any = async (ev) => {
+    ev.preventDefault();
+    const form: HTMLFormElement | null = this.itemRetriever.closest("form");
+
+    console.log(form!.files!.files, this.itemRetriever.files);
+    const selectedFiles = this.convertFilesToIfilesWithPath(form!.files!.files);
+    const parentFolder = this.getParentFolderName(selectedFiles);
+
+    this.displaySelectionSuccessMessage(
+      parentFolder,
+      selectedFiles.filter((f) => isFile(f)).length
+    );
   };
 
   getEntryBatch: (reader: IReader) => Promise<IWebkitEntry[]> = (reader) => {
@@ -181,5 +176,24 @@ export class FolderUpload {
       }
     }
     return fileInfoInput;
+  };
+
+  private convertFilesToIfilesWithPath(files: File[]): IFileWithPath[] {
+    return [...files].map((file) => ({
+      file,
+      path: (file as FileWithRelativePath).webkitRelativePath,
+    }));
+  }
+
+  displaySelectionSuccessMessage: (
+    folderName: string,
+    numberOfFiles: number
+  ) => void = (folderName, numberOfFiles) => {
+    // console.log(this.selectedFolderName.parentElement);
+    this.removeDragover();
+    this.itemRetriever.blur();
+    this.selected.classList.remove("govuk-visually-hidden");
+    this.selectedFolderName.textContent = folderName;
+    this.selectedNumberOfFiles.textContent = numberOfFiles.toString();
   };
 }
