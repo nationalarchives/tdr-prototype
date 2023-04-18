@@ -6,80 +6,11 @@
 // Add extra styles here
 @import 'node_modules/@nationalarchives/tdr-components/components/multi-select-search/_index';
 @import 'node_modules/@nationalarchives/tdr-components/components/nested-navigation/_index';
+@import './folder-upload.scss';
 
 
 .govuk-header__link svg {
   vertical-align: top;
-}
-
-//upload.html
-.drag-and-drop__success {
-  color:#00703c;
-  font-weight:700
-}
-.green-tick-mark {
-  fill:currentColor;
-  float:left;
-  height:25px;
-  margin-right:10px;
-  width:25px
-}
-
-.drag-and-drop {
-  margin-bottom:40px
-}
-.drag-and-drop__button {
-  margin-bottom:32px;
-  margin-top:65px;
-  padding-left:15px;
-  position:static;
-  width:auto
-}
-.drag-and-drop__button::before {
-  position:static
-}
-.drag-and-drop__button--highlight {
-  background-color:#fd0;
-  box-shadow:0 -2px #fd0,0 4px #0b0c0c;
-  color:#0b0c0c;
-  outline:0
-}
-.drag-and-drop__dropzone {
-  display:flex;
-  margin-bottom:20px;
-  outline:3px dashed #0b0c0c;
-  padding-bottom:30px;
-  padding-top:0;
-  text-align:center;
-  transition:outline-offset .1s ease-in-out,background-color .1s linear
-}
-.drag-and-drop__dropzone--dragover {
-  background:#b1b4b6;
-  outline-color:#505a5f
-}
-.drag-and-drop__failure {
-  align-items:flex-end;
-  color:#d4351c;
-  display:flex;
-  flex-direction:row;
-  font-weight:700
-}
-.drag-and-drop__hint-text {
-  margin-bottom:0;
-  margin-right:10px;
-  padding-left:15px;
-  padding-top:70px
-}
-.drag-and-drop__input {
-  height:0;
-  opacity:0;
-  padding-top:0;
-  position:absolute;
-  width:0
-}
-.drag-and-drop__success {
-  color:#00703c;
-  font-weight:700
 }
 
 //file-checks-results.html

@@ -1,0 +1,105 @@
+.drag-and-drop {
+  margin-bottom: 15px;
+}
+
+.drag-and-drop__dropzone {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10rem;
+  margin-bottom: 20px;
+  outline: 3px dashed #0b0c0c;
+  padding: 15px 10px;
+  transition: outline-offset .1s ease-in-out, background-color .1s linear
+}
+
+.drag-and-drop__input {
+  height: 0;
+  opacity: 0;
+  padding-top: 0;
+  position: absolute;
+  width: 0;
+}
+
+.drag-and-drop__button {
+  height: 2.25em;
+  margin-bottom: 0;
+  white-space: nowrap;
+  flex-basis: 0px;
+}
+
+.drag-and-drop__hint-text {
+  margin-bottom: 0;
+}
+
+.drag-and-drop__selected {
+  display: flex;
+  gap: 15px;
+  align-items: baseline;
+  border-bottom: 1px solid #B1B4B6;
+  // padding-bottom: 15px;
+}
+
+.drag-and-drop__selected__folder {
+  font-weight: bold;
+}
+
+.drag-and-drop__success {
+  color: #00703c;
+  font-weight: 700
+}
+
+.green-tick-mark {
+  fill: currentColor;
+  float: left;
+  height: 25px;
+  margin-right: 10px;
+  width: 25px
+}
+
+
+
+
+.drag-and-drop__button::before {
+  position: static
+}
+
+.drag-and-drop__button--highlight {
+  background-color: #fd0;
+  box-shadow: 0 -2px #fd0, 0 4px #0b0c0c;
+  color: #0b0c0c;
+  outline: 0
+}
+
+.drag-and-drop__dropzone--dragover {
+  background: #005A30;
+  outline-color: #FFF;
+  outline-offset: -4px;
+}
+
+.drag-and-drop__dropzone--dragover .drag-and-drop__hint-text {
+  color: white;
+}
+
+.drag-and-drop__failure {
+  align-items: flex-end;
+  color: #d4351c;
+  display: flex;
+  flex-direction: row;
+  font-weight: 700
+}
+
+.drag-and-drop__input {
+  height: 0;
+  opacity: 0;
+  padding-top: 0;
+  position: absolute;
+  width: 0
+}
+
+.drag-and-drop__success {
+  color: #00703c;
+  font-weight: 700
+}

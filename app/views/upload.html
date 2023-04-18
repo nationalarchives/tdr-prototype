@@ -28,50 +28,42 @@
       </details>
 
       <form class="form" action="/progress-uploading" method="post" id="file-upload-form" data-consignment-id="@consignmentId">
+
+        <div class="drag-and-drop" data-tdr-module="folder-upload">
+          <div class="drag-and-drop__dropzone js-drag-and-drop-zone">
+            <input type="file" id="file-selection" name="files" class="js-drag-and-drop-input input govuk-file-upload drag-and-drop__input" webkitdirectory="" accept="*" aria-hidden="true">
+            <span class="govuk-body drag-and-drop__hint-text">Drag and drop a single top-level folder here or &nbsp;</span>
+            <label for="file-selection" class="govuk-button govuk-button--secondary drag-and-drop__button">
+              Choose folder
+            </label>
+          </div>
+          {# <div class="drag-and-drop__selected">
+            <p class="govuk-body">The folder <span class="drag-and-drop__selected__folder">Recipes for Cakes</span> (containing <span class="drag-and-drop__selected__no-of-files">6 files</span>) has been selected.</p>
+            <a href="" class="govuk-link govuk-body govuk-!-font-size-19 govuk-body govuk-!-font-weight-bold">Remove<span class="govuk-visually-hidden"> selected files</span></a>
+          </div> #}
+
+        </div>
+
+        <p class="govuk-body">For information on what metadata will be captured during upload, visit the <a target="_blank" rel="noopener noreferrer" href="/faq" class="govuk-link">FAQ (opens in new tab)</a>.</p>
+
         <div class="govuk-form-group">
-          <div class="drag-and-drop">
-
-            <div>
-              <div class="govuk-form-group">
-                <div class="drag-and-drop__dropzone">
-                  <input type="file" id="file-selection" name="files"
-                           class="govuk-file-upload drag-and-drop__input" webkitdirectory
-                           @* Specify an arbitrary type in the 'accept' attribute to work around a bug in
-                    Safari 14.0.1, which does not let the user browse for files if the 'accept'
-                    attribute is missing. The actual value of the attribute is ignored because
-                    'webkitdirectory' is specified. It just needs to be present to fix the Safari bug. *@
-                    accept="image/jpeg" aria-hidden="true"
-                    >
-                  <p class="govuk-body drag-and-drop__hint-text">Drag and drop a single top-level folder here or</p>
-                  <a href="/upload-select" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button" style="margin-top: 60px">
-                      Choose folder</a>
-                </div>
-                <p class="govuk-body">For information on what metadata will be captured during upload, visit the <a target="_blank" rel="noopener noreferrer" href="/faq" class="govuk-link">FAQ (opens in new tab)</a>.</p>
-
-                <div class="govuk-form-group">
-                  <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
-                    <div class="govuk-checkboxes">
-                      <div class="govuk-checkboxes__item">
-                        <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
-                        <label class="govuk-label govuk-checkboxes__label" for="waste-2">
-                            Check the box if you want to display the name of your top-level folder in the public catalogue.
-                        </label>
-                      </div>
-                    </div>
-                  </fieldset>
-                </div>
-
-                <div class="govuk-button-group">
-                  <button class="govuk-button" type="submit" data-module="govuk-button" role="button">
-                      Start upload
-                    </button>
-                  <a class="govuk-link govuk-link--no-visited-state" href="/home">Cancel</a>
-                </div>
-
-              </div>
+          <div class="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
+              <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+                Check the box if you want to display the name of your top-level folder in the public catalogue.
+              </label>
             </div>
           </div>
         </div>
+
+        <div class="govuk-button-group">
+          <button class="govuk-button" type="submit" data-module="govuk-button" role="button">
+            Start upload
+          </button>
+          <a class="govuk-link govuk-link--no-visited-state" href="/home">Cancel</a>
+        </div>
+
       </form>
 
     </div>
