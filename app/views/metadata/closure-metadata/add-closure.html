@@ -13,6 +13,7 @@ Add or edit closure metadata
             Add or edit metadata
         </h1>
 
+        <p class="govuk-body">All fields on this page are required.</p>
         {% if error == "missing-fields" %}
           <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="govuk-error-summary">
             <h2 class="govuk-error-summary__title" id="error-summary-title">
@@ -37,6 +38,8 @@ Add or edit closure metadata
             </ul>
           </div>
         </div>
+        {# <p class="govuk-body govuk-!-font-weight-bold">All fields are mandatory.</p> #}
+
         {% if data.error == "not-matching" %}
           <div class="govuk-warning-text">
             <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
