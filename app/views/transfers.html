@@ -4,6 +4,10 @@
 View Transfers
 {% endblock %}
 
+{% block beforeContent %}
+  <a href="./home" class="govuk-back-link">Back</a>
+{% endblock %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -480,9 +484,6 @@ View Transfers
         </div>
       </nav>
 
-      <a href="home" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
-        Back to homepage
-      </a>
     </div>
   </div>
 
