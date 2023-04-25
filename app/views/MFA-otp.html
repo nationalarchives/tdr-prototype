@@ -8,24 +8,35 @@ One time code
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">
-            Sign in to your account
-        </h1>
-
       <form action="/home" method="post" novalidate>
         <div class="govuk-form-group">
-          <label class="govuk-label" for="code">
-                    One-time code
-                </label>
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="code">
+              Enter your one-time passcode
+            </label>
+          </h1>
+          {# <label class="govuk-label  govuk-label--m" for="code">
+            One-time passcode
+          </label> #}
           <div id="national-insurance-number-hint" class="govuk-hint">
-                    For example, ‘123456’ without any spaces.
-                </div>
-          <input class="govuk-input govuk-!-width-two-thirds" id="code" name="event-name" type="text">
+            For example, ‘123456’ without any spaces.
+          </div>
+          <details class="govuk-details govuk-!-margin-bottom-4" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                Where do I find the one-time passcode?
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              Your one-time passcode can be found in your chosen authenticator app that was used to set up your account.
+            </div>
+          </details>
+          <input class="govuk-input govuk-input--width-5" id="code" name="event-name" type="text" inputmode="numeric">
         </div>
 
         <button class="govuk-button" data-module="govuk-button">
-                Continue
-            </button>
+          Continue
+        </button>
       </form>
 
     </div>

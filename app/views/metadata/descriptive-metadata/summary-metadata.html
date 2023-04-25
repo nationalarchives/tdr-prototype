@@ -1,7 +1,11 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-Descriptive metadata - View existing metadata
+Descriptive metadata - View metadata
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./file-level" class="govuk-back-link">Choose a file</a>
 {% endblock %}
 
 {% block content %}
@@ -10,7 +14,7 @@ Descriptive metadata - View existing metadata
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Descriptive metadata</span>
       <h1 class="govuk-heading-l">
-        View existing metadata
+        View metadata
       </h1>{{releaseVersion | log }}
       <p class="govuk-body">View existing descriptive metadata.</p>
 
@@ -117,7 +121,7 @@ Descriptive metadata - View existing metadata
         <div class="govuk-button-group">
           <button
           draggable="false"
-          class="govuk-button govuk-!-margin-bottom-4"
+          class="govuk-button govuk-button--secondary govuk-!-margin-bottom-4"
           name="action" value="edit"
           data-module="govuk-button">
             {% if data.status == 'has-data' %}Edit metadata{% else %}Add metadata{% endif %}
@@ -128,11 +132,6 @@ Descriptive metadata - View existing metadata
             Delete metadata
           </a>
           {% endif %}
-        </div>
-        <div class="govuk-button-group">
-          <a href="./file-level" draggable="false" class="govuk-link govuk-link--no-visited-state">
-          Return to all files
-          </a>
         </div>
       </form>
     </div>
