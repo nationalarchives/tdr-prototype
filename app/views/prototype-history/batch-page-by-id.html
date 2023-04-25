@@ -27,10 +27,12 @@
 
 
   {% for page in histories %}
-  <article id="" class="prototype-history">
+  <article id="" >
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <img alt="Screenshot of {{page.name|d(page.pageID)}} at {{page.historyName}}" src="/public/prototype-history/{{page.historyName}}/screenshots/{{page.pageID}}.png"/>
+        <div class="prototype-history__image">
+          <img alt="Screenshot of {{page.name|d(page.pageID)}} at {{page.historyName}}" src="/public/prototype-history/{{page.historyName}}/screenshots/{{page.pageID}}.png"/>
+        </div>
       </div>
       <div class="govuk-grid-column-one-third">
         <dl class="govuk-summary-list govuk-summary-list--no-border">
