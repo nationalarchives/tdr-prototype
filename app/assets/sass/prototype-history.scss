@@ -1,0 +1,13 @@
+
+.prototype-history__image {
+  width: 100%;
+  min-height: 400px;
+  background: grey;
+  border: 5px solid black;
+  box-sizing: border-box;
+}
+
+.prototype-history__image img {
+  width: 100%;
+  display: block;
+}
