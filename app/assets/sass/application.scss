@@ -9,8 +9,14 @@
 @import './prototype-history.scss';
 @import './folder-upload.scss';
 
-.govuk-header__link svg {
-  vertical-align: top;
+
+.tna-tree__radios-directory__label {
+  background-image: url('/public/images/folder.png');
+}
+
+[role="treeitem"]:focus>div>.tna-tree__radios-directory .tna-tree__radios-directory__label,
+[role="treeitem"]:hover>div>.tna-tree__radios-directory .tna-tree__radios-directory__label {
+  background-image: url('/public/images/folderHover.png');
 }
 
 // menu button in header (now 'Sign out' button)
