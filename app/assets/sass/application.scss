@@ -6,8 +6,8 @@
 // Add extra styles here
 @import 'node_modules/@nationalarchives/tdr-components/components/multi-select-search/_index';
 @import 'node_modules/@nationalarchives/tdr-components/components/nested-navigation/_index';
+@import './prototype-history.scss';
 @import './folder-upload.scss';
-
 
 // menu button in header (now 'Sign out' button)
 .govuk-header__menu-button::after {
@@ -463,5 +463,12 @@
 
 .govuk-pagination--centred {
   justify-content: center;
+}
+
+.govuk-table--tdr-transfers .govuk-table__cell--no-results {
+  background-color: #f7f7f7;
+  padding-bottom: 60px;
+  padding-top: 60px;
+  text-align: center;
 }
 

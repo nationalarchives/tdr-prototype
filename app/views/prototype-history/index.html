@@ -1,0 +1,29 @@
+{% extends "layouts/no-sign-out.html" %}
+
+{% block pageTitle %}
+  TDR Historic Prototypes
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Prototype history
+      </h1>
+      <p class="govuk-body">
+        Choose from the histories below.
+      </p>
+
+      <ul class="govuk-list">
+        {% for h in histories %}
+          <li>
+            <a href="/prototype-history/{{ h }}" class="govuk-link">{{ h }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+{% endblock %}

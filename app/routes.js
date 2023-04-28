@@ -2,22 +2,10 @@
 // For guidance on how to create routes see:
 // https://prototype-kit.service.gov.uk/docs/create-routes
 //
-
 const govukPrototypeKit = require("govuk-prototype-kit");
 const router = govukPrototypeKit.requests.setupRouter();
 
-// Add your routes here
-
-const hasDescription = function (files, descriptiveFiles) {
-  if (descriptiveFiles === undefined) return false;
-  return Array.from(files).every((fileIndex) => {
-    return (
-      descriptiveFiles[fileIndex] &&
-      descriptiveFiles[fileIndex]["addDescriptive-description"] &&
-      descriptiveFiles[fileIndex]["addDescriptive-description"] !== ""
-    );
-  });
-};
+require("./routes-history")
 
 const requireClosureFields = [
   "addClosure-foi-asserted-day",
@@ -32,23 +20,16 @@ const requireClosureFields = [
   "addClosure-is-the-title-sensitive",
 ];
 
-router.get(
-  "/metadata/descriptive-metadata/confirm-delete-metadata",
-  function (req, res) {
-    if (req.session.data["file-selection"] === undefined) {
-      throw new Error("Missing file selection");
-    }
-
-    const selected = req.session.data["file-selection"];
-    const descriptiveData = req.session.data["descriptiveFiles"];
-
-    Array.from(selected).forEach((file) => {
-      delete descriptiveData[selected];
-    });
-
-    res.redirect("/metadata/descriptive-metadata/file-level");
-  }
-);
+const hasDescription = function (files, descriptiveFiles) {
+  if (descriptiveFiles === undefined) return false;
+  return Array.from(files).every((fileIndex) => {
+    return (
+      descriptiveFiles[fileIndex] &&
+      descriptiveFiles[fileIndex]["addDescriptive-description"] &&
+      descriptiveFiles[fileIndex]["addDescriptive-description"] !== ""
+    );
+  });
+};
 
 const populateWithDescriptive = (req, res) => {
   const selected = req.session.data["file-selection"];
@@ -85,6 +66,91 @@ const populateWithDescriptive = (req, res) => {
     delete req.session.data.error;
   }
 };
+
+const clearEmpties = (files) => {
+  if (files === undefined) return {};
+
+  for (const [fileKey, file] of Object.entries(files)) {
+    for (const [fieldKey, fieldValue] of Object.entries(file)) {
+      if (file[fieldKey] == "") {
+        delete file[fieldKey];
+      }
+    }
+  }
+
+  return files;
+};
+
+const addNewClosure = (req, res) => {
+  const selected = req.session.data["file-selection"];
+  let closed = req.session.data["closedFiles"];
+
+  // Add new selected files as empty objs to this array:
+  selected
+    .filter((fn) => closed[fn] === undefined)
+    .forEach((newFile) => {
+      closed[newFile] = {};
+    });
+};
+
+const populateWithClosureData = (req, res) => {
+  const selected = req.session.data["file-selection"];
+  let closed = req.session.data["closedFiles"];
+  closed = clearEmpties(closed);
+
+  let isClosed = closed.hasOwnProperty(selected[0]);
+
+  // Do the files we are about to show match? i.e. can we populate the form.
+  let notMatching = selected.some((selectedFile1) => {
+    return selected.some((selectedFile2) => {
+      // If any are not indentical
+      return (
+        JSON.stringify(closed[selectedFile1]) !==
+        JSON.stringify(closed[selectedFile2])
+      );
+    });
+  });
+
+  // Clear form data so it does not prepopulate
+  for (let key in req.session.data) {
+    if (key.split("-")[0] === "addClosure") {
+      delete req.session.data[key];
+    }
+  }
+  if (notMatching == true) {
+    req.session.data.error = "not-matching";
+  } else {
+    // Populate the fields data with stored.
+    for (var key in closed[selected[0]]) {
+      req.session.data[key] = closed[selected[0]][key];
+    }
+    req.session.data.status = isClosed ? "Closed" : "Open";
+
+    delete req.session.data.error;
+  }
+
+  // res.redirect(`/metadata/closure-metadata/${route}`);
+};
+
+// Add your routes here
+
+router.get(
+  "/metadata/descriptive-metadata/confirm-delete-metadata",
+  function (req, res) {
+    if (req.session.data["file-selection"] === undefined) {
+      throw new Error("Missing file selection");
+    }
+
+    const selected = req.session.data["file-selection"];
+    const descriptiveData = req.session.data["descriptiveFiles"];
+
+    Array.from(selected).forEach((file) => {
+      delete descriptiveData[selected];
+    });
+
+    res.redirect("/metadata/descriptive-metadata/file-level");
+  }
+);
 
 router.get(
   "/metadata/descriptive-metadata/confirm-file-level",
@@ -268,71 +334,6 @@ router.get(
     }
   }
 );
-
-const clearEmpties = (files) => {
-  if (files === undefined) return {};
-
-  for (const [fileKey, file] of Object.entries(files)) {
-    for (const [fieldKey, fieldValue] of Object.entries(file)) {
-      if (file[fieldKey] == "") {
-        delete file[fieldKey];
-      }
-    }
-  }
-
-  return files;
-};
-
-const addNewClosure = (req, res) => {
-  const selected = req.session.data["file-selection"];
-  let closed = req.session.data["closedFiles"];
-
-  // Add new selected files as empty objs to this array:
-  selected
-    .filter((fn) => closed[fn] === undefined)
-    .forEach((newFile) => {
-      closed[newFile] = {};
-    });
-};
-
-const populateWithClosureData = (req, res) => {
-  const selected = req.session.data["file-selection"];
-  let closed = req.session.data["closedFiles"];
-  closed = clearEmpties(closed);
-
-  let isClosed = closed.hasOwnProperty(selected[0]);
-
-  // Do the files we are about to show match? i.e. can we populate the form.
-  let notMatching = selected.some((selectedFile1) => {
-    return selected.some((selectedFile2) => {
-      // If any are not indentical
-      return (
-        JSON.stringify(closed[selectedFile1]) !==
-        JSON.stringify(closed[selectedFile2])
-      );
-    });
-  });
-
-  // Clear form data so it does not prepopulate
-  for (let key in req.session.data) {
-    if (key.split("-")[0] === "addClosure") {
-      delete req.session.data[key];
-    }
-  }
-  if (notMatching == true) {
-    req.session.data.error = "not-matching";
-  } else {
-    // Populate the fields data with stored.
-    for (var key in closed[selected[0]]) {
-      req.session.data[key] = closed[selected[0]][key];
-    }
-    req.session.data.status = isClosed ? "Closed" : "Open";
-
-    delete req.session.data.error;
-  }
-
-  // res.redirect(`/metadata/closure-metadata/${route}`);
-};
 
 router.get(
   "/metadata/closure-metadata/confirm-file-level",

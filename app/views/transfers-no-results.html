@@ -1,0 +1,53 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+View Transfers
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./home" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <h1 class="govuk-heading-l">View Transfers</h1>
+      <p class="govuk-body">View the history of all the consignments you have uploaded. You can also resume incomplete transfers or view the errors of failed transfers.</p>
+
+      <table data-module="table-row-expander" class="govuk-table govuk-table--tdr-transfers govuk-!-margin-bottom-2">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header" style="width:30px" id="toggle">
+              <span class="govuk-visually-hidden">Expand</span></th>
+            <th scope="col" class="govuk-table__header" style="width:200px">Reference</th>
+            <th scope="col" class="govuk-table__header" style="width:200px">Date started</th>
+            <th scope="col" class="govuk-table__header" style="width:200px">Date transferred</th>
+            <th scope="col" class="govuk-table__header" style="width:200px">Status</th>
+            <th scope="col" class="govuk-table__header">Actions</th>
+            <th scope="col" class="govuk-table__header govuk-visually-hidden" id="more-details">More details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <td colspan="6" class="govuk-table__cell govuk-table__cell--no-results">There are no transfers yet. <a class="govuk-link" href="">Start a new transfer</a>. </td>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/disclosure.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const tableRowExpanderButtons = document.querySelectorAll("[data-module=table-row-expander] button[aria-expanded][aria-controls]");
+
+      tableRowExpanderButtons.forEach((btn) => {
+        new Disclosure(btn);
+      })
+    });
+  </script>
+{% endblock %}
