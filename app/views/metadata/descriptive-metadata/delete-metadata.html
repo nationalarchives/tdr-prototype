@@ -24,20 +24,26 @@ Remove properties
             {% endfor %}
           </ul>
         </div>
+        <p class="govuk-body">Once descriptive metadata is deleted, it cannot be recovered. Confirm you wish to proceed.</p>
+
+        {% if data['file-selection']|getFilenames(globals.files)|length == 0 %}
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+              There is no metadata associated with this file. Return to the <a href="/metadata/closure-metadata/file-level">file selection page</a> to continue.
+          </strong>
+        </div>
+      {% endif %}
+
 
         <div class="govuk-warning-text">
           <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
           <strong class="govuk-warning-text__text">
             <span class="govuk-warning-text__assistive">Warning</span>
-            {% if data['file-selection']|getFilenames(globals.files)|length > 0 %}
-          Once descriptive metadata is deleted, it cannot be recovered.
-          {% else %}
-          There is no metadata associated with this file. Return to the <a href="/metadata/closure-metadata/file-level">file selection page</a> to continue.
-            {% endif %}
+              You have previously added an alternative description in closure metadata. Deleting the descriptive metadata will also remove that alternative description.
           </strong>
         </div>
-
-        <p class="govuk-body">Confirm you wish to proceed.</p>
 
         <div class="govuk-button-group">
           <button role="button" draggable="false" class="govuk-button govuk-button--warning" data-module="govuk-button"{% if data['file-selection']|getFilenames(globals.files)|length == 0 %} disabled{% endif %}>
