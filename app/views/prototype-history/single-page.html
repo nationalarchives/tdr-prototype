@@ -1,0 +1,61 @@
+{% extends "layouts/no-sign-out.html" %}
+
+{% block pageTitle %}
+  TDR Historic Prototypes - {{historyName}}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="/prototype-history/{{historyName}}" class="govuk-back-link">Back to {{historyName}}</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Page {{ pageID }}
+        {% if name %}({{name}}){% endif %} at {{historyName}}
+      </h1>
+      <p class="govuk-body">
+        View the <a class="govuk-link" href="/prototype-history/page-id/{{ pageID }}/">full history of {{ pageID }}
+          {%- if name %} ({{name}}){% endif -%}
+        </a>.
+      </p>
+    </div>
+    <div class="govuk-grid-column-full">
+    <dl class="govuk-summary-list govuk-summary-list--no-border">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Page ID
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ pageID }}
+          </dd>
+        </div>
+        {% if name %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ name }}
+          </dd>
+        </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Captured URL
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ url }}
+          </dd>
+        </div>
+      </dl>
+      <div class="prototype-history__image">
+        <img alt="Screenshot of page {{ pageID }} {% if name %}({{name}}){% endif %} at {{historyName}}" src="/public/prototype-history/{{historyName}}/screenshots/{{pageID}}.png"/>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

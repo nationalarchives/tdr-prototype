@@ -1,0 +1,70 @@
+{% extends "layouts/no-sign-out.html" %}
+
+{% block pageTitle %}
+  TDR Historic Prototype ({{historyName}})
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="/prototype-history" class="govuk-back-link">Back to Prototype history home</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        All pages captured at {{historyName}}
+      </h1>
+      <p class="govuk-body">
+        Screenshots of all pages in the prototype at this point.
+      </p>
+    </div>
+  </div>
+
+  {% for page in structure %}
+    <article id="" class="prototype-history">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <div class="prototype-history__image">
+            <img loading="lazy" alt="Screenshot of {{page.name|d(page.pageID)}} at {{historyName}}" src="/public/prototype-history/{{historyName}}/screenshots/{{page.pageID}}.png"/>
+          </div>
+        </div>
+        <div class="govuk-grid-column-one-third">
+          <dl class="govuk-summary-list govuk-summary-list--no-border">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Page ID
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ page.pageID }}
+                <br><a class="govuk-link  govuk-!-font-size-14" href="/prototype-history/{{ historyName }}/page-id/{{ page.pageID }}/">View page<span class="govuk-visually-hidden"> {{ page.pageID }}</span></a>
+              </dd>
+            </div>
+            {% if page.name %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Name
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ page.name }}
+              </dd>
+            </div>
+            {% endif %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Captured URL
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ page.url }}
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </article>
+  <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+  {% endfor %}
+
+{% endblock %}
