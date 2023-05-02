@@ -36,6 +36,15 @@ Remove properties
         </div>
       {% endif %}
 
+
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+              You have previously added an alternative description in closure metadata. Deleting the descriptive metadata will also remove that alternative description.
+          </strong>
+        </div>
+
         <div class="govuk-button-group">
           <button role="button" draggable="false" class="govuk-button govuk-button--warning" data-module="govuk-button"{% if data['file-selection']|getFilenames(globals.files)|length == 0 %} disabled{% endif %}>
           Delete and return to files
