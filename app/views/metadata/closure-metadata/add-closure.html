@@ -114,15 +114,16 @@ Add or edit closure metadata
             <div id="closure-start-hint" class="govuk-hint">
                 This is the date the closure period begins.
               </div>
-            <div class="govuk-inset-text govuk-!-margin-top-3 govuk-!-margin-bottom-3">
-              The date the record was last modified was determined during upload. This date should be checked against your own records: <strong>12/07/2020</strong>
-            </div>
             {% if data['addDescriptive-Year'] %}
-              <div class="govuk-inset-text govuk-!-margin-top-3 govuk-!-margin-bottom-3">
+            <div class="govuk-inset-text govuk-!-margin-top-3 govuk-!-margin-bottom-3">
               The date of the last change to this record entered as descriptive metadata is <strong>{{data['addDescriptive-Day']}}
                   {{data['addDescriptive-Month']|getMonthName}}
                   {{data['addDescriptive-Year']}}</strong>
-              </div>
+            </div>
+            {% else %}
+            <div class="govuk-inset-text govuk-!-margin-top-3 govuk-!-margin-bottom-3">
+              The date the record was last modified was determined during upload. This date should be checked against your own records: <strong>12 July 2020</strong>
+            </div>
             {% endif %}
             {% if errorStartDate == true %}
               <p id="passport-issued-error" class="govuk-error-message">

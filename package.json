@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "export-screenshots": "lib/utils/screenshots.mjs",
     "dev": "npm-run-all -p gov-dev webpack",
     "serve": "govuk-prototype-kit serve",
     "start": "govuk-prototype-kit start",
@@ -9,7 +10,7 @@
   "name": "govuk-prototype-kit",
   "dependencies": {
     "@govuk-prototype-kit/step-by-step": "^2.1.0",
-    "@nationalarchives/tdr-components": "^1.0.20",
+    "@nationalarchives/tdr-components": "^1.0.33",
     "govuk-frontend": "^4.4.1",
     "govuk-prototype-kit": "^13.1.0",
     "jquery": "^3.6.3",
@@ -17,6 +18,8 @@
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5",
+    "puppeteer": "^19.7.5",
+    "puppeteer-full-page-screenshot": "^1.2.2",
     "ts-loader": "^9.4.2",
     "typescript": "^4.9.4",
     "webpack": "^5.76.0",

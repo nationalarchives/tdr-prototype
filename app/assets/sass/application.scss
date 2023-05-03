@@ -6,8 +6,18 @@
 // Add extra styles here
 @import 'node_modules/@nationalarchives/tdr-components/components/multi-select-search/_index';
 @import 'node_modules/@nationalarchives/tdr-components/components/nested-navigation/_index';
+@import './prototype-history.scss';
 @import './folder-upload.scss';
 
+
+.tna-tree__radios-directory__label {
+  background-image: url('/public/images/folder.png');
+}
+
+[role="treeitem"]:focus>div>.tna-tree__radios-directory .tna-tree__radios-directory__label,
+[role="treeitem"]:hover>div>.tna-tree__radios-directory .tna-tree__radios-directory__label {
+  background-image: url('/public/images/folderHover.png');
+}
 
 // menu button in header (now 'Sign out' button)
 .govuk-header__menu-button::after {
