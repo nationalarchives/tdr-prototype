@@ -73,6 +73,11 @@ filters.getFilenames = function (selection, allFiles) {
   return selection.map((id) => findById(allFiles, id).name);
 };
 
+filters.getFileExtension = function (fileId, allFiles) {
+  const filename = findById(allFiles, fileId)?.name;
+  return filename ? filename.match(/\.[^/.]+$/, "") : "";
+};
+
 filters.langNameFromCode = function (code, languages) {
   const language = languages.find((l) => l.alpha2 === code);
   return language ? language.English : "";
