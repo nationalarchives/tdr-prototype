@@ -20,7 +20,7 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "FolderUpload": () => (/* binding */ FolderUpload)
+/* harmony export */   FolderUpload: () => (/* binding */ FolderUpload)
 /* harmony export */ });
 function isFile(entry) {
     return entry.file !== undefined;
