@@ -50,7 +50,7 @@ Check closure status
         <div class="govuk-form-group {% if error %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-              <h2 class="govuk-fieldset__heading">Has this closure status been approved by the Advisory Council?</h2>
+              <h2 class="govuk-fieldset__heading">Has this closure status been agreed with the Advisory Council and/or The National Archives?</h2>
             </legend>
             {% if error == 'no-confirmation' %}
               <p id="passport-issued-error" class="govuk-error-message">
@@ -79,10 +79,12 @@ Check closure status
           </summary>
           <div class="govuk-details__text">
             <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
-              <li>FOI decision asserted, this is the date of the Advisory Council approval</li>
-              <li>Closure start date</li>
+              <li>FOI decision asserted, this is the date that the closure schedule was agreed by the Advisory Council and/or The National Archives.</li>
+              <li>Closure start date, this is the date of the last change to this record</li>
               <li>Closure period</li>
               <li>FOI exemption code</li>
+              <li>Alternative title</li>
+              <li>Alternative description</li>
             </ul>
           </div>
         </details>
