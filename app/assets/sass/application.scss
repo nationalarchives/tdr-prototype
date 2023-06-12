@@ -98,30 +98,25 @@
   }
 }
 
-// progress-uploading.html
-.progress-bar-container {
-  position: relative;
+.progress-display {
   appearance: none;
+  background-color: #505a5f;
+  border: none;
+  color: #505a5f;
+  height: 20px;
+  position: relative;
+  width: 0%;
+}
+
+.progress-bar {
+  appearance: none;
+  background-color: #f3f2f1;
   border: solid 1px #b1b4b6;
+  color: #505a5f;
   height: 20px;
   margin: 0.1px;
+  position: relative;
   width: 100%;
-}
-
-.progress-bar-container span {
-  display: block;
-  height: 100%;
-}
-
-.progress {
-  background-color: #505a5f;
-  animation: progressBar 10s ease-in-out;
-  animation-fill-mode:both;
-}
-
-@keyframes progressBar {
-  0% { width: 0; }
-  100% { width: 100%; }
 }
 
 .showBanner {
