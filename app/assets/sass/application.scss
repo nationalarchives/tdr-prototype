@@ -458,9 +458,22 @@
   padding: 0;
 }
 
-// .tdr-transfers-extra strong {
+.tdr-button-link {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  color: #1d70b8;
+  padding: 0;
+  text-decoration: underline;
+  font-family: inherit;
+  font-size: inherit;
+  top: 0px !important;
+}
 
-// }
+.govuk-table--tdr-transfers tr td button.tdr-button-link {
+  top: 0;
+}
 
 #file-selection .tna-tree {
   max-height: 60vh;
