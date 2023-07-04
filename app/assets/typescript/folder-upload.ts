@@ -187,16 +187,17 @@ export class FolderUpload {
     this.itemRetriever.blur();
     this.selected.classList.remove("govuk-visually-hidden");
 
-    let elementInMemory = document.createRange()
+    let selectedContentFragment = document.createRange()
       .createContextualFragment(this.selected.firstElementChild.innerHTML);
-    elementInMemory.querySelector(
+
+    selectedContentFragment.querySelector(
       ".js-drag-and-drop-folder-name"
     )!.textContent = folderName;
-    elementInMemory.querySelector(
+    selectedContentFragment.querySelector(
       ".js-drag-and-drop-no-of-files"
     )!.textContent = numberOfFiles.toString();
 
     this.selected.firstElementChild.innerHTML = "";
-    this.selected.firstElementChild.appendChild(elementInMemory)
+    this.selected.firstElementChild.appendChild(selectedContentFragment)
   };
 }

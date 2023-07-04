@@ -120,12 +120,12 @@ class FolderUpload {
             this.removeDragover();
             this.itemRetriever.blur();
             this.selected.classList.remove("govuk-visually-hidden");
-            let elementInMemory = document.createRange()
+            let selectedContentFragment = document.createRange()
                 .createContextualFragment(this.selected.firstElementChild.innerHTML);
-            elementInMemory.querySelector(".js-drag-and-drop-folder-name").textContent = folderName;
-            elementInMemory.querySelector(".js-drag-and-drop-no-of-files").textContent = numberOfFiles.toString();
+            selectedContentFragment.querySelector(".js-drag-and-drop-folder-name").textContent = folderName;
+            selectedContentFragment.querySelector(".js-drag-and-drop-no-of-files").textContent = numberOfFiles.toString();
             this.selected.firstElementChild.innerHTML = "";
-            this.selected.firstElementChild.appendChild(elementInMemory);
+            this.selected.firstElementChild.appendChild(selectedContentFragment);
         };
         this.itemRetriever = root.querySelector(".js-drag-and-drop-input");
         this.dropzone = root.querySelector(".js-drag-and-drop-zone");
