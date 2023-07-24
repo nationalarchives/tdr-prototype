@@ -40,12 +40,6 @@ export class FolderUpload {
     this.itemRetriever = root.querySelector(".js-drag-and-drop-input")!;
     this.dropzone = root.querySelector(".js-drag-and-drop-zone")!;
     this.selected = root.querySelector(".js-drag-and-drop-selected")!;
-    this.selectedFolderName = root.querySelector(
-      ".js-drag-and-drop-folder-name"
-    )!;
-    this.selectedNumberOfFiles = root.querySelector(
-      ".js-drag-and-drop-no-of-files"
-    )!;
   }
 
   initialise: () => void = () => {
@@ -189,11 +183,21 @@ export class FolderUpload {
     folderName: string,
     numberOfFiles: number
   ) => void = (folderName, numberOfFiles) => {
-    // console.log(this.selectedFolderName.parentElement);
     this.removeDragover();
     this.itemRetriever.blur();
     this.selected.classList.remove("govuk-visually-hidden");
-    this.selectedFolderName.textContent = folderName;
-    this.selectedNumberOfFiles.textContent = numberOfFiles.toString();
+
+    let selectedContentFragment = document.createRange()
+      .createContextualFragment(this.selected.firstElementChild.innerHTML);
+
+    selectedContentFragment.querySelector(
+      ".js-drag-and-drop-folder-name"
+    )!.textContent = folderName;
+    selectedContentFragment.querySelector(
+      ".js-drag-and-drop-no-of-files"
+    )!.textContent = numberOfFiles.toString();
+
+    this.selected.firstElementChild.innerHTML = "";
+    this.selected.firstElementChild.appendChild(selectedContentFragment)
   };
 }
