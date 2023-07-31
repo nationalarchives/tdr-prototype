@@ -28,32 +28,17 @@ Descriptive metadata - Review changes to descriptive metadata
           </dd>
           <dd class="govuk-summary-list__actions"></dd>
         </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-          Legal status
-        </dt>
-          <dd class="govuk-summary-list__value">
-          Public record
-        </dd>
-          <dd class="govuk-summary-list__actions"></dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-          Copyright
-        </dt>
-          <dd class="govuk-summary-list__value">
-          Crown copyright
-        </dd>
-          <dd class="govuk-summary-list__actions"></dd>
-        </div>
 
-        <!-- descriptive stuff here -->
+
+        {% if data["addDescriptive-description"] %}
         <div class="govuk-summary-list__row" style="border-bottom: none;">
           <dt class="govuk-summary-list__key">Description</dt>
           <dd class="govuk-summary-list__value">
             {{data['addDescriptive-description']}}
           </dd>
         </div>
+        {% endif %}
+        {% if data["addDescriptive-Day"] %}
         <div class="govuk-summary-list__row" style="border-bottom: none;">
           <dt class="govuk-summary-list__key">Date of the Record</dt>
           <dd class="govuk-summary-list__value">
@@ -63,6 +48,7 @@ Descriptive metadata - Review changes to descriptive metadata
             {{data['addDescriptive-Day']}}/{{data['addDescriptive-Month']}}/{{data['addDescriptive-Year']}}
           </dd>
         </div>
+        {% endif %}
 
         <div class="govuk-summary-list__row" style="border-bottom: none;">
           <dt class="govuk-summary-list__key">Language(s)</dt>
@@ -75,20 +61,15 @@ Descriptive metadata - Review changes to descriptive metadata
             {% endfor %}
           </dd>
         </div>
+        {% if data["addDescriptive-translation"] %}
         <div class="govuk-summary-list__row" style="border-bottom: none;">
           <dt class="govuk-summary-list__key">Translated title of record</dt>
           <dd class="govuk-summary-list__value">
             {{data['addDescriptive-translation']|d("-", true)}}
           </dd>
         </div>
-        {# <div class="govuk-summary-list__row" style="border-bottom: none;">
-          <dt class="govuk-summary-list__key">
-            Related materials
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{data['addDescriptive-related']|d("-", true)}}
-          </dd>
-        </div> #}
+        {% endif %}
+        {% if data["addDescriptive-former-refs"] %}
         <div class="govuk-summary-list__row" style="border-bottom: none;">
           <dt class="govuk-summary-list__key">
               Former reference
@@ -97,14 +78,7 @@ Descriptive metadata - Review changes to descriptive metadata
             {{data['addDescriptive-former-refs']|d("-", true)}}
           </dd>
         </div>
-        {# <div class="govuk-summary-list__row" style="border-bottom: none;">
-          <dt class="govuk-summary-list__key">
-            Creating body
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{data['addDescriptive-creating-body']|d("-", true)}}
-          </dd>
-        </div> #}
+        {% endif %}
       </dl>
 
       <div class="govuk-button-group">
