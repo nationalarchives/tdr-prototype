@@ -95,6 +95,49 @@ filters.getMonthName = function (monthNumber) {
   return date.toLocaleString("en-GB", { month: "long" });
 };
 
+filters.addYearsToDate = function (ukDateStr, yearsToAdd) {
+  const [day, month, year] = ukDateStr.split("/").map(Number);
+  const dateObj = new Date(year, month - 1, day);
+  dateObj.setFullYear(dateObj.getFullYear() + parseInt(yearsToAdd));
+  return dateObj.toLocaleDateString("en-GB");
+}
+
+filters.sortBy = function(array, key) {
+  return array.sort((a, b) => {
+    return a[key].localeCompare(b[key]);
+  })
+}
+
+filters.getPath = function(id, allFiles, currentPath = "") {
+  for (const item of allFiles) {
+    const newPath = currentPath ? currentPath + '/' + item.name : item.name;
+
+    if (item.id === id) {
+      return newPath;
+    }
+
+    if (item.children && item.children.length > 0) {
+      const foundPath = filters.getPath(id, item.children, newPath);
+      if (foundPath) {
+        return foundPath;
+      }
+    }
+  }
+
+  return null;
+}
+
+filters.returnFileArray = function (dict, allFiles) {
+  const copy = Object.values(dict);
+  let i = 0;
+  for(var key in dict){
+    copy[i].id = key;
+    copy[i].path = filters.getPath(key, allFiles);
+    i++;
+  }
+  return copy;
+};
+
 for (let name in filters) {
   addFilter(name, filters[name]);
 }

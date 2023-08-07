@@ -1,6 +1,7 @@
 import { MultiSelectSearch } from "@nationalarchives/tdr-components";
 import { NestedNavigation, InputType } from "@nationalarchives/tdr-components";
 import { FolderUpload } from "./folder-upload";
+import { Disclosure } from "./disclosure";
 
 window.addEventListener("DOMContentLoaded", (event) => {
   /**
@@ -24,6 +25,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
     nestedNavigation.initialiseFormListeners(InputType.radios);
   }
 
+  /**
+   * Folder upload
+   */
   const folderUpload: HTMLElement = document.querySelector(
     "[data-tdr-module=folder-upload]"
   );
@@ -31,4 +35,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const fu: FolderUpload = new FolderUpload(folderUpload);
     fu.initialise();
   }
+
+  /**
+   * Disclosure
+   */
+    const tableRowExpanderButtons = document.querySelectorAll("[data-module=table-row-expander] button[aria-expanded][aria-controls]");
+
+    tableRowExpanderButtons.forEach((btn:HTMLButtonElement) => {
+      new Disclosure(btn);
+    })
 });
