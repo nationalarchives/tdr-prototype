@@ -39,15 +39,7 @@ View Transfers
 
 {% endblock %}
 
-{% block pageScripts %}
-  <script src="/public/javascripts/disclosure.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-      const tableRowExpanderButtons = document.querySelectorAll("[data-module=table-row-expander] button[aria-expanded][aria-controls]");
 
-      tableRowExpanderButtons.forEach((btn) => {
-        new Disclosure(btn);
-      })
-    });
-  </script>
+{% block pageScripts %}
+  {{ super() }}
 {% endblock %}
