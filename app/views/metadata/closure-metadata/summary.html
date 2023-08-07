@@ -85,7 +85,7 @@ Closure metadata
       {% endif %}
           <tr class="govuk-table__row">
             <td headers="{{currentDirectory|urlencode}}" id="{{item.id}}" class="govuk-table__header govuk-table__header--spacious"><span>{{item.id|getFilename(globals.files)}}</span></td>
-            <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious">{{item['addClosure-foi_id_selection']|join(", ")}}</td>
+            <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious">{{item['addClosure-foi_id_selection']|d(["-"])|join(", ")}}</td>
             <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious">{{item['addClosure-closure-period']}} years</td>
             <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious govuk-table__cell--last">
               <a class="govuk-link govuk-link--no-visited-state" href="/metadata/closure-metadata/edit-by-id/{{item.id}}">Edit<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span></a> <a class="govuk-link govuk-link--no-visited-state" href="/metadata/closure-metadata/delete-by-id/{{item.id}}">Delete<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span></a>
@@ -144,7 +144,7 @@ Closure metadata
                     FOI exemption code(s)
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    {{item['addClosure-foi_id_selection']|join(", ")}}
+                    {{item['addClosure-foi_id_selection']|d(["-"])|join(", ")}}
                   </dd>
                 </div>
               </dl>
