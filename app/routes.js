@@ -474,4 +474,21 @@ router.get(
   }
 );
 
+router.get(
+  "/metadata/closure-metadata/edit-by-id/:fileId",
+  function (req, res) {
+
+    req.session.data["file-selection"] = [req.params.fileId]
+    res.redirect("/metadata/closure-metadata/confirm-file-level");
+  }
+);
+
+router.get(
+  "/metadata/closure-metadata/delete-by-id/:fileId",
+  function (req, res) {
+    req.session.data["file-selection"] = [req.params.fileId]
+    res.redirect("/metadata/closure-metadata/delete-metadata");
+  }
+);
+
 module.exports = router;

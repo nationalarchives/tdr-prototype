@@ -1,6 +1,7 @@
-class Disclosure {
+export class Disclosure {
   private readonly button: HTMLElement;
   private readonly controlledNode: HTMLElement | null;
+  private readonly setRowClass: Boolean = true;
 
   constructor(button: HTMLElement) {
     this.button = button;
@@ -17,10 +18,15 @@ class Disclosure {
 
   hide: () => void = () => {
     if (this.controlledNode) this.controlledNode.setAttribute("hidden", "");
+    if(this.setRowClass)
+      this.button.closest("tr").classList.remove("is-disclosed")
+
   };
 
   show: () => void = () => {
     if (this.controlledNode) this.controlledNode.removeAttribute("hidden");
+    if(this.setRowClass)
+      this.button.closest("tr").classList.add("is-disclosed")
   };
 
   toggle: () => void = () => {

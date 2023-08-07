@@ -1,0 +1,168 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Closure metadata
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="../additional-metadata" class="govuk-back-link">Step 5: Descriptive and closure metadata</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Closure metadata</h1>
+    <p class="govuk-body govuk-!-margin-bottom-2">You can now add closure metadata to individual records. Below are all the records that you have added closure metadata to.</p>
+
+    <div class="govuk-warning-text govuk-!-margin-bottom-2">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        It is a legal requirement that you entered accurate closure metadata for all files. If you’re unsure about closure metadata contact a transfer advisor or email <a href="">tdr@nationalarchives.gov.uk</a>.
+      </strong>
+    </div>
+
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+        What closure metadata you must provide for each closed record
+      </span>
+      </summary>
+      <div class="govuk-details__text">
+        <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+          <li>FOI decision asserted, this is the date that the closure schedule was agreed by the Advisory Council and/or The National Archives.</li>
+          <li>Closure start date, this is the date of the last change to this record</li>
+          <li>Closure period</li>
+          <li>FOI exemption code</li>
+          <li>Alternative title</li>
+          <li>Alternative description</li>
+        </ul>
+      </div>
+    </details>
+
+  </div>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <a href="/metadata/closure-metadata/file-level" class="govuk-button govuk-button--secondary  govuk-!-margin-bottom-2" data-module="govuk-button">
+      Add closure metadata to a record
+    </a>
+
+    <table data-module="table-row-expander" class="govuk-table tdr-summary-table">
+      <colgroup>
+        <col />
+        <col class="col-foi-code" />
+        <col class="col-closure-period" />
+        <col class="col-actions" />
+        <col />
+      </colgroup>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Record name</th>
+          <th scope="col" class="govuk-table__header">FOI code(s)</th>
+          <th scope="col" class="govuk-table__header">Closure period</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--last">Actions</th>
+          <th id="header-metadata" scope="col" class="govuk-visually-hidden">Metadata</th>
+          <th id="header-dir" scope="col" class="govuk-visually-hidden">Directory</th>
+        </tr>
+      </thead>
+
+    {% if data['closedFiles']|length == 0 %}
+      <tr>
+        <td colspan="4" class="govuk-table__cell govuk-table__cell--no-results">There are no records with closure metadata.</td>
+      </tr>
+    {% else %}
+      {% for item in data['closedFiles']|returnFileArray(globals.files)|sortBy("path") %}
+      {% if currentDirectory != item.path|replace(item.id|getFilename(globals.files), "")  %}
+        {% set currentDirectory = item.path|replace(item.id|getFilename(globals.files), "") %}
+          <tr>
+            <td headers="header-dir" id="{{currentDirectory|urlencode}}" class="tdr-summary-table__dir-cell govuk-body govuk-!-font-size-14" colspan="4">
+              /{{currentDirectory}}
+            </td>
+          </tr>
+      {% endif %}
+          <tr class="govuk-table__row">
+            <td headers="{{currentDirectory|urlencode}}" id="{{item.id}}" class="govuk-table__header govuk-table__header--spacious"><span>{{item.id|getFilename(globals.files)}}</span></td>
+            <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious">{{item['addClosure-foi_id_selection']|join(", ")}}</td>
+            <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious">{{item['addClosure-closure-period']}} years</td>
+            <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious govuk-table__cell--last">
+              <a class="govuk-link govuk-link--no-visited-state" href="/metadata/closure-metadata/edit-by-id/{{item.id}}">Edit<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span></a> <a class="govuk-link govuk-link--no-visited-state" href="/metadata/closure-metadata/delete-by-id/{{item.id}}">Delete<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span></a>
+              <button aria-expanded="false" aria-controls="metadata-{{item.id}}" class="govuk-!-margin-left-2 tdr-button-link tdr-button-link--with-icon">
+                View metadata<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td id="metadata-{{item.id}}" class="govuk-table__cell tdr-summary-table__metadata" headers="header-metadata cupcake" colspan="4">
+              <dl class="govuk-summary-list govuk-!-margin-bottom-0">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    File path
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    <p>{{item.path}}</p>
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    FOI decision asserted
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{item['addClosure-foi-asserted-day']}}/{{item['addClosure-foi-asserted-month']}}/{{item['addClosure-foi-asserted-year']}}
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Closure start date
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                  {% set closureStartDate = item['addClosure-closure-start-day'] + "/" + item['addClosure-closure-start-month'] + "/" + item['addClosure-closure-start-year']
+                    %}
+                    {{closureStartDate}}
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Closure period
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{item['addClosure-closure-period']}} years
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Closed until
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{closureStartDate|addYearsToDate(item['addClosure-closure-period'])}}
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    FOI exemption code(s)
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{item['addClosure-foi_id_selection']|join(", ")}}
+                  </dd>
+                </div>
+              </dl>
+
+            </td>
+          </tr>
+
+      {% endfor %}
+    {% endif %}
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+{% endblock %}
+
+
+{% block pageScripts %}
+  {{ super() }}
+{% endblock %}

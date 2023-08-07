@@ -11,6 +11,56 @@
 
 /***/ }),
 
+/***/ "./app/assets/typescript/disclosure.ts":
+/*!*********************************************!*\
+  !*** ./app/assets/typescript/disclosure.ts ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Disclosure: () => (/* binding */ Disclosure)
+/* harmony export */ });
+class Disclosure {
+    constructor(button) {
+        this.setRowClass = true;
+        this.hide = () => {
+            if (this.controlledNode)
+                this.controlledNode.setAttribute("hidden", "");
+            if (this.setRowClass)
+                this.button.closest("tr").classList.remove("is-disclosed");
+        };
+        this.show = () => {
+            if (this.controlledNode)
+                this.controlledNode.removeAttribute("hidden");
+            if (this.setRowClass)
+                this.button.closest("tr").classList.add("is-disclosed");
+        };
+        this.toggle = () => {
+            if (this.button.getAttribute("aria-expanded") === "true") {
+                this.button.setAttribute("aria-expanded", "false");
+                this.hide();
+            }
+            else {
+                this.button.setAttribute("aria-expanded", "true");
+                this.show();
+            }
+        };
+        this.button = button;
+        const id = this.button.getAttribute("aria-controls");
+        if (id == undefined) {
+            return;
+        }
+        this.controlledNode = document.getElementById(id);
+        this.hide();
+        this.button.addEventListener("click", this.toggle);
+    }
+}
+
+
+/***/ }),
+
 /***/ "./app/assets/typescript/folder-upload.ts":
 /*!************************************************!*\
   !*** ./app/assets/typescript/folder-upload.ts ***!
@@ -72,7 +122,6 @@ class FolderUpload {
         this.handleSelectedItems = async (ev) => {
             ev.preventDefault();
             const form = this.itemRetriever.closest("form");
-            console.log(form.files.files, this.itemRetriever.files);
             const selectedFiles = this.convertFilesToIfilesWithPath(form.files.files);
             const parentFolder = this.getParentFolderName(selectedFiles);
             this.displaySelectionSuccessMessage(parentFolder, selectedFiles.filter((f) => isFile(f)).length);
@@ -227,6 +276,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _nationalarchives_tdr_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @nationalarchives/tdr-components */ "./node_modules/@nationalarchives/tdr-components/dist/index.js");
 /* harmony import */ var _nationalarchives_tdr_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_nationalarchives_tdr_components__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _folder_upload__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./folder-upload */ "./app/assets/typescript/folder-upload.ts");
+/* harmony import */ var _disclosure__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./disclosure */ "./app/assets/typescript/disclosure.ts");
+
 
 
 
@@ -246,6 +297,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
         const fu = new _folder_upload__WEBPACK_IMPORTED_MODULE_1__.FolderUpload(folderUpload);
         fu.initialise();
     }
+    const tableRowExpanderButtons = document.querySelectorAll("[data-module=table-row-expander] button[aria-expanded][aria-controls]");
+    tableRowExpanderButtons.forEach((btn) => {
+        new _disclosure__WEBPACK_IMPORTED_MODULE_2__.Disclosure(btn);
+    });
 });
 
 })();
