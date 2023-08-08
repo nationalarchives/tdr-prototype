@@ -87,7 +87,7 @@ Closure metadata
             <td headers="{{currentDirectory|urlencode}}" id="{{item.id}}" class="govuk-table__header govuk-table__header--spacious">
             {% if item|hasRequiredMetadata == false %}<strong class="tdr-summary-table__tag tdr-tag tdr-tag--red">Incomplete</strong><br>{% endif %}{{item.id|getFilename(globals.files)}}</td>
             <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious">{{item['addClosure-foi_id_selection']|d(["-"])|join(", ")}}</td>
-            <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious">{{item['addClosure-closure-period']}} years</td>
+            <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious">{% if item['addClosure-closure-period'] %} {{item['addClosure-closure-period']}} years{% else %}-{% endif %}</td>
             <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious govuk-table__cell--last">
               <a class="govuk-link govuk-link--no-visited-state" href="/metadata/closure-metadata/edit-by-id/{{item.id}}">Edit<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span></a> <a class="govuk-link govuk-link--no-visited-state" href="/metadata/closure-metadata/delete-by-id/{{item.id}}">Delete<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span></a>
               <button aria-expanded="false" aria-controls="metadata-{{item.id}}" class="govuk-!-margin-left-2 tdr-button-link tdr-button-link--with-icon">
