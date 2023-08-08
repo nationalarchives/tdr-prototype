@@ -2,6 +2,16 @@ const govukPrototypeKit = require("govuk-prototype-kit");
 const addFilter = govukPrototypeKit.views.addFilter;
 
 const filters = {};
+const requiredClosureFields = [
+  "addClosure-foi-asserted-day",
+  "addClosure-foi-asserted-month",
+  "addClosure-foi-asserted-year",
+  "addClosure-closure-start-day",
+  "addClosure-closure-start-month",
+  "addClosure-closure-start-year",
+  "addClosure-closure-period",
+  "addClosure-foi_id_selection",
+];
 
 function findById(data, id) {
   function iter(a) {
@@ -136,6 +146,12 @@ filters.returnFileArray = function (dict, allFiles) {
     i++;
   }
   return copy;
+};
+
+filters.hasRequiredMetadata = function (record) {
+  return requiredClosureFields.every(key => {
+    return !!record[key];
+  });
 };
 
 for (let name in filters) {

@@ -84,7 +84,8 @@ Closure metadata
           </tr>
       {% endif %}
           <tr class="govuk-table__row">
-            <td headers="{{currentDirectory|urlencode}}" id="{{item.id}}" class="govuk-table__header govuk-table__header--spacious"><span>{{item.id|getFilename(globals.files)}}</span></td>
+            <td headers="{{currentDirectory|urlencode}}" id="{{item.id}}" class="govuk-table__header govuk-table__header--spacious">
+            {% if item|hasRequiredMetadata == false %}<strong class="tdr-summary-table__tag tdr-tag tdr-tag--red">Incomplete</strong><br>{% endif %}{{item.id|getFilename(globals.files)}}</td>
             <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious">{{item['addClosure-foi_id_selection']|d(["-"])|join(", ")}}</td>
             <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious">{{item['addClosure-closure-period']}} years</td>
             <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious govuk-table__cell--last">
@@ -110,7 +111,11 @@ Closure metadata
                     FOI decision asserted
                   </dt>
                   <dd class="govuk-summary-list__value">
+                  {% if item['addClosure-foi-asserted-day'] %}
                     {{item['addClosure-foi-asserted-day']}}/{{item['addClosure-foi-asserted-month']}}/{{item['addClosure-foi-asserted-year']}}
+                  {% else %}
+                    -
+                  {% endif %}
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
@@ -118,9 +123,12 @@ Closure metadata
                     Closure start date
                   </dt>
                   <dd class="govuk-summary-list__value">
-                  {% set closureStartDate = item['addClosure-closure-start-day'] + "/" + item['addClosure-closure-start-month'] + "/" + item['addClosure-closure-start-year']
-                    %}
+                  {% set closureStartDate = item['addClosure-closure-start-day'] + "/" + item['addClosure-closure-start-month'] + "/" + item['addClosure-closure-start-year'] %}
+                  {% if item['addClosure-closure-start-day'] %}
                     {{closureStartDate}}
+                  {% else %}
+                    -
+                  {% endif %}
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
@@ -128,7 +136,11 @@ Closure metadata
                     Closure period
                   </dt>
                   <dd class="govuk-summary-list__value">
+                  {% if item['addClosure-closure-period'] %}
                     {{item['addClosure-closure-period']}} years
+                  {% else %}
+                    -
+                  {% endif %}
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
@@ -136,7 +148,11 @@ Closure metadata
                     Closed until
                   </dt>
                   <dd class="govuk-summary-list__value">
+                  {% if item['addClosure-closure-start-day']  %}
                     {{closureStartDate|addYearsToDate(item['addClosure-closure-period'])}}
+                  {% else %}
+                    -
+                  {% endif %}
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
