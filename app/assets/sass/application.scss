@@ -414,6 +414,12 @@
   border: none;
 }
 
+.tdr-summary-table__tag {
+  position: relative;
+  top: -4px;
+  font-size: 14px;
+}
+
 /*
  * Force header or cell to sit to the right
  */
