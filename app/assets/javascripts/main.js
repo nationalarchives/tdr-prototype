@@ -24,26 +24,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 class Disclosure {
     constructor(button) {
-        this.setRowClass = true;
+        this.parentRowClass = "";
         this.hide = () => {
+            this.button.setAttribute("aria-expanded", "false");
             if (this.controlledNode)
                 this.controlledNode.setAttribute("hidden", "");
-            if (this.setRowClass)
-                this.button.closest("tr").classList.remove("is-disclosed");
+            if (this.parentRowClass) {
+                this.button.closest("tr").classList.remove(this.parentRowClass);
+            }
+            document.documentElement.removeEventListener("click", this.hideOnBodyClick);
         };
         this.show = () => {
+            this.button.setAttribute("aria-expanded", "true");
             if (this.controlledNode)
                 this.controlledNode.removeAttribute("hidden");
-            if (this.setRowClass)
-                this.button.closest("tr").classList.add("is-disclosed");
+            if (this.parentRowClass) {
+                this.button.closest("tr").classList.add(this.parentRowClass);
+            }
+            document.documentElement.addEventListener("click", this.hideOnBodyClick);
+        };
+        this.hideOnBodyClick = (e) => {
+            const path = e.composedPath();
+            if (path.some(p => p == this.button || p == this.controlledNode) === false) {
+                this.hide();
+            }
         };
         this.toggle = () => {
             if (this.button.getAttribute("aria-expanded") === "true") {
-                this.button.setAttribute("aria-expanded", "false");
                 this.hide();
             }
             else {
-                this.button.setAttribute("aria-expanded", "true");
                 this.show();
             }
         };
@@ -52,6 +62,7 @@ class Disclosure {
         if (id == undefined) {
             return;
         }
+        this.parentRowClass = button.dataset['parentRowClass'];
         this.controlledNode = document.getElementById(id);
         this.hide();
         this.button.addEventListener("click", this.toggle);

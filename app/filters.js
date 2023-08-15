@@ -99,10 +99,10 @@ filters.decodeFilename = function (encodedName) {
   return decodeURI(fileName);
 };
 
-filters.getMonthName = function (monthNumber) {
+filters.getMonthName = function (monthNumber, len) {
   const date = new Date();
   date.setMonth(monthNumber - 1);
-  return date.toLocaleString("en-GB", { month: "long" });
+  return date.toLocaleString("en-GB", { month: len || "long" });
 };
 
 filters.addYearsToDate = function (ukDateStr, yearsToAdd) {
@@ -153,6 +153,13 @@ filters.hasRequiredMetadata = function (record) {
     return !!record[key];
   });
 };
+
+filters.split = function (str, by) {
+  const arr = str.toString().split(by);
+  arr.pop()
+  return arr;
+};
+
 
 for (let name in filters) {
   addFilter(name, filters[name]);

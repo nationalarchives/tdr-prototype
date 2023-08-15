@@ -1,0 +1,122 @@
+<table data-module="table-row-expander" class="govuk-table tdr-summary-table">
+  <colgroup>
+    <col />
+    <col class="col-foi-code" />
+    <col class="col-closure-period" />
+    <col class="col-actions" />
+    <col />
+  </colgroup>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Record name</th>
+      <th scope="col" class="govuk-table__header">FOI code(s)</th>
+      <th scope="col" class="govuk-table__header">Closure period</th>
+      <th scope="col" class="govuk-table__header govuk-table__header--last">Actions</th>
+      <th id="header-metadata" scope="col" class="govuk-visually-hidden">Metadata</th>
+      <th id="header-dir" scope="col" class="govuk-visually-hidden">Directory</th>
+    </tr>
+  </thead>
+
+{% if data['closedFiles']|length == 0 %}
+  <tr>
+    <td colspan="4" class="govuk-table__cell govuk-table__cell--no-results">There are no records with closure metadata.</td>
+  </tr>
+{% else %}
+  {% for item in data['closedFiles']|returnFileArray(globals.files)|sortBy("path") %}
+  {% if currentDirectory != item.path|replace(item.id|getFilename(globals.files), "")  %}
+    {% set currentDirectory = item.path|replace(item.id|getFilename(globals.files), "") %}
+      <tr>
+        <td headers="header-dir" id="{{currentDirectory|urlencode}}" class="tdr-summary-table__dir-cell govuk-body govuk-!-font-size-14" colspan="4">
+          /{{currentDirectory}}
+        </td>
+      </tr>
+  {% endif %}
+      <tr class="govuk-table__row">
+        <td headers="{{currentDirectory|urlencode}}" id="{{item.id}}" class="govuk-table__header govuk-table__header--spacious">
+        {% if item|hasRequiredMetadata == false %}<strong class="tdr-summary-table__tag tdr-tag tdr-tag--red">Incomplete</strong><br>{% endif %}{{item.id|getFilename(globals.files)}}</td>
+        <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious">{{item['addClosure-foi_id_selection']|d(["-"])|join(", ")}}</td>
+        <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious">{% if item['addClosure-closure-period'] %} {{item['addClosure-closure-period']}} years{% else %}-{% endif %}</td>
+        <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious govuk-table__cell--last">
+          <a class="govuk-link govuk-link--no-visited-state" href="/metadata/closure-metadata/edit-by-id/{{item.id}}">Edit<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span></a> <a class="govuk-link govuk-link--no-visited-state" href="/metadata/closure-metadata/delete-by-id/{{item.id}}">Delete<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span></a>
+          <button data-parent-row-class="is-disclosed" aria-expanded="false" aria-controls="metadata-{{item.id}}" class="govuk-!-margin-left-2 tdr-button-link tdr-button-link--with-icon">
+            View metadata<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td id="metadata-{{item.id}}" class="govuk-table__cell tdr-summary-table__metadata" headers="header-metadata cupcake" colspan="4">
+          <dl class="govuk-summary-list govuk-!-margin-bottom-0">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                File path
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <p>{{item.path}}</p>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                FOI decision asserted
+              </dt>
+              <dd class="govuk-summary-list__value">
+              {% if item['addClosure-foi-asserted-day'] %}
+                {{item['addClosure-foi-asserted-day']}}/{{item['addClosure-foi-asserted-month']}}/{{item['addClosure-foi-asserted-year']}}
+              {% else %}
+                -
+              {% endif %}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Closure start date
+              </dt>
+              <dd class="govuk-summary-list__value">
+              {% set closureStartDate = item['addClosure-closure-start-day'] + "/" + item['addClosure-closure-start-month'] + "/" + item['addClosure-closure-start-year'] %}
+              {% if item['addClosure-closure-start-day'] %}
+                {{closureStartDate}}
+              {% else %}
+                -
+              {% endif %}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Closure period
+              </dt>
+              <dd class="govuk-summary-list__value">
+              {% if item['addClosure-closure-period'] %}
+                {{item['addClosure-closure-period']}} years
+              {% else %}
+                -
+              {% endif %}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Closed until
+              </dt>
+              <dd class="govuk-summary-list__value">
+              {% if item['addClosure-closure-start-day']  %}
+                {{closureStartDate|addYearsToDate(item['addClosure-closure-period'])}}
+              {% else %}
+                -
+              {% endif %}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                FOI exemption code(s)
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{item['addClosure-foi_id_selection']|d(["-"])|join(", ")}}
+              </dd>
+            </div>
+          </dl>
+
+        </td>
+      </tr>
+
+  {% endfor %}
+{% endif %}
+  </tbody>
+</table>
