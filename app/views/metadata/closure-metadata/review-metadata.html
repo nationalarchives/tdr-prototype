@@ -4,15 +4,24 @@
 Closure metadata - Review changes to closure metadata
 {% endblock %}
 
-{% block content %}
+{% block beforeContent %}
+  {% if from %}
+  <a href="{{from}}" class="govuk-back-link">Back</a>
+  {% endif %}
+{% endblock %}
 
+{% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Closure metadata</span>
       <h1 class="govuk-heading-l">
-        Review saved changes
+        Review {% if from %} metadata {% else %} saved changes{% endif %}
       </h1>
+      {% if from %}
+      <p class="govuk-body">Review the closure metadata you have entered against this record.</p>
+      {% else %}
       <p class="govuk-body">Review the closure metadata changes you have made below. You may also edit and delete any metadata changes.</p>
+      {% endif %}
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
@@ -131,11 +140,13 @@ Closure metadata - Review changes to closure metadata
       </dl>
 
       <div class="govuk-button-group">
+        {% if not from %}
         <a href="/metadata/closure-metadata/summary" role="button" draggable="false" class="govuk-button"
           data-module="govuk-button">
           Continue
         </a>
-        <a href="./add-closure" role="button" draggable="false" class="govuk-button govuk-button--secondary"
+        {% endif %}
+        <a href="/metadata/closure-metadata/edit-by-id/{{data['file-selection'][0]}}" role="button" draggable="false" class="govuk-button govuk-button--secondary"
           data-module="govuk-button">
           Edit metadata
         </a>
