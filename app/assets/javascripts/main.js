@@ -33,6 +33,8 @@ class Disclosure {
                 this.button.closest("tr").classList.remove(this.parentRowClass);
             }
             document.documentElement.removeEventListener("click", this.hideOnBodyClick);
+            document.documentElement.removeEventListener("keydown", this.handleKeyEvent);
+            this.controlledNode.removeEventListener("focusout", this.hideOnFocusOut);
         };
         this.show = () => {
             this.button.setAttribute("aria-expanded", "true");
@@ -42,10 +44,23 @@ class Disclosure {
                 this.button.closest("tr").classList.add(this.parentRowClass);
             }
             document.documentElement.addEventListener("click", this.hideOnBodyClick);
+            document.documentElement.addEventListener("keydown", this.handleKeyEvent);
+            this.controlledNode.addEventListener("focusout", this.hideOnFocusOut);
         };
         this.hideOnBodyClick = (e) => {
             const path = e.composedPath();
             if (path.some(p => p == this.button || p == this.controlledNode) === false) {
+                this.hide();
+            }
+        };
+        this.hideOnFocusOut = (e) => {
+            if (this.controlledNode.contains(e.relatedTarget) === false && e.relatedTarget !== this.button) {
+                this.hide();
+            }
+        };
+        this.handleKeyEvent = (e) => {
+            if (e.code === "Escape") {
+                this.button.focus();
                 this.hide();
             }
         };

@@ -43,18 +43,18 @@
       <tr class="govuk-table__row">
         <td headers="{{currentDirectory|urlencode}}" id="{{item.id}}" class="govuk-table__header govuk-table__header--spacious">
         {% if item|hasRequiredMetadata == false %}<strong class="tdr-summary-table__tag tdr-tag tdr-tag--red">Incomplete</strong><br>{% endif %}{{item.id|getFilename(globals.files)}}</td>
-        <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious govuk-table__cell--nowrap">
+        <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--nowrap">
           {%- if item['addClosure-foi-asserted-day'] -%}
           {{item['addClosure-foi-asserted-day']}} {{item['addClosure-foi-asserted-month']|getMonthName("short")}} {{item['addClosure-foi-asserted-year']}}
           {%- else %} - {% endif -%}</td>
-        <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious govuk-table__cell--nowrap">
+        <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--nowrap">
         {%- if item['addClosure-closure-start-day'] -%}
         {{ item['addClosure-closure-start-day'] }} {{item['addClosure-closure-start-month']|getMonthName("short")}} {{item['addClosure-closure-start-year']}}
         {%- else %} - {% endif %}
         </td>
-        <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious">{{item['addClosure-foi_id_selection']|d(["-"])|join(", ")}}</td>
-        <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious">{% if item['addClosure-closure-period'] %} {{item['addClosure-closure-period']}} years{% else %}-{% endif %}</td>
-        <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--spacious govuk-table__cell--with-hidden-menu">
+        <td headers="{{item.id}}" class="govuk-table__cell">{{item['addClosure-foi_id_selection']|d(["-"])|join(", ")}}</td>
+        <td headers="{{item.id}}" class="govuk-table__cell">{% if item['addClosure-closure-period'] %} {{item['addClosure-closure-period']}} years{% else %}-{% endif %}</td>
+        <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--with-hidden-menu">
           <button aria-expanded="false" aria-controls="menu-{{item.id}}" class="govuk-!-margin-left-2 tdr-button-link tdr-button-link--with-icon">
             Actions<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span>
           </button>
