@@ -372,6 +372,10 @@
   margin-bottom: 135px;
 }
 
+.tdr-summary-table th.govuk-table__header {
+  vertical-align: bottom;
+}
+
 .tdr-summary-table td.govuk-table__header {
   font-weight: normal;
   @include govuk-responsive-padding(2, "left");
@@ -416,6 +420,7 @@
   padding: 6px 4px;
   position: absolute;
   right: 2px;
+  top: 40px;
   background: white;
   border: 1px solid lightgray;
   z-index: 1;
@@ -622,7 +627,7 @@
 
 .tdr-button-link--with-icon::after {
   content: "";
-  right: 0px;
+  right: 2px;
   top: 5px;
   position: absolute;
   @include govuk-shape-arrow($direction: down, $base: 16px);
@@ -630,7 +635,7 @@
 
 .tdr-button-link--with-icon[aria-expanded="true"]:after {
   @include govuk-shape-arrow($direction: up, $base: 16px);
-  top: 2px;
+  top: 5px;
 }
 
 .govuk-table--tdr-transfers tr td button.tdr-button-link {
