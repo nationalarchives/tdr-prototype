@@ -160,6 +160,15 @@ filters.split = function (str, by) {
   return arr;
 };
 
+filters.countInDir = function (currDir, closedFiles) {
+  return Object.entries(closedFiles).filter(([key, props]) => {
+    let path = props.path.split("/");
+    path.pop();
+    path = path.join("/").trim()
+    return path == currDir.slice(0, -1);
+  }).length;
+};
+
 
 for (let name in filters) {
   addFilter(name, filters[name]);

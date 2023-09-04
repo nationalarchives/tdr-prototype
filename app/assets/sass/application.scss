@@ -363,14 +363,13 @@
   }
 }
 
-
 .govuk-table__header.govuk-table__header--spacious, .govuk-table__cell.govuk-table__cell--spacious {
   @include govuk-responsive-padding(2, "top");
   @include govuk-responsive-padding(2, "bottom");
 }
 
 .tdr-summary-table {
-  margin-bottom: 80px;
+  margin-bottom: 135px;
 }
 
 .tdr-summary-table td.govuk-table__header {
@@ -383,6 +382,7 @@
   border-top: 2px solid  $govuk-border-colour;
   color: govuk-colour("dark-grey");
   height: 30px;
+  position: relative;
   text-align: left;
   @include govuk-responsive-padding(1, "left");
   @include govuk-responsive-padding(2, "right");
@@ -400,6 +400,13 @@
   .tdr-summary-table col.col-actions {
     width: 255px;
   }
+}
+
+.tdr-summary-table__file-count {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-weight: bold;
 }
 
 .tdr-table-actions-menu {
@@ -632,8 +639,7 @@
 }
 
 .tdr-file-breadcrumbs__list-item {
-  margin-left: 0;
-  padding-left: 0;
+  margin: 5px  0;
   display: inline-block;
   font-weight: bold;
   position: relative;
