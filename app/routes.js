@@ -217,22 +217,6 @@ router.get(
   }
 );
 
-router.get("/metadata/descriptive-metadata/clear", function (req, res) {
-  delete req.session.data["descriptiveFiles"];
-  for (let key in req.session.data) {
-    if (key.split("-")[0] === "addDescriptive") {
-      delete req.session.data[key];
-    }
-  }
-
-  res.set("Content-Type", "text/html");
-  res.send(
-    Buffer.from(
-      "<h2>deleted description session data</h2><br><br><a href='/metadata/descriptive-metadata/file-level'>Return to file selection</a>"
-    )
-  );
-});
-
 router.get(
   "/metadata/closure-metadata/confirm-delete-metadata",
   function (req, res) {
@@ -250,24 +234,6 @@ router.get(
     res.redirect("/metadata/closure-metadata/file-level");
   }
 );
-
-router.get("/metadata/closure-metadata/clear", function (req, res) {
-  delete req.session.data["file-selection"];
-  delete req.session.data["closedFiles"];
-
-  for (let key in req.session.data) {
-    if (key.split("-")[0] === "addClosure") {
-      delete req.session.data[key];
-    }
-  }
-
-  res.set("Content-Type", "text/html");
-  res.send(
-    Buffer.from(
-      "<h2>deleted closure session data</h2><br><br><a href='/metadata/closure-metadata/file-level'>Return to file selection</a>"
-    )
-  );
-});
 
 router.get(
   "/metadata/closure-metadata/confirm-add-closure",
@@ -377,102 +343,6 @@ router.get(
   }
 );
 
-/* baking-powder closure */
-router.get(
-  "/metadata/closure-metadata/baking-powder/confirm-closure-redir",
-  function (req, res) {}
-);
-
-router.get(
-  "/metadata/closure-metadata/baking-powder/confirm-closure-status",
-  function (req, res) {
-    // file[] is open/undefined && data[] is open/undefined
-    // ( intention is to continue without confirmation - needs error warning )
-    if (req.session.data["closure"]["baking-powder"] === undefined) {
-      req.session.data["error"] = "no-confirmation";
-      res.redirect(
-        "/metadata/closure-metadata/baking-powder/check-closure-status"
-      );
-    } else if (req.session.data["closure"]["baking-powder"][0] === "true") {
-      req.session.data["error"] = "";
-      res.redirect("/metadata/closure-metadata/baking-powder/add-closure");
-    } else if (req.session.data["closure"]["baking-powder"] === "delete") {
-      req.session.data["error"] = "";
-      delete req.session.data["is-the-title-sensitive"];
-      res.redirect("/metadata/closure-metadata/file-level");
-    } else {
-      res.redirect("/metadata/closure-metadata/baking-powder/huh");
-    }
-  }
-);
-
-router.get(
-  "/metadata/closure-metadata/baking-powder/add-closure-confirm/",
-  function (req, res) {
-    if (req.session.data["exemption-code-redir"] == "true") {
-      res.redirect("/metadata/closure-metadata/baking-powder/add-multiple-FOI");
-    } else if (
-      req.session.data["is-the-title-sensitive"] &&
-      req.session.data["is-the-description-sensitive"]
-    ) {
-      if (
-        req.session.data["is-the-title-sensitive"] == "yes" ||
-        req.session.data["is-the-description-sensitive"] == "yes"
-      ) {
-        req.session.data["error"] = "";
-        res.redirect(
-          "/metadata/closure-metadata/baking-powder/closure-alternative-title"
-        );
-      } else if (
-        req.session.data["is-the-title-sensitive"] == "no" &&
-        req.session.data["is-the-description-sensitive"] == "no"
-      ) {
-        req.session.data["error"] = "";
-        res.redirect("/metadata/closure-metadata/baking-powder/closure-added");
-      }
-    } else {
-      req.session.data["error"] = "no-alternative";
-      res.redirect("/metadata/closure-metadata/baking-powder/add-closure");
-    }
-  }
-);
-
-router.get(
-  "/metadata/closure-metadata/baking-powder/confirm-multiple-FOI/",
-  function (req, res) {
-    // req.session.data.foi_id_selection = JSON.parse(req.params.ids);
-    res.redirect("/metadata/closure-metadata/baking-powder/add-closure");
-  }
-);
-
-// XHR update
-router.get(
-  "/metadata/closure-metadata/baking-powder/add-multiple-FOI/update/:ids",
-  function (req, res) {
-    req.session.data.foi_id_selection = JSON.parse(req.params.ids);
-    // To store sesssion data need an arbritrary redirect
-    res.redirect("/metadata/closure-metadata/baking-powder/add-multiple-FOI");
-  }
-);
-
-router.get(
-  "/metadata/closure-metadata/baking-powder/add-multiple-FOI/clear",
-  function (req, res) {
-    req.session.data.foi_id_selection = [];
-    res.redirect("/metadata/closure-metadata/baking-powder/add-multiple-FOI");
-  }
-);
-
-router.get(
-  "/metadata/closure-metadata/baking-powder/remove-FOI/:foiId",
-  function (req, res) {
-    req.session.data.foi_id_selection =
-      req.session.data.foi_id_selection.filter(
-        (code) => code !== req.params.foiId.toString()
-      );
-    res.redirect("/metadata/closure-metadata/baking-powder/add-closure");
-  }
-);
 
 router.get(
   "/metadata/closure-metadata/view-by-id/:fileId",
