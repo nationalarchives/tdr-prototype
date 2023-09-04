@@ -11,18 +11,18 @@
 
 /***/ }),
 
-/***/ "./app/assets/typescript/disclosure.ts":
-/*!*********************************************!*\
-  !*** ./app/assets/typescript/disclosure.ts ***!
-  \*********************************************/
+/***/ "./app/assets/typescript/disclosure-menu-show-hide.ts":
+/*!************************************************************!*\
+  !*** ./app/assets/typescript/disclosure-menu-show-hide.ts ***!
+  \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Disclosure: () => (/* binding */ Disclosure)
+/* harmony export */   DisclosureMenuShowHide: () => (/* binding */ DisclosureMenuShowHide)
 /* harmony export */ });
-class Disclosure {
+class DisclosureMenuShowHide {
     constructor(button) {
         this.parentRowClass = "";
         this.hide = () => {
@@ -62,6 +62,59 @@ class Disclosure {
             if (e.code === "Escape") {
                 this.button.focus();
                 this.hide();
+            }
+        };
+        this.toggle = () => {
+            if (this.button.getAttribute("aria-expanded") === "true") {
+                this.hide();
+            }
+            else {
+                this.show();
+            }
+        };
+        this.button = button;
+        const id = this.button.getAttribute("aria-controls");
+        if (id == undefined) {
+            return;
+        }
+        this.parentRowClass = button.dataset['parentRowClass'];
+        this.controlledNode = document.getElementById(id);
+        this.hide();
+        this.button.addEventListener("click", this.toggle);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./app/assets/typescript/disclosure-row-expander.ts":
+/*!**********************************************************!*\
+  !*** ./app/assets/typescript/disclosure-row-expander.ts ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   DisclosureRowExpander: () => (/* binding */ DisclosureRowExpander)
+/* harmony export */ });
+class DisclosureRowExpander {
+    constructor(button) {
+        this.parentRowClass = "";
+        this.hide = () => {
+            this.button.setAttribute("aria-expanded", "false");
+            if (this.controlledNode)
+                this.controlledNode.setAttribute("hidden", "");
+            if (this.parentRowClass) {
+                this.button.closest("tr").classList.remove(this.parentRowClass);
+            }
+        };
+        this.show = () => {
+            this.button.setAttribute("aria-expanded", "true");
+            if (this.controlledNode)
+                this.controlledNode.removeAttribute("hidden");
+            if (this.parentRowClass) {
+                this.button.closest("tr").classList.add(this.parentRowClass);
             }
         };
         this.toggle = () => {
@@ -302,7 +355,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _nationalarchives_tdr_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @nationalarchives/tdr-components */ "./node_modules/@nationalarchives/tdr-components/dist/index.js");
 /* harmony import */ var _nationalarchives_tdr_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_nationalarchives_tdr_components__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _folder_upload__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./folder-upload */ "./app/assets/typescript/folder-upload.ts");
-/* harmony import */ var _disclosure__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./disclosure */ "./app/assets/typescript/disclosure.ts");
+/* harmony import */ var _disclosure_row_expander__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./disclosure-row-expander */ "./app/assets/typescript/disclosure-row-expander.ts");
+/* harmony import */ var _disclosure_menu_show_hide__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./disclosure-menu-show-hide */ "./app/assets/typescript/disclosure-menu-show-hide.ts");
+
 
 
 
@@ -325,7 +380,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
     }
     const tableRowExpanderButtons = document.querySelectorAll("[data-module=table-row-expander] button[aria-expanded][aria-controls]");
     tableRowExpanderButtons.forEach((btn) => {
-        new _disclosure__WEBPACK_IMPORTED_MODULE_2__.Disclosure(btn);
+        new _disclosure_row_expander__WEBPACK_IMPORTED_MODULE_2__.DisclosureRowExpander(btn);
+    });
+    const tableRowShowHideButtons = document.querySelectorAll("[data-module=table-row-menu-hide-show] button[aria-expanded][aria-controls]");
+    tableRowShowHideButtons.forEach((btn) => {
+        new _disclosure_menu_show_hide__WEBPACK_IMPORTED_MODULE_3__.DisclosureMenuShowHide(btn);
     });
 });
 

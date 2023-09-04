@@ -1,7 +1,8 @@
 import { MultiSelectSearch } from "@nationalarchives/tdr-components";
 import { NestedNavigation, InputType } from "@nationalarchives/tdr-components";
 import { FolderUpload } from "./folder-upload";
-import { Disclosure } from "./disclosure";
+import { DisclosureRowExpander } from "./disclosure-row-expander";
+import { DisclosureMenuShowHide } from "./disclosure-menu-show-hide";
 
 window.addEventListener("DOMContentLoaded", (event) => {
   /**
@@ -37,11 +38,22 @@ window.addEventListener("DOMContentLoaded", (event) => {
   }
 
   /**
-   * Disclosure
+   * Disclosure - Table row expander
+   * Button in each row shows secondary content in a row below the
+   * containing row.
    */
     const tableRowExpanderButtons = document.querySelectorAll("[data-module=table-row-expander] button[aria-expanded][aria-controls]");
 
     tableRowExpanderButtons.forEach((btn:HTMLButtonElement) => {
-      new Disclosure(btn);
+      new DisclosureRowExpander(btn);
+    })
+
+  /**
+   * Disclosure - Table menu show hide
+   * Button in each row reveals menu, e.g. Actions menu.
+   */
+    const tableRowShowHideButtons = document.querySelectorAll("[data-module=table-row-menu-hide-show] button[aria-expanded][aria-controls]");
+    tableRowShowHideButtons.forEach((btn:HTMLButtonElement) => {
+      new DisclosureMenuShowHide(btn);
     })
 });
