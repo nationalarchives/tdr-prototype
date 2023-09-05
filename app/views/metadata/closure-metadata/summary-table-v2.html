@@ -56,7 +56,7 @@
         <td headers="{{item.id}}" class="govuk-table__cell">{{item['addClosure-foi_id_selection']|d(["-"])|join(", ")}}</td>
         <td headers="{{item.id}}" class="govuk-table__cell">{% if item['addClosure-closure-period'] %} {{item['addClosure-closure-period']}} years{% else %}-{% endif %}</td>
         <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--with-hidden-menu">
-          <button aria-expanded="false" aria-controls="menu-{{item.id}}" class="govuk-!-margin-left-2 tdr-button-link tdr-button-link--with-icon">
+          <button hidden="true" aria-expanded="false" aria-controls="menu-{{item.id}}" class="govuk-!-margin-left-2 tdr-button-link tdr-button-link--with-icon">
             Actions<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span>
           </button>
           <ol id="menu-{{item.id}}" class="tdr-table-actions-menu">
