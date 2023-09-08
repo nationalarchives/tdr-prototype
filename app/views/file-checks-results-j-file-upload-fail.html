@@ -1,4 +1,5 @@
 {% extends "layouts/main.html" %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
 {% block pageTitle %}
   Results of checks - MOCK-TDR-1294 - Transfer Digital Records
@@ -9,10 +10,15 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Transfer: MOCK-TDR-1294</span>
+      <span class="govuk-caption-l">Step 4 of 5</span>
       <h1 class="govuk-heading-l">
         Results of your checks
       </h1>
+
+      {{ govukWarningText({
+        text: "You need to start a new transfer",
+        iconFallbackText: "Warning"
+      }) }}
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
@@ -20,8 +26,8 @@
             Status
           </dt>
           <dd class="govuk-summary-list__value">
-            <strong class="govuk-tag govuk-tag--blue">
-              Uploaded
+            <strong class="govuk-tag govuk-tag--red">
+              Checks failed
             </strong>
           </dd>
         </div>
@@ -46,19 +52,30 @@
             Errors found
           </dt>
           <dd class="govuk-summary-list__value">
-            0
+            10
           </dd>
         </div>
       </dl>
-      <form class="form" action="/transfer-tasks" method="post">
-        <input type="hidden" name="upload-status" value="success">
-        <div class="govuk-button-group">
-          <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      <p class="govuk-body">More information about the errors is available below. Once you have corrected the errors below <a href="/home">start a new transfer</a>.
+      <p class="govuk-body">You can return to these errors from <a href="/transfer-tasks">MOCK-TDR-1294 transfer homepage</a>.
+
+      <h2 class="govuk-heading-m">
+        File errors
+      </h2>
+      <div class="govuk-error-summary" aria-labelledby="success-error-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <div class="govuk-error-summary__body">
+          <p class="govuk-body">One or more files you uploaded have failed our checks. Please <a class="govuk-link" href="/contact">contact</a> us to resolve this issue.</p>
+          <p class="govuk-body">Possible failure causes:</p>
+          <ul>
+            <li>Password protected files</li>
+            <li>Zip files</li>
+            <li>Corrupted files</li>
+          </ul>
         </div>
-      </form>
+      </div>
 
     </div>
-
   </div>
 
 {% endblock %}

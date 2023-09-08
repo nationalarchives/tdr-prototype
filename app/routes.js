@@ -474,4 +474,17 @@ router.get(
   }
 );
 
+router.post(
+  "/user-testing/clear-data",
+  function (req, res) {
+    req.session.data = {};
+    res.redirect("/user-testing/data-cleared");
+  }
+);
+
+router.all('/*/j/:journeyid', (req, res, next) => {
+  req.session.data.journeyid = req.params.journeyid;
+  res.redirect("/"+req.params[0]+"?journey="+req.params['journeyid']);
+})
+
 module.exports = router;

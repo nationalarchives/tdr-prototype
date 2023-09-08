@@ -1,0 +1,125 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{% macro taskListItem(name, href, status, hint, linkActive) %}
+  {% set safeName = name|replace("[^A-Za-z0-9 ]","")|replace(" ", "-")|lower %}
+  <li class="govuk-task-list__item govuk-task-list__item--with-link">
+    <div class="govuk-task-list__task-name-and-hint">
+      {% if linkActive %}
+      <a href="{{href}}"
+        {% if hint or status -%}
+        aria-describedby="{% if hint %}hint-{{safeName}}{%endif%} {% if status %}status-{{safeName}}{%endif%}"
+        {%- endif %}
+        class="govuk-link govuk-task-list__link">
+        {{name}}
+      </a>
+      {% else %}
+        <div>{{name}}</div>
+      {% endif %}
+      {% if hint %}
+      <div id="hint-{{safeName}}" class="govuk-task-list__task_hint">
+        {{hint}}
+      </div>
+      {% endif %}
+    </div>
+    {% if status %}
+    <div class="govuk-task-list__status" id="status-{{safeName}}">
+      {% if status == "Complete" or status == "Cannot start yet" %}
+        {{status}}
+      {% else %}
+      <strong class="govuk-tag {% if status == "Incomplete" %}govuk-tag--blue{%elseif status == 'There is a problem'%}govuk-tag--red{%endif%}">
+        {{status}}
+      </strong>
+      {% endif %}
+    </div>
+    {% endif %}
+  </li>
+{% endmacro %}
+
+{% block pageTitle %}
+  Transfer: MOCK-TDR-1294
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./home" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Transfer: MOCK-TDR-1294
+      </h1>
+
+      {% if data['upload-status'] == 'failed' %}
+      {{ govukWarningText({
+        text: "This transfer cannot be completed because there were errors in the uploaded files. View the errors below and start a new transfer. ",
+        iconFallbackText: "Warning"
+      }) }}
+      {% endif %}
+
+      {# <p class="govuk-body govuk-!-margin-bottom-7">Complete all the tasks below. If you have any queries please contact tdr@nationalarchives.gov.uk</p> #}
+
+      <h2 class="govuk-heading-m">1. Before you upload</h2>
+      <ul class="govuk-task-list">
+        {{ taskListItem("Check file upload restrictions", "file-upload-restrictions", "", "", true) }}
+        {% set agreementStatus = 'Incomplete' if data['ta']|length < 4 else "Complete" %}
+        {{ taskListItem("Complete transfer agreement", "/transfer-agreement", agreementStatus, "", (not data['upload-status'])) }}
+      </ul>
+
+      <h2 class="govuk-heading-m">2. Upload your records</h2>
+      <ul class="govuk-task-list">
+        {% set prepareActive = false if data['ta']|length < 4 or data['upload-status'] else true %}
+        {% set prepareStatus =
+          "Complete" if data['prepare-records-complete'] == "yes"  else
+          ("Cannot start yet" if data['ta']|length < 4 else "Incomplete") %}
+        {{ taskListItem("Prepare your records", "/prepare-records", prepareStatus, "", prepareActive) }}
+
+        {% set uploadActive = false if data['ta']|length < 4 or (data['upload-status']) else true %}
+        {% set uploadStatus =
+          ("Complete" if data['upload-status'] == "success" or data['upload-status'] else
+          ("Cannot start yet" if data['ta']|length < 4 else "Incomplete")) %}
+        {{ taskListItem("Upload your records", "/upload", uploadStatus, "", uploadActive) }}
+
+        {% set uploadResultsStatus =
+          "" if data['upload-status'] == "success" else
+          ("There is a problem" if data['upload-status'] == "failed" else "Cannot start yet") %}
+        {% set uploadResultsURL =
+          "file-checks-results-j-file-upload-fail" if data['upload-status'] == "failed" else "/file-checks-results" %}
+        {{ taskListItem("Results of your upload", uploadResultsURL, uploadResultsStatus, "", (data['upload-status'])) }}
+      </ul>
+
+      <h2 class="govuk-heading-m">3. Prepare your metadata</h2>
+      <ul class="govuk-task-list">
+        {% set downloadCSVStatus =
+          "Complete" if data['download-metadata-complete'] == "yes" else
+          ("Incomplete" if data['upload-status'] == "success" else "Cannot start yet") %}
+        {{ taskListItem("Download a transfer metadata CSV template", "/metadata-download", downloadCSVStatus, "", (data['upload-status'] == "success")) }}
+        {{ taskListItem("Guidance on adding metadata", "/metadata-guidance", "", "", true) }}
+      </ul>
+
+      {% set uploadCSVStatus =
+        "Incomplete" if data['download-metadata-complete'] == "yes" else "Cannot start yet" %}
+
+
+      <h2 class="govuk-heading-m">4. Upload your metadata</h2>
+      <ul class="govuk-task-list">
+        {{ taskListItem("Upload a completed transfer metadata CSV", "/upload-csv", uploadCSVStatus, "", (data['download-metadata-complete'] == "yes")) }}
+        {{ taskListItem("Results of your CSV upload", "", "Cannot start yet") }}
+      </ul>
+
+      <h2 class="govuk-heading-m">5. Transfer</h2>
+      <ul class="govuk-task-list">
+        {% set seriesStatus = "Complete" if data['series'] else "Incomplete" %}
+        {{ taskListItem("Choose a series", "/series", seriesStatus, "", true) }}
+        {{ taskListItem("Confirm transfer", "", "Cannot start yet") }}
+      </ul>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+{% endblock %}
