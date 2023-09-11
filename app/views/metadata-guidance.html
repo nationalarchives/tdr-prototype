@@ -1,0 +1,50 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{% block pageTitle %}
+  Metadata entry guidance - MOCK-TDR-1294 - Transfer Digital Records
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./transfer-tasks" class="govuk-back-link">Consignment: MOCK-TDR-1294</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-l">Metadata entry guidance</h1>
+
+
+      <h2 class="govuk-heading-m">Columns that cannot be edited</h2>
+
+      <p class="govuk-body">If you downloaded a transfer metadata CSV template there are columns that contain generated metadata that are intrinsic to the records. These columns should therefore not be edited:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>File path</li>
+        <li>Last date modified</li>
+        <li>Checksum</li>
+      </ul>
+
+      <h2 class="govuk-heading-m">Columns that accept multiple values</h2>
+
+      <p class="govuk-body">If you downloaded a transfer metadata CSV template there are columns that contain generated metadata that are intrinsic to the records. These columns should therefore not be edited:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>FOI exemption codes</li>
+        <li>Languages</li>
+        <li>Former reference</li>
+      </ul>
+      <p class="govuk-body">To enter multiple values use a comma (,) between each value, for example to enter three FOI exemption codes:</p>
+      <p class="govuk-body"><code>23, 27(2), 33</code></p>
+
+      <h2 class="govuk-heading-m">The 'File path' column</h2>
+      <h2 class="govuk-heading-m">Closure metadata</h2>
+      <h2 class="govuk-heading-m">Closure metadata - ‘Alternative title’ field</h2>
+      <h2 class="govuk-heading-m">Closure metadata - ‘Alternative description’ field</h2>
+      <h2 class="govuk-heading-m">Date of the record and Last date modified</h2>
+      <h2 class="govuk-heading-m">Optional columns</h2>
+    </div>
+  </div>
+
+{% endblock %}
