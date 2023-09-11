@@ -1,0 +1,39 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{% block pageTitle %}
+  File upload restrictions - MOCK-TDR-1294 - Transfer Digital Records
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./transfer-tasks" class="govuk-back-link">Transfer: MOCK-TDR-1294</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Transfer: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-l">File upload restrictions</h1>
+
+
+      <h2 class="govuk-heading-m">File size restrictions</h2>
+
+      <p class="govuk-body">There is a size limit of 2GB for an individual file and we ask that you upload no more than 500,000 files per consignment.</p>
+      <p class="govuk-body">If you need to transfer larger files, contact us at <a class="govuk-link" href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>.</p>
+
+      <h2 class="govuk-heading-m">Files and folders we cannot accept</h2>
+
+      <p class="govuk-body">We cannot accept files and folders which are password protected, zipped or contain slashes (/ and \) in the name. You must remove all thumbnail images (thumbs.db) and executable files (.exe). Empty folders will not be transferred.</p>
+
+      {{ govukWarningText({
+        html: "If your folder contains files that we cannot accept, you may have to start the transfer again.",
+        iconFallbackText: "Warning"
+      }) }}
+
+
+    </div>
+  </div>
+
+{% endblock %}
