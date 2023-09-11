@@ -231,7 +231,7 @@ router.get(
       delete closedFiles[selected];
     });
 
-    res.redirect("/metadata/closure-metadata/file-level");
+    res.redirect("/metadata/closure-metadata/summary");
   }
 );
 
