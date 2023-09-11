@@ -88,10 +88,10 @@
         {{ taskListItem("Prepare your records", "/prepare-records", prepareStatus, "", prepareActive) }}
 
         {# ----- Upload your records ----- #}
-        {% set uploadActive = false if data['ta']|length < 4 or (data['upload-status']) else true %}
+        {% set uploadActive = false if data['prepare-records-complete'] != "yes" or (data['upload-status']) else true %}
         {% set uploadStatus =
           ("Complete" if data['upload-status'] == "success" or data['upload-status'] == "failed" else
-          ("Cannot start yet" if data['ta']|length < 4 else "Incomplete")) %}
+          ("Cannot start yet" if data['prepare-records-complete'] != "yes" else "Incomplete")) %}
         {{ taskListItem("Upload your records", "/upload", uploadStatus, "", uploadActive) }}
 
         {# ----- Results of your upload ----- #}
