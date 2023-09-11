@@ -59,30 +59,34 @@
 
       <h2 class="govuk-heading-m">1. Before you upload</h2>
       <ul class="govuk-task-list">
+        {# ----- Check file upload restrictions ----- #}
         {{ taskListItem("Check file upload restrictions", "file-upload-restrictions", "", "", true) }}
+        {# ----- Complete transfer agreement ----- #}
         {% set agreementStatus = 'Incomplete' if data['ta']|length < 4 else "Complete" %}
         {{ taskListItem("Complete transfer agreement", "/transfer-agreement", agreementStatus, "", (not data['upload-status'])) }}
       </ul>
 
       <h2 class="govuk-heading-m">2. Upload your records</h2>
       <ul class="govuk-task-list">
+        {# ----- Prepare your records ----- #}
         {% set prepareActive = false if data['ta']|length < 4 or data['upload-status'] else true %}
         {% set prepareStatus =
           "Complete" if data['prepare-records-complete'] == "yes"  else
           ("Cannot start yet" if data['ta']|length < 4 else "Incomplete") %}
         {{ taskListItem("Prepare your records", "/prepare-records", prepareStatus, "", prepareActive) }}
 
+        {# ----- Upload your records ----- #}
         {% set uploadActive = false if data['ta']|length < 4 or (data['upload-status']) else true %}
         {% set uploadStatus =
-          ("Complete" if data['upload-status'] == "success" or data['upload-status'] else
+          ("Complete" if data['upload-status'] == "success" or data['upload-status'] == "failed" else
           ("Cannot start yet" if data['ta']|length < 4 else "Incomplete")) %}
         {{ taskListItem("Upload your records", "/upload", uploadStatus, "", uploadActive) }}
 
+        {# ----- Results of your upload ----- #}
         {% set uploadResultsStatus =
           "" if data['upload-status'] == "success" else
           ("There is a problem" if data['upload-status'] == "failed" else "Cannot start yet") %}
-
-        {# ----- Alternative Journeys ----- #}
+        {# Alternative Journeys: #}
         {# The continuation of an alternative journey here is determined by another var that is set #}
         {# when the upload fails, i.e. not a journey id. #}
         {% set uploadResultsURL =
@@ -92,21 +96,28 @@
 
       <h2 class="govuk-heading-m">3. Prepare your metadata</h2>
       <ul class="govuk-task-list">
+        {# ----- Download a transfer metadata CSV template ----- #}
         {% set downloadCSVStatus =
           "Complete" if data['download-metadata-complete'] == "yes" else
           ("Incomplete" if data['upload-status'] == "success" else "Cannot start yet") %}
         {{ taskListItem("Download a transfer metadata CSV template", "/metadata-download", downloadCSVStatus, "", (data['upload-status'] == "success")) }}
+        {# ----- Guidance on adding metadata ----- #}
         {{ taskListItem("Guidance on adding metadata", "/metadata-guidance", "", "", true) }}
       </ul>
-
-      {% set uploadCSVStatus =
-        "Incomplete" if data['download-metadata-complete'] == "yes" else "Cannot start yet" %}
 
 
       <h2 class="govuk-heading-m">4. Upload your metadata</h2>
       <ul class="govuk-task-list">
+      {# ----- Upload a completed transfer metadata CSV ----- #}
+        {% set uploadCSVStatus =
+        "Complete" if data['csv-upload-status'] == "success" else
+        ("Incomplete" if data['download-metadata-complete'] == "yes" else "Cannot start yet") %}
         {{ taskListItem("Upload a completed transfer metadata CSV", "/upload-csv", uploadCSVStatus, "", (data['download-metadata-complete'] == "yes")) }}
-        {{ taskListItem("Results of your CSV upload", "", "Cannot start yet") }}
+
+        {# ----- Results of your CSV upload ----- #}
+        {% set csvResultsStatus =
+        "Complete" if data['csv-upload-status'] == "success" else "Cannot start yet" %}
+        {{ taskListItem("Results of your CSV upload", "", csvResultsStatus) }}
       </ul>
 
       <h2 class="govuk-heading-m">5. Transfer</h2>
