@@ -1,4 +1,5 @@
 {% extends "layouts/main.html" %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
 {% block pageTitle %}
   Results of checks - MOCK-TDR-1294 - Transfer Digital Records
@@ -14,42 +15,27 @@
         Results of your checks
       </h1>
 
-      <dl class="govuk-summary-list">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Status
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <strong class="govuk-tag govuk-tag--blue">
-              Uploaded
-            </strong>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Uploaded directory
-          </dt>
-          <dd class="govuk-summary-list__value">
-            Recipes and Ingredients
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Records uploaded
-          </dt>
-          <dd class="govuk-summary-list__value">
-            1200
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Errors found
-          </dt>
-          <dd class="govuk-summary-list__value">
-            0
-          </dd>
-        </div>
-      </dl>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {  text: "Name" },
+            value: { html: "<strong class=\"govuk-tag govuk-tag--blue\">Uploaded</strong>" }
+          },
+          {
+            key: {  text: "Uploaded directory" },
+            value: { text: "Recipes and Ingredients" }
+          },
+          {
+            key: {  text: "Records uploaded" },
+            value: { text: "1200" }
+          },
+          {
+            key: {  text: "Errors found" },
+            value: { text: "0" }
+          }
+        ]
+      }) }}
+
       <form class="form" action="/transfer-tasks" method="post">
         <input type="hidden" name="upload-status" value="success">
         <div class="govuk-button-group">
