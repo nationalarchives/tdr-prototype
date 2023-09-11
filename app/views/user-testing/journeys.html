@@ -1,0 +1,173 @@
+{% extends "layouts/no-sign-out.html" %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{% block pageTitle %}
+  Transfer Digital Records - Testing Journeys
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Testing Journeys
+      </h1>
+
+      {{ govukWarningText({
+        text: "Before starting a new journey clear the prototype data.",
+        iconFallbackText: "Warning",
+        classes: "govuk-!-margin-bottom-2"
+      }) }}
+      <form class="form" action="/user-testing/clear-data" method="post">
+        <button class="govuk-button" data-module="govuk-button">Clear data</button>
+      </form>
+
+        {{ govukSummaryList({
+          classes: "govuk-!-margin-bottom-9",
+          rows: [
+            {
+              key: {
+                text: "Design"
+              },
+              value: {
+                text: "TDR-2677: User wants to manipulate data for a large volume of files"
+              },
+              actions: {
+                items: [{
+                  href: "https://national-archives.atlassian.net/browse/TDR-2677",
+                  text: "See Jira ticket"
+                }]
+              }
+            },
+            {
+              key: {
+                text: "Journey"
+              },
+              value: {
+                text: "Happy path"
+              },
+              actions: {
+                items: [{
+                  href: "/transfer-tasks",
+                  text: "Start journey"
+                }]
+              }
+            },
+            {
+              key: {
+                text: "Description"
+              },
+              value: {
+                text: "All files and CSV are uploaded successfully."
+              }
+            }
+          ]
+        }) }}
+
+
+        {{ govukSummaryList({
+          classes: "govuk-!-margin-bottom-9",
+          rows: [
+            {
+              key: {
+                text: "Design"
+              },
+              value: {
+                text: "TDR-2677: User wants to manipulate data for a large volume of files"
+              },
+              actions: {
+                items: [{
+                  href: "https://national-archives.atlassian.net/browse/TDR-2677",
+                  text: "See Jira ticket"
+                }]
+              }
+            },
+            {
+              key: {
+                text: "Journey"
+              },
+              value: {
+                text: "File upload failed"
+              },
+              actions: {
+                items: [{
+                  href: "/transfer-tasks/j/file-upload-fail",
+                  text: "Start"
+                }]
+              }
+            },
+            {
+              key: {
+                text: "Description"
+              },
+              value: {
+                text: "Journey ends when file upload fails."
+              }
+            },
+            {
+              key: {
+                text: "Template ID"
+              },
+              value: {
+                html: "<pre class='govuk-!-margin-top-0'>-j-file-upload-fail</pre>"
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukSummaryList({
+          classes: "govuk-!-margin-bottom-9",
+          rows: [
+            {
+              key: {
+                text: "Design"
+              },
+              value: {
+                text: "TDR-2677: User wants to manipulate data for a large volume of files"
+              },
+              actions: {
+                items: [{
+                  href: "https://national-archives.atlassian.net/browse/TDR-2677",
+                  text: "See Jira ticket"
+                }]
+              }
+            },
+            {
+              key: {
+                text: "Journey"
+              },
+              value: {
+                text: "CSV upload failed"
+              },
+              actions: {
+                items: [{
+                  href: "/transfer-tasks/j/csv-upload-fail",
+                  text: "Start"
+                }]
+              }
+            },
+            {
+              key: {
+                text: "Description"
+              },
+              value: {
+                text: "Journey ends when CSV upload fails."
+              }
+            },
+            {
+              key: {
+                text: "Template ID"
+              },
+              value: {
+                html: "<pre class='govuk-!-margin-top-0'>-j-csv-upload-fail</pre>"
+              }
+            }
+          ]
+        }) }}
+
+    </div>
+  </div>
+
+{% endblock %}
