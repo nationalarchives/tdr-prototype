@@ -48,6 +48,18 @@
         Consignment: MOCK-TDR-1294
       </h1>
 
+      {% if data['transfer-status'] == 'confirmed' %}
+      <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-7">
+        <h1 class="govuk-panel__title">Transfer complete</h1>
+        <div class="govuk-panel__body govuk-!-font-size-27">
+          Your records have now been transferred to The National Archives.
+        </div>
+        <div class="govuk-panel__body govuk-!-font-size-27 govuk-!-margin-top-5">
+          Consignment reference: <span class="govuk-!-font-weight-bold">MOCK-1294-TDR</span>
+        </div>
+      </div>
+      {% endif %}
+
       {% if data['upload-status'] == 'failed' %}
       {{ govukWarningText({
         text: "This transfer cannot be completed because there were errors in the uploaded files. View the errors below and start a new transfer. ",
@@ -100,7 +112,8 @@
         {% set downloadCSVStatus =
           "Complete" if data['download-metadata-complete'] == "yes" else
           ("Incomplete" if data['upload-status'] == "success" else "Cannot start yet") %}
-        {{ taskListItem("Download a transfer metadata CSV template", "/metadata-template-download", downloadCSVStatus, "", (data['upload-status'] == "success")) }}
+        {% set isDownloadCSVActive = ( (data['upload-status'] == "success") and (data['transfer-status'] != "confirmed") ) %}
+        {{ taskListItem("Download a transfer metadata CSV template", "/metadata-template-download", downloadCSVStatus, "", isDownloadCSVActive) }}
         {# ----- Guidance on adding metadata ----- #}
         {{ taskListItem("Guidance on adding metadata", "/metadata-guidance", "", "", true) }}
       </ul>
@@ -112,19 +125,32 @@
         {% set uploadCSVStatus =
         "Complete" if data['csv-upload-status'] == "success" else
         ("Incomplete" if data['download-metadata-complete'] == "yes" else "Cannot start yet") %}
-        {{ taskListItem("Upload a completed transfer metadata CSV", "/upload-csv", uploadCSVStatus, "", (data['download-metadata-complete'] == "yes")) }}
+        {% set isUploadCSVActive = ( (data['download-metadata-complete'] == "yes") and (data['transfer-status'] != "confirmed") ) %}
+        {{ taskListItem("Upload a completed transfer metadata CSV", "/upload-csv", uploadCSVStatus, "", isUploadCSVActive) }}
 
         {# ----- Results of your CSV upload ----- #}
         {% set csvResultsStatus =
-        "Complete" if data['csv-upload-status'] == "success" else "Cannot start yet" %}
-        {{ taskListItem("Results of your CSV upload", "", csvResultsStatus) }}
+        "" if data['csv-upload-status'] == "success" else "Cannot start yet" %}
+        {{ taskListItem("Results of your CSV upload", "/upload-csv-results-from-home", csvResultsStatus, "", data['csv-upload-status'] == "success") }}
       </ul>
 
       <h2 class="govuk-heading-m">5. Transfer</h2>
       <ul class="govuk-task-list">
+        {# ----- Choose a series ----- #}
         {% set seriesStatus = "Complete" if data['series'] else "Incomplete" %}
-        {{ taskListItem("Choose a series", "/series", seriesStatus, "", true) }}
-        {{ taskListItem("Confirm transfer", "", "Cannot start yet") }}
+        {% set isChooseSeriesActive = (data['transfer-status'] != "confirmed") %}
+        {{ taskListItem("Choose a series", "/series", seriesStatus, "", isChooseSeriesActive) }}
+        {# ----- Confirm transfer ----- #}
+        {% set confirmTransferStatus =
+        "Complete" if data['transfer-status'] == "confirmed" else
+        ("Incomplete" if seriesStatus == "Complete" and data['csv-upload-status'] == "success" else "Cannot start yet") %}
+        {% set isConfirmTransferActive = (seriesStatus == "Complete" and data['csv-upload-status'] == "success") and (data['transfer-status'] != "confirmed") %}
+        {{ taskListItem("Confirm your transfer", "/confirm-transfer", confirmTransferStatus, "", isConfirmTransferActive)}}
+
+        {# ----- Confirm transfer ----- #}
+        {% set transferConfirmedStatus =
+        "" if data['transfer-status'] == "confirmed" else "Cannot start yet" %}
+        {{ taskListItem("Consigment transfer confirmation", "/transfer-confirmation", transferConfirmedStatus, "", data['transfer-status'] == "confirmed") }}
       </ul>
 
 
