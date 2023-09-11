@@ -21,6 +21,7 @@
       <p class="govuk-body">A CSV has been generated from your uploaded files. This can be used to prepare your consignment metadata for transfer. The CSV includes the following metadata columns with metadata extracted during file upload, which should not be edited:</p>
 
       <ul class="govuk-list govuk-list--bullet">
+        <li>File name</li>
         <li>File path</li>
         <li>Last date modified</li>
         <li>Checksum</li>
@@ -48,10 +49,10 @@
         classes: "govuk-!-margin-bottom-2"
       }) }}
 
-      {{ govukDetails({
+      {# {{ govukDetails({
         summaryText: "Using your own transfer metadata CSV",
         text: "??Some guidance for those users who might be generating their own CSVs from EDRMS or another bespoke process. Perhaps advising them to follow the same column header structure as the downloadable template"
-      }) }}
+      }) }} #}
 
       <button class="govuk-button govuk-!-margin-bottom-8" data-module="govuk-button">
         <span aria-hidden="true" class="tna-button-icon">
