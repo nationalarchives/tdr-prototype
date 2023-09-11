@@ -81,6 +81,10 @@
         {% set uploadResultsStatus =
           "" if data['upload-status'] == "success" else
           ("There is a problem" if data['upload-status'] == "failed" else "Cannot start yet") %}
+
+        {# ----- Alternative Journeys ----- #}
+        {# The continuation of an alternative journey here is determined by another var that is set #}
+        {# when the upload fails, i.e. not a journey id. #}
         {% set uploadResultsURL =
           "file-upload-results-j-file-upload-fail" if data['upload-status'] == "failed" else "/file-upload-results" %}
         {{ taskListItem("Results of your upload", uploadResultsURL, uploadResultsStatus, "", (data['upload-status'])) }}
