@@ -100,7 +100,7 @@
         {% set downloadCSVStatus =
           "Complete" if data['download-metadata-complete'] == "yes" else
           ("Incomplete" if data['upload-status'] == "success" else "Cannot start yet") %}
-        {{ taskListItem("Download a transfer metadata CSV template", "/metadata-download", downloadCSVStatus, "", (data['upload-status'] == "success")) }}
+        {{ taskListItem("Download a transfer metadata CSV template", "/metadata-template-download", downloadCSVStatus, "", (data['upload-status'] == "success")) }}
         {# ----- Guidance on adding metadata ----- #}
         {{ taskListItem("Guidance on adding metadata", "/metadata-guidance", "", "", true) }}
       </ul>
