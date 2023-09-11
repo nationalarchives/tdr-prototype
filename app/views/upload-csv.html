@@ -4,6 +4,10 @@
   Upload records - MOCK-TDR-1294 - Transfer Digital Records
 {% endblock %}
 
+{% block beforeContent %}
+  <a href="./transfer-tasks" class="govuk-back-link">Transfer: MOCK-TDR-1294</a>
+{% endblock %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -14,7 +18,7 @@
 
       <p class="govuk-body">The ‘Choose folder’ button below will cause your browser to open a dialog box to find and select a folder. Once selected, you will be prompted to confirm your choice.</p>
 
-      <form class="form" action="/progress-uploading" method="post" id="file-upload-form" data-consignment-id="@consignmentId">
+      <form class="form" action="/???" method="post" id="file-upload-form">
 
         <div class="drag-and-drop govuk-!-margin-bottom-6" data-tdr-module="folder-upload">
           <div class="drag-and-drop__dropzone js-drag-and-drop-zone">

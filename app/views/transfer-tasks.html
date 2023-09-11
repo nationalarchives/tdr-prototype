@@ -40,12 +40,7 @@
   Transfer: MOCK-TDR-1294
 {% endblock %}
 
-{% block beforeContent %}
-  <a href="./home" class="govuk-back-link">Back</a>
-{% endblock %}
-
 {% block content %}
-
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -87,7 +82,7 @@
           "" if data['upload-status'] == "success" else
           ("There is a problem" if data['upload-status'] == "failed" else "Cannot start yet") %}
         {% set uploadResultsURL =
-          "file-checks-results-j-file-upload-fail" if data['upload-status'] == "failed" else "/file-checks-results" %}
+          "file-upload-results-j-file-upload-fail" if data['upload-status'] == "failed" else "/file-upload-results" %}
         {{ taskListItem("Results of your upload", uploadResultsURL, uploadResultsStatus, "", (data['upload-status'])) }}
       </ul>
 
@@ -116,8 +111,25 @@
         {{ taskListItem("Choose a series", "/series", seriesStatus, "", true) }}
         {{ taskListItem("Confirm transfer", "", "Cannot start yet") }}
       </ul>
+
+
+
+      <h2 class="govuk-heading-s govuk-!-margin-top-9">Other actions</h2>
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-link" href="">Delete this transfer</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="">View all transfers</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="">Start a new transfer</a>
+        </li>
+      </ul>
     </div>
   </div>
+
+
 
 {% endblock %}
 

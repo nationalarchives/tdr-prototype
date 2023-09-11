@@ -15,11 +15,6 @@
         Results of your checks
       </h1>
 
-      {{ govukWarningText({
-        text: "You need to start a new transfer",
-        iconFallbackText: "Warning"
-      }) }}
-
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -57,8 +52,13 @@
         </div>
       </dl>
 
+      {{ govukWarningText({
+        text: "You need to start a new transfer",
+        iconFallbackText: "Warning"
+      }) }}
+
       <p class="govuk-body">More information about the errors is available below. Once you have corrected the errors below <a href="/home">start a new transfer</a>.
-      <p class="govuk-body">You can return to these errors from <a href="/transfer-tasks">MOCK-TDR-1294 transfer homepage</a>.
+      <p class="govuk-body">You can return to these error at any time from the <a href="/transfer-tasks">MOCK-TDR-1294 transfer page</a>.
 
       <h2 class="govuk-heading-m">
         File errors
