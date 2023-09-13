@@ -45,9 +45,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">
-        Consignment: MOCK-TDR-1294
+        Consignment reference:<br>MOCK-TDR-1294
       </h1>
-
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
       {% if data['transfer-status'] == 'confirmed' %}
       <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-7">
         <h1 class="govuk-panel__title">Transfer complete</h1>
@@ -67,7 +70,10 @@
       }) }}
       {% endif %}
 
-      {# <p class="govuk-body govuk-!-margin-bottom-7">Complete all the tasks below. If you have any queries please contact tdr@nationalarchives.gov.uk</p> #}
+      <p class="govuk-body">Complete the tasks below to transfer your records. If you have any queries contact <a class="govuk-link" href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a> quoting your consignment number (MOCK-TDR-1294).</p>
+      {# <p class="govuk-body">Complete the tasks below to transfer your records. </p> #}
+      {# <p class="govuk-body">If you have any queries contact <a class="govuk-link" href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a> quoting your consignment number (MOCK-TDR-1294).</p> #}
+      <p class="govuk-body govuk-!-margin-bottom-7">If you leave this page your progress will be saved. You can return at any time from the <a class="govuk-link" href="/transfers">View transfers</a> page.</p>
 
       <h2 class="govuk-heading-m">1. Before you upload</h2>
       <ul class="govuk-task-list">
@@ -168,6 +174,21 @@
         </li>
       </ul>
     </div>
+    <div class="govuk-grid-column-one-third">
+      <div class="tdr-aside">
+        <h2 id="extra-links" class="govuk-heading-s govuk-!-margin-top-3">
+          Help with your transfer
+        </h2>
+        <nav role="navigation" aria-labelledby="extra-links">
+          <ul class="govuk-list">
+            <li><a class="govuk-link" href="/faqs">FAQs</a></li>
+            <li><a class="govuk-link" href="/help">User help guide</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+</div>
   </div>
 
 
