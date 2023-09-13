@@ -12,10 +12,11 @@ Closure metadata
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-l">Closure metadata</h1>
+    <h1 class="govuk-heading-xl">Closure metadata</h1>
 
-    <p class="govuk-body govuk-!-margin-bottom-2">You can now add closure metadata to individual records. Below are all the records that you have added closure metadata to.</p>
-    <div class="govuk-warning-text govuk-!-margin-bottom-2">
+    <p class="govuk-body">You can now add closure metadata to individual records. Below are all the records that you have added closure metadata to.</p>
+
+    <div class="govuk-warning-text">
       <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
       <strong class="govuk-warning-text__text">
         <span class="govuk-warning-text__assistive">Warning</span>
@@ -23,7 +24,7 @@ Closure metadata
       </strong>
     </div>
 
-    <details class="govuk-details" data-module="govuk-details">
+    {# <details class="govuk-details" data-module="govuk-details">
       <summary class="govuk-details__summary">
         <span class="govuk-details__summary-text">
         What closure metadata you must provide for each closed record
@@ -39,16 +40,18 @@ Closure metadata
           <li>Alternative description</li>
         </ul>
       </div>
-    </details>
+    </details> #}
 
   </div>
 </div>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    <a href="file-level" class="govuk-button  govuk-!-margin-bottom-2" data-module="govuk-button">
+
+    <a href="file-level" class="govuk-button" data-module="govuk-button">
       Add closure metadata to a record
     </a>
+    {# <h2 class="govuk-heading-m">Closed records</h2> #}
 
     {% include "./summary-table-v2.html" %}
   </div>
