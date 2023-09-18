@@ -475,6 +475,18 @@ router.get(
 );
 
 router.post(
+  "/prepare-records",
+  function (req, res) {
+
+    if(req.session.data['redirect-to'] ){
+      const redirectTo = req.session.data['redirect-to'];
+      delete req.session.data['redirect-to'];
+      res.redirect(redirectTo);
+    }
+  }
+);
+
+router.post(
   "/user-testing/clear-data",
   function (req, res) {
     req.session.data = {};
