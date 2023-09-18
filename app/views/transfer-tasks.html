@@ -98,7 +98,7 @@
         {% set uploadStatus =
           ("Complete" if data['upload-status'] == "success" or data['upload-status'] == "failed" else
           ("Cannot start yet" if data['prepare-records-complete'] != "yes" else "Incomplete")) %}
-        {{ taskListItem("Upload your records", "/upload", uploadStatus, "", uploadActive) }}
+        {{ taskListItem("Upload your records", "/upload-records", uploadStatus, "", uploadActive) }}
 
         {# ----- Results of your upload ----- #}
         {% set uploadResultsStatus =
