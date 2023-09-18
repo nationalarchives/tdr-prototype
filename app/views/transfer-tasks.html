@@ -156,7 +156,7 @@
         {# ----- Confirm transfer ----- #}
         {% set transferConfirmedStatus =
         "" if data['transfer-status'] == "confirmed" else "Cannot start yet" %}
-        {{ taskListItem("Consigment transfer confirmation", "/transfer-confirmation", transferConfirmedStatus, "", data['transfer-status'] == "confirmed") }}
+        {{ taskListItem("Consignment transfer confirmation", "/transfer-confirmation", transferConfirmedStatus, "", data['transfer-status'] == "confirmed") }}
       </ul>
 
 
