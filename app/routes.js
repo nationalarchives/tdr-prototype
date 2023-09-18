@@ -475,14 +475,17 @@ router.get(
 );
 
 router.post(
-  "/prepare-records",
+  "/transfer-tasks",
   function (req, res) {
 
     if(req.session.data['redirect-to'] ){
       const redirectTo = req.session.data['redirect-to'];
       delete req.session.data['redirect-to'];
       res.redirect(redirectTo);
+    } else {
+      res.render("transfer-tasks")
     }
+
   }
 );
 
