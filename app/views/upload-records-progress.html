@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block header %}
-  <meta http-equiv="refresh" content="6; url=/progress-checks">
+  <meta http-equiv="refresh" content="6; url=/upload-records-checks">
   {{ super()}}
 {% endblock %}
 
@@ -19,21 +19,17 @@
         Uploading your records
       </h1>
 
-      <form class="form" action="/progress-checks" method="post">
-
-        <p>Do not close your browser while your records are being uploaded. This may take a few minutes.</p>
-        <div>
-          <span id="upload-status-screen-reader">
-            <span id="upload-records-progress-label" class="govuk-label progress-label">
-                Uploading your records <span id="upload-percentage" role="status" aria-live="polite">56%</span>
-            </span>
+      <p>Do not close your browser while your records are being uploaded. This may take a few minutes.</p>
+      <div>
+        <span id="upload-status-screen-reader">
+          <span id="upload-records-progress-label" class="govuk-label progress-label">
+              Uploading your records <span id="upload-percentage" role="status" aria-live="polite">56%</span>
           </span>
-          <div class="progress-bar">
-            <div aria-labelledby="upload-records-progress-label" class="progress-display" role="progressbar" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
-          </div>
+        </span>
+        <div class="progress-bar">
+          <div aria-labelledby="upload-records-progress-label" class="progress-display" role="progressbar" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
         </div>
-
-      </form>
+      </div>
 
     </div>
   </div>
