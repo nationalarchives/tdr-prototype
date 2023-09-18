@@ -108,7 +108,7 @@
         {# The continuation of an alternative journey here is determined by another var that is set #}
         {# when the upload fails, i.e. not a journey id. #}
         {% set uploadResultsURL =
-          "file-upload-results-j-file-upload-fail" if data['upload-status'] == "failed" else "/file-upload-results" %}
+          "/upload-records-checks-results-j-file-upload-fail" if data['upload-status'] == "failed" else "/upload-records-checks-results" %}
         {{ taskListItem("Results of your upload", uploadResultsURL, uploadResultsStatus, "", (data['upload-status'])) }}
       </ul>
 

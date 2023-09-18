@@ -8,7 +8,7 @@
 {% block content %}
 
 {# ----- Alternative Journeys ----- #}
-{% set journeyURL = "/file-checks-results" %}
+{% set journeyURL = "/upload-records-checks-results" %}
 {# A whitelist array of journeys this page cares about. #}
 {% if data['journeyid'] and data['journeyid'] in ['file-upload-fail'] %}
   {# Appending the primary URL with '-j-' and the journey ID set earlier. #}
