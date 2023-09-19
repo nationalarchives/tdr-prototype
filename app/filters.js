@@ -95,14 +95,6 @@ filters.getMonthName = function (monthNumber) {
   return date.toLocaleString("en-GB", { month: "long" });
 };
 
-filters.getLocalURL = function (url) {
-  if(!process.env.NODE_ENV || process.env.NODE_ENV != "production"){
-    // It's local
-    url = url.replace(/^.*\/\/[^\/]+/, '');
-  }
-  return url;
-};
-
 for (let name in filters) {
   addFilter(name, filters[name]);
 }
