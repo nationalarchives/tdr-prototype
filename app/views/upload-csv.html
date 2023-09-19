@@ -38,6 +38,8 @@
         </div>
 
         <div class="govuk-button-group">
+
+          <input type="hidden" name="csv-upload-status" value="{{"failed" if data['journeyid'] and data['journeyid'] in ['csv-upload-fail'] else "success" }}">
           <button class="govuk-button" type="submit" data-module="govuk-button" role="button">
             Start CSV upload
           </button>

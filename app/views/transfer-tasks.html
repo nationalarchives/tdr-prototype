@@ -129,15 +129,18 @@
       <ul class="govuk-task-list">
       {# ----- Upload a completed transfer metadata CSV ----- #}
         {% set uploadCSVStatus =
-        "Complete" if data['csv-upload-status'] == "success" else
+        "Complete" if data['csv-upload-status'] == "success" or data['csv-upload-status'] == "failed" else
         ("Incomplete" if data['download-metadata-complete'] == "yes" else "Cannot start yet") %}
         {% set isUploadCSVActive = ( (data['download-metadata-complete'] == "yes") and (data['transfer-status'] != "confirmed") ) %}
         {{ taskListItem("Upload a completed transfer metadata CSV", "/upload-csv", uploadCSVStatus, "", isUploadCSVActive) }}
 
         {# ----- Results of your CSV upload ----- #}
         {% set csvResultsStatus =
-        "" if data['csv-upload-status'] == "success" else "Cannot start yet" %}
-        {{ taskListItem("Results of your CSV upload", "/upload-csv-results-from-home", csvResultsStatus, "", data['csv-upload-status'] == "success") }}
+        "There is a problem" if data['csv-upload-status'] == "failed" else
+        ("" if data['csv-upload-status'] == "success" else "Cannot start yet") %}
+        {% set csvUploadResultsURL =
+          "/upload-csv-results-j-csv-upload-fail" if data['csv-upload-status'] == "failed" else "/upload-csv-results" %}
+        {{ taskListItem("Results of your CSV upload", csvUploadResultsURL, csvResultsStatus, "", (data['csv-upload-status'])) }}
       </ul>
 
       <h2 class="govuk-heading-m">5. Transfer</h2>

@@ -4,6 +4,10 @@
   CSV upload results - MOCK-TDR-1294 - Transfer Digital Records
 {% endblock %}
 
+{% block beforeContent %}
+  <a href="./transfer-tasks" class="govuk-back-link">Consignment: MOCK-TDR-1294</a>
+{% endblock %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -36,8 +40,7 @@
       }) }}
 
 
-      <form class="form" action="/transfer-tasks" method="post">
-        <input type="hidden" name="csv-upload-status" value="success">
+      <form class="form" action="/transfer-tasks" method="get">
         <div class="govuk-button-group">
           <button class="govuk-button" data-module="govuk-button">Continue</button>
         </div>
