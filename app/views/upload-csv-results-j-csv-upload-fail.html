@@ -30,7 +30,11 @@
             value: { html: "<code>transfer-metadata-23.09.11.csv</code>" }
           },
           {
-            key: {  text: "Rows found" },
+            key: {  text: "Records in this consigment" },
+            value: { text: "1200" }
+          },
+          {
+            key: {  text: "Rows found in CSV" },
             value: { text: "1198" }
           },
           {
@@ -170,7 +174,7 @@
               text: "Error"
             },
             value: {
-              html: "We found a column repeated: <code>Description</code>."
+              html: "We found multiple columns with the same name: <code>Description</code>."
             }
           },
           {
@@ -178,7 +182,7 @@
               text: "How to fix"
             },
             value: {
-              html: "Ensure each column is unique. Remove one of the <code>Description</code> columns."
+              html: "Ensure there is a only one <code>Description</code> column."
             }
           }
         ]
@@ -196,7 +200,7 @@
               text: "Error"
             },
             value: {
-              text: "The data provided for Closure Start date was not recognised and is possibly malformed."
+              text: "The data provided for Closure Start date was not recognised or is malformed."
             }
           },
           {

@@ -1,3 +1,4 @@
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
@@ -16,9 +17,16 @@
       <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
       <h1 class="govuk-heading-l">Upload a completed transfer metadata CSV</h1>
 
+      {% if data['csv-upload-status'] == "failed" %}
+      {{ govukWarningText({
+        text: "Uploading a new or amended CSV will overwrite any metadata imported from a previous CSV.",
+        iconFallbackText: "Warning"
+      }) }}
+      {% endif %}
+
       <p class="govuk-body">For more information on how to enter metadata, visit the <a href="/metadata-guidance" class="govuk-link">metadata guidance page</a>.</p>
 
-      <p class="govuk-body">The ‘Choose file' button below will cause your browser to open a dialog box to find and select a folder.</p>
+      <p class="govuk-body">The ‘Choose from a folder' button below will cause your browser to open a dialog box to find and select a folder.</p>
 
       <form class="form" action="/upload-csv-progress" method="post" id="file-upload-form">
 
