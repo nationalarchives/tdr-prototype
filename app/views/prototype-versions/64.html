@@ -82,7 +82,6 @@
         href: "https://tdr-prototype-pr-64.herokuapp.com/",
         classes: "govuk-!-margin-bottom-2"
       }) }}
-      {# <p class="govuk-body-l govuk-!-margin-top-0 govuk-!-margin-bottom-2">OR</p> #}
       <p class="govuk-body">Or <a href="#journeys">start from a journey</a> below.</p>
       {{ govukButton({
         text: "Github PR#64",
@@ -124,7 +123,7 @@
         iconFallbackText: "Warning",
         classes: "govuk-!-margin-bottom-4"
       }) }}
-      <form class="form" action="/prototype-versions/clear-data" method="post">
+      <form class="form" action="{{"https://tdr-prototype-pr-64.herokuapp.com/prototype-versions/clear-data"|getLocalURL}}" method="post">
         <button class="govuk-button govuk-!-margin-bottom-9" data-module="govuk-button">Clear data</button>
       </form>
 
@@ -137,7 +136,7 @@
             actions: {
               items: [
                 {
-                  href: "/transfer-tasks",
+                  href: ("https://tdr-prototype-pr-64.herokuapp.com/transfer-tasks"|getLocalURL),
                   text: "Start journey"
                 }
               ]
@@ -188,7 +187,7 @@
             actions: {
               items: [
                 {
-                  href: "/transfer-tasks/j/file-upload-fail",
+                  href: ("https://tdr-prototype-pr-64.herokuapp.com/transfer-tasks/j/file-upload-fail"|getLocalURL),
                   text: "Start journey"
                 }
               ]
@@ -238,7 +237,7 @@
             actions: {
               items: [
                 {
-                  href: "/transfer-tasks/j/csv-upload-fail",
+                  href: ("https://tdr-prototype-pr-64.herokuapp.com/transfer-tasks/j/csv-upload-fail"|getLocalURL),
                   text: "Start journey"
                 }
               ]
@@ -281,22 +280,4 @@
       }) }}
     </div>
   </div>
-{# actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Github PR#64",
-                  visuallyHiddenText: "name"
-                },
-                {
-                  href: "#",
-                  text: "Journeys",
-                  visuallyHiddenText: "name"
-                }
-              ]
-            } #}
-
-
-
-
 {% endblock %}
