@@ -1,0 +1,67 @@
+{% extends "layouts/no-sign-out.html" %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/tag/macro.njk" import govukTag %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+  Design versions - Transfer Digital Records
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+         All prototype versions
+      </h1>
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% from "govuk/components/table/macro.njk" import govukTable %}
+
+      {{ govukTable({
+        firstCellIsHeader: false,
+        head: [
+          {
+            text: "Version"
+          },
+          {
+            text: "Description"
+          },
+          {
+            html: "<span class=\"govuk-visually-hidden\">Action</span>",
+            classes: ""
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "65"
+            },
+            {
+              text: "Resuming an in-progress transfer"
+            },
+            {
+              html: "<a href=\"/prototype-versions/65\">Visit</a>"
+            }
+          ],
+          [
+            {
+              text: "64"
+            },
+            {
+              text: "Manipulate large volumes of metadata "
+            },
+            {
+              html: "<a href=\"/prototype-versions/64\">Visit</a>"
+            }
+          ]
+        ]
+      }) }}
+    </div>
+  </div>
+
+{% endblock %}

@@ -474,4 +474,12 @@ router.get(
   }
 );
 
+router.post(
+  "/prototype-versions/clear-data",
+  function (req, res) {
+    req.session.data = {};
+    res.redirect("/prototype-versions/data-cleared");
+  }
+);
+
 module.exports = router;

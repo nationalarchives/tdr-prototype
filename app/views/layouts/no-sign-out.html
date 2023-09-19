@@ -2,9 +2,19 @@
 For guidance on how to use layouts see:
 https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 #}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 
 {% extends "layouts/main.html" %}
 
 {% block header %}
   {% include "./inc-header-no-sign-out.html" %}
+
+  <div class="govuk-width-container app-width-container">
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Prototype"
+    },
+    html: 'You are viewing prototype #64. <a href="/prototype-versions">View other versions</a>'
+  }) }}
+  </div>
 {% endblock %}
