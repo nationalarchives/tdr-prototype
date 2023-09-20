@@ -19,8 +19,15 @@
     </div>
   </div>
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
       {% from "govuk/components/table/macro.njk" import govukTable %}
+
+      {% set currentTag %}
+        &nbsp; {{ govukTag({
+          text: "You are here",
+          classes: "govuk-tag--orange"
+        }) }}
+      {% endset %}
 
       {{ govukTable({
         firstCellIsHeader: false,
@@ -39,24 +46,24 @@
         rows: [
           [
             {
-              text: "65"
+              html: (["65", currentTag if data.prototypeVersion == "65"]|join)
             },
             {
               text: "Resuming an in-progress transfer"
             },
             {
-              html: "<a href=\"/prototype-versions/65\">Visit</a>"
+              html: "<a href=\"/prototype-versions/65\">View details</a>"
             }
           ],
           [
             {
-              text: "64"
+              html: (["64", currentTag if data.prototypeVersion == "64"]|join)
             },
             {
               text: "Manipulate large volumes of metadata "
             },
             {
-              html: "<a href=\"/prototype-versions/64\">Visit</a>"
+              html: "<a href=\"/prototype-versions/64\">View details</a>"
             }
           ]
         ]
