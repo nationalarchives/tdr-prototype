@@ -1,0 +1,53 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  CSV upload results - MOCK-TDR-1294 - Transfer Digital Records
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./transfer-tasks" class="govuk-back-link">Consignment: MOCK-TDR-1294</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-l">
+        CSV upload results
+      </h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {  text: "Status" },
+            value: { html: "<strong class=\"govuk-tag govuk-tag--blue\">Uploaded</strong>" }
+          },
+          {
+            key: {  text: "File name" },
+            value: { html: "<code>transfer-metadata-23.09.11.csv</code>" }
+          },
+          {
+            key: {  text: "Rows with matching records" },
+            value: { text: "1200" }
+          },
+          {
+            key: {  text: "Errors found" },
+            value: { text: "0" }
+          }
+        ]
+      }) }}
+
+
+      <form class="form" action="/transfer-tasks" method="get">
+        <div class="govuk-button-group">
+          <button class="govuk-button" data-module="govuk-button">Continue</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+

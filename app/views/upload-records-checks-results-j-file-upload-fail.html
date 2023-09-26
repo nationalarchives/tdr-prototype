@@ -1,0 +1,190 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% block pageTitle %}
+  Results of checks - MOCK-TDR-1294 - Transfer Digital Records
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./transfer-tasks" class="govuk-back-link">Consignment: MOCK-TDR-1294</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <span class="govuk-caption-l">Step 4 of 5</span>
+      <h1 class="govuk-heading-l">
+        Results of your checks
+      </h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Status
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <strong class="govuk-tag govuk-tag--red">
+              Checks failed
+            </strong>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Uploaded directory
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Recipes and Ingredients
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Records uploaded
+          </dt>
+          <dd class="govuk-summary-list__value">
+            1200
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Errors found
+          </dt>
+          <dd class="govuk-summary-list__value">
+            2
+          </dd>
+        </div>
+      </dl>
+
+      {# {{ govukWarningText({
+        text: "You need to start a new transfer",
+        iconFallbackText: "Warning"
+      }) }} #}
+
+      <p class="govuk-body">More information about the errors is available below. Once the errors have been resolved <a href="/home">start a new transfer</a>.</p>
+
+      <h2 class="govuk-heading-m">
+        Problems found with your records
+      </h2>
+      {# <p class="govuk-body">You can return to these error at any time from the <a href="/transfer-tasks">MOCK-TDR-1294 consignment page</a>.</p> #}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            html: "<a id=\"error-1\" href=\"#error-1\">#1</a> File is password protected"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Delete file"
+              }
+            ]
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Error"
+            },
+            value: {
+              text: "An uploaded record was found with a password."
+            }
+          },
+          {
+            key: {
+              text: "Record name"
+            },
+            value: {
+              html: "Fresh.png"
+            }
+          },
+          {
+            key: {
+              text: "Full path"
+            },
+            value: {
+              html: "<code>/Cake Basics/Rising agents/Fresh.png</code>"
+            }
+          },
+          {
+            key: {
+              text: "How to fix"
+            },
+            value: {
+              html: "<ul class=\"govuk-list govuk-list--bullet\">
+                      <li>Remove the password and start a new transfer</li>
+                      <li><a href=\"#\">Delete the file from this consigment</a> and continue with this transfer.</li>
+                    </ul>"
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            html: "<a id=\"error-2\" href=\"#error-2\">#2</a> Zip file found"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Error"
+            },
+            value: {
+              text: "A Zip file was found in your consignment."
+            }
+          },
+          {
+            key: {
+              text: "Record name"
+            },
+            value: {
+              html: "recipes.zip"
+            }
+          },
+          {
+            key: {
+              text: "Full path"
+            },
+            value: {
+              html: "<code>/recipes.zip</code>"
+            }
+          },
+          {
+            key: {
+              text: "How to fix"
+            },
+            value: {
+              html: "<ul class=\"govuk-list govuk-list--bullet\">
+                      <li>Unzip the file and start a new transfer</li>
+                      <li><a href=\"#\">Delete the file from this consigment</a> and continue with this transfer.</li>
+                    </ul>"
+            }
+          }
+        ]
+      }) }}
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <div class="tdr-aside">
+        <h2 id="extra-links" class="govuk-heading-s govuk-!-margin-top-3">
+          Related pages
+        </h2>
+        <nav role="navigation" aria-labelledby="extra-links">
+          <ul class="govuk-list">
+            <li><a class="govuk-link" href="/file-upload-restrictions">File upload restrictions</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+
+  </div>
+
+{% endblock %}

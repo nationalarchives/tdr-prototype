@@ -4,14 +4,17 @@
   Transfer agreement
 {% endblock %}
 
-{% block content %}
+{% block beforeContent %}
+  <a href="./transfer-tasks" class="govuk-back-link">Consignment: MOCK-TDR-1294</a>
+{% endblock %}
 
+{% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Step 2 of 7</span>
-      <h1 class="govuk-heading-l  govuk-!-margin-bottom-3">Transfer agreement (part 1)</h1>
-      <p class="govuk-hint">You must confirm all statements before proceeding.</p>
+      <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-l  govuk-!-margin-bottom-3">Transfer agreement</h1>
+      <p class="govuk-hint">You must confirm all statements before you can continue with this transfer.</p>
 
       <div class="govuk-warning-text">
         <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
@@ -21,8 +24,7 @@
         </strong>
       </div>
 
-      <form class="form" action="/transfer-agreement-continued" method="post">
-
+      <form class="form" action="/transfer-tasks" method="post">
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
@@ -30,42 +32,48 @@
             </legend>
             <div class="govuk-checkboxes">
               <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
-                <label class="govuk-label govuk-checkboxes__label" for="waste">
+                <input class="govuk-checkboxes__input" id="public-records" name="ta[]" type="checkbox" value="public-records" {% if "ta" in data and 'public-records' in data.ta %}checked{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="public-records">
                   Public Records
                 </label>
               </div>
               <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
-                <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+                <input class="govuk-checkboxes__input" id="crown-copyright" name="ta[]" type="checkbox" value="crown-copyright" {% if "ta" in data and 'crown-copyright' in data.ta %}checked{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="crown-copyright">
                   Crown Copyright
                 </label>
               </div>
+            </div>
+          </fieldset>
+        </div>
+
+         <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+              I confirm that the Departmental Records Officer (DRO) has signed off on the following:
+            </legend>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="appraisal-and-selection" name="ta[]" type="checkbox" value="appraisal-and-selection" {% if "ta" in data and 'appraisal-and-selection' in data.ta %}checked{% endif %}>
+              <label class="govuk-label govuk-checkboxes__label" for="appraisal-and-selection">
+                  The appraisal and selection decision
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="sensitivity-review" name="ta[]" type="checkbox" value="sensitivity-review" {% if "ta" in data and 'sensitivity-review' in data.ta %}checked{% endif %}>
+              <label class="govuk-label govuk-checkboxes__label" for="sensitivity-review">
+                  The sensitivity review
+                </label>
             </div>
 
           </fieldset>
         </div>
 
         <div class="govuk-button-group">
-          <button class="govuk-button" data-module="govuk-button">Agree and continue</button>
-          <a class="govuk-link govuk-link--no-visited-state" href="/home">Cancel</a>
+          <button class="govuk-button" data-module="govuk-button">Save and continue</button>
         </div>
 
       </form>
 
     </div>
-    <div class="govuk-grid-column-one-third">
-      <details class="govuk-details" data-module="govuk-details">
-        <summary class="govuk-details__summary">
-          <span class="govuk-details__summary-text">
-            Consignment reference
-          </span>
-        </summary>
-        <div class="govuk-details__text">
-          MOCK-123-TDR
-        </div>
-      </details>
-    </div>
-  </div>
 
 {% endblock %}

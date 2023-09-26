@@ -1,7 +1,11 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Series
+  Consignment: MOCK-TDR-1294 - Choose a series
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./transfer-tasks" class="govuk-back-link">Consignment: MOCK-TDR-1294</a>
 {% endblock %}
 
 {% block content %}
@@ -9,41 +13,28 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/transfer-agreement" method="post">
-
+      <form class="form" action="/transfer-tasks" method="post">
         <div class="govuk-form-group">
-          <span class="govuk-caption-l">Step 1 of 7</span>
+          <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
           <h1 class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--l" for="choose-series">Choose a series reference</label>
           </h1>
           <p class="govuk-body">
             If you cannot see the correct series reference for the records, you need a new one adding, or you’re transferring records on behalf of another transferring body, contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>.
           </p>
-          <select class="govuk-select" id="choose-series" name="sort">
+          <select class="govuk-select" id="choose-series" name="series">
             <option>Please choose...</option>
-            <option value="test123">TEST123</option>
+            <option {% if data['series'] == "test123" %}selected{% endif %} value="test123">TEST123</option>
           </select>
         </div>
 
         <div class="govuk-button-group">
-          <button class="govuk-button" data-module="govuk-button">Continue</button>
-          <a class="govuk-link govuk-link--no-visited-state" href="/home">Cancel</a>
+          <button class="govuk-button" data-module="govuk-button">Save and continue</button>
+          <button class="govuk-button" data-module="govuk-button" name="redirect-to" value="/confirm-transfer">Save and confirm transfer</button>
         </div>
 
       </form>
 
-    </div>
-    <div class="govuk-grid-column-one-third">
-      <details class="govuk-details" data-module="govuk-details">
-        <summary class="govuk-details__summary">
-          <span class="govuk-details__summary-text">
-            Consignment reference
-          </span>
-        </summary>
-        <div class="govuk-details__text">
-          MOCK-123-TDR
-        </div>
-      </details>
     </div>
   </div>
 

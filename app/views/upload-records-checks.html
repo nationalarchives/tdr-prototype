@@ -1,20 +1,31 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Checking records
+  Checking records - MOCK-TDR-1294 - Transfer Digital Records
+
 {% endblock %}
 
 {% block content %}
 
+{# ----- Alternative Journeys ----- #}
+{% set journeyURL = "/upload-records-checks-results" %}
+{# A whitelist array of journeys this page cares about. #}
+{% if data['journeyid'] and data['journeyid'] in ['file-upload-fail'] %}
+  {# Appending the primary URL with '-j-' and the journey ID set earlier. #}
+  {% set journeyURL = journeyURL+"-j-"+data['journeyid'] %}
+{% endif %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Step 4 of 7</span>
+      <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
       <h1 class="govuk-heading-l">
         Checking your records
       </h1>
 
-      <form class="form" action="/file-checks-results" method="post">
+      <form class="form" action="{{journeyURL}}" method="post">
+
+        <input type="hidden" name="upload-status" value="{{"failed" if data['journeyid'] == "file-upload-fail" else "success"}}">
 
         <p class="govuk-body">Please wait while your records are being checked. This may take a few minutes. </p>
         <p class="govuk-body">The following checks are now being performed:</p>
@@ -48,18 +59,6 @@
 
       </form>
 
-    </div>
-    <div class="govuk-grid-column-one-third">
-      <details class="govuk-details" data-module="govuk-details">
-        <summary class="govuk-details__summary">
-          <span class="govuk-details__summary-text">
-            Consignment reference
-          </span>
-        </summary>
-        <div class="govuk-details__text">
-          MOCK-123-TDR
-        </div>
-      </details>
     </div>
   </div>
 

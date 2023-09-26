@@ -476,7 +476,26 @@ router.get(
 );
 
 router.post(
-  "/prototype-versions/clear-data",
+  "/transfer-tasks",
+  function (req, res) {
+
+    if(req.session.data['redirect-to'] ){
+      const redirectTo = req.session.data['redirect-to'];
+      delete req.session.data['redirect-to'];
+      res.redirect(redirectTo);
+    } else {
+      res.render("transfer-tasks")
+    }
+
+  }
+);
+
+router.all('/*/j/:journeyid', (req, res, next) => {
+  req.session.data.journeyid = req.params.journeyid;
+  res.redirect("/"+req.params[0]+"?journey="+req.params['journeyid']);
+})
+
+router.post("/prototype-versions/clear-data",
   function (req, res) {
     req.session.data = {};
     res.redirect("/prototype-versions/data-cleared");

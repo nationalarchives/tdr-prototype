@@ -1,0 +1,100 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+
+{% block pageTitle %}
+  Download a metadata transfer CSV template - MOCK-TDR-1294 - Transfer Digital Records
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./transfer-tasks" class="govuk-back-link">Consignment: MOCK-TDR-1294</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-l">Download a transfer metadata CSV template</h1>
+
+      <p class="govuk-body">A CSV has been generated from your uploaded files. This can be used to prepare your consignment metadata for transfer. The CSV includes the following columns populated with metadata extracted during upload, which <strong>should not be edited</strong>:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>File name</li>
+        <li>File path</li>
+        <li>Last date modified</li>
+        <li>Checksum</li>
+      </ul>
+
+      <p class="govuk-body">It also includes the following empty columns for additional metadata:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>FOI decision asserted date</li>
+        <li>Closure start date</li>
+        <li>FOI exemption codes</li>
+        <li>Closure period</li>
+        <li>Alternative title</li>
+        <li>Alternative description</li>
+        <li>Description</li>
+        <li>Date of the record</li>
+        <li>Language</li>
+        <li>Translated title of the record</li>
+        <li>Former reference</li>
+      </ul>
+
+      {{ govukWarningText({
+        html: "If you need to provide metadata that does not fit into these columns contact a transfer advisor or email <a href=\"mailto:tdr@nationalarchives.gov.uk\">tdr@nationalarchives.gov.uk</a>.",
+        iconFallbackText: "Warning",
+        classes: "govuk-!-margin-bottom-2"
+      }) }}
+
+      {# {{ govukDetails({
+        summaryText: "Using your own transfer metadata CSV",
+        text: "??Some guidance for those users who might be generating their own CSVs from EDRMS or another bespoke process. Perhaps advising them to follow the same column header structure as the downloadable template"
+      }) }} #}
+
+      <button class="govuk-button govuk-!-margin-bottom-8" data-module="govuk-button">
+        <span aria-hidden="true" class="tna-button-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 17">
+            <path fill="#fff" d="m8 12.5-5-5 1.4-1.45L7 8.65V.5h2v8.15l2.6-2.6L13 7.5l-5 5Zm-6 4c-.55 0-1.021-.196-1.413-.588A1.922 1.922 0 0 1 0 14.5v-3h2v3h12v-3h2v3c0 .55-.196 1.021-.588 1.413A1.922 1.922 0 0 1 14 16.5H2Z"/>
+          </svg>
+        </span>Download metadata CSV template
+      </button>
+
+      <form action="/transfer-tasks" method="post">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="section-complete-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+              <h2 class="govuk-fieldset__heading">
+                Have you completed this section?
+              </h2>
+            </legend>
+            <div id="section-complete-hint" class="govuk-hint">
+              Once marked as complete you can still return to, and edit, this section.
+            </div>
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="download-metadata-section-complete-y" name="download-metadata-complete" type="radio" value="yes" {% if data['download-metadata-complete'] == "yes" %}checked{%endif%}>
+                <label class="govuk-label govuk-radios__label" for="download-metadata-section-complete-y">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="download-metadata-section-complete-n" name="download-metadata-complete" type="radio" value="no" {% if data['download-metadata-complete'] == "no" %}checked{%endif%}>
+                <label class="govuk-label govuk-radios__label" for="download-metadata-section-complete-n">
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="govuk-button-group">
+          <button class="govuk-button" data-module="govuk-button">Save and continue</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
