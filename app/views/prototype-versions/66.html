@@ -1,0 +1,180 @@
+{% extends "layouts/no-sign-out.html" %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/tag/macro.njk" import govukTag %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+  Transfer Digital Records - User testing
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="/prototype-versions" class="govuk-back-link">All prototype versions</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+         Version #66 - Resuming an in-progress transfer
+      </h1>
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Version"
+            },
+            value: {
+              text: "#66 - Resuming an in-progress transfer"
+            }
+          },
+          {
+            key: {
+              text: "Date created"
+            },
+            value: {
+              text: "25th Sep 2023 - Ongoing"
+            }
+          },
+          {
+            key: {
+              text: "Jira"
+            },
+            value: {
+              html: "<a href=\"https://national-archives.atlassian.net/browse/TDR-3301\">TDR-3301</a>"
+            }
+          },
+          {
+            key: {
+              text: "User research"
+            },
+            value: {
+              html: "??"
+            }
+          },
+          {
+            key: {
+              text: "Design History"
+            },
+            value: {
+              html: "<a href=\"https://national-archives.atlassian.net/wiki/spaces/DA/pages/102465542/Sprint+90+-+Resuming+an+in-progress+transfer\">Opens in confluence</a>"
+            }
+          }
+        ]
+      }) }}
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <p>
+      {{ govukTag({
+        text: "In progress",
+        classes: "govuk-tag--blue"
+      }) }}
+      </p>
+
+      {{ govukButton({
+        text: "Visit prototype #64",
+        href: "https://tdr-prototype-pr-66.herokuapp.com/",
+        classes: "govuk-!-margin-bottom-2"
+      }) }}
+      <p class="govuk-body">Or <a href="#journeys">start from a journey</a> below.</p>
+      {{ govukButton({
+        text: "Github PR#66",
+        href: "https://github.com/nationalarchives/tdr-prototype/pull/66",
+        classes: "govuk-button--secondary"
+      }) }}
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-m">
+        Motivations and context
+      </h2>
+      <p class="govuk-body">Continuing from <a href="./65.html">version 65</a>. Working on descriptive metadata using the same model. Also, incorporating insights from user testing on version 65.</p>
+
+      <h2 class="govuk-heading-m">
+        Design changes
+      </h2>
+      <p class="govuk-body">
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Journey modified for Descriptive Metadata to include summary list model.</li>
+        </ul>
+      </p>
+
+      <h2 id="journeys" class="govuk-heading-m">
+        Journeys
+      </h2>
+
+      <p class="govuk-body">Using the 'Start journey' links below will set some variables behind the scenes that determine a different user journey.</p>
+
+      {{ govukWarningText({
+        text: "Before starting a new journey clear the prototype data.",
+        iconFallbackText: "Warning",
+        classes: "govuk-!-margin-bottom-4"
+      }) }}
+      <form class="form" action="{{"https://tdr-prototype-pr-66.herokuapp.com/prototype-versions/clear-data" if not GOVUKPrototypeKit.isDevelopment else "/prototype-versions/clear-data"}}" method="post">
+        <button class="govuk-button govuk-!-margin-bottom-9" data-module="govuk-button">Clear data</button>
+      </form>
+
+      {{ govukSummaryList({
+          card: {
+            title: {
+              text: "Journey 01: Happy path"
+            },
+            actions: {
+              items: [
+                {
+                  href: ("https://tdr-prototype-pr-66.herokuapp.com/metadata/additional-metadata" if not GOVUKPrototypeKit.isDevelopment else "/metadata/additional-metadata"),
+                  text: "Start journey"
+                }
+              ]
+            }
+          },
+          rows: [
+            {
+              key: {
+                text: "Description"
+              },
+              value: {
+                text: "Starts from Descriptive & closure metadata page. Both closure and descriptive metadata journeys now present."
+              }
+            },
+            {
+              key: {
+                text: "Date created"
+              },
+              value: {
+                text: "26th September 2023 - ??"
+              }
+            },
+            {
+              key: {
+                text: "Status"
+              },
+              value: {
+                html: "<strong class=\"govuk-tag govuk-tag--green\">Untested</strong>"
+              }
+            },
+            {
+              key: {
+                text: "Date Tested"
+              },
+              value: {
+                html: "11 - 22 September 2023"
+              }
+            }
+          ]
+      }) }}
+
+
+    </div>
+  </div>
+{% endblock %}

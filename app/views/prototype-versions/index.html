@@ -39,6 +39,12 @@
             text: "Description"
           },
           {
+            text: "Date started"
+          },
+          {
+            text: "Date completed"
+          },
+          {
             html: "<span class=\"govuk-visually-hidden\">Action</span>",
             classes: ""
           }
@@ -46,10 +52,33 @@
         rows: [
           [
             {
+              html: (["66", currentTag if data.prototypeVersion == "66"]|join)
+            },
+            {
+              text: "Resuming an in-progress transfer (part 2)"
+            },
+            {
+              text: "25th Sept"
+            },
+            {
+              text: "Ongoing"
+            },
+            {
+              html: "<a href=\"/prototype-versions/66\">View details</a>"
+            }
+          ],
+          [
+            {
               html: (["65", currentTag if data.prototypeVersion == "65"]|join)
             },
             {
               text: "Resuming an in-progress transfer"
+            },
+            {
+              text: "1st Sep 2023"
+            },
+            {
+              text: "25th Sep 2023"
             },
             {
               html: "<a href=\"/prototype-versions/65\">View details</a>"
@@ -61,6 +90,12 @@
             },
             {
               text: "Manipulate large volumes of metadata "
+            },
+            {
+              text: "1st Sep 2023"
+            },
+            {
+              text: "Ongoing"
             },
             {
               html: "<a href=\"/prototype-versions/64\">View details</a>"
