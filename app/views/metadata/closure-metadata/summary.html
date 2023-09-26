@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-Closure metadata
+Closed records
 {% endblock %}
 
 {% block beforeContent %}
@@ -12,53 +12,66 @@ Closure metadata
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">Closure metadata</h1>
+    <h1 class="govuk-heading-xl">Closed records</h1>
 
-    <p class="govuk-body">You can now add closure metadata to individual records. Below are all the records that you have added closure metadata to.</p>
+    <p class="govuk-body">If there are closed records in your consignment add closure metadata to them here. Closure must have been agreed by the Advisory Council and/or The National Archives.</p>
 
     <div class="govuk-warning-text">
       <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
       <strong class="govuk-warning-text__text">
         <span class="govuk-warning-text__assistive">Warning</span>
-        It is a legal requirement that you entered accurate closure metadata for all files. If you’re unsure about closure metadata contact a transfer advisor or email <a href="">tdr@nationalarchives.gov.uk</a>.
+        It is a legal requirement that you enter accurate closure metadata for all files. If you’re unsure about closure metadata contact a transfer advisor or email <a href="">tdr@nationalarchives.gov.uk</a>.
       </strong>
     </div>
 
-    {# <details class="govuk-details" data-module="govuk-details">
+    <details class="govuk-details govuk-!-margin-bottom-3" data-module="govuk-details">
       <summary class="govuk-details__summary">
         <span class="govuk-details__summary-text">
-        What closure metadata you must provide for each closed record
+        What closure metadata you must provide for a closed record
       </span>
       </summary>
       <div class="govuk-details__text">
         <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
-          <li>FOI decision asserted, this is the date that the closure schedule was agreed by the Advisory Council and/or The National Archives.</li>
-          <li>Closure start date, this is the date of the last change to this record</li>
-          <li>Closure period</li>
-          <li>FOI exemption code</li>
-          <li>Alternative title</li>
-          <li>Alternative description</li>
+          <li><strong>FOI decision asserted</strong> - this is the date that the closure schedule was agreed by the Advisory Council and/or The National Archives.</li>
+          <li><strong>Closure start date</strong> - this is the date of the last change to this record</li>
+          <li><strong>Closure period</strong></li>
+          <li><strong>FOI exemption code(s)</strong></li>
         </ul>
       </div>
-    </details> #}
+    </details>
+
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+        What closure metadata you can optionally provide for a closed record
+      </span>
+      </summary>
+      <div class="govuk-details__text">
+        <p>If the original title or description contains sensistive information you can provide alternatives, which will be visible to the public during the closure period:</p>
+        <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+          <li><strong>Alternative title</strong></li>
+          <li><strong>Alternative description</strong></li>
+        </ul>
+      </div>
+    </details>
 
   </div>
 </div>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
+    <h2 class="govuk-heading-m">Records with closure metadata</h2>
 
-    <a href="file-level" class="govuk-button" data-module="govuk-button">
+    <p class="govuk-body">Here are the records that you have added closure metadata to.</p>
+
+    <a href="/metadata/closure-metadata/file-level" class="govuk-button" data-module="govuk-button">
       Add closure metadata to a record
     </a>
-    {# <h2 class="govuk-heading-m">Closed records</h2> #}
 
     {% include "./summary-table-v2.html" %}
   </div>
 </div>
-
 {% endblock %}
-
 
 {% block pageScripts %}
   {{ super() }}
