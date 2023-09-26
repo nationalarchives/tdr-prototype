@@ -1,0 +1,284 @@
+{% extends "layouts/no-sign-out.html" %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/tag/macro.njk" import govukTag %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+  Transfer Digital Records - User testing
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="/prototype-versions" class="govuk-back-link">All prototype versions</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+         Version #64 - Manipulate large volumes of metadata
+      </h1>
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Version"
+            },
+            value: {
+              text: "#64 - Manipulate large volumes of metadata"
+            }
+          },
+          {
+            key: {
+              text: "Date created"
+            },
+            value: {
+              text: "1st Sep 2023 - Ongoing"
+            }
+          },
+          {
+            key: {
+              text: "Jira"
+            },
+            value: {
+              html: "<a href=\"https://national-archives.atlassian.net/browse/TDR-2677\">TDR-2677</a>"
+            }
+          },
+          {
+            key: {
+              text: "User research"
+            },
+            value: {
+              html: "<a href=\"https://national-archives.atlassian.net/wiki/spaces/DA/pages/114819073/Metadata+-+usability+testing+-+sprint+94+Sept+2023\">Opens in confluence</a>"
+            }
+          },
+          {
+            key: {
+              text: "Design History"
+            },
+            value: {
+              html: "<a href=\"https://national-archives.atlassian.net/wiki/spaces/DA/pages/136675329/Sprint+93+-+User+wants+to+manipulate+metadata+for+a+large+volume+of+files\">Opens in confluence</a>"
+            }
+          }
+        ]
+      }) }}
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <p>
+      {{ govukTag({
+        text: "In progress",
+        classes: "govuk-tag--blue"
+      }) }}
+      </p>
+
+      {{ govukButton({
+        text: "Visit prototype #64",
+        href: "https://tdr-prototype-pr-64.herokuapp.com/",
+        classes: "govuk-!-margin-bottom-2"
+      }) }}
+      <p class="govuk-body">Or <a href="#journeys">start from a journey</a> below.</p>
+      {{ govukButton({
+        text: "Github PR#64",
+        href: "https://github.com/nationalarchives/tdr-prototype/pull/64",
+        classes: "govuk-button--secondary"
+      }) }}
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-m">
+        Motivations and context
+      </h2>
+      <p class="govuk-body">Post public beta the focus for TDR is working toward allowing large volumes of metadata to be added. Currently, this is a difficult task when entering files one by one in the UI. Some of this work has been informed or motivated by the <a href="https://national-archives.atlassian.net/wiki/spaces/DA/pages/86933537">workshop in June 2023</a>. There is also a co-design workshop being held to validate some of the early designs.</p>
+
+      <h2 class="govuk-heading-m">
+        Design changes
+      </h2>
+      <p class="govuk-body">
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Changing the conceptual model for TDR journey from linear to 'hub and spoke'</li>
+          <li>Using the GDS task list pattern (soon to be a component)</li>
+          <li>Adding the user journeys for uploading CSV</li>
+          <li>Gradually adding the failure/error paths for CSV upload.</li>
+          <li>Various other updates to the design according to the needs of the new model</li>
+        </ul>
+      </p>
+
+      <h2 id="journeys" class="govuk-heading-m">
+        Journeys
+      </h2>
+
+      <p class="govuk-body">Using the 'Start journey' links below will set some variables behind the scenes that determine a different user journey.</p>
+
+      {{ govukWarningText({
+        text: "Before starting a new journey clear the prototype data.",
+        iconFallbackText: "Warning",
+        classes: "govuk-!-margin-bottom-4"
+      }) }}
+      <form class="form" action="{{"https://tdr-prototype-pr-64.herokuapp.com/prototype-versions/clear-data" if not GOVUKPrototypeKit.isDevelopment else "/prototype-versions/clear-data"}}" method="post">
+        <button class="govuk-button govuk-!-margin-bottom-9" data-module="govuk-button">Clear data</button>
+      </form>
+
+
+      {{ govukSummaryList({
+          card: {
+            title: {
+              text: "Journey 01: Happy path"
+            },
+            actions: {
+              items: [
+                {
+                  href: ("https://tdr-prototype-pr-64.herokuapp.com/transfer-tasks" if not GOVUKPrototypeKit.isDevelopment else "/transfer-tasks"),
+                  text: "Start journey"
+                }
+              ]
+            }
+          },
+          rows: [
+            {
+              key: {
+                text: "Description"
+              },
+              value: {
+                text: "All files and CSV are uploaded successfully."
+              }
+            },
+            {
+              key: {
+                text: "Date created"
+              },
+              value: {
+                text: "September 2023"
+              }
+            },
+            {
+              key: {
+                text: "Status"
+              },
+              value: {
+                html: "<strong class=\"govuk-tag govuk-tag--green\">Tested</strong>"
+              }
+            },
+            {
+              key: {
+                text: "Date Tested"
+              },
+              value: {
+                html: "11 - 22 September 2023"
+              }
+            }
+          ]
+      }) }}
+
+
+      {{ govukSummaryList({
+           card: {
+            title: {
+              text: "Journey 02: File upload failed"
+            },
+            actions: {
+              items: [
+                {
+                  href: ("https://tdr-prototype-pr-64.herokuapp.com/transfer-tasks/j/file-upload-fail" if not GOVUKPrototypeKit.isDevelopment else "/transfer-tasks/j/file-upload-fail"),
+                  text: "Start journey"
+                }
+              ]
+            }
+          },
+          rows: [
+            {
+              key: {
+                text: "Description"
+              },
+              value: {
+                text: "File upload fails and user is presented with various errors to resolve. They are prompted to start a new transfer."
+              }
+            },
+            {
+              key: {
+                text: "Date created"
+              },
+              value: {
+                text: "September 2023"
+              }
+            },
+            {
+              key: {
+                text: "Status"
+              },
+              value: {
+                html: "<strong class=\"govuk-tag\">Untested</strong>"
+              }
+            },
+            {
+              key: {
+                text: "Template ID"
+              },
+              value: {
+                html: "<pre class='govuk-!-margin-top-0'>-j-file-upload-fail</pre>"
+              }
+            }
+          ]
+      }) }}
+
+      {{ govukSummaryList({
+           card: {
+            title: {
+              text: "Journey 03: CSV upload failed"
+            },
+            actions: {
+              items: [
+                {
+                  href: ("https://tdr-prototype-pr-64.herokuapp.com/transfer-tasks/j/csv-upload-fail" if not GOVUKPrototypeKit.isDevelopment else "/transfer-tasks/j/csv-upload-fail"),
+                  text: "Start journey"
+                }
+              ]
+            }
+          },
+          rows: [
+            {
+              key: {
+                text: "Description"
+              },
+              value: {
+                text: "CSV upload fails and user is presented with various errors to correct. They are prompted to upload a new CSV."
+              }
+            },
+            {
+              key: {
+                text: "Date created"
+              },
+              value: {
+                text: "September 2023"
+              }
+            },
+            {
+              key: {
+                text: "Status"
+              },
+              value: {
+                html: "<strong class=\"govuk-tag\">Untested</strong>"
+              }
+            },
+            {
+              key: {
+                text: "Template ID"
+              },
+              value: {
+                html: "<pre class='govuk-!-margin-top-0'>-j-csv-upload-fail</pre>"
+              }
+            }
+          ]
+      }) }}
+    </div>
+  </div>
+{% endblock %}

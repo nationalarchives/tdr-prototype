@@ -1,0 +1,109 @@
+{% extends "layouts/no-sign-out.html" %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/tag/macro.njk" import govukTag %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+  Design versions - Transfer Digital Records
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+         All prototype versions
+      </h1>
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {% from "govuk/components/table/macro.njk" import govukTable %}
+
+      {% set currentTag %}
+        &nbsp; {{ govukTag({
+          text: "You are here",
+          classes: "govuk-tag--orange"
+        }) }}
+      {% endset %}
+
+      {{ govukTable({
+        firstCellIsHeader: false,
+        head: [
+          {
+            text: "Version"
+          },
+          {
+            text: "Description"
+          },
+          {
+            text: "Date started"
+          },
+          {
+            text: "Date completed"
+          },
+          {
+            html: "<span class=\"govuk-visually-hidden\">Action</span>",
+            classes: ""
+          }
+        ],
+        rows: [
+          [
+            {
+              html: (["66", currentTag if data.prototypeVersion == "66"]|join)
+            },
+            {
+              text: "Resuming an in-progress transfer (part 2)"
+            },
+            {
+              text: "25th Sept"
+            },
+            {
+              text: "Ongoing"
+            },
+            {
+              html: "<a href=\"/prototype-versions/66\">View details</a>"
+            }
+          ],
+          [
+            {
+              html: (["65", currentTag if data.prototypeVersion == "65"]|join)
+            },
+            {
+              text: "Resuming an in-progress transfer"
+            },
+            {
+              text: "1st Sep 2023"
+            },
+            {
+              text: "25th Sep 2023"
+            },
+            {
+              html: "<a href=\"/prototype-versions/65\">View details</a>"
+            }
+          ],
+          [
+            {
+              html: (["64", currentTag if data.prototypeVersion == "64"]|join)
+            },
+            {
+              text: "Manipulate large volumes of metadata "
+            },
+            {
+              text: "1st Sep 2023"
+            },
+            {
+              text: "Ongoing"
+            },
+            {
+              html: "<a href=\"/prototype-versions/64\">View details</a>"
+            }
+          ]
+        ]
+      }) }}
+    </div>
+  </div>
+
+{% endblock %}

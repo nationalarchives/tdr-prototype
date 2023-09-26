@@ -6,6 +6,7 @@ const govukPrototypeKit = require("govuk-prototype-kit");
 const router = govukPrototypeKit.requests.setupRouter();
 
 require("./routes-history")
+const tdrSettings = require("./data/settings.json")
 
 const closureMetadataSummaryExampleData = require("./data/closure-metadata-summary-example-01.json");
 const descriptiveMetadataSummaryExampleData = require("./data/descriptive-metadata-summary-example-01.json");
@@ -438,5 +439,19 @@ router.get(
     });
   }
 );
+
+router.post(
+  "/prototype-versions/clear-data",
+  function (req, res) {
+    req.session.data = {};
+    res.redirect("/prototype-versions/data-cleared");
+  }
+);
+
+router.use((req, res, next) => {
+  req.session.data = {...req.session.data, ...tdrSettings};
+  next()
+})
+
 
 module.exports = router;
