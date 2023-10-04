@@ -453,7 +453,6 @@
     width: 100%;
     padding: 5px 10px;
     box-sizing: border-box;
-    border-bottom: 1px solid  $govuk-border-colour;
   }
 
   .tdr-table-actions-menu__list-item:last-child a {
@@ -462,27 +461,12 @@
 
   .tdr-table-actions-menu__list-item a:hover {
     background-color: govuk-colour("light-grey");
-    box-shadow: 0 2px 0 $govuk-link-hover-colour, 0 -2px 0 $govuk-link-hover-colour;
-  }
-
-  .tdr-table-actions-menu__list-item:first-child a:hover {
-    box-shadow: 0 2px 0 $govuk-link-hover-colour, 0 -2px 0 rgb(0,0,0,0);
-  }
-  .tdr-table-actions-menu__list-item:last-child a:hover {
-    box-shadow: 0 2px 0 rgb(0,0,0,0), 0 -2px 0 $govuk-link-hover-colour;
+    box-shadow: 0 2px 0 $govuk-link-hover-colour, 0 0 0 $govuk-link-hover-colour;
   }
 
   .tdr-table-actions-menu__list-item a:focus {
     background-color: $govuk-focus-colour;
-    box-shadow: 0 2px 0 $govuk-focus-text-colour, 0 -2px 0 $govuk-focus-text-colour;
-  }
-
-  .tdr-table-actions-menu__list-item:first-child a:focus {
     box-shadow: 0 2px 0 $govuk-focus-text-colour, 0 -2px 0 rgb(0,0,0,0);
-  }
-
-  .tdr-table-actions-menu__list-item:last-child a:focus {
-    box-shadow: 0 2px 0 rgb(0,0,0,0), 0 -2px 0 $govuk-focus-text-colour;
   }
 }
 
