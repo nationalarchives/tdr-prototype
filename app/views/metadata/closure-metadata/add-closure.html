@@ -32,8 +32,8 @@ Add or edit closure metadata
           <div class="tdr-card__content">
             <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding or editing closure metadata for the following file:</p>
             <ul class="govuk-list govuk-list--bullet">
-              {% for f in data['file-selection']| getFilenames(globals.files) %}
-                <li>{{f}}</li>
+              {% for fileId in data['file-selection'] %}
+                <li>{{fileId|getPath(globals.files)}}</li>
               {% endfor %}
             </ul>
           </div>
@@ -317,7 +317,7 @@ Add or edit closure metadata
             <button role="button" draggable="false" class="govuk-button" data-module="govuk-button">
                 Save and review
             </button>
-            <a class="govuk-link govuk-link--no-visited-state" href="file-level.html">Cancel</a>
+            <a class="govuk-link govuk-link--no-visited-state" href="summary.html">Cancel</a>
           </div>
 
         </div>

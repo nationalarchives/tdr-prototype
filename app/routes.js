@@ -8,6 +8,9 @@ const router = govukPrototypeKit.requests.setupRouter();
 require("./routes-history")
 const tdrSettings = require("./data/settings.json")
 
+const closureMetadataSummaryExampleData = require("./data/closure-metadata-summary-example-01.json");
+const descriptiveMetadataSummaryExampleData = require("./data/descriptive-metadata-summary-example-01.json");
+
 const requireClosureFields = [
   "addClosure-foi-asserted-day",
   "addClosure-foi-asserted-month",
@@ -214,25 +217,10 @@ router.get(
         });
       }
     }
+
     res.redirect("/metadata/descriptive-metadata/review-metadata");
   }
 );
-
-router.get("/metadata/descriptive-metadata/clear", function (req, res) {
-  delete req.session.data["descriptiveFiles"];
-  for (let key in req.session.data) {
-    if (key.split("-")[0] === "addDescriptive") {
-      delete req.session.data[key];
-    }
-  }
-
-  res.set("Content-Type", "text/html");
-  res.send(
-    Buffer.from(
-      "<h2>deleted description session data</h2><br><br><a href='/metadata/descriptive-metadata/file-level'>Return to file selection</a>"
-    )
-  );
-});
 
 router.get(
   "/metadata/closure-metadata/confirm-delete-metadata",
@@ -248,27 +236,9 @@ router.get(
       delete closedFiles[selected];
     });
 
-    res.redirect("/metadata/closure-metadata/file-level");
+    res.redirect("/metadata/closure-metadata/summary");
   }
 );
-
-router.get("/metadata/closure-metadata/clear", function (req, res) {
-  delete req.session.data["file-selection"];
-  delete req.session.data["closedFiles"];
-
-  for (let key in req.session.data) {
-    if (key.split("-")[0] === "addClosure") {
-      delete req.session.data[key];
-    }
-  }
-
-  res.set("Content-Type", "text/html");
-  res.send(
-    Buffer.from(
-      "<h2>deleted closure session data</h2><br><br><a href='/metadata/closure-metadata/file-level'>Return to file selection</a>"
-    )
-  );
-});
 
 router.get(
   "/metadata/closure-metadata/confirm-add-closure",
@@ -378,100 +348,105 @@ router.get(
   }
 );
 
-/* baking-powder closure */
 router.get(
-  "/metadata/closure-metadata/baking-powder/confirm-closure-redir",
-  function (req, res) {}
-);
-
-router.get(
-  "/metadata/closure-metadata/baking-powder/confirm-closure-status",
+  "/metadata/closure-metadata/view-by-id/:fileId",
   function (req, res) {
-    // file[] is open/undefined && data[] is open/undefined
-    // ( intention is to continue without confirmation - needs error warning )
-    if (req.session.data["closure"]["baking-powder"] === undefined) {
-      req.session.data["error"] = "no-confirmation";
-      res.redirect(
-        "/metadata/closure-metadata/baking-powder/check-closure-status"
-      );
-    } else if (req.session.data["closure"]["baking-powder"][0] === "true") {
-      req.session.data["error"] = "";
-      res.redirect("/metadata/closure-metadata/baking-powder/add-closure");
-    } else if (req.session.data["closure"]["baking-powder"] === "delete") {
-      req.session.data["error"] = "";
-      delete req.session.data["is-the-title-sensitive"];
-      res.redirect("/metadata/closure-metadata/file-level");
-    } else {
-      res.redirect("/metadata/closure-metadata/baking-powder/huh");
+
+    let data = req.session.data;
+    data["file-selection"] = [req.params.fileId];
+
+    for (var key in req.session.data["closedFiles"][req.params.fileId]) {
+      data[key] = req.session.data["closedFiles"][req.params.fileId][key];
     }
+
+    res.render("/metadata/closure-metadata/review-metadata", {
+      from: "/metadata/closure-metadata/summary",
+      data: data
+    });
   }
 );
 
 router.get(
-  "/metadata/closure-metadata/baking-powder/add-closure-confirm/",
+  "/metadata/closure-metadata/edit-by-id/:fileId",
   function (req, res) {
-    if (req.session.data["exemption-code-redir"] == "true") {
-      res.redirect("/metadata/closure-metadata/baking-powder/add-multiple-FOI");
-    } else if (
-      req.session.data["is-the-title-sensitive"] &&
-      req.session.data["is-the-description-sensitive"]
-    ) {
-      if (
-        req.session.data["is-the-title-sensitive"] == "yes" ||
-        req.session.data["is-the-description-sensitive"] == "yes"
-      ) {
-        req.session.data["error"] = "";
-        res.redirect(
-          "/metadata/closure-metadata/baking-powder/closure-alternative-title"
-        );
-      } else if (
-        req.session.data["is-the-title-sensitive"] == "no" &&
-        req.session.data["is-the-description-sensitive"] == "no"
-      ) {
-        req.session.data["error"] = "";
-        res.redirect("/metadata/closure-metadata/baking-powder/closure-added");
-      }
-    } else {
-      req.session.data["error"] = "no-alternative";
-      res.redirect("/metadata/closure-metadata/baking-powder/add-closure");
+
+    req.session.data["file-selection"] = [req.params.fileId]
+    res.redirect("/metadata/closure-metadata/confirm-file-level");
+  }
+);
+
+router.get(
+  "/metadata/closure-metadata/delete-by-id/:fileId",
+  function (req, res) {
+    req.session.data["file-selection"] = [req.params.fileId]
+    res.redirect("/metadata/closure-metadata/delete-metadata");
+  }
+);
+
+router.get(
+  "/metadata/descriptive-metadata/view-by-id/:fileId",
+  function (req, res) {
+
+    let data = req.session.data;
+    data["file-selection"] = [req.params.fileId];
+
+    for (var key in req.session.data["descriptiveFiles"][req.params.fileId]) {
+      data[key] = req.session.data["descriptiveFiles"][req.params.fileId][key];
     }
+
+    res.render("/metadata/descriptive-metadata/review-metadata", {
+      from: "/metadata/descriptive-metadata/summary",
+      data: data
+    });
   }
 );
 
 router.get(
-  "/metadata/closure-metadata/baking-powder/confirm-multiple-FOI/",
+  "/metadata/descriptive-metadata/edit-by-id/:fileId",
   function (req, res) {
-    // req.session.data.foi_id_selection = JSON.parse(req.params.ids);
-    res.redirect("/metadata/closure-metadata/baking-powder/add-closure");
-  }
-);
 
-// XHR update
-router.get(
-  "/metadata/closure-metadata/baking-powder/add-multiple-FOI/update/:ids",
-  function (req, res) {
-    req.session.data.foi_id_selection = JSON.parse(req.params.ids);
-    // To store sesssion data need an arbritrary redirect
-    res.redirect("/metadata/closure-metadata/baking-powder/add-multiple-FOI");
+    req.session.data["file-selection"] = [req.params.fileId]
+    res.redirect("/metadata/descriptive-metadata/confirm-file-level");
   }
 );
 
 router.get(
-  "/metadata/closure-metadata/baking-powder/add-multiple-FOI/clear",
+  "/metadata/descriptive-metadata/delete-by-id/:fileId",
   function (req, res) {
-    req.session.data.foi_id_selection = [];
-    res.redirect("/metadata/closure-metadata/baking-powder/add-multiple-FOI");
+    req.session.data["file-selection"] = [req.params.fileId]
+    res.redirect("/metadata/descriptive-metadata/delete-metadata");
+  }
+);
+
+
+/*
+ * Summary pages
+ */
+router.get(
+  "/metadata/closure-metadata/:version?/summary/static/",
+  function (req, res) {
+    const data = req.session.data;
+    data.closedFiles = closureMetadataSummaryExampleData;
+
+    let versionUrl = (req.params.version) ?  `/metadata/closure-metadata/${req.params.version}/summary` : '/metadata/closure-metadata/summary';
+
+    res.render(versionUrl, {
+      data : data
+    });
   }
 );
 
 router.get(
-  "/metadata/closure-metadata/baking-powder/remove-FOI/:foiId",
+  "/metadata/descriptive-metadata/:version?/summary/static/",
   function (req, res) {
-    req.session.data.foi_id_selection =
-      req.session.data.foi_id_selection.filter(
-        (code) => code !== req.params.foiId.toString()
-      );
-    res.redirect("/metadata/closure-metadata/baking-powder/add-closure");
+    const data = req.session.data;
+    data.descriptiveFiles = descriptiveMetadataSummaryExampleData;
+
+    let versionUrl = (req.params.version) ?  `/metadata/descriptive-metadata/${req.params.version}/summary` : '/metadata/descriptive-metadata/summary';
+
+    res.render(versionUrl, {
+      data : data
+    });
   }
 );
 

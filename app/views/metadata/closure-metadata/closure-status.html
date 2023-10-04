@@ -30,8 +30,8 @@ Check closure status
             {% if open.length > 0 %}
               <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding closure status to the following files:</p>
               <ul class="govuk-list govuk-list--bullet">
-                {% for f in data['file-selection']| filterOpen(data.closedFiles) | getFilenames(globals.files) %}
-                  <li>{{f|decodeFilename}}</li>
+                {% for fileId in data['file-selection']| filterOpen(data.closedFiles)%}
+                  <li>{{fileId|getPath(globals.files)}}</li>
                 {% endfor %}
               </ul>
             {% endif %}

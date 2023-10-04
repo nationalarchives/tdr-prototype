@@ -16,11 +16,11 @@ Remove properties
         <div class="tdr-card">
           <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You have chosen to delete the closure metadata you added to the following record and set it as open:</p>
           <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
-            {% if data['file-selection']|getFilenames(globals.files)|length == 0 %}
+            {% if data['file-selection']|length == 0 %}
               <li>example-file.xlsx</li>
             {% endif %}
-            {% for f in data['file-selection']| getFilenames(globals.files) %}
-              <li>baking-powder.xlsx</li>
+            {% for f in data['file-selection'] %}
+              <li>{{f|getPath(globals.files)}}</li>
             {% endfor %}
           </ul>
         </div>
@@ -41,7 +41,7 @@ Remove properties
 
         <div class="govuk-button-group">
           <button role="button" draggable="false" class="govuk-button govuk-button--warning" data-module="govuk-button"{% if data['file-selection']|getFilenames(globals.files)|length == 0 %}disabled{% endif %}>
-          Delete and return to files
+          Delete metadata for this record
         </button>
           <a class="govuk-link govuk-link--no-visited-state" href="./review-metadata">Cancel</a>
         </div>

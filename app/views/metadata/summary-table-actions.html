@@ -1,0 +1,14 @@
+<button hidden="true" aria-expanded="false" aria-controls="menu-{{item.id}}" class="govuk-!-margin-left-2 tdr-button-link tdr-button-link--with-icon">
+  Actions<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span>
+</button>
+<ol id="menu-{{item.id}}" class="tdr-table-actions-menu">
+  <li class="tdr-table-actions-menu__list-item">
+    <a class="govuk-link govuk-link--no-visited-state" href="/metadata/{{typeOfMetadata|d("closure")}}-metadata/view-by-id/{{item.id}}">View<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span></a>
+  </li>
+  <li class="tdr-table-actions-menu__list-item">
+    <a class="govuk-link govuk-link--no-visited-state" href="/metadata/{{typeOfMetadata|d("closure")}}-metadata/edit-by-id/{{item.id}}">Edit<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span></a>
+  </li>
+  <li class="tdr-table-actions-menu__list-item">
+    <a class="govuk-link govuk-link--no-visited-state" href="/metadata/{{typeOfMetadata|d("closure")}}-metadata/delete-by-id/{{item.id}}">Delete<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span></a>
+  </li>
+</ol>

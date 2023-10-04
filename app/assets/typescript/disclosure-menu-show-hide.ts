@@ -1,4 +1,4 @@
-export class Disclosure {
+export class DisclosureMenuShowHide {
   private readonly button: HTMLElement;
   private readonly controlledNode: HTMLElement | null;
   private readonly parentRowClass: string = "";
@@ -17,8 +17,11 @@ export class Disclosure {
     this.parentRowClass = button.dataset['parentRowClass'];
 
     this.controlledNode = document.getElementById(id);
-    this.hide();
     this.button.addEventListener("click", this.toggle);
+
+    this.button.removeAttribute('hidden');
+    this.controlledNode.classList.add('active');
+    this.hide();
   }
 
   hide: () => void = () => {

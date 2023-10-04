@@ -21,7 +21,7 @@
         <div class="tdr-card__content">
           <header>
             <h2 class="govuk-heading-s">
-              <a class="govuk-link govuk-link--no-visited-state" href="descriptive-metadata/file-level">Descriptive metadata</a>
+              <a class="govuk-link govuk-link--no-visited-state" href="descriptive-metadata/summary">Descriptive metadata</a>
             </h2>
             <strong class="tdr-card--metadata__state govuk-tag govuk-tag--{% if data['descriptiveFiles'] === undefined %}grey{% else %}blue{%endif%}">
               {% if data['descriptiveFiles'] === undefined %}Not entered{% else %}Entered{% endif %}
@@ -58,7 +58,7 @@
         <div class="tdr-card__content">
           <header>
             <h2 class="govuk-heading-s">
-              <a class="govuk-link govuk-link--no-visited-state" href="closure-metadata/file-level">Closure metadata</a>
+              <a class="govuk-link govuk-link--no-visited-state" href="closure-metadata/summary">Closure metadata</a>
             </h2>
             <strong class="tdr-card--metadata__state govuk-tag govuk-tag--{% if data['closedFiles'] === undefined %}grey{% else %}blue{% endif %}">
               {% if data['closedFiles'] === undefined %}Not Entered{% else %}Entered{% endif %}
