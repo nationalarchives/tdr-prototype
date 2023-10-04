@@ -56,20 +56,7 @@
         <td headers="{{item.id}}" class="govuk-table__cell">{{item['addClosure-foi_id_selection']|d(["-"])|join(", ")}}</td>
         <td headers="{{item.id}}" class="govuk-table__cell">{% if item['addClosure-closure-period'] %} {{item['addClosure-closure-period']}} years{% else %}-{% endif %}</td>
         <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--with-hidden-menu">
-          <button hidden="true" aria-expanded="false" aria-controls="menu-{{item.id}}" class="govuk-!-margin-left-2 tdr-button-link tdr-button-link--with-icon">
-            Actions<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span>
-          </button>
-          <ol id="menu-{{item.id}}" class="tdr-table-actions-menu">
-            <li class="tdr-table-actions-menu__list-item">
-              <a class="govuk-link govuk-link--no-visited-state" href="/metadata/closure-metadata/view-by-id/{{item.id}}">View<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span></a>
-            </li>
-            <li class="tdr-table-actions-menu__list-item">
-              <a class="govuk-link govuk-link--no-visited-state" href="/metadata/closure-metadata/edit-by-id/{{item.id}}">Edit<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span></a>
-            </li>
-            <li class="tdr-table-actions-menu__list-item">
-              <a class="govuk-link govuk-link--no-visited-state" href="/metadata/closure-metadata/delete-by-id/{{item.id}}">Delete<span class="govuk-visually-hidden">&nbsp;metadata for {{item.id|getFilename(globals.files)}}</span></a>
-            </li>
-          </ol>
+          {% include "../summary-table-actions.html" %}
         </td>
       </tr>
   {% endfor %}

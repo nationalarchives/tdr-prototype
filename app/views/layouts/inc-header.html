@@ -48,15 +48,3 @@
     </div>
   </div>
 </header>
-
-{% block banner %}
-  {% set prototypeVersion = ('You are viewing version: #'+data.prototypeVersion if data.prototypeVersion) %}
-  <div class="govuk-width-container app-width-container">
-  {{ govukPhaseBanner({
-    tag: {
-      text: "Prototype"
-    },
-    html: (['This is not a real service. It is for testing purposes only. ', prototypeVersion ]| join)
-  }) }}
-</div>
-{% endblock %}

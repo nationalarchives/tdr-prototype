@@ -1,0 +1,67 @@
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+
+{% extends "layouts/main.html" %}
+
+{% block banner %}
+  {% set prototypeVersion = ('You are viewing version: #'+data.prototypeVersion if data.prototypeVersion) %}
+  <div class="govuk-width-container app-width-container">
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Prototype",
+      classes: "govuk-tag--red"
+    },
+    html: (['This static page is for content testing and is not interactive. ', prototypeVersion ]| join)
+  }) }}
+</div>
+{% endblock %}
+
+{% block pageTitle %}
+Descriptive metadata
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="#" class="govuk-back-link">Step 5: Descriptive and closure metadata</a>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Descriptive metadata</h1>
+
+    <p class="govuk-body">Add descriptive metadata to individual records here. Descriptive metadata will enhance your record. <strong>We strongly encourage you to add any extra information available.</strong></p>
+
+    <p class="govuk-body">If you’re unsure about descriptive metadata contact a transfer advisor or email <a href="">tdr@nationalarchives.gov.uk</a>.</p>
+
+    <p class="govuk-body">Here is the descriptive metadata you can provide for each record:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li><strong>Description</strong></li>
+      <li><strong>Date of the record</strong></li>
+      <li><strong>Language</strong></li>
+      <li><strong>Translated title of record</strong></li>
+      <li><strong>Former reference</strong></li>
+    </ul>
+  </div>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+    <h2 class="govuk-heading-m">Records with descriptive metadata</h2>
+
+    <p class="govuk-body">Here are the records that you have added descriptive metadata to.</p>
+
+    <a href="/metadata/descriptive-metadata/file-level" class="govuk-button" data-module="govuk-button">
+      Add descriptive metadata to a record
+    </a>
+
+    {% include "../summary-table.html" %}
+  </div>
+</div>
+
+{% endblock %}
+
+
+{% block pageScripts %}
+  {{ super() }}
+{% endblock %}

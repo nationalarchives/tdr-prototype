@@ -418,23 +418,33 @@ router.get(
   }
 );
 
+
+/*
+ * Summary pages
+ */
 router.get(
-  "/metadata/closure-metadata/summary/static",
+  "/metadata/closure-metadata/:version?/summary/static/",
   function (req, res) {
     const data = req.session.data;
     data.closedFiles = closureMetadataSummaryExampleData;
-    res.render("/metadata/closure-metadata/summary", {
+
+    let versionUrl = (req.params.version) ?  `/metadata/closure-metadata/${req.params.version}/summary` : '/metadata/closure-metadata/summary';
+
+    res.render(versionUrl, {
       data : data
     });
   }
 );
 
 router.get(
-  "/metadata/descriptive-metadata/summary/static",
+  "/metadata/descriptive-metadata/:version?/summary/static/",
   function (req, res) {
     const data = req.session.data;
     data.descriptiveFiles = descriptiveMetadataSummaryExampleData;
-    res.render("/metadata/descriptive-metadata/summary", {
+
+    let versionUrl = (req.params.version) ?  `/metadata/descriptive-metadata/${req.params.version}/summary` : '/metadata/descriptive-metadata/summary';
+
+    res.render(versionUrl, {
       data : data
     });
   }
