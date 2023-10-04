@@ -7,9 +7,21 @@ Descriptive metadata
 {% endblock %}
 
 {% block beforeContent %}
-  <a href="#" class="govuk-back-link">Step 5: Descriptive and closure metadata</a>
+  <a href="../../additional-metadata" class="govuk-back-link">Step 5: Descriptive and closure metadata</a>
 {% endblock %}
 
+{% block banner %}
+  {% set prototypeVersion = ('You are viewing version: #'+data.prototypeVersion if data.prototypeVersion) %}
+  <div class="govuk-width-container app-width-container">
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Prototype",
+      classes: "govuk-tag--red"
+    },
+    html: (['This static page is for content testing and is not interactive. ', prototypeVersion ]| join)
+  }) }}
+</div>
+{% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
