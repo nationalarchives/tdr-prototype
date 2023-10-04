@@ -214,6 +214,7 @@ router.get(
         });
       }
     }
+
     res.redirect("/metadata/descriptive-metadata/review-metadata");
   }
 );
@@ -344,14 +345,19 @@ router.get(
   }
 );
 
-
 router.get(
   "/metadata/closure-metadata/view-by-id/:fileId",
   function (req, res) {
 
-    req.session.data["file-selection"] = [req.params.fileId]
+    let data = req.session.data;
+    data["file-selection"] = [req.params.fileId];
+
+    for (var key in req.session.data["closedFiles"][req.params.fileId]) {
+      data[key] = req.session.data["closedFiles"][req.params.fileId][key];
+    }
     res.render("/metadata/closure-metadata/review-metadata", {
-      from: "/metadata/closure-metadata/summary"
+      from: "/metadata/closure-metadata/summary",
+      data: data
     });
   }
 );
@@ -377,100 +383,104 @@ router.get(
 router.get(
   "/metadata/closure-metadata/summary/static",
   function (req, res) {
+
+    const data = req.session.data;
+    data.closedFiles = {
+      "fileid41": {
+        "addClosure-foi-asserted-day": "15",
+        "addClosure-foi-asserted-month": "8",
+        "addClosure-foi-asserted-year": "2022",
+        "addClosure-closure-start-day": "20",
+        "addClosure-closure-start-month": "5",
+        "addClosure-closure-start-year": "2002",
+        "addClosure-closure-period": "50",
+        "addClosure-foi_id_selection": [
+          "23"
+        ],
+        "addClosure-is-the-title-sensitive": "no",
+        "id": "fileid41",
+        "path": "Baking powder 2023.docx"
+      },
+      "fileid22": {
+        "addClosure-foi-asserted-day": "15",
+        "addClosure-foi-asserted-month": "08",
+        "addClosure-foi-asserted-year": "2022",
+        "addClosure-closure-start-day": "28",
+        "addClosure-closure-start-month": "03",
+        "addClosure-closure-start-year": "2002",
+        "addClosure-closure-period": "80",
+        "addClosure-foi_id_selection": [
+          "35"
+        ],
+        "addClosure-is-the-title-sensitive": "no",
+        "id": "fileid22",
+        "path": "Cupcakes/Vegan banana.png"
+      },
+      "fileid12": {
+        "addClosure-foi-asserted-day": "15",
+        "addClosure-foi-asserted-month": "08",
+        "addClosure-foi-asserted-year": "2022",
+        "addClosure-closure-start-day": "28",
+        "addClosure-closure-start-month": "03",
+        "addClosure-closure-start-year": "2002",
+        "addClosure-closure-period": "80",
+        "addClosure-foi_id_selection": [
+          "35"
+        ],
+        "addClosure-is-the-title-sensitive": "no",
+        "id": "fileid12",
+        "path": "Cupcakes/Red velvet.xlsx"
+      },
+      "fileid1": {
+        "addClosure-foi-asserted-day": "15",
+        "addClosure-foi-asserted-month": "8",
+        "addClosure-foi-asserted-year": "2022",
+        "addClosure-closure-start-day": "4",
+        "addClosure-closure-start-month": "4",
+        "addClosure-closure-start-year": "2005",
+        "addClosure-closure-period": "50",
+        "addClosure-foi_id_selection": [
+          "22"
+        ],
+        "addClosure-is-the-title-sensitive": "no",
+        "id": "fileid1",
+        "path": "Cake Basics/Mixing.pptx"
+      },
+      "fileid1-1": {
+        "addClosure-foi-asserted-day": "15",
+        "addClosure-foi-asserted-month": "8",
+        "addClosure-foi-asserted-year": "2022",
+        "addClosure-closure-start-day": "6",
+        "addClosure-closure-start-month": "7",
+        "addClosure-closure-start-year": "2005",
+        "addClosure-closure-period": "50",
+        "addClosure-foi_id_selection": [
+          "22"
+        ],
+        "addClosure-is-the-title-sensitive": "no",
+        "id": "fileid1-1",
+        "path": "Cake Basics/Rising agents/Instant.jpg"
+      },
+      "fileid1-2": {
+        "addClosure-foi-asserted-day": "15",
+        "addClosure-foi-asserted-month": "8",
+        "addClosure-foi-asserted-year": "2022",
+        "addClosure-closure-start-day": "6",
+        "addClosure-closure-start-month": "7",
+        "addClosure-closure-start-year": "2005",
+        "addClosure-closure-period": "50",
+        "addClosure-foi_id_selection": [
+          "22"
+        ],
+        "addClosure-alternative-title": "",
+        "addClosure-is-the-title-sensitive": "no",
+        "id": "fileid1-2",
+        "path": "Cake Basics/Rising agents/Fresh.png"
+      }
+    };
+
     res.render("/metadata/closure-metadata/summary", {
-      data : { closedFiles: {
-        "fileid41": {
-          "addClosure-foi-asserted-day": "15",
-          "addClosure-foi-asserted-month": "8",
-          "addClosure-foi-asserted-year": "2022",
-          "addClosure-closure-start-day": "20",
-          "addClosure-closure-start-month": "5",
-          "addClosure-closure-start-year": "2002",
-          "addClosure-closure-period": "50",
-          "addClosure-foi_id_selection": [
-            "23"
-          ],
-          "addClosure-is-the-title-sensitive": "no",
-          "id": "fileid41",
-          "path": "Baking powder 2023.docx"
-        },
-        "fileid22": {
-          "addClosure-foi-asserted-day": "15",
-          "addClosure-foi-asserted-month": "08",
-          "addClosure-foi-asserted-year": "2022",
-          "addClosure-closure-start-day": "28",
-          "addClosure-closure-start-month": "03",
-          "addClosure-closure-start-year": "2002",
-          "addClosure-closure-period": "80",
-          "addClosure-foi_id_selection": [
-            "35"
-          ],
-          "addClosure-is-the-title-sensitive": "no",
-          "id": "fileid22",
-          "path": "Cupcakes/Vegan banana.png"
-        },
-        "fileid12": {
-          "addClosure-foi-asserted-day": "15",
-          "addClosure-foi-asserted-month": "08",
-          "addClosure-foi-asserted-year": "2022",
-          "addClosure-closure-start-day": "28",
-          "addClosure-closure-start-month": "03",
-          "addClosure-closure-start-year": "2002",
-          "addClosure-closure-period": "80",
-          "addClosure-foi_id_selection": [
-            "35"
-          ],
-          "addClosure-is-the-title-sensitive": "no",
-          "id": "fileid12",
-          "path": "Cupcakes/Red velvet.xlsx"
-        },
-        "fileid1": {
-          "addClosure-foi-asserted-day": "15",
-          "addClosure-foi-asserted-month": "8",
-          "addClosure-foi-asserted-year": "2022",
-          "addClosure-closure-start-day": "4",
-          "addClosure-closure-start-month": "4",
-          "addClosure-closure-start-year": "2005",
-          "addClosure-closure-period": "50",
-          "addClosure-foi_id_selection": [
-            "22"
-          ],
-          "addClosure-is-the-title-sensitive": "no",
-          "id": "fileid1",
-          "path": "Cake Basics/Mixing.pptx"
-        },
-        "fileid1-1": {
-          "addClosure-foi-asserted-day": "15",
-          "addClosure-foi-asserted-month": "8",
-          "addClosure-foi-asserted-year": "2022",
-          "addClosure-closure-start-day": "6",
-          "addClosure-closure-start-month": "7",
-          "addClosure-closure-start-year": "2005",
-          "addClosure-closure-period": "50",
-          "addClosure-foi_id_selection": [
-            "22"
-          ],
-          "addClosure-is-the-title-sensitive": "no",
-          "id": "fileid1-1",
-          "path": "Cake Basics/Rising agents/Instant.jpg"
-        },
-        "fileid1-2": {
-          "addClosure-foi-asserted-day": "15",
-          "addClosure-foi-asserted-month": "8",
-          "addClosure-foi-asserted-year": "2022",
-          "addClosure-closure-start-day": "6",
-          "addClosure-closure-start-month": "7",
-          "addClosure-closure-start-year": "2005",
-          "addClosure-closure-period": "50",
-          "addClosure-foi_id_selection": [
-            "22"
-          ],
-          "addClosure-alternative-title": "",
-          "addClosure-is-the-title-sensitive": "no",
-          "id": "fileid1-2",
-          "path": "Cake Basics/Rising agents/Fresh.png"
-        }
-      }}
+      data : data
     });
   }
 );
