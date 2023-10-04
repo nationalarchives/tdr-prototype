@@ -108,7 +108,6 @@ export class FolderUpload {
     ev.preventDefault();
     const form: HTMLFormElement | null = this.itemRetriever.closest("form");
 
-    console.log(form!.files!.files, this.itemRetriever.files);
     const selectedFiles = this.convertFilesToIfilesWithPath(form!.files!.files);
     const parentFolder = this.getParentFolderName(selectedFiles);
 

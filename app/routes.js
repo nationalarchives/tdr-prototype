@@ -218,22 +218,6 @@ router.get(
   }
 );
 
-router.get("/metadata/descriptive-metadata/clear", function (req, res) {
-  delete req.session.data["descriptiveFiles"];
-  for (let key in req.session.data) {
-    if (key.split("-")[0] === "addDescriptive") {
-      delete req.session.data[key];
-    }
-  }
-
-  res.set("Content-Type", "text/html");
-  res.send(
-    Buffer.from(
-      "<h2>deleted description session data</h2><br><br><a href='/metadata/descriptive-metadata/file-level'>Return to file selection</a>"
-    )
-  );
-});
-
 router.get(
   "/metadata/closure-metadata/confirm-delete-metadata",
   function (req, res) {
@@ -248,27 +232,9 @@ router.get(
       delete closedFiles[selected];
     });
 
-    res.redirect("/metadata/closure-metadata/file-level");
+    res.redirect("/metadata/closure-metadata/summary");
   }
 );
-
-router.get("/metadata/closure-metadata/clear", function (req, res) {
-  delete req.session.data["file-selection"];
-  delete req.session.data["closedFiles"];
-
-  for (let key in req.session.data) {
-    if (key.split("-")[0] === "addClosure") {
-      delete req.session.data[key];
-    }
-  }
-
-  res.set("Content-Type", "text/html");
-  res.send(
-    Buffer.from(
-      "<h2>deleted closure session data</h2><br><br><a href='/metadata/closure-metadata/file-level'>Return to file selection</a>"
-    )
-  );
-});
 
 router.get(
   "/metadata/closure-metadata/confirm-add-closure",
@@ -378,100 +344,134 @@ router.get(
   }
 );
 
-/* baking-powder closure */
-router.get(
-  "/metadata/closure-metadata/baking-powder/confirm-closure-redir",
-  function (req, res) {}
-);
 
 router.get(
-  "/metadata/closure-metadata/baking-powder/confirm-closure-status",
+  "/metadata/closure-metadata/view-by-id/:fileId",
   function (req, res) {
-    // file[] is open/undefined && data[] is open/undefined
-    // ( intention is to continue without confirmation - needs error warning )
-    if (req.session.data["closure"]["baking-powder"] === undefined) {
-      req.session.data["error"] = "no-confirmation";
-      res.redirect(
-        "/metadata/closure-metadata/baking-powder/check-closure-status"
-      );
-    } else if (req.session.data["closure"]["baking-powder"][0] === "true") {
-      req.session.data["error"] = "";
-      res.redirect("/metadata/closure-metadata/baking-powder/add-closure");
-    } else if (req.session.data["closure"]["baking-powder"] === "delete") {
-      req.session.data["error"] = "";
-      delete req.session.data["is-the-title-sensitive"];
-      res.redirect("/metadata/closure-metadata/file-level");
-    } else {
-      res.redirect("/metadata/closure-metadata/baking-powder/huh");
-    }
+
+    req.session.data["file-selection"] = [req.params.fileId]
+    res.render("/metadata/closure-metadata/review-metadata", {
+      from: "/metadata/closure-metadata/summary"
+    });
   }
 );
 
 router.get(
-  "/metadata/closure-metadata/baking-powder/add-closure-confirm/",
+  "/metadata/closure-metadata/edit-by-id/:fileId",
   function (req, res) {
-    if (req.session.data["exemption-code-redir"] == "true") {
-      res.redirect("/metadata/closure-metadata/baking-powder/add-multiple-FOI");
-    } else if (
-      req.session.data["is-the-title-sensitive"] &&
-      req.session.data["is-the-description-sensitive"]
-    ) {
-      if (
-        req.session.data["is-the-title-sensitive"] == "yes" ||
-        req.session.data["is-the-description-sensitive"] == "yes"
-      ) {
-        req.session.data["error"] = "";
-        res.redirect(
-          "/metadata/closure-metadata/baking-powder/closure-alternative-title"
-        );
-      } else if (
-        req.session.data["is-the-title-sensitive"] == "no" &&
-        req.session.data["is-the-description-sensitive"] == "no"
-      ) {
-        req.session.data["error"] = "";
-        res.redirect("/metadata/closure-metadata/baking-powder/closure-added");
-      }
-    } else {
-      req.session.data["error"] = "no-alternative";
-      res.redirect("/metadata/closure-metadata/baking-powder/add-closure");
-    }
+
+    req.session.data["file-selection"] = [req.params.fileId]
+    res.redirect("/metadata/closure-metadata/confirm-file-level");
   }
 );
 
 router.get(
-  "/metadata/closure-metadata/baking-powder/confirm-multiple-FOI/",
+  "/metadata/closure-metadata/delete-by-id/:fileId",
   function (req, res) {
-    // req.session.data.foi_id_selection = JSON.parse(req.params.ids);
-    res.redirect("/metadata/closure-metadata/baking-powder/add-closure");
+    req.session.data["file-selection"] = [req.params.fileId]
+    res.redirect("/metadata/closure-metadata/delete-metadata");
   }
 );
 
-// XHR update
-router.get(
-  "/metadata/closure-metadata/baking-powder/add-multiple-FOI/update/:ids",
-  function (req, res) {
-    req.session.data.foi_id_selection = JSON.parse(req.params.ids);
-    // To store sesssion data need an arbritrary redirect
-    res.redirect("/metadata/closure-metadata/baking-powder/add-multiple-FOI");
-  }
-);
 
 router.get(
-  "/metadata/closure-metadata/baking-powder/add-multiple-FOI/clear",
+  "/metadata/closure-metadata/summary/static",
   function (req, res) {
-    req.session.data.foi_id_selection = [];
-    res.redirect("/metadata/closure-metadata/baking-powder/add-multiple-FOI");
-  }
-);
-
-router.get(
-  "/metadata/closure-metadata/baking-powder/remove-FOI/:foiId",
-  function (req, res) {
-    req.session.data.foi_id_selection =
-      req.session.data.foi_id_selection.filter(
-        (code) => code !== req.params.foiId.toString()
-      );
-    res.redirect("/metadata/closure-metadata/baking-powder/add-closure");
+    res.render("/metadata/closure-metadata/summary", {
+      data : { closedFiles: {
+        "fileid41": {
+          "addClosure-foi-asserted-day": "15",
+          "addClosure-foi-asserted-month": "8",
+          "addClosure-foi-asserted-year": "2022",
+          "addClosure-closure-start-day": "20",
+          "addClosure-closure-start-month": "5",
+          "addClosure-closure-start-year": "2002",
+          "addClosure-closure-period": "50",
+          "addClosure-foi_id_selection": [
+            "23"
+          ],
+          "addClosure-is-the-title-sensitive": "no",
+          "id": "fileid41",
+          "path": "Baking powder 2023.docx"
+        },
+        "fileid22": {
+          "addClosure-foi-asserted-day": "15",
+          "addClosure-foi-asserted-month": "08",
+          "addClosure-foi-asserted-year": "2022",
+          "addClosure-closure-start-day": "28",
+          "addClosure-closure-start-month": "03",
+          "addClosure-closure-start-year": "2002",
+          "addClosure-closure-period": "80",
+          "addClosure-foi_id_selection": [
+            "35"
+          ],
+          "addClosure-is-the-title-sensitive": "no",
+          "id": "fileid22",
+          "path": "Cupcakes/Vegan banana.png"
+        },
+        "fileid12": {
+          "addClosure-foi-asserted-day": "15",
+          "addClosure-foi-asserted-month": "08",
+          "addClosure-foi-asserted-year": "2022",
+          "addClosure-closure-start-day": "28",
+          "addClosure-closure-start-month": "03",
+          "addClosure-closure-start-year": "2002",
+          "addClosure-closure-period": "80",
+          "addClosure-foi_id_selection": [
+            "35"
+          ],
+          "addClosure-is-the-title-sensitive": "no",
+          "id": "fileid12",
+          "path": "Cupcakes/Red velvet.xlsx"
+        },
+        "fileid1": {
+          "addClosure-foi-asserted-day": "15",
+          "addClosure-foi-asserted-month": "8",
+          "addClosure-foi-asserted-year": "2022",
+          "addClosure-closure-start-day": "4",
+          "addClosure-closure-start-month": "4",
+          "addClosure-closure-start-year": "2005",
+          "addClosure-closure-period": "50",
+          "addClosure-foi_id_selection": [
+            "22"
+          ],
+          "addClosure-is-the-title-sensitive": "no",
+          "id": "fileid1",
+          "path": "Cake Basics/Mixing.pptx"
+        },
+        "fileid1-1": {
+          "addClosure-foi-asserted-day": "15",
+          "addClosure-foi-asserted-month": "8",
+          "addClosure-foi-asserted-year": "2022",
+          "addClosure-closure-start-day": "6",
+          "addClosure-closure-start-month": "7",
+          "addClosure-closure-start-year": "2005",
+          "addClosure-closure-period": "50",
+          "addClosure-foi_id_selection": [
+            "22"
+          ],
+          "addClosure-is-the-title-sensitive": "no",
+          "id": "fileid1-1",
+          "path": "Cake Basics/Rising agents/Instant.jpg"
+        },
+        "fileid1-2": {
+          "addClosure-foi-asserted-day": "15",
+          "addClosure-foi-asserted-month": "8",
+          "addClosure-foi-asserted-year": "2022",
+          "addClosure-closure-start-day": "6",
+          "addClosure-closure-start-month": "7",
+          "addClosure-closure-start-year": "2005",
+          "addClosure-closure-period": "50",
+          "addClosure-foi_id_selection": [
+            "22"
+          ],
+          "addClosure-alternative-title": "",
+          "addClosure-is-the-title-sensitive": "no",
+          "id": "fileid1-2",
+          "path": "Cake Basics/Rising agents/Fresh.png"
+        }
+      }}
+    });
   }
 );
 

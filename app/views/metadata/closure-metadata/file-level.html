@@ -6,7 +6,7 @@ Closure metadata - Choose a file
 {% endblock %}
 
 {% block beforeContent %}
-  <a href="../additional-metadata" class="govuk-back-link">Step 5: Descriptive and closure metadata</a>
+  <a href="/metadata/closure-metadata/summary" class="govuk-back-link">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -37,42 +37,6 @@ Closure metadata - Choose a file
             </div>
           </div>
         {% endif %}
-        {# <div class="govuk-tdr-file-selection-panel">
-          <div class="govuk-tdr-file-selection-panel__search">
-            <input
-            class="govuk-input"
-            id="event-name"
-            name="event-name"
-            type="search"
-            placeholder="Enter a file or folder name"/>
-            <a
-              href="file-level"
-              role="button"
-              draggable="false"
-              class="govuk-button"
-              data-module="govuk-button">
-              Search
-            </a>
-          </div>
-          <div class="govuk-button-group">
-            <button
-              class="govuk-button govuk-button--secondary"
-              data-module="govuk-button"
-              type="button"
-              name="select-all"
-              value="true">
-              Select all
-            </button>
-            <button
-              class="govuk-button govuk-button--secondary"
-              data-module="govuk-button"
-              type="button"
-              name="deselect-all"
-              value="true">
-              Clear selection
-            </button>
-          </div>
-        </div> #}
       </div>
     </div>
     <div class="govuk-grid-row">
@@ -89,28 +53,11 @@ Closure metadata - Choose a file
           class="govuk-button js-submit"
           name="action" value="edit"
           data-module="govuk-button">
-          Add or edit metadata
-        </button>
-          <button
-          draggable="false"
-          class="govuk-button govuk-button--secondary js-submit"
-          name="action" value="view"
-          data-module="govuk-button">
-          View metadata
+          Continue
         </button>
         </div>
 
-        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"/>
-        <h2 class="govuk-heading-m">Have you finished editing closure metadata?</h2>
-
-        <p class="govuk-body">Once you have finished adding closure metadata, return to the
-          <a href="../additional-metadata"
-            style="font-weight: bold;"
-            draggable="false"
-            data-module="govuk-button">Descriptive and closure metadata page</a>.</p>
-
-        <p class="govuk-body">You will be given the chance to download a single .csv file to review any metadata you added before completing the transfer.</p>
-      </div>
+       </div>
     </div>
 
   </form>

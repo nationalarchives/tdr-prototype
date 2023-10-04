@@ -2,6 +2,16 @@ const govukPrototypeKit = require("govuk-prototype-kit");
 const addFilter = govukPrototypeKit.views.addFilter;
 
 const filters = {};
+const requiredClosureFields = [
+  "addClosure-foi-asserted-day",
+  "addClosure-foi-asserted-month",
+  "addClosure-foi-asserted-year",
+  "addClosure-closure-start-day",
+  "addClosure-closure-start-month",
+  "addClosure-closure-start-year",
+  "addClosure-closure-period",
+  "addClosure-foi_id_selection",
+];
 
 function findById(data, id) {
   function iter(a) {
@@ -89,11 +99,76 @@ filters.decodeFilename = function (encodedName) {
   return decodeURI(fileName);
 };
 
-filters.getMonthName = function (monthNumber) {
+filters.getMonthName = function (monthNumber, len) {
   const date = new Date();
   date.setMonth(monthNumber - 1);
-  return date.toLocaleString("en-GB", { month: "long" });
+  return date.toLocaleString("en-GB", { month: len || "long" });
 };
+
+filters.addYearsToDate = function (ukDateStr, yearsToAdd) {
+  const [day, month, year] = ukDateStr.split("/").map(Number);
+  const dateObj = new Date(year, month - 1, day);
+  dateObj.setFullYear(dateObj.getFullYear() + parseInt(yearsToAdd));
+  return dateObj.toLocaleDateString("en-GB");
+}
+
+filters.sortBy = function(array, key) {
+  return array.sort((a, b) => {
+    return a[key].localeCompare(b[key]);
+  })
+}
+
+filters.getPath = function(id, allFiles, currentPath = "") {
+  for (const item of allFiles) {
+    const newPath = currentPath ? currentPath + '/' + item.name : item.name;
+
+    if (item.id === id) {
+      return newPath;
+    }
+
+    if (item.children && item.children.length > 0) {
+      const foundPath = filters.getPath(id, item.children, newPath);
+      if (foundPath) {
+        return foundPath;
+      }
+    }
+  }
+
+  return null;
+}
+
+filters.returnFileArray = function (dict, allFiles) {
+  const copy = Object.values(dict);
+  let i = 0;
+  for(var key in dict){
+    copy[i].id = key;
+    copy[i].path = filters.getPath(key, allFiles);
+    i++;
+  }
+  return copy;
+};
+
+filters.hasRequiredMetadata = function (record) {
+  return requiredClosureFields.every(key => {
+    return !!record[key];
+  });
+};
+
+filters.split = function (str, by) {
+  const arr = str.toString().split(by);
+  arr.pop()
+  return arr;
+};
+
+filters.countInDir = function (currDir, closedFiles) {
+  return Object.entries(closedFiles).filter(([key, props]) => {
+    let path = props.path.split("/");
+    path.pop();
+    path = path.join("/").trim()
+    return path == currDir.slice(0, -1);
+  }).length;
+};
+
 
 for (let name in filters) {
   addFilter(name, filters[name]);
