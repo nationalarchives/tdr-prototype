@@ -1,0 +1,70 @@
+{% extends "layouts/no-sign-out.html" %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/tag/macro.njk" import govukTag %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+  Design versions - Transfer Digital Records
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+         Design versions
+      </h1>
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {% from "govuk/components/table/macro.njk" import govukTable %}
+
+      {% set rows = [] %}
+      {% for r in data %}
+        {% set rows = (rows.push([
+          { html: r['Github PR Number'] },
+          { html: r.Name },
+          { html: ["<span style='white-space:nowrap'>",
+            govukTag({
+            text: r.Status[0].value,
+            classes: ["govuk-tag--", r.Status[0].color]|join
+            }), "</span>"]|join
+          },
+          { html: r['Date started']|d("-", true) },
+          { html: r['Date completed']|d("-", true) },
+          { html: ['<a href="/prototype-versions-api/', r.id, '">View details</a>']|join }
+        ]), rows) %}
+      {% endfor %}
+
+      {{ govukTable({
+        firstCellIsHeader: false,
+        head: [
+          {
+            text: "Version"
+          },
+          {
+            text: "Description"
+          },
+          {
+            text: "Status"
+          },
+          {
+            text: "Date started"
+          },
+          {
+            text: "Date completed"
+          },
+          {
+            html: "<span class=\"govuk-visually-hidden\">Action</span>",
+            classes: ""
+          }
+        ],
+        rows: rows
+      }) }}
+    </div>
+  </div>
+
+{% endblock %}

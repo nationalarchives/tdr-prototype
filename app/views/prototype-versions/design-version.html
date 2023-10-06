@@ -1,0 +1,183 @@
+{% extends "layouts/no-sign-out.html" %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/tag/macro.njk" import govukTag %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+  Transfer Digital Records - Design Version {{data['Github PR Number']}}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="/prototype-versions-api/" class="govuk-back-link">All prototype versions</a>
+{% endblock %}
+
+{% block content %}
+
+  {% set livePrototypeURL = ["https://tdr-prototype-pr-", data['Github PR Number'], ".herokuapp.com/" ]|join %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Version {{data['Github PR Number']}} - {{data['Name']}}
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Version"
+            },
+            value: {
+              text: [data['Github PR Number'], ' - ', data['Name']]|join
+            }
+          },
+          {
+            key: {
+              text: "Date started"
+            },
+            value: {
+              text: data['Date started']
+            }
+          },
+          {
+            key: {
+              text: "Date complete"
+            },
+            value: {
+              text: data['Date completed']|d("Ongoing", true)
+            }
+          },
+          {
+            key: {
+              text: "Jira issue"
+            },
+            value: {
+              html: ['<a target="_blank" href="', data['Jira'], '">View on Jira</a>']|join
+            }
+          },
+          {
+            key: {
+              text: "Usability testing"
+            },
+            value: {
+              text: data['Usability session'][0].value
+            },
+            actions: {
+              items: [
+                {
+                  href: ['/prototype-versions-api/usability-session/', data['Usability session'][0].id]|join,
+                  text: "View session details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Design history"
+            },
+            value: {
+              html: ['<a target="_blank" href="', data['Design history'], '">View on Confluence</a>']|join
+            }
+          }
+        ]
+      }) }}
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <p>
+      {{ govukTag({
+        text: data.Status[0].value,
+        classes: ["govuk-tag--", data.Status[0].color]|join
+      }) }}
+      </p>
+
+      {{ govukButton({
+        text: "Visit prototype",
+        href: livePrototypeURL,
+        classes: "govuk-!-margin-bottom-2",
+        isStartButton: true
+      }) }}
+      <p class="govuk-body">Or <a href="#journeys">start from a journey</a> below.</p>
+      {{ govukButton({
+        text: "Github PR",
+        href: ["https://github.com/nationalarchives/tdr-prototype/pull/", data['Github PR Number']]|join,
+        classes: "govuk-button--secondary"
+      }) }}
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-m">
+        Motivations and context
+      </h2>
+      <p class="govuk-body">
+      {{data['Motivations and context']|d("(none)", true)|markdown(false, "govuk-body")| safe }}
+
+      <h2 class="govuk-heading-m">
+        Design changes
+      </h2>
+      <p class="govuk-body">
+        {{data['Design changes']|d("(none)", true)|markdown|safe }}
+      </p>
+
+      <h2 id="journeys" class="govuk-heading-m">
+        Journeys or Pages
+      </h2>
+
+      <p class="govuk-body">Using the 'Start journey' links below will set some variables behind the scene that determine the user journey.</p>
+
+      {{ govukWarningText({
+        text: "Before starting a new journey clear the prototype data.",
+        iconFallbackText: "Warning",
+        classes: "govuk-!-margin-bottom-4"
+      }) }}
+      <form class="form" action="{{"https://tdr-prototype-pr-64.herokuapp.com/prototype-versions/clear-data" if not GOVUKPrototypeKit.isDevelopment else "/prototype-versions/clear-data"}}" method="post">
+        <button class="govuk-button govuk-!-margin-bottom-9" data-module="govuk-button">Clear data</button>
+      </form>
+
+      {% for f in features %}
+        {{ govukSummaryList({
+          card: {
+            title: {
+              text: f['Name']
+            },
+            actions: {
+              items: [
+                {
+                  href: ([livePrototypeURL, f['Starting page']]|join if not GOVUKPrototypeKit.isDevelopment else f['Starting page']),
+                  text: ("Start journey" if f['Type'].value == "Journey" else "Visit static page")
+                }
+              ]
+            }
+          },
+          rows: [
+            {
+              key: {
+                text: "Description"
+              },
+              value: {
+                text: f['Description']
+              }
+            },
+            {
+              key: {
+                text: "Status"
+              },
+              value: {
+                html:  ("<strong class=\"govuk-tag govuk-tag--green\">Tested</strong>" if f['Tested'] else "<strong class=\"govuk-tag govuk-tag--orange\">Untested</strong>")
+              }
+            }
+          ]
+      }) }}
+
+      {% endfor %}
+
+    </div>
+  </div>
+{% endblock %}
