@@ -1,6 +1,8 @@
 const govukPrototypeKit = require("govuk-prototype-kit");
 const addFilter = govukPrototypeKit.views.addFilter;
 
+const marked = require('marked');
+
 const filters = {};
 
 function findById(data, id) {
@@ -16,6 +18,27 @@ function findById(data, id) {
   data.some(iter);
   return result;
 }
+
+filters.markdown = function (markdown, inline=false) {
+
+  marked.Renderer.prototype.paragraph = (text) => {
+    return `<p class="govuk-body">${text}</p>\n`;
+  };
+
+  marked.Renderer.prototype.list = (body, ordered, start) => {
+    const type = ordered ? 'ol' : 'ul';
+    const startatt = (ordered && start !== 1) ? (' start="' + start + '"') : '';
+    return '<' + type + startatt + ' class="govuk-list govuk-list--bullet">\n' + body + '</' + type + '>\n';
+  }
+
+  let html = "";
+  if(inline == true){
+    html = marked.parseInline(markdown, [])
+  } else {
+    html = marked.parse(markdown);
+  }
+  return html;
+};
 
 filters.isFieldMissing = function (fields, data) {
   fields = Array.isArray(fields) ? fields : [fields];

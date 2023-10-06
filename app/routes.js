@@ -6,6 +6,8 @@ const govukPrototypeKit = require("govuk-prototype-kit");
 const router = govukPrototypeKit.requests.setupRouter();
 
 require("./routes-history")
+require("./routes-versions")
+
 const tdrSettings = require("./data/settings.json")
 
 const requireClosureFields = [
