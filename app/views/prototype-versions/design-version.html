@@ -117,7 +117,7 @@
         Motivations and context
       </h2>
       <p class="govuk-body">
-      {{data['Motivations and context']|d("(none)", true)|markdown(false, "govuk-body")| safe }}
+      {{data['Motivations and context']|d("(none)", true)| markdown|safe }}
 
       <h2 class="govuk-heading-m">
         Design changes
@@ -162,7 +162,8 @@
                 text: "Description"
               },
               value: {
-                text: f['Description']
+                text: f['Description']|markdown|safe
+
               }
             },
             {
