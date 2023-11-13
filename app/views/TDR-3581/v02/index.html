@@ -15,6 +15,25 @@ Review metadata
     <h1 class="govuk-heading-xl">Review records with metadata</h1>
   </div>
 </div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    {% include "../filters-alpha.html" %}
+  </div>
+  <div class="govuk-grid-column-one-third-from-desktop">
+    <p>-</p>
+  </div>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <p class="current-filters govuk-!-margin-top-6 govuk-!-margin-bottom-3">
+      {% if data['currentFilter'] %}
+      <span class="current-filters__title"></span> <span class="current-filters__filter">Files beginning with '{{data['currentFilter']}}'</span>
+      <a class="govuk-link govuk-link--no-visited-state current-filters__clear" href="./">Clear filters</a>
+      {% endif %}
+    </p>
+  </div>
+</div>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     {% include "./summary-table.html" %}

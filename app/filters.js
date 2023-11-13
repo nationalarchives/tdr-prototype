@@ -180,6 +180,11 @@ filters.countInDir = function (currDir, recordsMetadata, pathExcludesFilename) {
 };
 
 
+filters.stringToArray = function (letters) {
+  return Array.from(letters);
+}
+
+
 for (let name in filters) {
   addFilter(name, filters[name]);
 }

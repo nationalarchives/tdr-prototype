@@ -691,3 +691,31 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+.filters-alpha__link {
+  padding: 0 2px;
+  margin-right: 2px;
+  text-decoration: none;
+}
+
+.filters-alpha__link--active,
+.filters-alpha__link:hover {
+  background: govuk-colour("yellow");
+}
+
+.filters-alpha__link--active {
+  text-decoration: underline;
+  pointer-events: none;
+}
+
+.current-filters__filter {
+  background: govuk-colour("light-blue");
+  color: govuk-colour("white");
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+
+.current-filters__clear {
+  margin-left: 10px;
+}

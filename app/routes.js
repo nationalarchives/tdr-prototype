@@ -460,8 +460,10 @@ router.get(
     const filterByLetter = req.query.filterLetter
 
     data.recordsMetadata = genericMetadata200
+    data.currentFilter = ""
 
     if(filterByLetter){
+      data.currentFilter = filterByLetter
       data.recordsMetadata = data.recordsMetadata.filter((r)=>{
         return String(r.name[0]).toLocaleLowerCase() == filterByLetter.toLocaleLowerCase()
       })
