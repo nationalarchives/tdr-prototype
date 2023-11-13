@@ -156,16 +156,26 @@ filters.hasRequiredMetadata = function (record) {
 
 filters.split = function (str, by) {
   const arr = str.toString().split(by);
-  arr.pop()
+  if(arr[arr.length-1] == "")
+    arr.pop()
   return arr;
 };
 
-filters.countInDir = function (currDir, closedFiles) {
-  return Object.entries(closedFiles).filter(([key, props]) => {
-    let path = props.path.split("/");
-    path.pop();
-    path = path.join("/").trim()
-    return path == currDir.slice(0, -1);
+filters.countInDir = function (currDir, recordsMetadata, pathExcludesFilename) {
+  if(currDir.charAt(currDir.length-1) == "/"){
+    currDir = currDir.slice(0, -1);
+  }
+  return Object.entries(recordsMetadata).filter(([key, props]) => {
+    let path = props.path
+    if(path.charAt(path.length-1) == "/"){
+      path = path.slice(0, -1);
+    }
+    if(!pathExcludesFilename){
+      path = path.split("/");
+      path.pop();
+      path = path.join("/").trim()
+    }
+    return path == currDir;
   }).length;
 };
 

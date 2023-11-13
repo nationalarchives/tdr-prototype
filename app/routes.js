@@ -10,6 +10,7 @@ const tdrSettings = require("./data/settings.json")
 
 const closureMetadataSummaryExampleData = require("./data/closure-metadata-summary-example-01.json");
 const descriptiveMetadataSummaryExampleData = require("./data/descriptive-metadata-summary-example-01.json");
+const genericMetadata200 = require("./data/generic-metadata-200-plus-consignment.json");
 
 const requireClosureFields = [
   "addClosure-foi-asserted-day",
@@ -445,6 +446,30 @@ router.get(
     let versionUrl = (req.params.version) ?  `/metadata/descriptive-metadata/${req.params.version}/summary` : '/metadata/descriptive-metadata/summary';
 
     res.render(versionUrl, {
+      data : data
+    });
+  }
+);
+
+router.get(
+  "/TDR-3581/:version?/:page?",
+  function (req, res) {
+    const data = req.session.data;
+    const version = req.params.version
+    const page = req.params.page
+    const filterByLetter = req.query.filterLetter
+
+    data.recordsMetadata = genericMetadata200
+
+    if(filterByLetter){
+      data.recordsMetadata = data.recordsMetadata.filter((r)=>{
+        return String(r.name[0]).toLocaleLowerCase() == filterByLetter.toLocaleLowerCase()
+      })
+    }
+
+    let versionTemplate = (version) ?  `/TDR-3581/${version}/index` : '/TDR-3581/v01/index';
+
+    res.render(versionTemplate, {
       data : data
     });
   }

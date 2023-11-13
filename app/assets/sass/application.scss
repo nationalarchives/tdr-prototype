@@ -8,6 +8,7 @@
 @import 'node_modules/@nationalarchives/tdr-components/components/nested-navigation/_index';
 @import './prototype-history.scss';
 @import './folder-upload.scss';
+@import './tdr-file-breadcrumb.scss';
 
 
 .tna-tree__radios-directory__label {
@@ -374,6 +375,9 @@
 
 .tdr-summary-table td.govuk-table__header {
   font-weight: normal;
+}
+
+.tdr-summary-table.tdr-summary-table--sort-by-dir td.govuk-table__header {
   @include govuk-responsive-padding(2, "left");
 }
 
@@ -407,6 +411,25 @@
   top: 5px;
   right: 10px;
   font-weight: bold;
+}
+
+.tdr-summary-table__row {
+  position: relative;
+}
+
+.tdr-summary-table__row td:not(.tdr-summary-table__align-bottom) {
+  padding-bottom: 2.4rem;
+}
+
+.tdr-summary-table__align-bottom {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: govuk-colour("dark-grey");
+  padding: 0 0 0.4rem 0;
 }
 
 .tdr-table-actions-menu {
@@ -652,46 +675,6 @@
   margin: 0;
   padding: 0;
   list-style-type: none;
-}
-
-.tdr-file-breadcrumbs__list-item {
-  margin: 5px  0;
-  display: inline-block;
-  font-weight: bold;
-  position: relative;
-  padding-left: 27px;
-  padding-right: 10px;
-}
-
-.tdr-file-breadcrumbs__list-item:before {
-  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 22 23'%3E%3Cpath fill='%23fff' d='M10.035 6h8.3a1.222 1.222 0 0 1 1.221 1.222v11a1.222 1.222 0 0 1-1.222 1.222H3.668a1.222 1.222 0 0 1-1.223-1.222V4.778a1.222 1.222 0 0 1 1.223-1.222h3.966a1.222 1.222 0 0 1 .99.5L10.035 6Z'/%3E%3Cpath fill='%234A5259' d='M18.334 6h-8.299L8.624 4.057a1.222 1.222 0 0 0-.99-.501H3.668a1.222 1.222 0 0 0-1.223 1.222v13.444a1.222 1.222 0 0 0 1.223 1.222h14.666a1.222 1.222 0 0 0 1.222-1.222v-11A1.222 1.222 0 0 0 18.334 6Zm0 12.222H3.668V8.444h4.467a1.222 1.222 0 0 0 1.222-1.222h-5.69V4.778h3.967l1.595 2.194a.611.611 0 0 0 .495.25h8.61v11Z'/%3E%3C/svg%3E%0A");
-  height: 22px;
-  width: 22px;
-  display: block;
-  position: absolute;
-  top: -2px;
-  bottom: 0;
-  left: 0;
-}
-
-.tdr-file-breadcrumbs__list-item:after {
-  content: "";
-  display: inline-block;
-  border: solid;
-  border-width: 1px 1px 0 0;
-  border-color: #505a5f;
-  font-size: max(16px, 1em);
-  height: 6px;
-  left: 5px;
-  margin: auto 0;
-  position: relative;
-  top: -2px;
-  transform: rotate(45deg);
-  width: 6px;
-}
-
-.tdr-file-breadcrumbs__list-item:last-child:after {
-  content:none;
 }
 
 .tdr-scroll-container {
