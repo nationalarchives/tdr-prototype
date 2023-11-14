@@ -453,11 +453,12 @@ router.get(
 );
 
 router.get(
-  "/TDR-3581/:version?/:page?",
+  "/TDR-3581/:version?",
   function (req, res) {
+    const perPage = 100
     const data = req.session.data;
     const version = req.params.version
-    const page = req.params.page
+    let page = req.query.pg
     const filterByLetter = req.query.filterLetter
 
     data.recordsMetadata = genericMetadata
@@ -493,6 +494,30 @@ router.get(
       })
     }
 
+
+    // PAGINATE
+    const filterQuery = filterByLetter ? `&filterLetter=${filterByLetter}` : "";
+    const url = (pg) => `/TDR-3581/${version}?pg=${pg}${filterQuery}`
+    data.currentPage = page || 1;
+    data.totalPages = Math.ceil(data.recordsMetadata.length / perPage);
+    data.previousPage = (parseInt(data.currentPage) > 1) ? url(parseInt(data.currentPage)-1) : false;
+    data.nextPage = parseInt(data.currentPage)+1 > data.totalPages ? false : url(parseInt(data.currentPage)+1);
+
+    data.pages = []
+    for(let i = 1; i <= data.totalPages; i++){
+      data.pages.push({
+        number: i,
+        current: data.currentPage == i,
+        href: url(i)
+      })
+    }
+
+    // page = page ? parseInt : 0;
+    data.recordsMetadata = data.recordsMetadata.slice(
+      (data.currentPage-1)*perPage,
+      data.currentPage*perPage
+      );
+
     // data.recordsMetadata.forEach((r)=> { console.log(r.path + r.name) } )
 
     let versionTemplate = (version) ?  `/TDR-3581/${version}/index` : '/TDR-3581/v01/index';
@@ -511,6 +536,7 @@ router.post(
 );
 
 router.use((req, res, next) => {
+  console.log(tdrSettings)
   req.session.data = {...req.session.data, ...tdrSettings};
   next()
 })

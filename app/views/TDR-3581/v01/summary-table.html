@@ -24,7 +24,7 @@
     </td>
   </tr>
 {% else %}
-  {% for item in data['recordsMetadata']|sortBy("path") %}
+  {% for item in data['recordsMetadata'] %}
     {% if currentDirectory != item.path %}
       {% set currentDirectory = item.path %}
       <tr>

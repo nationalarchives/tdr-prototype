@@ -4,10 +4,6 @@
 Review metadata
 {% endblock %}
 
-{% block beforeContent %}
-  <a href="../additional-metadata" class="govuk-back-link">Step 5: Descriptive and closure metadata</a>
-{% endblock %}
-
 {% block content %}
 
 <div class="govuk-grid-row">
@@ -17,11 +13,24 @@ Review metadata
 </div>
 
 <div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third-from-desktop">
+    {{ govukSelect({
+      id: "sort",
+      name: "sort",
+      label: {
+        html: "<strong>Sort by</strong>"
+      },
+      items: [
+        {
+          value: "updated",
+          text: "File name (A-Z)",
+          selected: true
+        }
+      ]
+    }) }}
+  </div>
   <div class="govuk-grid-column-two-thirds-from-desktop">
     {% include "../filters-alpha.html" %}
-  </div>
-  <div class="govuk-grid-column-one-third-from-desktop">
-    <p>-</p>
   </div>
 </div>
 <div class="govuk-grid-row">
@@ -37,6 +46,15 @@ Review metadata
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     {% include "./summary-table.html" %}
+    {{ govukPagination({
+      previous: {
+        href: data['previousPage']
+      },
+      next: {
+        href: data['nextPage']
+      },
+      items: data['pages']
+    }) }}
   </div>
 </div>
 {% endblock %}

@@ -24,7 +24,7 @@
     </td>
   </tr>
 {% else %}
-  {% for item in data['recordsMetadata']|sortBy("path") %}
+  {% for item in data['recordsMetadata'] %}
       <tr class="govuk-table__row tdr-summary-table__row">
         <td headers="{{currentDirectory|urlencode}}" id="{{currentDirectory|urlencode}}{{item.id|urlencode}}" class="govuk-table__header govuk-table__header--spacious">{{item.name}}</td>
         <td headers="{{currentDirectory|urlencode}}{{item.id|urlencode}}" class="govuk-table__cell govuk-table__cell--nowrap">
