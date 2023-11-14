@@ -10,7 +10,8 @@ const tdrSettings = require("./data/settings.json")
 
 const closureMetadataSummaryExampleData = require("./data/closure-metadata-summary-example-01.json");
 const descriptiveMetadataSummaryExampleData = require("./data/descriptive-metadata-summary-example-01.json");
-const genericMetadata200 = require("./data/generic-metadata-200-plus-consignment.json");
+// const genericMetadata = require("./data/generic-metadata-consignment.json");
+const genericMetadata = require("./data/generic-metadata-1000-plus-consignment.json");
 
 const requireClosureFields = [
   "addClosure-foi-asserted-day",
@@ -459,18 +460,42 @@ router.get(
     const page = req.params.page
     const filterByLetter = req.query.filterLetter
 
-    data.recordsMetadata = genericMetadata200
+    data.recordsMetadata = genericMetadata
     data.currentFilter = ""
 
+    // FILTER
     if(filterByLetter){
       data.currentFilter = filterByLetter
-      data.recordsMetadata = data.recordsMetadata.filter((r)=>{
-        return String(r.name[0]).toLocaleLowerCase() == filterByLetter.toLocaleLowerCase()
+      data.recordsMetadata = data.recordsMetadata.filter( r => String(r.name[0]).toLocaleLowerCase() == filterByLetter.toLocaleLowerCase())
+    }
+
+    // SORT
+    if(version == "v01"){
+      // by path, then name
+      data.recordsMetadata = data.recordsMetadata.sort( (r1, r2) => {
+        // Compare by path first
+        if (r1.path < r2.path) return -1;
+        if (r1.path > r2.path) return 1;
+
+        // If paths are equal, compare by name
+        if (r1.name < r2.name) return -1;
+        if (r1.name > r2.name) return 1;
+
+        // Objects are equal in both properties
+        return 0;
       })
     }
 
-    let versionTemplate = (version) ?  `/TDR-3581/${version}/index` : '/TDR-3581/v01/index';
+    if(version == "v02"){
+      // by name
+      data.recordsMetadata = data.recordsMetadata.sort( (r1, r2) => {
+        return r1.name > r2.name ? 1 : -1
+      })
+    }
 
+    // data.recordsMetadata.forEach((r)=> { console.log(r.path + r.name) } )
+
+    let versionTemplate = (version) ?  `/TDR-3581/${version}/index` : '/TDR-3581/v01/index';
     res.render(versionTemplate, {
       data : data
     });
