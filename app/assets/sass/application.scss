@@ -728,3 +728,18 @@
 .highlight {
   background-color: govuk-tint(govuk-colour("yellow"), 80);
 }
+
+.search-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.search-wrapper .govuk-form-group {
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.search-wrapper button {
+  margin-bottom: 6px;
+}

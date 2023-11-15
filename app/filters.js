@@ -189,23 +189,24 @@ function addSpanTags(inputString, indicesArray, className, offsetIndex) {
   return result;
 }
 
-filters.highlightMatches = function (value, matches, key, offsetIndex) {
+filters.highlightMatches = function (value, matches, key, offsetIndex, fullDirName) {
+
 
   if(!matches) return value;
-  offsetIndex = offsetIndex || 0;
+  offsetIndex = offsetIndex >= 0 ? offsetIndex : false;
+
+
+  if(key==="path" && fullDirName === "Alain_Ducasse/Giada_De_Laurentiis/Nigella_Lawson"){
+    if(value == matches[0].value.substr(offsetIndex, value.length)){
+    }
+  }
 
   let ms = matches.filter((match)=> {
-      // if(key == 'path') console.log(match.key, "==", key, match.value, "==", value);
-      // if(offsetIndex) console.log(match.value.substr(offsetIndex, value.length));
       return match.key == key && (
-        (offsetIndex == 0 && match.value == value) ||
-        (offsetIndex > 0 && value == match.value.substr(offsetIndex, value.length))
+        (offsetIndex == false && match.value == value) ||
+        (offsetIndex >= 0 && match.value == fullDirName && value == match.value.substr(offsetIndex, value.length))
       )
   })
-
-  // if(key == 'path' && ms.length > 0){
-  //   console.log(ms[0].indices, offsetIndex)
-  // }
 
   return ms.length > 0 ? addSpanTags(value,  ms[0].indices, "highlight", offsetIndex) : value;
 }

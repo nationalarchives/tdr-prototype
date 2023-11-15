@@ -4,7 +4,6 @@
 //
 const govukPrototypeKit = require("govuk-prototype-kit");
 const router = govukPrototypeKit.requests.setupRouter();
-const Fuse = require('fuse.js')
 
 require("./routes-history")
 const tdrSettings = require("./data/settings.json")
@@ -453,7 +452,44 @@ router.get(
   }
 );
 
+function findMatches(data, searchPattern, keys){
+  const partialMatches = data.map(item => {
+    const matches = [];
 
+    keys.forEach(key => {
+      const value = item[key];
+      if (value) {
+        let startIdx = -1;
+        let endIdx = -1;
+        let currentIndex = value.indexOf(searchPattern);
+
+        while (currentIndex !== -1) {
+          startIdx = currentIndex;
+          endIdx = startIdx + searchPattern.length - 1;
+
+          matches.push({
+            indices: [[startIdx, endIdx]],
+            value,
+            key,
+          });
+          // Continue searching for the next occurrence
+          currentIndex = value.indexOf(searchPattern, currentIndex + 1);
+        }
+      }
+    });
+
+    if (matches.length > 0) {
+      return {
+        item,
+        matches,
+      };
+    }
+
+    return null;
+  }).filter(match => match !== null);
+
+  return partialMatches
+}
 
 router.get(
   "/TDR-3581/:version?",
@@ -473,8 +509,7 @@ router.get(
       includeMatches: true,
       findAllMatches: false,
       minMatchCharLength: 3,
-      threshold: 0.8,
-      location: 1000,
+      ignoreLocation: true,
       keys: [
         "name",
         "path"
@@ -483,13 +518,20 @@ router.get(
 
     // SEARCH
     if(searchPattern){
-      const fuse = new Fuse(data.recordsMetadata, fuseOptions)
+      const matches = findMatches(data.recordsMetadata, searchPattern, ['name', 'path']);
       data.recordsMetadata = []
-      fuse.search(searchPattern).forEach((res)=>{
-        if(res.score < 0.2){
-          data.recordsMetadata.push(Object.assign(res.item, {matches:res.matches}))
-        }
+
+      matches.forEach((res)=>{
+        data.recordsMetadata.push(Object.assign(res.item, {matches:res.matches}))
       })
+      data.searchPattern = searchPattern
+
+    } else {
+      data.recordsMetadata = data.recordsMetadata.map((item) =>{
+        if(item.hasOwnProperty('matches')) delete item.matches;
+        return item
+      })
+      data.searchPattern = "";
     }
 
     // FILTER
@@ -499,7 +541,7 @@ router.get(
     }
 
     // SORT
-    if(version == "v01"){
+    if(["v01", "v03"].includes(version)){
       // by path, then name
       data.recordsMetadata = data.recordsMetadata.sort( (r1, r2) => {
         // Compare by path first
@@ -515,13 +557,12 @@ router.get(
       })
     }
 
-    if(version == "v02"){
+    if(["v02", "v04"].includes(version)){
       // by name
       data.recordsMetadata = data.recordsMetadata.sort( (r1, r2) => {
         return r1.name > r2.name ? 1 : -1
       })
     }
-
 
     // PAGINATE
     const searchQuery = searchPattern ? `&search=${searchPattern}` : "";

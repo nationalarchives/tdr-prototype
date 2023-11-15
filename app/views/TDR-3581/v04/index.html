@@ -1,0 +1,87 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Review metadata
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Review records with metadata</h1>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third-from-desktop">
+    {{ govukSelect({
+      id: "sort",
+      name: "sort",
+      label: {
+        html: "<strong>Sort by</strong>"
+      },
+      items: [
+        {
+          value: "updated",
+          text: "File name (A-Z)",
+          selected: true
+        }
+      ]
+    }) }}
+  </div>
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <form action="" method="get">
+      <div class="search-wrapper">
+        {{ govukInput({
+          label: {
+            html: "<strong>Filter by file name or directory</strong>"
+          },
+          type: "search",
+          id: "filter-by-name",
+          name: "search",
+          value: data['searchPattern']
+        }) }}
+
+        {{ govukButton({
+          text: "Filter"
+        }) }}
+      </div>
+    </form>
+    {% if data['searchPattern'] %}
+    <p class="govuk-body govuk-body-s">
+      <a href="/TDR-3581/v04?search=" class="govuk-link">Clear filter</a>
+    </p>
+    {% endif %}
+  </div>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <p class="current-filters govuk-!-margin-top-6 govuk-!-margin-bottom-3">
+      {% if data['currentFilter'] %}
+      <span class="current-filters__title"></span> <span class="current-filters__filter">Files beginning with '{{data['currentFilter']}}'</span>
+      <a class="govuk-link govuk-link--no-visited-state current-filters__clear" href="v02">Clear filters</a>
+      {% endif %}
+    </p>
+  </div>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    {% include "./summary-table.html" %}
+    <div class="tdr-pagination">
+    {{ govukPagination({
+      previous: {
+        href: data['previousPage']
+      },
+      next: {
+        href: data['nextPage']
+      },
+      items: data['pages']
+    }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block pageScripts %}
+  {{ super() }}
+{% endblock %}
