@@ -369,7 +369,7 @@
   @include govuk-responsive-padding(2, "bottom");
 }
 
-.tdr-summary-table {
+.tdr-summary-table--mb-large {
   margin-bottom: 135px;
 }
 
@@ -718,4 +718,13 @@
 
 .current-filters__clear {
   margin-left: 10px;
+}
+
+.tdr-pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.highlight {
+  background-color: govuk-tint(govuk-colour("yellow"), 80);
 }

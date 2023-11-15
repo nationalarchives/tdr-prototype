@@ -4,6 +4,7 @@
 //
 const govukPrototypeKit = require("govuk-prototype-kit");
 const router = govukPrototypeKit.requests.setupRouter();
+const Fuse = require('fuse.js')
 
 require("./routes-history")
 const tdrSettings = require("./data/settings.json")
@@ -452,17 +453,44 @@ router.get(
   }
 );
 
+
+
 router.get(
   "/TDR-3581/:version?",
   function (req, res) {
     const perPage = 100
     const data = req.session.data;
     const version = req.params.version
-    let page = req.query.pg
     const filterByLetter = req.query.filterLetter
+    const searchPattern = req.query.search
+    let page = req.query.pg
 
     data.recordsMetadata = genericMetadata
     data.currentFilter = ""
+
+    const fuseOptions = {
+      includeScore: true,
+      includeMatches: true,
+      findAllMatches: false,
+      minMatchCharLength: 3,
+      threshold: 0.8,
+      location: 1000,
+      keys: [
+        "name",
+        "path"
+      ]
+    };
+
+    // SEARCH
+    if(searchPattern){
+      const fuse = new Fuse(data.recordsMetadata, fuseOptions)
+      data.recordsMetadata = []
+      fuse.search(searchPattern).forEach((res)=>{
+        if(res.score < 0.2){
+          data.recordsMetadata.push(Object.assign(res.item, {matches:res.matches}))
+        }
+      })
+    }
 
     // FILTER
     if(filterByLetter){
@@ -496,8 +524,9 @@ router.get(
 
 
     // PAGINATE
+    const searchQuery = searchPattern ? `&search=${searchPattern}` : "";
     const filterQuery = filterByLetter ? `&filterLetter=${filterByLetter}` : "";
-    const url = (pg) => `/TDR-3581/${version}?pg=${pg}${filterQuery}`
+    const url = (pg) => `/TDR-3581/${version}?pg=${pg}${filterQuery}${searchQuery}`
     data.currentPage = page || 1;
     data.totalPages = Math.ceil(data.recordsMetadata.length / perPage);
     data.previousPage = (parseInt(data.currentPage) > 1) ? url(parseInt(data.currentPage)-1) : false;

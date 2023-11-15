@@ -161,6 +161,55 @@ filters.split = function (str, by) {
   return arr;
 };
 
+function addSpanTags(inputString, indicesArray, className, offsetIndex) {
+  let result = '';
+  offset = offsetIndex || 0;
+
+  // Iterate through the indices array and add <span> tags
+  for (const indices of indicesArray) {
+    const startIndex = indices[0];
+    const endIndex = indices[1];
+
+    if(startIndex >= offsetIndex){
+
+      // Add the substring before the current set of indices
+      result += inputString.substring(0, startIndex-offsetIndex);
+
+      // Add the <span> tags around the current set of indices
+      result += `<span class="${className}">${inputString.substring(startIndex-offsetIndex, endIndex-offsetIndex + 1)}</span>`;
+
+      // Update the input string for the next iteration
+      inputString = inputString.substring(endIndex-offsetIndex + 1);
+    }
+  }
+
+  // Add the remaining substring after the last set of indices
+  result += inputString;
+
+  return result;
+}
+
+filters.highlightMatches = function (value, matches, key, offsetIndex) {
+
+  if(!matches) return value;
+  offsetIndex = offsetIndex || 0;
+
+  let ms = matches.filter((match)=> {
+      // if(key == 'path') console.log(match.key, "==", key, match.value, "==", value);
+      // if(offsetIndex) console.log(match.value.substr(offsetIndex, value.length));
+      return match.key == key && (
+        (offsetIndex == 0 && match.value == value) ||
+        (offsetIndex > 0 && value == match.value.substr(offsetIndex, value.length))
+      )
+  })
+
+  // if(key == 'path' && ms.length > 0){
+  //   console.log(ms[0].indices, offsetIndex)
+  // }
+
+  return ms.length > 0 ? addSpanTags(value,  ms[0].indices, "highlight", offsetIndex) : value;
+}
+
 filters.countInDir = function (currDir, recordsMetadata, pathExcludesFilename) {
   if(currDir.charAt(currDir.length-1) == "/"){
     currDir = currDir.slice(0, -1);

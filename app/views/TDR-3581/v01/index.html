@@ -47,6 +47,7 @@ Review metadata
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     {% include "./summary-table.html" %}
+    <div class="tdr-pagination">
 
     {{ govukPagination({
       previous: {
@@ -58,6 +59,7 @@ Review metadata
       items: data['pages']
     }) }}
 
+    </div>
   </div>
 </div>
 {% endblock %}

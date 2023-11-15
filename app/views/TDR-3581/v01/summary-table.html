@@ -27,11 +27,15 @@
   {% for item in data['recordsMetadata'] %}
     {% if currentDirectory != item.path %}
       {% set currentDirectory = item.path %}
+
+      {# {{item.path|highlightMatches(item.matches, "path")}} #}
       <tr>
         <td colspan="6" headers="header-dir" id="{{currentDirectory|urlencode}}" class="tdr-summary-table__dir-cell govuk-body govuk-!-font-size-14" >
           <ol class="tdr-file-breadcrumbs">
+          {% set currStrIndex = 0 %}
           {% for dir in currentDirectory|split("/") %}
-            <li class="tdr-file-breadcrumbs__list-item">{{dir}}</li>
+            <li class="tdr-file-breadcrumbs__list-item">{{dir|highlightMatches(item.matches, "path", currStrIndex)|safe}}</li>
+            {% set currStrIndex = 1+currStrIndex+dir|length %}
           {% else %}
             <li class="tdr-file-breadcrumbs__list-item">/</li>
           {% endfor %}
@@ -42,7 +46,9 @@
       </tr>
     {% endif %}
       <tr class="govuk-table__row">
-        <td headers="{{currentDirectory|urlencode}}" id="{{currentDirectory|urlencode}}{{item.id|urlencode}}" class="govuk-table__header govuk-table__header--spacious">{{item.name}}</td>
+        <td headers="{{currentDirectory|urlencode}}" id="{{currentDirectory|urlencode}}{{item.id|urlencode}}" class="govuk-table__header govuk-table__header--spacious">
+          {{item.name|highlightMatches(item.matches, "name")|safe}}
+        </td>
         <td headers="{{currentDirectory|urlencode}}{{item.id|urlencode}}" class="govuk-table__cell govuk-table__cell--nowrap">
           {{item['ldm-extracted-day']}} {{item['ldm-extracted-month']|getMonthName("short")}} {{item['ldm-extracted-year']}}
         </td>
