@@ -38,7 +38,7 @@
             <ol class="tdr-file-breadcrumbs tdr-file-breadcrumbs--small">
             {% set currStrIndex = 0 %}
             {% for dir in item.path|split("/") %}
-              <li class="tdr-file-breadcrumbs__list-item">{{dir|highlightMatches(item.matches, "path", currStrIndex, currentDirectory)|safe}}</li>
+              <li class="tdr-file-breadcrumbs__list-item">{{dir|highlightMatches(item.matches, "path", currStrIndex, item.path)|safe}}</li>
               {% set currStrIndex = 1+currStrIndex+dir|length %}
             {% else %}
               <li class="tdr-file-breadcrumbs__list-item">[Top level directory]</li>
