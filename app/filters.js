@@ -191,15 +191,8 @@ function addSpanTags(inputString, indicesArray, className, offsetIndex) {
 
 filters.highlightMatches = function (value, matches, key, offsetIndex, fullDirName) {
 
-
   if(!matches) return value;
   offsetIndex = offsetIndex >= 0 ? offsetIndex : false;
-
-
-  if(key==="path" && fullDirName === "Alain_Ducasse/Giada_De_Laurentiis/Nigella_Lawson"){
-    if(value == matches[0].value.substr(offsetIndex, value.length)){
-    }
-  }
 
   let ms = matches.filter((match)=> {
       return match.key == key && (
