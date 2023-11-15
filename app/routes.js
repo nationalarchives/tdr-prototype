@@ -461,7 +461,7 @@ function findMatches(data, searchPattern, keys){
       if (value) {
         let startIdx = -1;
         let endIdx = -1;
-        let currentIndex = value.indexOf(searchPattern);
+        let currentIndex = value.toLowerCase().indexOf(searchPattern.toLowerCase());
 
         while (currentIndex !== -1) {
           startIdx = currentIndex;
