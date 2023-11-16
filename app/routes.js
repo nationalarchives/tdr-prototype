@@ -498,11 +498,15 @@ router.get(
     const data = req.session.data;
     const version = req.params.version
     const filterByLetter = req.query.filterLetter
+    const filterByDirectory = req.query.filterDirectory
     const searchPattern = req.query.search
     let page = req.query.pg
 
     data.recordsMetadata = genericMetadata
-    data.currentFilter = ""
+    data.directories = [...new Set(genericMetadata.map((item) => item.path))].sort().map(item => {
+      return {text: item, value: encodeURIComponent(item)}});
+
+    data.currentAlphaFilter = ""
 
     const fuseOptions = {
       includeScore: true,
@@ -534,10 +538,18 @@ router.get(
       data.searchPattern = "";
     }
 
-    // FILTER
+    // FILTER BY LETTER
     if(filterByLetter){
-      data.currentFilter = filterByLetter
+      data.currentAlphaFilter = filterByLetter
       data.recordsMetadata = data.recordsMetadata.filter( r => String(r.name[0]).toLocaleLowerCase() == filterByLetter.toLocaleLowerCase())
+    }
+
+    // FILTER BY DIRECTORY
+    if(filterByDirectory){
+      data.currentDirFilter = filterByDirectory
+      data.recordsMetadata = data.recordsMetadata.filter( r => {
+        return String(r.path).toLocaleLowerCase() == decodeURIComponent(filterByDirectory).toLocaleLowerCase()
+      })
     }
 
     // SORT
@@ -568,6 +580,7 @@ router.get(
     const searchQuery = searchPattern ? `&search=${searchPattern}` : "";
     const filterQuery = filterByLetter ? `&filterLetter=${filterByLetter}` : "";
     const url = (pg) => `/TDR-3581/${version}?pg=${pg}${filterQuery}${searchQuery}`
+    // const urlRemoveSearch = (pg) => `/TDR-3581/${version}?pg=${pg}${filterQuery}${searchQuery}`
     data.currentPage = page || 1;
     data.totalPages = Math.ceil(data.recordsMetadata.length / perPage);
     data.previousPage = (parseInt(data.currentPage) > 1) ? url(parseInt(data.currentPage)-1) : false;
@@ -582,13 +595,7 @@ router.get(
       })
     }
 
-    // page = page ? parseInt : 0;
-    data.recordsMetadata = data.recordsMetadata.slice(
-      (data.currentPage-1)*perPage,
-      data.currentPage*perPage
-      );
-
-    // data.recordsMetadata.forEach((r)=> { console.log(r.path + r.name) } )
+    data.recordsMetadata = data.recordsMetadata.slice((data.currentPage-1)*perPage, data.currentPage*perPage);
 
     let versionTemplate = (version) ?  `/TDR-3581/${version}/index` : '/TDR-3581/v01/index';
     res.render(versionTemplate, {
@@ -606,7 +613,6 @@ router.post(
 );
 
 router.use((req, res, next) => {
-  console.log(tdrSettings)
   req.session.data = {...req.session.data, ...tdrSettings};
   next()
 })
