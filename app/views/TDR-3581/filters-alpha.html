@@ -2,7 +2,7 @@
   <h3 class="govuk-heading-s govuk-!-margin-1">Filter files that begin with:</h3>
   <div class="filters-alpha__filters">
     {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"|stringToArray %}
-    <a href="?filterLetter={{letter}}" class="govuk-link filters-alpha__link{%if data['currentFilter'] == letter %} filters-alpha__link--active{%endif%}">{{ letter }}</a>
+    <a href="?filterLetter={{letter}}" class="govuk-link filters-alpha__link{%if data['currentAlphaFilter'] == letter %} filters-alpha__link--active{%endif%}">{{ letter }}</a>
     {% endfor %}
   </div>
 </div>

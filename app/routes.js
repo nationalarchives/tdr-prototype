@@ -500,12 +500,18 @@ router.get(
     const filterByLetter = req.query.filterLetter
     const filterByDirectory = req.query.filterDirectory
     const searchPattern = req.query.search
+    const searchFilePattern = req.query.searchName
     let page = req.query.pg
 
     data.recordsMetadata = genericMetadata
-    data.directories = [...new Set(genericMetadata.map((item) => item.path))].sort().map(item => {
-      return {text: item, value: encodeURIComponent(item)}});
+    data.recordsCount = genericMetadata.length
 
+    data.directories = [...new Set(genericMetadata.map((item) => item.path))].sort().map(item => {
+      return {text: item.split("/").join(" / "), value: item, selected: item === decodeURIComponent(filterByDirectory)}});
+
+    data.directories.unshift({value: "", text:"Choose directory"})
+
+    data.currentDirFilter = data.directories.find(item => item.selected === true)?.text
     data.currentAlphaFilter = ""
 
     const fuseOptions = {
@@ -521,39 +527,42 @@ router.get(
     };
 
     // SEARCH
-    if(searchPattern){
-      const matches = findMatches(data.recordsMetadata, searchPattern, ['name', 'path']);
+    if(searchPattern || searchFilePattern){
+      const keys = searchFilePattern ? ['name'] : ['name', 'path'];
+      const matches = findMatches(data.recordsMetadata, searchPattern||searchFilePattern, keys);
       data.recordsMetadata = []
 
       matches.forEach((res)=>{
         data.recordsMetadata.push(Object.assign(res.item, {matches:res.matches}))
       })
       data.searchPattern = searchPattern
-
+      data.searchFilePattern = searchFilePattern
+      data.recordsCount = data.recordsMetadata.length
     } else {
       data.recordsMetadata = data.recordsMetadata.map((item) =>{
         if(item.hasOwnProperty('matches')) delete item.matches;
         return item
       })
       data.searchPattern = "";
+      data.searchFilePattern = "";
     }
 
     // FILTER BY LETTER
     if(filterByLetter){
-      data.currentAlphaFilter = filterByLetter
+      data.currentFilter = filterByLetter
       data.recordsMetadata = data.recordsMetadata.filter( r => String(r.name[0]).toLocaleLowerCase() == filterByLetter.toLocaleLowerCase())
     }
 
     // FILTER BY DIRECTORY
     if(filterByDirectory){
-      data.currentDirFilter = filterByDirectory
       data.recordsMetadata = data.recordsMetadata.filter( r => {
         return String(r.path).toLocaleLowerCase() == decodeURIComponent(filterByDirectory).toLocaleLowerCase()
       })
+      data.recordsCount = data.recordsMetadata.length
     }
 
     // SORT
-    if(["v01", "v03"].includes(version)){
+    if(["v01", "v03", "v05"].includes(version)){
       // by path, then name
       data.recordsMetadata = data.recordsMetadata.sort( (r1, r2) => {
         // Compare by path first
@@ -569,22 +578,28 @@ router.get(
       })
     }
 
-    if(["v02", "v04"].includes(version)){
+    if(["v02", "v04", "v06"].includes(version)){
       // by name
       data.recordsMetadata = data.recordsMetadata.sort( (r1, r2) => {
         return r1.name > r2.name ? 1 : -1
       })
     }
 
-    // PAGINATE
     const searchQuery = searchPattern ? `&search=${searchPattern}` : "";
+    const searchFileQuery = searchFilePattern ? `&searchName=${searchFilePattern}` : "";
     const filterQuery = filterByLetter ? `&filterLetter=${filterByLetter}` : "";
-    const url = (pg) => `/TDR-3581/${version}?pg=${pg}${filterQuery}${searchQuery}`
-    // const urlRemoveSearch = (pg) => `/TDR-3581/${version}?pg=${pg}${filterQuery}${searchQuery}`
+    const filterDirQuery = filterByDirectory ? `&filterDirectory=${filterByDirectory}` : "";
+    const url = (pg) => `/TDR-3581/${version}?pg=${pg}${filterQuery}${searchQuery}${searchFileQuery}${filterDirQuery}`
+    data.urlNoSearchFile = `/TDR-3581/${version}?pg=1${filterDirQuery}`
+    data.urlNoDirectory = `/TDR-3581/${version}?pg=1${searchFileQuery}`
+
+
+    // PAGINATE
     data.currentPage = page || 1;
     data.totalPages = Math.ceil(data.recordsMetadata.length / perPage);
     data.previousPage = (parseInt(data.currentPage) > 1) ? url(parseInt(data.currentPage)-1) : false;
     data.nextPage = parseInt(data.currentPage)+1 > data.totalPages ? false : url(parseInt(data.currentPage)+1);
+
 
     data.pages = []
     for(let i = 1; i <= data.totalPages; i++){
