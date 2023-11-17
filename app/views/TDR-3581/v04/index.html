@@ -31,7 +31,8 @@ Review metadata
   </div>
   <div class="govuk-grid-column-two-thirds-from-desktop">
     <form action="" method="get">
-      <div class="search-wrapper">
+      <div class="filters">
+        <div class="filters__input">
         {{ govukInput({
           label: {
             html: "<strong>Filter by file name or directory</strong>"
@@ -41,9 +42,10 @@ Review metadata
           name: "search",
           value: data['searchPattern']
         }) }}
-
+        </div>
         {{ govukButton({
-          text: "Filter"
+          text: "Filter",
+          classes: "filters__submit"
         }) }}
       </div>
     </form>

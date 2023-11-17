@@ -408,7 +408,8 @@
 
 .tdr-summary-table__file-count {
   position: absolute;
-  top: 5px;
+  top: 50%;
+  transform: translateY(-50%);
   right: 10px;
   font-weight: bold;
 }
@@ -729,42 +730,43 @@
   background-color: govuk-tint(govuk-colour("yellow"), 80);
 }
 
-.search-wrapper {
-  display: flex;
-  align-items: flex-end;
-  gap: 8px;
-}
-
-.search-wrapper .govuk-form-group {
-  width: 100%;
-  margin-bottom: 4px;
-}
-
 .search-wrapper button {
   margin-bottom: 6px;
 }
 
-@include govuk-media-query($from: mobile) {
-  .summary-filters {
-    display: flex;
-  }
-}
+// @include govuk-media-query($from: mobile) {
+//   .filters {
+//     display: flex;
+//   }
+// }
 
-.summary-filters {
+.filters {
+  // display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 8px;
   width: 100%;
 }
 
-.summary-filters select {
-  width: 100%;
+@include govuk-media-query($from: mobile) {
+  .filters {
+    display: flex;
+  }
 }
 
-.summary-filters > :nth-child(1),
-.summary-filters > :nth-child(2) {
+.filters select {
+  width: 100%;
+  min-width: auto;
+}
+
+.filters__input {
   flex: 1;
 }
+
+.filters__submit {
+  width: auto;
+}
+
 
 .facet-tags__wrapper {
   vertical-align: middle;
@@ -847,13 +849,18 @@
 .filteredby-panel {
   border-bottom: 1px solid govuk-colour("mid-grey");
   margin-bottom: 10px;
-  display: flex;
   justify-content: space-between;
   gap: 16px;
   @include govuk-font($size: 16);
   @include govuk-text-colour;
   @include govuk-responsive-padding(2);
   background-color: govuk-colour("light-grey");
+}
+
+@include govuk-media-query($from: tablet) {
+  .filteredby-panel {
+    display: flex;
+  }
 }
 
 .filteredby-panel__count {
@@ -866,4 +873,5 @@
   @include govuk-responsive-padding(1);
   white-space: nowrap;
   align-self: baseline;
+  text-align: center;
 }

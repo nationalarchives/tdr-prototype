@@ -1,0 +1,30 @@
+
+<div class="filters">
+  <div class="filters__input">
+    {{ govukInput({
+      label: {
+        html: "<strong>Filter by file name</strong>"
+      },
+      type: "search",
+      id: "search-by-name",
+      name: "searchName",
+      value: data['searchFilePattern']
+    }) }}
+  </div>
+  <div class="filters__input">
+    {{ govukSelect({
+      label: {
+        html: "<strong>Filter by directory</strong>"
+      },
+      id: "filter-by-dir",
+      name: "filterDirectory",
+      items: data['directories']
+    }) }}
+  </div>
+  {{ govukButton({
+    text: "Filter",
+    classes: "filters__submit"
+  }) }}
+</div>
+
+

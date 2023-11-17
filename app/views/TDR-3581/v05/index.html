@@ -35,100 +35,37 @@ Review metadata
   </div>
   <div class="govuk-grid-column-two-thirds-from-desktop">
     <form action="" method="get">
-      <div class="search-wrapper">
-        <div class="summary-filters">
-            {{ govukInput({
-              label: {
-                html: "<strong>Filter by file name</strong>"
-              },
-              type: "search",
-              id: "search-by-name",
-              name: "searchName",
-              value: data['searchFilePattern']
-            }) }}
-
-            {{ govukSelect({
-              label: {
-                html: "<strong>Filter by directory</strong>"
-              },
-              id: "filter-by-dir",
-              name: "filterDirectory",
-              items: data['directories']
-            }) }}
-
-          {{ govukButton({
-            text: "Filter"
-          }) }}
-        </div>
-
-      </div>
+      {% include "../filters.html" %}
     </form>
   </div>
 </div>
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-
-    <div class="filteredby-panel">
-      <div class="facet-tags">
-        {% set numOfFacets = 0 %}
-        {% if data['searchFilePattern'] %}
-          {% set numOfFacets = numOfFacets + 1 %}
-          <div class="facet-tags__wrapper">
-            <span class="facet-tags__preposition">
-              {% if numOfFacets == 1 %}<strong>Filtered by</strong>
-              {% else %}and {% endif %}
-            </span>
-            <span class="facet-tag">
-              <span class="facet-tag__text">File names containing <span class="facet-tag__search-term">{{data['searchFilePattern']}}</span></span>
-              <a href="{{data['urlNoSearchFile']}}" draggable="false"  class="facet-tag__remove" aria-label="Remove filter File names containing {{data['searchFilePattern']}}">✕</a>
-            </span>
-          </div>
-        {% endif %}
-        {% if data['currentDirFilter'] %}
-          {% set numOfFacets = numOfFacets + 1 %}
-          <div class="facet-tags__wrapper">
-            <span class="facet-tags__preposition">
-              {% if numOfFacets == 1 %}<strong>Filtered by</strong>
-              {% else %}and{% endif %}
-            </span>
-            <span class="facet-tag">
-              <span class="facet-tag__text">In directory <span class="facet-tag__search-term">{{data['currentDirFilter']}}</span></span>
-              <a href="{{data['urlNoDirectory']}}" draggable="false"  class="facet-tag__remove" aria-label="Remove filter In directory {{data['currentDirFilter']}}">
-              ✕</a>
-            </span>
-          </div>
-        {% endif %}
-        {% if numOfFacets == 0 %}
-          <div class="facet-tags__wrapper">
-            <span class="facet-tags__preposition facet-tags__preposition--center-vertical">
-             <strong>Showing all records.</strong> Use the filters above to narrow the list of records.
-            </span>
-          </div>
-        {% endif %}
-
-      </div>
-      <div class="filteredby-panel__count">{{data['recordsCount']|d("732")}} records found</div>
-    </div>
+    {% include "../filteredby.html" %}
   </div>
 </div>
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     {% include "./summary-table.html" %}
     <div class="tdr-pagination">
 
-    {{ govukPagination({
-      previous: {
-        href: data['previousPage']
-      },
-      next: {
-        href: data['nextPage']
-      },
-      items: data['pages']
-    }) }}
+      {{ govukPagination({
+        previous: {
+          href: data['previousPage']
+        },
+        next: {
+          href: data['nextPage']
+        },
+        items: data['pages']
+      }) }}
 
     </div>
   </div>
 </div>
+
+
 {% endblock %}
 
 {% block pageScripts %}
