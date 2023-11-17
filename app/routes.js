@@ -549,7 +549,7 @@ router.get(
 
     // FILTER BY LETTER
     if(filterByLetter){
-      data.currentFilter = filterByLetter
+      data.currentAlphaFilter = filterByLetter
       data.recordsMetadata = data.recordsMetadata.filter( r => String(r.name[0]).toLocaleLowerCase() == filterByLetter.toLocaleLowerCase())
     }
 

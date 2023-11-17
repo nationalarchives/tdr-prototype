@@ -48,22 +48,13 @@ Review metadata
           classes: "filters__submit"
         }) }}
       </div>
-    </form>
-    {% if data['searchPattern'] %}
-    <p class="govuk-body govuk-body-s">
-      <a href="/TDR-3581/v04?search=" class="govuk-link">Clear filter</a>
-    </p>
-    {% endif %}
-  </div>
-</div>
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
-    <p class="current-filters govuk-!-margin-top-6 govuk-!-margin-bottom-3">
-      {% if data['currentAlphaFilter'] %}
-      <span class="current-filters__title"></span> <span class="current-filters__filter">Files beginning with '{{data['currentAlphaFilter']}}'</span>
-      <a class="govuk-link govuk-link--no-visited-state current-filters__clear" href="v02">Clear filters</a>
+      {% if data['searchPattern'] %}
+      <p class="filters-clear govuk-body govuk-body-s">
+        <a href="/TDR-3581/v04?search=" class="govuk-link">Clear filter</a>
+      </p>
       {% endif %}
-    </p>
+    </form>
+
   </div>
 </div>
 <div class="govuk-grid-row">

@@ -36,12 +36,12 @@ Review metadata
 </div>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    <p class="current-filters govuk-!-margin-top-6 govuk-!-margin-bottom-3">
-      {% if data['currentAlphaFilter'] %}
-      <span class="current-filters__title"></span> <span class="current-filters__filter">Files beginning with '{{data['currentAlphaFilter']}}'</span>
-      <a class="govuk-link govuk-link--no-visited-state current-filters__clear" href="v01">Clear filters</a>
-      {% endif %}
-    </p>
+    {% if data['currentAlphaFilter'] %}
+      <p class="current-filters govuk-!-margin-bottom-3">
+        <span class="current-filters__title"></span> <span class="current-filters__filter">Files beginning with '{{data['currentAlphaFilter']}}'</span>
+        <a class="govuk-link govuk-link--no-visited-state current-filters__clear" href="v01">Clear filters</a>
+      </p>
+    {% endif %}
   </div>
 </div>
 <div class="govuk-grid-row">
