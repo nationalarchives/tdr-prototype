@@ -4,12 +4,11 @@
 //
 
 // Add extra styles here
+@import './tdr-file-breadcrumb.scss';
 @import 'node_modules/@nationalarchives/tdr-components/components/multi-select-search/_index';
 @import 'node_modules/@nationalarchives/tdr-components/components/nested-navigation/_index';
 @import './prototype-history.scss';
 @import './folder-upload.scss';
-@import './tdr-file-breadcrumb.scss';
-
 
 .tna-tree__radios-directory__label {
   background-image: url('/public/images/folder.png');

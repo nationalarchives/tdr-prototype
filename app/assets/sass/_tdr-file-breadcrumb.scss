@@ -9,7 +9,7 @@
 
 
 .tdr-file-breadcrumbs__list-item {
-  font-size: 19px;
+  @include govuk-typography-responsive($size: 19);
   margin: 5px  0;
   display: inline-block;
 
@@ -24,9 +24,15 @@
   width: 22px;
   display: block;
   position: absolute;
-  top: 2px;
+  top: -2px;
   bottom: 0;
   left: 0;
+}
+
+@include govuk-media-query($from: tablet) {
+  .tdr-file-breadcrumbs__list-item:before {
+    top: 0;
+  }
 }
 
 .tdr-file-breadcrumbs__list-item:after {
