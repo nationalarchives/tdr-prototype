@@ -26,8 +26,8 @@ router.get("/prototype-versions-api/", async (req, res) => {
 });
 
 router.get("/prototype-versions-api/:pr_number", async (req, res) => {
-  console.log(req.params)
   try {
+    // Get a particular design version.
     const response = await axios({
       method: "GET",
       url: `https://api.baserow.io/api/database/rows/table/137070/${req.params.pr_number}/`,
@@ -39,11 +39,13 @@ router.get("/prototype-versions-api/:pr_number", async (req, res) => {
       }
     });
 
+    // Get features filtered by design version ID
     const responseFeature = await axios({
       method: "GET",
       url: "https://api.baserow.io/api/database/rows/table/204218/?user_field_names=true",
       params: {
         user_field_names: true,
+        // filter by design version
         filter__field_1403529__link_row_has: response.data.id,
         filter__Active__boolean: true
       },
@@ -52,7 +54,30 @@ router.get("/prototype-versions-api/:pr_number", async (req, res) => {
       }
     });
 
-    res.render(`prototype-versions/design-version`, {data: response.data, features: responseFeature.data.results});
+    // Get jira tickets filtered by design version ID
+    const responseJira = await axios({
+      method: "GET",
+      url: "https://api.baserow.io/api/database/rows/table/222103/?user_field_names=true",
+      params: {
+        user_field_names: true,
+        // filter by design version
+        filter__field_1545956__link_row_has: response.data.id,
+      },
+      headers: {
+        Authorization: `Token ${process.env.BASEROW_API_TOKEN}`
+      }
+    });
+
+    responseJira.data.results = responseJira.data.results.map((item)=>{
+      item.url = item['URL Prefix'] + item['Jira Issue ID']
+      return item;
+    })
+
+    res.render(`prototype-versions/design-version`, {
+      data: response.data,
+      features: responseFeature.data.results,
+      jiraTickets: responseJira.data.results
+    });
 
   } catch (error) {
     console.error(error);

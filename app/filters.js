@@ -118,6 +118,18 @@ filters.getMonthName = function (monthNumber) {
   return date.toLocaleString("en-GB", { month: "long" });
 };
 
+/*
+ * dateString - expected format is YYYY-MM-DD
+ */
+filters.formatDate = function (dateString) {
+  if(!dateString) return ""
+  const [year, month, day] = dateString.split('-');
+
+  const monthDate = new Date();
+  monthDate.setMonth(parseInt(month)-1);
+  return `${parseInt(day)} ${monthDate.toLocaleString("en-GB", { month: "short" })} ${parseInt(year)}`;
+};
+
 for (let name in filters) {
   addFilter(name, filters[name]);
 }

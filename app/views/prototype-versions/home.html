@@ -13,7 +13,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-         Design versions
+         Prototype versions
       </h1>
 
     </div>
@@ -33,8 +33,8 @@
             classes: ["govuk-tag--", r.Status[0].color]|join
             }), "</span>"]|join
           },
-          { html: r['Date started']|d("-", true) },
-          { html: r['Date completed']|d("-", true) },
+          { html: r['Date started']|formatDate|d("-", true) },
+          { html: r['Date completed']|formatDate|d("-", true) },
           { html: ['<a href="/prototype-versions-api/', r.id, '">View details</a>']|join }
         ]), rows) %}
       {% endfor %}
