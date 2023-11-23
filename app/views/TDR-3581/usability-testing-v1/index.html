@@ -1,0 +1,49 @@
+{% from "govuk/components/pagination/macro.njk" import govukPagination %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Review metadata
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Review records with metadata</h1>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    {% if data['currentAlphaFilter'] %}
+      <p class="current-filters govuk-!-margin-bottom-3">
+        <span class="current-filters__title"></span> <span class="current-filters__filter">Files beginning with '{{data['currentAlphaFilter']}}'</span>
+        <a class="govuk-link govuk-link--no-visited-state current-filters__clear" href="v01">Clear filters</a>
+      </p>
+    {% endif %}
+  </div>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    {% include "./summary-table.html" %}
+    <div class="tdr-pagination">
+
+    {{ govukPagination({
+      previous: {
+        href: data['previousPage']
+      },
+      next: {
+        href: data['nextPage']
+      },
+      items: data['pages']
+    }) }}
+
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block pageScripts %}
+  {{ super() }}
+{% endblock %}

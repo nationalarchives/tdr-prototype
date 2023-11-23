@@ -562,7 +562,7 @@ router.get(
     }
 
     // SORT
-    if(["v01", "v03", "v05"].includes(version)){
+    if(["v01", "v03", "v05", "usability-testing-v1"].includes(version)){
       // by path, then name
       data.recordsMetadata = data.recordsMetadata.sort( (r1, r2) => {
         // Compare by path first
@@ -609,6 +609,9 @@ router.get(
         href: url(i)
       })
     }
+
+    if(data.pages.length === 0)
+      data.pages = [{number: 1, current: true}]
 
     data.recordsMetadata = data.recordsMetadata.slice((data.currentPage-1)*perPage, data.currentPage*perPage);
 

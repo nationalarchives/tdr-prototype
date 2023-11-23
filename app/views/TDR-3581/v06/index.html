@@ -11,8 +11,48 @@ Review metadata
     <h1 class="govuk-heading-xl">Review records with metadata</h1>
   </div>
 </div>
-
 <div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <div class="table-controls">
+      <div class="table-controls__row">
+          {{ govukSelect({
+            id: "sort",
+            name: "sort",
+            classes: "table-controls__sort",
+            label: {
+              html: "<strong>Sort by</strong>"
+            },
+            items: [
+              {
+                value: "updated",
+                text: "File name (A-Z)",
+                selected: true
+              }
+            ]
+          }) }}
+        <div class="table-controls__filters">
+          <form action="" method="get">
+          {% include "../filters.html" %}
+          </form>
+        </div>
+      </div>
+      {% include "../filteredby.html" %}
+      <div class="table-controls__pagination">
+        {{ govukPagination({
+          previous: {
+            href: data['previousPage']
+          },
+          next: {
+            href: data['nextPage']
+          },
+          items: data['pages']
+        }) }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{# <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-third-from-desktop">
     {{ govukSelect({
       id: "sort",
@@ -40,7 +80,7 @@ Review metadata
   <div class="govuk-grid-column-full">
     {% include "../filteredby.html" %}
   </div>
-</div>
+</div> #}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">

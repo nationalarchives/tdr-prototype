@@ -5,6 +5,7 @@
 
 // Add extra styles here
 @import './tdr-file-breadcrumb.scss';
+@import './tdr-table-controls.scss';
 @import 'node_modules/@nationalarchives/tdr-components/components/multi-select-search/_index';
 @import 'node_modules/@nationalarchives/tdr-components/components/nested-navigation/_index';
 @import './prototype-history.scss';
@@ -788,9 +789,19 @@
   }
 }
 
+.facet-tags {
+  margin-bottom: govuk-spacing(4);
+}
+
+@include govuk-media-query($from: tablet) {
+  .facet-tags {
+    margin-bottom: 0;
+  }
+}
+
 .facet-tags__wrapper {
   vertical-align: middle;
-  margin: 5px 0;
+  margin: govuk-spacing(1) 0;
   display: inline-block;
 }
 

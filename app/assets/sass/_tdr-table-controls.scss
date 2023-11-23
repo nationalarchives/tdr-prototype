@@ -1,0 +1,69 @@
+
+.table-controls  {
+  background-color: govuk-colour("light-grey");
+  @include govuk-responsive-padding(4);
+  @include govuk-responsive-margin(4, "bottom");
+}
+
+.table-controls .govuk-form-group {
+  margin-bottom: 0;
+}
+
+.table-controls .filters__submit {
+  margin-bottom: 2px;
+}
+
+.table-controls label {
+  @include govuk-font($size: 16);
+}
+
+.table-controls {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.table-controls .filteredby-panel__count,
+.table-controls__pagination {
+  border-radius: 5px
+}
+
+.table-controls__row {
+  margin-bottom: govuk-spacing(2);
+}
+
+.table-controls__sort {
+  width: auto;
+  margin-bottom: govuk-spacing(4);
+}
+
+.table-controls__filter {
+  flex: 1;
+}
+
+.table-controls .filteredby-panel {
+  padding: 0 0 govuk-spacing(4);
+  margin-bottom:  govuk-spacing(4);
+}
+
+.table-controls__pagination {
+  background: govuk-colour("white");
+  display: flex;
+  justify-content: center;
+}
+
+.table-controls__pagination .govuk-pagination {
+  margin-bottom: 0;
+  padding: govuk-spacing(1) 0;
+}
+
+@include govuk-media-query($from: tablet) {
+  .table-controls__row {
+    display: flex;
+    gap: govuk-spacing(6);
+    margin-bottom: govuk-spacing(4);
+    align-items: flex-end;
+  }
+  .table-controls__sort {
+    margin-bottom: 0;
+  }
+}
