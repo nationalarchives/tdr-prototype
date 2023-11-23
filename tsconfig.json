@@ -10,5 +10,8 @@
     "target": "es2017",
     "lib": ["es2017", "dom"],
   },
-  "include": ["app/assets/typescript/**/*"]
+  "include": [
+    "app/assets/typescript/**/*",
+    "@types/alltypes.d.ts",
+  ]
 }

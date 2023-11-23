@@ -509,22 +509,10 @@ router.get(
     data.directories = [...new Set(genericMetadata.map((item) => item.path))].sort().map(item => {
       return {text: item.split("/").join(" / "), value: item, selected: item === decodeURIComponent(filterByDirectory)}});
 
-    data.directories.unshift({value: "", text:"Choose directory"})
+    data.directories.unshift({value: "", text:""})
 
     data.currentDirFilter = data.directories.find(item => item.selected === true)?.text
     data.currentAlphaFilter = ""
-
-    const fuseOptions = {
-      includeScore: true,
-      includeMatches: true,
-      findAllMatches: false,
-      minMatchCharLength: 3,
-      ignoreLocation: true,
-      keys: [
-        "name",
-        "path"
-      ]
-    };
 
     // SEARCH
     if(searchPattern || searchFilePattern){

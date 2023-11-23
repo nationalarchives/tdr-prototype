@@ -10,6 +10,7 @@
 @import 'node_modules/@nationalarchives/tdr-components/components/nested-navigation/_index';
 @import './prototype-history.scss';
 @import './folder-upload.scss';
+@import './accessible-autocomplete.scss';
 
 .tna-tree__radios-directory__label {
   background-image: url('/public/images/folder.png');
@@ -770,13 +771,8 @@
   flex: 1;
 }
 
-.filters__input .govuk-form-group {
-  // margin-bottom: 0;
-}
-
 .filters__submit {
   width: auto;
-  // margin-bottom: 0;
 }
 
 .filters-clear {
@@ -905,4 +901,14 @@
   white-space: nowrap;
   align-self: baseline;
   text-align: center;
+}
+
+
+.autocomplete__option {
+  @include govuk-typography-common($font-family: $govuk-font-family);
+  @include govuk-typography-responsive($size: 19);
+}
+
+.autocomplete__dropdown-arrow-down {
+  z-index: 10;
 }
