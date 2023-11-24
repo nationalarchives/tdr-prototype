@@ -41,8 +41,15 @@
 }
 
 .table-controls .filteredby-panel {
+  padding: 0;
+  margin:0;
+  border: 0;
+}
+
+.table-controls--paginate .filteredby-panel {
   padding: 0 0 govuk-spacing(4);
   margin-bottom:  govuk-spacing(4);
+  border-bottom: 1px solid govuk-colour("mid-grey");
 }
 
 .table-controls__pagination {

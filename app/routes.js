@@ -550,7 +550,7 @@ router.get(
     }
 
     // SORT
-    if(["v01", "v03", "v05", "usability-testing-v1"].includes(version)){
+    if(["v01", "v03", "v05", "v07", "usability-testing-v1"].includes(version)){
       // by path, then name
       data.recordsMetadata = data.recordsMetadata.sort( (r1, r2) => {
         // Compare by path first
@@ -566,7 +566,7 @@ router.get(
       })
     }
 
-    if(["v02", "v04", "v06"].includes(version)){
+    if(["v02", "v04", "v06", "v08"].includes(version)){
       // by name
       data.recordsMetadata = data.recordsMetadata.sort( (r1, r2) => {
         return r1.name > r2.name ? 1 : -1

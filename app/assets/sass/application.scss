@@ -786,7 +786,7 @@
 }
 
 .facet-tags {
-  margin-bottom: govuk-spacing(4);
+  margin-bottom: govuk-spacing(3);
 }
 
 @include govuk-media-query($from: tablet) {
@@ -903,6 +903,11 @@
   text-align: center;
 }
 
+
+.autocomplete__input {
+  height: 2.5rem;
+  background-color: govuk-colour("white");
+}
 
 .autocomplete__option {
   @include govuk-typography-common($font-family: $govuk-font-family);

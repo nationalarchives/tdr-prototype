@@ -18,7 +18,7 @@ Review metadata
 </div>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    <div class="table-controls">
+    <div class="table-controls table-controls--paginate">
       <div class="table-controls__row">
           {{ govukSelect({
             id: "sort",
@@ -43,6 +43,7 @@ Review metadata
         </div>
       </div>
       {% include "../filteredby.html" %}
+      {% if data['pages']|length > 1 %}
       <div class="table-controls__pagination">
         {{ govukPagination({
           previous: {
@@ -54,6 +55,7 @@ Review metadata
           items: data['pages']
         }) }}
       </div>
+      {% endif %}
     </div>
   </div>
 </div>
