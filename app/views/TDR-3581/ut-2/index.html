@@ -26,19 +26,28 @@ Review metadata
 </div>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
+    <div class="tdr-pagination">
+      {{ govukPagination({
+        previous: {
+          href: data['previousPage']
+        },
+        next: {
+          href: data['nextPage']
+        },
+        items: data['pages']
+      }) }}
+    </div>
     {% include "./summary-table.html" %}
     <div class="tdr-pagination">
-
-    {{ govukPagination({
-      previous: {
-        href: data['previousPage']
-      },
-      next: {
-        href: data['nextPage']
-      },
-      items: data['pages']
-    }) }}
-
+      {{ govukPagination({
+          previous: {
+            href: data['previousPage']
+          },
+          next: {
+            href: data['nextPage']
+          },
+          items: data['pages']
+        }) }}
     </div>
   </div>
 </div>
