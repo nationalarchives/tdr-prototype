@@ -500,12 +500,12 @@ router.get(
     const version = req.params.version
     const filterByLetter = req.query.filterLetter
     const filterByDirectory = req.query.filterDirectory
-    const searchPattern = req.query.search
-    const searchFilePattern = req.query.searchName
+    const searchPattern = req.query.search?.trim()
+    const searchFilePattern = req.query.searchName?.trim()
     let page = req.query.pg
 
-    data.recordsMetadata = version.includes("ut-") ?  testMetadata150 : testMetadata1000;
-    data.recordsCount = version.includes("ut-") ? testMetadata150.length : testMetadata1000.length;
+    data.recordsMetadata = ["ut-1", "ut-2"].includes(version) ?  testMetadata150 : testMetadata1000;
+    data.recordsCount = ["ut-1", "ut-2"].includes(version) ? testMetadata150.length : testMetadata1000.length;
 
     data.directories = [...new Set(data.recordsMetadata.map((item) => item.path))].sort().map(item => {
       return {text: item.split("/").join(" / "), value: item, selected: item === decodeURIComponent(filterByDirectory)}
@@ -568,7 +568,7 @@ router.get(
       })
     }
 
-    if(["v02", "v04", "v06", "v08", "ut-2"].includes(version)){
+    if(["v02", "v04", "v06", "v08", "ut-2", "ut-4"].includes(version)){
       // by name
       data.recordsMetadata = data.recordsMetadata.sort( (r1, r2) => {
         return r1.name > r2.name ? 1 : -1

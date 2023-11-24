@@ -1,6 +1,19 @@
 <div class="filteredby-panel">
   <div class="facet-tags">
     {% set numOfFacets = 0 %}
+    {% if data['searchPattern'] %}
+      {% set numOfFacets = numOfFacets + 1 %}
+      <div class="facet-tags__wrapper">
+        <span class="facet-tags__preposition">
+          {% if numOfFacets == 1 %}<strong>Filtered by</strong>
+          {% else %}and {% endif %}
+        </span>
+        <span class="facet-tag">
+          <span class="facet-tag__text">File or directory names containing <span class="facet-tag__search-term">{{data['searchPattern']}}</span></span>
+          <a href="{{data['urlNoSearchFile']}}" draggable="false"  class="facet-tag__remove" aria-label="Remove filter File names containing {{data['searchPattern']}}">✕</a>
+        </span>
+      </div>
+    {% endif %}
     {% if data['searchFilePattern'] %}
       {% set numOfFacets = numOfFacets + 1 %}
       <div class="facet-tags__wrapper">
