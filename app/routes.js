@@ -612,6 +612,23 @@ router.get(
   }
 );
 
+
+router.get(
+  "/metadata/",
+  function (req, res) {
+    const data = req.session.data;
+
+    data.datesComplete = typeof req.query.datesComplete != "undefined"
+    data.closureComplete = typeof req.query.closureComplete != "undefined"
+    data.descriptiveComplete = typeof req.query.descriptiveComplete != "undefined"
+
+    let tpl = '/metadata/index';
+    res.render(tpl, {
+      data : data
+    });
+
+  })
+
 router.post(
   "/prototype-versions/clear-data",
   function (req, res) {

@@ -1,0 +1,34 @@
+{% macro item(name, href, status, hint, linkActive) %}
+  {% set safeName = name|replace("[^A-Za-z0-9 ]","")|replace(" ", "-")|lower %}
+  <li class="govuk-task-list__item govuk-task-list__item--with-link">
+    <div class="govuk-task-list__task-name-and-hint">
+      {% if linkActive %}
+      <a href="{{href}}"
+        {% if hint or status -%}
+        aria-describedby="{% if hint %}hint-{{safeName}}{%endif%} {% if status %}status-{{safeName}}{%endif%}"
+        {%- endif %}
+        class="govuk-link govuk-task-list__link">
+        {{name}}
+      </a>
+      {% else %}
+        <div>{{name}}</div>
+      {% endif %}
+      {% if hint %}
+      <div id="hint-{{safeName}}" class="govuk-task-list__task_hint">
+        {{hint}}
+      </div>
+      {% endif %}
+    </div>
+    {% if status %}
+    <div class="govuk-task-list__status" id="status-{{safeName}}">
+      {% if status == "Complete" or status == "Cannot start yet" %}
+        {{status}}
+      {% else %}
+      <strong class="govuk-tag {% if status == "Incomplete" %}govuk-tag--blue{%elseif status == 'There is a problem'%}govuk-tag--red{%endif%}">
+        {{status}}
+      </strong>
+      {% endif %}
+    </div>
+    {% endif %}
+  </li>
+{% endmacro %}

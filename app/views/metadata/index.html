@@ -1,0 +1,59 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+{% import "macros/task-list.html" as taskList %}
+
+{% block pageTitle %}
+  Record metadata
+{% endblock %}
+
+{# {% block beforeContent %}
+  <a href="./" class="govuk-back-link">Back to Record metadata</a>
+{% endblock %} #}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-xl">Record metadata</h1>
+
+      <p class="govuk-body">Before completing your transfer check, amend and add metadata about your records.</p>
+      <p class="govuk-body">As part of the transfer process we ask you to check that the <strong>last modified date</strong> extracted during upload is correct for each record.</p>
+      <p class="govuk-body">To help The National Archives preserve and enhance your record add <strong>descriptive and additional metadata</strong>.</p>
+      <p class="govuk-body">You must enter closure metadata about all <strong>closed records</strong> that have been agreed with the Advisory Council or The National Archives.</p>
+
+      {{ govukWarningText({
+        html: "It is a legal requirement that you enter accurate metadata for all closed records. If you’re unsure about closure metadata email <a href='mailto:tdr@nationalarchives.gov.uk'>tdr@nationalarchives.gov.uk</a>",
+        iconFallbackText: "Warning"
+      }) }}
+      <p class="govuk-body">If you have no metadata to add you must still visit each section below to confirm this before continuing.</p>
+
+      <ul class="govuk-task-list">
+        {% set datesComplete = "Complete" if data['datesComplete'] == true else "Incomplete" %}
+        {{ taskList.item("Last modified date", "last-modified-dates", datesComplete, "Check and correct the extracted last modified dates", true) }}
+        {% set descriptiveComplete = "Complete" if data['descriptiveComplete'] == true else "Incomplete" %}
+        {{ taskList.item("Descriptive and additional metadata", "descriptive-and-additional", descriptiveComplete, "Enhance your records with descriptive and additional metadata", true) }}
+        {% set closureComplete = "Complete" if data['closureComplete'] == true else "Incomplete" %}
+        {{ taskList.item("Closed records metadata", "", closureComplete, "Add metadata about all closed records", true) }}
+      </ul>
+
+      <div class="govuk-button-group">
+        <a href="../download-metadata.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+          Continue
+        </a>
+      </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+    </div>
+  </div>
+{% endblock %}

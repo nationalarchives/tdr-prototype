@@ -1,0 +1,72 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}\
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% import "macros/task-list.html" as taskList %}
+
+{% block pageTitle %}
+  Last modified date
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./" class="govuk-back-link">Back to Record metadata</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-l">Last modified dates</h1>
+
+      <p class="govuk-body">As part of the transfer process we ask you to check that <strong>last modified date</strong> extracted during upload matches your own records.</p>
+      <p class="govuk-body">If the last modified date we extracted represents the last meaningful change to the record then then you do not need to take any action.</p>
+      <p class="govuk-body">If any dates are incorrect then you can provide an more accurate date.</p>
+
+      {{ govukWarningText({
+        html: "For closed records the date must match what was given to the Advisory Council or The National Archives as part of the closure application process.",
+        iconFallbackText: "Warning"
+      }) }}
+
+      <p class="govuk-body">For more information on last modified dates visits out <a href="" class="govuk-link">FAQ (opens in a new tab)</a>.</p>
+
+
+
+      <div class="govuk-button-group">
+        <a href="/metadata/last-modified-dates/check-and-correct" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+          Check and correct record dates
+        </a>
+      </div>
+
+      {{ govukRadios({
+        name: "signIn",
+        fieldset: {
+          legend: {
+            text: "Have you completed this section?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        hint: {
+          text: "If you select ‘no’ you can return later and continue checking dates."
+        },
+        items: [
+          {
+            value: "no",
+            text: "No, I’ll return later to complete this section"
+          },
+          {
+            value: "yes",
+            text: "Yes, all dates are accurate or have been corrected"
+          }
+        ]
+      }) }}
+
+      <a href="/metadata/?datesComplete" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Save and continue
+      </a>
+
+    </div>
+  </div>
+{% endblock %}
