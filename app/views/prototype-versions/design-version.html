@@ -160,6 +160,10 @@
       {% endif %}
 
       {% for f in features %}
+        {% set statusTag = govukTag({
+            text: f.Status.value|d("In progress"),
+            classes: ["govuk-tag--", ('grey' if (f.Status.color == 'gray') or (f.Status.color|length == 0) else f.Status.color)]|join
+          })  %}
         {{ govukSummaryList({
           card: {
             title: {
@@ -189,7 +193,8 @@
                 text: "Status"
               },
               value: {
-                html:  ("<strong class=\"govuk-tag govuk-tag--green\">Tested</strong>" if f['Tested'] else "<strong class=\"govuk-tag govuk-tag--orange\">Untested</strong>")
+                html: statusTag
+
               }
             }
           ]
