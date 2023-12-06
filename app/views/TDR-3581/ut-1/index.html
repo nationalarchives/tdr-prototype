@@ -6,6 +6,24 @@
 Review metadata
 {% endblock %}
 
+{% block header %}
+  {% include "layouts/inc-header.html" %}
+
+  {% block banner %}
+    {% set journeyVersion = (' (user testing v1)') %}
+    {% set prototypeVersion = ('You are viewing prototype: #'+data.prototypeVersion if data.prototypeVersion) %}
+    <div class="govuk-width-container app-width-container">
+      {{ govukPhaseBanner({
+        tag: {
+          text: "Prototype"
+        },
+        html: (['This is not a real service. It is for testing purposes only. ', prototypeVersion, journeyVersion ]| join)
+      }) }}
+    </div>
+  {% endblock %}
+
+{% endblock %}
+
 {% block content %}
 
 <div class="govuk-grid-row">

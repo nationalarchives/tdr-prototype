@@ -9,6 +9,24 @@
 Review metadata
 {% endblock %}
 
+{% block header %}
+  {% include "layouts/inc-header.html" %}
+
+  {% block banner %}
+    {% set journeyVersion = (' (user testing v3)') %}
+    {% set prototypeVersion = ('You are viewing prototype: #'+data.prototypeVersion if data.prototypeVersion) %}
+    <div class="govuk-width-container app-width-container">
+      {{ govukPhaseBanner({
+        tag: {
+          text: "Prototype"
+        },
+        html: (['This is not a real service. It is for testing purposes only. ', prototypeVersion, journeyVersion ]| join)
+      }) }}
+    </div>
+  {% endblock %}
+
+{% endblock %}
+
 {% block content %}
 
 <div class="govuk-grid-row">
@@ -30,7 +48,7 @@ Review metadata
             items: [
               {
                 value: "updated",
-                text: "File name (A-Z)",
+                text: "Directory (A-Z)",
                 selected: true
               }
             ]
@@ -38,6 +56,7 @@ Review metadata
         <div class="table-controls__filters">
           <form action="" method="get">
           {% set filterDirectoryClasses = "autocomplete" %}
+          <input type="hidden" name="sort" value="directory" />
           {% include "../filters-freetext.html" %}
           </form>
         </div>

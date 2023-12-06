@@ -30,13 +30,14 @@ Review metadata
             items: [
               {
                 value: "updated",
-                text: "File name (A-Z)",
+                text: "Directory (A-Z)",
                 selected: true
               }
             ]
           }) }}
         <div class="table-controls__filters">
           <form action="" method="get">
+          <input type="hidden" name="sort" value="directory" />
           {% include "../filters.html" %}
           </form>
         </div>

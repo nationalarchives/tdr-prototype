@@ -31,6 +31,7 @@ Review metadata
   </div>
   <div class="govuk-grid-column-two-thirds-from-desktop">
     <form action="" method="get">
+      <input type="hidden" name="sort" value="file" />
       <div class="filters">
         <div class="filters__input">
         {{ govukInput({
@@ -50,7 +51,7 @@ Review metadata
       </div>
       {% if data['searchPattern'] %}
       <p class="filters-clear govuk-body govuk-body-s">
-        <a href="/TDR-3581/v04?search=" class="govuk-link">Clear filter</a>
+        <a href="/TDR-3581/v04?sort=file&search=" class="govuk-link">Clear filter</a>
       </p>
       {% endif %}
     </form>
