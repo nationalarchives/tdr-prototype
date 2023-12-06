@@ -492,125 +492,149 @@ function findMatches(data, searchPattern, keys){
   return partialMatches
 }
 
+
+const metadataRecordsTable = function (req) {
+  const perPage = 100
+  const data = req.session.data;
+  const version = req.params.version
+  const sort = req.query.sort || "directory";
+  const filterByLetter = req.query.filterLetter
+  const filterByDirectory = req.query.filterDirectory
+  const searchPattern = req.query.search?.trim()
+  const searchFilePattern = req.query.searchName?.trim()
+  let page = req.query.pg
+
+  data.recordsMetadata = ["ut-1", "ut-2"].includes(version) ?  testMetadata150 : testMetadata1000;
+  data.recordsCount = ["ut-1", "ut-2"].includes(version) ? testMetadata150.length : testMetadata1000.length;
+
+  data.directories = [...new Set(data.recordsMetadata.map((item) => item.path))].sort().map(item => {
+    return {text: item.split("/").join(" / "), value: item, selected: item === decodeURIComponent(filterByDirectory)}
+  });
+
+  data.directories.unshift({value: "", text:""})
+
+  data.currentDirFilter = data.directories.find(item => item.selected === true)?.text
+  data.currentAlphaFilter = ""
+
+  // SEARCH
+  if(searchPattern || searchFilePattern){
+    const keys = searchFilePattern ? ['name'] : ['name', 'path'];
+    const matches = findMatches(data.recordsMetadata, searchPattern||searchFilePattern, keys);
+    data.recordsMetadata = []
+
+    matches.forEach((res)=>{
+      data.recordsMetadata.push(Object.assign(res.item, {matches:res.matches}))
+    })
+    data.searchPattern = searchPattern
+    data.searchFilePattern = searchFilePattern
+    data.recordsCount = data.recordsMetadata.length
+  } else {
+    data.recordsMetadata = data.recordsMetadata.map((item) =>{
+      if(item.hasOwnProperty('matches')) delete item.matches;
+      return item
+    })
+    data.searchPattern = "";
+    data.searchFilePattern = "";
+  }
+
+  // FILTER BY LETTER
+  if(filterByLetter){
+    data.currentAlphaFilter = filterByLetter
+    data.recordsMetadata = data.recordsMetadata.filter( r => String(r.name[0]).toLocaleLowerCase() == filterByLetter.toLocaleLowerCase())
+  }
+
+  // FILTER BY DIRECTORY
+  if(filterByDirectory){
+    data.recordsMetadata = data.recordsMetadata.filter( r => {
+      return String(r.path).toLocaleLowerCase() == decodeURIComponent(filterByDirectory).toLocaleLowerCase()
+    })
+    data.recordsCount = data.recordsMetadata.length
+  }
+
+  // SORT
+  if(sort == "directory"){
+    // by path, then name
+    data.recordsMetadata = data.recordsMetadata.sort( (r1, r2) => {
+      // Compare by path first
+      if (r1.path < r2.path) return -1;
+      if (r1.path > r2.path) return 1;
+
+      // If paths are equal, compare by name
+      if (r1.name < r2.name) return -1;
+      if (r1.name > r2.name) return 1;
+
+      // Objects are equal in both properties
+      return 0;
+    })
+  }
+
+  if(sort == "file"){
+    // by name
+    data.recordsMetadata = data.recordsMetadata.sort( (r1, r2) => {
+      return r1.name > r2.name ? 1 : -1
+    })
+  }
+
+  const searchQuery = searchPattern ? `&search=${searchPattern}` : "";
+  const searchFileQuery = searchFilePattern ? `&searchName=${searchFilePattern}` : "";
+  const filterQuery = filterByLetter ? `&filterLetter=${filterByLetter}` : "";
+  const filterDirQuery = filterByDirectory ? `&filterDirectory=${filterByDirectory}` : "";
+  const url = (pg) => `/TDR-3581/${version}?sort=${sort}&pg=${pg}${filterQuery}${searchQuery}${searchFileQuery}${filterDirQuery}`
+  data.urlNoSearchFile = `/TDR-3581/${version}?sort=${sort}&pg=1${filterDirQuery}`
+  data.urlNoDirectory = `/TDR-3581/${version}?sort=${sort}&pg=1${searchFileQuery}`
+
+
+  // PAGINATE
+  data.currentPage = page || 1;
+  data.totalPages = Math.ceil(data.recordsMetadata.length / perPage);
+  data.previousPage = (parseInt(data.currentPage) > 1) ? url(parseInt(data.currentPage)-1) : false;
+  data.nextPage = parseInt(data.currentPage)+1 > data.totalPages ? false : url(parseInt(data.currentPage)+1);
+
+
+  data.pages = []
+  for(let i = 1; i <= data.totalPages; i++){
+    data.pages.push({
+      number: i,
+      current: data.currentPage == i,
+      href: url(i)
+    })
+  }
+
+  if(data.pages.length === 0)
+    data.pages = [{number: 1, current: true}]
+
+  data.recordsMetadata = data.recordsMetadata.slice((data.currentPage-1)*perPage, data.currentPage*perPage);
+
+  // let versionTemplate = (version) ?  `/TDR-3581/${version}/index` : '/TDR-3581/v01/index';
+  return {
+    data : data
+  };
+};
+
+router.get( "/TDR-3581/:version?", (req, res) => {
+  const tplArgs = metadataRecordsTable(req);
+  const version = req.params.version
+  let versionTemplate = (version) ?  `/TDR-3581/${version}/index` : '/TDR-3581/v01/index';
+  res.render(versionTemplate, tplArgs);
+});
+
+router.get( "metadata/last-modified-dates/check-and-correct", metadataRecordsTable);
+
 router.get(
-  "/TDR-3581/:version?",
+  "/metadata/",
   function (req, res) {
-    const perPage = 100
     const data = req.session.data;
-    const version = req.params.version
-    const filterByLetter = req.query.filterLetter
-    const filterByDirectory = req.query.filterDirectory
-    const searchPattern = req.query.search?.trim()
-    const searchFilePattern = req.query.searchName?.trim()
-    let page = req.query.pg
 
-    data.recordsMetadata = ["ut-1", "ut-2"].includes(version) ?  testMetadata150 : testMetadata1000;
-    data.recordsCount = ["ut-1", "ut-2"].includes(version) ? testMetadata150.length : testMetadata1000.length;
+    data.datesComplete = typeof req.query.datesComplete != "undefined"
+    data.closureComplete = typeof req.query.closureComplete != "undefined"
+    data.descriptiveComplete = typeof req.query.descriptiveComplete != "undefined"
 
-    data.directories = [...new Set(data.recordsMetadata.map((item) => item.path))].sort().map(item => {
-      return {text: item.split("/").join(" / "), value: item, selected: item === decodeURIComponent(filterByDirectory)}
-    });
-
-    data.directories.unshift({value: "", text:""})
-
-    data.currentDirFilter = data.directories.find(item => item.selected === true)?.text
-    data.currentAlphaFilter = ""
-
-    // SEARCH
-    if(searchPattern || searchFilePattern){
-      const keys = searchFilePattern ? ['name'] : ['name', 'path'];
-      const matches = findMatches(data.recordsMetadata, searchPattern||searchFilePattern, keys);
-      data.recordsMetadata = []
-
-      matches.forEach((res)=>{
-        data.recordsMetadata.push(Object.assign(res.item, {matches:res.matches}))
-      })
-      data.searchPattern = searchPattern
-      data.searchFilePattern = searchFilePattern
-      data.recordsCount = data.recordsMetadata.length
-    } else {
-      data.recordsMetadata = data.recordsMetadata.map((item) =>{
-        if(item.hasOwnProperty('matches')) delete item.matches;
-        return item
-      })
-      data.searchPattern = "";
-      data.searchFilePattern = "";
-    }
-
-    // FILTER BY LETTER
-    if(filterByLetter){
-      data.currentAlphaFilter = filterByLetter
-      data.recordsMetadata = data.recordsMetadata.filter( r => String(r.name[0]).toLocaleLowerCase() == filterByLetter.toLocaleLowerCase())
-    }
-
-    // FILTER BY DIRECTORY
-    if(filterByDirectory){
-      data.recordsMetadata = data.recordsMetadata.filter( r => {
-        return String(r.path).toLocaleLowerCase() == decodeURIComponent(filterByDirectory).toLocaleLowerCase()
-      })
-      data.recordsCount = data.recordsMetadata.length
-    }
-
-    // SORT
-    if(["v01", "v03", "v05", "v07", "ut-1", "ut-3"].includes(version)){
-      // by path, then name
-      data.recordsMetadata = data.recordsMetadata.sort( (r1, r2) => {
-        // Compare by path first
-        if (r1.path < r2.path) return -1;
-        if (r1.path > r2.path) return 1;
-
-        // If paths are equal, compare by name
-        if (r1.name < r2.name) return -1;
-        if (r1.name > r2.name) return 1;
-
-        // Objects are equal in both properties
-        return 0;
-      })
-    }
-
-    if(["v02", "v04", "v06", "v08", "ut-2", "ut-4"].includes(version)){
-      // by name
-      data.recordsMetadata = data.recordsMetadata.sort( (r1, r2) => {
-        return r1.name > r2.name ? 1 : -1
-      })
-    }
-
-    const searchQuery = searchPattern ? `&search=${searchPattern}` : "";
-    const searchFileQuery = searchFilePattern ? `&searchName=${searchFilePattern}` : "";
-    const filterQuery = filterByLetter ? `&filterLetter=${filterByLetter}` : "";
-    const filterDirQuery = filterByDirectory ? `&filterDirectory=${filterByDirectory}` : "";
-    const url = (pg) => `/TDR-3581/${version}?pg=${pg}${filterQuery}${searchQuery}${searchFileQuery}${filterDirQuery}`
-    data.urlNoSearchFile = `/TDR-3581/${version}?pg=1${filterDirQuery}`
-    data.urlNoDirectory = `/TDR-3581/${version}?pg=1${searchFileQuery}`
-
-
-    // PAGINATE
-    data.currentPage = page || 1;
-    data.totalPages = Math.ceil(data.recordsMetadata.length / perPage);
-    data.previousPage = (parseInt(data.currentPage) > 1) ? url(parseInt(data.currentPage)-1) : false;
-    data.nextPage = parseInt(data.currentPage)+1 > data.totalPages ? false : url(parseInt(data.currentPage)+1);
-
-
-    data.pages = []
-    for(let i = 1; i <= data.totalPages; i++){
-      data.pages.push({
-        number: i,
-        current: data.currentPage == i,
-        href: url(i)
-      })
-    }
-
-    if(data.pages.length === 0)
-      data.pages = [{number: 1, current: true}]
-
-    data.recordsMetadata = data.recordsMetadata.slice((data.currentPage-1)*perPage, data.currentPage*perPage);
-
-    let versionTemplate = (version) ?  `/TDR-3581/${version}/index` : '/TDR-3581/v01/index';
-    res.render(versionTemplate, {
+    let tpl = '/metadata/index';
+    res.render(tpl, {
       data : data
     });
-  }
-);
+
+  })
 
 router.post(
   "/prototype-versions/clear-data",

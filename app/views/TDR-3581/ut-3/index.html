@@ -56,6 +56,7 @@ Review metadata
         <div class="table-controls__filters">
           <form action="" method="get">
           {% set filterDirectoryClasses = "autocomplete" %}
+          <input type="hidden" name="sort" value="directory" />
           {% include "../filters-freetext.html" %}
           </form>
         </div>

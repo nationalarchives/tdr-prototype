@@ -37,6 +37,7 @@ Review metadata
           }) }}
         <div class="table-controls__filters">
           <form action="" method="get">
+          <input type="hidden" name="sort" value="directory" />
           {% set filterDirectoryClasses = "autocomplete" %}
           {% include "../filters.html" %}
           </form>

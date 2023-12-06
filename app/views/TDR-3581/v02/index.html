@@ -30,6 +30,7 @@ Review metadata
     }) }}
   </div>
   <div class="govuk-grid-column-two-thirds-from-desktop">
+    {% set sort = "file" %}
     {% include "../filters-alpha.html" %}
   </div>
 </div>
@@ -38,7 +39,7 @@ Review metadata
     {% if data['currentAlphaFilter'] %}
     <p class="current-filters govuk-!-margin-bottom-3">
       <span class="current-filters__title"></span> <span class="current-filters__filter">Files beginning with '{{data['currentAlphaFilter']}}'</span>
-      <a class="govuk-link govuk-link--no-visited-state current-filters__clear" href="v02">Clear filters</a>
+      <a class="govuk-link govuk-link--no-visited-state current-filters__clear" href="v02?sort=file">Clear filters</a>
     </p>
     {% endif %}
   </div>
