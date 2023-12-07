@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}\
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% import "macros/task-list.html" as taskList %}
+
+{% block pageTitle %}
+  Have you finished adding closed record metadata?
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./" class="govuk-back-link">Back</a>
+  {# Would have to be JS back because it can come from multiple places. #}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+            <h1 class="govuk-heading-l">Have you finished adding closed record metadata?</h1>
+          </legend>
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+              {# <div id="hint" class="govuk-hint">
+                You can return to continue adding metadata in either case
+              </div> #}
+              <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="whereDoYouLive" name="whereDoYouLive" type="radio" value="england">
+                  <label class="govuk-label govuk-radios__label" for="whereDoYouLive">
+                    No, I’ll return later
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="whereDoYouLive-2" name="whereDoYouLive" type="radio" value="scotland">
+                  <label class="govuk-label govuk-radios__label" for="whereDoYouLive-2">
+                    Yes, all closed record metadata has been added
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <a href="/metadata/?datesComplete&descriptiveComplete&closureComplete" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Save and continue
+      </a>
+
+    </div>
+  </div>
+{% endblock %}

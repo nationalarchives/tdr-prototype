@@ -1,0 +1,50 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}\
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% import "macros/task-list.html" as taskList %}
+
+{% block pageTitle %}
+  Have you checked and corrected all last modified dates?
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./" class="govuk-back-link">Back</a>
+  {# Would have to be JS back because it can come from multiple places. #}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      {{ govukRadios({
+        name: "signIn",
+        fieldset: {
+          legend: {
+            html: '<span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-l">Have you checked and corrected all last modified dates?</h1>'
+          }
+        },
+        hint: {
+          text: "If you select ‘no’ you can return later and continue checking dates."
+        },
+        items: [
+          {
+            value: "no",
+            text: "No, I’ll return later to complete this section"
+          },
+          {
+            value: "yes",
+            text: "Yes, all dates are accurate or have been corrected"
+          }
+        ]
+      }) }}
+
+      <a href="/metadata/?datesComplete" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Save and continue
+      </a>
+
+    </div>
+  </div>
+{% endblock %}

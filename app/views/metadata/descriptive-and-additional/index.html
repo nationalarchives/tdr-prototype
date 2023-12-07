@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <a href="./" class="govuk-back-link">Back to Record metadata</a>
+  <a href="./" class="govuk-back-link">Back to Metadata</a>
 {% endblock %}
 
 {% block content %}
@@ -29,41 +29,15 @@
         iconFallbackText: "Warning"
       }) }}
 
-      <p class="govuk-body">For more information on last modified dates visits out <a href="" class="govuk-link">FAQ (opens in a new tab)</a>.</p>
+      <p class="govuk-body">For more information on descriptive and additional metadata visit the <a href="" class="govuk-link">FAQ (opens in a new tab)</a>.</p>
 
       <div class="govuk-button-group">
-        <a href="../download-metadata.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-          Check and correct record dates
+        <a href="/metadata/descriptive-and-additional/add" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+          Add descriptive and additional metadata
         </a>
+        {% set task = "descriptive-and-additional" %}
+        {% include "includes/metadata/button-mark-task-complete" %}
       </div>
-
-      {{ govukRadios({
-        name: "signIn",
-        fieldset: {
-          legend: {
-            text: "Have you completed this section?",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        hint: {
-          text: "If you select ‘no’ you can return later and continue checking dates."
-        },
-        items: [
-          {
-            value: "no",
-            text: "No, I’ll return later to complete this section"
-          },
-          {
-            value: "yes",
-            text: "Yes, all dates are accurate or have been corrected"
-          }
-        ]
-      }) }}
-
-      <a href="/metadata/?datesComplete" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Save and continue
-      </a>
 
     </div>
   </div>

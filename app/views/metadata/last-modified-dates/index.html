@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <a href="./" class="govuk-back-link">Back to Record metadata</a>
+  <a href="/metadata" class="govuk-back-link">Back to Metadata</a>
 {% endblock %}
 
 {% block content %}
@@ -37,35 +37,9 @@
         <a href="/metadata/last-modified-dates/check-and-correct" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
           Check and correct record dates
         </a>
+        {% set task = "last-modified-dates" %}
+        {% include "includes/metadata/button-mark-task-complete" %}
       </div>
-
-      {{ govukRadios({
-        name: "signIn",
-        fieldset: {
-          legend: {
-            text: "Have you completed this section?",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        hint: {
-          text: "If you select ‘no’ you can return later and continue checking dates."
-        },
-        items: [
-          {
-            value: "no",
-            text: "No, I’ll return later to complete this section"
-          },
-          {
-            value: "yes",
-            text: "Yes, all dates are accurate or have been corrected"
-          }
-        ]
-      }) }}
-
-      <a href="/metadata/?datesComplete" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Save and continue
-      </a>
 
     </div>
   </div>

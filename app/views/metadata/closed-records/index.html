@@ -1,0 +1,67 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}\
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% import "macros/task-list.html" as taskList %}
+
+{% block pageTitle %}
+  Closed records metadata
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./" class="govuk-back-link">Back to Metadata</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-l">Closed records metadata</h1>
+
+      <p class="govuk-body">Enter closure metadata about all closed records that have been agreed with the Advisory Council or The National Archives.</p>
+
+      {{ govukWarningText({
+        html: "It is a legal requirement that you enter accurate metadata for all closed records. If you’re unsure about closure metadata email <a href=''>tdr@nationalarchives.gov.uk</a>",
+        iconFallbackText: "Warning"
+      }) }}
+
+      <p class="govuk-body">What mandatory closed records metadata you must provide:</p>
+      <ul class="govuk-list  govuk-list--bullet">
+        <li>
+          <strong>FOI decision asserted</strong> - the date the closure schedule was agreed by the Advisory Council and/or The National Archives
+        </li>
+        <li>
+          <strong>Closure start date</strong> - the date of the last change to this record
+        </li>
+        <li>
+          <strong>Closure period</strong>
+        </li>
+        <li>
+          <strong>FOI exemption code(s)</strong>
+        </li>
+      </ul>
+      <p class="govuk-body">What mandatory closed records metadata you must provide:</p>
+      <ul class="govuk-list  govuk-list--bullet">
+        <li>
+          <strong>Alternative title</strong>
+        </li>
+        <li>
+          <strong>Alternative description</strong> - You must provide a description in the Descriptive and additional metadata section before entering this
+        </li>
+      </ul>
+
+      <p class="govuk-body">For more information on closed records metadata visit the <a href="" class="govuk-link">FAQ (opens in a new tab)</a>.</p>
+
+      <div class="govuk-button-group">
+        <a href="/metadata/closed-records/add" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+          Add closed record metadata
+        </a>
+        {% set task = "closed-records" %}
+        {% include "includes/metadata/button-mark-task-complete" %}
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
