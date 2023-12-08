@@ -17,40 +17,32 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
+      <form action="/TDR-3515/metadata/" method="post">
 
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" aria-describedby="hint">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
-            <h1 class="govuk-heading-l">Have you finished adding closed record metadata?</h1>
-          </legend>
-          <div class="govuk-grid-row">
-            <div class="govuk-grid-column-two-thirds">
-              {# <div id="hint" class="govuk-hint">
-                You can return to continue adding metadata in either case
-              </div> #}
-              <div class="govuk-radios" data-module="govuk-radios">
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="whereDoYouLive" name="whereDoYouLive" type="radio" value="england">
-                  <label class="govuk-label govuk-radios__label" for="whereDoYouLive">
-                    No, I’ll return later
-                  </label>
-                </div>
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="whereDoYouLive-2" name="whereDoYouLive" type="radio" value="scotland">
-                  <label class="govuk-label govuk-radios__label" for="whereDoYouLive-2">
-                    Yes, all closed record metadata has been added
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </fieldset>
-      </div>
+        {{ govukRadios({
+          name: "closedComplete",
+          fieldset: {
+            legend: {
+              html: '<span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+                    <h1 class="govuk-heading-l">Have you checked and corrected all last modified dates?</h1>'
+            }
+          },
+          items: [
+            {
+              value: "false",
+              text: "No, I’ll return later"
+            },
+            {
+              value: "true",
+              text: "Yes, all closed record metadata has been added"
+            }
+          ]
+        }) }}
 
-      <a href="../../metadata/?datesComplete&descriptiveComplete&closureComplete" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Save and continue
-      </a>
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
 
     </div>
   </div>

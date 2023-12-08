@@ -32,11 +32,11 @@
   <div class="govuk-grid-column-two-thirds">
 
     <ul class="govuk-task-list govuk-!-margin-bottom-6">
-      {% set datesComplete = "Complete" if data['datesComplete'] == true else "Incomplete" %}
+      {% set datesComplete = "Complete" if data.lastModifiedComplete == "true"  == true else "Incomplete" %}
       {{ taskList.item("Last modified date", "/TDR-3515/metadata/last-modified-dates", datesComplete, "Check and correct the extracted last modified dates", true) }}
-      {% set descriptiveComplete = "Complete" if data['descriptiveComplete'] == true else "Incomplete" %}
+      {% set descriptiveComplete = "Complete" if data.descriptiveComplete == "true"  else "Incomplete" %}
       {{ taskList.item("Descriptive and additional metadata", "/TDR-3515/metadata/descriptive-and-additional", descriptiveComplete, "Enhance your records with descriptive and additional metadata", true) }}
-      {% set closureComplete = "Complete" if data['closureComplete'] == true else "Incomplete" %}
+      {% set closureComplete = "Complete" if data.closedComplete == "true" else "Incomplete" %}
       {{ taskList.item("Closed records metadata", "/TDR-3515/metadata/closed-records", closureComplete, "Add metadata about all closed records", true) }}
     </ul>
   </div>

@@ -17,34 +17,32 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-
-      {{ govukRadios({
-        name: "signIn",
-        fieldset: {
-          legend: {
-            html: '<span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
-      <h1 class="govuk-heading-l">Have you checked and corrected all last modified dates?</h1>'
-          }
-        },
-        hint: {
-          text: "If you select ‘no’ you can return later and continue checking dates."
-        },
-        items: [
-          {
-            value: "no",
-            text: "No, I’ll return later to complete this section"
+      <form action="/TDR-3515/metadata/" method="post">
+        {{ govukRadios({
+          name: "lastModifiedComplete",
+          fieldset: {
+            legend: {
+              html: '<span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+                <h1 class="govuk-heading-l">Have you checked and corrected all last modified dates?</h1>'
+            }
           },
-          {
-            value: "yes",
-            text: "Yes, all dates are accurate or have been corrected"
-          }
-        ]
-      }) }}
+          items: [
+            {
+              value: "false",
+              text: "No, I’ll return later to complete this section"
+            },
+            {
+              value: "true",
+              text: "Yes, all dates are accurate or have been corrected"
+            }
+          ]
+        }) }}
 
-      <a href="/metadata/?datesComplete" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Save and continue
-      </a>
 
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
     </div>
   </div>
 {% endblock %}
