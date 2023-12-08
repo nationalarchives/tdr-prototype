@@ -26,13 +26,17 @@
 {% else %}
   {% for item in data['recordsMetadata'] %}
       <tr class="govuk-table__row tdr-summary-table__row">
-        <td headers="{{currentDirectory|urlencode}}" id="{{currentDirectory|urlencode}}{{item.id|urlencode}}" class="govuk-table__header govuk-table__header--spacious">
+        <td headers="{{item.path|urlencode}}" id="{{item.path|urlencode}}{{item.name|urlencode}}" class="govuk-table__header govuk-table__header--spacious">
         {{item.name|highlightMatches(item.matches, "name")|safe}}
         </td>
-        <td headers="{{currentDirectory|urlencode}}{{item.id|urlencode}}" class="govuk-table__cell govuk-table__cell--nowrap">
+        <td headers="{{item.path|urlencode}}{{item.name|urlencode}}" class="govuk-table__cell govuk-table__cell--nowrap">
           {{item['ldm-extracted-day']}} {{item['ldm-extracted-month']|getMonthName("short")}} {{item['ldm-extracted-year']}}
         </td>
-        <td headers="{{currentDirectory|urlencode}}{{item.id|urlencode}}" class="govuk-table__cell govuk-table__cell--nowrap">-</td>
+        <td headers="{{item.path|urlencode}}{{item.name|urlencode}}" class="govuk-table__cell govuk-table__cell--nowrap">
+          {% if item['ldm-corrected-day'] and item['ldm-corrected-month'] and item['ldm-corrected-year']%}
+          {{item['ldm-corrected-day']}} {{item['ldm-corrected-month']|getMonthName("short")}} {{item['ldm-corrected-year']}}
+          {% endif %}
+        </td>
         <td class="tdr-summary-table__align-bottom" headers="header-file-path">
 
             <ol class="tdr-file-breadcrumbs tdr-file-breadcrumbs--small">
@@ -45,8 +49,8 @@
             {% endfor %}
             </ol>
         </td>
-        <td headers="{{currentDirectory|urlencode}}{{item.id|urlencode}}" class="govuk-table__cell govuk-table__cell--with-hidden-menu">
-          <a class="govuk-link govuk-link--no-visited-state" href="">Edit<span class="govuk-visually-hidden">&nbsp;metadata for {{item.name}}</span></a>
+        <td headers="{{item.path|urlencode}}{{item.name|urlencode}}" class="govuk-table__cell govuk-table__cell--with-hidden-menu">
+          <a class="govuk-link govuk-link--no-visited-state" href="/TDR-3486/metadata/last-modified-dates/edit/{{item.path|urlencode}}{{item.name|urlencode}}">Edit<span class="govuk-visually-hidden">&nbsp;metadata for {{item.name}}</span></a>
         </td>
       </tr>
   {% endfor %}

@@ -505,12 +505,12 @@ const metadataRecordsTable = function (req, baseURL) {
   let page = req.query.pg
 
   data.recordsMetadata = ["ut-1", "ut-2"].includes(version) ?  testMetadata150 : testMetadata1000;
-  data.recordsCount = ["ut-1", "ut-2"].includes(version) ? testMetadata150.length : testMetadata1000.length;
+  data.recordsCount = data.recordsMetadata.length;
 
+  // Using Set to remove duplicates.
   data.directories = [...new Set(data.recordsMetadata.map((item) => item.path))].sort().map(item => {
     return {text: item.split("/").join(" / "), value: item, selected: item === decodeURIComponent(filterByDirectory)}
   });
-
   data.directories.unshift({value: "", text:""})
 
   data.currentDirFilter = data.directories.find(item => item.selected === true)?.text
@@ -621,8 +621,50 @@ router.get( "/TDR-3581/:version?", (req, res) => {
 router.get( "/TDR-3486/metadata/last-modified-dates/check-and-correct", (req, res) => {
   let tpl = '/TDR-3486/metadata/last-modified-dates/check-and-correct';
   const tplArgs = metadataRecordsTable(req, tpl);
-  const version = req.params.version
   res.render(tpl, tplArgs);
+});
+
+router.post( "/TDR-3486/metadata/last-modified-dates/edit/:nameAndPath", (req, res) => {
+  const nameAndPath = req.params.nameAndPath;
+  const record = testMetadata1000.find( item => nameAndPath == `${item.path}${item.name}` )
+
+  const correctedDay = req.body["correctedDate-day"];
+  const correctedMonth = req.body["correctedDate-month"];
+  const correctedYear = req.body["correctedDate-year"];
+
+  if(correctedDay && correctedMonth && correctedYear){
+
+    record["ldm-corrected-day"] = correctedDay
+    record["ldm-corrected-month"] = correctedMonth
+    record["ldm-corrected-year"] = correctedYear
+  }
+  res.redirect("/TDR-3486/metadata/last-modified-dates/check-and-correct");
+})
+
+router.get( "/TDR-3486/metadata/last-modified-dates/edit/:nameAndPath", (req, res) => {
+  const nameAndPath = req.params.nameAndPath;
+  const record = testMetadata1000.find( item => nameAndPath == `${item.path}${item.name}` )
+
+  const correctedDay = req.params["correctedDate-day"];
+  const correctedMonth = req.params["correctedDate-month"];
+  const correctedYear = req.params["correctedDate-year"];
+
+  let tpl = '/TDR-3486/metadata/last-modified-dates/edit';
+  res.render(tpl, {
+    path: record?.path,
+    name: record?.name,
+    extracted : {
+      day: record ? record['ldm-extracted-day'] : '',
+      month: record ? record['ldm-extracted-month']: '',
+      year: record ? record['ldm-extracted-year'] : ''
+    },
+    corrected : {
+      day: record ? record['ldm-corrected-day'] : '',
+      month: record ? record['ldm-corrected-month']: '',
+      year: record ? record['ldm-corrected-year'] : ''
+    }
+  });
+
 });
 
 router.post(
