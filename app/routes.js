@@ -493,7 +493,7 @@ function findMatches(data, searchPattern, keys){
 }
 
 
-const metadataRecordsTable = function (req) {
+const metadataRecordsTable = function (req, baseURL) {
   const perPage = 100
   const data = req.session.data;
   const version = req.params.version
@@ -579,9 +579,9 @@ const metadataRecordsTable = function (req) {
   const searchFileQuery = searchFilePattern ? `&searchName=${searchFilePattern}` : "";
   const filterQuery = filterByLetter ? `&filterLetter=${filterByLetter}` : "";
   const filterDirQuery = filterByDirectory ? `&filterDirectory=${filterByDirectory}` : "";
-  const url = (pg) => `/TDR-3581/${version}?sort=${sort}&pg=${pg}${filterQuery}${searchQuery}${searchFileQuery}${filterDirQuery}`
-  data.urlNoSearchFile = `/TDR-3581/${version}?sort=${sort}&pg=1${filterDirQuery}`
-  data.urlNoDirectory = `/TDR-3581/${version}?sort=${sort}&pg=1${searchFileQuery}`
+  const url = (pg) => `${baseURL}?sort=${sort}&pg=${pg}${filterQuery}${searchQuery}${searchFileQuery}${filterDirQuery}`
+  data.urlNoSearchFile = `${baseURL}?sort=${sort}&pg=1${filterDirQuery}`
+  data.urlNoDirectory = `${baseURL}?sort=${sort}&pg=1${searchFileQuery}`
 
 
   // PAGINATE
@@ -605,53 +605,25 @@ const metadataRecordsTable = function (req) {
 
   data.recordsMetadata = data.recordsMetadata.slice((data.currentPage-1)*perPage, data.currentPage*perPage);
 
-  // let versionTemplate = (version) ?  `/TDR-3581/${version}/index` : '/TDR-3581/v01/index';
   return {
     data : data
   };
 };
 
 router.get( "/TDR-3581/:version?", (req, res) => {
-  const tplArgs = metadataRecordsTable(req);
-  const version = req.params.version
+  const version = req.params.version;
+  const baseURL = `/TDR-3581/${version}`;
+  const tplArgs = metadataRecordsTable(req, baseURL);
   let versionTemplate = (version) ?  `/TDR-3581/${version}/index` : '/TDR-3581/v01/index';
   res.render(versionTemplate, tplArgs);
 });
 
-router.get( "metadata/last-modified-dates/check-and-correct", metadataRecordsTable);
-
-router.get(
-  "/metadata/",
-  function (req, res) {
-    const data = req.session.data;
-
-    data.datesComplete = typeof req.query.datesComplete != "undefined"
-    data.closureComplete = typeof req.query.closureComplete != "undefined"
-    data.descriptiveComplete = typeof req.query.descriptiveComplete != "undefined"
-
-    let tpl = '/metadata/index';
-    res.render(tpl, {
-      data : data
-    });
-
-  })
-
-
-router.get(
-  "/metadata/",
-  function (req, res) {
-    const data = req.session.data;
-
-    data.datesComplete = typeof req.query.datesComplete != "undefined"
-    data.closureComplete = typeof req.query.closureComplete != "undefined"
-    data.descriptiveComplete = typeof req.query.descriptiveComplete != "undefined"
-
-    let tpl = '/metadata/index';
-    res.render(tpl, {
-      data : data
-    });
-
-  })
+router.get( "/TDR-3486/metadata/last-modified-dates/check-and-correct", (req, res) => {
+  let tpl = '/TDR-3486/metadata/last-modified-dates/check-and-correct';
+  const tplArgs = metadataRecordsTable(req, tpl);
+  const version = req.params.version
+  res.render(tpl, tplArgs);
+});
 
 router.post(
   "/prototype-versions/clear-data",
