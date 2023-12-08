@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <a href="./" class="govuk-back-link">Back to Metadata</a>
+  <a href="/TDR-3515/metadata/" class="govuk-back-link">Back to Metadata</a>
 {% endblock %}
 
 {% block content %}
@@ -55,10 +55,10 @@
       <p class="govuk-body">For more information on closed records metadata visit the <a href="" class="govuk-link">FAQ (opens in a new tab)</a>.</p>
 
       <div class="govuk-button-group">
-        <a href="/metadata/closed-records/add" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        <a href="/TDR-3515/metadata/closed-records/add" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
           Add closed record metadata
         </a>
-        {% set task = "closed-records" %}
+        {% set task = "/TDR-3515/metadata/closed-records" %}
         {% include "includes/metadata/button-mark-task-complete" %}
       </div>
 

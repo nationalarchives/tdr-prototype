@@ -6,24 +6,24 @@
 {% import "macros/task-list.html" as taskList %}
 
 {% block pageTitle %}
-  Add closed records metadata
+  Add descriptive and additional metadata
 {% endblock %}
 
 {% block beforeContent %}
-  <a href="./" class="govuk-back-link">Back to Closed records metadata</a>
+  <a href="/TDR-3515/metadata/descriptive-and-additional" class="govuk-back-link">Back to Descriptive and additional metadata</a>
 {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
     <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
-    <h1 class="govuk-heading-l">Add closed records metadata</h1>
-    <p class="govuk-body">Add closed records metadata to your records. Your progress is saved each time you add metadata to a record.</p>
+    <h1 class="govuk-heading-l">Add descriptive and additional metadata</h1>
+    <p class="govuk-body">Add descriptive and additional metadata to your records. Your progress is saved each time you add metadata to a record.</p>
     <div class="govuk-button-group">
       <a href="" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
         Add metadata to a record
       </a>
-      {% set task = "closed-records" %}
+      {% set task = "/TDR-3515/metadata/descriptive-and-additional" %}
       {% include "includes/metadata/button-mark-task-complete" %}
     </div>
   </div>
