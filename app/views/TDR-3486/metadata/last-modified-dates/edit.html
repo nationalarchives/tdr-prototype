@@ -7,7 +7,7 @@
 {% import "macros/task-list.html" as taskList %}
 
 {% block pageTitle %}
-  Correct - Last modified date
+  Correct the last date modified
 {% endblock %}
 
 {% block content %}
@@ -45,7 +45,7 @@
       <p class="govuk-hint">This is the date we extracted for this record during upload</p>
       <p class="govuk-!-font-size-24 govuk-!-margin-bottom-6">{{extracted.day}} {{extracted.month|getMonthName}} {{extracted.year}}</p>
 
-      <form action="" method="post">
+      <form action="?{{data.queryParamsString}}" method="post">
         {{ govukDateInput({
           id: "correctedDate",
           namePrefix: "correctedDate",
@@ -82,7 +82,7 @@
           {{ govukButton({
             text: "Save and return"
           }) }}
-          <a href="/TDR-3486/metadata/last-modified-dates/check-and-correct" class="govuk-link">Cancel</a>
+          <a href="/TDR-3486/metadata/last-modified-dates/check-and-correct?{{data.queryParamsString}}" class="govuk-link">Cancel</a>
         </div>
       </form>
 

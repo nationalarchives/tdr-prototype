@@ -50,7 +50,7 @@
             </ol>
         </td>
         <td headers="{{item.path|urlencode}}{{item.name|urlencode}}" class="govuk-table__cell govuk-table__cell--with-hidden-menu">
-          <a class="govuk-link govuk-link--no-visited-state" href="/TDR-3486/metadata/last-modified-dates/edit/{{item.path|urlencode}}{{item.name|urlencode}}">Edit<span class="govuk-visually-hidden">&nbsp;metadata for {{item.name}}</span></a>
+          <a class="govuk-link govuk-link--no-visited-state" href="/TDR-3486/metadata/last-modified-dates/edit/{{item.path|urlencode}}{{item.name|urlencode}}?{{data.queryParamsString}}">Edit<span class="govuk-visually-hidden">&nbsp;metadata for {{item.name}}</span></a>
         </td>
       </tr>
   {% endfor %}

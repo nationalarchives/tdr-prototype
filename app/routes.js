@@ -139,8 +139,36 @@ const populateWithClosureData = (req, res) => {
   // res.redirect(`/metadata/closure-metadata/${route}`);
 };
 
-// Add your routes here
 
+// Middleware
+
+const targetURLs = [
+  "/TDR-3486/metadata/last-modified-dates/check-and-correct",
+  "/TDR-3486/metadata/last-modified-dates/edit/"
+]
+
+// Custom middleware to process query parameters for specific URLs
+const processQueryParams = (req, res, next) => {
+
+  const contains = targetURLs.find(url =>req.path.startsWith(url))
+  if (contains) {
+    const queryParamsString = Object.entries(req.query)
+    .map(([key, value]) => `${key}=${value}`)
+    .join('&');
+
+    req.session.data.queryParamsString = queryParamsString;
+  }
+
+  next();
+};
+
+router.use(processQueryParams)
+router.use((req, res, next) => {
+  req.session.data = {...req.session.data, ...tdrSettings};
+  next()
+})
+
+// Add your routes here
 router.get(
   "/metadata/descriptive-metadata/confirm-delete-metadata",
   function (req, res) {
@@ -638,7 +666,7 @@ router.post( "/TDR-3486/metadata/last-modified-dates/edit/:nameAndPath", (req, r
     record["ldm-corrected-month"] = correctedMonth
     record["ldm-corrected-year"] = correctedYear
   }
-  res.redirect("/TDR-3486/metadata/last-modified-dates/check-and-correct");
+  res.redirect("/TDR-3486/metadata/last-modified-dates/check-and-correct?"+req.session.data.queryParamsString);
 })
 
 router.get( "/TDR-3486/metadata/last-modified-dates/edit/:nameAndPath", (req, res) => {
@@ -674,11 +702,6 @@ router.post(
     res.redirect("/prototype-versions/data-cleared");
   }
 );
-
-router.use((req, res, next) => {
-  req.session.data = {...req.session.data, ...tdrSettings};
-  next()
-})
 
 
 module.exports = router;
