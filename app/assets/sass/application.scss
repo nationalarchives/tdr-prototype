@@ -537,6 +537,11 @@
   position: relative;
 }
 
+.govuk-table__cell--fitwidth {
+  width: 1px;
+  white-space: nowrap;
+}
+
 .tdr-link-group a {
   white-space: nowrap;
 }
@@ -918,4 +923,26 @@
 .autocomplete__dropdown-arrow-down {
   z-index: 10;
   pointer-events: none;
+}
+
+.tdr-date-edit-in-place {
+  display: flex;
+  align-items: flex-end;
+}
+
+.tdr-date-edit-in-place .govuk-button,
+.tdr-date-edit-in-place .govuk-form-group {
+  margin-bottom: 0;
+}
+
+.tdr-date-edit-in-place .govuk-date-input__label {
+  @include govuk-font($size: 16);
+}
+
+.tdr-date-edit-in-place .govuk-button {
+  @include govuk-font($size: 16);
+}
+
+.tdr-date-edit-in-place .govuk-date-input {
+  width: max-content;
 }

@@ -1,0 +1,81 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+<div class="tdr-scroll-container tdr-scroll-container__horizontal">
+<table data-module="table-row-menu-hide-show" class="govuk-table tdr-summary-table">
+  <colgroup>
+    <col style="min-width: 200px;"/>
+    <col  />
+    <col  />
+    {# <col /> #}
+  </colgroup>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Record name</th>
+      <th scope="col" class="govuk-table__header">Extracted date</th>
+      <th scope="col" class="govuk-table__header">Corrected date</th>
+      <th id="header-file-path" scope="col" class="govuk-visually-hidden">File path</th>
+      {# <th scope="col" class="govuk-table__header"><span class="govuk-visually-hidden">Actions</span></th> #}
+    </tr>
+  </thead>
+
+{% if data['recordsMetadata']|length == 0 %}
+  <tr>
+    <td colspan="6" class="govuk-table__cell govuk-table__cell--no-results">
+      There are no records to show.
+      <a href="./v08">Clear current filters</a>
+    </td>
+  </tr>
+{% else %}
+  {% for item in data['recordsMetadata'] %}
+      <tr class="govuk-table__row tdr-summary-table__row">
+        <td headers="{{item.path|urlencode}}" id="{{item.path|urlencode}}{{item.name|urlencode}}" class="govuk-table__header govuk-table__header--spacious">
+        {{item.name|highlightMatches(item.matches, "name")|safe}}
+        </td>
+        <td headers="{{item.path|urlencode}}{{item.name|urlencode}}" class="govuk-table__cell govuk-table__cell--nowrap">
+          {{item['ldm-extracted-day']}} {{item['ldm-extracted-month']|getMonthName("short")}} {{item['ldm-extracted-year']}}
+        </td>
+        <td headers="{{item.path|urlencode}}{{item.name|urlencode}}" class="govuk-table__cell govuk-table__cell--nowrap govuk-table__cell--fitwidth">
+          {% if item['ldm-corrected-day'] and item['ldm-corrected-month'] and item['ldm-corrected-year']%}
+          {{item['ldm-corrected-day']}} {{item['ldm-corrected-month']|getMonthName("short")}} {{item['ldm-corrected-year']}}
+          {% endif %}
+          <form action="">
+            <div class="tdr-date-edit-in-place">
+              {{ govukDateInput({
+                id: ["corrected-", item.path|urlencode, item.name|urlencode]|join,
+                namePrefix: [item.path|urlencode, item.name|urlencode]|join,
+                fieldset: {
+                  legend: {
+                    text: "",
+                    isPageHeading: false
+                  }
+                }
+              }) }}
+
+              {{ govukButton({
+                text: "Submit",
+                classes: "govuk-button--small"
+              }) }}
+            </div>
+          </form>
+        </td>
+        <td class="tdr-summary-table__align-bottom" headers="header-file-path">
+            <ol class="tdr-file-breadcrumbs">
+            {% set currStrIndex = 0 %}
+            {% for dir in item.path|split("/") %}
+              <li class="tdr-file-breadcrumbs__list-item">{{dir|highlightMatches(item.matches, "path", currStrIndex, item.path)|safe}}</li>
+              {% set currStrIndex = 1+currStrIndex+dir|length %}
+            {% else %}
+              <li class="tdr-file-breadcrumbs__list-item">[Top level directory]</li>
+            {% endfor %}
+            </ol>
+        </td>
+        {# <td headers="{{item.path|urlencode}}{{item.name|urlencode}}" class="govuk-table__cell govuk-table__cell--with-hidden-menu">
+          <a class="govuk-link govuk-link--no-visited-state" href="/TDR-3486/metadata/last-modified-dates/edit/{{item.path|urlencode}}{{item.name|urlencode}}?{{data.queryParamsString}}">Edit<span class="govuk-visually-hidden">&nbsp;metadata for {{item.name}}</span></a>
+        </td> #}
+      </tr>
+  {% endfor %}
+{% endif %}
+  </tbody>
+</table>
+</div>
