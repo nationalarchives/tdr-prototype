@@ -13,19 +13,7 @@
     <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
     <h1 class="govuk-heading-xl">Metadata</h1>
 
-    <p class="govuk-body">Before progress with the transfer complete the metadata tasks below:</p>
-    <ul class="govuk-list  govuk-list--bullet">
-      <li>
-        <strong>Last modified date</strong> - Check that the dates extracted during upload are correct for each record
-      </li>
-      <li>
-        <strong>Descriptive and additional metadata</strong> - Add descriptive and additional metadata
-      </li>
-      <li>
-        <strong>Closed record metadata</strong> -  Enter closure metadata about each record that has been through the closure application process
-      </li>
-    </ul>
-    <p class="govuk-body govuk-!-margin-bottom-6">If you have no metadata to add you must still visit each section below to confirm this before continuing.</p>
+    <p class="govuk-body">To progress with the transfer, complete the following tasks. If you have no metadata to add, you must still visit each section and mark them as complete before continuing.</p>
   </div>
 </div>
 <div class="govuk-grid-row">
@@ -33,18 +21,18 @@
 
     <ul class="govuk-task-list govuk-!-margin-bottom-6">
       {% set datesComplete = "Complete" if data.lastModifiedComplete == "true"  == true else "Incomplete" %}
-      {{ taskList.item("Last modified date", "/TDR-3515/metadata/last-modified-dates", datesComplete, "Check and correct the extracted last modified dates", true) }}
+      {{ taskList.item("Date last modified", "/TDR-3515/metadata/last-modified-dates", datesComplete, "Check and correct extracted dates.", true) }}
       {% set descriptiveComplete = "Complete" if data.descriptiveComplete == "true"  else "Incomplete" %}
-      {{ taskList.item("Descriptive and additional metadata", "/TDR-3515/metadata/descriptive-and-additional", descriptiveComplete, "Enhance your records with descriptive and additional metadata", true) }}
+      {{ taskList.item("Record descriptions", "/TDR-3515/metadata/descriptive-and-additional", descriptiveComplete, "Enhance your records with decriptive information.", true) }}
       {% set closureComplete = "Complete" if data.closedComplete == "true" else "Incomplete" %}
-      {{ taskList.item("Closed records metadata", "/TDR-3515/metadata/closed-records", closureComplete, "Add metadata about all closed records", true) }}
+      {{ taskList.item("Closed record information", "/TDR-3515/metadata/closed-records", closureComplete, "Add information about all closed records.", true) }}
     </ul>
   </div>
 </div>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h2 class="govuk-heading-m">Next step: Download and review metadata</h2>
-    <p class="govuk-body">Once the tasks above are complete you can continue with your transfer. You will be able to download a CSV with all the consignment metadata. </p>
+    <p class="govuk-body">Once you complete all sections, you will be able to download a CSV with all the consignment metadata.</p>
 
     {#
     <div class="govuk-button-group">

@@ -18,27 +18,27 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
-      <h1 class="govuk-heading-l">Last modified dates</h1>
+      <h1 class="govuk-heading-l">Date last modified</h1>
 
-      <p class="govuk-body">As part of the transfer process we ask you to check that <strong>last modified date</strong> extracted during upload matches your own records.</p>
-      <p class="govuk-body">If the last modified date we extracted represents the last meaningful change to the record then then you do not need to take any action.</p>
-      <p class="govuk-body">If any dates are incorrect then you can provide an more accurate date.</p>
+      <p class="govuk-body">During the upload process, we extract the date of when each record was last modified. If the date does not represent the last meaningful change to the record, you must provide an accurate date.</p>
+      <p class="govuk-body">For closed records, this must match the date given to the Advisory Council or The National Archives as part of the closure process.</p>
 
       {{ govukWarningText({
-        html: "For closed records the date must match what was given to the Advisory Council or The National Archives as part of the closure application process.",
+        html: "For closed records, this must match the date given to the Advisory Council or The National Archives as part of the closure process.",
         iconFallbackText: "Warning"
       }) }}
 
-      <p class="govuk-body">For more information on last modified dates visits out <a href="" class="govuk-link">FAQ (opens in a new tab)</a>.</p>
-
-
+      <p class="govuk-body">For more information visit our <a href="" class="govuk-link">FAQ (opens in a new tab)</a>.</p>
 
       <div class="govuk-button-group">
         <a href="/TDR-3515/metadata/last-modified-dates/check-and-correct" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
           Check and correct record dates
         </a>
-        {% set task = "/TDR-3515/metadata/last-modified-dates" %}
-        {% include "includes/metadata/button-mark-task-complete" %}
+        <a href="/TDR-3515/metadata/last-modified-dates/confirm-complete" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          I have finished checking dates
+        </a>
+        {# {% set task = "/TDR-3515/metadata/last-modified-dates" %}
+        {% include "includes/metadata/button-mark-task-complete" %} #}
       </div>
 
     </div>

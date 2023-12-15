@@ -6,7 +6,7 @@
 {% import "macros/task-list.html" as taskList %}
 
 {% block pageTitle %}
-  Have you finished adding descriptive and additional metadata?
+  Have you finished adding a description to your records?
 {% endblock %}
 
 {% block beforeContent %}
@@ -23,23 +23,26 @@
           fieldset: {
             legend: {
               html: '<span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
-                <h1 class="govuk-heading-l">Have you checked and corrected all last modified dates?</h1>'
+                <h1 class="govuk-heading-l">Have you finished adding a description to your records?</h1>'
             }
+          },
+          hint : {
+            text: "Select 'no' to return later and continue adding a description to your records."
           },
           items: [
             {
               value: "false",
-              text: "No, I’ll return later"
+              text: "No, I'll return later to complete this section"
             },
             {
               value: "true",
-              text: "Yes, all descriptive and additional metadata has been added"
+              text: "Yes, I have added a description to all records where necessary"
             }
           ]
         }) }}
 
         {{ govukButton({
-          text: "Save and continue"
+          text: "Save and close"
         }) }}
       </form>
 

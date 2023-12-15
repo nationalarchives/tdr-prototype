@@ -17,14 +17,15 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
     <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
-    <h1 class="govuk-heading-l">Add closed records metadata</h1>
-    <p class="govuk-body">Add closed records metadata to your records. Your progress is saved each time you add metadata to a record.</p>
+    <h1 class="govuk-heading-l">Add closed record informaton</h1>
+    <p class="govuk-body">Your progress is saved each time you add or edit information.</p>
     <div class="govuk-button-group">
       <a href="" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Add metadata to a record
+        Add information to a record
       </a>
-      {% set task = "/TDR-3515/metadata/closed-records" %}
-      {% include "includes/metadata/button-mark-task-complete" %}
+      <a href="/TDR-3515/metadata/closed-records/confirm-complete" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        I have finished adding information
+      </a>
     </div>
   </div>
 </div>

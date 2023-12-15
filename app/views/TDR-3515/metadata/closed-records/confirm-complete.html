@@ -6,7 +6,7 @@
 {% import "macros/task-list.html" as taskList %}
 
 {% block pageTitle %}
-  Have you finished adding closed record metadata?
+  Have you finished adding closed record information?
 {% endblock %}
 
 {% block beforeContent %}
@@ -24,23 +24,26 @@
           fieldset: {
             legend: {
               html: '<span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
-                    <h1 class="govuk-heading-l">Have you checked and corrected all last modified dates?</h1>'
+                    <h1 class="govuk-heading-l">Have you finished adding closed record information?</h1>'
             }
+          },
+          hint : {
+            text: "Select 'no' to return later and continue adding information."
           },
           items: [
             {
               value: "false",
-              text: "No, I’ll return later"
+              text: "No, I'll return later to complete this section"
             },
             {
               value: "true",
-              text: "Yes, all closed record metadata has been added"
+              text: "Yes, all closed records information has been added"
             }
           ]
         }) }}
 
         {{ govukButton({
-          text: "Save and continue"
+          text: "Save and close"
         }) }}
       </form>
 

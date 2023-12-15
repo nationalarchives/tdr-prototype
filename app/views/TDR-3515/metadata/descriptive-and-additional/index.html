@@ -2,6 +2,7 @@
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}\
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
 
 {% import "macros/task-list.html" as taskList %}
 
@@ -18,25 +19,41 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
-      <h1 class="govuk-heading-l">Descriptive and additional metadata</h1>
+      <h1 class="govuk-heading-l">Record description</h1>
 
-      <p class="govuk-body">To help The National Archives preserve and enhance your record we encourage you to add as much <strong>descriptive and additional metadata</strong> as available to you.</p>
-      <p class="govuk-body">If the last modified date we extracted represents the last meaningful change to the record then then you do not need to take any action.</p>
-      <p class="govuk-body">If any dates are incorrect then you can provide an more accurate date.</p>
+      <p class="govuk-body">To better enhance and preserve your records, add as much descriptive information as possible.</p>
+      <p class="govuk-body">What details you can provide:</p>
+      <ul class="govuk-list  govuk-list--bullet">
+        <li>
+          <strong>Description</strong>
+        </li>
+        <li>
+          <strong>Language</strong>
+        </li>
+        <li>
+          <strong>Translated title of record</strong>
+        </li>
+        <li>
+          <strong>Former reference</strong>
+        </li>
+      </ul>
 
-      {{ govukWarningText({
-        html: "For closed records the date must match what was given to the Advisory Council or The National Archives as part of the closure application process.",
-        iconFallbackText: "Warning"
+      {{ govukDetails({
+        summaryText: "Records with sensitive descriptions",
+        text: "If the description contains sensitive information, you must enter the full uncensored version here before entering an alternative description in the 'Closed record information' section."
       }) }}
 
-      <p class="govuk-body">For more information on descriptive and additional metadata visit the <a href="" class="govuk-link">FAQ (opens in a new tab)</a>.</p>
+      <p class="govuk-body">For more information about record descriptions visit our <a href="" class="govuk-link">FAQ (opens in a new tab)</a>.</p>
 
       <div class="govuk-button-group">
         <a href="/TDR-3515/metadata/descriptive-and-additional/add" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-          Add descriptive and additional metadata
+          Add a description of records
         </a>
-        {% set task = "/TDR-3515/metadata/descriptive-and-additional" %}
-        {% include "includes/metadata/button-mark-task-complete" %}
+        <a href="/TDR-3515/metadata/descriptive-and-additional/confirm-complete" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          I have finished adding record description
+        </a>
+        {# {% set task = "/TDR-3515/metadata/descriptive-and-additional" %}
+        {% include "includes/metadata/button-mark-task-complete" %} #}
       </div>
 
     </div>

@@ -23,17 +23,20 @@
           fieldset: {
             legend: {
               html: '<span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
-                <h1 class="govuk-heading-l">Have you checked and corrected all last modified dates?</h1>'
+                <h1 class="govuk-heading-l">Have you checked and corrected all dates?</h1>'
             }
+          },
+          hint: {
+            text: "Select 'no' to return later and continue checking dates."
           },
           items: [
             {
               value: "false",
-              text: "No, I’ll return later to complete this section"
+              text: "No, I'll return later to complete this section"
             },
             {
               value: "true",
-              text: "Yes, all dates are accurate or have been corrected"
+              text: "Yes, all dates are accurate or have been manually corrected"
             }
           ]
         }) }}
