@@ -5,6 +5,7 @@
 
 // Add extra styles here
 @import './gds-task-list.scss';
+// @import './tdr-edit-in-place.scss';
 @import './tdr-file-breadcrumb.scss';
 @import './tdr-table-controls.scss';
 @import 'node_modules/@nationalarchives/tdr-components/components/multi-select-search/_index';
@@ -526,7 +527,6 @@
 .govuk-table__cell--last,
 .govuk-table__header--last {
   padding-right: 0;
-  text-align: right;
 }
 
 .govuk-table__cell--nowrap {
@@ -923,26 +923,4 @@
 .autocomplete__dropdown-arrow-down {
   z-index: 10;
   pointer-events: none;
-}
-
-.tdr-date-edit-in-place {
-  display: flex;
-  align-items: flex-end;
-}
-
-.tdr-date-edit-in-place .govuk-button,
-.tdr-date-edit-in-place .govuk-form-group {
-  margin-bottom: 0;
-}
-
-.tdr-date-edit-in-place .govuk-date-input__label {
-  @include govuk-font($size: 16);
-}
-
-.tdr-date-edit-in-place .govuk-button {
-  @include govuk-font($size: 16);
-}
-
-.tdr-date-edit-in-place .govuk-date-input {
-  width: max-content;
 }

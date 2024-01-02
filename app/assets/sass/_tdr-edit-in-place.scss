@@ -1,0 +1,30 @@
+
+.tdr-date-edit-in-place__form {
+  display: flex;
+  align-items: flex-end;
+}
+
+.tdr-date-edit-in-place__form .govuk-button,
+.tdr-date-edit-in-place__form .govuk-form-group {
+  margin-bottom: 0;
+}
+
+.tdr-date-edit-in-place__form .govuk-date-input__label {
+  @include govuk-font($size: 16);
+}
+
+.tdr-date-edit-in-place__form .govuk-button {
+  @include govuk-font($size: 16);
+}
+
+.tdr-date-edit-in-place__form .govuk-date-input {
+  width: max-content;
+}
+
+// .tdr-date-edit-in-place__form {
+//   display: none;
+// }
+
+.tdr-date-edit-in-place__empty span {
+  display: none;
+}

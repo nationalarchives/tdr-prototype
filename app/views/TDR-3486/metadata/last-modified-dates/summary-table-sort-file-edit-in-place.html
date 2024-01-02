@@ -35,29 +35,16 @@
         <td headers="{{item.path|urlencode}}{{item.name|urlencode}}" class="govuk-table__cell govuk-table__cell--nowrap">
           {{item['ldm-extracted-day']}} {{item['ldm-extracted-month']|getMonthName("short")}} {{item['ldm-extracted-year']}}
         </td>
-        <td headers="{{item.path|urlencode}}{{item.name|urlencode}}" class="govuk-table__cell govuk-table__cell--nowrap govuk-table__cell--fitwidth">
+        <td headers="{{item.path|urlencode}}{{item.name|urlencode}}" class="govuk-table__cell govuk-table__cell--nowrap govuk-table__cell--fitwidth govuk-table__cell--last">
           {% if item['ldm-corrected-day'] and item['ldm-corrected-month'] and item['ldm-corrected-year']%}
           {{item['ldm-corrected-day']}} {{item['ldm-corrected-month']|getMonthName("short")}} {{item['ldm-corrected-year']}}
           {% endif %}
-          <form action="">
-            <div class="tdr-date-edit-in-place">
-              {{ govukDateInput({
-                id: ["corrected-", item.path|urlencode, item.name|urlencode]|join,
-                namePrefix: [item.path|urlencode, item.name|urlencode]|join,
-                fieldset: {
-                  legend: {
-                    text: "",
-                    isPageHeading: false
-                  }
-                }
-              }) }}
 
-              {{ govukButton({
-                text: "Submit",
-                classes: "govuk-button--small"
-              }) }}
-            </div>
+
+          <form action="">
+            {% include './edit-date-in-place.html' %}
           </form>
+
         </td>
         <td class="tdr-summary-table__align-bottom" headers="header-file-path">
             <ol class="tdr-file-breadcrumbs">
