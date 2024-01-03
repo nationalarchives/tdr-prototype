@@ -50,6 +50,6 @@
     {% endif %}
   </div>
   <div class="filteredby-panel__count">
-    {{data['recordsCount']|d("732")}} records found
+    {{data['recordsCount']|d("732")}} record{% if data['recordsCount'] > 1 %}s{%endif%}
   </div>
 </div>
