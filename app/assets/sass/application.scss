@@ -419,8 +419,15 @@
   position: relative;
 }
 
-.tdr-summary-table__row td:not(.tdr-summary-table__align-bottom) {
-  padding-bottom: 2.4rem;
+.tdr-summary-table__row--1of2 th,
+.tdr-summary-table__row--1of2 td {
+  border-bottom: none;
+  font-weight: normal;
+}
+
+.tdr-summary-table__row--2of2 tbody th,
+.tdr-summary-table__row--2of2 td {
+  padding: govuk-spacing(0) govuk-spacing(4) govuk-spacing(1) 0;
 }
 
 .tdr-summary-table__align-bottom {

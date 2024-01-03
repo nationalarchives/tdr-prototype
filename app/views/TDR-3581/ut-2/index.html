@@ -55,7 +55,8 @@ Review metadata
         items: data['pages']
       }) }}
     </div>
-    {% include "./summary-table.html" %}
+    {% set clear_link = "./ut-2?sort=file" %}
+    {% include "../summary-table-sort-file.html" %}
     <div class="tdr-pagination">
       {{ govukPagination({
           previous: {
