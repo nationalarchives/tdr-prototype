@@ -1,3 +1,13 @@
+.tdr-file-breadcrumbs {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.tdr-file-breadcrumbs--highlight-last .tdr-file-breadcrumbs__list-item:last-child {
+  font-weight: bold;
+}
+
 .tdr-file-breadcrumbs--small .tdr-file-breadcrumbs__list-item {
   font-size: 16px;
   color: govuk-colour("dark-grey");
@@ -6,7 +16,6 @@
 .tdr-file-breadcrumbs--small .tdr-file-breadcrumbs__list-item:before {
   top: -2px;
 }
-
 
 .tdr-file-breadcrumbs__list-item {
   @include govuk-typography-responsive($size: 19);
