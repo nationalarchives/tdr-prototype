@@ -47,7 +47,8 @@ Review metadata
 </div>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    {% include "./summary-table.html" %}
+    {% set clear_link = "./v01?sort=directory" %}
+    {% include "../summary-table-sort-dir.html" %}
     <div class="tdr-pagination">
 
     {{ govukPagination({
