@@ -12,7 +12,6 @@
       <th scope="col" class="govuk-table__header">Extracted date</th>
       <th scope="col" class="govuk-table__header">Corrected date</th>
       <th scope="col" class="govuk-table__header"><span class="govuk-visually-hidden">Actions</span></th>
-      <th id="header-dir" scope="col" class="govuk-visually-hidden">Directory</th>
     </tr>
   </thead>
 
@@ -28,8 +27,8 @@
     {% if currentDirectory != item.path %}
       {% set currentDirectory = item.path %}
       <tr>
-        <td colspan="6" headers="header-dir" id="{{currentDirectory|urlencode}}" class="tdr-summary-table__dir-cell govuk-body govuk-!-font-size-14" >
-          <ol class="tdr-file-breadcrumbs">
+        <th colspan="6" scope="colgroup" id="{{currentDirectory|urlencode}}" class="tdr-summary-table__dir-cell govuk-body govuk-!-font-size-14" >
+          <ol class="tdr-file-breadcrumbs tdr-file-breadcrumbs--highlight-last">
           {% set currStrIndex = 0 %}
           {% for dir in currentDirectory|split("/") %}
             <li class="tdr-file-breadcrumbs__list-item">{{dir|highlightMatches(item.matches, "path", currStrIndex, currentDirectory)|safe}}</li>
@@ -40,7 +39,7 @@
           </ol>
           {% set filesInDir = currentDirectory|countInDir(data['recordsMetadata'], true) %}
           <span class="tdr-summary-table__file-count">{{filesInDir}} file{% if filesInDir != 1 %}s{%  endif %}</span>
-        </td>
+        </th>
       </tr>
     {% endif %}
       <tr class="govuk-table__row">

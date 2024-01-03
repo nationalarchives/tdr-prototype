@@ -389,8 +389,8 @@
   height: 30px;
   position: relative;
   text-align: left;
-  @include govuk-responsive-padding(1, "left");
-  @include govuk-responsive-padding(2, "right");
+  @include govuk-responsive-padding(1);
+  padding-right: 80px;
 }
 
 .tdr-summary-table col.col-foi-code {
@@ -408,11 +408,11 @@
 }
 
 .tdr-summary-table__file-count {
+  @include govuk-font($size: 16);
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 10px;
-  font-weight: bold;
 }
 
 .tdr-summary-table__row {
@@ -678,12 +678,6 @@
 
 .tdr-button-link {
   white-space: nowrap;
-}
-
-.tdr-file-breadcrumbs {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
 }
 
 .tdr-scroll-container {
