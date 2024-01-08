@@ -20,7 +20,7 @@
   <tr>
     <td colspan="6" class="govuk-table__cell govuk-table__cell--no-results">
       There are no records to show.
-      <a href="./ut-3?sort=directory">Clear current filters</a>
+      <a href="{{clear_link}}">Clear current filters</a>
     </td>
   </tr>
 {% else %}
@@ -56,7 +56,7 @@
           {% endif %}
         </td>
         <td headers="{{currentDirectory|urlencode}}{{item.name|urlencode}}" class="govuk-table__cell govuk-table__cell--with-hidden-menu">
-          <a class="govuk-link govuk-link--no-visited-state" href="/TDR-3486/metadata/last-modified-dates/edit/{{currentDirectory|urlencode}}{{item.name|urlencode}}">Edit<span class="govuk-visually-hidden">&nbsp;metadata for {{item.name}}</span></a>
+          <a class="govuk-link govuk-link--no-visited-state" href="./edit/{{currentDirectory|urlencode}}{{item.name|urlencode}}?{{data.queryParamsString}}">Edit<span class="govuk-visually-hidden">&nbsp;metadata for {{item.name}}</span></a>
         </td>
       </tr>
   {% endfor %}

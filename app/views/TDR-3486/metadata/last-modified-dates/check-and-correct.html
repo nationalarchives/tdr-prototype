@@ -70,7 +70,8 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    {% include "./summary-table-sort-file.html" %}
+    {% set clear_link = "./check-and-correct" %}
+    {% include "./summary-table-sort-dir.html" %}
     <div class="tdr-pagination">
     {{ govukPagination({
       previous: {
