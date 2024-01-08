@@ -5,6 +5,7 @@
 
 // Add extra styles here
 @import './gds-task-list.scss';
+// @import './tdr-edit-in-place.scss';
 @import './tdr-file-breadcrumb.scss';
 @import './tdr-table-controls.scss';
 @import 'node_modules/@nationalarchives/tdr-components/components/multi-select-search/_index';
@@ -533,7 +534,6 @@
 .govuk-table__cell--last,
 .govuk-table__header--last {
   padding-right: 0;
-  text-align: right;
 }
 
 .govuk-table__cell--nowrap {
@@ -542,6 +542,11 @@
 
 .govuk-table__cell--with-hidden-menu {
   position: relative;
+}
+
+.govuk-table__cell--fitwidth {
+  width: 1px;
+  white-space: nowrap;
 }
 
 .tdr-link-group a {

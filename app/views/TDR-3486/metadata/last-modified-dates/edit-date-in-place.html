@@ -1,0 +1,22 @@
+<div class="tdr-date-edit-in-place">
+  <div class="tdr-date-edit-in-place__empty">
+    <span>-</span><span>-</span><span>-</span>
+  </div>
+  <div class="tdr-date-edit-in-place__form">
+    {{ govukDateInput({
+      id: ["corrected-", item.path|urlencode, item.name|urlencode]|join,
+      namePrefix: [item.path|urlencode, item.name|urlencode]|join,
+      fieldset: {
+        legend: {
+          text: "",
+          isPageHeading: false
+        }
+      }
+    }) }}
+
+    {{ govukButton({
+      text: "Submit",
+      classes: "govuk-button--small"
+    }) }}
+  </div>
+</div>

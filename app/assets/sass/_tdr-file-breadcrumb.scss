@@ -2,6 +2,11 @@
   margin: 0;
   padding: 0;
   list-style-type: none;
+  @include govuk-font($size: 19);
+}
+
+.tdr-file-breadcrumbs--small {
+  @include govuk-font($size: 16);
 }
 
 .tdr-file-breadcrumbs--highlight-last .tdr-file-breadcrumbs__list-item:last-child {
@@ -9,7 +14,6 @@
 }
 
 .tdr-file-breadcrumbs--small .tdr-file-breadcrumbs__list-item {
-  font-size: 16px;
   color: govuk-colour("dark-grey");
 }
 
@@ -18,10 +22,8 @@
 }
 
 .tdr-file-breadcrumbs__list-item {
-  @include govuk-typography-responsive($size: 19);
   margin: 5px  0;
   display: inline-block;
-
   position: relative;
   padding-left: 27px;
   padding-right: 10px;
@@ -36,6 +38,16 @@
   top: -2px;
   bottom: 0;
   left: 0;
+}
+
+.tdr-file-breadcrumbs__list-item--file {
+  padding-left: 0;
+  font-weight: bold;
+}
+
+.tdr-file-breadcrumbs__list-item--file:before {
+  content: "";
+  display: none;
 }
 
 @include govuk-media-query($from: tablet) {

@@ -1,0 +1,91 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+{% import "macros/task-list.html" as taskList %}
+
+{% block pageTitle %}
+  Correct the last date modified
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-l">Correct the last modified date</h1>
+
+      <div class="tdr-card">
+        <div class="tdr-card__content">
+          <p class="govuk-body govuk-body-s govuk-!-margin-bottom-2">You are editing metadata for the following file:</p>
+          <ol class="tdr-file-breadcrumbs">
+          {% set currStrIndex = 0 %}
+          {% for dir in path|d("")|split("/") %}
+            <li class="tdr-file-breadcrumbs__list-item">{{dir|highlightMatches(item.matches, "path", currStrIndex, currentDirectory)|safe}}</li>
+            {% set currStrIndex = 1+currStrIndex+dir|length %}
+          {% else %}
+            <li class="tdr-file-breadcrumbs__list-item">/</li>
+          {% endfor %}
+            <li class="tdr-file-breadcrumbs__list-item tdr-file-breadcrumbs__list-item--file">{{name}}</li>
+          </ol>
+        </div>
+      </div>
+
+      <p class="govuk-body">If the date is incorrect then you can add a date below that will be used instead of the extracted date.</p>
+      <p class="govuk-body">After the transfer is complete we will only use the date you have provided here.</p>
+
+      {# {{ govukWarningText({
+        html: "For closed records the date must match what was given to the Advisory Council or The National Archives as part of the closure application process.",
+        iconFallbackText: "Warning"
+      }) }} #}
+
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Last modified date (extracted from this record)</h2>
+      <p class="govuk-hint">This is the date we extracted for this record during upload</p>
+      <p class="govuk-!-font-size-24 govuk-!-margin-bottom-6">{{extracted.day}} {{extracted.month|getMonthName}} {{extracted.year}}</p>
+
+      <form action="?{{data.queryParamsString}}" method="post">
+        {{ govukDateInput({
+          id: "correctedDate",
+          namePrefix: "correctedDate",
+          fieldset: {
+            legend: {
+              text: "What is the correct date for this record?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "If the extracted last modified date is incorrect, provide an accurate or correct date."
+          },
+          items: [
+            {
+              classes: "govuk-input--width-2",
+              name: "day",
+              value: corrected.day
+            },
+            {
+              classes: "govuk-input--width-2",
+              name: "month",
+              value: corrected.month
+            },
+            {
+              classes: "govuk-input--width-4",
+              name: "year",
+              value: corrected.year
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and return"
+          }) }}
+          <a href="/TDR-3486/metadata/last-modified-dates/check-and-correct?{{data.queryParamsString}}" class="govuk-link">Cancel</a>
+        </div>
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

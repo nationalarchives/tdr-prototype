@@ -1,0 +1,91 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}\
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% import "macros/task-list.html" as taskList %}
+
+{% block pageTitle %}
+  Check and correct dates
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="/TDR-3486/metadata/last-modified-dates" class="govuk-back-link">Back to Last modified dates</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+    <h1 class="govuk-heading-l">Check and correct dates</h1>
+    <p class="govuk-body">Check the last modified date we have extracted for each record during upload and if the date is incorrect click ‘edit’ and add a more accurate date.</p>
+    <p class="govuk-body">Your progress is saved each time you add a corrected date.</p>
+    {% set task = "/TDR-3486/metadata/last-modified-dates" %}
+    {% include "includes/metadata/button-mark-task-complete" %}
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <hr class="govuk-section-break  govuk-section-break--m govuk-section-break--visible">
+    <div class="table-controls table-controls--paginate">
+      <div class="table-controls__row">
+          {{ govukSelect({
+            id: "sort",
+            name: "sort",
+            classes: "table-controls__sort",
+            label: {
+              html: "<strong>Sort by</strong>"
+            },
+            items: [
+              {
+                value: "updated",
+                text: "File name (A-Z)",
+                selected: true
+              }
+            ]
+          }) }}
+        <div class="table-controls__filters">
+          <form action="" method="get">
+          {% set filterDirectoryClasses = "autocomplete" %}
+          {% include "includes/metadata/filters.html" %}
+          </form>
+        </div>
+      </div>
+      {% include "includes/metadata/filteredby.html" %}
+      <div class="table-controls__pagination">
+        {{ govukPagination({
+          previous: {
+            href: data['previousPage']
+          },
+          next: {
+            href: data['nextPage']
+          },
+          items: data['pages']
+        }) }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    {% include "./summary-table-sort-file.html" %}
+    <div class="tdr-pagination">
+    {{ govukPagination({
+      previous: {
+        href: data['previousPage']
+      },
+      next: {
+        href: data['nextPage']
+      },
+      items: data['pages']
+    }) }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block pageScripts %}
+  {{ super() }}
+{% endblock %}

@@ -139,8 +139,36 @@ const populateWithClosureData = (req, res) => {
   // res.redirect(`/metadata/closure-metadata/${route}`);
 };
 
-// Add your routes here
 
+// Middleware
+
+const targetURLs = [
+  "/TDR-3486/metadata/last-modified-dates/check-and-correct",
+  "/TDR-3486/metadata/last-modified-dates/edit/"
+]
+
+// Custom middleware to process query parameters for specific URLs
+const processQueryParams = (req, res, next) => {
+
+  const contains = targetURLs.find(url =>req.path.startsWith(url))
+  if (contains) {
+    const queryParamsString = Object.entries(req.query)
+    .map(([key, value]) => `${key}=${value}`)
+    .join('&');
+
+    req.session.data.queryParamsString = queryParamsString;
+  }
+
+  next();
+};
+
+router.use(processQueryParams)
+router.use((req, res, next) => {
+  req.session.data = {...req.session.data, ...tdrSettings};
+  next()
+})
+
+// Add your routes here
 router.get(
   "/metadata/descriptive-metadata/confirm-delete-metadata",
   function (req, res) {
@@ -493,7 +521,7 @@ function findMatches(data, searchPattern, keys){
 }
 
 
-const metadataRecordsTable = function (req) {
+const metadataRecordsTable = function (req, baseURL) {
   const perPage = 100
   const data = req.session.data;
   const version = req.params.version
@@ -505,12 +533,12 @@ const metadataRecordsTable = function (req) {
   let page = req.query.pg
 
   data.recordsMetadata = ["ut-1", "ut-2"].includes(version) ?  testMetadata150 : testMetadata1000;
-  data.recordsCount = ["ut-1", "ut-2"].includes(version) ? testMetadata150.length : testMetadata1000.length;
+  data.recordsCount = data.recordsMetadata.length;
 
+  // Using Set to remove duplicates.
   data.directories = [...new Set(data.recordsMetadata.map((item) => item.path))].sort().map(item => {
     return {text: item.split("/").join(" / "), value: item, selected: item === decodeURIComponent(filterByDirectory)}
   });
-
   data.directories.unshift({value: "", text:""})
 
   data.currentDirFilter = data.directories.find(item => item.selected === true)?.text
@@ -579,9 +607,9 @@ const metadataRecordsTable = function (req) {
   const searchFileQuery = searchFilePattern ? `&searchName=${searchFilePattern}` : "";
   const filterQuery = filterByLetter ? `&filterLetter=${filterByLetter}` : "";
   const filterDirQuery = filterByDirectory ? `&filterDirectory=${filterByDirectory}` : "";
-  const url = (pg) => `/TDR-3581/${version}?sort=${sort}&pg=${pg}${filterQuery}${searchQuery}${searchFileQuery}${filterDirQuery}`
-  data.urlNoSearchFile = `/TDR-3581/${version}?sort=${sort}&pg=1${filterDirQuery}`
-  data.urlNoDirectory = `/TDR-3581/${version}?sort=${sort}&pg=1${searchFileQuery}`
+  const url = (pg) => `${baseURL}?sort=${sort}&pg=${pg}${filterQuery}${searchQuery}${searchFileQuery}${filterDirQuery}`
+  data.urlNoSearchFile = `${baseURL}?sort=${sort}&pg=1${filterDirQuery}`
+  data.urlNoDirectory = `${baseURL}?sort=${sort}&pg=1${searchFileQuery}`
 
 
   // PAGINATE
@@ -605,53 +633,67 @@ const metadataRecordsTable = function (req) {
 
   data.recordsMetadata = data.recordsMetadata.slice((data.currentPage-1)*perPage, data.currentPage*perPage);
 
-  // let versionTemplate = (version) ?  `/TDR-3581/${version}/index` : '/TDR-3581/v01/index';
   return {
     data : data
   };
 };
 
 router.get( "/TDR-3581/:version?", (req, res) => {
-  const tplArgs = metadataRecordsTable(req);
-  const version = req.params.version
+  const version = req.params.version;
+  const baseURL = `/TDR-3581/${version}`;
+  const tplArgs = metadataRecordsTable(req, baseURL);
   let versionTemplate = (version) ?  `/TDR-3581/${version}/index` : '/TDR-3581/v01/index';
   res.render(versionTemplate, tplArgs);
 });
 
-router.get( "metadata/last-modified-dates/check-and-correct", metadataRecordsTable);
+router.get( "/TDR-3486/metadata/last-modified-dates/check-and-correct", (req, res) => {
+  let tpl = '/TDR-3486/metadata/last-modified-dates/check-and-correct';
+  const tplArgs = metadataRecordsTable(req, tpl);
+  res.render(tpl, tplArgs);
+});
 
-router.get(
-  "/metadata/",
-  function (req, res) {
-    const data = req.session.data;
+router.post( "/TDR-3486/metadata/last-modified-dates/edit/:nameAndPath", (req, res) => {
+  const nameAndPath = req.params.nameAndPath;
+  const record = testMetadata1000.find( item => nameAndPath == `${item.path}${item.name}` )
 
-    data.datesComplete = typeof req.query.datesComplete != "undefined"
-    data.closureComplete = typeof req.query.closureComplete != "undefined"
-    data.descriptiveComplete = typeof req.query.descriptiveComplete != "undefined"
+  const correctedDay = req.body["correctedDate-day"];
+  const correctedMonth = req.body["correctedDate-month"];
+  const correctedYear = req.body["correctedDate-year"];
 
-    let tpl = '/metadata/index';
-    res.render(tpl, {
-      data : data
-    });
+  if(correctedDay && correctedMonth && correctedYear){
 
-  })
+    record["ldm-corrected-day"] = correctedDay
+    record["ldm-corrected-month"] = correctedMonth
+    record["ldm-corrected-year"] = correctedYear
+  }
+  res.redirect("/TDR-3486/metadata/last-modified-dates/check-and-correct?"+req.session.data.queryParamsString);
+})
 
+router.get( "/TDR-3486/metadata/last-modified-dates/edit/:nameAndPath", (req, res) => {
+  const nameAndPath = req.params.nameAndPath;
+  const record = testMetadata1000.find( item => nameAndPath == `${item.path}${item.name}` )
 
-router.get(
-  "/metadata/",
-  function (req, res) {
-    const data = req.session.data;
+  const correctedDay = req.params["correctedDate-day"];
+  const correctedMonth = req.params["correctedDate-month"];
+  const correctedYear = req.params["correctedDate-year"];
 
-    data.datesComplete = typeof req.query.datesComplete != "undefined"
-    data.closureComplete = typeof req.query.closureComplete != "undefined"
-    data.descriptiveComplete = typeof req.query.descriptiveComplete != "undefined"
+  let tpl = '/TDR-3486/metadata/last-modified-dates/edit';
+  res.render(tpl, {
+    path: record?.path,
+    name: record?.name,
+    extracted : {
+      day: record ? record['ldm-extracted-day'] : '',
+      month: record ? record['ldm-extracted-month']: '',
+      year: record ? record['ldm-extracted-year'] : ''
+    },
+    corrected : {
+      day: record ? record['ldm-corrected-day'] : '',
+      month: record ? record['ldm-corrected-month']: '',
+      year: record ? record['ldm-corrected-year'] : ''
+    }
+  });
 
-    let tpl = '/metadata/index';
-    res.render(tpl, {
-      data : data
-    });
-
-  })
+});
 
 router.post(
   "/prototype-versions/clear-data",
@@ -660,11 +702,6 @@ router.post(
     res.redirect("/prototype-versions/data-cleared");
   }
 );
-
-router.use((req, res, next) => {
-  req.session.data = {...req.session.data, ...tdrSettings};
-  next()
-})
 
 
 module.exports = router;
