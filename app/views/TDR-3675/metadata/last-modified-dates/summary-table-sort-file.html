@@ -8,10 +8,9 @@
   </colgroup>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Record name</th>
+      <th scope="row" class="govuk-table__header">Record name<span class="govuk-visually-hidden"> and path</span></th>
       <th scope="col" class="govuk-table__header">Extracted date</th>
       <th scope="col" class="govuk-table__header">Corrected date</th>
-      <th id="header-file-path" scope="col" class="govuk-visually-hidden">File path</th>
       <th scope="col" class="govuk-table__header"><span class="govuk-visually-hidden">Actions</span></th>
     </tr>
   </thead>
@@ -20,33 +19,36 @@
   <tr>
     <td colspan="6" class="govuk-table__cell govuk-table__cell--no-results">
       There are no records to show.
-      <a href="./v08">Clear current filters</a>
+      <a href="{{clear_link}}">Clear current filters</a>
     </td>
   </tr>
 {% else %}
   {% for item in data['recordsMetadata'] %}
-      <tr class="govuk-table__row tdr-summary-table__row">
-        <td headers="{{currentDirectory|urlencode}}" id="{{currentDirectory|urlencode}}{{item.id|urlencode}}" class="govuk-table__header govuk-table__header--spacious">
-        {{item.name|highlightMatches(item.matches, "name")|safe}}
-        </td>
-        <td headers="{{currentDirectory|urlencode}}{{item.id|urlencode}}" class="govuk-table__cell govuk-table__cell--nowrap">
+      <tr class="govuk-table__row tdr-summary-table__row tdr-summary-table__row--1of2">
+        <th aria-description="Record name" scope="row" id="{{item.name|urlencode}}_{{loop.index}}" class="govuk-table__header govuk-table__header--spacious">
+          <span>{{item.name|highlightMatches(item.matches, "name")|safe}}</span>
+          <p class="govuk-visually-hidden">Record path: {{item.path}}</p>
+        </th>
+        <td class="govuk-table__cell govuk-table__cell--nowrap">
           {{item['ldm-extracted-day']}} {{item['ldm-extracted-month']|getMonthName("short")}} {{item['ldm-extracted-year']}}
         </td>
-        <td headers="{{currentDirectory|urlencode}}{{item.id|urlencode}}" class="govuk-table__cell govuk-table__cell--nowrap">-</td>
-        <td class="tdr-summary-table__align-bottom" headers="header-file-path">
+        <td class="govuk-table__cell govuk-table__cell--nowrap">-</td>
 
-            <ol class="tdr-file-breadcrumbs tdr-file-breadcrumbs--small">
-            {% set currStrIndex = 0 %}
-            {% for dir in item.path|split("/") %}
-              <li class="tdr-file-breadcrumbs__list-item">{{dir|highlightMatches(item.matches, "path", currStrIndex, item.path)|safe}}</li>
-              {% set currStrIndex = 1+currStrIndex+dir|length %}
-            {% else %}
-              <li class="tdr-file-breadcrumbs__list-item">[Top level directory]</li>
-            {% endfor %}
-            </ol>
+        <td class="govuk-table__cell govuk-table__cell--with-hidden-menu">
+          <a class="govuk-link govuk-link--no-visited-state" href="./edit/{{item.path|urlencode}}{{item.name|urlencode}}?{{data.queryParamsString}}">Edit<span class="govuk-visually-hidden">&nbsp;metadata for {{item.name}}</span></a>
         </td>
-        <td headers="{{currentDirectory|urlencode}}{{item.id|urlencode}}" class="govuk-table__cell govuk-table__cell--with-hidden-menu">
-          <a class="govuk-link govuk-link--no-visited-state" href="">Edit<span class="govuk-visually-hidden">&nbsp;metadata for {{item.name}}</span></a>
+      </tr>
+      <tr aria-hidden="true" class="govuk-table__row tdr-summary-table__row tdr-summary-table__row--2of2">
+        <td colspan="4" class="govuk-table__cell" headers="header-file-path">
+          <ol class="tdr-file-breadcrumbs tdr-file-breadcrumbs--small">
+          {% set currStrIndex = 0 %}
+          {% for dir in item.path|split("/") %}
+            <li class="tdr-file-breadcrumbs__list-item">{{dir|highlightMatches(item.matches, "path", currStrIndex, item.path)|safe}}</li>
+            {% set currStrIndex = 1+currStrIndex+dir|length %}
+          {% else %}
+            <li class="tdr-file-breadcrumbs__list-item">[Top level directory]</li>
+          {% endfor %}
+          </ol>
         </td>
       </tr>
   {% endfor %}

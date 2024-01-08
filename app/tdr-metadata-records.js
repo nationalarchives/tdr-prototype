@@ -83,7 +83,6 @@ function findMatches(data, searchPattern, keys){
 const table = function (req, baseURL, recordsMetdata) {
   const perPage = 100
   const data = req.session.data;
-  const version = req.params.version
   const sort = req.query.sort || "directory";
   const filterByLetter = req.query.filterLetter
   const filterByDirectory = req.query.filterDirectory
@@ -153,6 +152,8 @@ const table = function (req, baseURL, recordsMetdata) {
       // Objects are equal in both properties
       return 0;
     })
+
+    data.sort = "directory"
   }
 
   if(sort == "file"){
@@ -160,6 +161,7 @@ const table = function (req, baseURL, recordsMetdata) {
     data.recordsMetadata = data.recordsMetadata.sort( (r1, r2) => {
       return r1.name > r2.name ? 1 : -1
     })
+    data.sort = "file"
   }
 
   const searchQuery = searchPattern ? `&search=${searchPattern}` : "";

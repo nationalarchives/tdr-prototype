@@ -9,7 +9,7 @@
   margin-bottom: 0;
 }
 
-.table-controls .filters__submit {
+.table-controls__submit {
   margin-bottom: 2px;
 }
 
@@ -29,6 +29,13 @@
 
 .table-controls__row {
   margin-bottom: govuk-spacing(2);
+}
+
+.table-controls__sort-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
 }
 
 .table-controls__sort {

@@ -492,7 +492,7 @@ router.get( "/TDR-3581/:version?", (req, res) => {
   const recordsMetadata = ["ut-1", "ut-2"].includes(version) ?  testMetadata150 : testMetadata1000;
 
   const tplArgs = metadataRecords.table(req, baseURL, recordsMetadata);
-  let versionTemplate = (version) ?  `/TDR-3581/${baseURL}/index` : '/TDR-3581/v01/index';
+  let versionTemplate = (version) ?  `${baseURL}/index` : '/TDR-3581/v01/index';
 
   res.render(versionTemplate, tplArgs);
 });
