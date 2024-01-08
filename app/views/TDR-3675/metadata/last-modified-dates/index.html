@@ -1,0 +1,46 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}\
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% import "macros/task-list.html" as taskList %}
+
+{% block pageTitle %}
+  Last modified date
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="../" class="govuk-back-link">Back to Metadata</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-l">Date last modified</h1>
+
+      <p class="govuk-body">During the upload process, we extract the date of when each record was last modified. If the date does not represent the last meaningful change to the record, you must provide an accurate date.</p>
+      <p class="govuk-body">For closed records, this must match the date given to the Advisory Council or The National Archives as part of the closure process.</p>
+
+      {{ govukWarningText({
+        html: "For closed records, this must match the date given to the Advisory Council or The National Archives as part of the closure process.",
+        iconFallbackText: "Warning"
+      }) }}
+
+      <p class="govuk-body">For more information visit our <a href="" class="govuk-link">FAQ (opens in a new tab)</a>.</p>
+
+      <div class="govuk-button-group">
+        <a href="./check-and-correct" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+          Check and correct record dates
+        </a>
+        <a href="./confirm-complete" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          I have finished checking dates
+        </a>
+        {# {% set task = "/TDR-3515/metadata/last-modified-dates" %}
+        {% include "includes/metadata/button-mark-task-complete" %} #}
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}\
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% import "macros/task-list.html" as taskList %}
+
+{% block pageTitle %}
+  Closed records metadata
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="/TDR-3515/metadata/" class="govuk-back-link">Back to Metadata</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-l">Closed records information</h1>
+
+      {{ govukWarningText({
+        html: "It is a legal requirement that you enter accurate information for all closed records. If you're unsure about closed record information, contact <a class='govuk-link' href='mailto:tdr@nationalarchives.gov.uk'>tdr@nationalarchives.gov.uk</a>",
+        iconFallbackText: "Warning"
+      }) }}
+
+      <p class="govuk-body">What mandatory closed records metadata you must provide:</p>
+      <ul class="govuk-list  govuk-list--bullet">
+        <li>
+          <strong>FOI decision asserted</strong> - the date the closure schedule was agreed by the Advisory Council and/or The National Archives
+        </li>
+        <li>
+          <strong>Closure start date</strong> - the date of the last change to this record
+        </li>
+        <li>
+          <strong>Closure period</strong>
+        </li>
+        <li>
+          <strong>FOI exemption code(s)</strong>
+        </li>
+      </ul>
+      <p class="govuk-body">What optional closed record information you must provide:</p>
+      <ul class="govuk-list  govuk-list--bullet">
+        <li>
+          <strong>Alternative title</strong>
+        </li>
+        <li>
+          <strong>Alternative description</strong> - You must provide a description in the 'Record description' section before entering this
+        </li>
+      </ul>
+
+      <p class="govuk-body">For more information about closed record information visit our <a href="" class="govuk-link">FAQ (opens in a new tab)</a>.</p>
+
+      <p class="govuk-body">If you have no closed records then click 'I have finished adding information'.</p>
+
+      <div class="govuk-button-group">
+        <a href="/TDR-3515/metadata/closed-records/add" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+          Add closed record information
+        </a>
+        <a href="/TDR-3515/metadata/closed-records/confirm-complete" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          I have finished adding information
+        </a>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

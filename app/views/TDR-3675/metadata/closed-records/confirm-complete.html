@@ -1,0 +1,49 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}\
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% import "macros/task-list.html" as taskList %}
+
+{% block pageTitle %}
+  Have you finished adding closed record information?
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="javascript:void(0);" class="govuk-back-link" onclick="window.history.back()">Back</a>
+  {# Would have to be JS back because it can come from multiple places. #}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <form action="/TDR-3515/metadata/" method="post">
+
+        {{ govukRadios({
+          name: "closedComplete",
+          fieldset: {
+            legend: {
+              html: '<span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+                    <h1 class="govuk-heading-l">Have you finished adding closed record information?</h1>'
+            }
+          },
+          items: [
+            {
+              value: "false",
+              text: "No, I'll return later to complete this section"
+            },
+            {
+              value: "true",
+              text: "Yes, all closed records information has been added"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Save and close"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
