@@ -34,11 +34,11 @@ Review metadata
           <form action="" method="get">
           <input type="hidden" name="sort" value="file" />
           {% set filterDirectoryClasses = "autocomplete" %}
-          {% include "../filters.html" %}
+          {% include "includes/metadata/filters.html" %}
           </form>
         </div>
       </div>
-      {% include "includes/metadata/filters.html" %}
+      {% include "includes/metadata/filteredby.html" %}
       <div class="table-controls__pagination">
         {{ govukPagination({
           previous: {

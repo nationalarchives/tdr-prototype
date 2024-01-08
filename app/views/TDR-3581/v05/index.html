@@ -38,11 +38,11 @@ Review metadata
         <div class="table-controls__filters">
           <form action="" method="get">
           <input type="hidden" name="sort" value="directory" />
-          {% include "../filters.html" %}
+          {% include "includes/metadata/filters.html" %}
           </form>
         </div>
       </div>
-      {% include "includes/metadata/filters.html" %}
+      {% include "includes/metadata/filteredby.html" %}
       <div class="table-controls__pagination">
         {{ govukPagination({
           previous: {
