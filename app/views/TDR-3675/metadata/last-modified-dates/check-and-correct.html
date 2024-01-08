@@ -31,7 +31,9 @@
     <hr class="govuk-section-break  govuk-section-break--m govuk-section-break--visible">
     <div class="table-controls table-controls--paginate">
       <div class="table-controls__row">
-        <form action="?{{data.queryParamsString}}" method="get">
+        <form action="" method="get">
+          <input type="hidden" name="searchName" value="{{data.searchFilePattern}}" />
+          <input type="hidden" name="filterDirectory" value="{{data.filterByDirectory}}" />
           <div class="table-controls__sort-container">
             {{ govukSelect({
               id: "sort",
@@ -47,7 +49,7 @@
                   selected: ('true' if data.sort == 'file')
                 },
                 {
-                  value: "Directory",
+                  value: "directory",
                   text: "Directory (A-Z)",
                   selected: ('true' if data.sort == 'directory')
                 }

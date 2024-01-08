@@ -1,7 +1,3 @@
-// const genericMetadata = require("./data/test-metadata.json");
-const testMetadata1000 = require("./data/test-metadata-1000.json");
-const testMetadata150 = require("./data/test-metadata-150.json");
-
 const editPageData = (req, recordsMetadata) => {
   const nameAndPath = req.params.nameAndPath;
   const record = recordsMetadata.find( item => nameAndPath == `${item.path}${item.name}` )
@@ -135,6 +131,7 @@ const table = function (req, baseURL, recordsMetdata) {
       return String(r.path).toLocaleLowerCase() == decodeURIComponent(filterByDirectory).toLocaleLowerCase()
     })
     data.recordsCount = data.recordsMetadata.length
+    data.filterByDirectory = filterByDirectory;
   }
 
   // SORT

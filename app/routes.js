@@ -158,7 +158,6 @@ const processQueryParams = (req, res, next) => {
     .map(([key, value]) => `${key}=${value}`)
     .join('&');
     req.session.data.queryParamsString = queryParamsString;
-    console.log('pass on query params', queryParamsString)
   }
 
   next();
