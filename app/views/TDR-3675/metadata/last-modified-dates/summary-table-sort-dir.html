@@ -50,9 +50,13 @@
         <td headers="{{currentDirectory|urlencode}}{{item.id|urlencode}}" class="govuk-table__cell govuk-table__cell--nowrap">
           {{item['ldm-extracted-day']}} {{item['ldm-extracted-month']|getMonthName("short")}} {{item['ldm-extracted-year']}}
         </td>
-        <td headers="{{currentDirectory|urlencode}}{{item.id|urlencode}}" class="govuk-table__cell govuk-table__cell--nowrap">-</td>
+        <td headers="{{currentDirectory|urlencode}}{{item.name|urlencode}}" class="govuk-table__cell govuk-table__cell--nowrap">
+          {% if item['ldm-corrected-day'] and item['ldm-corrected-month'] and item['ldm-corrected-year']%}
+          {{item['ldm-corrected-day']}} {{item['ldm-corrected-month']|getMonthName("short")}} {{item['ldm-corrected-year']}}
+          {% endif %}
+        </td>
         <td headers="{{currentDirectory|urlencode}}{{item.id|urlencode}}" class="govuk-table__cell govuk-table__cell--with-hidden-menu">
-          <a class="govuk-link govuk-link--no-visited-state" href="">Edit<span class="govuk-visually-hidden">&nbsp;metadata for {{item.name}}</span></a>
+          <a class="govuk-link govuk-link--no-visited-state" href="./edit/{{currentDirectory|urlencode}}{{item.name|urlencode}}?{{data.queryParamsString}}">Edit<span class="govuk-visually-hidden">&nbsp;metadata for {{item.name}}</span></a>
         </td>
       </tr>
   {% endfor %}
