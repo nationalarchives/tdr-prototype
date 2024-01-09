@@ -1,0 +1,14 @@
+<button hidden="true" aria-expanded="false" aria-controls="menu-{{item.id | urlencode}}" class="govuk-!-margin-left-2 tdr-button-link tdr-button-link--with-icon">
+  Actions<span class="govuk-visually-hidden">&nbsp;metadata for {{item.name}}</span>
+</button>
+<ol id="menu-{{item.id | urlencode}}" class="tdr-table-actions-menu">
+  <li class="tdr-table-actions-menu__list-item">
+    <a class="govuk-link govuk-link--no-visited-state" href="./view-by-id/{{item.id | urlencode}}">View<span class="govuk-visually-hidden">&nbsp;metadata for {{item.name}}</span></a>
+  </li>
+  <li class="tdr-table-actions-menu__list-item">
+    <a class="govuk-link govuk-link--no-visited-state" href="./edit-by-id/{{item.id | urlencode}}">Edit<span class="govuk-visually-hidden">&nbsp;metadata for {{item.name}}</span></a>
+  </li>
+  <li class="tdr-table-actions-menu__list-item">
+    <a class="govuk-link govuk-link--no-visited-state" href="./delete-by-id/{{item.id | urlencode}}">Delete<span class="govuk-visually-hidden">&nbsp;metadata for {{item.name}}</span></a>
+  </li>
+</ol>

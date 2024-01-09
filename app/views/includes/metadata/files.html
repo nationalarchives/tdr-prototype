@@ -1,0 +1,83 @@
+{% macro navigationItem(item, inputType, className, level, size, pos) %}
+  {% if item.type == 'item' or item.children.length == 0 %}
+    <li
+                class="tna-tree__item{% if inputType == "radio" %} govuk-radios--small{% endif %}"
+                role="treeitem"
+                id="{{ className }}-list-{{item.path|urlencode}}{{ item.name|urlencode }}"
+                aria-level="{{level}}"
+                aria-setsize="{{size}}"
+                aria-posinset="{{pos}}"
+                aria-selected="false"
+        >
+      <div class="tna-tree__node-item__{{ inputType }} govuk-{{ className }}__item">
+        <input class="govuk-{{ className }}__input" tabindex="-1" id="{{ inputType }}-{{item.path|urlencode}}{{ item.name|urlencode }}" type="{{ inputType }}" name="file-selection" value="{{item.path|urlencode}}{{ item.name|urlencode }}"/>
+        <label class="govuk-label govuk-{{ className }}__label" for="{{ inputType }}-{{item.path|urlencode}}{{ item.name|urlencode }}">
+          {{item.name}}
+          {% block status %}{% endblock %}
+        </label>
+      </div>
+    </li>
+
+  {% elif item.type == 'node' %}
+    <li
+                class="tna-tree__node-item-{{ className }}"
+                role="treeitem"
+                id="{{ className }}-list-{{item.path|urlencode}}{{ item.name|urlencode }}"
+                aria-expanded="true"
+                aria-selected="false"
+                aria-level="{{level}}"
+                aria-setsize="{{size}}"
+                aria-posinset="{{pos}}"
+        >
+      <div class="tna-tree__node-item__container">
+        <span
+            class="tna-tree__expander js-tree__expander--{{ className }}"
+            tabindex="-1"
+            id="{{ className }}-expander-{{item.path|urlencode}}{{ item.name|urlencode }}">
+          <span aria-hidden="true" class="govuk-visually-hidden">Expand</span>
+        </span>
+        {% if className == 'checkboxes' %}
+          <div class="govuk-{{ className }}__item">
+            <input
+                                class="govuk-{{ className }}__input"
+                                id="{{ inputType }}-{{item.path|urlencode}}{{ item.name|urlencode }}"
+                                tabindex="-1"
+                                type="{{ inputType }}"
+                                name="file-selection"
+                                value="{{item.path|urlencode}}{{ item.name|urlencode }}"
+/>
+            <label class="govuk-label govuk-{{ className }}__label" for="{{ inputType }}-{{item.path|urlencode}}{{ item.name|urlencode }}">
+              {{item.name}}
+            </label>
+          </div>
+        {% else %}
+          <div class="js-radios-directory tna-tree__radios-directory">
+            <span class="govuk-label tna-tree__radios-directory__label">
+              <span class="govuk-visually-hidden">Directory - </span>
+              {{item.name}}
+            </span>
+          </div>
+        {% endif %}
+
+      </div>
+      <ul class="tna-tree__nested-list tna-tree__nested-list--{{className}}" role="group" id="{{ className }}-node-group-{{item.path|urlencode}}{{ item.name|urlencode }}">
+        {% set nextLevel = level + 1 %}
+        {% for child in item.children %}
+          {{ navigationItem(child, inputType, className, nextLevel, loop.length, loop.index) }}
+        {% endfor %}
+      </ul>
+    </li>
+  {% endif %}
+{% endmacro %}
+
+<div class="tna-tree">
+  {% set inputType = 'radio' %}
+  {% set className = 'radios' %}
+
+  <ul class="tna-tree__root-list" id="{{ inputType }}-tree" role="tree"{% if inputType == 'checkboxes' %} aria-multiselectable="true"{% endif %}>
+    {% for node in records|convertFlatToTree %}
+      {{ navigationItem(node, inputType, className, 1, loop.length, loop.index) }}
+    {% endfor %}
+  </ul>
+</div>
+<div aria-atomic="true" aria-live="assertive" class="govuk-inset-text">File selected: <span class="govuk-!-font-weight-bold" id="radio-tree-selected">No file selected</span></div>

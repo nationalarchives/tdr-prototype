@@ -83,8 +83,12 @@ filters.getFilenames = function (selection, allFiles) {
   return selection.map((id) => findById(allFiles, id).name);
 };
 
-filters.getFileExtension = function (fileId, allFiles) {
+filters.getFileExtensionById = function (fileId, allFiles) {
   const filename = findById(allFiles, fileId)?.name;
+  return filename ? filename.match(/\.[^/.]+$/, "") : "";
+};
+
+filters.getFileExtension = function (filename) {
   return filename ? filename.match(/\.[^/.]+$/, "") : "";
 };
 
@@ -143,6 +147,20 @@ filters.returnFileArray = function (dict, allFiles) {
   for(var key in dict){
     copy[i].id = key;
     copy[i].path = filters.getPath(key, allFiles);
+    i++;
+  }
+  return copy;
+};
+
+filters.returnClosedRecordsArray = function (dict, allFiles) {
+  dict = dict || {}
+  const copy = Object.values(dict);
+  let i = 0;
+  for(var key in dict){
+    const fileObj = filters.getFileObject(key, allFiles);
+    copy[i].id = key;
+    copy[i].path = fileObj.path;
+    copy[i].name = fileObj.name;
     i++;
   }
   return copy;
@@ -222,12 +240,49 @@ filters.countInDir = function (currDir, recordsMetadata, pathExcludesFilename) {
   }).length;
 };
 
-
 filters.stringToArray = function (letters) {
   return Array.from(letters);
 }
 
+filters.convertFlatToTree = function(recordsData) {
+  const result = [];
+
+  recordsData.forEach(item => {
+    const pathSegments = item.path.split('/').filter(item => item !== "");
+    let currentLevel = result;
+
+    pathSegments.forEach((segment, i) => {
+      const foundChild = currentLevel.find(child => child.name === segment)
+      if (!currentLevel.some(child => child.name === segment)) {
+        currentLevel.push({
+          children: [],
+          name: segment,
+          type:  "node"
+        });
+        currentLevel = currentLevel[currentLevel.length-1].children;
+      } else {
+        currentLevel = foundChild.children;
+      }
+    });
+
+    currentLevel.push({
+      name: item.name,
+      type:  "item",
+      path: item.path
+    })
+  });
+
+  return result;
+};
+
+filters.getFileObject = function(fileId, data){
+  return data.find(item => {
+    return fileId === encodeURIComponent(item.path+item.name)
+  });
+}
 
 for (let name in filters) {
   addFilter(name, filters[name]);
 }
+
+module.exports = { convertFlatToTree : filters.convertFlatToTree }

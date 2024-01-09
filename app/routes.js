@@ -5,11 +5,13 @@
 const govukPrototypeKit = require("govuk-prototype-kit");
 const router = govukPrototypeKit.requests.setupRouter();
 
+// const filters = require("./filters")
 require("./routes-history")
-const metadataRecords = require("./tdr-metadata-records")
+const tdrMetadataRecords = require("./tdr-metadata-records")
 const tdrSettings = require("./data/settings.json")
 
-const closureMetadataSummaryExampleData = require("./data/closure-metadata-summary-example-01.json");
+const closureMetadataSummaryExampleData1 = require("./data/closure-metadata-summary-example-01.json");
+const closureMetadataSummaryExampleData2 = require("./data/closure-metadata-summary-example-02.json");
 const descriptiveMetadataSummaryExampleData = require("./data/descriptive-metadata-summary-example-01.json");
 const testMetadata1000 = require("./data/test-metadata-1000.json");
 const testMetadata150 = require("./data/test-metadata-150.json");
@@ -275,48 +277,12 @@ router.get(
 router.get(
   "/metadata/closure-metadata/confirm-add-closure",
   function (req, res) {
-    if (req.session.data["file-selection"] === undefined) {
-      throw new Error("Missing file selection");
+    if(tdrMetadataRecords.validateAddClosure(req, res) === false){
+      res.render("metadata/closure-metadata/add-closure", { error: "missing-fields"});
+    } else {
+      tdrMetadataRecords.addClosure(req, res)
+      res.redirect("/metadata/closure-metadata/review-metadata");
     }
-
-    let required = requireClosureFields;
-    if (
-      hasDescription(
-        req.session.data["file-selection"],
-        req.session.data["descriptiveFiles"]
-      ) == false
-    ) {
-      required = requireClosureFields.filter(
-        (field) => field != "addClosure-is-the-description-sensitive"
-      );
-    }
-
-    const complete = required.every((field) => {
-      return (
-        req.session.data[field] !== undefined && req.session.data[field] !== ""
-      );
-    });
-
-    if (complete !== true) {
-      res.render("metadata/closure-metadata/add-closure", {
-        error: "missing-fields",
-      });
-      return;
-    }
-
-    if (!req.session.data.closedFiles) req.session.data.closedFiles = {};
-    for (let key in req.session.data) {
-      if (key.split("-")[0] === "addClosure") {
-        req.session.data["file-selection"].forEach((file, i) => {
-          if (!(file in req.session.data.closedFiles)) {
-            req.session.data.closedFiles[file] = {};
-          }
-          req.session.data.closedFiles[file][key] = req.session.data[key];
-        });
-      }
-    }
-
-    res.redirect("/metadata/closure-metadata/review-metadata");
   }
 );
 
@@ -332,7 +298,7 @@ router.get(
       });
     } else {
       addNewClosure(req, res);
-      populateWithClosureData(req, res);
+      tdrMetadataRecords.populateWithClosureData(req, res);
       res.redirect("/metadata/closure-metadata/add-closure");
     }
   }
@@ -341,42 +307,7 @@ router.get(
 router.get(
   "/metadata/closure-metadata/confirm-file-level",
   function (req, res) {
-    let selected = req.session.data["file-selection"];
-    let doView = req.session.data["action"] === "view";
-
-    if (
-      selected &&
-      (typeof selected == "string" || selected instanceof String)
-    ) {
-      selected = [selected];
-      req.session.data["file-selection"] = selected;
-    }
-    if (!req.session.data.closedFiles) req.session.data.closedFiles = {};
-
-    if (selected === undefined || selected === "") {
-      res.render("metadata/closure-metadata/file-level", {
-        error: "no-selection",
-      });
-    } else {
-      const selectedClosedFiles = selected.filter((fn) => {
-        return req.session.data.closedFiles[fn] !== undefined;
-      });
-
-      // Are all files closed already? If so, straight to the main form.
-      if (doView === true) {
-        // Show summary page before main form
-        populateWithClosureData(req, res);
-        // redirect to summary
-        res.redirect("/metadata/closure-metadata/summary-metadata");
-      } else if (selectedClosedFiles.length === selected.length) {
-        // Show summary page before main form
-        populateWithClosureData(req, res);
-        // redirect to summary
-        res.redirect("/metadata/closure-metadata/add-closure");
-      } else {
-        res.redirect("/metadata/closure-metadata/closure-status");
-      }
-    }
+    tdrMetadataRecords.confirmFileSelection(req, res, "/metadata/closure-metadata/")
   }
 );
 
@@ -401,7 +332,6 @@ router.get(
 router.get(
   "/metadata/closure-metadata/edit-by-id/:fileId",
   function (req, res) {
-
     req.session.data["file-selection"] = [req.params.fileId]
     res.redirect("/metadata/closure-metadata/confirm-file-level");
   }
@@ -458,7 +388,7 @@ router.get(
   "/metadata/closure-metadata/:version?/summary/static/",
   function (req, res) {
     const data = req.session.data;
-    data.closedFiles = closureMetadataSummaryExampleData;
+    data.closedFiles = closureMetadataSummaryExampleData1;
 
     let versionUrl = (req.params.version) ?  `/metadata/closure-metadata/${req.params.version}/summary` : '/metadata/closure-metadata/summary';
 
@@ -490,7 +420,7 @@ router.get( "/TDR-3581/:version?", (req, res) => {
   const baseURL = `/TDR-3581/${version}`;
   const recordsMetadata = ["ut-1", "ut-2"].includes(version) ?  testMetadata150 : testMetadata1000;
 
-  const tplArgs = metadataRecords.table(req, baseURL, recordsMetadata);
+  const tplArgs = tdrMetadataRecords.table(req, baseURL, recordsMetadata);
   let versionTemplate = (version) ?  `${baseURL}/index` : '/TDR-3581/v01/index';
 
   res.render(versionTemplate, tplArgs);
@@ -500,17 +430,17 @@ router.get( "/TDR-3581/:version?", (req, res) => {
  * TDR-3486 - Easily find and review LDM
  */
 router.get( "/TDR-3486/metadata/last-modified-dates/check-and-correct", (req, res) => {
-  const tplArgs = metadataRecords.table(req, req.path, testMetadata1000);
+  const tplArgs = tdrMetadataRecords.table(req, req.path, testMetadata1000);
   res.render(req.path, tplArgs);
 });
 
 router.get( "/TDR-3486/metadata/last-modified-dates/edit/:nameAndPath", (req, res) => {
-  const data = metadataRecords.editPageData(req, testMetadata1000)
+  const data = tdrMetadataRecords.editPageData(req, testMetadata1000)
   res.render('/TDR-3486/metadata/last-modified-dates/edit', data);
 });
 
 router.post( "/TDR-3486/metadata/last-modified-dates/edit/:nameAndPath", (req, res) => {
-  metadataRecords.addCorrectedDate(req, testMetadata1000)
+  tdrMetadataRecords.addCorrectedDate(req, testMetadata1000)
   res.redirect("/TDR-3486/metadata/last-modified-dates/check-and-correct?"+req.session.data.queryParamsString);
 })
 
@@ -518,20 +448,118 @@ router.post( "/TDR-3486/metadata/last-modified-dates/edit/:nameAndPath", (req, r
 /*
  * TDR-3675 - Composite for review
  */
-router.get( "/TDR-3675/metadata/last-modified-dates/check-and-correct", (req, res) => {
-  const tplArgs = metadataRecords.table(req, req.path, testMetadata1000);
+
+router.get("/TDR-3675/metadata/last-modified-dates/check-and-correct", (req, res) => {
+  const tplArgs = tdrMetadataRecords.table(req, req.path, testMetadata150);
   res.render(req.path, tplArgs);
 });
 
 router.get( "/TDR-3675/metadata/last-modified-dates/edit/:nameAndPath", (req, res) => {
-  const data = metadataRecords.editPageData(req, testMetadata1000)
+  const data = tdrMetadataRecords.editPageData(req, testMetadata150)
   res.render('/TDR-3675/metadata/last-modified-dates/edit', data);
 });
 
 router.post( "/TDR-3675/metadata/last-modified-dates/edit/:nameAndPath", (req, res) => {
-  metadataRecords.addCorrectedDate(req, testMetadata1000)
+  tdrMetadataRecords.addCorrectedDate(req, testMetadata150)
   res.redirect("/TDR-3675/metadata/last-modified-dates/check-and-correct?"+req.session.data.queryParamsString);
 })
+
+router.get( "/TDR-3675/metadata/closed-records/add", (req, res) => {
+  res.render(req.path, {
+    records : testMetadata150
+  });
+});
+
+router.get( "/TDR-3675/metadata/closed-records/add/static/", (req, res) => {
+  const data = req.session.data;
+  data.closedFiles = closureMetadataSummaryExampleData2;
+// console.log(data.closedFiles)
+  res.render("/TDR-3675/metadata/closed-records/add", {
+    records : testMetadata150,
+    data : data
+  });
+});
+
+router.get( "/TDR-3675/metadata/closed-records/choose-a-file", (req, res) => {
+  res.render(req.path, {
+    records : testMetadata150
+  });
+});
+
+router.get(
+  "/TDR-3675/metadata/closed-records/confirm-file-level",
+  function (req, res) {
+    tdrMetadataRecords.confirmFileSelection(req, res, "/TDR-3675/metadata/closed-records/")
+  }
+);
+
+router.get( "/TDR-3675/metadata/closed-records/closure-status", (req, res) => {
+  res.render(req.path, {
+    records : testMetadata150
+  });
+});
+
+router.get( "/TDR-3675/metadata/closed-records/confirm-closure-status", (req, res) => {
+  if (req.session.data["confirm-closure"] === undefined) {
+    res.render("metadata/closure-metadata/closure-status", {
+      error: "no-confirmation",
+    });
+  } else {
+    tdrMetadataRecords.addNewClosure(req, res);
+    tdrMetadataRecords.populateWithClosureData(req, res);
+    res.redirect("/TDR-3675/metadata/closed-records/add-closure");
+  }
+});
+
+router.get( "/TDR-3675/metadata/closed-records/add-closure", (req, res) => {
+  res.render(req.path, {
+    records : testMetadata150
+  });
+});
+
+router.get( "/TDR-3675/metadata/closed-records/confirm-add-closure", (req, res) => {
+  if(tdrMetadataRecords.validateAddClosure(req, res) === false){
+    res.render("/TDR-3675/metadata/closed-records/add-closure", { error: "missing-fields"});
+  } else {
+    tdrMetadataRecords.addClosure(req, res)
+    res.redirect("/TDR-3675/metadata/closed-records/review-metadata");
+  }
+});
+
+router.get( "/TDR-3675/metadata/closed-records/review-metadata", (req, res) => {
+  res.render(req.path, {
+    records : testMetadata150
+  });
+});
+
+router.get(
+  "/TDR-3675/metadata/closed-records/edit-by-id/:fileId",
+  function (req, res) {
+    req.session.data["file-selection"] = [req.params.fileId]
+    res.redirect("/TDR-3675/metadata/closed-records/confirm-file-level");
+  }
+);
+
+router.get(
+  "/TDR-3675/metadata/closed-records/view-by-id/:fileId",
+  function (req, res) {
+
+    req.session.data["file-selection"] = [req.params.fileId];
+    for (var key in req.session.data["closedFiles"][req.params.fileId]) {
+      req.session.data[key] = req.session.data["closedFiles"][req.params.fileId][key];
+    }
+
+    res.render("/TDR-3675/metadata/closed-records/review-metadata", {
+      path: "/TDR-3675/metadata/closed-records",
+      from: "/TDR-3675/metadata/closed-records/summary",
+      data: req.session.data,
+      records : testMetadata150
+    });
+  }
+);
+
+
+
 
 
 

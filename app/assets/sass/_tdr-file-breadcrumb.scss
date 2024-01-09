@@ -22,11 +22,15 @@
 }
 
 .tdr-file-breadcrumbs__list-item {
-  margin: 5px  0;
+  margin: 0;
   display: inline-block;
   position: relative;
   padding-left: 27px;
   padding-right: 10px;
+}
+
+.tdr-file-breadcrumbs--small .tdr-file-breadcrumbs__list-item {
+  margin: 2px 0;
 }
 
 .tdr-file-breadcrumbs__list-item:before {

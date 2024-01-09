@@ -1,41 +1,41 @@
-const editPageData = (req, recordsMetadata) => {
-  const nameAndPath = req.params.nameAndPath;
-  const record = recordsMetadata.find( item => nameAndPath == `${item.path}${item.name}` )
+const requireClosureFields = [
+  "addClosure-foi-asserted-day",
+  "addClosure-foi-asserted-month",
+  "addClosure-foi-asserted-year",
+  "addClosure-closure-start-day",
+  "addClosure-closure-start-month",
+  "addClosure-closure-start-year",
+  "addClosure-closure-period",
+  "addClosure-foi_id_selection",
+  "addClosure-is-the-description-sensitive",
+  "addClosure-is-the-title-sensitive",
+];
 
-  return {
-    path: record?.path,
-    name: record?.name,
-    extracted : {
-      day: record ? record['ldm-extracted-day'] : '',
-      month: record ? record['ldm-extracted-month']: '',
-      year: record ? record['ldm-extracted-year'] : ''
-    },
-    corrected : {
-      day: record ? record['ldm-corrected-day'] : '',
-      month: record ? record['ldm-corrected-month']: '',
-      year: record ? record['ldm-corrected-year'] : ''
+const hasDescription = function (files, descriptiveFiles) {
+  if (descriptiveFiles === undefined) return false;
+  return Array.from(files).every((fileIndex) => {
+    return (
+      descriptiveFiles[fileIndex] &&
+      descriptiveFiles[fileIndex]["addDescriptive-description"] &&
+      descriptiveFiles[fileIndex]["addDescriptive-description"] !== ""
+    );
+  });
+};
+
+const clearEmpties = (files) => {
+  if (files === undefined) return {};
+
+  for (const [fileKey, file] of Object.entries(files)) {
+    for (const [fieldKey, fieldValue] of Object.entries(file)) {
+      if (file[fieldKey] == "") {
+        delete file[fieldKey];
+      }
     }
   }
 
+  return files;
 };
 
-const addCorrectedDate = (req, dateData) => {
-  const nameAndPath = req.params.nameAndPath;
-  const record = dateData.find( item => nameAndPath == `${item.path}${item.name}` )
-
-  const correctedDay = req.body["correctedDate-day"];
-  const correctedMonth = req.body["correctedDate-month"];
-  const correctedYear = req.body["correctedDate-year"];
-
-  if(correctedDay && correctedMonth && correctedYear){
-
-    record["ldm-corrected-day"] = correctedDay
-    record["ldm-corrected-month"] = correctedMonth
-    record["ldm-corrected-year"] = correctedYear
-  }
-
-  return dateData;
-};
 
 function findMatches(data, searchPattern, keys){
   const partialMatches = data.map(item => {
@@ -76,7 +76,177 @@ function findMatches(data, searchPattern, keys){
   return partialMatches
 }
 
-const table = function (req, baseURL, recordsMetdata) {
+
+exports.validateAddClosure = function (req, res, path) {
+  if (req.session.data["file-selection"] === undefined) {
+    throw new Error("Missing file selection");
+  }
+
+  let required = requireClosureFields;
+  if (
+    hasDescription(
+      req.session.data["file-selection"],
+      req.session.data["descriptiveFiles"]
+    ) == false
+  ) {
+    required = requireClosureFields.filter(
+      (field) => field != "addClosure-is-the-description-sensitive"
+    );
+  }
+
+  return required.every((field) => {
+    return (
+      req.session.data[field] !== undefined && req.session.data[field] !== ""
+    );
+  });
+
+}
+
+exports.addClosure = function (req) {
+  if (!req.session.data.closedFiles) req.session.data.closedFiles = {};
+  for (let key in req.session.data) {
+    if (key.split("-")[0] === "addClosure") {
+      req.session.data["file-selection"].forEach((file, i) => {
+        if (!(file in req.session.data.closedFiles)) {
+          req.session.data.closedFiles[file] = {};
+        }
+        req.session.data.closedFiles[file][key] = req.session.data[key];
+      });
+    }
+  }
+}
+
+exports.addNewClosure = function (req, res) {
+  const selected = req.session.data["file-selection"];
+  let closed = req.session.data["closedFiles"];
+
+  // Add new selected files as empty objs to this array:
+  selected
+    .filter((fn) => closed[fn] === undefined)
+    .forEach((newFile) => {
+      closed[newFile] = {};
+    });
+};
+
+exports.populateWithClosureData = function(req) {
+  const selected = req.session.data["file-selection"];
+  let closed = req.session.data["closedFiles"];
+  closed = clearEmpties(closed);
+
+  let isClosed = closed.hasOwnProperty(selected[0]);
+
+  // MULTIPLE FILE EDITING - Do the files we are about to show match?
+  // i.e. if not we can't populate the form, so we leave it blank.
+  let notMatching = selected.some((selectedFile1) => {
+    return selected.some((selectedFile2) => {
+      // If any are not indentical
+      return (
+        JSON.stringify(closed[selectedFile1]) !==
+        JSON.stringify(closed[selectedFile2])
+      );
+    });
+  });
+
+  // Clear form data so it does not prepopulate
+  for (let key in req.session.data) {
+    if (key.split("-")[0] === "addClosure") {
+      delete req.session.data[key];
+    }
+  }
+  if (notMatching == true) {
+    req.session.data.error = "not-matching";
+  } else {
+    // Populate the fields data with stored.
+    for (var key in closed[selected[0]]) {
+      req.session.data[key] = closed[selected[0]][key];
+    }
+    req.session.data.status = isClosed ? "Closed" : "Open";
+
+    delete req.session.data.error;
+  }
+};
+
+exports.confirmFileSelection = function(req, res, path) {
+  path = path || "/metadata/closure-metadata/"
+  let selected = req.session.data["file-selection"];
+  let doView = req.session.data["action"] === "view";
+
+  if (
+    selected &&
+    (typeof selected == "string" || selected instanceof String)
+  ) {
+    selected = [selected];
+    req.session.data["file-selection"] = selected;
+  }
+  if (!req.session.data.closedFiles) req.session.data.closedFiles = {};
+
+  if (selected === undefined || selected === "") {
+    res.render(`${path}file-level`, {
+      error: "no-selection",
+    });
+  } else {
+    const selectedClosedFiles = selected.filter((fn) => {
+      return req.session.data.closedFiles[fn] !== undefined;
+    });
+
+    // Are all files closed already? If so, straight to the main form.
+    if (doView === true) {
+      // Show summary page before main form
+      exports.populateWithClosureData(req, res);
+      // redirect to summary
+      res.redirect(`${path}summary-metadata`);
+    } else if (selectedClosedFiles.length === selected.length) {
+      // Show summary page before main form
+      exports.populateWithClosureData(req, res);
+      // redirect to summary
+      res.redirect(`${path}add-closure`);
+    } else {
+      res.redirect(`${path}closure-status`);
+    }
+  }
+}
+
+exports.editPageData = function(req, recordsMetadata) {
+  const nameAndPath = req.params.nameAndPath;
+  const record = recordsMetadata.find( item => nameAndPath == `${item.path}${item.name}` )
+
+  return {
+    path: record?.path,
+    name: record?.name,
+    extracted : {
+      day: record ? record['ldm-extracted-day'] : '',
+      month: record ? record['ldm-extracted-month']: '',
+      year: record ? record['ldm-extracted-year'] : ''
+    },
+    corrected : {
+      day: record ? record['ldm-corrected-day'] : '',
+      month: record ? record['ldm-corrected-month']: '',
+      year: record ? record['ldm-corrected-year'] : ''
+    }
+  }
+
+};
+
+exports.addCorrectedDate = function(req, dateData) {
+  const nameAndPath = req.params.nameAndPath;
+  const record = dateData.find( item => nameAndPath == `${item.path}${item.name}` )
+
+  const correctedDay = req.body["correctedDate-day"];
+  const correctedMonth = req.body["correctedDate-month"];
+  const correctedYear = req.body["correctedDate-year"];
+
+  if(correctedDay && correctedMonth && correctedYear){
+
+    record["ldm-corrected-day"] = correctedDay
+    record["ldm-corrected-month"] = correctedMonth
+    record["ldm-corrected-year"] = correctedYear
+  }
+
+  return dateData;
+};
+
+
+exports.table = function(req, baseURL, recordsMetdata) {
   const perPage = 100
   const data = req.session.data;
   const sort = req.query.sort || "directory";
@@ -197,4 +367,4 @@ const table = function (req, baseURL, recordsMetdata) {
 };
 
 
-module.exports = { table, addCorrectedDate, editPageData };
+// module.exports = { table, addCorrectedDate, editPageData, confirmFileSelection };

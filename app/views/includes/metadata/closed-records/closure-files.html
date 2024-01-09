@@ -1,0 +1,14 @@
+{% extends "../files.html" %}
+
+{% block status %}
+  {% if data['closedFiles'][item.id] !== undefined %}
+    <strong class="tdr-tag tdr-tag--blue">
+      closed
+    </strong>
+  {% endif %}
+  {% if item.name !== "baking powder.xls" and data['closedFiles'][item.id] !== undefined and data.status === "incomplete" %}
+    <strong class="tdr-tag tdr-tag--red">
+      incomplete
+    </strong>
+  {% endif %}
+{% endblock %}

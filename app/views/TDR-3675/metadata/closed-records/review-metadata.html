@@ -1,0 +1,166 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Closure metadata - Review changes to closure metadata
+{% endblock %}
+
+{% block beforeContent %}
+  {% if from %}
+  <a href="{{from}}" class="govuk-back-link">Back</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% set fileObject = data['file-selection'][0]|getFileObject(records) %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-l">
+        {% if from %}View metadata{% else %}Review saved changes{% endif %}
+      </h1>
+      <p class="govuk-body">Review the closure metadata you have entered against this record.</p>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+          Name
+        </dt>
+          <dd class="govuk-summary-list__value govuk-!-font-weight-bold">
+              {{fileObject.name}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+          Path
+          </dt>
+          <dd class="govuk-summary-list__value">
+              <ol class="tdr-file-breadcrumbs">
+              {% set currStrIndex = 0 %}
+              {% for dir in fileObject.path|d("")|split("/") %}
+                <li class="tdr-file-breadcrumbs__list-item">{{dir|highlightMatches(item.matches, "path", currStrIndex, currentDirectory)|safe}}</li>
+                {% set currStrIndex = 1+currStrIndex+dir|length %}
+              {% else %}
+                <li class="tdr-file-breadcrumbs__list-item">/</li>
+              {% endfor %}
+            </ol>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+          Closure status
+        </dt>
+          <dd class="govuk-summary-list__value">
+          Closed
+        </dd>
+        </div>
+
+        <!-- closure stuff here -->
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
+            FOI decision asserted
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['addClosure-foi-asserted-day']}} {{data['addClosure-foi-asserted-month']|getMonthName("short")}} {{data['addClosure-foi-asserted-year']}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
+            Closure start date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['addClosure-closure-start-day']}} {{data['addClosure-closure-start-month']|getMonthName("short")}} {{data['addClosure-closure-start-year']}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
+            Closure period
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['addClosure-closure-period']}} years
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
+              FOI exemption code(s)
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <ul class="govuk-list govuk-list--bullet">
+              {% for id in data['addClosure-foi_id_selection'] %}
+                <li>{{id}}</li>
+              {% endfor %}
+            </ul>
+          </dd>
+        </div>
+        {% if data["addClosure-is-the-title-sensitive"] == "yes" %}
+          <div class="govuk-summary-list__row" style="border-bottom: none;">
+            <dt class="govuk-summary-list__key">
+            Is the title sensitive for the public?
+          </dt>
+            <dd class="govuk-summary-list__value">
+              Yes
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row" style="border-bottom: none;">
+            <dt class="govuk-summary-list__key">
+            Alternative title
+          </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['addClosure-alternative-title'] }}
+            </dd>
+          </div>
+        {% else %}
+          <div class="govuk-summary-list__row" style="border-bottom: none;">
+            <dt class="govuk-summary-list__key">
+            Is the title sensitive for the public?
+          </dt>
+            <dd class="govuk-summary-list__value">
+              No
+            </dd>
+          </div>
+        {% endif %}
+        {% if data["addClosure-is-the-description-sensitive"] == "yes" %}
+          <div class="govuk-summary-list__row" style="border-bottom: none;">
+            <dt class="govuk-summary-list__key">
+            Is the description sensitive for the public?
+          </dt>
+            <dd class="govuk-summary-list__value">
+              Yes
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row" style="border-bottom: none;">
+            <dt class="govuk-summary-list__key">
+            Alternative description
+          </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['addClosure-alternative-description'] }}
+            </dd>
+          </div>
+        {% else %}
+          <div class="govuk-summary-list__row" style="border-bottom: none;">
+            <dt class="govuk-summary-list__key">
+            Is the description sensitive for the public?
+          </dt>
+            <dd class="govuk-summary-list__value">
+              No
+            </dd>
+          </div>
+        {% endif %}
+      </dl>
+
+      <div class="govuk-button-group">
+        {% if not from %}
+        <a href="./add" role="button" draggable="false" class="govuk-button"
+          data-module="govuk-button">
+          Continue
+        </a>
+        {% endif %}
+        <a href="{{path|d(".")}}/edit-by-id/{{data['file-selection'][0]|urlencode}}" role="button" draggable="false" class="govuk-button govuk-button--secondary"
+          data-module="govuk-button">
+          Edit metadata
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

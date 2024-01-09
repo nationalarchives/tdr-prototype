@@ -1,5 +1,5 @@
 <div class="tdr-scroll-container tdr-scroll-container__horizontal">
-<table data-module="table-row-menu-hide-show" class="govuk-table tdr-summary-table">
+<table data-module="table-row-menu-hide-show" class="govuk-table tdr-summary-table tdr-summary-table--mb-large">
   <colgroup>
     <col style="min-width: 200px;"/>
     <col  />
@@ -19,33 +19,30 @@
       <th id="header-dir" scope="col" class="govuk-visually-hidden">Directory</th>
     </tr>
   </thead>
-
-<pre>{{data.closedFiles|dump(2)}}</pre><br><br>
-<pre>{{data['closedFiles']|returnFileArray(globals.files)|sortBy("path")|dump(2)}}<pre>
 {% if data['closedFiles']|length == 0 %}
   <tr>
     <td colspan="6" class="govuk-table__cell govuk-table__cell--no-results">There are no records with closure metadata.</td>
   </tr>
 {% else %}
-  {% for item in data['closedFiles']|returnFileArray(globals.files)|sortBy("path") %}
-  {% if currentDirectory != item.path|replace(item.id|getFilename(globals.files), "")  %}
-    {% set currentDirectory = item.path|replace(item.id|getFilename(globals.files), "") %}
-      <tr>
-        <td colspan="6" headers="header-dir" id="{{currentDirectory|urlencode}}" class="tdr-summary-table__dir-cell govuk-body govuk-!-font-size-14" >
-          <ol class="tdr-file-breadcrumbs">
-          {% for dir in currentDirectory|split("/") %}
-            <li class="tdr-file-breadcrumbs__list-item">{{dir}}</li>
-          {% else %}
-            <li class="tdr-file-breadcrumbs__list-item">/</li>
-          {% endfor %}
-          </ol>
-          <span class="tdr-summary-table__file-count">{{currentDirectory|countInDir(data['closedFiles'])}} file{% if currentDirectory|countInDir(data['closedFiles']) != 1 %}s{%  endif %}</span>
-        </td>
-      </tr>
-  {% endif %}
+  {% for item in data['closedFiles']|returnClosedRecordsArray(records)|sortBy("path") %}
+    {% if currentDirectory != item.path|replace(item.name, "")  %}
+      {% set currentDirectory = item.path|replace(item.name, "") %}
+        <tr>
+          <td colspan="6" headers="header-dir" id="{{currentDirectory|urlencode}}" class="tdr-summary-table__dir-cell govuk-body govuk-!-font-size-14" >
+            <ol class="tdr-file-breadcrumbs">
+            {% for dir in currentDirectory|split("/") %}
+              <li class="tdr-file-breadcrumbs__list-item">{{dir}}</li>
+            {% else %}
+              <li class="tdr-file-breadcrumbs__list-item">/</li>
+            {% endfor %}
+            </ol>
+            <span class="tdr-summary-table__file-count">{{currentDirectory|countInDir(data['closedFiles'], true)}} file{% if currentDirectory|countInDir(data['closedFiles'], true) != 1 %}s{%  endif %}</span>
+          </td>
+        </tr>
+    {% endif %}
       <tr class="govuk-table__row">
         <td headers="{{currentDirectory|urlencode}}" id="{{item.id}}" class="govuk-table__header govuk-table__header--spacious">
-        {% if item|hasRequiredMetadata == false %}<strong class="tdr-summary-table__tag tdr-tag tdr-tag--red">Incomplete</strong><br>{% endif %}{{item.id|getFilename(globals.files)}}</td>
+        {% if item|hasRequiredMetadata == false %}<strong class="tdr-summary-table__tag tdr-tag tdr-tag--red">Incomplete</strong><br>{% endif %}{{item.name}}</td>
         <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--nowrap">
           {%- if item['addClosure-foi-asserted-day'] -%}
           {{item['addClosure-foi-asserted-day']}} {{item['addClosure-foi-asserted-month']|getMonthName("short")}} {{item['addClosure-foi-asserted-year']}}

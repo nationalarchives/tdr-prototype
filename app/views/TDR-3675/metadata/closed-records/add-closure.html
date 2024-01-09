@@ -5,10 +5,10 @@ Add or edit closure metadata
 {% endblock %}
 
 {% block content %}
-  <form action="confirm-add-closure" >
+  <form action="./confirm-add-closure" >
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <span class="govuk-caption-l">Closure metadata</span>
+        <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
         <h1 class="govuk-heading-l">
             Add or edit metadata
         </h1>
@@ -28,38 +28,46 @@ Add or edit closure metadata
             </div>
           </div>
         {% endif %}
+
+
         <div class="tdr-card">
-          <div class="tdr-card__content">
+          <div class="tdr-card__content tdr-card__content--file-list">
             <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding or editing closure metadata for the following file:</p>
-            <ul class="govuk-list govuk-list--bullet">
-              {% for fileId in data['file-selection'] %}
-                <li>{{fileId|getPath(globals.files)}}</li>
-              {% endfor %}
+            <ul>
+            {% for record in data['file-selection'] %}
+              <li>
+            {% set fileObject = record|getFileObject(records) %}
+              <ol class="tdr-file-breadcrumbs">
+                {% set currStrIndex = 0 %}
+                {% for dir in fileObject.path|d("")|split("/") %}
+                  <li class="tdr-file-breadcrumbs__list-item">{{dir|highlightMatches(item.matches, "path", currStrIndex, currentDirectory)|safe}}</li>
+                  {% set currStrIndex = 1+currStrIndex+dir|length %}
+                {% else %}
+                  <li class="tdr-file-breadcrumbs__list-item">/</li>
+                {% endfor %}
+                  <li class="tdr-file-breadcrumbs__list-item tdr-file-breadcrumbs__list-item--file">{{fileObject.name}}</li>
+              </ol>
+              </li>
+            {% endfor %}
             </ul>
           </div>
         </div>
-        {# <p class="govuk-body govuk-!-font-weight-bold">All fields are mandatory.</p> #}
-
-        {% if data.error == "not-matching" %}
-          <div class="govuk-warning-text">
-            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-            <strong class="govuk-warning-text__text">
-              <span class="govuk-warning-text__assistive">Warning</span>
-            The selected files have different metadata therefore the fields below cannot be prepopulated. Continuing will replace the metadata for all selected files.
-          </strong>
-          </div>
-        {% endif %}
       </div>
     </div>
+
+
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
+
+
+        {# FOI Decision Date #}
         {% set errorFOIDate = error == "missing-fields" and ["addClosure-foi-asserted-day", "addClosure-foi-asserted-month", "addClosure-foi-asserted-year"] | isFieldMissing(data) == true %}
         <div class="govuk-form-group govuk-!-margin-bottom-9 {% if errorFOIDate == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset" role="group" aria-describedby="foi-decision-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading">
-                        FOI decision asserted
-                    </h2>
+                FOI decision asserted
+              </h2>
             </legend>
             <div id="foi-decision-hint" class="govuk-hint">
                     Date of the Advisory Council approval.
@@ -103,13 +111,15 @@ Add or edit closure metadata
           </fieldset>
         </div>
 
+
+        {# Closure Start Date #}
         {% set errorStartDate = error == "missing-fields" and ["addClosure-closure-start-day", "addClosure-closure-start-month", "addClosure-closure-start-year"] | isFieldMissing(data) == true %}
         <div class="govuk-form-group govuk-!-margin-bottom-9 {% if errorStartDate == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset" role="group" aria-describedby="closure-start-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading">
-                        Closure start date
-                    </h2>
+                  Closure start date
+              </h2>
             </legend>
             <div id="closure-start-hint" class="govuk-hint">
                 This is the date the closure period begins.
@@ -165,6 +175,7 @@ Add or edit closure metadata
           </fieldset>
         </div>
 
+        {# Closure Period #}
         {% set errorClosurePeriod = error == "missing-fields" and "addClosure-closure-period" | isFieldMissing(data) == true %}
         <div class="govuk-form-group govuk-!-margin-bottom-9 {% if errorClosurePeriod == true %}govuk-form-group--error{% endif %}">
           <h2 class="govuk-label-wrapper">
@@ -185,6 +196,7 @@ Add or edit closure metadata
           </div>
         </div>
 
+        {# FOI Exemption Codes #}
         {% set errorFOICodes = error == "missing-fields" and "addClosure-foi_id_selection" | isFieldMissing(data) == true %}
         <div class="govuk-form-group govuk-!-margin-bottom-9 {% if errorFOICodes == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
@@ -222,6 +234,9 @@ Add or edit closure metadata
 
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"/>
 
+
+        {# Title sensitive #}
+        {% set filename = (data['file-selection'][0] | getFileObject(records)).name %}
         {% set errorTitleClosed = error == "missing-fields" and "addClosure-is-the-title-sensitive" | isFieldMissing(data) == true %}
         <div class="govuk-form-group govuk-!-margin-bottom-9{% if errorTitleClosed == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset">
@@ -230,7 +245,7 @@ Add or edit closure metadata
             </legend>
             <p id="current_title_label" class="govuk-hint">If the title of this record contains sensitive information, you must select 'Yes' and provide an alternative title.</p>
             <div aria-labelledby="current_title_label" class="govuk-inset-text govuk-!-margin-top-3">
-              {{data['file-selection'][0] | getFilename(globals.files)}}
+              {{filename}}
             </div>
             {% if errorTitleClosed == true %}
               <p id="passport-issued-error" class="govuk-error-message">
@@ -248,9 +263,7 @@ Add or edit closure metadata
                   <p class="govuk-hint">This title will be visible to the public during the closure period.</p>
                   <div class="govuk-input__wrapper">
                     <input class="govuk-input govuk-input govuk-input--width-20" id="alternative-title" name="addClosure-alternative-title" type="text" value="{{data['addClosure-alternative-title']}}">
-                    {% if data['file-selection']| getFileExtensionById(globals.files) %}
-                    <div class="govuk-input__suffix" aria-hidden="true">{{ data['file-selection']| getFileExtensionById(globals.files) }}</div>
-                    {% endif %}
+                    <div class="govuk-input__suffix" aria-hidden="true">{{ filename| getFileExtension }}</div>
                   </div>
                 </div>
               </div>
@@ -262,6 +275,7 @@ Add or edit closure metadata
           </fieldset>
         </div>
 
+        {# Description sensitive #}
         {% set errorDescriptionClosed = data['file-selection']|hasDescription(data.descriptiveFiles) and error == "missing-fields" and "addClosure-is-the-description-sensitive" | isFieldMissing(data) == true %}
         <div class="govuk-form-group {% if errorDescriptionClosed == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset">
@@ -317,7 +331,7 @@ Add or edit closure metadata
             <button role="button" draggable="false" class="govuk-button" data-module="govuk-button">
                 Save and review
             </button>
-            <a class="govuk-link govuk-link--no-visited-state" href="summary.html">Cancel</a>
+            <a class="govuk-link govuk-link--no-visited-state" href="./add">Cancel</a>
           </div>
 
         </div>

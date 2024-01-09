@@ -240,6 +240,11 @@
   @include govuk-responsive-padding(4, "left");
 }
 
+.tdr-card__content--file-list ul {
+  list-style: none;
+  padding: 0;
+}
+
 .tdr-card__content {
   position: relative;
 }
@@ -429,7 +434,7 @@
 
 .tdr-summary-table__row--2of2 tbody th,
 .tdr-summary-table__row--2of2 td {
-  padding: govuk-spacing(0) govuk-spacing(4) govuk-spacing(1) 0;
+  padding: govuk-spacing(0) govuk-spacing(4) govuk-spacing(2) 0;
 }
 
 .tdr-summary-table__align-bottom {
