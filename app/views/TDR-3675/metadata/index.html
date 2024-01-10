@@ -23,7 +23,7 @@
       {% set datesComplete = "Complete" if data.lastModifiedComplete == "true"  == true else "Incomplete" %}
       {{ taskList.item("Date last modified", "./last-modified-dates/", datesComplete, "Check and correct extracted dates.", true) }}
       {% set descriptiveComplete = "Complete" if data.descriptiveComplete == "true"  else "Incomplete" %}
-      {{ taskList.item("Record descriptions", "./descriptive-and-additional/", descriptiveComplete, "Enhance your records with decriptive information.", true) }}
+      {{ taskList.item("Record descriptions", "./descriptive/", descriptiveComplete, "Enhance your records with decriptive information.", true) }}
       {% set closureComplete = "Complete" if data.closedComplete == "true" else "Incomplete" %}
       {{ taskList.item("Closed record information", "./closed-records/", closureComplete, "Add information about all closed records.", true) }}
     </ul>

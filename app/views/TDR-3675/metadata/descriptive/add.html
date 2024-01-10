@@ -1,0 +1,43 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}\
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% import "macros/task-list.html" as taskList %}
+
+{% block pageTitle %}
+  Add descriptive and additional metadata
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./" class="govuk-back-link">Back to Record description</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+    <h1 class="govuk-heading-l">Add record description</h1>
+    <p class="govuk-body">Add a description to your records to help enhance and preserve them.</p>
+    <div class="govuk-button-group">
+      <a href="./choose-a-file" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Add description to a record
+      </a>
+      <a href="/TDR-3515/metadata/descriptive-and-additional/confirm-complete" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        I have finished adding record description
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    {% include "./summary-table.html" %}
+  </div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  {{ super() }}
+{% endblock %}

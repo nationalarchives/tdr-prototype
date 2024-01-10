@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <a href="/TDR-3515/metadata/" class="govuk-back-link">Back to Metadata</a>
+  <a href="../" class="govuk-back-link">Back to Metadata</a>
 {% endblock %}
 
 {% block content %}
@@ -46,14 +46,12 @@
       <p class="govuk-body">For more information about record descriptions visit our <a href="" class="govuk-link">FAQ (opens in a new tab)</a>.</p>
 
       <div class="govuk-button-group">
-        <a href="/TDR-3515/metadata/descriptive-and-additional/add" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        <a href="./add" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
           Add a description of records
         </a>
-        <a href="/TDR-3515/metadata/descriptive-and-additional/confirm-complete" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        <a href="./confirm-complete" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
           I have finished adding record description
         </a>
-        {# {% set task = "/TDR-3515/metadata/descriptive-and-additional" %}
-        {% include "includes/metadata/button-mark-task-complete" %} #}
       </div>
 
     </div>

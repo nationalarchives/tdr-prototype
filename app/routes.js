@@ -193,40 +193,11 @@ router.get(
 router.get(
   "/metadata/descriptive-metadata/confirm-file-level",
   function (req, res) {
-    // if (req.session.data["file-selection"] === undefined) {
-    //   throw new Error("Missing file selection");
-    // }
-    let selected = req.session.data["file-selection"];
-    let doView = req.session.data["action"] === "view";
-
-    if (
-      (selected && typeof selected == "string") ||
-      selected instanceof String
-    ) {
-      selected = [selected];
-      req.session.data["file-selection"] = selected;
-    }
-    if (!req.session.data.descriptiveFiles)
-      req.session.data.descriptiveFiles = {};
-
-    if (selected === undefined || selected === "") {
-      res.render("metadata/descriptive-metadata/file-level", {
-        error: "no-selection",
-      });
+    if (tdrMetadataRecords.validateFileSelection(req) === false) {
+      res.render("metadata/descriptive-metadata/file-level", { error: "no-selection"});
     } else {
-      const selectedWithExistingData = selected.filter((fn) => {
-        return req.session.data.descriptiveFiles[fn] !== undefined;
-      });
-
-      populateWithDescriptive(req, res);
-
-      // Do selected files have existing data
-      if (doView === true) {
-        // Has existing data.
-        res.redirect("/metadata/descriptive-metadata/summary-metadata");
-      } else {
-        res.redirect("/metadata/descriptive-metadata/add-descriptive");
-      }
+      tdrMetadataRecords.populateWithDescriptive(req, res);
+      res.redirect("/metadata/descriptive-metadata/add-descriptive");
     }
   }
 );
@@ -280,7 +251,7 @@ router.get(
     if(tdrMetadataRecords.validateAddClosure(req, res) === false){
       res.render("metadata/closure-metadata/add-closure", { error: "missing-fields"});
     } else {
-      tdrMetadataRecords.addClosure(req, res)
+      tdrMetadataRecords.addClosureData(req, res)
       res.redirect("/metadata/closure-metadata/review-metadata");
     }
   }
@@ -307,7 +278,22 @@ router.get(
 router.get(
   "/metadata/closure-metadata/confirm-file-level",
   function (req, res) {
-    tdrMetadataRecords.confirmFileSelection(req, res, "/metadata/closure-metadata/")
+    req.session.data.closedFiles = req.session.data.closedFiles || {};
+
+    // TO DO - See if this can work with a redirect, instead of render
+    if (tdrMetadataRecords.validateFileSelection(req) === false) {
+      res.render("/metadata/closure-metadata/file-level", { error: "no-selection"});
+      return
+    }
+
+    const selected = req.session.data["file-selection"];
+    const allClosed = selected.every(fileId => req.session.data.closedFiles[fileId] !== undefined);
+    if (allClosed === false) {
+      res.redirect(`/metadata/closure-metadata/closure-status`);
+    } else {
+      tdrMetadataRecords.populateWithClosureData(req, res);
+      res.redirect(`/metadata/closure-metadata/add-closure`);
+    }
   }
 );
 
@@ -449,6 +435,7 @@ router.post( "/TDR-3486/metadata/last-modified-dates/edit/:nameAndPath", (req, r
  * TDR-3675 - Composite for review
  */
 
+// DATES
 router.get("/TDR-3675/metadata/last-modified-dates/check-and-correct", (req, res) => {
   const tplArgs = tdrMetadataRecords.table(req, req.path, testMetadata150);
   res.render(req.path, tplArgs);
@@ -464,6 +451,7 @@ router.post( "/TDR-3675/metadata/last-modified-dates/edit/:nameAndPath", (req, r
   res.redirect("/TDR-3675/metadata/last-modified-dates/check-and-correct?"+req.session.data.queryParamsString);
 })
 
+// CLOSED RECORDS
 router.get( "/TDR-3675/metadata/closed-records/add", (req, res) => {
   res.render(req.path, {
     records : testMetadata150
@@ -489,7 +477,22 @@ router.get( "/TDR-3675/metadata/closed-records/choose-a-file", (req, res) => {
 router.get(
   "/TDR-3675/metadata/closed-records/confirm-file-level",
   function (req, res) {
-    tdrMetadataRecords.confirmFileSelection(req, res, "/TDR-3675/metadata/closed-records/")
+    req.session.data.closedFiles = req.session.data.closedFiles || {};
+
+    // TO DO - See if this can work with a redirect, instead of render
+    if (tdrMetadataRecords.validateFileSelection(req) === false) {
+      res.render("/TDR-3675/metadata/closed-records/file-level", { error: "no-selection"});
+      return
+    }
+
+    const selected = req.session.data["file-selection"];
+    const allClosed = selected.every(fileId => req.session.data.closedFiles[fileId] !== undefined);
+    if (allClosed === false) {
+      res.redirect(`/TDR-3675/metadata/closed-records/closure-status`);
+    } else {
+      tdrMetadataRecords.populateWithClosureData(req, res);
+      res.redirect(`/TDR-3675/metadata/closed-records/add-closure`);
+    }
   }
 );
 
@@ -505,7 +508,7 @@ router.get( "/TDR-3675/metadata/closed-records/confirm-closure-status", (req, re
       error: "no-confirmation",
     });
   } else {
-    tdrMetadataRecords.addNewClosure(req, res);
+    tdrMetadataRecords.setClosureStatus(req, res);
     tdrMetadataRecords.populateWithClosureData(req, res);
     res.redirect("/TDR-3675/metadata/closed-records/add-closure");
   }
@@ -521,7 +524,7 @@ router.get( "/TDR-3675/metadata/closed-records/confirm-add-closure", (req, res) 
   if(tdrMetadataRecords.validateAddClosure(req, res) === false){
     res.render("/TDR-3675/metadata/closed-records/add-closure", { error: "missing-fields"});
   } else {
-    tdrMetadataRecords.addClosure(req, res)
+    tdrMetadataRecords.addClosureData(req, res)
     res.redirect("/TDR-3675/metadata/closed-records/review-metadata");
   }
 });
@@ -558,9 +561,30 @@ router.get(
   }
 );
 
+// DESCRIPTIIVE RECORDS
+router.get( "/TDR-3675/metadata/descriptive/add", (req, res) => {
+  res.render(req.path, {
+    records : testMetadata150
+  });
+});
 
+router.get( "/TDR-3675/metadata/descriptive/choose-a-file", (req, res) => {
+  res.render(req.path, {
+    records : testMetadata150
+  });
+});
 
-
+router.get(
+  "/TDR-3675/metadata/descriptive/confirm-file-level",
+  function (req, res) {
+    if (tdrMetadataRecords.validateFileSelection(req) === false) {
+      res.render("/TDR-3675/metadata/descriptive/choose-a-file", { error: "no-selection" });
+    } else {
+      tdrMetadataRecords.populateWithDescriptive(req, res);
+      res.redirect("/TDR-3675/metadata/descriptive/add-descriptive");
+    }
+  }
+);
 
 
 router.post(

@@ -1,0 +1,86 @@
+
+{# <pre>{{data['descriptiveFiles']|dump}}</pre> #}
+
+
+<div class="tdr-scroll-container tdr-scroll-container__horizontal">
+<table data-module="table-row-menu-hide-show" class="govuk-table tdr-summary-table">
+  <colgroup>
+    <col style="min-width: 200px;"/>
+    <col  />
+    <col style="width: 200px;" />
+    <col style="width: 100px;" />
+  </colgroup>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Record name</th>
+      <th scope="col" class="govuk-table__header">Description</th>
+      <th scope="col" class="govuk-table__header">Other metadata added</th>
+      <th scope="col" class="govuk-table__header"><span class="govuk-visually-hidden">Actions</span></th>
+      <th id="header-dir" scope="col" class="govuk-visually-hidden">Directory</th>
+    </tr>
+  </thead>
+
+
+{% if data['descriptiveFiles']|length == 0 %}
+  <tr>
+    <td colspan="6" class="govuk-table__cell govuk-table__cell--no-results">There are no records with descriptive metadata.</td>
+  </tr>
+{% else %}
+  {% for item in data['closedFiles']|returnClosedRecordsArray(records)|sortBy("path") %}
+    {% if currentDirectory != item.path|replace(item.name, "")  %}
+      {% set currentDirectory = item.path|replace(item.name, "") %}
+        <tr>
+          <td colspan="6" headers="header-dir" id="{{currentDirectory|urlencode}}" class="tdr-summary-table__dir-cell govuk-body govuk-!-font-size-14" >
+            <ol class="tdr-file-breadcrumbs">
+            {% for dir in currentDirectory|split("/") %}
+              <li class="tdr-file-breadcrumbs__list-item">{{dir}}</li>
+            {% else %}
+              <li class="tdr-file-breadcrumbs__list-item">/</li>
+            {% endfor %}
+            </ol>
+            <span class="tdr-summary-table__file-count">{{currentDirectory|countInDir(data['descriptiveFiles'], true)}} file{% if currentDirectory|countInDir(data['descriptiveFiles'], true) != 1 %}s{%  endif %}</span>
+          </td>
+        </tr>
+    {% endif %}
+
+      <tr class="govuk-table__row">
+        <td headers="{{currentDirectory|urlencode}}" id="{{item.id}}" class="govuk-table__header govuk-table__header--spacious">
+          {{item.id|getFilename(globals.files)}}
+        </td>
+        {# <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--nowrap">
+          {%- if item['addDescriptive-Day'] -%}
+          {{ item['addDescriptive-Day'] }} {{item['addDescriptive-Month']|getMonthName("short")}} {{item['addDescriptive-Year']}}
+          {%- else %} - {% endif %}
+        </td> #}
+        <td headers="{{item.id}}" class="govuk-table__cell">
+          {%- if item['addDescriptive-description'] -%}
+          <div class="tdr-line-clamp">
+            <p class="govuk-body-s" style="max-width: 15em;">{{item['addDescriptive-description']}}</p>
+          </div>
+          {%- else %} - {% endif -%}
+        </td>
+        <td headers="{{item.id}}" class="govuk-table__cell">
+          <ul class="govuk-list govuk-body-s">
+            <li>{% if item['addDescriptive-language-select'] %}Language{% endif%}</li>
+            <li>{% if item['addDescriptive-translation'] %}Translated title{% endif%}</li>
+            <li>{% if item['addDescriptive-former-refs'] %}Former reference{% endif%}</li>
+          </ul>
+          {# {% for l in item['addDescriptive-language-select'] %}
+              {{l | langNameFromCode(data.languages) -}}
+              {% if loop.last != true %}, {% endif %}
+            {% else %}
+            -
+            {% endfor %} #}
+        </td>
+        <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--with-hidden-menu">
+          {% set typeOfMetadata = "descriptive" %}
+          {% include "../summary-table-actions.html" %}
+        </td>
+      </tr>
+  {% endfor %}
+{% endif %}
+
+
+  </tbody>
+</table>
+</div>

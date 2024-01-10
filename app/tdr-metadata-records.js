@@ -76,6 +76,41 @@ function findMatches(data, searchPattern, keys){
   return partialMatches
 }
 
+exports.populateWithDescriptive = function(req) {
+  const selected = req.session.data["file-selection"];
+  let descriptive = req.session.data["descriptiveFiles"];
+
+  descriptive = clearEmpties(descriptive);
+  let hasDescriptive = descriptive.hasOwnProperty(selected[0]);
+
+  let notMatching = selected.some((selectedFile1) => {
+    return selected.some((selectedFile2) => {
+      // If any are not indentical
+      return (
+        JSON.stringify(descriptive[selectedFile1]) !==
+        JSON.stringify(descriptive[selectedFile2])
+      );
+    });
+  });
+
+  // Clear form data so it does not prepopulate
+  for (let key in req.session.data) {
+    if (key.split("-")[0] === "addDescriptive") {
+      delete req.session.data[key];
+    }
+  }
+  if (notMatching == true) {
+    req.session.data.error = "not-matching";
+  } else {
+    // Populate the fields data with stored.
+    for (var key in descriptive[selected[0]]) {
+      req.session.data[key] = descriptive[selected[0]][key];
+    }
+    req.session.data.status = hasDescriptive ? "has-data" : "no-data";
+
+    delete req.session.data.error;
+  }
+};
 
 exports.validateAddClosure = function (req, res, path) {
   if (req.session.data["file-selection"] === undefined) {
@@ -102,7 +137,7 @@ exports.validateAddClosure = function (req, res, path) {
 
 }
 
-exports.addClosure = function (req) {
+exports.addClosureData = function (req) {
   if (!req.session.data.closedFiles) req.session.data.closedFiles = {};
   for (let key in req.session.data) {
     if (key.split("-")[0] === "addClosure") {
@@ -116,7 +151,7 @@ exports.addClosure = function (req) {
   }
 }
 
-exports.addNewClosure = function (req, res) {
+exports.setClosureStatus = function (req) {
   const selected = req.session.data["file-selection"];
   let closed = req.session.data["closedFiles"];
 
@@ -166,44 +201,20 @@ exports.populateWithClosureData = function(req) {
   }
 };
 
-exports.confirmFileSelection = function(req, res, path) {
-  path = path || "/metadata/closure-metadata/"
+exports.validateFileSelection = function(req) {
   let selected = req.session.data["file-selection"];
-  let doView = req.session.data["action"] === "view";
-
   if (
-    selected &&
-    (typeof selected == "string" || selected instanceof String)
+    (selected && typeof selected == "string") ||
+    selected instanceof String
   ) {
     selected = [selected];
     req.session.data["file-selection"] = selected;
   }
-  if (!req.session.data.closedFiles) req.session.data.closedFiles = {};
 
-  if (selected === undefined || selected === "") {
-    res.render(`${path}file-level`, {
-      error: "no-selection",
-    });
-  } else {
-    const selectedClosedFiles = selected.filter((fn) => {
-      return req.session.data.closedFiles[fn] !== undefined;
-    });
+  if (!req.session.data.descriptiveFiles)
+    req.session.data.descriptiveFiles = {};
 
-    // Are all files closed already? If so, straight to the main form.
-    if (doView === true) {
-      // Show summary page before main form
-      exports.populateWithClosureData(req, res);
-      // redirect to summary
-      res.redirect(`${path}summary-metadata`);
-    } else if (selectedClosedFiles.length === selected.length) {
-      // Show summary page before main form
-      exports.populateWithClosureData(req, res);
-      // redirect to summary
-      res.redirect(`${path}add-closure`);
-    } else {
-      res.redirect(`${path}closure-status`);
-    }
-  }
+  return !(selected === undefined || selected === "");
 }
 
 exports.editPageData = function(req, recordsMetadata) {

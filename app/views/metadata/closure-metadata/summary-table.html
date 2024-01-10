@@ -19,10 +19,7 @@
       <th id="header-dir" scope="col" class="govuk-visually-hidden">Directory</th>
     </tr>
   </thead>
-
-<pre>{{data.closedFiles|dump(2)}}</pre><br><br>
-<pre>{{data['closedFiles']|returnFileArray(globals.files)|sortBy("path")|dump(2)}}<pre>
-{% if data['closedFiles']|length == 0 %}
+ {% if data['closedFiles']|length == 0 %}
   <tr>
     <td colspan="6" class="govuk-table__cell govuk-table__cell--no-results">There are no records with closure metadata.</td>
   </tr>

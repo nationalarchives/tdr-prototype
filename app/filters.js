@@ -142,6 +142,7 @@ filters.getPath = function(id, allFiles, currentPath = "") {
 }
 
 filters.returnFileArray = function (dict, allFiles) {
+  dict = dict || {}
   const copy = Object.values(dict);
   let i = 0;
   for(var key in dict){

@@ -1,0 +1,65 @@
+{% extends "layouts/main.html" %}
+{# {% include "../dummyfiles.html" %} #}
+
+{% block pageTitle %}
+Descriptive metadata - Choose a file
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./add" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+  <form action="./confirm-file-level">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+        <h1 class="govuk-heading-l">Choose a file</h1>
+        <p class="govuk-body">Select the file you wish to add or edit descriptive metadata.</p>
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {% if error == "no-selection" %}
+          <div class="govuk-error-summary govuk-!-margin-bottom-4" data-module="govuk-error-summary">
+            <div role="alert">
+              <h2 class="govuk-error-summary__title">There is a problem</h2>
+              <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                  <li>
+                    <a href="#file-selection">Select a file to proceed.</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        {% include "includes/metadata/descriptive/descriptive-files.html" %}
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-button-group">
+          <button
+          draggable="false"
+          class="govuk-button js-submit"
+          name="action" value="edit"
+          data-module="govuk-button">
+          Continue
+        </button>
+        </div>
+      </div>
+    </div>
+    </form>
+  {% endblock %}
+
+  {% block pageScripts %}
+    {{ super() }}
+  {% endblock %}

@@ -1,0 +1,9 @@
+{% extends "../files.html" %}
+
+{% block status %}
+  {% if data['descriptiveFiles'][item.id] !== undefined %}
+    <strong class="tdr-tag tdr-tag--blue">
+      entered
+    </strong>
+  {% endif %}
+{% endblock %}
