@@ -36,7 +36,6 @@ const clearEmpties = (files) => {
   return files;
 };
 
-
 function findMatches(data, searchPattern, keys){
   const partialMatches = data.map(item => {
     const matches = [];
@@ -76,6 +75,23 @@ function findMatches(data, searchPattern, keys){
   return partialMatches
 }
 
+exports.persistDescriptiveData = function(req){
+
+  req.session.data.descriptiveFiles = req.session.data.descriptiveFiles || {};
+
+  for (let key in req.session.data) {
+    if (key.split("-")[0] === "addDescriptive") {
+      req.session.data["file-selection"].forEach((file, i) => {
+        if (!(file in req.session.data.descriptiveFiles)) {
+          req.session.data.descriptiveFiles[file] = {};
+        }
+        req.session.data.descriptiveFiles[file][key] = req.session.data[key];
+      });
+    }
+  }
+
+}
+
 exports.populateWithDescriptive = function(req) {
   const selected = req.session.data["file-selection"];
   let descriptive = req.session.data["descriptiveFiles"];
@@ -112,7 +128,7 @@ exports.populateWithDescriptive = function(req) {
   }
 };
 
-exports.validateAddClosure = function (req, res, path) {
+exports.validateAddClosure = function (req) {
   if (req.session.data["file-selection"] === undefined) {
     throw new Error("Missing file selection");
   }
@@ -137,7 +153,7 @@ exports.validateAddClosure = function (req, res, path) {
 
 }
 
-exports.addClosureData = function (req) {
+exports.persistClosureData = function (req) {
   if (!req.session.data.closedFiles) req.session.data.closedFiles = {};
   for (let key in req.session.data) {
     if (key.split("-")[0] === "addClosure") {

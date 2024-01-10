@@ -1,0 +1,41 @@
+<fieldset id="date-format-single" class="date-format govuk-fieldset govuk-!-margin-bottom-6" role="group" aria-describedby="date-single">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+    <h2 class="govuk-fieldset__heading">
+      Date of the record
+    </h2>
+  </legend>
+  <div id="date-range-hint" class="govuk-hint">
+    The date that the most recent change was made to this record.
+  </div>
+  <div class="govuk-inset-text govuk-!-margin-top-3 govuk-!-margin-bottom-3">
+    The date the record was last modified was determined during upload. This date should be checked against your own records: <strong>12 July 2020</strong>
+  </div>
+  <div class="govuk-date-input">
+    <div class="govuk-date-input__item">
+      <div class="govuk-form-group govuk-!-margin-bottom-0">
+        <label class="govuk-label govuk-date-input__label" for="date-single-Day">
+        Day
+      </label>
+        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-singleDay" name="addDescriptive-Day" type="text" inputmode="numeric" placeholder="dd" value="{{data["addDescriptive-Day"]}}">
+      </div>
+    </div>
+
+    <div class="govuk-date-input__item">
+      <div class="govuk-form-group govuk-!-margin-bottom-0">
+        <label class="govuk-label govuk-date-input__label" for="date-single-Month">
+            Month
+          </label>
+        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-single-Month" name="addDescriptive-Month" type="text" inputmode="numeric" placeholder="mm" value="{{data["addDescriptive-Month"]}}">
+      </div>
+    </div>
+
+    <div class="govuk-date-input__item">
+      <div class="govuk-form-group govuk-!-margin-bottom-0">
+        <label class="govuk-label govuk-date-input__label" for="date-single-Year">
+            Year
+          </label>
+        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-single-Year" name="addDescriptive-Year" type="text" inputmode="numeric" placeholder="yyyy" value="{{data["addDescriptive-Year"]}}">
+      </div>
+    </div>
+  </div>
+</fieldset>

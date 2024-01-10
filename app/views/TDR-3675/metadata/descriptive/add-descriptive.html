@@ -1,0 +1,104 @@
+{% extends "layouts/main.html" %}
+{% block pageTitle %} Add descriptive metadata {% endblock %}
+
+{% block content %}
+  <form action="./confirm-add-descriptive">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+        <h1 class="govuk-heading-l">Add or edit metadata</h1>
+
+
+        <div class="tdr-card">
+          <div class="tdr-card__content tdr-card__content--file-list">
+            <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding or editing descriptive metadata for the following file:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              {% for record in data['file-selection'] %}
+              <li>
+              {% set fileObject = record|getFileObject(records) %}
+                <ol class="tdr-file-breadcrumbs">
+                  {% set currStrIndex = 0 %}
+                  {% for dir in fileObject.path|d("")|split("/") %}
+                    <li class="tdr-file-breadcrumbs__list-item">{{dir|highlightMatches(item.matches, "path", currStrIndex, currentDirectory)|safe}}</li>
+                    {% set currStrIndex = 1+currStrIndex+dir|length %}
+                  {% else %}
+                    <li class="tdr-file-breadcrumbs__list-item">/</li>
+                  {% endfor %}
+                    <li class="tdr-file-breadcrumbs__list-item tdr-file-breadcrumbs__list-item--file">{{fileObject.name}}</li>
+                </ol>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+        {% if data.error == "not-matching" %}
+          <div class="govuk-warning-text">
+            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+            <strong class="govuk-warning-text__text">
+              <span class="govuk-warning-text__assistive">Warning</span>
+            The selected files have different metadata therefore the fields below cannot be prepopulated. Continuing will replace the metadata for all selected files.
+          </strong>
+          </div>
+        {% endif %}
+
+        <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="8000">
+          <div class="govuk-form-group">
+            <h2 class="govuk-label-wrapper">
+              <label class="govuk-label govuk-label--m" for="event-name">
+                Description
+              </label>
+            </h2>
+            <div id="description-hint" class="govuk-hint">
+              The description of this record will be visible to the public to help explain its content.
+            </div>
+            <details class="govuk-details govuk-!-margin-bottom-2" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">Is the description sensitive to the public?</span>
+              </summary>
+              <div class="govuk-details__text">
+                <p class="govuk-body">If the description of this record contains sensitive information, you must enter the full uncensored version in this field. You can enter an alternative description on the Closure metadata page.</p>
+              </div>
+            </details>
+            <textarea
+              aria-described-by="description-hint description-char-count-hint"
+              class="govuk-textarea govuk-js-character-count"
+              id="description"
+              name="addDescriptive-description"
+              rows="5">{{data['addDescriptive-description']}}</textarea>
+          </div>
+          <div id="description-info" class="govuk-hint govuk-character-count__message">
+              You can enter up to 8000 characters
+            </div>
+        </div>
+
+         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"/>
+
+        {% include 'includes/metadata/descriptive/date-of-record.html' %}
+
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"/>
+
+        {% include 'includes/metadata/descriptive/language.html'%}
+
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"/>
+
+        {% include 'includes/metadata/descriptive/related-refs-creating-body.html'%}
+
+        <div class="govuk-button-group">
+          <button
+          role="button"
+          class="govuk-button"
+          data-module="govuk-button"
+          >
+            Save and review
+          </button>
+          <a class="govuk-link govuk-link--no-visited-state" href="summary.html">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </form>
+{% endblock %}
+
+{% block pageScripts %}
+  {{ super() }}
+{% endblock %}

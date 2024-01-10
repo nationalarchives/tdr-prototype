@@ -1,0 +1,111 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Descriptive metadata - Review changes to descriptive metadata
+{% endblock %}
+
+{% block beforeContent %}
+  {% if from %}
+  <a href="{{from}}" class="govuk-back-link">Back</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% set fileObject = data['file-selection'][0]|getFileObject(records) %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Descriptive metadata</span>
+      <h1 class="govuk-heading-l">
+        {% if from %}View metadata{% else %}Review saved changes{% endif %}
+      </h1>
+      <p class="govuk-body">Review the descriptive metadata you have entered against this record</p>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+          Name
+        </dt>
+          <dd class="govuk-summary-list__value govuk-!-font-weight-bold">
+            {{fileObject.name}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+          Path
+          </dt>
+          <dd class="govuk-summary-list__value">
+              <ol class="tdr-file-breadcrumbs">
+              {% set currStrIndex = 0 %}
+              {% for dir in fileObject.path|d("")|split("/") %}
+                <li class="tdr-file-breadcrumbs__list-item">{{dir|highlightMatches(item.matches, "path", currStrIndex, currentDirectory)|safe}}</li>
+                {% set currStrIndex = 1+currStrIndex+dir|length %}
+              {% else %}
+                <li class="tdr-file-breadcrumbs__list-item">/</li>
+              {% endfor %}
+            </ol>
+          </dd>
+        </div>
+        {% if data["addDescriptive-description"] %}
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">Description</dt>
+          <dd class="govuk-summary-list__value">
+            {{data['addDescriptive-description']}}
+          </dd>
+        </div>
+        {% endif %}
+        {% if data["addDescriptive-Day"] %}
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">Date of the Record</dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['addDescriptive-range-start-year'] %}
+              {{data['addDescriptive-range-start-day']}}/{{data['addDescriptive-range-start-month']}}/{{data['addDescriptive-range-start-year']}} -{{ " "}}
+            {% endif %}
+            {{data['addDescriptive-Day']}}/{{data['addDescriptive-Month']}}/{{data['addDescriptive-Year']}}
+          </dd>
+        </div>
+        {% endif %}
+
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">Language(s)</dt>
+          <dd class="govuk-summary-list__value">
+            {% for l in data['addDescriptive-language-select'] %}
+              {{l | langNameFromCode(data.languages) -}}
+              {% if loop.last != true %}, {% endif %}
+            {% else %}
+            -
+            {% endfor %}
+          </dd>
+        </div>
+        {% if data["addDescriptive-translation"] %}
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">Translated title of record</dt>
+          <dd class="govuk-summary-list__value">
+            {{data['addDescriptive-translation']|d("-", true)}}
+          </dd>
+        </div>
+        {% endif %}
+        {% if data["addDescriptive-former-refs"] %}
+        <div class="govuk-summary-list__row" style="border-bottom: none;">
+          <dt class="govuk-summary-list__key">
+              Former reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['addDescriptive-former-refs']|d("-", true)}}
+          </dd>
+        </div>
+        {% endif %}
+      </dl>
+
+      <div class="govuk-button-group">
+        <a href="./add" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+          Continue
+        </a>
+        <a href="{{path|d(".")}}/edit-by-id/{{data['file-selection'][0]|urlencode}}" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Edit metadata
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

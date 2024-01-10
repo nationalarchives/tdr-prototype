@@ -118,7 +118,7 @@ filters.addYearsToDate = function (ukDateStr, yearsToAdd) {
 
 filters.sortBy = function(array, key) {
   return array.sort((a, b) => {
-    return a[key].localeCompare(b[key]);
+    return a[key]?.localeCompare(b[key]);
   })
 }
 

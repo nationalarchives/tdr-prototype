@@ -26,7 +26,7 @@ Closure metadata - Review changes to closure metadata
           Name
         </dt>
           <dd class="govuk-summary-list__value govuk-!-font-weight-bold">
-              {{fileObject.name}}
+            {{fileObject.name}}
           </dd>
         </div>
         <div class="govuk-summary-list__row">
@@ -105,7 +105,8 @@ Closure metadata - Review changes to closure metadata
             Alternative title
           </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['addClosure-alternative-title'] }}
+              {{ data['addClosure-alternative-title'] }}{{fileObject.name| getFileExtension }}
+
             </dd>
           </div>
         {% else %}
@@ -149,13 +150,11 @@ Closure metadata - Review changes to closure metadata
 
       <div class="govuk-button-group">
         {% if not from %}
-        <a href="./add" role="button" draggable="false" class="govuk-button"
-          data-module="govuk-button">
+        <a href="./add" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
           Continue
         </a>
         {% endif %}
-        <a href="{{path|d(".")}}/edit-by-id/{{data['file-selection'][0]|urlencode}}" role="button" draggable="false" class="govuk-button govuk-button--secondary"
-          data-module="govuk-button">
+        <a href="{{path|d(".")}}/edit-by-id/{{data['file-selection'][0]|urlencode}}" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
           Edit metadata
         </a>
       </div>

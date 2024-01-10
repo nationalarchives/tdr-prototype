@@ -1,0 +1,41 @@
+.tdr-summary-list--small {
+  font-size: 0.875rem;
+  line-height: 0.95rem;
+}
+
+.tdr-summary-list {
+  margin: 0;
+}
+
+@include govuk-media-query($from: tablet) {
+  .tdr-summary-list {
+    width: 100%;
+    font-size: 1rem;
+    line-height: 1.3rem;
+  }
+
+  .tdr-summary-list__row {
+    display: flex;
+  }
+
+  .tdr-summary-list__key, .tdr-summary-list__value {
+    @include govuk-responsive-padding(1, "left");
+    @include govuk-responsive-padding(1, "right");
+    margin: 0;
+  }
+}
+
+.tdr-summary-list__key {
+  width: 40%;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.tdr-summary-list__value {
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+.tdr-summary-list__key, .tdr-summary-list__value {
+  white-space: nowrap;
+}

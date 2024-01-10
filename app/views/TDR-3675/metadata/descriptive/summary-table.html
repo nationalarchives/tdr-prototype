@@ -1,9 +1,6 @@
 
-{# <pre>{{data['descriptiveFiles']|dump}}</pre> #}
-
-
 <div class="tdr-scroll-container tdr-scroll-container__horizontal">
-<table data-module="table-row-menu-hide-show" class="govuk-table tdr-summary-table">
+<table data-module="table-row-menu-hide-show" class="govuk-table tdr-summary-table tdr-summary-table--mb-large">
   <colgroup>
     <col style="min-width: 200px;"/>
     <col  />
@@ -14,19 +11,18 @@
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Record name</th>
       <th scope="col" class="govuk-table__header">Description</th>
-      <th scope="col" class="govuk-table__header">Other metadata added</th>
+      <th scope="col" class="govuk-table__header">Other metadata</th>
       <th scope="col" class="govuk-table__header"><span class="govuk-visually-hidden">Actions</span></th>
       <th id="header-dir" scope="col" class="govuk-visually-hidden">Directory</th>
     </tr>
   </thead>
-
 
 {% if data['descriptiveFiles']|length == 0 %}
   <tr>
     <td colspan="6" class="govuk-table__cell govuk-table__cell--no-results">There are no records with descriptive metadata.</td>
   </tr>
 {% else %}
-  {% for item in data['closedFiles']|returnClosedRecordsArray(records)|sortBy("path") %}
+  {% for item in data['descriptiveFiles']|returnClosedRecordsArray(records)|sortBy("path") %}
     {% if currentDirectory != item.path|replace(item.name, "")  %}
       {% set currentDirectory = item.path|replace(item.name, "") %}
         <tr>
@@ -45,7 +41,7 @@
 
       <tr class="govuk-table__row">
         <td headers="{{currentDirectory|urlencode}}" id="{{item.id}}" class="govuk-table__header govuk-table__header--spacious">
-          {{item.id|getFilename(globals.files)}}
+          {{item.name}}
         </td>
         {# <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--nowrap">
           {%- if item['addDescriptive-Day'] -%}
@@ -60,11 +56,47 @@
           {%- else %} - {% endif -%}
         </td>
         <td headers="{{item.id}}" class="govuk-table__cell">
-          <ul class="govuk-list govuk-body-s">
+          <dl class="tdr-summary-list tdr-summary-list--small">
+          {% if item['addDescriptive-language-select'] %}
+            <div class="tdr-summary-list__row">
+              <dt class="tdr-summary-list__key">
+                Language(s)
+              </dt>
+              <dd class="tdr-summary-list__value">
+                {% for l in item['addDescriptive-language-select'] %}
+                  {{l | langNameFromCode(data.languages) -}}
+                  {% if loop.last != true %}, {% endif %}
+                {% endfor %}
+              </dd>
+            </div>
+          {% endif %}
+          {% if item['addDescriptive-language-select'] %}
+            <div class="tdr-summary-list__row">
+              <dt class="tdr-summary-list__key">
+                Translated title
+              </dt>
+              <dd class="tdr-summary-list__value">
+                {{item['addDescriptive-translation']|d("test ")}}
+              </dd>
+            </div>
+          {% endif %}
+          {% if item['addDescriptive-former-refs'] %}
+            <div class="tdr-summary-list__row">
+              <dt class="tdr-summary-list__key">
+                Former reference
+              </dt>
+              <dd class="tdr-summary-list__value">
+                {{item['addDescriptive-former-refs']|d("test ")}}
+              </dd>
+            </div>
+          {% endif %}
+          </dl>
+
+          {# <ul class="govuk-list govuk-body-s">
             <li>{% if item['addDescriptive-language-select'] %}Language{% endif%}</li>
             <li>{% if item['addDescriptive-translation'] %}Translated title{% endif%}</li>
             <li>{% if item['addDescriptive-former-refs'] %}Former reference{% endif%}</li>
-          </ul>
+          </ul> #}
           {# {% for l in item['addDescriptive-language-select'] %}
               {{l | langNameFromCode(data.languages) -}}
               {% if loop.last != true %}, {% endif %}
