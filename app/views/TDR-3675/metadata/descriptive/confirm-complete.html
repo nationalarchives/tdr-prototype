@@ -6,7 +6,7 @@
 {% import "macros/task-list.html" as taskList %}
 
 {% block pageTitle %}
-  Have you finished adding a description to your records?
+  Have you finished adding descriptive metadata to your records?
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,14 +16,14 @@
 
 {% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
       <form action="../" method="post">
         {{ govukRadios({
           name: "descriptiveComplete",
           fieldset: {
             legend: {
-              html: '<span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
-                <h1 class="govuk-heading-l">Have you finished adding a description to your records?</h1>'
+              html: '<span class="govuk-caption-m">Consignment: MOCK-TDR-1294</span>
+                <h1 class="govuk-heading-m">Have you finished adding descriptive metadata to your records?</h1>'
             }
           },
           items: [
@@ -33,7 +33,7 @@
             },
             {
               value: "true",
-              text: "Yes, I have added a description to all records where necessary"
+              text: "Yes, I have added descriptive metadata to all records where necessary"
             }
           ]
         }) }}

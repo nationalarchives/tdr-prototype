@@ -25,10 +25,10 @@
         iconFallbackText: "Warning"
       }) }}
 
-      <p class="govuk-body">What mandatory closed records metadata you must provide:</p>
+      <p class="govuk-body">What mandatory closed records information you must provide:</p>
       <ul class="govuk-list  govuk-list--bullet">
         <li>
-          <strong>FOI decision asserted</strong> - the date the closure schedule was agreed by the Advisory Council and/or The National Archives
+          <strong>FOI decision agreed</strong> - the date the closure schedule was agreed by the Advisory Council and/or The National Archives
         </li>
         <li>
           <strong>Closure start date</strong> - the date of the last change to this record
@@ -40,13 +40,13 @@
           <strong>FOI exemption code(s)</strong>
         </li>
       </ul>
-      <p class="govuk-body">What optional closed record information you must provide:</p>
+      <p class="govuk-body">If a record contains sensitivities in the title or description, you must provide the following information:</p>
       <ul class="govuk-list  govuk-list--bullet">
         <li>
           <strong>Alternative title</strong>
         </li>
         <li>
-          <strong>Alternative description</strong> - You must provide a description in the 'Record description' section before entering this
+          <strong>Alternative description</strong> - You must provide a description in the 'Descriptive metadata' section before entering this
         </li>
       </ul>
 
@@ -54,7 +54,12 @@
 
       <p class="govuk-body">If you have no closed records then click 'I have finished adding information'.</p>
 
-      <div class="govuk-button-group">
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <div class="govuk-button-group">
         <a href="./add" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
           Add closed record information
         </a>
@@ -62,7 +67,6 @@
           I have finished adding information
         </a>
       </div>
-
     </div>
   </div>
 {% endblock %}

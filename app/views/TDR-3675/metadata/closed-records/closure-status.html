@@ -13,17 +13,6 @@ Check closure status
           Confirm closure status
         </h1>
 
-        {# {% set exists = data['state'] == 'already-closed' or data['file-selection'] == undefined or data['file-selection']| filterClosed(data.closedFiles) | length > 0 %}
-        {% if exists %}
-          <div class="govuk-warning-text">
-            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-            <strong class="govuk-warning-text__text">
-              <span class="govuk-warning-text__assistive">Warning</span>
-              You have now added closure status to the selected files. You can remove the status by deleting the closure metadata. To do this, visit the <a href="/">Summary page</a>.
-          </strong>
-          </div>
-        {% endif %} #}
-
         <div class="tdr-card">
           <div class="tdr-card__content tdr-card__content--file-list">
             {% set openRecords =  data['file-selection']| filterOpen(data.closedFiles) %}
@@ -47,15 +36,6 @@ Check closure status
               {% endfor %}
               </ul>
             {% endif %}
-            {# {% set alreadyClosed =  data['file-selection']| filterClosed(data.closedFiles) %}
-            {% if alreadyClosed.length > 0 %}
-              <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">The following selected files are already closed:</p>
-              <ul class="govuk-list govuk-list--bullet">
-                {% for f in data['file-selection']| filterClosed(data.closedFiles) | getFilenames(globals.files) %}
-                  <li>{{f|decodeFilename}}</li>
-                {% endfor %}
-              </ul>
-            {% endif %} #}
           </div>
         </div>
 
@@ -83,7 +63,7 @@ Check closure status
           </fieldset>
         </div>
 
-        <details class="govuk-details" data-module="govuk-details">
+        {# <details class="govuk-details" data-module="govuk-details">
           <summary class="govuk-details__summary">
             <span class="govuk-details__summary-text">
             When you click continue, you will be asked to provide the following mandatory information for closed records.
@@ -99,7 +79,7 @@ Check closure status
               <li>Alternative description</li>
             </ul>
           </div>
-        </details>
+        </details> #}
 
         <div class="govuk-button-group">
           <button role="button" draggable="false" class="govuk-button" data-module="govuk-button">

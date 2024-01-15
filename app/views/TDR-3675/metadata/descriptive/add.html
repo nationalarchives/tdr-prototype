@@ -10,28 +10,28 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <a href="./" class="govuk-back-link">Back to Record description</a>
+  <a href="./" class="govuk-back-link">Back to Descriptive metadata</a>
 {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
     <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
-    <h1 class="govuk-heading-l">Add record description</h1>
-    <p class="govuk-body">Add a description to your records to help enhance and preserve them.</p>
-    <div class="govuk-button-group">
-      <a href="./choose-a-file" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Add description to a record
-      </a>
-      <a href="./confirm-complete" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-        I have finished adding record description
-      </a>
-    </div>
+    <h1 class="govuk-heading-l">Add descriptive metadata</h1>
+    <p class="govuk-body">Add information to your records to help enhance and preserve them. <br>Your progress is saved each time you add or edit descriptive metadata.</p>
   </div>
 </div>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
+    <div class="govuk-button-group">
+      <a href="./choose-a-file" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Add description to a record
+      </a>
+      <a href="./confirm-complete" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        I have finished adding descriptive metadata
+      </a>
+    </div>
     {% include "./summary-table.html" %}
   </div>
 </div>
