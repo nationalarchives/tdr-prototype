@@ -39,7 +39,7 @@
           {% endfor %}
           </ol>
           {% set filesInDir = currentDirectory|countInDir(data['recordsMetadata'], true) %}
-          <span class="tdr-summary-table__file-count">{{filesInDir}} file{% if filesInDir != 1 %}s{%  endif %}</span>
+          <span class="tdr-summary-table__file-count">{{filesInDir}} record{% if filesInDir != 1 %}s{%  endif %}</span>
         </td>
       </tr>
     {% endif %}
