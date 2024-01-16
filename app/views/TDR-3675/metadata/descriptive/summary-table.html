@@ -70,7 +70,7 @@
               </dd>
             </div>
           {% endif %}
-          {% if item['addDescriptive-language-select'] %}
+          {% if item['addDescriptive-translation'] %}
             <div class="tdr-summary-list__row">
               <dt class="tdr-summary-list__key">
                 Translated title
@@ -91,18 +91,6 @@
             </div>
           {% endif %}
           </dl>
-
-          {# <ul class="govuk-list govuk-body-s">
-            <li>{% if item['addDescriptive-language-select'] %}Language{% endif%}</li>
-            <li>{% if item['addDescriptive-translation'] %}Translated title{% endif%}</li>
-            <li>{% if item['addDescriptive-former-refs'] %}Former reference{% endif%}</li>
-          </ul> #}
-          {# {% for l in item['addDescriptive-language-select'] %}
-              {{l | langNameFromCode(data.languages) -}}
-              {% if loop.last != true %}, {% endif %}
-            {% else %}
-            -
-            {% endfor %} #}
         </td>
         <td headers="{{item.id}}" class="govuk-table__cell govuk-table__cell--with-hidden-menu">
           {% set typeOfMetadata = "descriptive" %}
