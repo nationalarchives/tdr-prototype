@@ -616,7 +616,7 @@ router.get(
     req.session.data[key] = req.session.data.descriptiveFiles[req.params.fileId][key];
   }
 
-  res.render("/TDR-3675/metadata/closed-records/review-metadata", {
+  res.render("/TDR-3675/metadata/descriptive/review-metadata", {
     path: "/TDR-3675/metadata/descriptive",
     from: "/TDR-3675/metadata/descriptive/summary",
     data: req.session.data,
