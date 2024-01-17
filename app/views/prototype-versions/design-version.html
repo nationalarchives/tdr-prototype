@@ -99,7 +99,7 @@
               text: "Design history"
             },
             value: {
-              html: ['<a target="_blank" href="', data['Design history'], '">View on Confluence</a>']|join
+              html: ['<a target="_blank" href="', data['Design history'], '">View on Confluence</a>']|join  if (data['Design history']) else "-"
             }
           }
         ]
