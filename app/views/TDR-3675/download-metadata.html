@@ -1,0 +1,92 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% block pageTitle %}
+  Download and review metadata
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-xl">Download and review metadata</h1>
+
+      <h2 class="govuk-heading-l">Consignment metadata summary</h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Uploaded records"
+            },
+            value: {
+              text: "200"
+            }
+          },
+          {
+            key: {
+              text: "Records with a corrected date"
+            },
+            value: {
+              text: "5"
+            }
+          },
+          {
+            key: {
+              text: "Records with closure information"
+            },
+            value: {
+              text: "5"
+            }
+          },
+          {
+            key: {
+              text: "Records with descriptive metadata"
+            },
+            value: {
+              html: "10"
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-l">Download and review CSV</h2>
+      <p class="govuk-body">The CSV download contains a row for all records you uploaded, all consignment metadata extracted during upload, and any additional metadata you provided.</p>
+      <p class="govuk-body">You can use this to review all your records and metadata before transfering to us.</p>
+
+      <button class="govuk-button" data-module="govuk-button">
+        <span aria-hidden="true" class="tna-button-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 21">
+            <path fill="#fff" d="M15.96 21V2.52h-1.68v16.8H2.52V21h13.44Z"/>
+            <path fill="#fff" d="M0 0h13.44v18.48H0z"/>
+          </svg>
+        </span>Download metadata CSV
+      </button>
+
+      <p class="govuk-body">If you would like to add or amend any metadata, return to Record metadata.</p>
+
+      <nav class="govuk-pagination govuk-pagination--block" role="navigation" aria-label="results">
+        <div class="govuk-pagination__prev">
+          <a class="govuk-link govuk-pagination__link" href="metadata/" rel="prev">
+            <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+            </svg>
+            <span class="govuk-pagination__link-title">Previous</span>
+            <span class="govuk-visually-hidden">:</span>
+            <span class="govuk-pagination__link-label">Record metadata</span></a>
+        </div>
+        <div class="govuk-pagination__next">
+          <a class="govuk-link govuk-pagination__link" href="summary" rel="next">
+            <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+            </svg>
+            <span class="govuk-pagination__link-title">Next</span>
+            <span class="govuk-visually-hidden">:</span>
+            <span class="govuk-pagination__link-label">Confirm transfer</span></a>
+        </div>
+      </nav>
+
+    </div>
+  </div>
+{% endblock %}
