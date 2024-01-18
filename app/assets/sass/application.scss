@@ -931,3 +931,9 @@
   z-index: 10;
   pointer-events: none;
 }
+
+@include govuk-media-query($from: tablet) {
+  .govuk-summary-list--wide-key .govuk-summary-list__key {
+    width: 50%;
+  }
+}
