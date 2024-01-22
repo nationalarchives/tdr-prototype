@@ -543,10 +543,39 @@ router.get(
 
     res.render("/TDR-3675/metadata/closed-records/review-metadata", {
       path: "/TDR-3675/metadata/closed-records",
-      from: "/TDR-3675/metadata/closed-records/summary",
+      from: "/TDR-3675/metadata/closed-records/add",
       data: req.session.data,
       records : testMetadata150
     });
+  }
+);
+
+router.get(
+  "/TDR-3675/metadata/closed-records/delete-by-id/:fileId",
+  function (req, res) {
+    req.session.data["file-selection"] = [req.params.fileId]
+    res.render("/TDR-3675/metadata/closed-records/delete-metadata", {
+      data: req.session.data,
+      records : testMetadata150
+    });
+  }
+);
+
+router.get(
+  "/TDR-3675/metadata/closed-records/confirm-delete-metadata",
+  function (req, res) {
+    if (req.session.data["file-selection"] === undefined) {
+      throw new Error("Missing file selection");
+    }
+
+    const selected = req.session.data["file-selection"];
+    const closedFiles = req.session.data["closedFiles"];
+
+    Array.from(selected).forEach((file) => {
+      delete closedFiles[selected];
+    });
+
+    res.redirect("/TDR-3675/metadata/closed-records/add");
   }
 );
 

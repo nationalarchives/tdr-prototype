@@ -1,0 +1,55 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Remove properties
+{% endblock %}
+
+{% block content %}
+
+  <form action="../confirm-delete-metadata">
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">Delete closed record information</h1>
+
+        <p class="govuk-body">You are about to delete the closed record information for the following record and set it as open.</p>
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+              Once closed record information is deleted, it cannot be recovered. The selected record will be set to open.
+          </strong>
+        </div>
+      </div>
+    </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <div class="tdr-card">
+          <div class="tdr-card__content tdr-card__content--file-list">
+        {% for record in data['file-selection'] %}
+          {% set fileObject = record|getFileObject(records) %}
+          <ol class="tdr-file-breadcrumbs">
+            {% set currStrIndex = 0 %}
+            {% for dir in fileObject.path|d("")|split("/") %}
+              <li class="tdr-file-breadcrumbs__list-item">{{dir|highlightMatches(item.matches, "path", currStrIndex, currentDirectory)|safe}}</li>
+              {% set currStrIndex = 1+currStrIndex+dir|length %}
+            {% else %}
+              <li class="tdr-file-breadcrumbs__list-item">/</li>
+            {% endfor %}
+              <li class="tdr-file-breadcrumbs__list-item tdr-file-breadcrumbs__list-item--file govuk-!-font-size-19">{{fileObject.name}}</li>
+          </ol>
+        {% endfor %}
+          </div>
+        </div>
+
+        <div class="govuk-button-group">
+          <button role="button" draggable="false" class="govuk-button govuk-button--warning" data-module="govuk-button">
+          Delete closed record information
+        </button>
+          <a class="govuk-link govuk-link--no-visited-state" href="./review-metadata">Cancel</a>
+        </div>
+
+      </div>
+    </div>
+  </form>
+{% endblock %}
