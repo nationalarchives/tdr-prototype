@@ -34,7 +34,7 @@
               <li class="tdr-file-breadcrumbs__list-item">/</li>
             {% endfor %}
             </ol>
-            <span class="tdr-summary-table__file-count">{{currentDirectory|countInDir(data['descriptiveFiles'], true)}} file{% if currentDirectory|countInDir(data['descriptiveFiles'], true) != 1 %}s{%  endif %}</span>
+            <span class="tdr-summary-table__file-count">{{currentDirectory|countInDir(data['descriptiveFiles'], true)}} record{% if currentDirectory|countInDir(data['descriptiveFiles'], true) != 1 %}s{%  endif %}</span>
           </td>
         </tr>
     {% endif %}
