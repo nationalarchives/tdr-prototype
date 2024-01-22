@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-Closure metadata - Review changes to closure metadata
+{% if from %}View metadata{% else %}Review saved changes{% endif %}
 {% endblock %}
 
 {% block beforeContent %}
@@ -18,7 +18,7 @@ Closure metadata - Review changes to closure metadata
       <h1 class="govuk-heading-l">
         {% if from %}View metadata{% else %}Review saved changes{% endif %}
       </h1>
-      <p class="govuk-body">Review the closure metadata you have entered against this record.</p>
+      <p class="govuk-body">{% if from %}View{% else %}Review{% endif %} the closure metadata you have entered against this record.</p>
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
