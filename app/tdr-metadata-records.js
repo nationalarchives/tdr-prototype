@@ -329,6 +329,8 @@ exports.table = function(req, baseURL, recordsMetdata) {
     })
     data.recordsCount = data.recordsMetadata.length
     data.filterByDirectory = filterByDirectory;
+  } else {
+    data.filterByDirectory = ""
   }
 
   // SORT
