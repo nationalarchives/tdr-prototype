@@ -36,15 +36,17 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 8px;
+  margin-bottom: govuk-spacing(2);
 }
 
 .table-controls__sort {
   width: auto;
-  margin-bottom: govuk-spacing(4);
+  margin-bottom: 0;
 }
 
 .table-controls__filters {
   flex: 1;
+  margin-bottom: govuk-spacing(4);
 }
 
 .table-controls .filteredby-panel {
@@ -75,7 +77,13 @@
     margin-bottom: govuk-spacing(4);
     align-items: flex-end;
   }
-  .table-controls__sort {
+
+  .table-controls__sort-container {
     margin-bottom: 0;
   }
+
+  .table-controls__filters {
+    margin-bottom: 0;
+  }
+
 }

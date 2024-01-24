@@ -782,7 +782,19 @@
 }
 
 .filters__input {
-  flex: 1;
+  flex-grow: 1;
+  flex-basis: auto;
+  margin-bottom: govuk-spacing(2);
+}
+
+@include govuk-media-query($from: mobile) {
+  .filters__input {
+    margin-bottom: 0;
+  }
+}
+
+.filters button {
+  flex-basis: 0;
 }
 
 .filters__submit {
