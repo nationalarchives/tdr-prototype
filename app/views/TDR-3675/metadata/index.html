@@ -21,9 +21,9 @@
 
     <ul class="govuk-task-list govuk-!-margin-bottom-6">
       {% set datesComplete = "Complete" if data.lastModifiedComplete == "true"  == true else "Incomplete" %}
-      {{ taskList.item("Date last modified", "./last-modified-dates/", datesComplete, "Check and correct dates.", true) }}
+      {{ taskList.item("Date last modified", "./last-modified-dates/", datesComplete, "Check when records were last modified and provide correct dates were necessary.", true) }}
       {% set closureComplete = "Complete" if data.closedComplete == "true" else "Incomplete" %}
-      {{ taskList.item("Closed record information", "./closed-records/", closureComplete, "Add information about all closed records.", true) }}
+      {{ taskList.item("Closed record information", "./closed-records/", closureComplete, "Add metadata to all closed records.", true) }}
       {% set descriptiveComplete = "Complete" if data.descriptiveComplete == "true"  else "Incomplete" %}
       {{ taskList.item("Descriptive metadata", "./descriptive/", descriptiveComplete, "Enhance your records with decriptive information.", true) }}
     </ul>
