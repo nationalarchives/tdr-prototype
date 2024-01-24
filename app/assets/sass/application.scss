@@ -6,6 +6,7 @@
 // Add extra styles here
 @import './gds-task-list.scss';
 // @import './tdr-edit-in-place.scss';
+@import './tdr-filteredby-panel.scss';
 @import './tdr-file-breadcrumb.scss';
 @import './tdr-table-controls.scss';
 @import './tdr-summary-list.scss';
@@ -884,36 +885,6 @@
 
 .facet-tag__search-term {
   font-weight: bold;
-}
-
-.filteredby-panel {
-  border-bottom: 1px solid govuk-colour("mid-grey");
-  margin-bottom: 10px;
-  justify-content: space-between;
-  gap: 16px;
-  @include govuk-font($size: 16);
-  @include govuk-text-colour;
-  @include govuk-responsive-padding(2);
-  background-color: govuk-colour("light-grey");
-}
-
-@include govuk-media-query($from: tablet) {
-  .filteredby-panel {
-    display: flex;
-  }
-}
-
-.filteredby-panel__count {
-  margin: 5px 0;
-  @include govuk-typography-responsive($size: 19);
-  @include govuk-text-colour;
-  background-color: govuk-colour("blue");
-  font-weight: bold;
-  color: govuk-colour("white");
-  @include govuk-responsive-padding(1);
-  white-space: nowrap;
-  align-self: baseline;
-  text-align: center;
 }
 
 
