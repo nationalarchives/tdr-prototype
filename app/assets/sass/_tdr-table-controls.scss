@@ -2,7 +2,7 @@
 .table-controls  {
   background-color: govuk-colour("light-grey");
   @include govuk-responsive-padding(4);
-  @include govuk-responsive-margin(4, "bottom");
+  @include govuk-responsive-margin(3, "bottom");
 }
 
 .table-controls .govuk-form-group {

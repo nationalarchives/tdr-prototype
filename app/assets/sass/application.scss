@@ -847,7 +847,7 @@
   padding: govuk-em(6, 16px) govuk-em(6, 16px) govuk-em(6, 16px) govuk-em(24, 16px);
   border: 1px solid govuk-colour("dark-grey");
   border-radius: govuk-em(5, 16px);
-  background-color: govuk-colour("light-grey");
+  background-color: govuk-colour("white");
 }
 
 .facet-tag__text {
@@ -859,24 +859,25 @@
 }
 
 .facet-tag__remove:visited {
-  color: $govuk-text-colour;
+  color: govuk-colour("blue");
 }
 
 .facet-tag__remove {
   box-sizing: border-box;
   display: inline-block;
   position: absolute;
-  top: 0;
+  top: 0px;
   left: 0;
   width: 100%;
   height: 100%;
   padding: govuk-em(6, 16px);
   border-radius: govuk-em(5, 16px);
   font-weight: bold;
-  @include govuk-font(16, $weight: bold);
+  font-size: 19px;
+  line-height: 19px;
   text-align: left;
   cursor: pointer;
-  color: $govuk-text-colour;
+  color: govuk-colour("blue");
   text-decoration: none;
   background: none;
   border: 1px solid transparent;
