@@ -873,8 +873,8 @@
   padding: govuk-em(6, 16px);
   border-radius: govuk-em(5, 16px);
   font-weight: bold;
-  font-size: 19px;
-  line-height: 19px;
+  font-size: 16px;
+  line-height: 16px;
   text-align: left;
   cursor: pointer;
   color: govuk-colour("blue");
@@ -909,6 +909,7 @@
 .autocomplete__option {
   @include govuk-typography-common($font-family: $govuk-font-family);
   @include govuk-typography-responsive($size: 19);
+  word-break: break-all;
 }
 
 .autocomplete__dropdown-arrow-down {
@@ -920,4 +921,23 @@
   .govuk-summary-list--wide-key .govuk-summary-list__key {
     width: 50%;
   }
+
+  .facet-tag__remove {
+    font-size: 19px;
+    line-height: 19px;
+  }
+}
+
+.record-count {
+  margin: 5px 0;
+  @include govuk-typography-responsive($size: 19);
+  @include govuk-text-colour;
+  background-color: govuk-colour("blue");
+  font-weight: bold;
+  color: govuk-colour("white");
+  @include govuk-responsive-padding(1);
+  white-space: nowrap;
+  align-self: baseline;
+  text-align: center;
+  border-radius: 5px;
 }

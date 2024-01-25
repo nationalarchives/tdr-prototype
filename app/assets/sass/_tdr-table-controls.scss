@@ -22,11 +22,6 @@
   border-top-left-radius: 5px;
 }
 
-.table-controls .filteredby-panel__count,
-.table-controls__pagination {
-  border-radius: 5px
-}
-
 .table-controls__row {
   margin-bottom: govuk-spacing(2);
 }
@@ -40,7 +35,8 @@
 }
 
 .table-controls__sort {
-  width: auto;
+  min-width: 120px;
+  width: 120px;
   margin-bottom: 0;
 }
 
@@ -63,6 +59,7 @@
   background: govuk-colour("white");
   display: flex;
   justify-content: center;
+  border-radius: 5px
 }
 
 .table-controls__pagination .govuk-pagination {
@@ -74,7 +71,7 @@
   .table-controls__row {
     display: flex;
     gap: govuk-spacing(6);
-    margin-bottom: govuk-spacing(4);
+    margin-bottom: govuk-spacing(2);
     align-items: flex-end;
   }
 

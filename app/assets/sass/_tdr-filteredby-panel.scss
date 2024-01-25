@@ -14,21 +14,32 @@
   .filteredby-panel {
     display: flex;
   }
-}
 
-.filteredby-panel__facets {
-  flex-grow: 1;
+  .filteredby-panel__count-label {
+    margin-right: 0;
+  }
+
+  .filteredby-panel__count {
+    width: 200px;
+    margin-top: 10px;
+  }
 }
 
 .filteredby-panel__count {
-  margin: 5px 0;
-  @include govuk-typography-responsive($size: 19);
-  @include govuk-text-colour;
-  background-color: govuk-colour("blue");
+  margin-right: 0;
+}
+
+.filteredby-panel__count-label {
+  margin-right: 5px;
+  @include govuk-font($size: 16);
   font-weight: bold;
-  color: govuk-colour("white");
-  @include govuk-responsive-padding(1);
-  white-space: nowrap;
-  align-self: baseline;
-  text-align: center;
+}
+
+.filteredby-panel__facets {
+  flex: 1;
+}
+
+
+.filteredby-panel__count .record-count {
+  display: inline-block;
 }

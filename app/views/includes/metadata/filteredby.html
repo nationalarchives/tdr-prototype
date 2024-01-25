@@ -1,6 +1,17 @@
 <div class="filteredby-panel">
+
+
   <div class="filteredby-panel__count">
-    {{data['recordsCount']|d("732")}} record{% if data['recordsCount'] > 1 %}s{%endif%}
+    {# <div class="filteredby-panel__count-label">
+      Records displayed
+    </div> #}
+    <div class="record-count">
+     {% if data['recordsCount'] == data['recordsTotal'] %}
+      {{data['recordsTotal']|d("732")}} records
+     {%else%}
+      {{data['recordsCount']|d("732")}} of {{data['recordsTotal']|d("732")}} records
+     {%endif%}
+    </div>
   </div>
   <div class="filteredby-panel__facets facet-tags">
     {% set numOfFacets = 0 %}
@@ -25,7 +36,7 @@
           {% else %}and {% endif %}
         </span>
         <span class="facet-tag">
-          <span class="facet-tag__text">Record names containing <span class="facet-tag__search-term">{{data['searchFilePattern']}}</span></span>
+          <span class="facet-tag__text">File names containing "<span class="facet-tag__search-term">{{data['searchFilePattern']}}</span>"</span>
           <a href="{{data['urlNoSearchFile']}}" draggable="false"  class="facet-tag__remove" aria-label="Remove filter File names containing {{data['searchFilePattern']}}">✕</a>
         </span>
       </div>
