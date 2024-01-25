@@ -9,11 +9,11 @@ Add or edit closure metadata
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
-        <h1 class="govuk-heading-l">
-            Add or edit metadata
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+            Edit metadata
         </h1>
+        <p class="govuk-hint govuk-!-margin-bottom-5">All fields on this page are required.</p>
 
-        <p class="govuk-body">All fields on this page are required.</p>
         {% if error == "missing-fields" %}
           <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="govuk-error-summary">
             <h2 class="govuk-error-summary__title" id="error-summary-title">
@@ -29,10 +29,9 @@ Add or edit closure metadata
           </div>
         {% endif %}
 
-
+        <p class="govuk-body">You are adding or editing closure metadata for the following record:</p>
         <div class="tdr-card">
           <div class="tdr-card__content tdr-card__content--file-list">
-            <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding or editing closure metadata for the following file:</p>
             <ul>
             {% for record in data['file-selection'] %}
               <li>
@@ -52,6 +51,7 @@ Add or edit closure metadata
             </ul>
           </div>
         </div>
+
       </div>
     </div>
 
@@ -66,12 +66,12 @@ Add or edit closure metadata
           <fieldset class="govuk-fieldset" role="group" aria-describedby="foi-decision-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading">
-                FOI decision asserted
+                FOI schedule agreed date
               </h2>
             </legend>
             <div id="foi-decision-hint" class="govuk-hint">
-                    Date of the Advisory Council approval.
-                  </div>
+                Date of the Advisory Council approval.
+            </div>
             {% if errorFOIDate == true %}
               <p id="passport-issued-error" class="govuk-error-message">
                 <span class="govuk-visually-hidden">Error:</span> Enter a value for FOI decision asserted date
@@ -241,9 +241,9 @@ Add or edit closure metadata
         <div class="govuk-form-group govuk-!-margin-bottom-9{% if errorTitleClosed == true %}govuk-form-group--error{% endif %}">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-              <h1 class="govuk-fieldset__heading">Is the title sensitive for the public?</h1>
+              <h1 class="govuk-fieldset__heading">Is the file name sensitive for the public?</h1>
             </legend>
-            <p id="current_title_label" class="govuk-hint">If the title of this record contains sensitive information, you must select 'Yes' and provide an alternative title.</p>
+            <p id="current_title_label" class="govuk-hint">If the file name of this record contains sensitive information, you must select 'Yes' and provide an alternative file name.</p>
             <div aria-labelledby="current_title_label" class="govuk-inset-text govuk-!-margin-top-3">
               {{filename}}
             </div>
@@ -259,8 +259,8 @@ Add or edit closure metadata
               </div>
               <div class="govuk-radios__conditional" id="conditional-closed-title">
                 <div class="govuk-form-group">
-                  <label class="govuk-label" for="alternative-title">Add alternative title without the file extension</label>
-                  <p class="govuk-hint">This title will be visible to the public during the closure period.</p>
+                  <label class="govuk-label" for="alternative-title">Add alternative file name without the file extension</label>
+                  <p class="govuk-hint">This file name will be visible to the public during the closure period.</p>
                   <div class="govuk-input__wrapper">
                     <input class="govuk-input govuk-input govuk-input--width-20" id="alternative-title" name="addClosure-alternative-title" type="text" value="{{data['addClosure-alternative-title']}}">
                     <div class="govuk-input__suffix" aria-hidden="true">{{ filename| getFileExtension }}</div>
@@ -269,7 +269,7 @@ Add or edit closure metadata
               </div>
               <div class="govuk-radios__item">
                 <input {% if data["addClosure-is-the-title-sensitive"] == "no" or data["addClosure-is-the-title-sensitive"] == undefined  %}checked{%endif%} class="govuk-radios__input" id="closed-title-2" name="addClosure-is-the-title-sensitive" type="radio" value="no">
-                <label class="govuk-label govuk-radios__label" for="closed-title-2">No, this title can be made public</label>
+                <label class="govuk-label govuk-radios__label" for="closed-title-2">No, this file name can be made public</label>
               </div>
             </div>
           </fieldset>
