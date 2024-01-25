@@ -8,8 +8,8 @@
   </colgroup>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Record name</th>
-      <th scope="col" class="govuk-table__header">Extracted date</th>
+      <th scope="col" class="govuk-table__header">File name</th>
+      <th scope="col" class="govuk-table__header">Date last modified</th>
       <th scope="col" class="govuk-table__header">Corrected date</th>
       <th scope="col" class="govuk-table__header"><span class="govuk-visually-hidden">Actions</span></th>
       <th id="header-dir" scope="col" class="govuk-visually-hidden">Directory</th>
@@ -53,6 +53,8 @@
         <td headers="{{currentDirectory|urlencode}}{{item.name|urlencode}}" class="govuk-table__cell govuk-table__cell--nowrap">
           {% if item['ldm-corrected-day'] and item['ldm-corrected-month'] and item['ldm-corrected-year']%}
           {{item['ldm-corrected-day']}} {{item['ldm-corrected-month']|getMonthName("short")}} {{item['ldm-corrected-year']}}
+          {% else %}
+          -
           {% endif %}
         </td>
         <td headers="{{currentDirectory|urlencode}}{{item.id|urlencode}}" class="govuk-table__cell govuk-table__cell--with-hidden-menu">

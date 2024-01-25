@@ -8,8 +8,8 @@
   </colgroup>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Record name<span class="govuk-visually-hidden"> and path</span></th>
-      <th scope="col" class="govuk-table__header">Extracted date</th>
+      <th scope="row" class="govuk-table__header">File name<span class="govuk-visually-hidden"> and path</span></th>
+      <th scope="col" class="govuk-table__header">Date last modified</th>
       <th scope="col" class="govuk-table__header">Corrected date</th>
       <th scope="col" class="govuk-table__header"><span class="govuk-visually-hidden">Actions</span></th>
     </tr>
@@ -32,7 +32,13 @@
         <td class="govuk-table__cell govuk-table__cell--nowrap">
           {{item['ldm-extracted-day']}} {{item['ldm-extracted-month']|getMonthName("short")}} {{item['ldm-extracted-year']}}
         </td>
-        <td class="govuk-table__cell govuk-table__cell--nowrap">-</td>
+        <td class="govuk-table__cell govuk-table__cell--nowrap">
+          {% if item['ldm-corrected-day'] and item['ldm-corrected-month'] and item['ldm-corrected-year']%}
+          {{item['ldm-corrected-day']}} {{item['ldm-corrected-month']|getMonthName("short")}} {{item['ldm-corrected-year']}}
+          {% else %}
+          -
+          {% endif %}
+        </td>
 
         <td class="govuk-table__cell govuk-table__cell--with-hidden-menu">
           <a class="govuk-link govuk-link--no-visited-state" href="./edit/{{item.path|urlencode}}{{item.name|urlencode}}?{{data.queryParamsString}}">Edit<span class="govuk-visually-hidden">&nbsp;metadata for {{item.name}}</span></a>
