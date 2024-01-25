@@ -285,10 +285,11 @@ exports.table = function(req, baseURL, recordsMetdata) {
 
   data.recordsMetadata = recordsMetdata;
   data.recordsCount = data.recordsMetadata.length;
+  data.recordsTotal = data.recordsMetadata.length;
 
   // Using Set to remove duplicates.
   data.directories = [...new Set(data.recordsMetadata.map((item) => item.path))].sort().map(item => {
-    return {text: item.split("/").join(" / "), value: item, selected: item === decodeURIComponent(filterByDirectory)}
+    return {text: item, value: item, selected: item === decodeURIComponent(filterByDirectory)}
   });
   data.directories.unshift({value: "", text:""})
 
