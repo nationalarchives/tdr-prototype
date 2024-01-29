@@ -5,7 +5,7 @@
 const govukPrototypeKit = require("govuk-prototype-kit");
 const router = govukPrototypeKit.requests.setupRouter();
 
-// const filters = require("./filters")
+const filters = require("./filters")
 require("./routes-history")
 const tdrMetadataRecords = require("./tdr-metadata-records")
 const tdrSettings = require("./data/settings.json")
@@ -16,6 +16,7 @@ const descriptiveMetadataSummaryExampleData = require("./data/descriptive-metada
 const descriptiveMetadataSummaryExampleData2 = require("./data/descriptive-metadata-summary-example-02.json");
 const testMetadata1000 = require("./data/test-metadata-1000.json");
 const testMetadata150 = require("./data/test-metadata-150.json");
+const onsMetadata = require("./data/ons-data.json");
 
 const requireClosureFields = [
   "addClosure-foi-asserted-day",
@@ -422,26 +423,28 @@ router.post( "/TDR-3486/metadata/last-modified-dates/edit/:nameAndPath", (req, r
  * TDR-3675 - Composite for review
  */
 
+const records = filters.onsMetadataFilter(onsMetadata);
+
 // DATES
 router.get("/TDR-3675/metadata/last-modified-dates/check-and-correct", (req, res) => {
-  const tplArgs = tdrMetadataRecords.table(req, req.path, testMetadata150);
+  const tplArgs = tdrMetadataRecords.table(req, req.path, records);
   res.render(req.path, tplArgs);
 });
 
 router.get( "/TDR-3675/metadata/last-modified-dates/edit/:nameAndPath", (req, res) => {
-  const data = tdrMetadataRecords.editPageData(req, testMetadata150)
+  const data = tdrMetadataRecords.editPageData(req, records)
   res.render('/TDR-3675/metadata/last-modified-dates/edit', data);
 });
 
 router.post( "/TDR-3675/metadata/last-modified-dates/edit/:nameAndPath", (req, res) => {
-  tdrMetadataRecords.addCorrectedDate(req, testMetadata150)
+  tdrMetadataRecords.addCorrectedDate(req, records)
   res.redirect("/TDR-3675/metadata/last-modified-dates/check-and-correct?"+req.session.data.queryParamsString);
 })
 
 // CLOSED RECORDS
 router.get( "/TDR-3675/metadata/closed-records/add", (req, res) => {
   res.render(req.path, {
-    records : testMetadata150
+    records : records
   });
 });
 
@@ -450,14 +453,14 @@ router.get( "/TDR-3675/metadata/closed-records/add/static/", (req, res) => {
   data.closedFiles = closureMetadataSummaryExampleData2;
 
   res.render("/TDR-3675/metadata/closed-records/add", {
-    records : testMetadata150,
+    records : records,
     data : data
   });
 });
 
 router.get( "/TDR-3675/metadata/closed-records/choose-a-file", (req, res) => {
   res.render(req.path, {
-    records : testMetadata150
+    records : records
   });
 });
 
@@ -485,7 +488,7 @@ router.get(
 
 router.get( "/TDR-3675/metadata/closed-records/closure-status", (req, res) => {
   res.render(req.path, {
-    records : testMetadata150
+    records : records
   });
 });
 
@@ -503,14 +506,14 @@ router.get( "/TDR-3675/metadata/closed-records/confirm-closure-status", (req, re
 
 router.get( "/TDR-3675/metadata/closed-records/add-closure", (req, res) => {
   res.render(req.path, {
-    records : testMetadata150
+    records : records
   });
 });
 
 router.get( "/TDR-3675/metadata/closed-records/confirm-add-closure", (req, res) => {
   if(tdrMetadataRecords.validateAddClosure(req, res) === false){
     res.render("/TDR-3675/metadata/closed-records/add-closure", {
-      records : testMetadata150,
+      records : records,
       error: "missing-fields"
     });
   } else {
@@ -521,7 +524,7 @@ router.get( "/TDR-3675/metadata/closed-records/confirm-add-closure", (req, res) 
 
 router.get( "/TDR-3675/metadata/closed-records/review-metadata", (req, res) => {
   res.render(req.path, {
-    records : testMetadata150
+    records : records
   });
 });
 
@@ -545,7 +548,7 @@ router.get(
       path: "/TDR-3675/metadata/closed-records",
       from: "/TDR-3675/metadata/closed-records/add",
       data: req.session.data,
-      records : testMetadata150
+      records : records
     });
   }
 );
@@ -556,7 +559,7 @@ router.get(
     req.session.data["file-selection"] = [req.params.fileId]
     res.render("/TDR-3675/metadata/closed-records/delete-metadata", {
       data: req.session.data,
-      records : testMetadata150
+      records : records
     });
   }
 );
@@ -582,7 +585,7 @@ router.get(
 // DESCRIPTIVE RECORDS
 router.get( "/TDR-3675/metadata/descriptive/add", (req, res) => {
   res.render(req.path, {
-    records : testMetadata150
+    records : records
   });
 });
 
@@ -591,14 +594,14 @@ router.get( "/TDR-3675/metadata/descriptive/add/static", (req, res) => {
   data.descriptiveFiles = descriptiveMetadataSummaryExampleData2;
 
   res.render("/TDR-3675/metadata/descriptive/add", {
-    records : testMetadata150,
+    records : records,
     data : data
   });
 });
 
 router.get( "/TDR-3675/metadata/descriptive/choose-a-file", (req, res) => {
   res.render(req.path, {
-    records : testMetadata150
+    records : records
   });
 });
 
@@ -613,7 +616,7 @@ router.get("/TDR-3675/metadata/descriptive/confirm-file-level", (req, res) => {
 
 router.get("/TDR-3675/metadata/descriptive/add-descriptive", (req, res) => {
   res.render(req.path, {
-    records : testMetadata150
+    records : records
   });
 });
 
@@ -627,7 +630,7 @@ router.get("/TDR-3675/metadata/descriptive/confirm-add-descriptive", (req, res) 
 
 router.get( "/TDR-3675/metadata/descriptive/review-metadata", (req, res) => {
   res.render(req.path, {
-    records : testMetadata150
+    records : records
   });
 });
 
@@ -649,7 +652,7 @@ router.get(
     path: "/TDR-3675/metadata/descriptive",
     from: "/TDR-3675/metadata/descriptive/summary",
     data: req.session.data,
-    records : testMetadata150
+    records : records
   });
 });
 

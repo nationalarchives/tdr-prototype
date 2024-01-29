@@ -282,8 +282,24 @@ filters.getFileObject = function(fileId, data){
   });
 }
 
+filters.onsMetadataFilter = function(data){
+  return data.map(({file_name, path, date_last_modified}) => {
+    const d = new Date(date_last_modified);
+    return {
+      name: file_name,
+      path: decodeURI(path),
+      "ldm-extracted-day": d.getDate(),
+      "ldm-extracted-month": d.getMonth()+1,
+      "ldm-extracted-year": d.getFullYear(),
+    }
+  });
+}
+
 for (let name in filters) {
   addFilter(name, filters[name]);
 }
 
-module.exports = { convertFlatToTree : filters.convertFlatToTree }
+module.exports = {
+  convertFlatToTree : filters.convertFlatToTree,
+  onsMetadataFilter: filters.onsMetadataFilter
+}
