@@ -295,6 +295,7 @@ exports.table = function(req, baseURL, recordsMetdata) {
 
   data.currentDirFilter = data.directories.find(item => item.selected === true)?.text
   data.currentAlphaFilter = ""
+  data.sort = sort
 
   // SEARCH
   if(searchPattern || searchFilePattern){

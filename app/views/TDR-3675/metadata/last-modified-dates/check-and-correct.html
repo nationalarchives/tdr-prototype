@@ -62,6 +62,7 @@
         </form>
         <div class="table-controls__filters">
           <form action="" method="get">
+          <input type="hidden" name="sort" value="{{data.sort}}" />
           {% set filterDirectoryClasses = "autocomplete" %}
           {% include "includes/metadata/filters.html" %}
           </form>
