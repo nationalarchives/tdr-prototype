@@ -97,7 +97,7 @@ Descriptive metadata - Review changes to descriptive metadata
       </dl>
 
       <div class="govuk-button-group">
-        <a href="./add" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        <a href="{{path|d(".")}}/add" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
           Continue
         </a>
         <a href="{{path|d(".")}}/edit-by-id/{{data['file-selection'][0]|urlencode}}" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">

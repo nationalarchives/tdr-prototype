@@ -150,7 +150,7 @@
 
       <div class="govuk-button-group">
         {% if not from %}
-        <a href="./add" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        <a href="{{path|d(".")}}/add" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
           Continue
         </a>
         {% endif %}
