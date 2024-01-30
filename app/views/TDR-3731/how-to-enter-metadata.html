@@ -1,0 +1,45 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  How would you like to enter record metadata?
+{% endblock %}
+
+{% block content %}
+<form class="form" action="/TDR-3731/metadata-route" method="post">
+  {{ govukRadios({
+    name: "metadata-route",
+    fieldset: {
+      legend: {
+        text: "How would you like to enter record metadata?",
+        isPageHeading: true,
+        classes: "govuk-fieldset__legend--l"
+      }
+    },
+    hint: {
+      text: ""
+    },
+    items: [
+      {
+        value: "website",
+        text: "Manually enter",
+        hint: {
+          text: "Select records and enter metadata through forms on this website"
+        }
+      },
+      {
+        value: "csv",
+        text: "Upload a CSV",
+        hint: {
+          text: "Populate a CSV with metadata in a specific format and upload"
+        }
+      }
+    ]
+  }) }}
+
+  {{ govukButton({
+    text: "Continue"
+  }) }}
+</form>
+
+{% endblock %}
