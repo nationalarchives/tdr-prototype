@@ -455,7 +455,7 @@ router.get( "/TDR-3675/metadata/closed-records/add/static/", (req, res) => {
   });
 });
 
-router.get( "/TDR-3675/metadata/closed-records/choose-a-file", (req, res) => {
+router.get( "/TDR-3675/metadata/closed-records/choose-a-record", (req, res) => {
   res.render(req.path, {
     records : testMetadata150
   });
@@ -596,7 +596,7 @@ router.get( "/TDR-3675/metadata/descriptive/add/static", (req, res) => {
   });
 });
 
-router.get( "/TDR-3675/metadata/descriptive/choose-a-file", (req, res) => {
+router.get( "/TDR-3675/metadata/descriptive/choose-a-record", (req, res) => {
   res.render(req.path, {
     records : testMetadata150
   });
@@ -604,7 +604,7 @@ router.get( "/TDR-3675/metadata/descriptive/choose-a-file", (req, res) => {
 
 router.get("/TDR-3675/metadata/descriptive/confirm-file-level", (req, res) => {
   if (tdrMetadataRecords.validateFileSelection(req) === false) {
-    res.render("/TDR-3675/metadata/descriptive/choose-a-file", { error: "no-selection" });
+    res.render("/TDR-3675/metadata/descriptive/choose-a-record", { error: "no-selection" });
   } else {
     tdrMetadataRecords.populateWithDescriptive(req, res);
     res.redirect("/TDR-3675/metadata/descriptive/add-descriptive");
