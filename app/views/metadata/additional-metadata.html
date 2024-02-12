@@ -13,7 +13,7 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <span class="govuk-caption-l">Step 5 of 7</span>
-      <h1 class="govuk-heading-l">Descriptive & closure metadata</h1>
+      <h1 class="govuk-heading-l">Descriptive & Closed record metadata</h1>
       {% include "../banner-leave-return.html" %}
       <p class="govuk-body">You can now add or edit closure and descriptive metadata to your records.</p>
 
@@ -48,7 +48,7 @@
               <span class="govuk-details__summary-text">Records with sensitive descriptions</span>
             </summary>
             <div class="govuk-details__text">
-              <p class="govuk-body">If the description of a record contains sensitive information, you must enter the full uncensored version on the Descriptive metadata page before entering an alternative description on the Closure metadata page.</p>
+              <p class="govuk-body">If the description of a record contains sensitive information, you must enter the full uncensored version on the Descriptive metadata page before entering an alternative description on the Closed record metadata page.</p>
             </div>
           </details>
         </div>
@@ -58,18 +58,18 @@
         <div class="tdr-card__content">
           <header>
             <h2 class="govuk-heading-s">
-              <a class="govuk-link govuk-link--no-visited-state" href="closure-metadata/file-level">Closure metadata</a>
+              <a class="govuk-link govuk-link--no-visited-state" href="closure-metadata/file-level">Closed record metadata</a>
             </h2>
             <strong class="tdr-card--metadata__state govuk-tag govuk-tag--{% if data['closedFiles'] === undefined %}grey{% else %}blue{% endif %}">
               {% if data['closedFiles'] === undefined %}Not Entered{% else %}Entered{% endif %}
             </strong>
           </header>
           <p class="govuk-body">Add closure and associated metadata to your files</p>
-          <p class="tdr-card--metadata__inset-text govuk-inset-text govuk-!-margin-top-0">You must add closure metadata to closed files and folders.</p>
+          <p class="tdr-card--metadata__inset-text govuk-inset-text govuk-!-margin-top-0">You must add Closed record metadata to closed files and folders.</p>
           <details class="govuk-details" data-module="govuk-details">
             <summary class="govuk-details__summary">
               <span class="govuk-details__summary-text">
-            What closure metadata you can provide
+            What Closed record metadata you can provide
             </span>
             </summary>
             <div class="govuk-details__text">
