@@ -27,7 +27,7 @@
       {% endif %}
 
       <p class="govuk-body">In your CSV, include a header row for the column titles and one row for every record that requires metadata.</p>
-      <details class="govuk-details" data-module="govuk-details">
+      {#<details class="govuk-details" data-module="govuk-details">
         <summary class="govuk-details__summary">
           <span class="govuk-details__summary-text">
             What column titles should I use?
@@ -47,15 +47,13 @@
             <li><strong>title_alternate</strong></li>
             <li><strong>description_public</strong></li>
             <li><strong>description_alternate</strong></li>
-            {# <li><strong>date of the record</strong> - Date format as follows: <pre>DD/MM/YYYY</pre></li>
+            <!--<li><strong>date of the record</strong> - Date format as follows: <pre>DD/MM/YYYY</pre></li>
             <li><strong>foi exemption code</strong> - One or more comma separated, for example <pre>22, 27(1), 24</pre></li>
             <li><strong>closure period</strong> - Years as a number, for example <pre>80</pre></li>
-            <li><strong>closure start date</strong> - Date format as follows: <pre>DD/MM/YYYY</pre></li> #}
+            <li><strong>closure start date</strong> - Date format as follows: <pre>DD/MM/YYYY</pre></li> -->
           </ul>
         </div>
-      </details>
-
-      {# <p class="govuk-body">For more information on the CSV structure and content, visit the <a href="/metadata-guidance" class="govuk-link">metadata guidance page</a>.</p> #}
+      </details> #}
 
       {{ govukFileUpload({
         id: "file-upload-1",
