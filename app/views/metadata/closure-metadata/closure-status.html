@@ -28,7 +28,7 @@ Check closure status
           <div class="tdr-card__content">
             {% set open =  data['file-selection']| filterOpen(data.closedFiles) %}
             {% if open.length > 0 %}
-              <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding closure status to the following files:</p>
+              <p class="govuk-body govuk-!-margin-bottom-2 govuk-!-font-weight-bold">You are adding closure status to the following records:</p>
               <ul class="govuk-list govuk-list--bullet">
                 {% for f in data['file-selection']| filterOpen(data.closedFiles) | getFilenames(globals.files) %}
                   <li>{{f|decodeFilename}}</li>
@@ -79,8 +79,8 @@ Check closure status
           </summary>
           <div class="govuk-details__text">
             <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
-              <li>FOI Schedule agreed date - this is the date that the closure schedule was agreed by the Advisory Council and/or The National Archives</li>
-              <li>Closure start date - this is the date of the last change to the record</li>
+              <li>FOI Schedule agreed date - this is the date that the closure schedule was agreed by the Advisory Council and/or The National Archives.</li>
+              <li>Closure start date - this is the date the closure period starts</li>
               <li>Closure period</li>
               <li>FOI exemption code</li>
               <li>Alternative file name</li>

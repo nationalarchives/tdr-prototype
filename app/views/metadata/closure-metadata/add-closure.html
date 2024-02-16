@@ -174,7 +174,7 @@ Add or edit closure metadata
             </label>
           </h2>
           <div id="closure-period-hint" class="govuk-hint">
-              This is the number of years the record is closed from the closure start date. If your file has multiple closure periods, enter the longest.
+              This is the number of years the record is closed from the closure start date. If your record has multiple closure periods, enter the longest.
             </div>
           {% if errorClosurePeriod == true %}
             <p id="passport-issued-error" class="govuk-error-message">
@@ -257,7 +257,7 @@ Add or edit closure metadata
               </div>
               <div class="govuk-radios__item">
                 <input {% if data["addClosure-is-the-title-sensitive"] == "no" or data["addClosure-is-the-title-sensitive"] == undefined  %}checked{%endif%} class="govuk-radios__input" id="closed-title-2" name="addClosure-is-the-title-sensitive" type="radio" value="no">
-                <label class="govuk-label govuk-radios__label" for="closed-title-2">No, this title can be made public</label>
+                <label class="govuk-label govuk-radios__label" for="closed-title-2">No, this file name can be made public</label>
               </div>
             </div>
           </fieldset>
@@ -308,7 +308,7 @@ Add or edit closure metadata
                   </div>
                 </div>
               {% else %}
-                <p class="govuk-body">If the description of this record contains sensitive information you must add an uncensored description in Descriptive metadata section before entering an alternative description here.</p>
+                <p class="govuk-body">If the description of this record contains sensitive information you must add an uncensored description in the Descriptive metadata section before entering an alternative description here.</p>
               {% endif %}
             </fieldset>
           </div>
