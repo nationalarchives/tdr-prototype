@@ -16,7 +16,7 @@
 
       <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
       <h1 class="govuk-heading-l">
-        CSV upload results
+        Results of your metadata checks
       </h1>
 
       {{ govukSummaryList({
@@ -34,18 +34,22 @@
             value: { text: "1200" }
           },
           {
-            key: {  text: "Rows found in CSV" },
-            value: { text: "1198" }
+            key: {  text: "Records without associated row in metadata CSV" },
+            value: { text: "2" }
           },
           {
-            key: {  text: "Errors found" },
+            key: {  text: "Rows with no associated record in upload" },
+            value: { text: "5" }
+          },
+          {
+            key: {  text: "Other errors found" },
             value: { text: "5" }
           }
         ]
       }) }}
 
-      <p class="govuk-body">There were issues with your upload. Download the CSV below containing more details on the issues.</p>
-      <p class="govuk-body">Once you have fixed the issues re-upload the CSV.</p>
+      <p class="govuk-body">There are issues with your CSV upload. Download the CSV for more details about the issues.</p>
+      <p class="govuk-body">Once you have addressed the issues, upload the revised CSV.</p>
       <div class="govuk-button-group">
         <a class="govuk-button" href="/upload-csv">Download CSV with errors</a>
         <a class="govuk-button govuk-button--secondary" href="./upload-csv">Re-upload a CSV</a>
