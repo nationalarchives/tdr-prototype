@@ -26,6 +26,15 @@
           {
             key: {  text: "Status" },
             value: { html: "<strong class=\"govuk-tag govuk-tag--red\">Errors found</strong>" }
+          }
+        ]
+      }) }}
+
+      {# {{ govukSummaryList({
+        rows: [
+          {
+            key: {  text: "Status" },
+            value: { html: "<strong class=\"govuk-tag govuk-tag--red\">Errors found</strong>" }
           },
           {
             key: {  text: "File name" },
@@ -48,7 +57,7 @@
             value: { text: "5" }
           }
         ]
-      }) }}
+      }) }} #}
 
       <p class="govuk-body">There are issues with your CSV upload. Download the CSV for more details about the issues.</p>
       <p class="govuk-body">Once you have addressed the issues, upload the revised CSV.</p>
