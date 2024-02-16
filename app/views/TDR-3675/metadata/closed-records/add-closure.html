@@ -8,9 +8,9 @@ Add or edit closure metadata
   <form action="./confirm-add-closure" >
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+        <span class="govuk-caption-l">Consignment reference: MOCK-TDR-1294</span>
         <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
-            Edit metadata
+          Add or edit metadata
         </h1>
         <p class="govuk-hint govuk-!-margin-bottom-5">All fields on this page are required.</p>
 
@@ -29,9 +29,9 @@ Add or edit closure metadata
           </div>
         {% endif %}
 
-        <p class="govuk-body">You are adding or editing closure metadata for the following record:</p>
         <div class="tdr-card">
           <div class="tdr-card__content tdr-card__content--file-list">
+            <p class="govuk-body govuk-body-s govuk-!-margin-bottom-2">You are adding or editing closed record metadata for the following record:</p>
             <ul>
             {% for record in data['file-selection'] %}
               <li>
@@ -66,7 +66,7 @@ Add or edit closure metadata
           <fieldset class="govuk-fieldset" role="group" aria-describedby="foi-decision-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading">
-                FOI schedule agreed date
+                FOI Schedule agreed date
               </h2>
             </legend>
             <div id="foi-decision-hint" class="govuk-hint">
@@ -132,7 +132,7 @@ Add or edit closure metadata
             </div>
             {% else %}
             <div class="govuk-inset-text govuk-!-margin-top-3 govuk-!-margin-bottom-3">
-              The date the record was last modified was determined during upload. This date should be checked against your own records: <strong>12 July 2020</strong>
+              The date the record was last modified was determined during upload. The date should be checked against your own records: <strong>12 July 2020</strong>
             </div>
             {% endif %}
             {% if errorStartDate == true %}
@@ -206,7 +206,7 @@ Add or edit closure metadata
               </h2>
             </legend>
             <div class="govuk-hint">
-              Add one or more exemption codes to this file. Here is a <a target="_blank" href="https://www.legislation.gov.uk/ukpga/2000/36/contents">full list of FOI codes and their designated exemptions</a>.
+              Add one or more exemption codes to this record. Here is a <a target="_blank" href="https://www.legislation.gov.uk/ukpga/2000/36/contents">full list of FOI codes and their designated exemptions</a>.
             </div>
             {% if errorFOICodes == true %}
               <p id="passport-issued-error" class="govuk-error-message">
@@ -259,7 +259,7 @@ Add or edit closure metadata
               </div>
               <div class="govuk-radios__conditional" id="conditional-closed-title">
                 <div class="govuk-form-group">
-                  <label class="govuk-label" for="alternative-title">Add alternative file name without the file extension</label>
+                  <label class="govuk-label" for="alternative-title">Add alternative file name without file extension</label>
                   <p class="govuk-hint">This file name will be visible to the public during the closure period.</p>
                   <div class="govuk-input__wrapper">
                     <input class="govuk-input govuk-input govuk-input--width-20" id="alternative-title" name="addClosure-alternative-title" type="text" value="{{data['addClosure-alternative-title']}}">
@@ -321,7 +321,7 @@ Add or edit closure metadata
                   </div>
                 </div>
               {% else %}
-                <p class="govuk-body">If the description of this record contains sensitive information you must add an uncensored description in Descriptive Metadata section before entering an alternative description here.</p>
+                <p class="govuk-body">If the description of this record contains sensitive information you must add an uncensored description in the Descriptive metadata section before entering an alternative description here.</p>
               {% endif %}
             </fieldset>
           </div>

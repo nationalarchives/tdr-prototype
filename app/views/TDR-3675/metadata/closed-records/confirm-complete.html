@@ -6,7 +6,7 @@
 {% import "macros/task-list.html" as taskList %}
 
 {% block pageTitle %}
-  Have you finished adding closed record information?
+  Have you finished adding closed record metadata?
 {% endblock %}
 
 {% block beforeContent %}
@@ -23,8 +23,7 @@
           name: "closedComplete",
           fieldset: {
             legend: {
-              html: '<span class="govuk-caption-m">Consignment: MOCK-TDR-1294</span>
-                    <h1 class="govuk-heading-m">Have you finished adding closed record information?</h1>'
+              html: '<h1 class="govuk-heading-l">Have you finished adding closed record metadata?</h1>'
             }
           },
           items: [
@@ -34,7 +33,7 @@
             },
             {
               value: "true",
-              text: "Yes, all closed records information has been added"
+              text: "Yes, all closed record metadata has been added"
             }
           ]
         }) }}

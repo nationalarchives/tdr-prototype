@@ -17,18 +17,18 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
-      <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
-      <h1 class="govuk-heading-l">Closed records information</h1>
+      <span class="govuk-caption-l">Consignment reference: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-l">Closed records metadata</h1>
 
       {{ govukWarningText({
-        html: "It is a legal requirement that you enter accurate information for all closed records. If you're unsure about closed record information, contact <a class='govuk-link' href='mailto:tdr@nationalarchives.gov.uk'>tdr@nationalarchives.gov.uk</a>",
+        html: "It is a legal requirement that you enter accurate metadata for all closed records. If you're unsure about closed record metadata, contact <a class='govuk-link' href='mailto:tdr@nationalarchives.gov.uk'>tdr@nationalarchives.gov.uk</a>",
         iconFallbackText: "Warning"
       }) }}
 
-      <p class="govuk-body">What mandatory closed records information you must provide:</p>
+      <p class="govuk-body">What mandatory closed record metadata you must provide:</p>
       <ul class="govuk-list  govuk-list--bullet">
         <li>
-          <strong>FOI decision agreed</strong> - the date the closure schedule was agreed by the Advisory Council and/or The National Archives
+          <strong>FOI schedule agreed date</strong> - the date the closure schedule was agreed by the Advisory Council and/or The National Archives
         </li>
         <li>
           <strong>Closure start date</strong> - the date of the last change to this record
@@ -40,19 +40,19 @@
           <strong>FOI exemption code(s)</strong>
         </li>
       </ul>
-      <p class="govuk-body">If a record contains sensitivities in the title or description, you must provide the following information:</p>
+      <p class="govuk-body">If a record contains sensitivities in the file name or description, you must provide the following information:</p>
       <ul class="govuk-list  govuk-list--bullet">
         <li>
-          <strong>Alternative title</strong>
+          <strong>Alternative file name</strong>
         </li>
         <li>
           <strong>Alternative description</strong> - You must provide a description in the 'Descriptive metadata' section before entering this
         </li>
       </ul>
 
-      <p class="govuk-body">For more information about closed record information visit our <a href="" class="govuk-link">FAQ (opens in a new tab)</a>.</p>
+      <p class="govuk-body">For more information about closed record metadata visit our <a href="" class="govuk-link">FAQ (opens in a new tab)</a>.</p>
 
-      <p class="govuk-body">If you have no closed records then click 'I have finished adding information'.</p>
+      <p class="govuk-body">If you have no closed records then click 'I have finished adding metadata'.</p>
 
 
     </div>
@@ -61,10 +61,10 @@
     <div class="govuk-grid-column-full">
         <div class="govuk-button-group">
         <a href="./add" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-          Add closed record information
+          Add metadata to closed records
         </a>
         <a href="./confirm-complete" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-          I have finished adding information
+          I have finished adding metadata
         </a>
       </div>
     </div>
