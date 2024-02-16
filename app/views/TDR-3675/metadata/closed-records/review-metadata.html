@@ -18,12 +18,12 @@
       <h1 class="govuk-heading-l">
         {% if from %}View metadata{% else %}Review saved changes{% endif %}
       </h1>
-      <p class="govuk-body">{% if from %}View{% else %}Review{% endif %} the closure metadata you have entered against this record.</p>
+      <p class="govuk-body">{% if from %}View{% else %}Review{% endif %} the closed record metadata you have entered against this record.</p>
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-          Name
+          File name
         </dt>
           <dd class="govuk-summary-list__value govuk-!-font-weight-bold">
             {{fileObject.name}}
@@ -31,7 +31,7 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-          Path
+          File path
           </dt>
           <dd class="govuk-summary-list__value">
               <ol class="tdr-file-breadcrumbs">
@@ -57,7 +57,7 @@
         <!-- closure stuff here -->
         <div class="govuk-summary-list__row" style="border-bottom: none;">
           <dt class="govuk-summary-list__key">
-            FOI decision asserted
+            FOI Schedule agreed date
           </dt>
           <dd class="govuk-summary-list__value">
             {{data['addClosure-foi-asserted-day']}} {{data['addClosure-foi-asserted-month']|getMonthName("short")}} {{data['addClosure-foi-asserted-year']}}
@@ -94,7 +94,7 @@
         {% if data["addClosure-is-the-title-sensitive"] == "yes" %}
           <div class="govuk-summary-list__row" style="border-bottom: none;">
             <dt class="govuk-summary-list__key">
-            Is the title sensitive for the public?
+            Is the file name sensitive for the public?
           </dt>
             <dd class="govuk-summary-list__value">
               Yes
@@ -102,7 +102,7 @@
           </div>
           <div class="govuk-summary-list__row" style="border-bottom: none;">
             <dt class="govuk-summary-list__key">
-            Alternative title
+            Alternative file name
           </dt>
             <dd class="govuk-summary-list__value">
               {{ data['addClosure-alternative-title'] }}{{fileObject.name| getFileExtension }}
@@ -112,7 +112,7 @@
         {% else %}
           <div class="govuk-summary-list__row" style="border-bottom: none;">
             <dt class="govuk-summary-list__key">
-            Is the title sensitive for the public?
+            Is the file name sensitive for the public?
           </dt>
             <dd class="govuk-summary-list__value">
               No

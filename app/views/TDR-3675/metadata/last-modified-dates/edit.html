@@ -15,7 +15,7 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <span class="govuk-caption-l">Consignment reference: MOCK-TDR-1294</span>
-      <h1 class="govuk-heading-l">Correct the last modified date</h1>
+      <h1 class="govuk-heading-l">Correct the date last modified</h1>
 
       <div class="tdr-card">
         <div class="tdr-card__content">
@@ -33,7 +33,7 @@
         </div>
       </div>
 
-      <p class="govuk-body">If the date is incorrect then you can add a date below that will be used instead of the extracted date.</p>
+      <p class="govuk-body">If the date does not represent the last meaningful change to the record, you must provide an accurate date.</p>
       <p class="govuk-body">After the transfer is complete we will only use the date you have provided here.</p>
 
       {# {{ govukWarningText({
@@ -41,7 +41,7 @@
         iconFallbackText: "Warning"
       }) }} #}
 
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Last modified date (extracted from this record)</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">Extracted date last modified</h2>
       <p class="govuk-hint">This is the date we extracted for this record during upload</p>
       <p class="govuk-!-font-size-24 govuk-!-margin-bottom-6">{{extracted.day}} {{extracted.month|getMonthName}} {{extracted.year}}</p>
 
@@ -57,7 +57,7 @@
             }
           },
           hint: {
-            text: "If the extracted last modified date is incorrect, provide an accurate or correct date."
+            text: "If the extracted date last modified is incorrect, provide an accurate date."
           },
           items: [
             {
