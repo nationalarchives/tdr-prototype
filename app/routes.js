@@ -138,12 +138,12 @@ const populateWithClosureData = (req, res) => {
 // Add your routes here
 
 router.post(
-  "/TDR-3731/metadata-route",
+  "/:ticketId/metadata-route",
   function(req, res){
 
     const route = req.session.data['metadata-route']
     if (route == "csv"){
-      res.redirect("/TDR-3731/upload-csv")
+      res.redirect(`/${req.params.ticketId}/upload-csv`)
     } else {
       // response.redirect("/ineligible-country")
     }
