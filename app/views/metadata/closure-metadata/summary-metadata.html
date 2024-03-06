@@ -1,18 +1,18 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-Closure Metadata - View metadata
+Closed record metadata - View metadata
 {% endblock %}
 
 {% block beforeContent %}
-  <a href="./file-level" class="govuk-back-link">Choose a file</a>
+  <a href="./file-level" class="govuk-back-link">Choose a record</a>
 {% endblock %}
 
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">Closure metadata</span>
+      <span class="govuk-caption-l">Closed record metadata</span>
       <h1 class="govuk-heading-l">
         View metadata
       </h1>{{releaseVersion | log }}

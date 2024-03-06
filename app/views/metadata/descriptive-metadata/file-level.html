@@ -2,11 +2,11 @@
 {# {% include "../dummyfiles.html" %} #}
 
 {% block pageTitle %}
-Descriptive metadata - Choose a file
+Descriptive metadata - Choose a record
 {% endblock %}
 
 {% block beforeContent %}
-  <a href="../additional-metadata" class="govuk-back-link">Step 5: Descriptive and closure metadata</a>
+  <a href="../additional-metadata" class="govuk-back-link">Step 5: Descriptive and closed record metadata</a>
 {% endblock %}
 
 {% block content %}
@@ -14,11 +14,10 @@ Descriptive metadata - Choose a file
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <span class="govuk-caption-l">Descriptive metadata</span>
-        <h1 class="govuk-heading-l">Choose a file</h1>
+        <h1 class="govuk-heading-l">Choose a record</h1>
         {{releaseVersion | log }}
         <p class="govuk-body">
-          Select the file you wish to add or edit descriptive metadata.</p>
-
+          Select the record you wish to add or edit descriptive metadata.</p>
       </div>
     </div>
 
@@ -80,7 +79,7 @@ Descriptive metadata - Choose a file
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
         {% include "./descriptive-files.html" %}
-        <div aria-atomic="true" aria-live="assertive" class="govuk-inset-text">File selected: <span class="govuk-!-font-weight-bold" id="radio-tree-selected">No file selected</span></div>
+        <div aria-atomic="true" aria-live="assertive" class="govuk-inset-text">Record selected: <span class="govuk-!-font-weight-bold" id="radio-tree-selected">No record selected</span></div>
       </div>
     </div>
 
@@ -105,13 +104,13 @@ Descriptive metadata - Choose a file
         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"/>
         <h2 class="govuk-heading-m">Have you finished editing descriptive metadata?</h2>
 
-        <p class="govuk-body">Once you have finished adding descriptive metadata, return to the
+        <p class="govuk-body">Once you have finished adding descriptive metadata, return to the.
           <a href="../additional-metadata"
             style="font-weight: bold;"
             draggable="false"
-            data-module="govuk-button">Descriptive and closure metadata page</a>.</p>
+            data-module="govuk-button">Record metadata page</a>.</p>
 
-        <p class="govuk-body">You will be given the chance to download a single .csv file to review any metadata you added before completing the transfer.</p>
+        <p class="govuk-body">You will be given the chance to download a single .csv file to review any metadata added before completing the transfer.</p>
       </div>
     </form>
   {% endblock %}

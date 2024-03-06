@@ -12,19 +12,26 @@ Descriptive metadata - Review changes to descriptive metadata
       <h1 class="govuk-heading-l">
         Review saved changes
       </h1>
-      <p class="govuk-body">Review the descriptive metadata changes you have made below. You may also edit and delete any metadata changes.</p>
+      <p class="govuk-body">Review the descriptive metadata you have entered against this record. You may also edit and delete any metadata changes.</p>
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-          Name
+          File name
         </dt>
           <dd class="govuk-summary-list__value">
-            {# <ul class="govuk-list govuk-list--bullet"> #}
             {% for f in data['file-selection']| getFilenames(globals.files) %}
               {{f}}
             {% endfor %}
-            {# </ul> #}
+          </dd>
+          <dd class="govuk-summary-list__actions"></dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+          File path
+        </dt>
+          <dd class="govuk-summary-list__value">
+            path/to/selected/file/
           </dd>
           <dd class="govuk-summary-list__actions"></dd>
         </div>
@@ -95,11 +102,11 @@ Descriptive metadata - Review changes to descriptive metadata
 
       <h2 class="govuk-heading-m  govuk-!-margin-bottom-3">Have you finished reviewing the metadata?</h2>
 
-      <p class="govuk-body govuk-!-margin-bottom-2">Once you have finished reviewing the metadata of this file you may add metadata to another file.</p>
+      <p class="govuk-body govuk-!-margin-bottom-2">Once you have finished reviewing the metadata of this record, you may add metadata to another record.</p>
       <a href="./file-level" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Choose another file
+        Choose another record
       </a>
-      <p class="govuk-body">Or leave descriptive metadata and return to the <a href="/metadata/additional-metadata" role="button" draggable="false" data-module="govuk-button">Descriptive & closure metadata</a> overview page.
+      <p class="govuk-body">Or leave descriptive metadata and return to the <a href="/metadata/additional-metadata" role="button" draggable="false" data-module="govuk-button">Record metadata</a> page.
       </p>
 
     </div>
