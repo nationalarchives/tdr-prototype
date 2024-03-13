@@ -137,6 +137,17 @@ const populateWithClosureData = (req, res) => {
 
 // Add your routes here
 
+
+router.get(
+  "/:ticketId/has-closed-records",
+  function(req, res){
+
+    // req.session.data[req.params.ticketId] = req.session.data[req.params.ticketId] || [];
+    req.session.data['hasClosedRecords'] = req.session.data["has-closed-records"] == "true"
+
+    res.redirect(`/${req.params.ticketId}/upload-checks`)
+  })
+
 router.post(
   "/:ticketId/metadata-route",
   function(req, res){

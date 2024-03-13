@@ -33,7 +33,7 @@
       </div>
 
       <div class="govuk-button-group">
-        <a href="./csv-results" id="next-step-btn" role="button" disabled="true" draggable="false" class="govuk-button"  data-module="govuk-button">
+        <a href="{{'./csv-results-confirm-status' if data.version == "2" else './csv-results'}}" id="next-step-btn" role="button" disabled="true" draggable="false" class="govuk-button"  data-module="govuk-button">
           Continue
         </a>
       </div>
