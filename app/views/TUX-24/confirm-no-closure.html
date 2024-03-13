@@ -1,0 +1,64 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% block pageTitle %}
+  We found no closed record metadata
+{% endblock %}
+
+{% block beforeContent %}
+  {# <a href="./transfer-tasks" class="govuk-back-link">Consignment: MOCK-TDR-1294</a> #}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        We found no closed records in your metadata
+      </h1>
+
+      <p class="govuk-body">The metadata you provided contained no information about closed records.</p>
+
+      <p class="govuk-body">If this is correct and there are no closed records in the consignment continue to the next step.</p>
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Continue",
+          href : "./confirm-closure"
+        }) }}
+      </div>
+
+      <p class="govuk-body">If there are closed records in the consignment you must re-upload a CSV with closed record metadata for each record. If you're not sure how to add closed record metadata contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>.</p>
+
+      <div class="govuk-button-group">
+        <form action="./upload-csv" method="post">
+          <input type="hidden" name="csv-re-upload" value="true" />
+
+          {{ govukButton({
+            text: "Re-upload metadata"
+          }) }}
+
+          {# <a href="./upload-csv" role="button" draggable="false" class="govuk-button govuk-button--"  data-module="govuk-button"> #}
+
+          {# </a> #}
+        </form>
+      </div>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+    </div>
+  </div>
+
+
+{% endblock %}

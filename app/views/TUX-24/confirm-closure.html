@@ -1,0 +1,65 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% block pageTitle %}
+  We found no closed record metadata
+{% endblock %}
+
+{% block beforeContent %}
+  {# <a href="./transfer-tasks" class="govuk-back-link">Consignment: MOCK-TDR-1294</a> #}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        We found closed records in your metadata
+      </h1>
+
+      <p class="govuk-body">The metadata you provided contained information about closed records.</p>
+
+      {{ govukCheckboxes({
+        name: "confirm-closure-status",
+        fieldset: {
+          legend: {
+            text: "Has this closure been agreed with the Advisory Council and/or The National Archives?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes, this closure has been agreed"
+          }
+        ]
+      }) }}
+
+      <p class="govuk-body">If the answer is no, you cannot proceed and should consult the Access Team or contact <a href='mailto:tdr@nationalarchives.gov.uk'>tdr@nationalarchives.gov.uk</a>.</p>
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Continue",
+          href : "./download-metadata"
+        }) }}
+      </div>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+    </div>
+  </div>
+
+
+{% endblock %}
