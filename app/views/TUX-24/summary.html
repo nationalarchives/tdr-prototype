@@ -4,13 +4,21 @@
   Transfer summary
 {% endblock %}
 
+{% block beforeContent %}
+  {% if data.version == "3"%}
+  <a href="./confirm-closure" class="govuk-back-link">We found closed records in your metadata</a>
+  {% else %}
+  <a href="./download-metadata" class="govuk-back-link">Review metadata</a>
+  {% endif %}
+{% endblock %}
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <span class="govuk-caption-l">Step 7 of 7</span>
       <h1 class="govuk-heading-l">Confirm transfer</h1>
-      {% include "../banner-leave-return.html" %}
+      {# {% include "../banner-leave-return.html" %} #}
 
       <p class="govuk-body">Here is a summary of the records you have uploaded.</p>
 
@@ -66,9 +74,6 @@
         </div>
 
         <div class="govuk-button-group">
-          <a href="./download-metadata" role="button" draggable="false" class="govuk-button govuk-button--secondary"  data-module="govuk-button">
-            Back
-          </a>
           <button type="submit" class="govuk-button" data-module="govuk-button">
             Transfer your records
           </button>

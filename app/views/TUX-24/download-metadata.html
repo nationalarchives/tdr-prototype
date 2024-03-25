@@ -59,7 +59,7 @@
       <p class="govuk-body">If you need to add, remove or change any metadata you can amend and re-upload.</p>
 
       <div class="govuk-button-group">
-        <a href="./summary" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+        <a href="{{"./confirm-closure" if data.version == "3" else "./summary"}}" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
           Continue
         </a>
         <a href="./upload-csv.html" role="button" draggable="false" class="govuk-button govuk-button--secondary"  data-module="govuk-button">
@@ -67,6 +67,18 @@
         </a>
       </div>
 
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
     </div>
   </div>
 {% endblock %}
