@@ -138,6 +138,22 @@ const populateWithClosureData = (req, res) => {
 // Add your routes here
 
 
+/*
+ * When confirm closure has a radio button that redirects user to
+ * an info page if they select 'no' which provides further info
+ */
+router.post(
+  "/:ticketId/confirm-closure-v2",
+  function(req, res){
+    if(req.session.data["confirmClosureStatus"] == "no-1"){
+      res.redirect(`/${req.params.ticketId}/confirm-closure-no-1`)
+    } else if(req.session.data["confirmClosureStatus"] == "no-2"){
+      res.redirect(`/${req.params.ticketId}/confirm-closure-no-2`);
+    } else {
+      res.redirect(`/${req.params.ticketId}/${req.session.data["confirmClosureStatus"]}`);
+    }
+  })
+
 router.get(
   "/:ticketId/has-closed-records",
   function(req, res){
