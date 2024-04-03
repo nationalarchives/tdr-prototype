@@ -4,6 +4,10 @@
   Check your file before uploading
 {% endblock %}
 
+{% block header %}
+  {% include "layouts/inc-header-no-view-transfer.html" %}
+{% endblock %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -35,7 +39,10 @@
       </ul>
 
       <div class="govuk-button-group">
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
+      {{ govukButton({
+        text: "Continue",
+        href: "./upload"
+      }) }}
         <a class="govuk-link govuk-link--no-visited-state" href="/home">Cancel</a>
       </div>
 
@@ -44,7 +51,7 @@
       <details class="govuk-details" data-module="govuk-details">
         <summary class="govuk-details__summary">
           <span class="govuk-details__summary-text">
-            Consignment reference
+            Transfer reference
           </span>
         </summary>
         <div class="govuk-details__text">
