@@ -15,10 +15,16 @@
 
       <span class="govuk-caption-l">Step 3 of 3</span>
       <h1 class="govuk-heading-l">
-        Checking your upload
+        Checking your document
       </h1>
-      <p class="govuk-body">Your judgment is being checked for errors. This may take a few minutes. Once your judgment has been checked, you will be redirected automatically.</p>
-
+      <p class="govuk-body">The following checks are now being performed:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Document file format</li>
+        <li>Anti-virus scanning</li>
+        <li>Validating file integrity</li>
+      </ul>
+      <p class="govuk-body">This may take a few minutes. Once your document has been checked, you will be redirected automatically.</p>
+      
     </div>
     <div class="govuk-grid-column-one-third">
       <details class="govuk-details" data-module="govuk-details">
@@ -40,7 +46,7 @@
   {{ super() }}
   <script>
     setTimeout(()=>{
-      window.location.href="/judgments/results";
+      window.location.href="/judgments/complete";
     }, 4000)
   </script>
 {% endblock %}
