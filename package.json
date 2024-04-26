@@ -10,7 +10,7 @@
   "name": "govuk-prototype-kit",
   "dependencies": {
     "@govuk-prototype-kit/step-by-step": "^2.1.0",
-    "@nationalarchives/tdr-components": "^1.0.33",
+    "@nationalarchives/tdr-components": "^1.0.38",
     "axios": "^1.5.1",
     "govuk-frontend": "^4.4.1",
     "govuk-prototype-kit": "^13.1.0",
