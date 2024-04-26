@@ -1,18 +1,18 @@
 <div class="govuk-form-group">
-  <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+  <fieldset class="govuk-fieldset" aria-describedby="languages-hint">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
       <h2 class="govuk-fieldset__heading">
         Language
       </h2>
     </legend>
-    <div class="govuk-hint">
+    <div id="languages-hint" class="govuk-hint">
       Choose one or more languages used in this record.
     </div>
 
     <div class="tna-multi-select-search">
       <div class="tna-multi-select-search__list-container">
         <ul class="govuk-checkboxes tna-multi-select-search__list"
-            id="language-select" aria-describedby="languages-filter-count">
+            id="language-select">
           {% for l in data.languages %}
             <li class="govuk-checkboxes__item">
               <input {% if (data['addDescriptive-language-select'] and l.alpha2 in data['addDescriptive-language-select']) or (not data['addDescriptive-language-select'] and l.alpha2 == "en")  %}checked{% endif %} class="govuk-checkboxes__input" id="{{loop.index}}" name="addDescriptive-language-select" type="checkbox" value="{{l.alpha2}}">
