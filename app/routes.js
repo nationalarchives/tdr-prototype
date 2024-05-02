@@ -142,7 +142,7 @@ router.post(
   function(req, res){
 
     const route = req.session.data['metadata-route']
-    if(req.params.ticketId === "TUX-53" && route == "csv"){
+    if(["TUX-53", "TUX-39"].includes(req.params.ticketId) || route == "csv"){
       res.redirect(`/${req.params.ticketId}/download-template`)
     } else if (route == "csv"){
       res.redirect(`/${req.params.ticketId}/upload-csv`)

@@ -1,0 +1,277 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% block pageTitle %}
+  Results of CSV checks - Errors found
+{% endblock %}
+
+{% block beforeContent %}
+  {# <a href="./transfer-tasks" class="govuk-back-link">Consignment: MOCK-TDR-1294</a> #}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Results of your metadata checks
+      </h1>
+
+      <p class="govuk-body">Your uploaded metadata file contains some errors.</p>
+       {{ govukSummaryList({
+        rows: [
+          {
+            key: {  text: "Status" },
+            value: { html: "<strong class=\"govuk-tag govuk-tag--red\">Errors found</strong>" }
+          },
+          {
+            key: {  text: "File name" },
+            value: { html: "<code>transfer-metadata-23.09.11.csv</code>" }
+          }
+        ]
+      }) }}
+
+
+      {# <h2 class="" #}
+       {{ govukSummaryList({
+        rows: [
+          
+          {
+            key: {  text: "Files uploaded" },
+            value: { text: "1200" }
+          },
+          {
+            key: {  text: "Rows in your metadata CSV with matching records" },
+            value: { text: "2" }
+          },
+          {
+            key: {  text: "Rows with no associated record in upload" },
+            value: { text: "5" }
+          },
+          {
+            key: {  text: "Other errors found" },
+            value: { text: "5" }
+          }
+        ]
+      }) }}
+
+      <p class="govuk-body">There are issues with your CSV upload. Download the CSV for more details about the issues.</p>
+      <p class="govuk-body">Once you have addressed the issues, upload the revised CSV.</p>
+      <div class="govuk-button-group">
+        <a class="govuk-button" href="/upload-csv">Download a CSV with errors</a>
+        <a class="govuk-button govuk-button--secondary" href="./upload-csv">Re-upload a CSV</a>
+      </div>
+
+{#
+      <h2 class="govuk-heading-m">
+        Errors found in your CSV upload
+      </h2>
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            html: "<a id=\"error-1\" href=\"#error-1\">#1</a> Record with missing row"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Error"
+            },
+            value: {
+              text: "An uploaded record does not have a matching row in the CSV"
+            }
+          },
+          {
+            key: {
+              text: "Record name"
+            },
+            value: {
+              html: "Fresh.png"
+            }
+          },
+          {
+            key: {
+              text: "Full path"
+            },
+            value: {
+              html: "<code>/Cake Basics/Rising agents/Fresh.png</code>"
+            }
+          },
+          {
+            key: {
+              text: "How to fix"
+            },
+            value: {
+              html: "Add a row to your CSV for this record or use the <a href=\"/metadata-template-download\">metadata CSV template</a>."
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            html: "<a id=\"error-2\" href=\"#error-2\">#2</a> Record with missing row"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Error"
+            },
+            value: {
+              text: "An uploaded record does not have a matching row in the CSV"
+            }
+          },
+          {
+            key: {
+              text: "Record name"
+            },
+            value: {
+              html: "Red velvet.xlsx"
+            }
+          },
+          {
+            key: {
+              text: "Full path"
+            },
+            value: {
+              html: "<code>/Cupcakes/Red velvet.xlsx</code>"
+            }
+          },
+          {
+            key: {
+              text: "How to fix"
+            },
+            value: {
+              html: "Add a row to your CSV for this record or use the <a href=\"/metadata-template-download\">metadata CSV template</a>."
+            }
+          }
+        ]
+      }) }}
+
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            html: "<a id=\"error-3\" href=\"#error-3\">#3</a> Column not recognised"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Error"
+            },
+            value: {
+              html: "We found a column (<code>Internal reference</code>) that isn't recognised."
+            }
+          },
+          {
+            key: {
+              text: "How to fix"
+            },
+            value: {
+              html: "Remove the column (<code>Internal reference</code>) or contact a Transfer Advisor."
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            html: "<a id=\"error-4\" href=\"#error-4\">#4</a> Duplicate column"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Error"
+            },
+            value: {
+              html: "We found multiple columns with the same name: <code>Description</code>."
+            }
+          },
+          {
+            key: {
+              text: "How to fix"
+            },
+            value: {
+              html: "Ensure there is a only one <code>Description</code> column."
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            html: "<a id=\"error-5\" href=\"#error-5\">#5</a> Data provided for Closure Start Date not recognised"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Error"
+            },
+            value: {
+              text: "The data provided for Closure Start date was not recognised or is malformed."
+            }
+          },
+          {
+            key: {
+              text: "Record name"
+            },
+            value: {
+              html: "Fresh.png"
+            }
+          },
+          {
+            key: {
+              text: "Full path"
+            },
+            value: {
+              html: "<code>/Cake Basics/Rising agents/Fresh.png</code>"
+            }
+          },
+          {
+            key: {
+              text: "Data found"
+            },
+            value: {
+              html: "12/13/2009"
+            }
+          },
+          {
+            key: {
+              text: "Format required"
+            },
+            value: {
+              html: "Date in format: <code>DD/MM/YYYY</code>"
+            }
+          },
+          {
+            key: {
+              text: "Cell location (column and row)"
+            },
+            value: {
+              html: "<code>E259</code>"
+            }
+          },
+          {
+            key: {
+              text: "How to fix"
+            },
+            value: {
+              html: "Provide a date in the expected format."
+            }
+          }
+        ]
+      }) }} #}
+
+    </div>
+  </div>
+
+{% endblock %}

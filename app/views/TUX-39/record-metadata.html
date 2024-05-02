@@ -1,0 +1,120 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  How would you like to enter record metadata?
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./upload-records-results" class="govuk-back-link">Results of your record checks</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-xl">
+      Record metadata
+    </h1>
+
+    <p class="govuk-body">During upload we extract metadata from your records. <a href="" class="govuk-link">Find out what metadata we extract</a>. 
+    
+    <p class="govuk-body">As part of most digital transfers to The National Archives there will be more metadata that you or your department need to provide The National Archives. This ensures we can preserve you record correctly.</p>
+
+    <p class="govuk-body">We offer two ways of providing metadata for your records:</a>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Selecting individual records from your consignment and adding metadata through this service</li>
+        <li>Or, adding metadata to a spreadsheet using software on your desktop and, when finished, uploading that</li>
+      </ul> 
+
+    <form class="form" action="/TUX-39/metadata-route" method="post">
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="metadata-route-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h2 class="govuk-fieldset__heading">
+              How would you like to enter record metadata?
+            </h2>
+          </legend>
+          <div id="metadata-route-hint" class="govuk-hint">
+          </div>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="metadata-route" name="metadata-route" type="radio" value="website" aria-describedby="metadata-route-item-hint">
+              <label class="govuk-label govuk-radios__label" for="metadata-route">Select records and add metadata</label>
+              <div id="metadata-route-item-hint" class="govuk-hint govuk-radios__hint">
+                Better for small amounts of metadata
+              </div>          
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="metadata-route-2" name="metadata-route" type="radio" value="csv" aria-describedby="metadata-route-2-item-hint">
+              <label class="govuk-label govuk-radios__label" for="metadata-route-2">Add metadata to a CSV and upload</label>      
+              <div id="metadata-route-2-item-hint" class="govuk-hint govuk-radios__hint">
+                Better for large amounts of metadata
+              </div>  
+            </div>  
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="metadata-route-3" name="metadata-route" type="radio" value="none">
+              <label class="govuk-label govuk-radios__label" for="metadata-route-3">I don't have any metadata</label>    
+            </div>  
+          </div>
+        </fieldset>
+      </div>
+      
+      
+      {# {{ govukRadios({
+        name: "metadata-route",
+        fieldset: {
+          legend: {
+            text: "How would you like to enter record metadata?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: ""
+        },
+        items: [
+          {
+            value: "website",
+            text: "Select records and add metadata",
+            hint: {
+              text: "Better for small amounts of metadata"
+            }
+          },
+          {
+            value: "csv",
+            text: "Add metadata to a CSV and upload",
+            hint: {
+              text: "Better for large amounts of metadata"
+            }
+          },
+          {
+            value: "none",
+            text: "I don't have any metadata",
+            hint: {
+              text: ""
+            }
+          }
+        ]
+      }) }} #}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Consignment reference
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        MOCK-123-TDR
+      </div>
+    </details>
+  </div>
+</div>
+
+{% endblock %}
