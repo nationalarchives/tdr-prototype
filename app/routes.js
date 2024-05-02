@@ -142,13 +142,13 @@ router.post(
   function(req, res){
 
     const route = req.session.data['metadata-route']
-    if (route == "csv"){
+    if(req.params.ticketId === "TUX-53" && route == "csv"){
+      res.redirect(`/${req.params.ticketId}/download-template`)
+    } else if (route == "csv"){
       res.redirect(`/${req.params.ticketId}/upload-csv`)
-    } else {
-      // response.redirect("/ineligible-country")
     }
 
-  })
+})
 
 router.get(
   "/metadata/descriptive-metadata/confirm-delete-metadata",
