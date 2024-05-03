@@ -26,23 +26,25 @@
       }) }}
       {% endif %}
 
-      <p class="govuk-body">Upload a CSV containing your record metadata. It must include a row for the metadata column titles and one row for every record that requires metadata.</p>
+      <p class="govuk-body"></p>
       
-      <p class="govuk-body">In order for us to process your metadata upload, the <abbr title="Comma Seperated Values">CSV</abbr> must include the following columns:</p>
+      <p class="govuk-body">Upload a <abbr title="Comma Seperated Values">CSV</abbr> containing the record metadata. In order for us to process your metadata upload, it must include the following columns:</p>
       <ul class="govuk-list govuk-list--bullet">
         <li>File name</li>
         <li>File path</li>
         <li>Checksum</li>
-        <li>Last Modified Date</li>
+        <li>Date Last Modified</li>
       </ul>
       
-      <p class="govuk-body">You can also include a number of <a class="govuk-body" href="">optional columns to provide additional metadata</a>, including descriptions and information about closed record.</p>
+      <p class="govuk-body">We encourage you to provide as much additional metadata as possible in the columns in the metadata template.</p>
 
-      <p class="govuk-body">Follow this guidance on <a class="govuk-body" href="">completing the metadata template</a>.</p>
+      <p class="govuk-body">Learn more about the <a class="govuk-body" href="">additional metadata you can provide</a>.</p>
 
-      <div class="govuk-inset-text">
-        We can only accept a metadata in a <abbr title="Comma Seperated Values">CSV</abbr> file format
-      </div>
+      {{ govukWarningText({
+        html: "We can only accept metadata in a <abbr title='Comma Seperated Values'>CSV</abbr> file format",
+        iconFallbackText: "Warning"
+      }) }}
+
       {{ govukFileUpload({
         id: "file-upload-1",
         name: "fileUpload",
@@ -60,7 +62,7 @@
 
     </div>
     <div class="govuk-grid-column-one-third">
-    <details class="govuk-details" data-module="govuk-details">
+    <details open="" class="govuk-details" data-module="govuk-details">
       <summary class="govuk-details__summary">
         <span class="govuk-details__summary-text">
           Consignment reference

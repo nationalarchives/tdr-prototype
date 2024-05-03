@@ -37,7 +37,7 @@
 {% endmacro %}
 
 {% block pageTitle %}
-  Results of your record checks
+  Download a metadata template
 {% endblock %}
 
 {% block beforeContent %}
@@ -54,10 +54,9 @@
         Download a metadata template
       </h1>      
       
-      <p class="govuk-body">Download a template that contains metadata extracted from the uploaded records.</p>
-      <p class="govuk-body">You can use this to check extracted metadata and provide additional metadata including descriptions and information about closed records.</p>
-      
-      <h2 class="govuk-heading-m">Download template</h2>
+      <p class="govuk-body">Download a template metadata spreadsheet that includes a row for each of your uploaded records. You can use this to provide additional metadata including descriptions and information about closed records.</p>
+
+       <h2 class="govuk-heading-m">Download the template</h2>
       <section class="da-attachment govuk-!-margin-bottom-4 govuk-!-display-none-print">
         <div class="da-attachment__thumbnail">
           <a href="#" class="govuk-link" target="_self" tabindex="-1" aria-hidden="true">
@@ -82,10 +81,30 @@
           </p> #}
         </div>
       </section>
+      <p class="govuk-body">The template includes the following columns with metadata we extracted from your records:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>File name</li>
+        <li>File path</li>
+        <li>Checksum</li>
+        <li>Date Last Modified</li>
+      </ul>
+      {{ govukWarningText({
+        html: "These columns should not be edited. Find out <a href='govuk-link' href=''>how to provide a different Date Last Modifed</a>.",
+        iconFallbackText: "Warning"
+      }) }}
+
+
+      {# <p class="govuk-body">The template contains additional columns for you to add descriptive and closed metadata. Once you have added metadata, you can upload and request feedback before completing the transfer.</p> #}
+
+      {# <p class="govuk-body">Download a template that contains metadata extracted from the uploaded records.</p>
+      <p class="govuk-body">You can use this to check extracted metadata and provide additional metadata including descriptions and information about closed records.</p> #}
+      
+     
 
       <h2 class="govuk-heading-m">Guidance on completing the template</h2>
 
-      <p class="govuk-body">The template opens in Microsoft Excel. It contains column titles for metadata that we accept.</p>
+      <p class="govuk-body">The template opens in Microsoft Excel. It contains columns for additional metadata that you can provide.</p>
       <p class="govuk-body">Once you have completed the template you will need to export a <abbr title="Comma Seperated Values">CSV</abbr>.</p>
 
       <p class="govuk-body">Follow the links below to find out more about completing, exporting and uploading the template.</p>
@@ -95,7 +114,7 @@
           <a href="" class="govuk-link">How to complete the template</a>
         </li>
         <li>
-          <a href="" class="govuk-link">What metadata was extracted from the records during upload</a>
+          <a href="" class="govuk-link">What metadata we extract during upload</a>
         </li>
         <li>
           <a href="" class="govuk-link">What additional metadata you can provide</a>
@@ -111,7 +130,7 @@
 
     </div>
     <div class="govuk-grid-column-one-third">
-      <details class="govuk-details" data-module="govuk-details">
+      <details open class="govuk-details" data-module="govuk-details">
         <summary class="govuk-details__summary">
           <span class="govuk-details__summary-text">
             Consignment reference

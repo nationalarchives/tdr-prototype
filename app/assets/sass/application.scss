@@ -500,3 +500,7 @@
 .govuk-list--inline-pre pre {
   display: inline;
 }
+
+.govuk-summary-list--wide-key .govuk-summary-list__key {
+  width: 60%;
+}
