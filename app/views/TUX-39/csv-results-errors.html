@@ -17,7 +17,7 @@
       <h1 class="govuk-heading-l">
         Results of your metadata checks
       </h1>
-      <p class="govuk-body">Your uploaded metadata file contains some errors. Download the CSV below for more details about the issues.</p>
+      <p class="govuk-body">Your uploaded metadata file contains some errors. Download the <abbr title="Comma Seperated Values">CSV</abbr> below for more details about the issues.</p>
 
       <p class="govuk-body"></p>
        {{ govukSummaryList({
@@ -28,17 +28,17 @@
           },
           {
             key: {  text: "Uploaded CSV" },
-            value: { html: "<code>transfer-metadata-23.09.11.csv</code>" }
+            value: { html: "<code>transfer-metadata-10.09.24.csv</code>" }
           }
         ]
       }) }}
 
 
       <h2 class="govuk-heading-m">
-        Summary of metadata
+        Summary of your metadata
       </h2>
 
-      <p class="govuk-body">Below is a summary of the metadata we found in your CSV. We match each row in your metadata to a record you uploaded to this consignment.</p>
+      <p class="govuk-body">Below is a summary of the metadata we found in your <abbr title="Comma Seperated Values">CSV</abbr>. We match each row in your metadata to a file you uploaded for transfer.</p>
 
        {{ govukSummaryList({
         rows: [
@@ -57,7 +57,7 @@
       <h2 class="govuk-heading-m">
         Download detailed errors
       </h2>
-      <p class="govuk-body">Download the error report below. Once you have addressed all errors, upload a revised CSV.</p>
+      <p class="govuk-body">Download the error report below. Once you have addressed all errors, upload a revised <abbr title="Comma Seperated Values">CSV</abbr>.</p>
 
 
        {{ govukSummaryList({
