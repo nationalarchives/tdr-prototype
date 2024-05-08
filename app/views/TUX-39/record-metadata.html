@@ -16,22 +16,14 @@
     <h1 class="govuk-heading-xl">
       Record metadata
     </h1>
+    <p class="govuk-body">As part of a digital transfer to The National Archives you or your department can provide metadata to ensure we preserve your records correctly.</p>
 
-    <p class="govuk-body">During upload we extract the following metadata from your records:</p>
-    <ul class="govuk-list govuk-list--bullet">
-      <li>File name</li>
-      <li>File path</li>
-      <li>Checksum</li>
-      <li>Date Last Modified</li>
-    </ul>
-      
-    <p class="govuk-body"><a href="" class="govuk-link">Read more about extracted metadata</a>.</p> 
-    
-    <p class="govuk-body">As part of most digital transfers to The National Archives there is additional metadata that you or your department need to provide. This helps us to preserve your records.</p>
+    {{ govukWarningText({
+      html: 'If you have closed records in your consignment you must provide metadata about those records. Read more about <a href="" class="govuk-link">adding closed records to your metadata</a>.',
+      iconFallbackText: "Warning"
+    }) }}  
 
-    <p class="govuk-body"><a href="" class="govuk-link">Find out what additional metadata you can provide</a>.</p> 
-
-    {# <p class="govuk-body"> We offer two ways of providing metadata for your records:</p> #}
+    <p class="govuk-body">We encourage you to provide additional metadata about the records, such as, descriptions, former references and date information. Find out more about the <a href="" class="govuk-link">additional metadata you can provide</a>.</p>
 
     <form class="form" action="/TUX-39/metadata-route" method="post">
       <div class="govuk-form-group">
