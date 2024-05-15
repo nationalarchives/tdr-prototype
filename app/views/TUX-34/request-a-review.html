@@ -4,15 +4,19 @@
   Request a Digital Transfer Advisor review
 {% endblock %}
 
+{% block beforeContent %}
+  <a href="./download-metadata" class="govuk-back-link">Back</a>
+{% endblock %}
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <h1 class="govuk-heading-xl">Request a Digital Transfer Advisor review</h1>
 
-      <p class="govuk-body">Before you complete your transfer we need to review your metadata. A Digital Transfer Advisor will review the metadata and email guidance if there are any issues.</p> 
+      <p class="govuk-body">Before you complete your transfer a Digital Transfer Advisor needs to review your metadata. This helps us to ensure we can preserve your records accurately. </p> 
       <div class="govuk-inset-text">
-        The email address we have for this account is: <strong>jesse@ons.gov.uk</strong>
+        If there are any problems we will send an email with guidance to this address: <strong>jesse@ons.gov.uk</strong>
       </div>
 
       <p class="govuk-body">What do our Digital Transfer Advisors check:</p>
@@ -22,34 +26,11 @@
         <li>pears</li>
       </ul>
 
-      <p class="govuk-body">Once you have requested a review you will not be able to make any changes to your metadata until the review is complete. You can download the metadata we will review below.</p>
-      
-      <section class="da-attachment govuk-!-margin-bottom-4 govuk-!-display-none-print">
-        <div class="da-attachment__thumbnail">
-          <a href="#" class="govuk-link" target="_self" tabindex="-1" aria-hidden="true">
-            <svg class="da-attachment__thumbnail-image da-attachment__thumbnail-image--spreadsheet" version="1.1" viewBox="0 0 99 140" width="99" height="140" aria-hidden="true">
-              <path d="M12 12h75v27H12zm0 47h18.75v63H12zm55 2v59H51V61h16m2-2H49v63h20V59z" stroke-width="0"></path>
-              <path d="M49 61.05V120H32.8V61.05H49m2-2H30.75v63H51V59zm34 2V120H69.05V61.05H85m2-2H67v63h20V59z" stroke-width="0"></path>
-              <path d="M30 68.5h56.5M30 77.34h56.5M30 112.7h56.5M30 95.02h56.5M30 86.18h56.5M30 103.86h56.5" fill="none" stroke-miterlimit="10" stroke-width="2"></path>
-            </svg>
-          </a>
-        </div>
-        <div class="da-attachment__details">
-          <h2 class="da-attachment__title">
-            <a href="#" class="govuk-link da-attachment__link" target="_self">
-              Metadata for consignment: MOCK-123-TDR
-            </a>
-          </h2>
-          <p class="da-attachment__metadata da-attachment__metadata--compact">
-            <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet" class="gem-c-attachment__abbr">XLSX</abbr></span>, <span class="gem-c-attachment__attribute">19.5 KB</span>
-          </p>
-          {# <p class="da-attachment__metadata">
-            Includes extracted metadata (file name, file path, last modified date) and column headers for additional metadata.
-          </p> #}
-        </div>
-      </section>
+      <p class="govuk-body">Once you have requested a review you will not be able to make any changes to your metadata until the review is complete.</p>
+      <p class="govuk-body">If you need to make any changes to your metadata before requesting a review, <a href="./record-metadata" class="govuk-link">return to Record metadata</a>.</p>
 
-      <p class="govuk-body">If you need to make any changes to your metadata <a href="" class="govuk-link">return to Record metadata</a> or submit your metadata for a review now.</p>
+
+      {# <p class="govuk-body">If you need to make any changes to your metadata <a href="" class="govuk-link">return to Record metadata</a> or submit your metadata for a review now.</p> #}
     
       <div class="govuk-button-group">
         <a href="./review-in-progress" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
