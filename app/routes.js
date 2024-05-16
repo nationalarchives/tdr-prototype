@@ -137,6 +137,19 @@ const populateWithClosureData = (req, res) => {
 
 // Add your routes here
 
+router.post(
+  "/:ticketId/metadata-route",
+  function(req, res){
+
+    const route = req.session.data['metadata-route']
+    if (route == "csv"){
+      res.redirect(`/${req.params.ticketId}/upload-csv`)
+    } else {
+      // response.redirect("/ineligible-country")
+    }
+
+  })
+
 router.get(
   "/metadata/descriptive-metadata/confirm-delete-metadata",
   function (req, res) {
