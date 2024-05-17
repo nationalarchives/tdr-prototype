@@ -1,0 +1,65 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Request a Digital Transfer Advisor review
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./download-metadata" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">Request a Digital Transfer Advisor review</h1>
+
+      <p class="govuk-body">Before you complete your transfer a Digital Transfer Advisor needs to review your metadata. This helps us to ensure we can preserve your records accurately. </p> 
+      <div class="govuk-inset-text">
+        If there are any problems we will send an email with guidance to this address: <strong>jesse@ons.gov.uk</strong>
+      </div>
+
+      <p class="govuk-body">What do our Digital Transfer Advisors check:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>apples</li>
+        <li>oranges</li>
+        <li>pears</li>
+      </ul>
+
+      <p class="govuk-body">Once you have requested a review you will not be able to make any changes to your metadata until the review is complete.</p>
+      <p class="govuk-body">If you need to make any changes to your metadata before requesting a review, <a href="./record-metadata" class="govuk-link">return to Record metadata</a>.</p>
+
+
+      {# <p class="govuk-body">If you need to make any changes to your metadata <a href="" class="govuk-link">return to Record metadata</a> or submit your metadata for a review now.</p> #}
+    
+      <div class="govuk-button-group">
+        <a href="./review-in-progress" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+          Submit metadata for review
+        </a>
+
+      </div>
+
+      {# <nav class="govuk-pagination govuk-pagination--block" role="navigation" aria-label="results">
+        <div class="govuk-pagination__prev">
+          <a class="govuk-link govuk-pagination__link" href="/metadata/additional-metadata" rel="prev">
+            <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+            </svg>
+            <span class="govuk-pagination__link-title">Previous</span>
+            <span class="govuk-visually-hidden">:</span>
+            <span class="govuk-pagination__link-label">Step 5: Descriptive and closed record metadata</span></a>
+        </div>
+        <div class="govuk-pagination__next">
+          <a class="govuk-link govuk-pagination__link" href="/summary.html" rel="next">
+            <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+            </svg>
+            <span class="govuk-pagination__link-title">Next</span>
+            <span class="govuk-visually-hidden">:</span>
+            <span class="govuk-pagination__link-label">Step 7: Confirm transfer</span></a>
+        </div>
+      </nav> #}
+
+    </div>
+  </div>
+{% endblock %}
