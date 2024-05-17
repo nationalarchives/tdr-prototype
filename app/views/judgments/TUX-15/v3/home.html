@@ -38,7 +38,7 @@
 
       <p class="govuk-body">After you submit a Microsoft Word document we convert the content into a web page and PDF. To ensure the information is converted correctly, we ask you to follow some formatting guidelines and rules in the original document. </p>
       
-      <details class="govuk-details">
+      <details class="govuk-details govuk-!-margin-bottom-4">
         <summary class="govuk-details__summary">
           <span class="govuk-details__summary-text">
             How will my document look once it's published?
@@ -50,40 +50,30 @@
         </div>
       </details>
       
-      <p class="govuk-body">Read our <a target="_blank" class="govuk-link" href="https://nationalarchives.github.io/ds-caselaw-judiciary-guidance/">guidance on formatting your document</a>.</p>
+      <p class="govuk-body govuk-!-margin-bottom-6">Read our <a target="_blank" class="govuk-link" href="https://nationalarchives.github.io/ds-caselaw-judiciary-guidance/">guidance on formatting your document</a>.</p>
 
-      
+      {# <h2 class="govuk-heading-m">Start your document transfer</h2> #}
       {{ govukButton({
-        text: "Start transfer",
-        href: "./upload"
+        text: "Start your transfer",
+        href: "./upload",
+        classes: "govuk-!-margin-bottom-8"
       }) }}
 
-      {# <h2 class="govuk-heading-m">Before you start a transfer</h2> #}
-      {# <p class="govuk-body">You can also use this service to transfer an update or revision to a previously transferred document.</p> #}
-
-      <h3 class="govuk-heading-m">If this is an amendment to an existing judgment or decision</h3>
+      <h3 class="govuk-heading-m">If this is an update to an existing judgment or decision</h3>
       
       <p class="govuk-body">You can use this service to transfer an update or revision to a previously transferred document.</p>
       <p class="govuk-body">Transfer the document in the same way as any judgement or decision, by clicking "Start transfer" above.</p>
-      <p class="govuk-body">
-        Once you have successfully completed the transfer email <a href="mailto:judgments@nationalarchives.gov.uk">judgments@nationalarchives.gov.uk</a>, and include the following:
-      </p>
-      <ul class="govuk-list govuk-list--bullet">
+      <p class="govuk-body">Once you have successfully completed the transfer email you will need to contact us. More information will be provided after the transfer.</p>
+      {# <ul class="govuk-list govuk-list--bullet">
         <li>the neutral citation</li>
         <li>the consignment reference provided at the end of this transfer</li>
         <li>tell us if this transfer is a revision or update</li>
         <li>provide a short description of what has changed</li>
-      </ul>
+      </ul> #}
 
-      {# <h2 class="govuk-heading-m">Other reasons you may need to contact us</h2>
-      <p class="govuk-body">Once the transfer is complete, you should email <a href="mailto:judgments@nationalarchives.gov.uk">judgments@nationalarchives.gov.uk</a> if you need to:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>Flag that your judgment is subject to an anonymisation order</li>
-        <li>Send supplementary material for this judgment</li>
-      </ul>
-      <p class="govuk-body">
-        Make sure you quote the consigment reference number provided on the last step of the transfer and attach any supplementary material to the email.
-      </p> #}
+      <h2 class="govuk-heading-m">Contact the publishing editors</h2>
+      <p class="govuk-body">The publishing editors can be contacted by email: <a href="mailto:judgments@nationalarchives.gov.uk">judgments@nationalarchives.gov.uk</a></p>
+  
 
 
     </div>
