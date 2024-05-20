@@ -78,5 +78,9 @@
             <path class="ons-topTriangle"  d="M6 0l6 7.2H0L6 0zm0 18.6l6-7.2H0l6 7.2zm0 3.6l6 7.2H0l6-7.2z"/>
             <path class="ons-bottomTriangle" d="M6 18.6l6-7.2H0l6 7.2zm0 3.6l6 7.2H0l6-7.2z"/>
         </svg>
+    {%- elif params.iconType == "info" -%}
+        <svg id="sort-sprite{% if params.id %}-{{ params.id | lower }}{% endif %}" class="ons-icon{{ iconClasses }}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false" fill="currentColor" role="img">
+            <path d="M11 17h2v-6h-2zm1-8q.425 0 .713-.288T13 8t-.288-.712T12 7t-.712.288T11 8t.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9 2 12t.788-3.9 2.137-3.175T8.1 2.788 12 2t3.9.788 3.175 2.137T21.213 8.1 22 12t-.788 3.9-2.137 3.175-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4 6.325 6.325 4 12t2.325 5.675T12 20m0-8"/>
+        </svg>
     {% endif -%}
 {% endmacro %}

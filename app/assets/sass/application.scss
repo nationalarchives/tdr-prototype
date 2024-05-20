@@ -511,3 +511,10 @@
 .govuk-summary-list--extra-wide-key .govuk-summary-list__key {
   width: 90%;
 }
+
+.govuk-summary-list__key-hint {
+  // @include govuk-font-size($size: 16);
+  @include govuk-font($size: 16);
+  color: govuk-colour("dark-grey");
+  margin-bottom: 0;
+}
