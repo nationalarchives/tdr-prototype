@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Checking your upload
+  Checking your document
 {% endblock %}
 
 {% block header %}
@@ -50,7 +50,7 @@
   {{ super() }}
   <script>
     setTimeout(()=>{
-      window.location.href="/judgments/complete";
+      window.location.href="./complete";
     }, 4000)
   </script>
 {% endblock %}
