@@ -36,17 +36,13 @@
         Summary of your metadata
       </h2>
 
-      <p class="govuk-body">Below is a summary of the metadata we found in your CSV. We match each row in your metadata to a file you uploaded for transfer.</p>
+      {# <p class="govuk-body">Below is a summary of the metadata we found in your CSV. We match each row in your metadata to a file you uploaded for transfer.</p> #}
 
        {{ govukSummaryList({
         rows: [
           {
             key: {  text: "Records uploaded for transfer" },
             value: { text: "227" }
-          },
-          {
-            key: {  text: "Rows matched to an uploaded record" },
-            value: { text: "87" }
           },
           {
             key: {  text: "Closed records in metadata" },

@@ -33,7 +33,7 @@
         ]
       }) }}
 
-
+{# 
       <h2 class="govuk-heading-m">
         Summary of your metadata
       </h2>
@@ -52,18 +52,17 @@
           }
         ],
         classes: "govuk-summary-list--wide-key"
-      }) }}
+      }) }} #}
 
       <h2 class="govuk-heading-m">
-        Review and download errors 
+        Error summary and report
       </h2>
-      <p class="govuk-body">Download the error report below. Once you have addressed all errors, upload a revised <abbr title="Comma Seperated Values">CSV</abbr>.</p>
-
+      {# <p class="govuk-body">Download the error report below. Once you have addressed all errors, upload a revised <abbr title="Comma Seperated Values">CSV</abbr>.</p> #}
 
        {{ govukSummaryList({
         rows: [
           {
-            key: {  text: "Rows we couldn't match to an uploaded record" },
+            key: {  text: "Rows with no matching record" },
             value: { text: "2" }
           },
           {
@@ -91,13 +90,11 @@
             </a>
           </h2>
           <p class="da-attachment__metadata da-attachment__metadata--compact">
-            <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet" class="gem-c-attachment__abbr">XLSX</abbr></span>, <span class="gem-c-attachment__attribute">19.5 KB</span>
+            <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet">XLSX</abbr></span>
           </p>
-          {# <p class="da-attachment__metadata">
-            Includes extracted metadata (file name, file path, last modified date) and column headers for additional metadata.
-          </p> #}
         </div>
       </section>
+      <p class="govuk-body">Once you have addressed all errors, upload a revised <abbr title="Comma Seperated Values">CSV</abbr>.</p>
 
       <div class="govuk-button-group">
         <a class="govuk-button" href="./upload-csv-no-errors">Upload a revised CSV</a>
