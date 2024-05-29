@@ -69,8 +69,8 @@
           },
           {
             key: {  html: ['
-            <p class="govuk-heading-s govuk-!-margin-bottom-1">The date last modified values we extracted are accurate</p>',
-            '<p class="govuk-summary-list__key-hint">Check the extracted dates in the downloadable template</p>' ]|join
+            <p class="govuk-heading-s govuk-!-margin-bottom-1">The extracted date last modified values are accurate</p>',
+            '<p class="govuk-summary-list__key-hint">Extracted dates can be checked in the downloadable template</p>' ]|join
           },
             value: { html: checkIcon }
           },
@@ -78,12 +78,16 @@
             key: {  
               html: '
               <p class="govuk-heading-s govuk-!-margin-bottom-1">Additional descriptions have been added to the records where appropriate</p>
-              <p class="govuk-summary-list__key-hint">For example, where record filenames are not descriptive.</p>' 
+              <p class="govuk-summary-list__key-hint">For example, where record filenames are not descriptive</p>' 
             },
             value: { html: checkIcon }
           },
           {
-            key: {  text: "All records are in English" },
+            key: {  
+              html: '
+              <p class="govuk-heading-s govuk-!-margin-bottom-1">All records are in English</p>
+              <p class="govuk-summary-list__key-hint">If a record contains other languages this should be added as metadata</p>' 
+            },
             value: { html: checkIcon }
           }          
         ],

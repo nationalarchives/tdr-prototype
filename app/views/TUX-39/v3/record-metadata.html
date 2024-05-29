@@ -55,7 +55,7 @@
         </span>
       </summary>
       <div class="govuk-details__text">
-        <p class="govuk-body">The template opens in Microsoft Excel and contains the following columns with <a class="govuk-link" href="">metadata we extracted from your records</a>:</p>
+        <p class="govuk-body">The template opens in Microsoft Excel and contains the following columns with metadata we extracted from your records:</p>
 
         <ul class="govuk-list govuk-list--bullet">
           <li>File name</li>
@@ -63,17 +63,30 @@
           <li>Date last modified</li>
         </ul>
         {{ govukWarningText({
-          html: "These columns must not be edited.",
+          html: "The extracted metadata in these columns must not be edited.",
           iconFallbackText: "Warning"
         }) }}
 
-        <p class="govuk-body">You should check that the extracted date last modified represents the last meaningful change to the record. If you need to enter a different record date follow the guidance on <a href='govuk-link' href=''>providing accurate date information</a>.</p>
-        
-        <p class="govuk-body">If you have closed records in your consignment you must <a href='govuk-link' href=''>provide metadata about those closed records</a>.</p>
-
-        <p class="govuk-body">The template also includes <a href='govuk-link' href=''>column headers for additional metadata</a>, such as description, former reference and language.</p>
-        
-        <p class="govuk-body">Once you have completed the template you will need to export a <abbr title="Comma Seperated Values">CSV</abbr> and upload it in the next step.</p>
+        <p class="govuk-body">Complete the following tasks:</p>
+        <ul class="govuk-list govuk-list--number">
+          <li>
+            <p><strong>Check the record's date last modified</strong> - You should check that the extracted <em>date last modified</em> represents the last meaningful change to the record. If you need to enter a different record date use the <em>date of the record</em> column. Do not directly edit the date last modified column.</p>
+            {# {{ govukWarningText({
+              html: "Do not edit the date last modified column.",
+              iconFallbackText: "Warning"
+            }) }} #}
+          </li>
+          <li>
+            <p><strong>Provide metadata about closed records</strong> - If you have <em>closed records</em> in your consignment you must provide metadata about those closed records.</p>
+          </li>
+          <li>
+            <p><strong>Provide additional metadata</strong> - The template also includes column headers for additional metadata, such as <em>description</em>, <em>former reference</em> and <em>language</em>.</p>
+          </li>
+          <li>
+            <p><strong>Export the template as a <abbr title="Comma Seperated Values">CSV</abbr> file</strong> - Once you have completed the template you will need to export a <abbr title="Comma Seperated Values">CSV</abbr> and upload it in the next step.</p>
+          </li>
+        </ul>
+       
 
       </div>
     </details>
