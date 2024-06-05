@@ -2,37 +2,42 @@
 {% from "macros/icon.njk" import daIcon %}
 
 {% block pageTitle %}
-  Digital Transfer Advisor review
+  Metadata review
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
-      <h1 class="govuk-heading-xl">Digital Transfer Advisor review</h1>
+      <h1 class="govuk-heading-xl">Metadata review</h1>
     
       <div class="da-alert da-alert--with-icon">
         <div class="da-alert__icon">
-          <div aria-hidden="true" class="da-icon da-icon--l">
-            {{- daIcon({"iconType": 'person'})-}}
+          <div aria-hidden="true">
+            {{- daIcon({"iconType": 'search', iconSize: "xl"})-}}
           </div>
         </div>
         <div class="da-alert__content">
           <h2 class="da-alert__heading">Your review is in progress</h2>
-          <p>
-            The Digital Transfer Advisor review is in progress. We will email <strong>jesse@ons.gov.uk</strong> when it’s complete.
-          </p>
+          {# <p>A Digital Transfer Advisor will review your metadata.</p> #}
+          <p>When complete you will receive an email to <strong>jesse@ons.gov.uk</strong></p>
         </div>
       </div>
-
-      {{ govukWarningText({
-        text: "Do not edit your metadata while the review is in progress.",
-        iconFallbackText: "Warning"
-      }) }}
-
       <p class="govuk-body">You can leave and return to this page at any time from the <a href="" class="govuk-link">View Transfers</a> page.</p>
-      <p class="govuk-body">If you have any urgent queries email <a href="">tdr@nationalarchives.gov.uk</a> quoting the consignment reference: MOCK-123-TDR</p>
+      <p class="govuk-body">If you have any queries email <a href="">tdr@nationalarchives.gov.uk</a> quoting the consignment reference: MOCK-123-TDR</p>
 
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details" open>
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
     </div>
   </div>
 {% endblock %}
