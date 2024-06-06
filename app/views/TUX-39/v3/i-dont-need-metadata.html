@@ -44,12 +44,14 @@
       <div class="da-attachment__details">
         <h2 class="da-attachment__title">
           <a href="#" class="govuk-link da-attachment__link" target="_self">
-            Metadata template for consignment: MOCK-123-TDR
+            Metadata template
           </a>
         </h2>
-        <p class="da-attachment__metadata da-attachment__metadata--compact">
-          <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet" class="gem-c-attachment__abbr">XLSX</abbr></span>
+        {# <p class="da-attachment__metadata da-attachment__metadata--compact">MOCK-123-TDR</p> #}
+        <p class="da-attachment__metadata">
+          <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet">XLSX</abbr></span>, <span class="da-attachment__attribute">227 records</span>
         </p>
+        <p class="da-attachment__metadata da-attachment__metadata--compact">Includes extracted file name, file path and date last modified.</p>
         {# <p class="da-attachment__metadata">
           Includes extracted metadata (file name, file path, last modified date) and column headers for additional metadata.
         </p> #}
@@ -86,7 +88,7 @@
             key: {  
               html: '
               <p class="govuk-heading-s govuk-!-margin-bottom-1">All records are in English</p>
-              <p class="govuk-summary-list__key-hint">If a record contains other languages this should be added as metadata</p>' 
+              <p class="govuk-summary-list__key-hint">If a record contains other languages this can be added as metadata</p>' 
             },
             value: { html: checkIcon }
           }          

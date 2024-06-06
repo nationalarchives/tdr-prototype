@@ -18,10 +18,12 @@
       Record metadata
     </h1>
     <p class="govuk-body">As part of a digital transfer to The National Archives you or your department can provide metadata to ensure we preserve your records correctly.</p>
-    <p class="govuk-body">If you have closed records in your consignment you must provide metadata about those records.</p>
+    {# <h2 class="govuk-heading-s">
+      Closed record metadata
+    </h2> #}
+    <p class="govuk-body">If you have closed records in your consignment <strong>you must provide metadata about those records</strong>.</p>
 
-    <h2 class="govuk-heading-m">Download a metadata template</h2>
-    <p class="govuk-body">The template contains metadata extracted from your records and empty columns for the additional metadata that we accept.</p>
+    <h2 class="govuk-heading-l">Download a metadata template</h2>
 
     <section class="da-attachment govuk-!-margin-bottom-4 govuk-!-display-none-print">
       <div class="da-attachment__thumbnail">
@@ -36,57 +38,68 @@
       <div class="da-attachment__details">
         <h2 class="da-attachment__title">
           <a href="#" class="govuk-link da-attachment__link" target="_self">
-            Metadata template for consignment: MOCK-123-TDR
+            Metadata template
           </a>
         </h2>
-        <p class="da-attachment__metadata da-attachment__metadata--compact">
-          <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet">XLSX</abbr></span>
+        {# <p class="da-attachment__metadata da-attachment__metadata--compact">MOCK-123-TDR</p> #}
+        <p class="da-attachment__metadata">
+          <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet">XLSX</abbr></span>, <span class="da-attachment__attribute">227 records</span>
         </p>
+        <p class="da-attachment__metadata da-attachment__metadata--compact">Includes extracted file name, file path and date last modified.</p>
         {# <p class="da-attachment__metadata">
           Includes extracted metadata (file name, file path, last modified date) and column headers for additional metadata.
         </p> #}
       </div>
     </section>
+    <h2 class="govuk-heading-m">Completing the template</h2>
+    <p class="govuk-body">The template has columns for the additional metadata that we accept and the following prepopulated columns with metadata extracted from your records:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>File name</li>
+      <li>File path</li>
+      <li>Date last modified</li>
+    </ul>
+    {{ govukWarningText({
+      html: "These columns must not be edited directly. There are additional columns for providing accurate date metadata.",
+      iconFallbackText: "Warning"
+    }) }}
 
     <details class="govuk-details">
       <summary class="govuk-details__summary">
         <span class="govuk-details__summary-text">
-          A quick guide to completing the template 
+          A guide to completing the template 
         </span>
       </summary>
       <div class="govuk-details__text">
-        <p class="govuk-body">The template opens in Microsoft Excel and contains the following columns with metadata we extracted from your records:</p>
-
-        <ul class="govuk-list govuk-list--bullet">
-          <li>File name</li>
-          <li>File path</li>
-          <li>Date last modified</li>
-        </ul>
-        {{ govukWarningText({
-          html: "The extracted metadata in these columns must not be edited.",
-          iconFallbackText: "Warning"
-        }) }}
-
-        <p class="govuk-body">Complete the following tasks:</p>
+        <p class="govuk-body">The template opens in Microsoft Excel and contains columns with prepopulated metadata and empty columns for you to provide additional metadata.</p>
+        <p class="govuk-body">You will need to check metadata we have extracted and provide as much additional metadata about the records as possible.</p>
         <ul class="govuk-list govuk-list--number">
           <li>
-            <p><strong>Check the record's date last modified</strong> - You should check that the extracted <em>date last modified</em> represents the last meaningful change to the record. If you need to enter a different record date use the <em>date of the record</em> column. Do not directly edit the date last modified column.</p>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Provide metadata about closed records</h3> 
+            <p>If you have closed records in your consignment you must provide metadata about those closed records in the columns provided.</p>
+          </li>
+          <li>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Check the <em>Date last modified</em> column</h3> 
+            <p>The date last modified was extracted from the records during uplopad. Check that the date represents the last meaningful change to the record. If you need to enter a different record date <strong>do not directly edit the <em>Date last modified</em> column</strong>. Instead use the <em>Date of the record</em> column.</p>
             {# {{ govukWarningText({
               html: "Do not edit the date last modified column.",
               iconFallbackText: "Warning"
             }) }} #}
           </li>
           <li>
-            <p><strong>Provide metadata about closed records</strong> - If you have <em>closed records</em> in your consignment you must provide metadata about those closed records.</p>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Provide record descriptions</h3> 
+            <p>Whenever possible provide descriptive information about the record in the <em>Description</em> column. For example, if the file name is not descriptive.</p>
           </li>
           <li>
-            <p><strong>Provide additional metadata</strong> - The template also includes column headers for additional metadata, such as <em>description</em>, <em>former reference</em> and <em>language</em>.</p>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Provide additional metadata</h3> 
+            <p>The template also includes column headers for additional metadata, such as <em>Language</em> and <em>Former reference</em>.</p>
           </li>
           <li>
-            <p><strong>Export the template as a <abbr title="Comma Seperated Values">CSV</abbr> file</strong> - Once you have completed the template you will need to export a <abbr title="Comma Seperated Values">CSV</abbr> and upload it in the next step.</p>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Export the template as a <abbr title="Comma Seperated Values">CSV</abbr></h3> 
+            <p>Once you have completed the template you will need to export a <abbr title="Comma Seperated Values">CSV</abbr> and upload it in the next step. You can do this within Excel following <a target="_blank" href="https://support.microsoft.com/en-gb/office/save-a-workbook-to-text-format-txt-or-csv-3e9a9d6c-70da-4255-aa28-fcacf1f081e6">guidance from Microsoft (opens in a new tab)</a>.</p>
           </li>
         </ul>
-       
+        <p class="govuk-body">If you have metadata that doesn't fit into the available template columns contact <a href="mailto:tdr@nationalarchives.gov.uk" class="govuk-link">tdr@nationalarchives.gov.uk</a>.</p>
 
       </div>
     </details>
@@ -101,7 +114,7 @@
       </div>
       <div class="da-alert__content">
         <h3 class="da-alert__heading da-alert__heading--s">Leaving and returning to this transfer</h2>
-        <p class="govuk-body">You can leave and return to this transfer to upload your metadata at any time. In progress transfers are accessible from the <a class="govuk-link" href="">View Transfers</a> page.</p>
+        <p class="govuk-body">You can leave this transfer and return to upload your metadata once you have completed your template. In progress transfers are accessible from the <a class="govuk-link" href="">View Transfers</a> page.</p>
       </div>
     </div>
 
