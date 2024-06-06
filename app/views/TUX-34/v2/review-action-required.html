@@ -2,32 +2,30 @@
 {% from "macros/icon.njk" import daIcon %}
 
 {% block pageTitle %}
-  Digital Transfer Advisor review
+  Metadata review
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
-      <h1 class="govuk-heading-xl">Digital Transfer Advisor review</h1>
+      <h1 class="govuk-heading-xl">Metadata review</h1>
 
       <div class="da-alert da-alert--error da-alert--with-icon">
         <div class="da-alert__icon">
-          <div aria-hidden="true" class="da-icon da-icon--l">
-            {{- daIcon({"iconType": 'cross'})-}}
+          <div aria-hidden="true">
+            {{- daIcon({"iconType": 'warning', iconSize: "xxl"})-}}
           </div>
         </div>
         <div class="da-alert__content">
           <h2 class="da-alert__heading">We found issues in your metadata</h2>
-          <p>
-            The metadata you submitted needs some amendment before transfer. We have emailed guidance to <strong>jesse@ons.gov.uk</strong>.
-          </p>
+          <p>We have emailed guidance to <strong>jesse@ons.gov.uk</strong></p>
         </div>
       </div>
       
-      <p class="govuk-body">Download a copy of the metadata CSV you submitted.</p>
+      {# <p class="govuk-body">Download a copy of the metadata CSV you submitted.</p> #}
       
-      <section class="da-attachment govuk-!-margin-bottom-4 govuk-!-display-none-print">
+      {# <section class="da-attachment govuk-!-margin-bottom-4 govuk-!-display-none-print">
         <div class="da-attachment__thumbnail">
           <a href="#" class="govuk-link" target="_self" tabindex="-1" aria-hidden="true">
             <svg class="da-attachment__thumbnail-image da-attachment__thumbnail-image--spreadsheet" version="1.1" viewBox="0 0 99 140" width="99" height="140" aria-hidden="true">
@@ -44,22 +42,30 @@
             </a>
           </h2>
           <p class="da-attachment__metadata da-attachment__metadata--compact">
-            <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet" class="gem-c-attachment__abbr">XLSX</abbr></span>, <span class="gem-c-attachment__attribute">19.5 KB</span>
+            <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet" class="gem-c-attachment__abbr">XLSX</abbr></span>
           </p>
-          {# <p class="da-attachment__metadata">
-            Includes extracted metadata (file name, file path, last modified date) and column headers for additional metadata.
-          </p> #}
         </div>
-      </section>
+      </section> #}
       
-      <p class="govuk-body">Once you have made the required changes, upload a revised metadata CSV.</p>
+      <p class="govuk-body">Follow the guidance to amend the metadata.</p>
 
       <div class="govuk-button-group">
         <a href="./review-in-progress" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
-          Upload a revised CSV
+          Continue
         </a>
       </div>
-
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details" open>
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
     </div>
   </div>
 {% endblock %}

@@ -49,18 +49,18 @@
 
 .da-alert {
 
-  .da-alert__icon > .da-icon svg {
+  .da-alert__icon svg.da-icon {
     fill: #174E75;
   }
-  &--success .da-alert__icon > .da-icon svg {
+  &--success .da-alert__icon svg.da-icon {
     fill: #1B7069;
   }
   
-  &--error  .da-alert__icon > .da-icon svg {
+  &--error  .da-alert__icon svg.da-icon {
     fill: #831D1D;
   }
   
-  &--info  .da-alert__icon > .da-icon svg {
+  &--info  .da-alert__icon svg.da-icon {
     fill: #985E05;
   }
 }
