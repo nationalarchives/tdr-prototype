@@ -16,33 +16,23 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {# <span class="govuk-caption-l">Record metatadata</span> #}
       <h1 class="govuk-heading-l">Upload a metadata CSV</h1>
+      
+      <p class="govuk-body">Upload a <abbr title="Comma Seperated Values">CSV</abbr> containing the record metadata. You can export a CSV within Excel following <a target='_blank' href='https://support.microsoft.com/en-gb/office/save-a-workbook-to-text-format-txt-or-csv-3e9a9d6c-70da-4255-aa28-fcacf1f081e6'>guidance from Microsoft (opens in a new tab)</a>.</p>
 
-      {% if data['csv-upload-status'] == "failed" %}
       {{ govukWarningText({
-        text: "Uploading a new or amended CSV will overwrite any metadata imported from a previous CSV.",
+        html: "We can only accept metadata in a <abbr title='Comma Seperated Values'>CSV</abbr> file format.",
         iconFallbackText: "Warning"
       }) }}
-      {% endif %}
-
-      <p class="govuk-body"></p>
-      
-      <p class="govuk-body">Upload a <abbr title="Comma Seperated Values">CSV</abbr> containing the record metadata. In order for us to process your metadata upload, it must include the following columns:</p>
+        
+      <p>In order for us to process your metadata upload, it must include the following columns:</p>
       <ul class="govuk-list govuk-list--bullet">
         <li>File name</li>
         <li>File path</li>
         <li>Date last modified</li>
       </ul>
       
-      <p class="govuk-body">We encourage you to provide as much additional metadata as possible in the columns in the metadata template.</p>
-
-      <p class="govuk-body">Learn more about the <a class="govuk-body" href="">additional metadata you can provide</a>.</p>
-
-      {{ govukWarningText({
-        html: "We can only accept metadata in a <abbr title='Comma Seperated Values'>CSV</abbr> file format",
-        iconFallbackText: "Warning"
-      }) }}
+      <p class="govuk-body">We encourage you to provide as much additional metadata as possible in the columns in the metadata template. If you want to add more metadata return to the <a class="govuk-body" href="">Record metadata</a> page and read the guide on completing the template.</p>
 
       {{ govukFileUpload({
         id: "file-upload-1",
@@ -52,7 +42,7 @@
         }
       }) }}
 
-
+    
       <div class="govuk-button-group">
         <a href="./csv-checks-no-errors"  role="button"draggable="false" class="govuk-button" data-module="govuk-button">
           Upload
