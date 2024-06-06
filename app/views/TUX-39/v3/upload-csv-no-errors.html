@@ -32,7 +32,15 @@
         <li>Date last modified</li>
       </ul>
       
-      <p class="govuk-body">We encourage you to provide as much additional metadata as possible in the columns in the metadata template. If you want to add more metadata return to the <a class="govuk-body" href="">Record metadata</a> page and read the guide on completing the template.</p>
+      <p class="govuk-body">We encourage you to provide as much additional metadata as possible. If you want to add more metadata return to the <a class="govuk-body" href="">Record metadata</a> page and read the guide on completing the template.</p>
+
+
+      <div class="da-alert da-alert--info">
+        <div class="da-alert__content">
+          {# <h2 class="da-alert__heading">We found issues in your metadata</h2> #}
+          <p>Once uploaded, we will check your metadata for errors. There will be a chance to review and re-upload the metadata before completing the transfer.</p>
+        </div>
+      </div>
 
       {{ govukFileUpload({
         id: "file-upload-1",
@@ -42,7 +50,6 @@
         }
       }) }}
 
-    
       <div class="govuk-button-group">
         <a href="./csv-checks-no-errors"  role="button"draggable="false" class="govuk-button" data-module="govuk-button">
           Upload

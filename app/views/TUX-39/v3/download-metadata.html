@@ -14,8 +14,9 @@
 
       <h1 class="govuk-heading-l">Download and review metadata</h1>
 
-      <p class="govuk-body">You can review the metadata added to your records by downloading the file below.</p>
-      
+      <p class="govuk-body">The CSV below is generated from the metadata we are storing in this consigment ready for transfer. You can download and review this metadata before completing the transfer.</p>
+
+
       <section class="da-attachment govuk-!-margin-bottom-4 govuk-!-display-none-print">
         <div class="da-attachment__thumbnail">
           <a href="#" class="govuk-link" target="_self" tabindex="-1" aria-hidden="true">
@@ -29,26 +30,25 @@
         <div class="da-attachment__details">
           <h2 class="da-attachment__title">
             <a href="#" class="govuk-link da-attachment__link" target="_self">
-              Metadata for consignment: MOCK-123-TDR
+              Metadata for transfer
             </a>
           </h2>
-          <p class="da-attachment__metadata da-attachment__metadata--compact">
-            <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet" class="gem-c-attachment__abbr">XLSX</abbr></span>, <span class="gem-c-attachment__attribute">19.5 KB</span>
-          </p>
-          {# <p class="da-attachment__metadata">
-            Includes extracted metadata (file name, file path, last modified date) and column headers for additional metadata.
-          </p> #}
+          <p class="da-attachment__metadata">
+            <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet">XLSX</abbr></span>
+          </p>        
+          <p class="da-attachment__metadata da-attachment__metadata--compact">This contains the metadata that will be transfered in this consigment.</p>
+
         </div>
       </section>
 
-      <p class="govuk-body">If you would like to add or amend the metadata, you will need to re-upload a metadata <abbr title="Comma Seperated Values">CSV</abbr>.</p>
+      <p class="govuk-body">If you would like to add or amend any metadata, you will need to re-upload the metadata.</p>
 
       
       <div class="govuk-button-group">
         <a href="./summary.html" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
           Continue
         </a>
-        <a class="govuk-button govuk-button--secondary" href="./upload-csv">Re-upload a metadata CSV</a>
+        <a class="govuk-button govuk-button--secondary" href="./upload-csv">Re-upload metadata</a>
       </div>
 
     </div>

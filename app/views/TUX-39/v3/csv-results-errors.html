@@ -33,31 +33,10 @@
         ]
       }) }}
 
-{# 
-      <h2 class="govuk-heading-m">
-        Summary of your metadata
-      </h2>
-
-      <p class="govuk-body">Below is a summary of the metadata we found in your <abbr title="Comma Seperated Values">CSV</abbr>. We match each row in your metadata to a file you uploaded for transfer.</p>
-
-       {{ govukSummaryList({
-        rows: [
-          {
-            key: {  text: "Records uploaded for transfer" },
-            value: { text: "227" }
-          },
-          {
-            key: {  text: "Rows we matched to an uploaded record" },
-            value: { text: "85" }
-          }
-        ],
-        classes: "govuk-summary-list--wide-key"
-      }) }} #}
 
       <h2 class="govuk-heading-m">
         Error summary and report
       </h2>
-      {# <p class="govuk-body">Download the error report below. Once you have addressed all errors, upload a revised <abbr title="Comma Seperated Values">CSV</abbr>.</p> #}
 
        {{ govukSummaryList({
         rows: [
@@ -86,14 +65,17 @@
         <div class="da-attachment__details">
           <h2 class="da-attachment__title">
             <a href="#" class="govuk-link da-attachment__link" target="_self">
-              Error report for consignment: MOCK-123-TDR
+              Metadata error report
             </a>
           </h2>
-          <p class="da-attachment__metadata da-attachment__metadata--compact">
+          <p class="da-attachment__metadata">
             <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet">XLSX</abbr></span>
-          </p>
+          </p>       
+          <p class="da-attachment__metadata da-attachment__metadata--compact">Contains errors found in uploaded metadata.</p>
+ 
         </div>
       </section>
+
       <p class="govuk-body">Once you have addressed all errors, upload the revised metadata.</p>
 
       <div class="govuk-button-group">
