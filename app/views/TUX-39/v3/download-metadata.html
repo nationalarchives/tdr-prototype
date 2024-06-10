@@ -4,6 +4,10 @@
   Download and review metadata
 {% endblock %}
 
+{% block header %}
+  {% include "./inc-header.html" %}
+{% endblock %}
+
 {% block beforeContent %}
   <a href="./confirm-closure" class="govuk-back-link">We found closed records in your metadata</a>
 {% endblock %}

@@ -6,6 +6,10 @@
   Record metadata
 {% endblock %}
 
+{% block header %}
+  {% include "./inc-header.html" %}
+{% endblock %}
+
 {% block beforeContent %}
   <a href="./upload-records-results" class="govuk-back-link">Results of your record checks</a>
 {% endblock %}
@@ -27,7 +31,7 @@
 
     <section class="da-attachment govuk-!-margin-bottom-4 govuk-!-display-none-print">
       <div class="da-attachment__thumbnail">
-        <a download href="/public/downloads/MOCK-123-TDR-template-07.06.24.xlsx" class="govuk-link" target="_self" tabindex="-1" aria-hidden="true">
+        <a download href="/public/downloads/MOCK-TDR-1301-template.xlsx" class="govuk-link" target="_self" tabindex="-1" aria-hidden="true">
           <svg class="da-attachment__thumbnail-image da-attachment__thumbnail-image--spreadsheet" version="1.1" viewBox="0 0 99 140" width="99" height="140" aria-hidden="true">
             <path d="M12 12h75v27H12zm0 47h18.75v63H12zm55 2v59H51V61h16m2-2H49v63h20V59z" stroke-width="0"></path>
             <path d="M49 61.05V120H32.8V61.05H49m2-2H30.75v63H51V59zm34 2V120H69.05V61.05H85m2-2H67v63h20V59z" stroke-width="0"></path>
@@ -37,7 +41,7 @@
       </div>
       <div class="da-attachment__details">
         <h2 class="da-attachment__title">
-          <a download href="/public/downloads/MOCK-123-TDR-template-07.06.24.xlsx" class="govuk-link da-attachment__link" tabindex="-1" aria-hidden="true">
+          <a download href="/public/downloads/MOCK-TDR-1301-template.xlsx" class="govuk-link da-attachment__link" tabindex="-1" aria-hidden="true">
             Metadata template
           </a>
         </h2>
@@ -103,7 +107,7 @@
       </div>
     </details>
     
-    {# <p class="govuk-body">You can leave and return to this transfer (MOCK-123-TDR) from the <a class="govuk-link" href="">View Transfers</a> page at any time.</p> #}
+    {# <p class="govuk-body">You can leave and return to this transfer (MOCK-TDR-1301) from the <a class="govuk-link" href="">View Transfers</a> page at any time.</p> #}
 
     <div class="da-alert da-alert--info da-alert--with-icon">
       <div class="da-alert__icon">
@@ -113,7 +117,8 @@
       </div>
       <div class="da-alert__content">
         <h3 class="da-alert__heading da-alert__heading--s">Leaving and returning to this transfer</h2>
-        <p class="govuk-body">You can leave this transfer and return to upload your metadata once you have completed your template. In progress transfers are accessible from the <a class="govuk-link" href="">View Transfers</a> page.</p>
+        <p class="govuk-body">You can leave this transfer and return to upload your metadata once you have completed your template.</p>
+        <p class="govuk-body">This in-progress transfer (<strong>MOCK-TDR-1301</strong>) is accessible from <a target="_blank" class="govuk-link" href="./transfers">View transfers (opens in a new tab)</a>.</p>
       </div>
     </div>
 
@@ -141,7 +146,7 @@
         </span>
       </summary>
       <div class="govuk-details__text">
-        MOCK-123-TDR
+        MOCK-TDR-1301
       </div>
     </details>
   </div>

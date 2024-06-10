@@ -1,6 +1,10 @@
 {% extends "layouts/main.html" %}
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
+{% block header %}
+  {% include "./inc-header.html" %}
+{% endblock %}
+
 {% macro taskListItem(name, href, status, hint, linkActive) %}
   {% set safeName = name|replace("[^A-Za-z0-9 ]","")|replace(" ", "-")|lower %}
   <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -86,7 +90,7 @@
           </span>
         </summary>
         <div class="govuk-details__text">
-          MOCK-123-TDR
+          MOCK-TDR-1301
         </div>
       </details>
     </div>

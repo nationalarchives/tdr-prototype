@@ -6,6 +6,10 @@
   I don't need to enter any metadata
 {% endblock %}
 
+{% block header %}
+  {% include "./inc-header.html" %}
+{% endblock %}
+
 {% block beforeContent %}
   <a href="./record-metadata" class="govuk-back-link">Record metadata</a>
 {% endblock %}
@@ -47,7 +51,7 @@
             Metadata template
           </a>
         </h2>
-        {# <p class="da-attachment__metadata da-attachment__metadata--compact">MOCK-123-TDR</p> #}
+        {# <p class="da-attachment__metadata da-attachment__metadata--compact">MOCK-TDR-1301</p> #}
         <p class="da-attachment__metadata">
           <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet">XLSX</abbr></span>, <span class="da-attachment__attribute">227 records</span>
         </p>
@@ -114,7 +118,7 @@
         </span>
       </summary>
       <div class="govuk-details__text">
-        MOCK-123-TDR
+        MOCK-TDR-1301
       </div>
     </details>
   </div>

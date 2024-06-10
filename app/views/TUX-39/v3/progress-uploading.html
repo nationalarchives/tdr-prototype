@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block header %}
-  {{ super() }}
+  {% include "./inc-header.html" %}
   <meta http-equiv="refresh" content="6; url=./upload-checks">
 {% endblock %}
 
@@ -43,7 +43,7 @@
           </span>
         </summary>
         <div class="govuk-details__text">
-          MOCK-123-TDR
+          MOCK-TDR-1301
         </div>
       </details>
     </div>

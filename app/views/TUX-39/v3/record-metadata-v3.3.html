@@ -6,6 +6,10 @@
   Record metadata
 {% endblock %}
 
+{% block header %}
+  {% include "./inc-header.html" %}
+{% endblock %}
+
 {% block beforeContent %}
   <a href="./upload-records-results" class="govuk-back-link">Results of your record checks</a>
 {% endblock %}
@@ -39,9 +43,9 @@
             Metadata template
           </a>
         </h2>
-        {# <p class="da-attachment__metadata da-attachment__metadata--compact">MOCK-123-TDR</p> #}
+        {# <p class="da-attachment__metadata da-attachment__metadata--compact">MOCK-TDR-1301</p> #}
         <p class="da-attachment__metadata da-attachment__metadata--compact">
-          Consignment: MOCK-123-TDR
+          Consignment: MOCK-TDR-1301
         </p>
         <p class="da-attachment__metadata">
           <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet">XLSX</abbr></span>, <span class="da-attachment__attribute">227 records</span>
@@ -133,7 +137,7 @@
 
     <p>If you have metadata that doesn't fit into the available template columns contact <a href="mailto:tdr@nationalarchives.gov.uk" class="govuk-link">tdr@nationalarchives.gov.uk</a>.</p>
 
-    {# <p class="govuk-body">You can leave and return to this transfer (MOCK-123-TDR) from the <a class="govuk-link" href="">View Transfers</a> page at any time.</p> #}
+    {# <p class="govuk-body">You can leave and return to this transfer (MOCK-TDR-1301) from the <a class="govuk-link" href="">View Transfers</a> page at any time.</p> #}
 
     <div class="da-alert da-alert--info da-alert--with-icon">
       <div class="da-alert__icon">
@@ -171,7 +175,7 @@
         </span>
       </summary>
       <div class="govuk-details__text">
-        MOCK-123-TDR
+        MOCK-TDR-1301
       </div>
     </details>
   </div>

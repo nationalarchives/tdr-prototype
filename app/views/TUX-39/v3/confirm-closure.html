@@ -2,7 +2,11 @@
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
 {% block pageTitle %}
-  We found no closed record metadata
+  We found closed records in your metadata 
+{% endblock %}
+
+{% block header %}
+  {% include "./inc-header.html" %}
 {% endblock %}
 
 {% block beforeContent %}
@@ -37,7 +41,7 @@
         ]
       }) }}
 
-      <p class="govuk-body">If the answer is no, you cannot proceed and should contact <a href='mailto:tdr@nationalarchives.gov.uk'>tdr@nationalarchives.gov.uk</a> providing the consignment reference: <strong>MOCK-123-TDR</strong>.</p>
+      <p class="govuk-body">If the answer is no, you cannot proceed and should contact <a href='mailto:tdr@nationalarchives.gov.uk'>tdr@nationalarchives.gov.uk</a> providing the consignment reference: <strong>MOCK-TDR-1301</strong>.</p>
 
       <p>You can return to this transfer at any time from the <a href='/transfers'>View transfers</a> page.</p>
 
@@ -59,7 +63,7 @@
           </span>
         </summary>
         <div class="govuk-details__text">
-          MOCK-123-TDR
+          MOCK-TDR-1301
         </div>
       </details>
     </div>

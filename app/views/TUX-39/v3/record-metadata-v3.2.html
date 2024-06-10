@@ -6,6 +6,10 @@
   Record metadata
 {% endblock %}
 
+{% block header %}
+  {% include "./inc-header.html" %}
+{% endblock %}
+
 {% block beforeContent %}
   <a href="./upload-records-results" class="govuk-back-link">Results of your record checks</a>
 {% endblock %}
@@ -103,7 +107,7 @@
       </div>
     </details>
     
-    {# <p class="govuk-body">You can leave and return to this transfer (MOCK-123-TDR) from the <a class="govuk-link" href="">View Transfers</a> page at any time.</p> #}
+    {# <p class="govuk-body">You can leave and return to this transfer (MOCK-TDR-1301) from the <a class="govuk-link" href="">View Transfers</a> page at any time.</p> #}
 
     <div class="da-alert da-alert--info da-alert--with-icon">
       <div class="da-alert__icon">
@@ -141,7 +145,7 @@
         </span>
       </summary>
       <div class="govuk-details__text">
-        MOCK-123-TDR
+        MOCK-TDR-1301
       </div>
     </details>
   </div>

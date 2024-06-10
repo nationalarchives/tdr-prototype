@@ -1,7 +1,11 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Transfer summary
+  Confirm transfer
+{% endblock %}
+
+{% block header %}
+  {% include "./inc-header.html" %}
 {% endblock %}
 
 {% block content %}
@@ -26,7 +30,7 @@
            Consignment reference
           </dt>
           <dd class="govuk-summary-list__value">
-            MOCK-123-TDR
+            MOCK-TDR-1301
           </dd>
         </div>
         <div class="govuk-summary-list__row">
@@ -55,7 +59,7 @@
         </div>
       </dl>
 
-      <form class="form" action="/end-confirmation" method="post">
+      <form class="form" action="./end-confirmation" method="post">
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
