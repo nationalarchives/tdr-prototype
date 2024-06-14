@@ -21,278 +21,42 @@
       <h1 class="govuk-heading-l">
         Results of your metadata checks
       </h1>
-      <p class="govuk-body">The uploaded metadata contains some errors. Download the report below for more details.</p>
+      <p class="govuk-body">There was an issue with your uploaded metadata file.</p>
 
       <p class="govuk-body"></p>
        {{ govukSummaryList({
         rows: [
           {
             key: {  text: "Status" },
-            value: { html: "<strong class=\"govuk-tag govuk-tag--red\">Errors found</strong>" }
+            value: { html: "<strong class=\"govuk-tag govuk-tag--orange\">Issues found</strong>" }
           },
           {
-            key: {  text: "Uploaded file" },
-            value: { html: "<code>transfer-metadata-10.09.24.csv</code>" }
+            key: {  text: "Details" },
+            value: { html: "We found validation errors in the uploaded metadata." }
+          },
+          {
+            key: {  text: "Action" },
+            value: { html: "Download the report below for details on individual validation errors." }
           }
         ]
       }) }}
 
+      <p class="govuk-body">The report below contains details about issues found.</p>
 
-      <h2 class="govuk-heading-m">
-        Error summary and report
-      </h2>
+      <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8" data-module="govuk-button">
+        <span aria-hidden="true" class="tna-button-icon tna-button-icon--download">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 23 23">
+            <path fill="#020202" d="m11.5 16.75-6.563-6.563 1.838-1.903 3.412 3.413V1h2.626v10.697l3.412-3.413 1.837 1.903L11.5 16.75ZM3.625 22c-.722 0-1.34-.257-1.853-.77A2.533 2.533 0 0 1 1 19.375v-3.938h2.625v3.938h15.75v-3.938H22v3.938c0 .722-.257 1.34-.77 1.855a2.522 2.522 0 0 1-1.855.77H3.625Z"/>
+          </svg>          
+        </span>
+        Download report
+      </button>
 
-       {{ govukSummaryList({
-        rows: [
-          {
-            key: {  text: "Rows with no matching record" },
-            value: { text: "2" }
-          },
-          {
-            key: {  text: "Errors found in matched rows" },
-            value: { text: "5" }
-          }
-        ],
-        classes: "govuk-summary-list--wide-key"
-      }) }}
-
-      <section class="da-attachment govuk-!-margin-bottom-4 govuk-!-display-none-print">
-        <div class="da-attachment__thumbnail">
-          <a download href="/public/downloads/MOCK-TDR-1301-error-report.xlsx" class="govuk-link" target="_self" tabindex="-1" aria-hidden="true">
-            <svg class="da-attachment__thumbnail-image da-attachment__thumbnail-image--spreadsheet" version="1.1" viewBox="0 0 99 140" width="99" height="140" aria-hidden="true">
-              <path d="M12 12h75v27H12zm0 47h18.75v63H12zm55 2v59H51V61h16m2-2H49v63h20V59z" stroke-width="0"></path>
-              <path d="M49 61.05V120H32.8V61.05H49m2-2H30.75v63H51V59zm34 2V120H69.05V61.05H85m2-2H67v63h20V59z" stroke-width="0"></path>
-              <path d="M30 68.5h56.5M30 77.34h56.5M30 112.7h56.5M30 95.02h56.5M30 86.18h56.5M30 103.86h56.5" fill="none" stroke-miterlimit="10" stroke-width="2"></path>
-            </svg>
-          </a>
-        </div>
-        <div class="da-attachment__details">
-          <h2 class="da-attachment__title">
-            <a download href="/public/downloads/MOCK-TDR-1301-error-report.xlsx" class="govuk-link da-attachment__link" target="_self">
-              Metadata error report
-            </a>
-          </h2>
-          <p class="da-attachment__metadata">
-            <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet">XLSX</abbr></span>
-          </p>       
-          <p class="da-attachment__metadata da-attachment__metadata--compact">Contains errors found in uploaded metadata.</p>
- 
-        </div>
-      </section>
-
-      <p class="govuk-body">Once you have addressed all errors, upload the revised metadata.</p>
+      <p class="govuk-body">Once you have addressed this issue upload a revised metadata file.</p>
 
       <div class="govuk-button-group">
-        <a class="govuk-button" href="./upload-csv-no-errors">Upload revised metadata</a>
+        <a class="govuk-button" href="./upload-csv-no-errors">Re-upload metadata</a>
       </div>
-
-{#
-      <h2 class="govuk-heading-m">
-        Errors found in your CSV upload
-      </h2>
-
-      {{ govukSummaryList({
-        card: {
-          title: {
-            html: "<a id=\"error-1\" href=\"#error-1\">#1</a> Record with missing row"
-          }
-        },
-        rows: [
-          {
-            key: {
-              text: "Error"
-            },
-            value: {
-              text: "An uploaded record does not have a matching row in the CSV"
-            }
-          },
-          {
-            key: {
-              text: "Record name"
-            },
-            value: {
-              html: "Fresh.png"
-            }
-          },
-          {
-            key: {
-              text: "Full path"
-            },
-            value: {
-              html: "<code>/Cake Basics/Rising agents/Fresh.png</code>"
-            }
-          },
-          {
-            key: {
-              text: "How to fix"
-            },
-            value: {
-              html: "Add a row to your CSV for this record or use the <a href=\"/metadata-template-download\">metadata CSV template</a>."
-            }
-          }
-        ]
-      }) }}
-
-      {{ govukSummaryList({
-        card: {
-          title: {
-            html: "<a id=\"error-2\" href=\"#error-2\">#2</a> Record with missing row"
-          }
-        },
-        rows: [
-          {
-            key: {
-              text: "Error"
-            },
-            value: {
-              text: "An uploaded record does not have a matching row in the CSV"
-            }
-          },
-          {
-            key: {
-              text: "Record name"
-            },
-            value: {
-              html: "Red velvet.xlsx"
-            }
-          },
-          {
-            key: {
-              text: "Full path"
-            },
-            value: {
-              html: "<code>/Cupcakes/Red velvet.xlsx</code>"
-            }
-          },
-          {
-            key: {
-              text: "How to fix"
-            },
-            value: {
-              html: "Add a row to your CSV for this record or use the <a href=\"/metadata-template-download\">metadata CSV template</a>."
-            }
-          }
-        ]
-      }) }}
-
-
-      {{ govukSummaryList({
-        card: {
-          title: {
-            html: "<a id=\"error-3\" href=\"#error-3\">#3</a> Column not recognised"
-          }
-        },
-        rows: [
-          {
-            key: {
-              text: "Error"
-            },
-            value: {
-              html: "We found a column (<code>Internal reference</code>) that isn't recognised."
-            }
-          },
-          {
-            key: {
-              text: "How to fix"
-            },
-            value: {
-              html: "Remove the column (<code>Internal reference</code>) or contact a Transfer Advisor."
-            }
-          }
-        ]
-      }) }}
-
-      {{ govukSummaryList({
-        card: {
-          title: {
-            html: "<a id=\"error-4\" href=\"#error-4\">#4</a> Duplicate column"
-          }
-        },
-        rows: [
-          {
-            key: {
-              text: "Error"
-            },
-            value: {
-              html: "We found multiple columns with the same name: <code>Description</code>."
-            }
-          },
-          {
-            key: {
-              text: "How to fix"
-            },
-            value: {
-              html: "Ensure there is a only one <code>Description</code> column."
-            }
-          }
-        ]
-      }) }}
-
-      {{ govukSummaryList({
-        card: {
-          title: {
-            html: "<a id=\"error-5\" href=\"#error-5\">#5</a> Data provided for Closure Start Date not recognised"
-          }
-        },
-        rows: [
-          {
-            key: {
-              text: "Error"
-            },
-            value: {
-              text: "The data provided for Closure Start date was not recognised or is malformed."
-            }
-          },
-          {
-            key: {
-              text: "Record name"
-            },
-            value: {
-              html: "Fresh.png"
-            }
-          },
-          {
-            key: {
-              text: "Full path"
-            },
-            value: {
-              html: "<code>/Cake Basics/Rising agents/Fresh.png</code>"
-            }
-          },
-          {
-            key: {
-              text: "Data found"
-            },
-            value: {
-              html: "12/13/2009"
-            }
-          },
-          {
-            key: {
-              text: "Format required"
-            },
-            value: {
-              html: "Date in format: <code>DD/MM/YYYY</code>"
-            }
-          },
-          {
-            key: {
-              text: "Cell location (column and row)"
-            },
-            value: {
-              html: "<code>E259</code>"
-            }
-          },
-          {
-            key: {
-              text: "How to fix"
-            },
-            value: {
-              html: "Provide a date in the expected format."
-            }
-          }
-        ]
-      }) }} #}
 
     </div>
      <div class="govuk-grid-column-one-third">

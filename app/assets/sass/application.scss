@@ -355,6 +355,17 @@
   display: inline-block;
 }
 
+.tna-button-icon--download {
+  height: 1.1rem;
+  width: 1.1rem;
+  margin-right: 8px;
+}
+
+.tna-button-icon--download svg {
+  position: relative;
+  top: 2px;
+}
+
 .tna-button-icon svg {
   max-height: 100%;
 }
