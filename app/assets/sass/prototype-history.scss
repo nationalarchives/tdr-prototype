@@ -19,5 +19,9 @@
 } 
   
 .gov-table__cell--in_progress {
-  background-color: rgb(255, 248, 248);
+  background-color: #f7f7f7;
+}
+
+.govuk-table__cell:first-child {
+  padding: 10px 20px 10px 10px;
 }
