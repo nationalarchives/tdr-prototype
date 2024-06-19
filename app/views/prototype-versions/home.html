@@ -40,8 +40,8 @@
         {% set statusClass = ["gov-table__cell--", r.Status[0].value| replace(" ", "_") | replace("/", "") |lower ]|join%}
         
         {% set rows = (rows.push([
-          { html: issues, classes: statusClass },
           { html: r.Name, classes: statusClass },
+          { html: issues, classes: statusClass },
           { html: ["<span style='white-space:nowrap'>",
             govukTag({
             text: r.Status[0].value,
@@ -56,12 +56,11 @@
       {{ govukTable({
         firstCellIsHeader: false,
         head: [
-          
-          {
-            text: "Issues"
-          },
           {
             text: "Description"
+          },
+          {
+            text: "Issues"
           },
           {
             text: "Status"
