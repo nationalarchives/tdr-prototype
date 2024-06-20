@@ -1,0 +1,84 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "layouts/inc-header-no-view-transfer.html" %}
+  <meta http-equiv="refresh" content="4; url=./checks">
+{% endblock %}
+
+{% block pageTitle %}
+  Uploading document
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Step 1 of 2</span>
+      <h1 class="govuk-heading-l">
+        Uploading judgment
+      </h1>
+
+      <form class="form" action="/progress-checks" method="post">
+
+        <p>Do not close your browser while your file is being uploaded. This may take a few minutes.</p>
+        <div>
+          <span id="upload-status-screen-reader">
+            <span id="upload-records-progress-label" class="govuk-label progress-label">
+                Uploading judgment <span id="upload-percentage" role="status" aria-live="polite">56%</span>
+            </span>
+          </span>
+          <div class="progress-bar">
+            <div aria-labelledby="upload-records-progress-label" class="progress-display" role="progressbar" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  {{ super() }}
+  <script>
+
+    let start, previousTimeStamp, loadingBarEl, percentageEl;
+
+    function step(timeStamp) {
+      if (start === undefined) {
+        start = timeStamp;
+      }
+      const elapsed = timeStamp - start;
+
+      const count = Math.min(0.03 * elapsed, 100);
+      if(loadingBarEl) loadingBarEl.style.width = `${count}%`;
+      if(percentageEl) percentageEl.textContent = `${Math.round(count)}%`;
+
+      if (elapsed < 10000 && count < 100) {
+        previousTimeStamp = timeStamp;
+        window.requestAnimationFrame(step);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      loadingBarEl = document.querySelector('[role="progressbar"]')
+      percentageEl = document.querySelector('[role="status"]')
+      window.requestAnimationFrame(step);
+    });
+
+  </script>
+{% endblock %}
