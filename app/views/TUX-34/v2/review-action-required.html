@@ -1,0 +1,71 @@
+{% extends "layouts/main.html" %}
+{% from "macros/icon.njk" import daIcon %}
+
+{% block pageTitle %}
+  Metadata review
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">Metadata review</h1>
+
+      <div class="da-alert da-alert--error da-alert--with-icon">
+        <div class="da-alert__icon">
+          <div aria-hidden="true">
+            {{- daIcon({"iconType": 'warning', iconSize: "xxl"})-}}
+          </div>
+        </div>
+        <div class="da-alert__content">
+          <h2 class="da-alert__heading">We found issues in your metadata</h2>
+          <p>We have emailed guidance to <strong>jesse@ons.gov.uk</strong></p>
+        </div>
+      </div>
+      
+      {# <p class="govuk-body">Download a copy of the metadata CSV you submitted.</p> #}
+      
+      {# <section class="da-attachment govuk-!-margin-bottom-4 govuk-!-display-none-print">
+        <div class="da-attachment__thumbnail">
+          <a href="#" class="govuk-link" target="_self" tabindex="-1" aria-hidden="true">
+            <svg class="da-attachment__thumbnail-image da-attachment__thumbnail-image--spreadsheet" version="1.1" viewBox="0 0 99 140" width="99" height="140" aria-hidden="true">
+              <path d="M12 12h75v27H12zm0 47h18.75v63H12zm55 2v59H51V61h16m2-2H49v63h20V59z" stroke-width="0"></path>
+              <path d="M49 61.05V120H32.8V61.05H49m2-2H30.75v63H51V59zm34 2V120H69.05V61.05H85m2-2H67v63h20V59z" stroke-width="0"></path>
+              <path d="M30 68.5h56.5M30 77.34h56.5M30 112.7h56.5M30 95.02h56.5M30 86.18h56.5M30 103.86h56.5" fill="none" stroke-miterlimit="10" stroke-width="2"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="da-attachment__details">
+          <h2 class="da-attachment__title">
+            <a href="#" class="govuk-link da-attachment__link" target="_self">
+              Metadata for consignment: MOCK-123-TDR
+            </a>
+          </h2>
+          <p class="da-attachment__metadata da-attachment__metadata--compact">
+            <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet" class="gem-c-attachment__abbr">XLSX</abbr></span>
+          </p>
+        </div>
+      </section> #}
+      
+      <p class="govuk-body">Follow the guidance to amend the metadata.</p>
+
+      <div class="govuk-button-group">
+        <a href="./review-in-progress" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+          Continue
+        </a>
+      </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details" open>
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+    </div>
+  </div>
+{% endblock %}
