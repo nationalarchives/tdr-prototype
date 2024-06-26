@@ -1,0 +1,127 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Add, edit or delete metadata
+{% endblock %}
+
+{# {% block beforeContent %}
+  <a href="./add-closure.html" class="govuk-back-link">Back</a>
+{% endblock %} #}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">Record metadata</h1>
+      {% include "./banner-leave-return.html" %}
+      <p class="govuk-body">You can now add or edit descriptive and closed record metadata to your records.</p>
+
+      <section class="tdr-card">
+        <div class="tdr-card__content">
+          <header>
+            <h2 class="govuk-heading-s">
+              <a class="govuk-link govuk-link--no-visited-state" href="descriptive-metadata/file-level">Descriptive metadata</a>
+            </h2>
+            <strong class="tdr-card--metadata__state govuk-tag govuk-tag--{% if data['descriptiveFiles'] === undefined %}grey{% else %}blue{%endif%}">
+              {% if data['descriptiveFiles'] === undefined %}Not entered{% else %}Entered{% endif %}
+            </strong>
+          </header>
+          <p class="govuk-body">Add descriptive metadata to your records</p>
+          <p class="tdr-card--metadata__inset-text govuk-inset-text govuk-!-margin-top-0">Descriptive metadata will enhance your records. We strongly encourage you to add any extra information available.</p>
+          <details class="govuk-details   govuk-!-margin-bottom-2" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">What descriptive metadata you can provide</span>
+            </summary>
+            <div class="govuk-details__text">
+              <ul class="govuk-list govuk-list--bullet">
+                <li>Description</li>
+                <li>Date last modified</li>
+                <li>Language</li>
+                <li>Translated file name</li>
+                <li>Former reference</li>
+              </ul>
+            </div>
+          </details>
+          <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">Records with sensitive descriptions</span>
+            </summary>
+            <div class="govuk-details__text">
+              <p class="govuk-body">If the description of a record contains sensitive information, you must enter the full uncensored version in this field. You can enter an alternative description on the Closed record metadata page. </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="tdr-card tdr-metadata-card">
+        <div class="tdr-card__content">
+          <header>
+            <h2 class="govuk-heading-s">
+              <a class="govuk-link govuk-link--no-visited-state" href="closure-metadata/file-level">Closed record metadata</a>
+            </h2>
+            <strong class="tdr-card--metadata__state govuk-tag govuk-tag--{% if data['closedFiles'] === undefined %}grey{% else %}blue{% endif %}">
+              {% if data['closedFiles'] === undefined %}Not Entered{% else %}Entered{% endif %}
+            </strong>
+          </header>
+          <p class="govuk-body">Add closed record metadata to your records</p>
+          <p class="tdr-card--metadata__inset-text govuk-inset-text govuk-!-margin-top-0">You must add closed record metadata to your records.</p>
+          <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+            What closed record metadata you can provide
+            </span>
+            </summary>
+            <div class="govuk-details__text">
+              <ul class="govuk-list govuk-list--bullet">
+                <li>FOI Schedule agreed date - this is the date that the closure schedule was agreed by the Adisory Council and/or The National Archives.</li>
+                <li>Closure start date - this is the date of the last change to this record.</li>
+                <li>Closure period</li>
+                <li>FOI exemption code</li>
+                <li>Alternative file name</li>
+                <li>Alternative description</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+          Check you have entered any additional metadata that is required before proceeding with the transfer.
+        </strong>
+      </div>
+
+      <div class="govuk-button-group">
+        <a href="./download-metadata.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+          Next
+        </a>
+      </div>
+      {# <nav class="govuk-pagination govuk-pagination--block" role="navigation" aria-label="results">
+        <div class="govuk-pagination__next">
+          <a class="govuk-link govuk-pagination__link" href="/download-metadata.html" rel="next">
+            <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+            </svg>
+            <span class="govuk-pagination__link-title">Next</span>
+            <span class="govuk-visually-hidden">:</span>
+            <span class="govuk-pagination__link-label">Step 6: Download and review metadata</span></a>
+        </div>
+      </nav> #}
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+    </div>
+  </div>
+{% endblock %}
