@@ -1,0 +1,61 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Transfer agreement
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-3">Transfer agreement (part 2)</h1>
+
+      <p class="govuk-hint govuk-!-margin-bottom-6">You must confirm all statements before proceeding. If you cannot, please close your browser and contact your transfer advisor.</p>
+
+      <form class="form" action="./upload" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+              I confirm that the Departmental Records Officer (DRO) has signed off on the following:
+            </legend>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="waste-4" name="waste" type="checkbox" value="barn">
+              <label class="govuk-label govuk-checkboxes__label" for="waste-4">
+                  The appraisal and selection decision
+                </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="waste-5" name="waste" type="checkbox" value="sarb">
+              <label class="govuk-label govuk-checkboxes__label" for="waste-5">
+                  The sensitivity review
+                </label>
+            </div>
+
+          </fieldset>
+        </div>
+
+        <div class="govuk-button-group">
+          <button class="govuk-button" data-module="govuk-button">Agree and continue</button>
+          <a class="govuk-link govuk-link--no-visited-state" href="/home">Cancel</a>
+        </div>
+
+      </form>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+    </div>
+  </div>
+
+{% endblock %}
