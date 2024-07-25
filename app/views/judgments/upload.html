@@ -1,11 +1,15 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Check your file before uploading
+  Upload document
 {% endblock %}
 
 {% block header %}
   {% include "layouts/inc-header-no-view-transfer.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./before-uploading" class="govuk-back-link">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -13,7 +17,6 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Step 1 of 2</span>
       <h1 class="govuk-heading-l">
         Upload document
       </h1>
@@ -48,7 +51,7 @@
       </div>
     </div>
     <div class="govuk-grid-column-one-third">
-      <details class="govuk-details" data-module="govuk-details">
+      <details class="govuk-details" open="" data-module="govuk-details">
         <summary class="govuk-details__summary">
           <span class="govuk-details__summary-text">
             Transfer reference
@@ -58,6 +61,11 @@
           MOCK-123-TDR
         </div>
       </details>
+      
+      <h4 class="govuk-heading-s">Problems with your transfer?</h4>
+      <p class="govuk-body">Email us and include the Transfer Reference:
+        <a href="mailto:tdr@nationalarchives.gov.uk" class="govuk-link">tdr@nationalarchives.gov.uk</a>
+      </p>
     </div>
   </div>
 

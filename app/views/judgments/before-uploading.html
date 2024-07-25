@@ -1,11 +1,15 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Check your file before uploading
+  Upload document
 {% endblock %}
 
 {% block header %}
   {% include "layouts/inc-header-no-view-transfer.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./home" class="govuk-back-link">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -13,40 +17,45 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Step 1 of 3</span>
       <h1 class="govuk-heading-l">
-        Check your file before uploading
+        Before you upload a document
       </h1>
-      <p class="govuk-body">The document must contain the following information:</p>
+      <h2 class="govuk-heading-m">What your document must contain</h2>
+
+      <p class="govuk-body">We can only accept a single document in Microsoft Word (docx) format. It must contain the following information:</p>
         
-      <ul class="govuk-list govuk-list--bullet">
+      <ul class="govuk-list govuk-list--number">
         <li>neutral citation</li>
         <li>name(s) of judge(s)</li>
         <li>name(s) of parties</li>
         <li>court and judgment date</li>
       </ul>
-      {# <h2 class="govuk-heading-m">Do you need to contact us about this transfer?</h2>
-      <p class="govuk-body">
-        Send an email to <a class="govuk-link" href="mailto:judgments@nationalarchives.gov.uk?subject=Ref: TDR-2023-CKGN">judgments@nationalarchives.gov.uk</a> with <strong>Ref: TDR-2023-CKGN</strong> as the subject line if you need to:
-      </p>
+      <h2 class="govuk-heading-m">How to format your document</h2>
 
-      <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
-        <li>Attach and send supplementary material for this judgment.</li>
-        <li>Flag when your judgment is a new version; quote the details of the original document being replaced.</li>
-        <li>Flag when your judgment is subject to an anonymisation order.</li>
-      </ul> #}
+      <p class="govuk-body">After you submit a Microsoft Word document we convert the content into a web page and PDF. To ensure the information is converted correctly, we ask you to follow some formatting guidelines and rules in the original document. </p>
+      <p class="govuk-body govuk-!-margin-bottom-6">Read our <a target="_blank" class="govuk-link" href="https://nationalarchives.github.io/ds-caselaw-judiciary-guidance/">guidance on formatting your document</a>.</p>
+
+      <details class="govuk-details govuk-!-margin-bottom-4">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            How will my document look once it's published?
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p class="govuk-body">The web page view may look slightly different to the original document but will contain the same information. This is to make sure the document meets basic web accessibility standards.</p>
+          <p class="govuk-body">The PDF will be as close a copy of the original document as possible.</p>
+        </div>
+      </details>
 
       <div class="govuk-button-group">
-      {{ govukButton({
-        text: "Continue",
-        href: "./upload"
-      }) }}
-        <a class="govuk-link govuk-link--no-visited-state" href="/home">Cancel</a>
+        {{ govukButton({
+          text: "Continue",
+          href: "./upload"
+        }) }}
       </div>
-
     </div>
     <div class="govuk-grid-column-one-third">
-      <details class="govuk-details" data-module="govuk-details">
+      <details class="govuk-details" open="" data-module="govuk-details">
         <summary class="govuk-details__summary">
           <span class="govuk-details__summary-text">
             Transfer reference
@@ -56,6 +65,11 @@
           MOCK-123-TDR
         </div>
       </details>
+      
+      <h4 class="govuk-heading-s">Problems with your transfer?</h4>
+      <p class="govuk-body">Email us and include the Transfer Reference:
+        <a href="mailto:tdr@nationalarchives.gov.uk" class="govuk-link">tdr@nationalarchives.gov.uk</a>
+      </p>
     </div>
   </div>
 

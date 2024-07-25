@@ -35,28 +35,36 @@
         </a>
       </p>
 
-      <h2 class="govuk-heading-m">If this was an update or revision</h2>
+      {# <div class="da-alert">
+        <div class="da-alert__heading">
+          If this is an update to an existing judgment or decision
+        </div>
+        <p class="govuk-body">
+          If this transfer was an update or revision, email <a href="mailto:judgments@nationalarchives.gov.uk">judgments@nationalarchives.gov.uk</a> and include the following:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>the neutral citation</li>
+          <li>the consignment reference: <strong>MOCK-123-TDR</strong></li>
+          <li>tell us if this transfer was a revision or update</li>
+          <li>provide a short description of what has changed</li>
+        </ul>
+      </div> #}
+
+      <h2 class="govuk-heading-m">If this is an update to an existing judgment or decision</h2>
       <p class="govuk-body">
         If this transfer was an update or revision, email <a href="mailto:judgments@nationalarchives.gov.uk">judgments@nationalarchives.gov.uk</a> and include the following:
       </p>
-      <ul class="govuk-list govuk-list--bullet">
+      <ul class="govuk-list govuk-list--number">
         <li>the neutral citation</li>
         <li>the consignment reference: <strong>MOCK-123-TDR</strong></li>
         <li>tell us if this transfer was a revision or update</li>
+        <li>provide a short description of what has changed</li>
       </ul>
-      
-      <h2 class="govuk-heading-m">Other reasons you may need to contact us</h2>
-      <p class="govuk-body">
-        You should email <a href="mailto:judgments@nationalarchives.gov.uk">judgments@nationalarchives.gov.uk</a> if you need to:
-      </p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>Flag that your judgment is subject to an anonymisation order</li>
-        <li>Send supplementary material for this judgment</li>
-      </ul>
-      <p class="govuk-body">
-        Make sure you quote the consigment reference number (<strong>MOCK-123-TDR</strong>) and attach any supplementary material to the email.
-      </p>
-      
+    
+      <h2 class="govuk-heading-m">Contact the publishing editors</h2>
+      <p class="govuk-body"><a href="mailto:judgments@nationalarchives.gov.uk">judgments@nationalarchives.gov.uk</a></p>
+  
+
       {{ govukButton({
         text: "Return to start",
         href: "./home"
