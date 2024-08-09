@@ -4,10 +4,15 @@
 //
 
 // Add extra styles here
-@import 'node_modules/@nationalarchives/tdr-components/components/multi-select-search/_index';
-@import 'node_modules/@nationalarchives/tdr-components/components/nested-navigation/_index';
+@import './da-attachment.scss';
+@import '@nationalarchives/tdr-components/dist/components/multi-select-search/multi-select-search.css';
+@import '@nationalarchives/tdr-components/dist/components/nested-navigation/nested-navigation.css';
 @import './prototype-history.scss';
 @import './folder-upload.scss';
+@import './task-list.scss';
+@import './da-attachment.scss';
+@import './da-alert.scss';
+@import './da-icon.scss';
 
 
 .tna-tree__radios-directory__label {
@@ -117,6 +122,11 @@
   margin: 0.1px;
   position: relative;
   width: 100%;
+}
+
+.hidden {
+  visibility: hidden;
+  height:0;
 }
 
 .showBanner {
@@ -345,6 +355,17 @@
   display: inline-block;
 }
 
+.tna-button-icon--download {
+  height: 1.1rem;
+  width: 1.1rem;
+  margin-right: 8px;
+}
+
+.tna-button-icon--download svg {
+  position: relative;
+  top: 2px;
+}
+
 .tna-button-icon svg {
   max-height: 100%;
 }
@@ -497,4 +518,19 @@
 
 .tdr-aside {
   border-top: 2px solid $govuk-link-colour;
+}
+
+.govuk-summary-list--wide-key .govuk-summary-list__key {
+  width: 60%;
+}
+
+.govuk-summary-list--extra-wide-key .govuk-summary-list__key {
+  width: 90%;
+}
+
+.govuk-summary-list__key-hint {
+  // @include govuk-font-size($size: 16);
+  @include govuk-font($size: 16);
+  color: govuk-colour("dark-grey");
+  margin-bottom: 0;
 }

@@ -182,6 +182,46 @@ router.post('/*/transfer-tasks', (req, res, next) => {
   }
 })
 
+
+/*
+ * When confirm closure has a radio button that redirects user to
+ * an info page if they select 'no' which provides further info
+ */
+router.post(
+  "/:ticketId/confirm-closure-v2",
+  function(req, res){
+    if(req.session.data["confirmClosureStatus"] == "no-1"){
+      res.redirect(`/${req.params.ticketId}/confirm-closure-no-1`)
+    } else if(req.session.data["confirmClosureStatus"] == "no-2"){
+      res.redirect(`/${req.params.ticketId}/confirm-closure-no-2`);
+    } else {
+      res.redirect(`/${req.params.ticketId}/${req.session.data["confirmClosureStatus"]}`);
+    }
+  })
+
+router.get(
+  "/:ticketId/has-closed-records",
+  function(req, res){
+
+    // req.session.data[req.params.ticketId] = req.session.data[req.params.ticketId] || [];
+    req.session.data['hasClosedRecords'] = req.session.data["has-closed-records"] == "true"
+
+    res.redirect(`/${req.params.ticketId}/upload-checks`)
+  })
+
+router.post(
+  "/:ticketId/metadata-route",
+  function(req, res){
+
+    const route = req.session.data['metadata-route']
+    if(["TUX-53", "TUX-39"].includes(req.params.ticketId) || route == "csv"){
+      res.redirect(`/${req.params.ticketId}/download-template`)
+    } else if (route == "csv"){
+      res.redirect(`/${req.params.ticketId}/upload-csv`)
+    }
+
+})
+
 router.get(
   "/metadata/descriptive-metadata/confirm-delete-metadata",
   function (req, res) {

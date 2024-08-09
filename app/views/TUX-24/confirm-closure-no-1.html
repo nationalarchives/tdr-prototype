@@ -1,0 +1,58 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% block pageTitle %}
+  We found no closed record metadata
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Contact your transfer advisor
+      </h1>
+
+      <p class="govuk-body">The metadata you provided contained information about closed records but you haven't had agreement from The Advisory Council and/or The National Archives.</p>
+
+      <h2 class="govuk-heading-s">
+        If you have started the closure application process
+      </h2>
+
+      <p class="govuk-body">If you have started the closure application process and are waiting for an outcome you can return to this transfer from the <a href='/transfers'>View transfers</a> page at any time. All you records and metadata are saved.</p>
+
+      <h2 class="govuk-heading-s">
+        If you have <strong>not</strong> started the closure application process
+      </h2>
+
+      <p class="govuk-body">If you have not started the closure application process you should contact <a href='mailto:tdr@nationalarchives.gov.uk'>tdr@nationalarchives.gov.uk</a> providing the consignment reference: <strong>MOCK-123-TDR</strong>.</p>
+
+      <p>You can return to this transfer at any time from the <a href='/transfers'>View transfers</a> page.</p>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue",
+            href: ""
+          }) }}
+        </div>
+      </form>
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+    </div>
+  </div>
+
+
+{% endblock %}
