@@ -136,6 +136,51 @@ const populateWithClosureData = (req, res) => {
 };
 
 // Add your routes here
+router.post('/*/transfer-tasks-section-complete', (req, res, next) => {
+
+  const fieldsToCheck = req.body['prepare-records-complete'];
+
+  if(req.session.data['redirect-to'] ){
+
+    const selectedValue = req.body['section-complete'];  
+    if (selectedValue === 'yes') {
+      const redirectTo = req.session.data['redirect-to'];
+      delete req.session.data['redirect-to'];
+      res.redirect(redirectTo);
+    } else {
+      res.render(req.path)
+    }
+  } else {
+    res.render(req.path)
+  }
+})
+
+
+router.post('/*/transfer-tasks', (req, res, next) => {
+
+  const fieldChecks = req.body['prepare-records-complete'];
+
+  let fieldComplete = false;
+  const possibleFields = ['prepare-records-complete'];
+  possibleFields.forEach(fieldName => {
+    if(req.body[fieldName] !== undefined){
+      fieldComplete = req.body[fieldName] == 'yes';
+    }
+  })
+
+  if(req.session.data['redirect-to'] ){
+
+    if (fieldComplete === true) {
+      const redirectTo = req.session.data['redirect-to'];
+      delete req.session.data['redirect-to'];
+      res.redirect(redirectTo);
+    } else {
+      res.render(req.path)
+    }
+  } else {
+    res.render(req.path)
+  }
+})
 
 router.get(
   "/metadata/descriptive-metadata/confirm-delete-metadata",

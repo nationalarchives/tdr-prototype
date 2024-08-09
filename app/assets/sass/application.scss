@@ -490,3 +490,11 @@
   text-align: center;
 }
 
+.govuk-link--disable {
+  pointer-events: none;
+  color: darkgrey !important;
+}
+
+.tdr-aside {
+  border-top: 2px solid $govuk-link-colour;
+}

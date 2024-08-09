@@ -1,0 +1,76 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Confirm transfer - MOCK-TDR-1294 - Transfer Digital Records
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="transfer-tasks" class="govuk-back-link">Consignment: MOCK-TDR-1294</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-l">Confirm your transfer</h1>
+
+      <p class="govuk-body">Here is a summary of your consignment.</p>
+
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {  text: "Series reference" },
+            value: { text: data['series'] }
+          },
+          {
+            key: {  text: "Consignment reference" },
+            value: { text: "MOCK-TDR-1294" }
+          },
+          {
+            key: {  text: "Transferring body" },
+            value: { text: "Test Department" }
+          },
+          {
+            key: {  text: "Records uploaded" },
+            value: { text: "1200" }
+          },
+          {
+            key: {  text: "Closed records" },
+            value: { text: "20" }
+          },
+          {
+            key: {  text: "Records with additional metadata" },
+            value: { text: "223" }
+          }
+        ]
+      }) }}
+
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+            <div class="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
+                <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+                  By proceeding with this transfer, I confirm that I am agreeing to transfer legal custody of these records to The National Archives.
+                </label>
+              </div>
+            </div>
+
+          </fieldset>
+        </div>
+
+      <form class="form" action="transfer-confirmation" method="post">
+        <input type="hidden" name="transfer-status" value="confirmed" />
+        <div class="govuk-button-group">
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Transfer your records
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
