@@ -534,3 +534,27 @@
   color: govuk-colour("dark-grey");
   margin-bottom: 0;
 }
+
+.footnote-symbol {
+  font-size: 0.8em;
+  vertical-align: super;
+  cursor: pointer;
+  color: govuk-colour("blue");
+  text-decoration: none;
+}
+
+.footnote-text {
+  @include govuk-font($size: 16);
+  @include govuk-responsive-margin(2, "bottom");
+}
+
+.footnote-text__link {
+  text-decoration: none;
+}
+
+.govuk-table caption {
+  caption-side: bottom;
+  text-align: left;
+  @include govuk-responsive-margin(2, "top");
+  @include govuk-font($size: 16);
+}

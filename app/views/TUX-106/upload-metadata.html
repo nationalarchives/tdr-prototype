@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <a href=".transfer-tasks#step-4" class="govuk-back-link">Consignment: MOCK-TDR-1294</a>
+  <a href="transfer-tasks#step-4" class="govuk-back-link">Back to Consignment</a>
 {% endblock %}
 
 {% block content %}
@@ -15,44 +15,45 @@
     <div class="govuk-grid-column-two-thirds">
 
       <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
-      <h1 class="govuk-heading-l">Upload a completed transfer metadata CSV</h1>
+      <h1 class="govuk-heading-l">Upload a metadata CSV</h1>
+      
+      <p class="govuk-body">Upload a <abbr title="Comma Seperated Values">CSV</abbr> containing the record metadata. You can export a CSV within Excel following <a target='_blank' href='https://support.microsoft.com/en-gb/office/save-a-workbook-to-text-format-txt-or-csv-3e9a9d6c-70da-4255-aa28-fcacf1f081e6'>guidance from Microsoft (opens in a new tab)</a>.</p>
 
-      {% if data['csv-upload-status'] == "failed" %}
       {{ govukWarningText({
-        text: "Uploading a new or amended CSV will overwrite any metadata imported from a previous CSV.",
+        html: "We can only accept metadata in a <abbr title='Comma Seperated Values'>CSV</abbr> file format.",
         iconFallbackText: "Warning"
       }) }}
-      {% endif %}
+        
+      <p>In order for us to process your metadata upload, it must include the following columns:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>File name</li>
+        <li>File path</li>
+        <li>Date last modified</li>
+      </ul>
+      <div class="da-alert da-alert--info">
+        <div class="da-alert__content">
+        <p class="govuk-body">We encourage you to provide as much metadata as available to you. If you are unsure read the guidance on <a class="govuk-link" target="_blank" href="metadata-guidance#completing-the-template">completing the template (opens in a new tab)</a>.</p>
+      </div>
+    </div>
+  
+      {# <h2 class="da-alert__heading">We found issues in your metadata</h2> #}
+      <p class="govuk-body">During the CSV upload we will check your metadata for errors. There will be a chance to review and re-upload the metadata before completing the transfer.</p>
 
-      <p class="govuk-body">For more information on how to enter metadata, visit the <a href="/metadata-guidance" class="govuk-link">metadata guidance page</a>.</p>
 
-      <p class="govuk-body">The ‘Choose from a folder' button below will cause your browser to open a dialog box to find and select a folder.</p>
+      {{ govukFileUpload({
+        id: "file-upload-1",
+        name: "fileUpload",
+        label: {
+          text: "Select a CSV"
+        }
+      }) }}
 
-      <form class="form" action="upload-metadata-progress" method="post" id="file-upload-form">
+      <div class="govuk-button-group">
+        <a href="./csv-checks"  role="button"draggable="false" class="govuk-button" data-module="govuk-button">
+          Upload
+        </a>
+      </div>
 
-        <div class="drag-and-drop govuk-!-margin-bottom-6" data-tdr-module="folder-upload">
-          <div class="drag-and-drop__dropzone js-drag-and-drop-zone">
-            <input type="file" id="file-selection" name="files" class="js-drag-and-drop-input input govuk-file-upload drag-and-drop__input" webkitdirectory="" accept="*">
-            <span class="govuk-body drag-and-drop__hint-text">Drag and drop a CSV file here or &nbsp;</span>
-            <label for="file-selection" class="govuk-button govuk-button--secondary drag-and-drop__button">
-              Choose from a folder
-            </label>
-          </div>
-
-          <div class="js-drag-and-drop-selected drag-and-drop__selected {% block dragDrop %}govuk-visually-hidden{% endblock %}">
-            <p aria-live="assertive" aria-atomic="true" class="govuk-!-margin-bottom-3 drag-and-drop__selected__description">The folder <strong id="files-selected-folder-name" class="js-drag-and-drop-folder-name">Recipes for Cakes</strong> (containing <span class="js-drag-and-drop-no-of-files">6</span> files) has been selected.</p>
-            <a href="" aria-describedby="files-selected-folder-name" class="govuk-link govuk-link--no-visited-state govuk-!-font-size-19 govuk-body govuk-!-font-weight-bold">Remove<span class="govuk-visually-hidden">&nbsp; selected files</span></a>
-          </div>
-        </div>
-
-        <div class="govuk-button-group">
-
-          <input type="hidden" name="csv-upload-status" value="{{"failed" if data['journeyid'] and data['journeyid'] in ['csv-upload-fail'] else "success" }}">
-          <button class="govuk-button" type="submit" data-module="govuk-button" role="button">
-            Start CSV upload
-          </button>
-        </div>
-      </form>
 
     </div>
   </div>

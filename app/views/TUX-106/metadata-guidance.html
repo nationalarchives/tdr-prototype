@@ -1,5 +1,7 @@
 {% extends "layouts/main.html" %}
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "macros/icon.njk" import daIcon %}
 
 {% block pageTitle %}
   Metadata entry guidance - MOCK-TDR-1294 - Transfer Digital Records
@@ -14,36 +16,180 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
-      <h1 class="govuk-heading-l">Metadata entry guidance</h1>
+      <span class="govuk-caption-xl">Consignment: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-xl">Metadata guidance</h1>
 
+      <p class="govuk-body">As part of a digital transfer to The National Archives you or your department must provide metadata to ensure your records are preserved accurately.</p>
+      
+      <p class="govuk-body">We provide a downloadable Excel template for entering metadata that contains some pre-populated metadata, which was either extracted from your records or set by default.</p>
+      
+      <p class="govuk-body">You need to check the pre-populated metadata and add mandatory and additional metadata to enhance the records and help us preserve them effectively.</p>
+ 
+      <h2 class="govuk-heading-l">Metadata we extract from your records</h2>
 
-      <h2 class="govuk-heading-m">Columns that cannot be edited</h2>
+      <p class="govuk-body">The downloaded template will contain a row for every uploaded file. The following columns will be pre-populated with metadata extrated from your records:</p>
 
-      <p class="govuk-body">If you downloaded a transfer metadata CSV template there are columns that contain generated metadata that are intrinsic to the records. These columns should therefore not be edited:</p>
       <ul class="govuk-list govuk-list--bullet">
+        <li>File name</li>
         <li>File path</li>
-        <li>Last date modified</li>
-        <li>Checksum</li>
+        <li>Date last modified</li>
       </ul>
 
-      <h2 class="govuk-heading-m">Columns that accept multiple values</h2>
+      {{ govukWarningText({
+        html: "These columns must not be edited directly.",
+        iconFallbackText: "Warning"
+      }) }}
+      
+      <p class="govuk-body">If the date last modified is not accurate there is <a href='#check-date-last-modified' class="govuk-link">another column for providing date metadata</a>.</p>
 
-      <p class="govuk-body">If you downloaded a transfer metadata CSV template there are columns that contain generated metadata that are intrinsic to the records. These columns should therefore not be edited:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>FOI exemption codes</li>
-        <li>Languages</li>
-        <li>Former reference</li>
-      </ul>
-      <p class="govuk-body">To enter multiple values use a comma (,) between each value, for example to enter three FOI exemption codes:</p>
-      <p class="govuk-body"><code>23, 27(2), 33</code></p>
+      <h2 class="govuk-heading-l">Columns with default values</h2>
+      <p class="govuk-body">The downloaded template will contain some columns with pre-populated default values.</p>
 
-      <h2 class="govuk-heading-m">The 'File path' column</h2>
-      <h2 class="govuk-heading-m">Closure metadata</h2>
-      <h2 class="govuk-heading-m">Closure metadata - ‘Alternative title’ field</h2>
-      <h2 class="govuk-heading-m">Closure metadata - ‘Alternative description’ field</h2>
-      <h2 class="govuk-heading-m">Date of the record and Last date modified</h2>
-      <h2 class="govuk-heading-m">Optional columns</h2>
+      {{ govukTable({
+        caption: "",
+        captionClasses: "govuk-table__caption--m",
+        firstCellIsHeader: false,
+        head: [
+          {
+            text: "Column name"
+          },
+          {
+            text: "Default value"
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "Language"
+            },
+            {
+              text: "English"
+            }
+          ],
+          [
+            {
+              text: "Needs alternative title"
+            },
+            {
+              text: "No"
+            }
+          ],
+          [
+            {
+              text: "Needs alternative description"
+            },
+            {
+              text: "No"
+            }
+          ]
+        ]
+      }) }}
+       
+      <div class="da-alert da-alert--info da-alert--with-icon">
+        <div class="da-alert__content">
+          <p>
+            Unlike the extracted metadata, these columns can be edited directly, if appropriate for your records.
+          </p>
+        </div>
+      </div>
+
+      <h2 id="completing-the-template" class="govuk-heading-l">Completing the template</h2>
+      <p class="govuk-body">The template opens in Microsoft Excel and contains columns with prepopulated metadata and empty columns for you to provide additional metadata.</p>
+
+      <p class="govuk-body">See a <a class="govuk-link" href="">full list of metadata column titles and descriptions</a>.</p>
+      
+      <p class="govuk-body">Before uploading the completed template, you must check the metadata we have extracted, check the pre-populated columns and provide as much additional metadata about the records as possible.</p>
+      
+      <p class="govuk-body">Below is a step-by-step guide to completing the template.</p>
+
+      <h3 id="check-date-last-modified" class="govuk-heading-m">1. Check the <em>Date last modified</em> column</h3> 
+      <p class="govuk-body">The <em>Date last modified</em> column was populated with values extracted from the records. Check that the date represents the last meaningful change to the record.</p>
+
+      {{ govukWarningText({
+        html: "The <em>Date last modified</em> column must not be edited directly.",
+        iconFallbackText: "Warning"
+      }) }}
+
+      <p class="govuk-body">If you need to enter a different record date use the <em>Date of the record</em> column.</p>
+      <p class="govuk-body">This date will also be used as the closure start date for a closed record. See the section about providing closed record metadata for more.</p>
+
+      <h3 id="metadata-closed-records" class="govuk-heading-m">2. Provide metadata about closed records</h3> 
+      <p>If you have closed records in your consignment you must provide metadata about those closed records in the following columns:</p>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Column</th>
+            <th scope="col" class="govuk-table__header">Value</th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Example</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Closure status</td>
+            <td class="govuk-table__cell"><pre style='margin:0'>yes / no</pre></td>
+            <td class="govuk-table__cell"><pre style='margin:0'>yes</pre></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">FOI Decision Asserted</td>
+            <td class="govuk-table__cell">Date</td>
+            <td class="govuk-table__cell"><pre style='margin:0'>2024-08-14</pre></td>
+          </tr>          
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">FOI Exemption Code <a href='#fn1-text' class='footnote-symbol' id='fn1-symbol' aria-describedby='fn1-text'>&#x2020;</a></td>
+            <td class="govuk-table__cell">One or more comma separated codes</td>
+            <td class="govuk-table__cell"><pre style='margin:0'>22A, 23</pre></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Date of the record <a href='#fn2-text' class='footnote-symbol' id='fn2-symbol' aria-describedby='fn2-text'>&#x2020;&#x2020;</a></td>
+            <td class="govuk-table__cell">Date</td>
+            <td class="govuk-table__cell"><pre style='margin:0'>1999-03-23</pre></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Closure period</td>
+            <td class="govuk-table__cell">Date</td>
+            <td class="govuk-table__cell"><pre style='margin:0'>80</pre></td>
+          </tr>
+        </tbody>
+        <caption>
+          <div>
+            <p class="footnote-text" id="fn1-text" role="note">
+                <a class="footnote-text__link" href="#fn1-symbol">Footnote &#x2020;:</a> For more information see this full list of <a  href="https://www.legislation.gov.uk/ukpga/2000/36/contents" class="govuk-link">FOI Exemption codes and their designated exemptions</a>.
+            </p>
+            <p class="footnote-text" id="fn2-text" role="note">
+                <a class="footnote-text__link" href="#fn2-symbol">Footnote &#x2020;&#x2020;:</a> <em>Date of the record</em> should only be used if <em>Date last modified</em> is inaccurate
+            </p>
+        </div>
+        </caption>
+      </table>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h3 class="govuk-heading-m">3. Provide record descriptions</h3> 
+      <p>Whenever possible provide additional descriptive information about the record in the <em>Description</em> column. For example, if the file name is not descriptive.</p>
+
+      <h3 class="govuk-heading-m">4. Provide any additional metadata</h3> 
+      <p>The template also includes column headers for additional metadata, such as <em>Former reference</em> and <em>Translated title of the record</em>.</p>
+      <p>If you have metadata that doesn't fit into the available columns contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>.</p>
+      
+      <h2 class="govuk-heading-l">Export the template as a CSV</h2> 
+      <p>Once you have completed the template you will need to export a file in the <abbr title="Comma Seperated Values">CSV</abbr> format before uploading it. You can do this within Excel following <a target="_blank" href="https://support.microsoft.com/en-gb/office/save-a-workbook-to-text-format-txt-or-csv-3e9a9d6c-70da-4255-aa28-fcacf1f081e6">guidance from Microsoft (opens in a new tab)</a>.</p>
+
+
+      {{ govukPagination({
+        classes: "govuk-!-margin-top-8",
+        next: {
+          labelText: "Download your metadata template",
+          href: "metadata-template-download"
+        }
+      }) }}
     </div>
   </div>
 

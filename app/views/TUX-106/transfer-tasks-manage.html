@@ -1,346 +1,153 @@
-{% extends "layouts/main.html" %}
-{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
-{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-
-{% macro taskListItem(name, href, status, hint, linkActive) %}
-  {% set safeName = name|replace("[^A-Za-z0-9 ]","")|replace(" ", "-")|lower %}
-  <li class="govuk-task-list__item govuk-task-list__item--with-link">
-    <div class="govuk-task-list__task-name-and-hint">
-      {% if linkActive %}
-      <a href="{{href}}"
-        {% if hint or status -%}
-        aria-describedby="{% if hint %}hint-{{safeName}}{%endif%} {% if status %}status-{{safeName}}{%endif%}"
-        {%- endif %}
-        class="govuk-link govuk-task-list__link">
-        {{name}}
-      </a>
-      {% else %}
-        <div>{{name}}</div>
-      {% endif %}
-      {% if hint %}
-      <div id="hint-{{safeName}}" class="govuk-task-list__task_hint">
-        {{hint}}
-      </div>
-      {% endif %}
-    </div>
-    {% if status %}
-    <div class="govuk-task-list__status" id="status-{{safeName}}">
-      {% if status == "Complete" or status == "Cannot start yet" %}
-        {{status}}
-      {% else %}
-      <strong class="govuk-tag {% if status == "Incomplete" %}govuk-tag--blue{%elseif status == 'There is a problem'%}govuk-tag--red{%endif%}">
-        {{status}}
-      </strong>
-      {% endif %}
-    </div>
-    {% endif %}
-  </li>
-{% endmacro %}
+{% extends "./transfer-tasks.html" %}
 
 {% block pageTitle %}
   Consignment: MOCK-TDR-1294
 {% endblock %}
 
-{% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      {% set isStep1Complete = data['ta']|length == 4 %}
-      {% set isStep2Complete = isStep1Complete == true 
-        and data['prepare-records-complete'] == "yes"  
-        and data['upload-status'] == "success"  
-        %}
-      {% set isStep3Complete = isStep2Complete == true 
-        and data['download-metadata-complete'] == "yes"
-        %}
-      {% set isStep4Complete = isStep3Complete == true 
-        and data['csv-upload-status'] == "success"
-        %}
-      {% set isStep5Complete = isStep4Complete == true 
-        and data['series'] and data['transfer-status'] == "confirmed" 
-        %}
+{% block beforeContent %}
+<div class="govuk-grid-row govuk-!-margin-top-8">
+  <div class="govuk-grid-column-full">
+    {% set isStep1Complete = data['ta']|length == 4 %}
+    {% set isStep2Complete = isStep1Complete == true 
+      and data['prepare-records-complete'] == "yes"  
+      and data['upload-status'] == "success"  
+      %}
+    {% set isStep3Complete = isStep2Complete == true 
+      and data['download-metadata-complete'] == "yes"
+      %}
+    {% set isStep4Complete = isStep3Complete == true 
+      and data['csv-upload-status'] == "success"
+      %}
+    {% set isStep5Complete = isStep4Complete == true 
+      and data['series'] and data['transfer-status'] == "confirmed" 
+      %}
 
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Step 1 - Before you upload"
-            },
-            value: {
-              text: 'Incomplete' if isStep1Complete == false else "Complete" 
-            },
-            actions: {
-              items: [
-                {
-                  href: "?ta=&prepare-records-complete=&upload-status=&download-metadata-complete=&csv-upload-status=&series=&transfer-status=",
-                  text: "Delete",
-                  visuallyHiddenText: "Step 1 progress",
-                  classes: 'govuk-link--disable' if isStep1Complete == false
-                },
-                {
-                  href: "?ta%5B%5D=public-records&ta%5B%5D=crown-copyright&ta%5B%5D=appraisal-and-selection&ta%5B%5D=sensitivity-review",
-                  text: 'Complete',
-                  visuallyHiddenText: "Step 1",
-                  classes: 'govuk-link--disable' if isStep1Complete == true
-                }
-              ]
-            }
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Step 1 - Before you upload"
           },
-          {
-            key: {
-              text: "Step 2 - Upload your records"
-            },
-            value: {
-              text: 'Complete' if isStep2Complete == true else "Incomplete" 
-            },
-            actions: {
-              items: [
-                {
-                  href: "?prepare-records-complete=&upload-status=&download-metadata-complete=&csv-upload-status=&series=&transfer-status=",
-                  text: "Delete",
-                  visuallyHiddenText: "Step 2 progress",
-                  classes: 'govuk-link--disable' if isStep2Complete == false
-                },
-                {
-                  href: "?prepare-records-complete=yes&upload-status=success",
-                  text: 'Complete',
-                  visuallyHiddenText: "Step 2",
-                  classes: 'govuk-link--disable' if isStep1Complete == false or isStep2Complete == true
-                }
-              ]
-            }
+          value: {
+            text: 'Incomplete' if isStep1Complete == false else "Complete" 
           },
-          {
-            key: {
-              text: "Step 3 - Prepare your metadata"
-            },
-            value: {
-              text: 'Complete' if isStep3Complete == true else "Incomplete" 
-            },
-            actions: {
-              items: [
-                {
-                  href: "?download-metadata-complete=&csv-upload-status=&series=&transfer-status=",
-                  text: "Delete",
-                  visuallyHiddenText: "Step 3 progress",
-                  classes: 'govuk-link--disable' if isStep3Complete == false
-                },
-                {
-                  href: "?download-metadata-complete=yes",
-                  text: 'Complete',
-                  visuallyHiddenText: "Step 3",
-                  classes: 'govuk-link--disable' if isStep2Complete == false or isStep3Complete == true
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Step 4 - Upload your metadata"
-            },
-            value: {
-              text: 'Complete' if isStep4Complete == true else "Incomplete" 
-            },
-            actions: {
-              items: [
-                {
-                  href: "?csv-upload-status=&series=&transfer-status=",
-                  text: "Delete",
-                  visuallyHiddenText: "Step 4 progress",
-                  classes: 'govuk-link--disable' if isStep4Complete == false
-                },
-                {
-                  href: "?csv-upload-status=success",
-                  text: 'Complete',
-                  visuallyHiddenText: "Step 4",
-                  classes: 'govuk-link--disable' if isStep3Complete == false or isStep4Complete == true 
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Step 5 - Transfer"
-            },
-            value: {
-              text: 'Complete' if isStep5Complete == true else "Incomplete" 
-            },
-            actions: {
-              items: [
-                {
-                  href: "?series=&transfer-status=",
-                  text: "Delete",
-                  visuallyHiddenText: "Step 5 progress",
-                  classes: 'govuk-link--disable' if isStep5Complete == false
-                },
-                {
-                  href: "?series=xx&transfer-status=confirmed",
-                  text: 'Complete',
-                  visuallyHiddenText: "Step 5",
-                  classes: 'govuk-link--disable' if isStep4Complete == false or isStep5Complete == true 
-                }
-              ]
-            }
+          actions: {
+            items: [
+              {
+                href: "?ta=&prepare-records-complete=&upload-status=&download-metadata-complete=&csv-upload-status=&series=&transfer-status=",
+                text: "Delete",
+                visuallyHiddenText: "Step 1 progress",
+                classes: 'govuk-link--disable' if isStep1Complete == false
+              },
+              {
+                href: "?ta%5B%5D=public-records&ta%5B%5D=crown-copyright&ta%5B%5D=appraisal-and-selection&ta%5B%5D=sensitivity-review",
+                text: 'Complete',
+                visuallyHiddenText: "Step 1",
+                classes: 'govuk-link--disable' if isStep1Complete == true
+              }
+            ]
           }
-        ]
-      }) }}   
+        },
+        {
+          key: {
+            text: "Step 2 - Upload your records"
+          },
+          value: {
+            text: 'Complete' if isStep2Complete == true else "Incomplete" 
+          },
+          actions: {
+            items: [
+              {
+                href: "?prepare-records-complete=&upload-status=&download-metadata-complete=&csv-upload-status=&series=&transfer-status=",
+                text: "Delete",
+                visuallyHiddenText: "Step 2 progress",
+                classes: 'govuk-link--disable' if isStep2Complete == false
+              },
+              {
+                href: "?prepare-records-complete=yes&upload-status=success",
+                text: 'Complete',
+                visuallyHiddenText: "Step 2",
+                classes: 'govuk-link--disable' if isStep1Complete == false or isStep2Complete == true
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Step 3 - Prepare your metadata"
+          },
+          value: {
+            text: 'Complete' if isStep3Complete == true else "Incomplete" 
+          },
+          actions: {
+            items: [
+              {
+                href: "?download-metadata-complete=&csv-upload-status=&series=&transfer-status=",
+                text: "Delete",
+                visuallyHiddenText: "Step 3 progress",
+                classes: 'govuk-link--disable' if isStep3Complete == false
+              },
+              {
+                href: "?download-metadata-complete=yes",
+                text: 'Complete',
+                visuallyHiddenText: "Step 3",
+                classes: 'govuk-link--disable' if isStep2Complete == false or isStep3Complete == true
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Step 4 - Upload your metadata"
+          },
+          value: {
+            text: 'Complete' if isStep4Complete == true else "Incomplete" 
+          },
+          actions: {
+            items: [
+              {
+                href: "?csv-upload-status=&series=&transfer-status=",
+                text: "Delete",
+                visuallyHiddenText: "Step 4 progress",
+                classes: 'govuk-link--disable' if isStep4Complete == false
+              },
+              {
+                href: "?csv-upload-status=success",
+                text: 'Complete',
+                visuallyHiddenText: "Step 4",
+                classes: 'govuk-link--disable' if isStep3Complete == false or isStep4Complete == true 
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Step 5 - Transfer"
+          },
+          value: {
+            text: 'Complete' if isStep5Complete == true else "Incomplete" 
+          },
+          actions: {
+            items: [
+              {
+                href: "?series=&transfer-status=",
+                text: "Delete",
+                visuallyHiddenText: "Step 5 progress",
+                classes: 'govuk-link--disable' if isStep5Complete == false
+              },
+              {
+                href: "?series=xx&transfer-status=confirmed",
+                text: 'Complete',
+                visuallyHiddenText: "Step 5",
+                classes: 'govuk-link--disable' if isStep4Complete == false or isStep5Complete == true 
+              }
+            ]
+          }
+        }
+      ]
+    }) }}   
 
-    </div>
   </div>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">
-        Consignment:<br>MOCK-TDR-1294
-      </h1>
-    </div>
-  </div>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      {% if data['transfer-status'] == 'confirmed' %}
-      <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-7">
-        <h1 class="govuk-panel__title">Transfer complete</h1>
-        <div class="govuk-panel__body govuk-!-font-size-27">
-          Your records have now been transferred to The National Archives.
-        </div>
-        <div class="govuk-panel__body govuk-!-font-size-27 govuk-!-margin-top-5">
-          Consignment reference: <span class="govuk-!-font-weight-bold">MOCK-1294-TDR</span>
-        </div>
-      </div>
-      {% endif %}
-
-      {% if data['upload-status'] == 'failed' %}
-      {{ govukWarningText({
-        text: "This transfer cannot be completed because there were errors in the uploaded files. View the errors below and start a new transfer. ",
-        iconFallbackText: "Warning"
-      }) }}
-      {% endif %}
-
-      <p class="govuk-body">Complete the tasks below to transfer your records. If you have any queries contact <a class="govuk-link" href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a> quoting your consignment number (MOCK-TDR-1294).</p>
-      {# <p class="govuk-body">Complete the tasks below to transfer your records. </p> #}
-      {# <p class="govuk-body">If you have any queries contact <a class="govuk-link" href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a> quoting your consignment number (MOCK-TDR-1294).</p> #}
-      <p class="govuk-body govuk-!-margin-bottom-7">If you leave this page your progress will be saved. You can return at any time from the <a class="govuk-link" href="/transfers">View transfers</a> page.</p>
-
-      <h2 id="step-1" class="govuk-heading-m">1. Before you upload</h2>
-      <ul class="govuk-task-list">
-        {# ----- Check file upload restrictions ----- #}
-        {{ taskListItem("Check file upload restrictions", "file-upload-restrictions", "", "", true) }}
-        {# ----- Complete transfer agreement ----- #}
-        {% set agreementStatus = 'Incomplete' if data['ta']|length < 4 else "Complete" %}
-        {{ taskListItem("Complete transfer agreement", "transfer-agreement", agreementStatus, "", (not data['upload-status'])) }}
-      </ul>
-
-      <h2 id="step-2" class="govuk-heading-m">2. Upload your records</h2>
-      <ul class="govuk-task-list">
-        {# ----- Prepare your records ----- #}
-        {% set prepareActive = false if data['ta']|length < 4 or data['upload-status'] else true %}
-        {% set prepareStatus =
-          "Complete" if data['prepare-records-complete'] == "yes"  else
-          ("Cannot start yet" if data['ta']|length < 4 else "Incomplete") %}
-        {{ taskListItem("Prepare your records", "prepare-records", prepareStatus, "", prepareActive) }}
-
-        {# ----- Upload your records ----- #}
-        {% set uploadActive = false if data['prepare-records-complete'] != "yes" or (data['upload-status']) else true %}
-        {% set uploadStatus =
-          ("Complete" if data['upload-status'] == "success" or data['upload-status'] == "failed" else
-          ("Cannot start yet" if data['prepare-records-complete'] != "yes" else "Incomplete")) %}
-        {{ taskListItem("Upload your records", "upload-records", uploadStatus, "", uploadActive) }}
-
-        {# ----- Results of your upload ----- #}
-        {% set uploadResultsStatus =
-          "" if data['upload-status'] == "success" else
-          ("There is a problem" if data['upload-status'] == "failed" else "Cannot start yet") %}
-        {# Alternative Journeys: #}
-        {# The continuation of an alternative journey here is determined by another var that is set #}
-        {# when the upload fails, i.e. not a journey id. #}
-        {% set uploadResultsURL =
-          "upload-records-checks-results-j-file-upload-fail" if data['upload-status'] == "failed" else "upload-records-checks-results-can-return" %}
-        {{ taskListItem("Results of your upload", uploadResultsURL, uploadResultsStatus, "", (data['upload-status'])) }}
-      </ul>
-
-      <h2 id="step-3" class="govuk-heading-m">3. Prepare your metadata</h2>
-      <ul class="govuk-task-list">
-        {# ----- Download a transfer metadata CSV template ----- #}
-        {% set downloadCSVStatus =
-          "Complete" if data['download-metadata-complete'] == "yes" else
-          ("Incomplete" if data['upload-status'] == "success" else "Cannot start yet") %}
-        {% set isDownloadCSVActive = ( (data['upload-status'] == "success") and (data['transfer-status'] != "confirmed") ) %}
-        {{ taskListItem("Download a transfer metadata CSV template", "metadata-template-download", downloadCSVStatus, "", isDownloadCSVActive) }}
-        {# ----- Guidance on adding metadata ----- #}
-        {{ taskListItem("Guidance on adding metadata", "metadata-guidance", "", "", true) }}
-      </ul>
-
-
-      <h2 id="step-4" class="govuk-heading-m">4. Upload your metadata</h2>
-      <ul class="govuk-task-list">
-      {# ----- Upload a completed transfer metadata CSV ----- #}
-        {% set uploadCSVStatus =
-        "Complete" if data['csv-upload-status'] == "success" or data['csv-upload-status'] == "failed" else
-        ("Incomplete" if data['download-metadata-complete'] == "yes" else "Cannot start yet") %}
-        {% set isUploadCSVActive = ( (data['download-metadata-complete'] == "yes") and (data['transfer-status'] != "confirmed") ) %}
-        {{ taskListItem("Upload a completed transfer metadata CSV", "upload-metadata", uploadCSVStatus, "", isUploadCSVActive) }}
-
-        {# ----- Results of your CSV upload ----- #}
-        {% set csvResultsStatus =
-        "There is a problem" if data['csv-upload-status'] == "failed" else
-        ("" if data['csv-upload-status'] == "success" else "Cannot start yet") %}
-        {% set csvUploadResultsURL =
-          "/upload-csv-results-j-csv-upload-fail" if data['csv-upload-status'] == "failed" else "/upload-csv-results" %}
-        {{ taskListItem("Results of your CSV upload", csvUploadResultsURL, csvResultsStatus, "", (data['csv-upload-status'])) }}
-      </ul>
-
-      <h2 id="step-5" class="govuk-heading-m">5. Transfer</h2>
-      <ul class="govuk-task-list">
-        {# ----- Choose a series ----- #}
-        {% set seriesStatus = "Complete" if data['series'] else "Incomplete" %}
-        {% set isChooseSeriesActive = (data['transfer-status'] != "confirmed") %}
-        {{ taskListItem("Choose a series", "series", seriesStatus, "", isChooseSeriesActive) }}
-        {# ----- Confirm transfer ----- #}
-        {% set confirmTransferStatus =
-        "Complete" if data['transfer-status'] == "confirmed" else
-        ("Incomplete" if seriesStatus == "Complete" and data['csv-upload-status'] == "success" else "Cannot start yet") %}
-        {% set isConfirmTransferActive = (seriesStatus == "Complete" and data['csv-upload-status'] == "success") and (data['transfer-status'] != "confirmed") %}
-        {{ taskListItem("Confirm your transfer", "confirm-transfer", confirmTransferStatus, "", isConfirmTransferActive)}}
-
-        {# ----- Confirm transfer ----- #}
-        {% set transferConfirmedStatus =
-        "" if data['transfer-status'] == "confirmed" else "Cannot start yet" %}
-        {{ taskListItem("Consignment transfer confirmation", "transfer-confirmation", transferConfirmedStatus, "", data['transfer-status'] == "confirmed") }}
-      </ul>
-
-
-      <h2 class="govuk-heading-s govuk-!-margin-top-9">Other actions</h2>
-      <ul class="govuk-list">
-        <li>
-          <a class="govuk-link" href="">Delete this transfer</a>
-        </li>
-        <li>
-          <a class="govuk-link" href="">View all transfers</a>
-        </li>
-        <li>
-          <a class="govuk-link" href="">Start a new transfer</a>
-        </li>
-      </ul>
-    </div>
-    <div class="govuk-grid-column-one-third">
-      <div class="tdr-aside">
-        <h2 id="extra-links" class="govuk-heading-s govuk-!-margin-top-3">
-          Help with your transfer
-        </h2>
-        <nav role="navigation" aria-labelledby="extra-links">
-          <ul class="govuk-list">
-            <li><a class="govuk-link" href="/faqs">FAQs</a></li>
-            <li><a class="govuk-link" href="/help">User help guide</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-
 </div>
-  </div>
-
-
-
-{% endblock %}
-
-{% block pageScripts %}
 {% endblock %}
