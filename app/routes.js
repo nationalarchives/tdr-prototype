@@ -136,25 +136,15 @@ const populateWithClosureData = (req, res) => {
 };
 
 // Add your routes here
-router.post('/*/transfer-tasks-section-complete', (req, res, next) => {
-
-  const fieldsToCheck = req.body['prepare-records-complete'];
-
-  if(req.session.data['redirect-to'] ){
-
-    const selectedValue = req.body['section-complete'];  
-    if (selectedValue === 'yes') {
-      const redirectTo = req.session.data['redirect-to'];
-      delete req.session.data['redirect-to'];
-      res.redirect(redirectTo);
-    } else {
-      res.render(req.path)
-    }
+router.post('/TUX-106/transfer-tasks-series', (req, res, next) => {
+  if(req.session.data['csv-upload-status'] == "success"){
+    const redirectTo = req.session.data['redirect-to'];
+    delete req.session.data['redirect-to'];
+    res.redirect(redirectTo);
   } else {
-    res.render(req.path)
+    res.redirect('/TUX-106/transfer-tasks');
   }
 })
-
 
 router.post('/*/transfer-tasks', (req, res, next) => {
 

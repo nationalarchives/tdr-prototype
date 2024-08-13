@@ -98,7 +98,7 @@
   "There is a problem" if data['csv-upload-status'] == "failed" else
   ("" if data['csv-upload-status'] == "success" else "Cannot start yet") %}
   {% set csvUploadResultsURL =
-    "/upload-csv-results-j-csv-upload-fail" if data['csv-upload-status'] == "failed" else "/upload-csv-results" %}
+    "/upload-csv-results-j-csv-upload-fail" if data['csv-upload-status'] == "failed" else "metadata-results" %}
   {{ taskListItem("Results of your CSV upload", csvUploadResultsURL, csvResultsStatus, "", (data['csv-upload-status'])) }}
 </ul>
 

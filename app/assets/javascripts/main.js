@@ -224,8 +224,8 @@ var __webpack_exports__ = {};
   !*** ./app/assets/typescript/main.ts ***!
   \***************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _nationalarchives_tdr_components_dist__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @nationalarchives/tdr-components/dist */ "./node_modules/@nationalarchives/tdr-components/dist/index.js");
-/* harmony import */ var _nationalarchives_tdr_components_dist__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_nationalarchives_tdr_components_dist__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _nationalarchives_tdr_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @nationalarchives/tdr-components */ "./node_modules/@nationalarchives/tdr-components/dist/index.js");
+/* harmony import */ var _nationalarchives_tdr_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_nationalarchives_tdr_components__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _folder_upload__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./folder-upload */ "./app/assets/typescript/folder-upload.ts");
 
 
@@ -233,13 +233,13 @@ __webpack_require__.r(__webpack_exports__);
 window.addEventListener("DOMContentLoaded", (event) => {
     const multiSelects = document.querySelectorAll("[data-module=multi-select-search]");
     multiSelects.forEach((ms) => {
-        const multiSelectSearch = new _nationalarchives_tdr_components_dist__WEBPACK_IMPORTED_MODULE_0__.MultiSelectSearch(ms);
+        const multiSelectSearch = new _nationalarchives_tdr_components__WEBPACK_IMPORTED_MODULE_0__.MultiSelectSearch(ms);
         multiSelectSearch.initialise();
     });
     const tree = document.querySelector("[role=tree]");
     if (tree != null) {
-        const nestedNavigation = new _nationalarchives_tdr_components_dist__WEBPACK_IMPORTED_MODULE_0__.NestedNavigation(tree);
-        nestedNavigation.initialiseFormListeners(_nationalarchives_tdr_components_dist__WEBPACK_IMPORTED_MODULE_0__.InputType.radios);
+        const nestedNavigation = new _nationalarchives_tdr_components__WEBPACK_IMPORTED_MODULE_0__.NestedNavigation(tree);
+        nestedNavigation.initialiseFormListeners(_nationalarchives_tdr_components__WEBPACK_IMPORTED_MODULE_0__.InputType.radios);
     }
     const folderUpload = document.querySelector("[data-tdr-module=folder-upload]");
     if (folderUpload) {
