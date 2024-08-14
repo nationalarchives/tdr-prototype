@@ -136,6 +136,28 @@ const populateWithClosureData = (req, res) => {
 };
 
 // Add your routes here
+router.post('/judgments/*/is-original', function(request, response) {
+
+  var isOriginal = request.session.data['isOriginalJudgment'] == "yes"
+  if (isOriginal == true){
+    response.redirect("provide-neutral-citation")
+  } else {
+    response.redirect("tell-us-more")
+  }
+})
+
+router.post('/judgments/*/tell-us-more', function(request, response) {
+
+  var documentType = request.session.data['documentType'];
+  if (documentType == "something-else"){
+    response.redirect("something-else");
+  } else if (documentType == "press-summary"){
+    response.redirect("provide-neutral-citation")
+  } else if (documentType == "update"){
+    response.redirect("what-has-changed")
+  }
+  
+})
 
 router.get(
   "/metadata/descriptive-metadata/confirm-delete-metadata",

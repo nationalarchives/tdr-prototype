@@ -49,25 +49,25 @@
 
       
       {{ govukRadios({
-        name: "isNotOriginalJudgment",
+        name: "isOriginalJudgment",
         fieldset: {
           legend: {
-            text: "Is your document an update to a judgment you transferred previously, a press summary, or any other document related to a judgment?",
+            text: "Is your document a judgment being transferred for the first time?",
             classes: "govuk-fieldset__legend--m"
           }
         },
         hint: {
-          html: "If this is <strong>not</strong> a judgment being transferred for the first time, select 'Yes'."
+          html: "This does not include an update to a judgment you transferred previously, a press summary, or any other document related to a judgment."
         },
         items: [
           {
             value: "yes",
-            text: "Yes"
+            text: "Yes",
+            checked: true
           },
           {
             value: "no",
-            text: "No",
-            checked: true
+            text: "No"
           }
         ]
       }) }}

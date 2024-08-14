@@ -47,37 +47,10 @@
         </div>
       </details>
 
-      
-      {{ govukRadios({
-        name: "isNotOriginalJudgment",
-        fieldset: {
-          legend: {
-            text: "Is your document an update to a judgment you transferred previously, a press summary, or any other document related to a judgment?",
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        hint: {
-          html: "If this is <strong>not</strong> a judgment being transferred for the first time, select 'Yes'."
-        },
-        items: [
-          {
-            value: "yes",
-            text: "Yes"
-          },
-          {
-            value: "no",
-            text: "No",
-            checked: true
-          }
-        ]
-      }) }}
-
-
-
       <div class="govuk-button-group">
         {{ govukButton({
           text: "Continue",
-          href: "./upload"
+          href: "./is-original-judgment"
         }) }}
       </div>
     </div>
