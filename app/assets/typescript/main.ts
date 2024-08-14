@@ -1,5 +1,5 @@
-import { MultiSelectSearch } from "@nationalarchives/tdr-components/dist";
-import { NestedNavigation, InputType } from "@nationalarchives/tdr-components/dist";
+import { MultiSelectSearch } from "@nationalarchives/tdr-components";
+import { NestedNavigation, InputType } from "@nationalarchives/tdr-components";
 import { FolderUpload } from "./folder-upload";
 
 window.addEventListener("DOMContentLoaded", (event) => {
