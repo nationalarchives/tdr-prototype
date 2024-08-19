@@ -121,6 +121,11 @@
   width: 100%;
 }
 
+.hidden {
+  visibility: hidden;
+  height:0;
+}
+
 .showBanner {
   animation: showBlock 0s 10s forwards;
   visibility: hidden;
@@ -492,3 +497,6 @@
   text-align: center;
 }
 
+.govuk-list--inline-pre pre {
+  display: inline;
+}
