@@ -1,0 +1,78 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Consignment: MOCK-TDR-1294
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Consignment: MOCK-TDR-1294
+      </h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if data['transfer-status'] == 'confirmed' %}
+      <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-7">
+        <h1 class="govuk-panel__title">Transfer complete</h1>
+        <div class="govuk-panel__body govuk-!-font-size-27">
+          Your records have now been transferred to The National Archives.
+        </div>
+        <div class="govuk-panel__body govuk-!-font-size-27 govuk-!-margin-top-5">
+          Consignment reference: <span class="govuk-!-font-weight-bold">MOCK-1294-TDR</span>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if data['upload-status'] == 'failed' %}
+      {{ govukWarningText({
+        text: "This transfer cannot be completed because there were errors in the uploaded files. View the errors below and start a new transfer. ",
+        iconFallbackText: "Warning"
+      }) }}
+      {% endif %}
+
+      <p class="govuk-body">Complete the tasks below to transfer your records. If you have any queries contact <a class="govuk-link" href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a> quoting your consignment number (MOCK-TDR-1294).</p>
+      <p class="govuk-body govuk-!-margin-bottom-7">If you leave this page your progress will be saved. You can return at any time from the <a class="govuk-link" href="/transfers">View transfers</a> page.</p>
+
+      {% include "./task-list" %}
+
+
+      <h2 class="govuk-heading-s govuk-!-margin-top-9">Other actions</h2>
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-link" href="">Delete this transfer</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="">View all transfers</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="">Start a new transfer</a>
+        </li>
+      </ul>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <div class="tdr-aside">
+        <h2 id="extra-links" class="govuk-heading-s govuk-!-margin-top-3">
+          Help with your transfer
+        </h2>
+        <nav role="navigation" aria-labelledby="extra-links">
+          <ul class="govuk-list">
+            <li><a class="govuk-link" href="/faqs">FAQs</a></li>
+            <li><a class="govuk-link" href="/help">User help guide</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+</div>
+  </div>
+
+
+
+{% endblock %}
+
+{% block pageScripts %}
+{% endblock %}

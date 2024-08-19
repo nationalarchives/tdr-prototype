@@ -136,7 +136,7 @@ const populateWithClosureData = (req, res) => {
 };
 
 // Add your routes here
-router.post('/TUX-106/transfer-tasks-series', (req, res, next) => {
+router.post('/TUX-106/*/transfer-tasks-series', (req, res, next) => {
   if(req.session.data['csv-upload-status'] == "success"){
     const redirectTo = req.session.data['redirect-to'];
     delete req.session.data['redirect-to'];

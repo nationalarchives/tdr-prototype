@@ -78,7 +78,7 @@
 
 
 <h2 id="step-4" class="govuk-heading-m">Upload your metadata</h2>
-<p class="govuk-body">You can upload metadata using the provided template. You can access this section once your have uploaded your records.</p>
+{# <p class="govuk-hint">Metadata can be uploaded using the provided template. You can start this section after uploading your records.</p> #}
 <ul class="govuk-task-list">
   {# ----- Guidance on adding metadata ----- #}
   {{ taskListItem("Metadata guidance", "metadata-guidance", "", "", true) }}
@@ -104,11 +104,6 @@
   {{ taskListItem("Results of the metadata upload", csvUploadResultsURL, csvResultsStatus, "", (data['csv-upload-status'])) }}
 </ul>
 
-<h2 id="step-5" class="govuk-heading-m">Request a metadata review</h2>
-<ul class="govuk-task-list">
-  {# ----- DTA Review ----- #}
-  {{ taskListItem("Request a metadata review", "metadata-template-download", downloadCSVStatus, "Metadata must be reviewed before transfer", isDownloadCSVActive) }}
-</ul>
 <h2 id="step-5" class="govuk-heading-m">Transfer</h2>
 <ul class="govuk-task-list">
   {# ----- Choose a series ----- #}
