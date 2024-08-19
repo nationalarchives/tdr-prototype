@@ -1,0 +1,269 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% block pageTitle %}
+  TUX-70 Index
+{% endblock %}
+
+{% block beforeContent %}
+  {# <a href="./transfer-tasks" class="govuk-back-link">Consignment: MOCK-TDR-1294</a> #}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <span class="govuk-caption-xl">Testing Index</span>
+      <h1 class="govuk-heading-xl">TUX-70 - Judgment User - User should declare if transfer is an amendment or press summary</h1>
+  
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    
+      <h2 class="govuk-heading-l">Context and Goal</h2>
+
+      <p class="govuk-body">There are a significant number of judgment users who are trying to transfer documents that we accept but are not <em>original judgments</em>. These include:</p>
+      <ul class="govuk-list govuk-list--number">
+        <li>Updates to judgments</li>
+        <li>Press summaries</li>
+        <li>Other documents, such as court orders or sentencing remarks</li>
+      </ul>
+
+      <p class="govuk-body">We are willing accept types 1 and 2 from the list above (and they are currently sent through TDR), but it is necessary for the user to tell us what type of document they are transferring. This helps the editors to know how to act.</p>
+
+      <p class="govuk-body">If it is type 3 (any other document) it should not go through TDR but can be emailed.</p>
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    
+      <h2 class="govuk-heading-l govuk-!-margin-top-4">User journey</h2>
+      <a target="_blank" href="/public/images/TUX-70 - Judgments - User should declare if transfer is an amendment or press summary - Page 1 Proposed journey 4.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/TUX-70 - Judgments - User should declare if transfer is an amendment or press summary - Page 1 Proposed journey 4.png" /></a>
+
+    </div>
+  </div>    
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    
+      <h2 class="govuk-heading-l">Considerations for design</h2>
+
+      <p class="govuk-body">We do not want to disrupt the journey for the majority of users who are trying to transfer an judgment for the first.</p>
+
+      <p class="govuk-body">There will be a question and form input that will branch a user away from the most common journey toward a more complex set of questions. This question is complex and can be presented in various ways. We need to test the copy/content for this. See <a href="#journey-branch-1">Journey branch 1 (Content design)</a>.</p>
+
+      <h2 class="govuk-heading-l">Versions</h2>
+
+      <h3 id="journey-branch-1" class="govuk-heading-m">1. Journey branch (Content design)</h3>
+      
+      <h4 class="govuk-heading-s">Context</h4>
+
+      <p class="govuk-body">The designs below are different formulations of the question and form input that will branch a user away from the most common journey toward a more complex set of questions. This question is complex and can be presented in various ways. We need to test the copy/content for this.</a>
+
+      <p class="govuk-body">This element may be on the <a href="./judgments/before-uploading" target="_blank">existing Before uploading page</a> or presented on a separate, new page with no other content. </p>
+      
+      <p class="govuk-body">Here we want to focus on content design only. Asking the user which formulation of the content is clearer in isolation from other page elements.</p>
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {{ govukTable({
+        caption: "Versions",
+        captionClasses: "govuk-table__caption--s",
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: ""
+          },
+          {
+            text: ""
+          },
+          {
+            text: ""
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "v1.1"
+            },
+            {
+              text: "Are you transferring an update to a judgment you transferred previously, a press summary, or any other document related to a judgment?"
+            },
+            {
+              html: "<a target='_blank' href='./1_1/'>View page</a>"
+            }
+          ],
+          [
+            {
+              text: "v1.2"
+            },
+            {
+              text: "Are you transferring a judgment for the first time?"
+            },
+            {
+              html: "<a target='_blank' href='./1_2/'>View page</a>"
+            }
+          ]
+        ]
+      }) }}
+
+    </div>
+  </div>
+  
+  <h3 id="journey-branch-2" class="govuk-heading-m govuk-!-margin-top-6">2. Branching question - Combined or separate page</h3>
+  
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h4 class="govuk-heading-s">Context</h4>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      
+      <div style="display: flex;gap:20px; width: 100%;">
+        <a style="flex-grow: 1; display: block;"  target="_blank" href="/public/images/TUX-70 - 4.1 - Branching question.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/TUX-70 - 4.1 - Branching question.png" /></a>
+        <p style="flex-shrink: 0;width:300px" class="govuk-body-l">This version (2.1 & 2.3) reduces the number of pages by making the branching question available only from the existing 'Before you upload' page. </p>
+      </div>
+       
+      <div style="display: flex;gap:20px; width: 100%;">
+        <a style="flex-grow: 1; display: block;"  target="_blank" href="/public/images/TUX-70 - 4.2 - Branching question.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/TUX-70 - 4.2 - Branching question.png" /></a>
+        <p style="flex-shrink: 0; width:300px" class="govuk-body-l">This version (2.2 & 2.4) separates the branching question page. 'Before you upload' page is positioned after this.</p>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      
+      {{ govukTable({
+        caption: "Versions",
+        captionClasses: "govuk-table__caption--s",
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: ""
+          },
+          {
+            text: ""
+          },
+          {
+            text: ""
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "Preferred v1.1",
+              colspan: 3,
+              classes: "govuk-table__header--rowbreak"
+            }
+          ],
+          [
+            {
+              text: "v2.1"
+            },
+            {
+              html: "Combines the journey branch question (v1.1) onto the Before you upload page."
+            },
+            {
+              html: "<a target='_blank' href='./2_1/home'>View page</a>"
+            }
+          ],
+          [
+            {
+              text: "v2.2"
+            },
+            {
+              html: "A separate page for the journey branch question (v1.1)</a>."
+            },
+            {
+              html: "<a target='_blank' href='./2_2/home'>View page</a>"
+            }
+          ],
+          [
+            {
+            
+              text: "Preferred v1.2",
+              colspan: 3,
+              classes: "govuk-table__header--rowbreak"
+            }
+          ],
+          [
+            {
+              text: "v2.3"
+            },
+            {
+              html: "Combines the journey branch question (v1.2) onto the Before you upload page."            },
+            {
+              html: "<a target='_blank' href='./2_3/home'>View page</a>"
+            }
+          ],
+          [
+            {
+              text: "v2.4"
+            },
+            {
+              html: "A separate page for the journey branch question (v1.2)</a>."
+            },
+            {
+              html: "<a target='_blank' href='./2_4/home'>View page</a>"
+            }
+          ]
+        ]
+      }) }}
+
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h3 id="journey-branch-3" class="govuk-heading-m">3. Full journey</h3>
+
+      <h4 class="govuk-heading-s">Context</h4>
+      <p class="govuk-body">This version consists of the full journey but starts from v2.4 (i.e. shorter branching question and separate page)</p>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      
+      {{ govukTable({
+        caption: "Versions",
+        captionClasses: "govuk-table__caption--s",
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: ""
+          },
+          {
+            text: ""
+          },
+          {
+            text: ""
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "v3.1"
+            },
+            {
+              html: "Full journey with starting from v2.4 (i.e. shorter branching question and separate page)."
+            },
+            {
+              html: "<a target='_blank' href='./3/home'>View page</a>"
+            }
+          ]
+        ]
+      }) }}
+
+
+    </div>
+  </div>
+
+{% endblock %}

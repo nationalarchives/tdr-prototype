@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Is the document a judgment being transferred for the first time?
+  Tell us more about this document
 {% endblock %}
 
 {% block header %}
@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <a href="before-uploading" class="govuk-back-link">Back</a>
+  <a href="is-original-judgment" class="govuk-back-link">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -17,35 +17,50 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="is-original" method="post">
+      
+      {# <h1 class="govuk-heading-l">
+        Tell us more about this document
+      </h1> #}
+
+      {# <p class="govuk-body">Provide us with more information about the document you're transferring.</p> #}
+
+      <form action="tell-us-more" method="post">
         {{ govukRadios({
-          name: "isOriginalJudgment",
+          name: "documentType",
           fieldset: {
             legend: {
-              text: "Is the document a judgment being transferred for the first time?",
+              text: "Tell us a little more about your document",
               classes: "govuk-label--l",
               isPageHeading: true
             }
           },
           hint: {
-            html: "This does not include an update to a judgment you transferred previously, a press summary, or any other document related to a judgment."
+            html: "You told us that this document is not a judgment being transferred for the first time. Select from the following options to help us identify what your transfer is."
           },
           items: [
             {
-              value: "yes",
-              text: "Yes",
-              checked: true
+              value: "update",
+              text: "It's an update to a judgment"
             },
             {
-              value: "no",
-              text: "No"
+              value: "press-summary",
+              text: "It's a press summary related to a judgment"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "something-else",
+              text: "It's something else related to a judgment",
+              hint: { text: "For example, a court order or sentencing remark"}
             }
           ]
         }) }}
 
         <div class="govuk-button-group">
           {{ govukButton({
-            text: "Continue"
+            text: "Continue",
+            href: ""
           }) }}
         </div>
       

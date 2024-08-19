@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Tell us more about this document
+  Is the document a judgment being transferred for the first time?
 {% endblock %}
 
 {% block header %}
@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <a href="is-original-judgment" class="govuk-back-link">Back</a>
+  <a href="home" class="govuk-back-link">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -17,42 +17,28 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      
-      {# <h1 class="govuk-heading-l">
-        Tell us more about this document
-      </h1> #}
-
-      {# <p class="govuk-body">Provide us with more information about the document you're transferring.</p> #}
-
-      <form action="tell-us-more" method="post">
+      <form action="is-original-v2.2-2.4" method="post">
         {{ govukRadios({
-          name: "documentType",
+          name: "isOriginalJudgment",
           fieldset: {
             legend: {
-              text: "Help us understand a little more about your document",
+              text: "Are you transferring a judgment for the first time?",
               classes: "govuk-label--l",
               isPageHeading: true
             }
           },
           hint: {
-            html: ""
+            html: "If you are transferring an update to a judgment, a press summary, or any other document related to a judgment select 'No'."
           },
           items: [
             {
-              value: "update",
-              text: "Is it an update to a previous judgment?"
+              value: "yes",
+              text: "Yes",
+              checked: true
             },
             {
-              value: "press-summary",
-              text: "Is it a press summary related to a judgment?"
-            },
-            {
-              divider: "or"
-            },
-            {
-              value: "something-else",
-              text: "Something else related to a judgment?",
-              hint: { text: "For example, a court order or sentencing remark"}
+              value: "no",
+              text: "No"
             }
           ]
         }) }}

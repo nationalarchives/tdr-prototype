@@ -1,0 +1,101 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Upload document
+{% endblock %}
+
+{% block header %}
+  {% include "layouts/inc-header-no-view-transfer.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./home" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Before you upload a document
+      </h1>
+      <h2 class="govuk-heading-m">What your document must contain</h2>
+
+      <p class="govuk-body">We can only accept a single document in Microsoft Word (docx) format. It must contain the following information:</p>
+        
+      <ul class="govuk-list govuk-list--number">
+        <li>neutral citation</li>
+        <li>name(s) of judge(s)</li>
+        <li>name(s) of parties</li>
+        <li>court and judgment date</li>
+      </ul>
+      <h2 class="govuk-heading-m">How to format your document</h2>
+
+      <p class="govuk-body">After you submit a Microsoft Word document we convert the content into a web page and PDF. To ensure the information is converted correctly, we ask you to follow some formatting guidelines and rules in the original document. </p>
+      <p class="govuk-body govuk-!-margin-bottom-6">Read our <a target="_blank" class="govuk-link" href="https://nationalarchives.github.io/ds-caselaw-judiciary-guidance/">guidance on formatting your document</a>.</p>
+
+      <details class="govuk-details govuk-!-margin-bottom-4">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            How will my document look once it's published?
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p class="govuk-body">The web page view may look slightly different to the original document but will contain the same information. This is to make sure the document meets basic web accessibility standards.</p>
+          <p class="govuk-body">The PDF will be as close a copy of the original document as possible.</p>
+        </div>
+      </details>
+      <form action="is-original-v2.1-2.3" method="post">
+
+        {{ govukRadios({
+          name: "isOriginalJudgment",
+          fieldset: {
+            legend: {
+              text: "Are you transferring an update to a judgment, a press summary, or any other document related to a judgment?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            html: "If you are transferring a judgment for the first time, select 'No'."
+          },
+          items: [
+            {
+              value: "no",
+              text: "Yes"
+            },
+            {
+              value: "yes",
+              text: "No",
+              checked: true
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        </div>
+      </div>
+    </form>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" open="" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Transfer reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+      
+      <h4 class="govuk-heading-s">Problems with your transfer?</h4>
+      <p class="govuk-body">Email us and include the transfer reference:
+        <a href="mailto:tdr@nationalarchives.gov.uk" class="govuk-link">tdr@nationalarchives.gov.uk</a>
+      </p>
+    </div>
+  </div>
+
+{% endblock %}

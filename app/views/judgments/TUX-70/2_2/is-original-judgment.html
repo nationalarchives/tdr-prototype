@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Tell us what has changed
+  Is the document a judgment being transferred for the first time?
 {% endblock %}
 
 {% block header %}
@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block beforeContent %}
-  <a href="javascript:void(0);" onclick="window.history.back();" class="govuk-back-link">Back</a>
+  <a href="home" class="govuk-back-link">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -17,25 +17,39 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {{ govukTextarea({
-        label: {
-          text: "Tell us what has changed",
-          classes: "govuk-label--l",
-          isPageHeading: true
-        },
-        hint: {
-          html: 'You told us this is an update to a existing judgment. Provide a short description of what has changed.'
-        },
-        id: "what-has-changed",
-        name: "whatHasChanged"
-      }) }}
-
-      <div class="govuk-button-group">
-        {{ govukButton({
-          text: "Continue",
-          href: "provide-neutral-citation"
+      <form action="is-original-v2.2-2.4" method="post">
+        {{ govukRadios({
+          name: "isOriginalJudgment",
+          fieldset: {
+            legend: {
+              text: "Are you transferring an update to a judgment, a press summary, or any other document related to a judgment?",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            }
+          },
+          hint: {
+            html: "If you are transferring a judgment for the first time, select 'No'."
+          },
+          items: [
+            {
+              value: "no",
+              text: "Yes"
+            },
+            {
+              value: "yes",
+              text: "No",
+              checked: true
+            }
+          ]
         }) }}
-      </div>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        </div>
+      
+      </form>
     </div>
     <div class="govuk-grid-column-one-third">
       <details class="govuk-details" open="" data-module="govuk-details">

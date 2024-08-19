@@ -1,0 +1,46 @@
+{% extends "govuk-prototype-kit/layouts/unbranded.html" %}
+
+{% block pageTitle %}
+  Upload document
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      {{ govukRadios({
+        name: "isNotOriginalJudgment",
+        fieldset: {
+          legend: {
+            text: "Are you transferring an update to a judgment you transferred previously, a press summary, or any other document related to a judgment?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        hint: {
+          html: "If you are transferring a judgment for the first time, select 'No'."
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No",
+            checked: true
+          }
+        ]
+      }) }}
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Continue",
+          href: "#"
+        }) }}
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

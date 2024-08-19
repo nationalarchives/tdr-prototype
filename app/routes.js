@@ -136,11 +136,21 @@ const populateWithClosureData = (req, res) => {
 };
 
 // Add your routes here
-router.post('/judgments/*/is-original', function(request, response) {
+router.post('/judgments/*/is-original-v2.1-2.3', function(request, response) {
 
   var isOriginal = request.session.data['isOriginalJudgment'] == "yes"
   if (isOriginal == true){
-    response.redirect("provide-neutral-citation")
+    response.redirect("upload")
+  } else {
+    response.redirect("tell-us-more")
+  }
+})
+
+router.post('/judgments/*/is-original-v2.2-2.4', function(request, response) {
+
+  var isOriginal = request.session.data['isOriginalJudgment'] == "yes"
+  if (isOriginal == true){
+    response.redirect("before-uploading")
   } else {
     response.redirect("tell-us-more")
   }
