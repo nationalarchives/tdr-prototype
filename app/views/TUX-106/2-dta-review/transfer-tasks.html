@@ -1,4 +1,5 @@
 {% extends "layouts/main.html" %}
+{% from "macros/icon.njk" import daIcon %}
 
 {% block pageTitle %}
   Consignment: MOCK-TDR-1294
@@ -37,6 +38,20 @@
       <p class="govuk-body">Complete the tasks below to transfer your records. If you have any queries contact <a class="govuk-link" href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a> quoting your consignment number (MOCK-TDR-1294).</p>
       <p class="govuk-body govuk-!-margin-bottom-7">If you leave this page your progress will be saved. You can return at any time from the <a class="govuk-link" href="/transfers">View transfers</a> page.</p>
 
+      {% if data['dta-review-status'] == "in-progress" %}
+      <div class="da-alert da-alert--with-icon">
+        <div class="da-alert__icon">
+          <div aria-hidden="true">
+            {{- daIcon({"iconType": 'warning', iconSize: "xxl"})-}}
+          </div>
+        </div>
+        <div class="da-alert__content">
+          <h2 class="da-alert__heading">Do not edit metadata while a review is in progress</h2>
+          <p>Your metadata is being reviewed. During this time, you can't edit the consignment metadata.</p>
+          <p>When the review is complete you will receive an email to <strong>jesse@ons.gov.uk</strong> with further instructions.</p>
+        </div>
+      </div>
+      {% endif %}
       {% include "./task-list" %}
 
 

@@ -24,7 +24,7 @@
       {% if status == "Complete" or status == "Cannot start yet" %}
         {{status}}
       {% else %}
-      <strong class="govuk-tag {% if status == "Incomplete" %}govuk-tag--blue{%elseif status == 'There is a problem'%}govuk-tag--red{%endif%}">
+      <strong class="govuk-tag {% if status == "Incomplete" %}govuk-tag--blue{%elseif status == 'In progress'%}govuk-tag--yellow{%elseif status == 'There is a problem'%}govuk-tag--red{%endif%}">
         {{status}}
       </strong>
       {% endif %}
@@ -81,14 +81,19 @@
   {% set downloadCSVStatus =
     "Complete" if data['download-metadata-complete'] == "yes" else
     ("Incomplete" if data['upload-status'] == "success" else "Cannot start yet") %}
-  {% set isDownloadCSVActive = ( (data['upload-status'] == "success") and (data['transfer-status'] != "confirmed") ) %}
+  {% set isDownloadCSVActive = ( (data['upload-status'] == "success") 
+    and (data['transfer-status'] != "confirmed") 
+    and (data['dta-review-status'] != "in-progress") ) %}
   {{ taskListItem("Download and complete your metadata template", "metadata-template-download", downloadCSVStatus, "", isDownloadCSVActive) }}
   {# ----- Upload a completed transfer metadata CSV ----- #}
   {% set uploadCSVStatus =
   "Complete" if data['csv-upload-status'] == "success" or data['csv-upload-status'] == "failed" else
   ("Incomplete" if data['download-metadata-complete'] == "yes" else "Cannot start yet") %}
-  {% set isUploadCSVActive = ( (data['download-metadata-complete'] == "yes") and (data['transfer-status'] != "confirmed") ) %}
+  {% set isUploadCSVActive = ( (data['download-metadata-complete'] == "yes") 
+    and (data['transfer-status'] != "confirmed") 
+    and (data['dta-review-status'] != "in-progress") ) %}
   {{ taskListItem("Upload metadata", "upload-metadata", uploadCSVStatus, "", isUploadCSVActive) }}
+
 
   {# ----- Results of your CSV upload ----- #}
   {% set csvResultsStatus =
@@ -96,13 +101,24 @@
   ("" if data['csv-upload-status'] == "success" else "Cannot start yet") %}
   {% set csvUploadResultsURL =
     "/upload-csv-results-j-csv-upload-fail" if data['csv-upload-status'] == "failed" else "metadata-results" %}
-  {{ taskListItem("Results of the metadata upload", csvUploadResultsURL, csvResultsStatus, "", (data['csv-upload-status'])) }}
+  {{ taskListItem("Results of the metadata upload", csvUploadResultsURL, csvResultsStatus, "", (data['csv-upload-status']|length)) }}
 </ul>
 
 <h2 id="step-5" class="govuk-heading-m">Request a metadata review</h2>
 <ul class="govuk-task-list">
   {# ----- DTA Review ----- #}
-  {{ taskListItem("Request a metadata review", "request-a-review", downloadCSVStatus, "Metadata must be reviewed before transfer", isDownloadCSVActive) }}
+  {% set isReviewActive = (not data['dta-review-status'] and data['csv-upload-status'] == "success") %}
+  {% set reviewStatus =
+    "Complete" if data['dta-review-status'] else
+    ("Incomplete" if data['csv-upload-status'] == "success" else "Cannot start yet")
+    %}
+  {{ taskListItem("Request a metadata review", "request-a-review", reviewStatus, "Metadata must be reviewed before transfer", isReviewActive) }}
+
+  {% set isReviewProgressActive = data['dta-review-status'] == "in-progress" %}
+  {% set reviewProgressStatus =
+    "In progress" if data['dta-review-status'] else "Cannot start yet"
+    %}
+  {{ taskListItem("Metadata review progress and outcome", "review-in-progress", reviewProgressStatus, "", isReviewProgressActive) }}
 </ul>
 <h2 id="step-5" class="govuk-heading-m">Transfer</h2>
 <ul class="govuk-task-list">
