@@ -16,8 +16,10 @@ router.get("/prototype-versions-api/", async (req, res) => {
         Authorization: `Token ${process.env.BASEROW_API_TOKEN}`
       }
     });
-
-    res.render(`prototype-versions/home`, {data: response.data.results});
+    
+    res.render(`prototype-versions/home`, {
+      data: response.data.results
+    });
 
   } catch (error) {
     console.error(error.status, error.statusText);

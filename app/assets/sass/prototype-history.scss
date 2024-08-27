@@ -11,3 +11,17 @@
   width: 100%;
   display: block;
 }
+
+.gov-table__cell--blocked__on_hold, 
+.gov-table__cell--abandoned, 
+.gov-table__cell--not_taken_forward {
+  opacity: 0.5;
+} 
+  
+.gov-table__cell--in_progress {
+  background-color: #f7f7f7;
+}
+
+.govuk-table__cell:first-child {
+  padding: 10px 20px 10px 10px;
+}
