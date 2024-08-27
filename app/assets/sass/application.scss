@@ -4,8 +4,8 @@
 //
 
 // Add extra styles here
-@import 'node_modules/@nationalarchives/tdr-components/components/multi-select-search/_index';
-@import 'node_modules/@nationalarchives/tdr-components/components/nested-navigation/_index';
+@import '@nationalarchives/tdr-components/components/multi-select-search/multi-select-search.css';
+@import '@nationalarchives/tdr-components/components/nested-navigation/nested-navigation.css';
 @import './prototype-history.scss';
 @import './folder-upload.scss';
 @import './tna-da-success-summary.scss';
