@@ -37,14 +37,14 @@
 
     </div>
   </div>
-  <div class="govuk-grid-row">
+  {# <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
     
       <h2 class="govuk-heading-l govuk-!-margin-top-4">User journey</h2>
       <a target="_blank" href="/public/images/TUX-70 - Judgments - User should declare if transfer is an amendment or press summary - Page 1 Proposed journey 4.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/TUX-70 - Judgments - User should declare if transfer is an amendment or press summary - Page 1 Proposed journey 4.png" /></a>
 
     </div>
-  </div>    
+  </div>     #}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
     
@@ -93,7 +93,7 @@
               text: "v1.1"
             },
             {
-              text: "Are you transferring an update to a judgment you transferred previously, a press summary, or any other document related to a judgment?"
+              text: "Is this a document an update to a judgment you transferred previously, a press summary, or any other document related to a judgment?"
             },
             {
               html: "<a target='_blank' href='./1_1/'>View page</a>"
@@ -104,7 +104,7 @@
               text: "v1.2"
             },
             {
-              text: "Are you transferring a judgment for the first time?"
+              text: "Is this document a judgment being transferred for the first time?"
             },
             {
               html: "<a target='_blank' href='./1_2/'>View page</a>"
@@ -120,23 +120,7 @@
   
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h4 class="govuk-heading-s">Context</h4>
-    </div>
-  </div>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      
-      <div style="display: flex;gap:20px; width: 100%;">
-        <a style="flex-grow: 1; display: block;"  target="_blank" href="/public/images/TUX-70 - 4.1 - Branching question.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/TUX-70 - 4.1 - Branching question.png" /></a>
-        <p style="flex-shrink: 0;width:300px" class="govuk-body-l">This version (2.1 & 2.3) reduces the number of pages by making the branching question available only from the existing 'Before you upload' page. </p>
-      </div>
-       
-      <div style="display: flex;gap:20px; width: 100%;">
-        <a style="flex-grow: 1; display: block;"  target="_blank" href="/public/images/TUX-70 - 4.2 - Branching question.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/TUX-70 - 4.2 - Branching question.png" /></a>
-        <p style="flex-shrink: 0; width:300px" class="govuk-body-l">This version (2.2 & 2.4) separates the branching question page. 'Before you upload' page is positioned after this.</p>
-      </div>
-
-
+      {# <h4 class="govuk-heading-s">Context</h4> #}
     </div>
   </div>
   <div class="govuk-grid-row">
@@ -218,21 +202,34 @@
           ]
         ]
       }) }}
+      <h4 class="govuk-heading-s">User journey</h4>
+
+      <div style="display: flex;gap:20px; width: 100%;">
+        <a style="flex-grow: 1; display: block;"  target="_blank" href="/public/images/journey-f.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/journey-f.png" /></a>
+        <div style="flex-shrink: 0;width:300px"> 
+          <p class="govuk-body">This version (2.1 & 2.3) reduces the number of pages by making the branching question available only from the existing 'Before you upload' page.</p>
+          <a href="https://lucid.app/lucidspark/bc9b81c3-7af0-4cc4-92aa-cd1d628ca5e4/edit?view_items=ZO67m1yt-w23&invitationId=inv_c4979422-0a2b-4def-92ec-cbc0ccf18e9e" class="govuk-link">Full map in Lucid</a>
+        </div>
+      </div>
+       
+      <div style="display: flex;gap:20px; width: 100%;">
+        <a style="flex-grow: 1; display: block;"  target="_blank" href="/public/images/journey-g.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/journey-g.png" /></a>
+        <div style="flex-shrink: 0; width:300px">
+          <p class="govuk-body">This version (2.2 & 2.4) separates the branching question page. 'Before you upload' page is positioned after this.</p>
+          <a href="https://lucid.app/lucidspark/bc9b81c3-7af0-4cc4-92aa-cd1d628ca5e4/edit?view_items=gR67qdasBqeg&invitationId=inv_c4979422-0a2b-4def-92ec-cbc0ccf18e9e" class="govuk-link">Full map in Lucid</a>
+        </div>
+      </div>
 
 
-    </div>
-  </div>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h3 id="journey-branch-3" class="govuk-heading-m">3. Full journey</h3>
-
-      <h4 class="govuk-heading-s">Context</h4>
-      <p class="govuk-body">This version consists of the full journey but starts from v2.4 (i.e. shorter branching question and separate page)</p>
     </div>
   </div>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-      
+      <h3 id="journey-branch-3" class="govuk-heading-m govuk-!-margin-top-8">3. Full journey following 'one-thing-per-page' approach</h3>
+
+      <h4 class="govuk-heading-s">Context</h4>
+      <p class="govuk-body">Version 3 is the full journey with the shorted question and separated question/triage page.</p>
+
       {{ govukTable({
         caption: "Versions",
         captionClasses: "govuk-table__caption--s",
@@ -251,10 +248,10 @@
         rows: [
           [
             {
-              text: "v3.1"
+              text: "v3"
             },
             {
-              html: "Full journey with starting from v2.4 (i.e. shorter branching question and separate page)."
+              html: "Full journey starting from v2.4 (i.e. shorter branching question and separate page)."
             },
             {
               html: "<a target='_blank' href='./3/home'>View page</a>"
@@ -262,8 +259,80 @@
           ]
         ]
       }) }}
+      <h4 class="govuk-heading-s">User journey</h4>
+
+      <div style="display: flex;gap:20px; width: 100%;">
+        <a style="flex-grow: 1; display: block;"  target="_blank" href="/public/images/journey-g.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/journey-g.png" /></a>
+        <div style="flex-shrink: 0;width:300px"> 
+          <p class="govuk-body-l">Version 3 consists of the full journey but starts from v2.4, i.e. it uses the shorter branching question and a separate triaging page.</p>
+          <a href="https://lucid.app/lucidspark/bc9b81c3-7af0-4cc4-92aa-cd1d628ca5e4/edit?view_items=gR67qdasBqeg&invitationId=inv_c4979422-0a2b-4def-92ec-cbc0ccf18e9e" class="govuk-link">Full map in Lucid</a>
+        </div>
+      </div>
 
 
+      <h3 id="journey-branch-3" class="govuk-heading-m govuk-!-margin-top-8">4. Full journey combining more of the data collection</h3>
+
+      <h4 class="govuk-heading-s">Context</h4>
+      <p class="govuk-body">Version 4 reduces the amount of new pages and puts more emphasis on the decision-making and data collection happening in one place.</p>
+
+      {{ govukTable({
+        caption: "Versions",
+        captionClasses: "govuk-table__caption--s",
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: ""
+          },
+          {
+            text: ""
+          },
+          {
+            text: ""
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "v4.1"
+            },
+            {
+              html: ""
+            },
+            {
+              html: "<a target='_blank' href='./4_1/home'>View page</a>"
+            }
+          ],
+          [
+            {
+              text: "v4.2"
+            },
+            {
+              html: ""
+            },
+            {
+              html: "<a target='_blank' href='./4_2/home'>View page</a>"
+            }
+          ]
+        ]
+      }) }}
+      <h4 class="govuk-heading-s">User journey</h4>
+
+      <div style="display: flex;gap:20px; width: 100%;">
+        <a style="flex-grow: 1; display: block;"  target="_blank" href="/public/images/journey-h.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/journey-h.png" /></a>
+        <div style="flex-shrink: 0;width:300px"> 
+          <p class="govuk-body">Version 4.1 includes all the branching triage/questions in one page with all form inputs within the conditional radio buttons.</p>
+          <a href="https://lucid.app/lucidspark/bc9b81c3-7af0-4cc4-92aa-cd1d628ca5e4/edit?view_items=8H67T2GHKI9E&invitationId=inv_c4979422-0a2b-4def-92ec-cbc0ccf18e9e" class="govuk-link">Full map in Lucid</a>
+        </div>
+      </div>
+      <div style="display: flex;gap:20px; width: 100%;">
+        <a style="flex-grow: 1; display: block;"  target="_blank" href="/public/images/journey-i.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/journey-i.png" /></a>
+        <div style="flex-shrink: 0;width:300px"> 
+          <p class="govuk-body">Version 4.2 includes all branching triage/questions in one page <em>but</em> only one form input in the conditional radio buttons. There is a separate page for collecting the NCN.</p>
+          <a href="https://lucid.app/lucidspark/bc9b81c3-7af0-4cc4-92aa-cd1d628ca5e4/edit?view_items=AN67tB6qxAca&invitationId=inv_c4979422-0a2b-4def-92ec-cbc0ccf18e9e" class="govuk-link">Full map in Lucid</a>
+        </div>
+      </div>
+
+      
     </div>
   </div>
 

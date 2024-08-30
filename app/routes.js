@@ -169,6 +169,26 @@ router.post('/judgments/*/tell-us-more', function(request, response) {
   
 })
 
+router.post('/judgments/*/tell-us-more-v4', function(request, response) {
+  var documentType = request.session.data['documentType'];
+  if (["original", 'update'].indexOf(documentType) >= 0){
+    response.redirect("before-uploading");
+  } else  if (documentType == "something-else"){
+    response.redirect("something-else");
+  } else if (documentType == "press-summary"){
+    response.redirect("upload")
+  }
+})
+
+router.post('/judgments/*/tell-us-more-v5', function(request, response) {
+  var documentType = request.session.data['documentType'];
+  if (["original", "update", "press-summary"].indexOf(documentType) >= 0){
+    response.redirect("provide-neutral-citation");
+  } else if (documentType == "something-else"){
+    response.redirect("something-else");
+  }
+})
+
 router.get(
   "/metadata/descriptive-metadata/confirm-delete-metadata",
   function (req, res) {

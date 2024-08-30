@@ -1,0 +1,160 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Tell us more about this document
+{% endblock %}
+
+{% block header %}
+  {% include "layouts/inc-header-no-view-transfer.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="home" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      
+      {# <h1 class="govuk-heading-l">
+        Tell us more about this document
+      </h1> #}
+
+      {# <p class="govuk-body">Provide us with more information about the document you're transferring.</p> #}
+
+      {% set originalHtml %}
+      {{ govukInput({
+        label: {
+          text: "Provide a neutral citation number (NCN)",
+          classes: "govuk-label--s",
+          isPageHeading: false
+        },
+        hint: {
+          html: 'A unique NCN is required to register a judgment or decision. Visit the <a class="govuk-link" target="_blank" href="https://nationalarchives.github.io/ds-caselaw-judiciary-guidance/ncn.html">Find Case Law guidance about NCNs (opens in a new tab)</a>.'
+        },
+        id: "neutral-citation",
+        name: "neutralCitation"
+      }) }}
+      {% endset -%}
+
+      {% set pressSummaryHtml %}
+      {{ govukInput({
+        label: {
+          text: "Provide a neutral citation number (NCN) for the related judgment",
+          classes: "govuk-label--s",
+          isPageHeading: false
+        },
+        hint: {
+          html: 'The judgment, which is the subject of the press summary, will have unique NCN. Visit the <a class="govuk-link" target="_blank" href="https://nationalarchives.github.io/ds-caselaw-judiciary-guidance/ncn.html">Find Case Law guidance about NCNs (opens in a new tab)</a>.'
+        },
+        id: "neutral-citation-press-summary",
+        name: "neutralCitation"
+      }) }}
+      {% endset -%}
+
+      {% set updateHtml %}
+
+        {{ govukInput({
+          label: {
+            text: "Provide a neutral citation number (NCN)",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          hint: {
+            html: 'A unique NCN is required to register a judgment or decision. Visit the <a class="govuk-link" target="_blank" href="https://nationalarchives.github.io/ds-caselaw-judiciary-guidance/ncn.html">Find Case Law guidance about NCNs (opens in a new tab)</a>.'
+          },
+          id: "neutral-citation-update",
+          name: "neutralCitation"
+        }) }}
+
+        {{ govukTextarea({
+          label: {
+            text: "Provide a short description of what has changed",
+            classes: "govuk-label--s",
+            isPageHeading: true
+          },
+          hint: {
+            html: ''
+          },
+          id: "what-has-changed",
+          name: "whatHasChanged"
+        }) }}
+      {% endset -%}
+
+      <form action="tell-us-more-v4" method="post">
+        {{ govukRadios({
+          name: "documentType",
+          fieldset: {
+            legend: {
+              text: "Tell us about your document",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            }
+          },
+          hint: {
+            html: "This will help us to collect the right information from you about the transfer."
+          },
+          items: [
+            {
+              value: "original",
+              text: "It's a judgment being transferred for the first time",
+              conditional: {
+                html: originalHtml
+              }
+            },
+            {
+              value: "update",
+              text: "It's an update to a judgment",
+              conditional: {
+                html: updateHtml
+              }
+            },
+            {
+              value: "press-summary",
+              text: "It's a press summary related to a judgment",
+              conditional: {
+                html: pressSummaryHtml
+              }
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "something-else",
+              text: "It's something else related to a judgment",
+              hint: { text: "For example, a court order or sentencing remark"}
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue",
+            href: ""
+          }) }}
+        </div>
+      
+      </form>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" open="" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Transfer reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+      
+      <h4 class="govuk-heading-s">Problems with your transfer?</h4>
+      <p class="govuk-body">Email us and include the transfer reference:
+        <a href="mailto:tdr@nationalarchives.gov.uk" class="govuk-link">tdr@nationalarchives.gov.uk</a>
+      </p>
+    </div>
+  </div>
+
+{% endblock %}
