@@ -74,3 +74,7 @@
     @include govuk-responsive-margin(0, "bottom");
   }
 }
+
+.da-alert__heading {
+  display: block;
+}
