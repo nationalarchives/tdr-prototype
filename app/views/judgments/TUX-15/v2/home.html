@@ -1,0 +1,56 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "layouts/inc-header-no-view-transfer.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  Welcome to the Transfer Digital Records service
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Welcome to the Transfer Digital Records
+      </h1>
+      
+      <p class="govuk-body">You can use this service to:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>transfer judgments and decisions to The National Archives</li>
+        <li>transfer an updated or revised document to The National Archives</li>
+      </ul>
+      
+      {{ govukButton({
+        text: "Start transfer",
+        href: "./upload"
+      }) }}
+
+      <h2 class="govuk-heading-l">Before you start a transfer</h2>
+
+      <h3 class="govuk-heading-m">What your document must contain</h3>
+      <p class="govuk-body">We can only accept a single document in Microsoft Word (docx) format. It must contain the following information:</p>  
+      <ul class="govuk-list govuk-list--bullet">
+        <li>neutral citation</li>
+        <li>name(s) of judge(s)</li>
+        <li>name(s) of parties</li>
+        <li>court and judgment date</li>
+      </ul>
+      <div class="da-alert">
+        <div class="da-alert__heading">Transfer Guidance</div>
+        <p>
+          <ul class="govuk-list">
+            <li><a href="" class="govuk-link">How to format your document</a></li>
+            <li><a href="" class="govuk-link">If this document an update or revision</a></li>
+            <li><a href="" class="govuk-link">Other reasons to contact us about this transfer</a></li>
+          </ul>
+        </p>
+      </div>
+
+
+    </div>
+  </div>
+
+{% endblock %}

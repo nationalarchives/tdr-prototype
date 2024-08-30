@@ -5,14 +5,15 @@
 
 // Add extra styles here
 @import './da-attachment.scss';
-@import 'node_modules/@nationalarchives/tdr-components/components/multi-select-search/_index';
-@import 'node_modules/@nationalarchives/tdr-components/components/nested-navigation/_index';
+@import '@nationalarchives/tdr-components/dist/components/multi-select-search/multi-select-search.css';
+@import '@nationalarchives/tdr-components/dist/components/nested-navigation/nested-navigation.css';
 @import './prototype-history.scss';
 @import './folder-upload.scss';
 @import './task-list.scss';
 @import './da-attachment.scss';
 @import './da-alert.scss';
 @import './da-icon.scss';
+@import './da-contents-list.scss';
 
 
 .tna-tree__radios-directory__label {
@@ -511,8 +512,13 @@
   text-align: center;
 }
 
-.govuk-list--inline-pre pre {
-  display: inline;
+.govuk-link--disable {
+  pointer-events: none;
+  color: darkgrey !important;
+}
+
+.tdr-aside {
+  border-top: 2px solid $govuk-link-colour;
 }
 
 .govuk-summary-list--wide-key .govuk-summary-list__key {
@@ -528,4 +534,28 @@
   @include govuk-font($size: 16);
   color: govuk-colour("dark-grey");
   margin-bottom: 0;
+}
+
+.footnote-symbol {
+  font-size: 0.8em;
+  vertical-align: super;
+  cursor: pointer;
+  color: govuk-colour("blue");
+  text-decoration: none;
+}
+
+.footnote-text {
+  @include govuk-font($size: 16);
+  @include govuk-responsive-margin(2, "bottom");
+}
+
+.footnote-text__link {
+  text-decoration: none;
+}
+
+.govuk-table caption {
+  caption-side: bottom;
+  text-align: left;
+  @include govuk-responsive-margin(2, "top");
+  @include govuk-font($size: 16);
 }

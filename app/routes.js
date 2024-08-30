@@ -136,6 +136,41 @@ const populateWithClosureData = (req, res) => {
 };
 
 // Add your routes here
+router.post('/TUX-106/*/transfer-tasks-series', (req, res, next) => {
+  if(req.session.data['csv-upload-status'] == "success"){
+    const redirectTo = req.session.data['redirect-to'];
+    delete req.session.data['redirect-to'];
+    res.redirect(redirectTo);
+  } else {
+    res.redirect('/TUX-106/transfer-tasks');
+  }
+})
+
+router.post('/*/transfer-tasks', (req, res, next) => {
+
+  const fieldChecks = req.body['prepare-records-complete'];
+
+  let fieldComplete = false;
+  const possibleFields = ['prepare-records-complete'];
+  possibleFields.forEach(fieldName => {
+    if(req.body[fieldName] !== undefined){
+      fieldComplete = req.body[fieldName] == 'yes';
+    }
+  })
+
+  if(req.session.data['redirect-to'] ){
+
+    if (fieldComplete === true) {
+      const redirectTo = req.session.data['redirect-to'];
+      delete req.session.data['redirect-to'];
+      res.redirect(redirectTo);
+    } else {
+      res.render(req.path)
+    }
+  } else {
+    res.render(req.path)
+  }
+})
 
 
 /*
