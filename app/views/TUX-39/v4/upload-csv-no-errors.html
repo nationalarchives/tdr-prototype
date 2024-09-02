@@ -1,18 +1,19 @@
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 {% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+{% from "macros/icon.njk" import daIcon %}
 
 {% extends "layouts/main.html" %}
-
-{% block pageTitle %}
-  Upload a metadata CSV
-{% endblock %}
 
 {% block header %}
   {% include "./inc-header.html" %}
 {% endblock %}
 
+{% block pageTitle %}
+  Upload a metadata CSV
+{% endblock %}
+
 {% block beforeContent %}
-  {# <a href="./download-template" class="govuk-back-link">Record metadata</a> #}
+  <a href="./record-metadata" class="govuk-back-link">Record metadata</a>
 {% endblock %}
 
 {% block content %}
@@ -22,29 +23,34 @@
 
       <h1 class="govuk-heading-l">Upload a metadata CSV</h1>
       
-      <p class="govuk-body">Upload a <abbr title="Comma Seperated Values">CSV</abbr> containing the record metadata. You can export a CSV within Excel following <a target='_blank' href='https://support.microsoft.com/en-gb/office/save-a-workbook-to-text-format-txt-or-csv-3e9a9d6c-70da-4255-aa28-fcacf1f081e6'>guidance from Microsoft (opens in a new tab)</a>.</p>
-
-      {{ govukWarningText({
-        html: "We can only accept metadata in a <abbr title='Comma Seperated Values'>CSV</abbr> file format.",
-        iconFallbackText: "Warning"
-      }) }}
+      <p class="govuk-body">Upload a <abbr title="Comma Seperated Values">CSV (UTF-8)</abbr> containing the record metadata.</p>
         
-      <p>In order for us to process your metadata upload, it must include the following columns:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>File name</li>
-        <li>File path</li>
-        <li>Date last modified</li>
-      </ul>
+        {{ govukWarningText({
+          html: "We can only accept metadata in a <abbr title='Comma Seperated Values'>CSV (UTF-8)</abbr> file format.",
+          iconFallbackText: "Warning"
+        }) }}
+        
+      <p class="govuk-body">See the guidance for <a target="_blank" class="govuk-link" href="metadata-guidance#export-the-template-csv">how to export your spreasheet in the correct format (opens in a new tab)</a>.</p>
       
-      <p class="govuk-body">We encourage you to provide as much additional metadata as possible. If you want to add more metadata return to the <a class="govuk-body" href="">Record metadata</a> page and read the guide on completing the template.</p>
+      
+      {# <p class="govuk-body">We encourage you to provide as much additional metadata as possible. If you want to add more metadata return to the <a class="govuk-body" href="">Record metadata</a> page and read the guide on completing the template.</p> #}
 
-
-      <div class="da-alert da-alert--info">
+      <div class="da-alert da-alert--info da-alert--with-icon">
+        <div class="da-alert__icon">
+          <div aria-hidden="true" class="da-icon da-icon--xxl">
+            {{- daIcon({"iconType": 'question-mark-circle', iconSize: "xxl"})-}}
+          </div>
+        </div>
         <div class="da-alert__content">
-          {# <h2 class="da-alert__heading">We found issues in your metadata</h2> #}
-          <p>Once uploaded, we will check your metadata for errors. There will be a chance to review and re-upload the metadata before completing the transfer.</p>
+          <h3 class="da-alert__heading da-alert__heading--s">Reading the metadata guidance</h2>
+          <p class="govuk-body">We strongly advise reading the metadata guidance in detail before uploading the template.</p>
+          <p class="govuk-body"><a target="_blank" href="metadata-guidance" class="govuk-link">Read the metadata guidance (opens in a new tab)</a></p>
         </div>
       </div>
+      
+      
+      <p class="govuk-body">Once uploaded, we will check your metadata for errors. There will be a chance to review and re-upload the metadata before completing the transfer.</p>
+
 
       {{ govukFileUpload({
         id: "file-upload-1",
