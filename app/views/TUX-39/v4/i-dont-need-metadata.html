@@ -3,7 +3,7 @@
 {% from "macros/icon.njk" import daIcon %}
 
 {% block pageTitle %}
-  I don't need to enter any metadata
+  I don't need to enter any additional metadata
 {% endblock %}
 
 {% block header %}
@@ -18,8 +18,8 @@
 
 
 {% set checkIcon %}
-<div aria-hidden="true" class="da-icon da-icon--l">
-  {{- daIcon({"iconType": 'check', "classes" : "da-icon--success"})-}}
+<div aria-hidden="true" class="da-icon da-icon--xxl">
+  {{- daIcon({"iconType": 'question-mark', classes: "da-icon--info", iconSize: "xxl"})-}}
 </div>
 {% endset %}
 {% set infoIcon %}
@@ -32,9 +32,9 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
     <h1 class="govuk-heading-xl">
-      I don't need to enter any metadata
+      I don't need to provide any additional metadata
     </h1>
-    <p class="govuk-body">If you don't provide any metadata we will transfer the metadata we extracted from your records during upload. You can download and view that in the template below.</p>
+    <p class="govuk-body">If you don't provide any additonal metadata we will transfer the metadata we extracted from your records during upload. You can download and view that in the spreadsheet below.</p>
     <section class="da-attachment govuk-!-margin-bottom-4 govuk-!-display-none-print">
       <div class="da-attachment__thumbnail">
         <a href="#" class="govuk-link" target="_self" tabindex="-1" aria-hidden="true">
@@ -48,7 +48,7 @@
       <div class="da-attachment__details">
         <h2 class="da-attachment__title">
           <a href="#" class="govuk-link da-attachment__link" target="_self">
-            Metadata template
+            MOCK-TDR-1301-metadata.xlsx
           </a>
         </h2>
         {# <p class="da-attachment__metadata da-attachment__metadata--compact">MOCK-TDR-1301</p> #}
@@ -69,22 +69,22 @@
             key: {  
               html: '
               <p class="govuk-heading-s govuk-!-margin-bottom-1">This consignment contains no closed records</p>
-              <p class="govuk-summary-list__key-hint govuk-body-s govuk-hint govuk-!-margin-bottom-0">You must provide metadata about all closed records</p>' 
+              <p class="govuk-summary-list__key-hint govuk-body-s govuk-hint govuk-!-margin-bottom-0">If you have closed records in your consignment you must provide metadata about those records. Follow the guidance for <a target="_blank" href="metadata-guidance#provide-metadata-about-closed-records">providing metadata about closed records (opens in a new tab)</a>.</p>' 
             },
             value: { html: checkIcon }
           },
           {
             key: {  html: ['
-            <p class="govuk-heading-s govuk-!-margin-bottom-1">The extracted date last modified values are accurate</p>',
-            '<p class="govuk-summary-list__key-hint">Extracted dates can be checked in the downloadable template</p>' ]|join
+            <p class="govuk-heading-s govuk-!-margin-bottom-1">The date last modified values are accurate</p>',
+            '<p class="govuk-summary-list__key-hint">Check the extracted values in the <em>Date last modified</em> column are accurate in the downloadable spreadsheet. Follow the guidance for <a target="_blank" href="metadata-guidance#check-date-last-modified">checking and correcting the date last modified (opens in a new tab)</a>.</p>' ]|join
           },
             value: { html: checkIcon }
           },
           {
             key: {  
               html: '
-              <p class="govuk-heading-s govuk-!-margin-bottom-1">Additional descriptions have been added to the records where appropriate</p>
-              <p class="govuk-summary-list__key-hint">For example, where record filenames are not descriptive</p>' 
+              <p class="govuk-heading-s govuk-!-margin-bottom-1">Record descriptions have been added where appropriate</p>
+              <p class="govuk-summary-list__key-hint">If the file name is not descriptive or you have other descriptive information that makes the record easier to find in the public catalogue, you should add this to the description. Follow the guidance for <a target="_blank" href="metadata-guidance#provide-record-descriptions">providing record descriptions (opens in a new tab)</a>.</p>' 
             },
             value: { html: checkIcon }
           },
@@ -92,7 +92,7 @@
             key: {  
               html: '
               <p class="govuk-heading-s govuk-!-margin-bottom-1">All records are in English</p>
-              <p class="govuk-summary-list__key-hint">If a record contains other languages this can be added as metadata</p>' 
+              <p class="govuk-summary-list__key-hint">We currently only accept metadata values of \'English\' and \'Welsh\' in the <em>Language</em> column. If a record has Welsh as its main language change the metadata field. Follow the guidance for <a target="_blank" href="metadata-guidance#change-the-record-language">changing the record language (opens in a new tab)</a></p>' 
             },
             value: { html: checkIcon }
           }          

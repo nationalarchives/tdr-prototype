@@ -70,4 +70,13 @@
   &--success {
     fill: green;
   }
+
+  &--info {
+    fill: #1d70b8;
+  }
+}
+
+.da-icon--question-mark-circle {
+  position:relative;
+  top: -4px;
 }

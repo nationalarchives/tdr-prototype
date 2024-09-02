@@ -7,9 +7,9 @@
   Metadata entry guidance - MOCK-TDR-1294 - Transfer Digital Records
 {% endblock %}
 
-{% block beforeContent %}
+{# {% block beforeContent %}
   <a href="./transfer-tasks" class="govuk-back-link">Back to Consignment</a>
-{% endblock %}
+{% endblock %} #}
 
 {% block content %}
 
@@ -62,15 +62,29 @@
                 </a>
               </li>
               <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
-                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#provide-record-descriptions">
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#change-the-record-language">
                   <span class="da-contents-list__number">4. </span>
-                  <span class="da-contents-list__numbered-text">Provide any additional metadata</span>
+                  <span class="da-contents-list__numbered-text">Change the record language</span>
+                </a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#other-metadata-fields">
+                  <span class="da-contents-list__number">5. </span>
+                  <span class="da-contents-list__numbered-text">Other metadata fields</span>
                 </a>
               </li>
             </ol>
           </li>
           <li class="da-contents-list__list-item da-contents-list__list-item--parent">
-            <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#export-the-template-csv">Export the template as a CSV for upload</a>
+            <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#uploading-the-spreadsheet">Uploading the metadata spreadsheet
+            </a>
+            <ol class="da-contents-list__nested-list">
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#export-the-template-csv">
+                  <span class="da-contents-list__numbered-text">Export the template as a CSV (UTF-8) for upload</span>
+                </a>
+              </li>
+            </ol>
           </li>
           <li class="da-contents-list__list-item da-contents-list__list-item--parent">
             <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#metadata-that-doesnt-fit">Providing metadata that doesn't fit the template</a>
@@ -96,7 +110,7 @@
         <div class="da-alert__content">
           <h2 class="da-alert__heading da-alert__heading--s">You must provide metadata for closed records</h2>
           <p>If you have closed records in your consignment you must provide closed record metadata about those records.
-          See the section below on <a class="govuk-link" href="#metadata-closed-records">providing closed record metadata</a>.</p>        
+          See the section below on <a class="govuk-link" href="#provide-metadata-about-closed-records">providing closed record metadata</a>.</p>        
         </div>
       </div>
       
@@ -194,7 +208,7 @@
       }) }}
 
       <p class="govuk-body">If you need to enter a different record date use the <em>Date of the record</em> column.</p>
-      <p class="govuk-body">This date will also be used as the closure start date for a closed record. See the next section on <a href="#provide-metadata-about-closed-records">providing closed record metadata</a> for more information.</p>
+      <p class="govuk-body">The <em>Date last modified</em> or, if provided, the <em>Date of the record</em> value will be used as the closure start date for a closed record. See the next section on <a href="#provide-metadata-about-closed-records">providing closed record metadata</a> for more information.</p>
 
       <h3 id="provide-metadata-about-closed-records" class="govuk-heading-m">2. Provide metadata about closed records</h3> 
       <p class="govuk-body">If you have closed records in your consignment <strong>you must provide metadata about those closed records</strong>. The following columns are mandatory for every closed record.</p>
@@ -302,47 +316,48 @@
         </div>
         <div class="da-alert__content">
           <h2 class="da-alert__heading da-alert__heading--s">We strongly encourage additional  descriptions</h2>
-          <p>Any additional metadata you provide helps to enrich the record, making it easier to find in our public catalogue.</p>
-          <p>If you have additional metadata fields that you would like to include in the description, you can ask for advice from a Transfer Advisor at <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>.</p>
+          <p>Any descriptive metadata you provide helps to enrich the record, making it easier to find in our public catalogue.</p>
+          <p>If you have metadata you would like to include with the metadata field title, you can ask for advice from a Transfer Advisor at <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>.</p>
         </div>
       </div>
 
-      <h3 id="provide-additional-metadata" class="govuk-heading-m">4. Change the record language</h3> 
+      <h3 id="change-the-record-language" class="govuk-heading-m">4. Change the record language</h3> 
       <p class="govuk-body">The template includes a <em>Language</em> field that is set to English by default.</p>
       <p class="govuk-body">We currently only accept 'English' and 'Welsh' in this column. If the consignment contains a record that has Welsh as its main language change the metadata field.</p>
       
-      <h3 id="provide-additional-metadata" class="govuk-heading-m">5. Other metadata fields</h3> 
+      <h3 id="other-metadata-fields" class="govuk-heading-m">5. Other metadata fields</h3> 
       <p class="govuk-body">The template also includes column headers for additional metadata, such as <em>Former reference</em> and <em>Translated title of the record</em>.</p>
 
-      {# <div class="da-alert da-alert--info da-alert--with-icon">
-        <div class="da-alert__icon">
-          <div aria-hidden="true">
-            {{- daIcon({"iconType": 'search', iconSize: "xl"})-}}
-          </div>
-        </div>
-        <div class="da-alert__content">
-          <h2 class="da-alert__heading da-alert__heading--s">We strongly encourage additional  descriptions</h2>
-          <p>Any additional metadata you provide helps to enrich the record, making it easier to find in our public catalogue.</p>
-          <p>If you have additional metadata fields that you would like to include in the description, you can ask for advice from a Transfer Advisor at <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>.</p>
-        </div>
-      </div> #}
+      {# <h2 id="export-the-template-csv" class="govuk-heading-l">Export the template as a CSV for upload</h2> 
+      <p class="govuk-body">Once you have completed the template you will need to export a file in the <abbr title="Comma Seperated Values">CSV</abbr> format before uploading it. You can do this within Excel following <a target="_blank" href="https://support.microsoft.com/en-gb/office/save-a-workbook-to-text-format-txt-or-csv-3e9a9d6c-70da-4255-aa28-fcacf1f081e6">guidance from Microsoft (opens in a new tab)</a>.</p> #}
       
-      <h2 id="export-the-template-csv" class="govuk-heading-l">Export the template as a CSV for upload</h2> 
-      <p class="govuk-body">Once you have completed the template you will need to export a file in the <abbr title="Comma Seperated Values">CSV</abbr> format before uploading it. You can do this within Excel following <a target="_blank" href="https://support.microsoft.com/en-gb/office/save-a-workbook-to-text-format-txt-or-csv-3e9a9d6c-70da-4255-aa28-fcacf1f081e6">guidance from Microsoft (opens in a new tab)</a>.</p>
+      <h2 id="uploading-the-spreadsheet" class="govuk-heading-l">Uploading the metadata spreadsheet</h2> 
+
+      <p>Once you have completed your metadata spreadsheet you will be able to upload it through Transfer Digital Records.</p>
+
+      <p>In order for us to process your metadata upload it must include the following unedited columns that were provided in the downloadable template:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>File name</li>
+        <li>File path</li>
+        <li>Date last modified</li>
+      </ul>
       
-      {# <p class="govuk-body">If you have metadata that doesn't fit into the available columns contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>.</p> #}
+      <p>Any other metadata you provide is associated with the records using the <em>File name</em> and <em>File path</em>.</p>
+      <p>The <em>Date last modified</em> should not be edited directly. If a date is not accurate follow the guidance <a href="metadata-guidance#check-date-last-modified">to provide a different date for a record</a>.</p>
+
+      <h3 id="export-the-template-csv" class="govuk-heading-m">Export the template as a CSV (UTF-8) for upload</h3> 
+
+      <p class="govuk-body">Once you have completed the template you will need to export a file in the <abbr title="Comma Seperated Values">CSV UTF-8</abbr> format before uploading it.</p>
+      
+      <p class="govuk-body">
+        <img style="max-width: 100%; height: auto" src="/public/images/saveas-csvutf8.png" />
+        <span class="govuk-hint"><a target="blank" href="/public/images/saveas-csvutf8.png">Open larger version of image in new tab</a></span>
+      </p>
+
+      {# You can do this within Excel following <a target="_blank" href="https://support.microsoft.com/en-gb/office/save-a-workbook-to-text-format-txt-or-csv-3e9a9d6c-70da-4255-aa28-fcacf1f081e6">guidance from Microsoft (opens in a new tab)</a>. #}
 
       <h2 id="metadata-that-doesnt-fit" class="govuk-heading-l">Providing metadata that doesn't fit the template</h2> 
       <p class="govuk-body">If you have metadata that you would like to provide but it doesn't fit into the provided template columns, contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a> to speak to a Transfer Advisor.</p>
-
-
-      {{ govukPagination({
-        classes: "govuk-!-margin-top-8",
-        next: {
-          labelText: "Download your metadata template",
-          href: "metadata-template-download"
-        }
-      }) }}
     </div>
   </div>
 
