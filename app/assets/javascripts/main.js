@@ -72,7 +72,6 @@ class FolderUpload {
         this.handleSelectedItems = async (ev) => {
             ev.preventDefault();
             const form = this.itemRetriever.closest("form");
-            console.log(form.files.files, this.itemRetriever.files);
             const selectedFiles = this.convertFilesToIfilesWithPath(form.files.files);
             const parentFolder = this.getParentFolderName(selectedFiles);
             this.displaySelectionSuccessMessage(parentFolder, selectedFiles.filter((f) => isFile(f)).length);
@@ -121,11 +120,13 @@ class FolderUpload {
             this.itemRetriever.blur();
             this.selected.classList.remove("govuk-visually-hidden");
             let selectedContentFragment = document.createRange()
-                .createContextualFragment(this.selected.firstElementChild.innerHTML);
-            selectedContentFragment.querySelector(".js-drag-and-drop-folder-name").textContent = folderName;
+                .createContextualFragment(this.selected.innerHTML);
+            selectedContentFragment.querySelectorAll(".js-drag-and-drop-folder-name").forEach((el) => {
+                el.textContent = folderName;
+            });
             selectedContentFragment.querySelector(".js-drag-and-drop-no-of-files").textContent = numberOfFiles.toString();
-            this.selected.firstElementChild.innerHTML = "";
-            this.selected.firstElementChild.appendChild(selectedContentFragment);
+            this.selected.innerHTML = "";
+            this.selected.appendChild(selectedContentFragment);
         };
         this.itemRetriever = root.querySelector(".js-drag-and-drop-input");
         this.dropzone = root.querySelector(".js-drag-and-drop-zone");

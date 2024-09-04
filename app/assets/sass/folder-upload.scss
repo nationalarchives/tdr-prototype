@@ -35,10 +35,13 @@
 }
 
 .drag-and-drop__selected {
+  border-bottom: 1px solid #B1B4B6;
+}
+
+.drag-and-drop__selected-folder {
   display: flex;
   gap: 15px;
   align-items: baseline;
-  border-bottom: 1px solid #B1B4B6;
 }
 
 .drag-and-drop__selected__description {
