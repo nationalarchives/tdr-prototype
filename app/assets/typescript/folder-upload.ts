@@ -108,7 +108,6 @@ export class FolderUpload {
     ev.preventDefault();
     const form: HTMLFormElement | null = this.itemRetriever.closest("form");
 
-    console.log(form!.files!.files, this.itemRetriever.files);
     const selectedFiles = this.convertFilesToIfilesWithPath(form!.files!.files);
     const parentFolder = this.getParentFolderName(selectedFiles);
 
@@ -188,16 +187,19 @@ export class FolderUpload {
     this.selected.classList.remove("govuk-visually-hidden");
 
     let selectedContentFragment = document.createRange()
-      .createContextualFragment(this.selected.firstElementChild.innerHTML);
+      .createContextualFragment(this.selected.innerHTML);
 
-    selectedContentFragment.querySelector(
+    selectedContentFragment.querySelectorAll(
       ".js-drag-and-drop-folder-name"
-    )!.textContent = folderName;
+    ).forEach((el)=>{
+      el.textContent = folderName;
+    })
+
     selectedContentFragment.querySelector(
       ".js-drag-and-drop-no-of-files"
     )!.textContent = numberOfFiles.toString();
 
-    this.selected.firstElementChild.innerHTML = "";
-    this.selected.firstElementChild.appendChild(selectedContentFragment)
+    this.selected.innerHTML = "";
+    this.selected.appendChild(selectedContentFragment)
   };
 }
