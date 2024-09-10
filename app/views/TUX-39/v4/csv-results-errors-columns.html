@@ -36,21 +36,17 @@
           },
           {
             key: {  text: "Action" },
-            value: { html: "Return to the <a target='_blank' href='./record-metadata'>Record metadata</a> page and download the metadata template to see the required column headers." }
-          }
-        ]
-      }) }}
-
-      <p class="govuk-body">The report below contains details about issues found.</p>
-
-      <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8" data-module="govuk-button">
-        <span aria-hidden="true" class="tna-button-icon tna-button-icon--download">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 23 23">
-            <path fill="#020202" d="m11.5 16.75-6.563-6.563 1.838-1.903 3.412 3.413V1h2.626v10.697l3.412-3.413 1.837 1.903L11.5 16.75ZM3.625 22c-.722 0-1.34-.257-1.853-.77A2.533 2.533 0 0 1 1 19.375v-3.938h2.625v3.938h15.75v-3.938H22v3.938c0 .722-.257 1.34-.77 1.855a2.522 2.522 0 0 1-1.855.77H3.625Z"/>
-          </svg>          
-        </span>
-        Download report
-      </button>
+            value: { html: "<p>Add the following column headers to your metadata file and re-upload.</p>
+              <ul class='govuk-list govuk-list--bullet'>
+                <li>Date last modified</li>
+                <li>Former reference</li>
+              </ul>
+              " }
+            }
+            ]
+          }) }}
+        {# <p>You can download the metadata template from the <a target='_blank' href='./record-metadata'>Record metadata</a> page, which contains the required column headers.</p> #}
+        {# value: { html: "Return to the <a target='_blank' href='./record-metadata'>Record metadata</a> page and download the metadata template to see the required column headers." } #}
 
       <p class="govuk-body">Once you have addressed the issues upload a revised metadata file.</p>
 
