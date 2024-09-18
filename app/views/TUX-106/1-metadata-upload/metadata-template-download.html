@@ -4,7 +4,7 @@
 {% from "macros/icon.njk" import daIcon %}
 
 {% block pageTitle %}
-  Download a metadata transfer CSV template - MOCK-TDR-1294 - Transfer Digital Records
+  Download your metadata template
 {% endblock %}
 
 {% block beforeContent %}
@@ -17,40 +17,10 @@
     <div class="govuk-grid-column-two-thirds">
 
       <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
-      <h1 class="govuk-heading-l">Download and complete your metadata template</h1>
+      <h1 class="govuk-heading-l">Download your metadata template</h1>
 
-      <p class="govuk-body">To transfer your records using this service you will need to upload a CSV containing metadata.</p>
-
-      <p class="govuk-body">Below is a template that has been generated from your uploaded records. It contains a row for every file and prepopulated columns for specific metadata that was extracted during upload. It also contains columns with pre-populated default values.</p>
-      
-      <p class="govuk-body">You will need to check the extracted metadata and check the pre-populated default values. There are columns for you to provide metadata about closed records and other additional metadata about the records.</a>
-      
-        <section class="da-attachment govuk-!-margin-bottom-4 govuk-!-display-none-print">
-          <div class="da-attachment__thumbnail">
-            <a download href="/public/downloads/MOCK-TDR-1301-template.xlsx" class="govuk-link" target="_self" tabindex="-1" aria-hidden="true">
-              <svg class="da-attachment__thumbnail-image da-attachment__thumbnail-image--spreadsheet" version="1.1" viewBox="0 0 99 140" width="99" height="140" aria-hidden="true">
-                <path d="M12 12h75v27H12zm0 47h18.75v63H12zm55 2v59H51V61h16m2-2H49v63h20V59z" stroke-width="0"></path>
-                <path d="M49 61.05V120H32.8V61.05H49m2-2H30.75v63H51V59zm34 2V120H69.05V61.05H85m2-2H67v63h20V59z" stroke-width="0"></path>
-                <path d="M30 68.5h56.5M30 77.34h56.5M30 112.7h56.5M30 95.02h56.5M30 86.18h56.5M30 103.86h56.5" fill="none" stroke-miterlimit="10" stroke-width="2"></path>
-              </svg>
-            </a>
-          </div>
-          <div class="da-attachment__details">
-            <h2 class="da-attachment__title">
-              <a download href="/public/downloads/MOCK-TDR-1301-template.xlsx" class="govuk-link da-attachment__link" tabindex="-1" aria-hidden="true">
-                Metadata template
-              </a>
-            </h2>
-            <p class="da-attachment__metadata">
-              <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet">XLSX</abbr></span>, <span class="da-attachment__attribute">16 records</span>
-            </p>
-            <p class="da-attachment__metadata da-attachment__metadata--compact">Includes pre-populated metadata that was extracted from your records.</p>
-            {# <p class="da-attachment__metadata">
-              Includes extracted metadata (file name, file path, last modified date) and column headers for additional metadata.
-            </p> #}
-          </div>
-        </section>
-
+      <p class="govuk-body">As part of a digital transfer to The National Archives your consignment of records must be transferred with metadata to assist preservation. Metadata is added to your consignment by uploading a <abbr title="Comma Seperated Values">CSV</abbr>.</p>
+       
       <div class="da-alert da-alert--error da-alert--with-icon">
         <div class="da-alert__icon">
           <div aria-hidden="true">
@@ -58,32 +28,63 @@
           </div>
         </div>
         <div class="da-alert__content">
-          <h2 class="da-alert__heading da-alert__heading--s">You must provide metadata for closed records</h2>
-          <p>If you have closed records in your consignment you must provide closed record metadata about those records.</p>
-          <p>Find out <a class="govuk-link" target="_blank" href="metadata-guidance#metadata-closed-records">how to add closed record metadata (opens in a new tab)</a></a>.</p>        
+          <h2 class="da-alert__heading da-alert__heading--s">Closed records metadata</h2>
+          <p class="govuk-body">If you have closed records in your consignment you must provide closed record metadata about those records.</p>
+          <p class="govuk-body">Read more about <a class="govuk-link" target="_blank" href="metadata-guidance#provide-metadata-about-closed-records">providing closed record metadata (opens in a new tab)</a>.</p>        
         </div>
       </div>
-
-      <div class="da-alert da-alert--info">
-        {# <div class="da-alert__icon">
-          <div aria-hidden="true">
-            {{- daIcon({"iconType": 'search', iconSize: "xl"})-}}
-          </div>
-        </div> #}
-        <div class="da-alert__content">
-          <h2 class="da-alert__heading da-alert__heading--s">Guidance for completing the template</h2>
-          <p>
-            Before you start editing metadata we recommend you read the <a class="govuk-link" target="_blank" href="metadata-guidance">guidance for completing the template (opens in a new tab)</a>.
+      
+      <h2 class="govuk-heading-m">Download the template</h2>
+      <p class="govuk-body">Transfer Digital Records has generated a downloadable Excel template for entering metadata. It contains some pre-populated metadata, which was extracted from your records or set by default.</p>
+      
+      <section class="da-attachment govuk-!-margin-bottom-4 govuk-!-margin-top-6 govuk-!-display-none-print">
+        <div class="da-attachment__thumbnail">
+          <a download href="/public/downloads/MOCK-TDR-1301-template.xlsx" class="govuk-link" target="_self" tabindex="-1" aria-hidden="true">
+            <svg class="da-attachment__thumbnail-image da-attachment__thumbnail-image--spreadsheet" version="1.1" viewBox="0 0 99 140" width="99" height="140" aria-hidden="true">
+              <path d="M12 12h75v27H12zm0 47h18.75v63H12zm55 2v59H51V61h16m2-2H49v63h20V59z" stroke-width="0"></path>
+              <path d="M49 61.05V120H32.8V61.05H49m2-2H30.75v63H51V59zm34 2V120H69.05V61.05H85m2-2H67v63h20V59z" stroke-width="0"></path>
+              <path d="M30 68.5h56.5M30 77.34h56.5M30 112.7h56.5M30 95.02h56.5M30 86.18h56.5M30 103.86h56.5" fill="none" stroke-miterlimit="10" stroke-width="2"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="da-attachment__details">
+          <h2 class="da-attachment__title">
+            <a download href="/public/downloads/MOCK-TDR-1301-template.xlsx" class="govuk-link da-attachment__link" tabindex="-1" aria-hidden="true">
+              MOCK-TDR-1301-template.xlsx
+            </a>
+          </h2>
+          <p class="da-attachment__metadata">
+            <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet">XLSX</abbr></span>, <span class="da-attachment__attribute">16 records</span>
           </p>
         </div>
+      </section>
+
+      <p class="govuk-body">Read more about the <a target="_blank" href="metadata-guidance#metadata-we-extract-from-your-records" class="govuk-link">metadata extracted from your records (opens in a new tab)</a>.</p>
+      <h2 class="govuk-heading-m">Completing the template</h2>
+
+      <p class="govuk-body">Before uploading the metadata template, you must check the pre-populated columns and provide closed record metadata and additional metadata for each record.</p> 
+  
+      <div class="da-alert da-alert--info da-alert--with-icon">
+        <div class="da-alert__icon">
+          <div aria-hidden="true" class="da-icon da-icon--xxl">
+            {{- daIcon({"iconType": 'question-mark-circle', iconSize: "xxl"})-}}
+          </div>
+        </div>
+        <div class="da-alert__content">
+          {# <h3 class="da-alert__heading da-alert__heading--s">Reading the metadata guidance</h2> #}
+          <p class="govuk-body">We strongly advise reading the metadata guidance in detail before completing the template.</p>
+          <p class="govuk-body">Read the <a target="_blank" href="metadata-guidance" class="govuk-link">full metadata guidance (opens in a new tab)</a></p>
+        </div>
       </div>
+  
+      <p class="govuk-body">You can close this browser window and return at any time to upload the metadata. You can access this transfer from the <a class="govuk-link" href="./transfers">view transfers</a> page.</p>
 
       <form action="transfer-tasks" method="post">
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="section-complete-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading">
-                Have you completed your metadata template?
+                Have you downloaded your template?
               </h2>
             </legend>
             <div id="section-complete-hint" class="govuk-hint">

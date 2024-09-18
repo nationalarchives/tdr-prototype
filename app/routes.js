@@ -142,7 +142,7 @@ router.post('/TUX-106/*/transfer-tasks-series', (req, res, next) => {
     delete req.session.data['redirect-to'];
     res.redirect(redirectTo);
   } else {
-    res.redirect('/TUX-106/transfer-tasks');
+    res.redirect('/TUX-106/1-metadata-upload/transfer-tasks');
   }
 })
 

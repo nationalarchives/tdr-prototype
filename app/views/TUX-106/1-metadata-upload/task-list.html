@@ -1,3 +1,5 @@
+{% from "macros/icon.njk" import daIcon %}
+
 {% macro taskListItem(name, href, status, hint, linkActive) %}
   {% set safeName = name|replace("[^A-Za-z0-9 ]","")|replace(" ", "-")|lower %}
   <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -50,13 +52,15 @@
   {% set prepareStatus =
     "Complete" if data['prepare-records-complete'] == "yes"  else
     ("Cannot start yet" if data['ta']|length < 4 else "Incomplete") %}
-  {{ taskListItem("Prepare your records", "prepare-records", prepareStatus, "", prepareActive) }}
+  {# {{ taskListItem("Prepare your records", "prepare-records", prepareStatus, "", prepareActive) }} #}
+  {# {{ taskListItem("Prepare your records", "prepare-records", "", "", true) }} #}
 
+  
   {# ----- Upload your records ----- #}
-  {% set uploadActive = false if data['prepare-records-complete'] != "yes" or (data['upload-status']) else true %}
+  {% set uploadActive = false if data['ta']|length < 4 or (data['upload-status']) else true %}
   {% set uploadStatus =
     ("Complete" if data['upload-status'] == "success" or data['upload-status'] == "failed" else
-    ("Cannot start yet" if data['prepare-records-complete'] != "yes" else "Incomplete")) %}
+    ("Cannot start yet" if data['ta']|length < 4 else "Incomplete")) %}
   {{ taskListItem("Upload records", "upload-records", uploadStatus, "", uploadActive) }}
 
   {# ----- Results of your upload ----- #}
@@ -77,17 +81,30 @@
 </ul> #}
 
 
-<h2 id="step-4" class="govuk-heading-m">Upload your metadata</h2>
+<h2 id="step-4" class="govuk-heading-m govuk-!-margin-bottom-2">Upload your metadata</h2>
+
+<div class="da-alert da-alert--info da-alert--with-icon govuk-!-margin-top-2 govuk-!-margin-bottom-2">
+  <div class="da-alert__icon">
+    <div aria-hidden="true" class="da-icon da-icon--xxl">
+      {{- daIcon({"iconType": 'question-mark-circle', iconSize: "xxl"})-}}
+    </div>
+  </div>
+  <div class="da-alert__content">
+    {# <h3 class="da-alert__heading da-alert__heading--s">Reading the metadata guidance</h2> #}
+    <p class="govuk-body">We strongly advise reading the metadata guidance in detail before completing the metadata spreadsheet.</p>
+    <p class="govuk-body">Read the <a target="_blank" href="metadata-guidance" class="govuk-link">full metadata guidance (opens in a new tab)</a></p>
+  </div>
+</div>
 {# <p class="govuk-hint">Metadata can be uploaded using the provided template. You can start this section after uploading your records.</p> #}
 <ul class="govuk-task-list">
   {# ----- Guidance on adding metadata ----- #}
-  {{ taskListItem("Metadata guidance", "metadata-guidance", "", "", true) }}
+  {# {{ taskListItem("Metadata guidance", "metadata-guidance", "", "", true) }} #}
   {# ----- Download a transfer metadata CSV template ----- #}
   {% set downloadCSVStatus =
     "Complete" if data['download-metadata-complete'] == "yes" else
     ("Incomplete" if data['upload-status'] == "success" else "Cannot start yet") %}
   {% set isDownloadCSVActive = ( (data['upload-status'] == "success") and (data['transfer-status'] != "confirmed") ) %}
-  {{ taskListItem("Download and complete your metadata template", "metadata-template-download", downloadCSVStatus, "", isDownloadCSVActive) }}
+  {{ taskListItem("Download your metadata template", "metadata-template-download", downloadCSVStatus, "", isDownloadCSVActive) }}
   {# ----- Upload a completed transfer metadata CSV ----- #}
   {% set uploadCSVStatus =
   "Complete" if data['csv-upload-status'] == "success" or data['csv-upload-status'] == "failed" else
