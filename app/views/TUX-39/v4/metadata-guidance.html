@@ -37,8 +37,15 @@
                   Starting with the generated template</a>
               </li>
               <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#required-fields">
+                  <span aria-hidden="true"></span>
+                  Required columns
+                </a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
                 <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#export-the-template-csv">
-                  <span class="da-contents-list__numbered-text">Export the template as a CSV (UTF-8) for upload</span>
+                  <span aria-hidden="true"></span>
+                  Export the template as a CSV (UTF-8) for upload
                 </a>
               </li>
             </ol>
@@ -93,18 +100,21 @@
             </ol>
           </li>
           <li class="da-contents-list__list-item da-contents-list__list-item--parent">
-            <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#uploading-the-spreadsheet">Uploading the metadata spreadsheet
-            </a>
-            <ol class="da-contents-list__nested-list">
-              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
-                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#export-the-template-csv">
-                  <span class="da-contents-list__numbered-text">Export the template as a CSV (UTF-8) for upload</span>
-                </a>
-              </li>
-            </ol>
+            <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#metadata-that-doesnt-fit">Providing metadata that doesn't fit the template</a>
           </li>
           <li class="da-contents-list__list-item da-contents-list__list-item--parent">
-            <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#metadata-that-doesnt-fit">Providing metadata that doesn't fit the template</a>
+            <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details">Column details</a>
+            <ol class="da-contents-list__nested-list da-contents-list__list-item--numbered">
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details-uuid">
+                  UUID
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details-filepath">Filepath</a>
+              </li>
+            </ol>
           </li>
         </ol>
       </nav>
@@ -147,24 +157,60 @@
       </ul> #}
       <h3 class="govuk-heading-m" id="starting-with-your-own">Starting with your own spreadsheet</h3>
 
-      <p class="govuk-body">If you have a existing spreadsheet or can export one, which contains metadata for this consignment you can upload this to Transfer Digital Records providing it contains the <a class="govuk-link" href="#">required column headings</a>.</p>
+      <p class="govuk-body">If you have a existing spreadsheet or can export one, which contains metadata for this consignment you can upload this to Transfer Digital Records providing it contains the <a class="govuk-link" href="#required-fields">required column headings</a>. If your file includes additional columns, these will be ignored.</p>
       
-      <p class="govuk-body">You can used the metadata template, which we generate for your consignment to show you the structure that your file needs to conform to.</p>
-      <p class="govuk-body">Column headers must match those used in the template. If your file includes additional columns, these will be ignored.</p>
-      <p class="govuk-body">The populated columns in the template that contain metadata extracted from you records should be exactly the same as the template.</p>
+      <p class="govuk-body">You can used the metadata template, which we generate for your consignment to show the structure that your file needs to conform to.</p>
+
+      {# <p class="govuk-body">Column headers must match those used in the template. </p> #}
+
+      <p class="govuk-body">The populated columns in the template that contain <a class="govuk-link" href="#metadata-we-extract-from-your-records">metadata extracted from you records</a> should be exactly the same as the template.</p>
 
       <h3 class="govuk-heading-m" id="starting-with-the-template">Starting with the generated template</h3>
       <p class="govuk-body">Transfer Digital Records will generate a template containing a row for every uploaded record and columns with pre-populated <a class="govuk-link" href="#metadata-we-extract-from-your-records">metadata extracted from your records</a> or <a class="govuk-link" href="#columns-with-default-values">set by default</a>. </p>
-        
+      
       <p class="govuk-body">There are empty columns available to provide closed record metadata and additional metadata for each record.</p>
-
+      
       <p class="govuk-body">You can download the generated template after you have uploaded records.</p>
       
+      <h3 class="govuk-heading-m" id="required-fields">Required columns</h3>
 
+
+      <p>In order for us to process your metadata upload it must include the following columns exactly as they appeared in the downloadable template:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>File name</li>
+        <li>File path</li>
+        <li>Date last modified</li>
+        <li>UUID</li>
+      </ul>
+
+      <p>The following column headers must be included, but values are not required for each row:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Date of the Record</li>
+        <li>Description</li>
+        <li>Former reference</li>
+        <li>Closure Status</li>
+        <li>Closure Start Date</li>
+        <li>Closure Period</li>
+        <li>FOI Exemption Code</li>
+        <li>Alternative file name (without extension)</li>
+        <li>Alternative description</li>
+        <li>Language</li>
+        <li>Translated title of record</li>
+      </ul>
 
       <h3 id="export-the-template-csv" class="govuk-heading-m">Export the template as a CSV (UTF-8) for upload</h3> 
 
       <p class="govuk-body">Once you have finished adding metadata to your spreadsheet you will need to export a file in the <abbr title="Comma Seperated Values">CSV UTF-8</abbr> format before uploading it.</p>
+
+      <p class="govuk-body">We recommend that you follow these steps: </p>
+
+      
+      <ol class="govuk-list govuk-list--number">
+        <li>Ensure that the spreadsheet is open in the Excel desktop app, not the browser</li>
+        <li>With the metadata sheet active, select 'File' then 'Save a copy'</li>
+        <li>From the dropdown select 'CSV UTF-8 (Comma delimited) (*.csv)' and save </li>
+      </ol>
+
       
       <p class="govuk-body">
         <img style="max-width: 100%; height: auto" src="/public/images/saveas-csvutf8.png" />
@@ -180,6 +226,7 @@
         <li>File name</li>
         <li>File path</li>
         <li>Date last modified</li>
+        <li>UUID</li>
       </ul>
 
       {{ govukWarningText({
@@ -210,23 +257,15 @@
               text: "Language"
             },
             {
-              text: "English"
+              html: "<pre style='margin:0'>English</pre>"
             }
           ],
           [
             {
-              text: "Needs alternative title"
+              text: "?!Closure status!?"
             },
             {
-              text: "No"
-            }
-          ],
-          [
-            {
-              text: "Needs alternative description"
-            },
-            {
-              text: "No"
+              html: "<pre style='margin:0'>Open</pre>"
             }
           ]
         ]
@@ -235,7 +274,7 @@
       <div class="da-alert da-alert--info da-alert--with-icon">
         <div class="da-alert__content">
           <p>
-            Unlike the <a href="#metadata-we-extract-from-your-records">metadata we extract from your records</a>, these columns can be edited.
+            Unlike the <a href="#metadata-we-extract-from-your-records">columns with metadata we extract from your records</a>, these columns can be edited.
           </p>
         </div>
       </div>
@@ -261,7 +300,35 @@
       <p class="govuk-body">The <em>Date last modified</em> or, if provided, the <em>Date of the record</em> value will be used as the closure start date for a closed record. See the section on <a href="#provide-metadata-about-closed-records">providing closed record metadata</a>.</p>
 
       <h3 id="provide-metadata-about-closed-records" class="govuk-heading-m">2. Provide metadata about closed records</h3> 
-      <p class="govuk-body">If you have closed records in your consignment <strong>you must provide metadata about those closed records</strong>. The following columns are mandatory for every closed record.</p>
+
+      {# <div class="da-alert da-alert--error da-alert--with-icon">
+        <div class="da-alert__icon">
+          <div aria-hidden="true">
+            {{- daIcon({"iconType": 'warning', iconSize: "xl"})-}}
+          </div>
+        </div>
+        <div class="da-alert__content">
+          <h2 class="da-alert__heading da-alert__heading--s">You must provide metadata for all closed records</h2>
+        </div>
+      </div> #}
+      
+      <div class="da-alert da-alert--error da-alert--with-icon">
+        <div class="da-alert__icon">
+          <div aria-hidden="true">
+            {{- daIcon({"iconType": 'warning', iconSize: "xl"})-}}
+          </div>
+        </div>
+        <div class="da-alert__content">
+          <h2 class="da-alert__heading da-alert__heading--s">Closed records</h2>
+          <p class="govuk-body">If you have closed records in your consignment you must provide metadata about those records.</p>
+         <p class="govuk-body">The closure status of the records must be agreed with the Advisory Council and/or The National Archives before transfer.</p>
+        </div>
+      </div>
+      
+      {# <p class="govuk-body">If you have closed records in your consignment you must provide metadata about those closed records.</p>
+      <p class="govuk-body">The closure status of the records must be agreed with the Advisory Council and/or The National Archives before transfer.</p> #}
+      <p class="govuk-body">The following columns are mandatory for all closed record.</p>
+
     </div>
   </div>
   <div class="govuk-grid-row">
@@ -283,12 +350,12 @@
             <td class="govuk-table__cell"><pre style='margin:0'>yes</pre></td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">FOI Decision Asserted</td>
+            <td class="govuk-table__cell">FOI decision asserted date</td>
             <td class="govuk-table__cell">Date in format YYYY-MM-DD</td>
             <td class="govuk-table__cell"><pre style='margin:0'>2024-08-14</pre></td>
           </tr>          
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">FOI Exemption Code <a href='#fn1-text' class='footnote-symbol' id='fn1-symbol' aria-describedby='fn1-text'>&#x2020;</a></td>
+            <td class="govuk-table__cell">FOI exemption code <a href='#fn1-text' class='footnote-symbol' id='fn1-symbol' aria-describedby='fn1-text'>&#x2020;</a></td>
             <td class="govuk-table__cell">One or more comma separated codes</td>
             <td class="govuk-table__cell"><pre style='margin:0'>22A, 23</pre></td>
           </tr>
@@ -378,22 +445,6 @@
       {# <h2 id="export-the-template-csv" class="govuk-heading-l">Export the template as a CSV for upload</h2> 
       <p class="govuk-body">Once you have completed the template you will need to export a file in the <abbr title="Comma Seperated Values">CSV</abbr> format before uploading it. You can do this within Excel following <a target="_blank" href="https://support.microsoft.com/en-gb/office/save-a-workbook-to-text-format-txt-or-csv-3e9a9d6c-70da-4255-aa28-fcacf1f081e6">guidance from Microsoft (opens in a new tab)</a>.</p> #}
       
-      <h2 id="uploading-the-spreadsheet" class="govuk-heading-l">Uploading the metadata spreadsheet</h2> 
-
-      <p>Once you have completed your metadata spreadsheet you will be able to upload it through Transfer Digital Records.</p>
-
-      <p>In order for us to process your metadata upload it must include the following unedited columns that were provided in the downloadable template:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>File name</li>
-        <li>File path</li>
-        <li>Date last modified</li>
-      </ul>
-      
-      <p>Any other metadata you provide is associated with the records using the <em>File name</em> and <em>File path</em>.</p>
-      <p>The <em>Date last modified</em> should not be edited directly. If a date is not accurate follow the guidance <a href="metadata-guidance#check-date-last-modified">to provide a different date for a record</a>.</p>
-
-      {# You can do this within Excel following <a target="_blank" href="https://support.microsoft.com/en-gb/office/save-a-workbook-to-text-format-txt-or-csv-3e9a9d6c-70da-4255-aa28-fcacf1f081e6">guidance from Microsoft (opens in a new tab)</a>. #}
-
       <h2 id="metadata-that-doesnt-fit" class="govuk-heading-l">Providing metadata that doesn't fit the template</h2> 
       <p class="govuk-body">If you have metadata that you would like to provide but it doesn't fit into the provided template columns, contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a> to speak to a Transfer Advisor.</p>
     </div>
