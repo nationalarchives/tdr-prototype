@@ -1,0 +1,52 @@
+{% extends "layouts/main.html" %}
+{% from "macros/icon.njk" import daIcon %}
+
+{% block pageTitle %}
+  Metadata review
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./transfer-tasks#dta-review" class="govuk-back-link">Back to Consignment</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-l">Metadata review</h1>
+      
+      <div class="da-alert da-alert--success da-alert--with-icon">
+        <div class="da-alert__icon">
+          <div aria-hidden="true">
+            {{- daIcon({"iconType": 'check', iconSize: "xl"})-}}
+          </div>
+        </div>
+        <div class="da-alert__content">
+          <h2 class="da-alert__heading">You can now complete your transfer</h2>
+          <p>
+            The metadata you submitted has been reviewed and no issues were found. 
+          </p>
+        </div>
+      </div>
+
+      <div class="govuk-button-group">
+        <a href="./series" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+          Continue
+        </a>
+      </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details" open>
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+    </div>
+  </div>
+{% endblock %}

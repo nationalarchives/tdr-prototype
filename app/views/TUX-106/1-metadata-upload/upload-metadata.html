@@ -1,0 +1,62 @@
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+{% extends "layouts/main.html" %}
+{% from "macros/icon.njk" import daIcon %}
+
+{% block pageTitle %}
+  Upload a completed transfer metadata CSV - MOCK-TDR-1294 - Transfer Digital Records
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="transfer-tasks#step-4" class="govuk-back-link">Back to Consignment</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-l">Upload a metadata CSV</h1>
+      
+      <p class="govuk-body">Upload a <abbr title="Comma Seperated Values">CSV (UTF-8)</abbr> containing the record metadata. See the guidance on how to <a target="_blank" class="govuk-link" href="metadata-guidance#export-the-template-csv">export your spreasheet (opens in a new tab)</a>.</p>
+        
+        {{ govukWarningText({
+          html: "We can only accept metadata in a <abbr title='Comma Seperated Values'>CSV (UTF-8)</abbr> file format.",
+          iconFallbackText: "Warning"
+        }) }}
+            
+      <div class="da-alert da-alert--info da-alert--with-icon">
+        <div class="da-alert__icon">
+          <div aria-hidden="true" class="da-icon da-icon--xxl">
+            {{- daIcon({"iconType": 'question-mark-circle', iconSize: "xxl"})-}}
+          </div>
+        </div>
+        <div class="da-alert__content">
+          <h3 class="da-alert__heading da-alert__heading--s">Have you read the metadata guidance?</h2>
+          <p class="govuk-body">We strongly advise reading the metadata guidance in detail before uploading the template.</p>
+          <p class="govuk-body"><a target="_blank" href="metadata-guidance" class="govuk-link">Read the metadata guidance (opens in a new tab)</a></p>
+        </div>
+      </div>
+      
+      <p class="govuk-body">Once uploaded, we will check your metadata for errors. There will be a chance to review and re-upload the metadata before completing the transfer.</p>
+
+
+      {{ govukFileUpload({
+        id: "file-upload-1",
+        name: "fileUpload",
+        label: {
+          text: "Select a CSV"
+        }
+      }) }}
+
+      <div class="govuk-button-group">
+        <a href="./metadata-checks"  role="button"draggable="false" class="govuk-button" data-module="govuk-button">
+          Upload
+        </a>
+      </div>
+
+
+    </div>
+  </div>
+
+{% endblock %}

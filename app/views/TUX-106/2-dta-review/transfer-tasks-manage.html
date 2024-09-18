@@ -1,0 +1,189 @@
+{% extends "./transfer-tasks.html" %}
+
+{% block pageTitle %}
+  Consignment: MOCK-TDR-1294
+{% endblock %}
+
+
+{% block beforeContent %}
+<div class="govuk-grid-row govuk-!-margin-top-8">
+  <div class="govuk-grid-column-full">
+    {% set isStep1Complete = data['ta']|length == 4 %}
+    {% set isStep2Complete = isStep1Complete == true 
+      and data['prepare-records-complete'] == "yes"  
+      and data['upload-status'] == "success"  
+      %}
+    {% set isStep3Complete = isStep2Complete == true 
+      and data['download-metadata-complete'] == "yes"
+      %}
+    {% set isStep4Complete = isStep3Complete == true 
+      and data['csv-upload-status'] == "success"
+      %}
+    {% set isStep5Complete = isStep4Complete == true 
+      and data['dta-review-status'] == "complete" 
+      %}
+    {% set isStep5Rejected = isStep4Complete == true 
+      and data['dta-review-status'] == "rejected" 
+      %}
+    {% set isStep6Complete = isStep5Complete == true 
+      and data['series'] and data['transfer-status'] == "confirmed" 
+      %}
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Before you upload"
+          },
+          value: {
+            text: 'Incomplete' if isStep1Complete == false else "Complete" 
+          },
+          actions: {
+            items: [
+              {
+                href: "?ta=&prepare-records-complete=&upload-status=&download-metadata-complete=&csv-upload-status=&series=&transfer-status=&dta-review-status=",
+                text: "Delete",
+                visuallyHiddenText: "Step 1 progress",
+                classes: 'govuk-link--disable' if isStep1Complete == false
+              },
+              {
+                href: "?ta%5B%5D=public-records&ta%5B%5D=crown-copyright&ta%5B%5D=appraisal-and-selection&ta%5B%5D=sensitivity-review",
+                text: 'Complete',
+                visuallyHiddenText: "Step 1",
+                classes: 'govuk-link--disable' if isStep1Complete == true
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Upload your records"
+          },
+          value: {
+            text: 'Complete' if isStep2Complete == true else "Incomplete" 
+          },
+          actions: {
+            items: [
+              {
+                href: "?prepare-records-complete=&upload-status=&download-metadata-complete=&csv-upload-status=&series=&transfer-status=&dta-review-status=",
+                text: "Delete",
+                visuallyHiddenText: "Step 2 progress",
+                classes: 'govuk-link--disable' if isStep2Complete == false
+              },
+              {
+                href: "?prepare-records-complete=yes&upload-status=success",
+                text: 'Complete',
+                visuallyHiddenText: "Step 2",
+                classes: 'govuk-link--disable' if isStep1Complete == false or isStep2Complete == true
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Prepare your metadata"
+          },
+          value: {
+            text: 'Complete' if isStep3Complete == true else "Incomplete" 
+          },
+          actions: {
+            items: [
+              {
+                href: "?download-metadata-complete=&csv-upload-status=&series=&transfer-status=&dta-review-status=",
+                text: "Delete",
+                visuallyHiddenText: "Step 3 progress",
+                classes: 'govuk-link--disable' if isStep3Complete == false
+              },
+              {
+                href: "?download-metadata-complete=yes",
+                text: 'Complete',
+                visuallyHiddenText: "Step 3",
+                classes: 'govuk-link--disable' if isStep2Complete == false or isStep3Complete == true
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Upload your metadata"
+          },
+          value: {
+            text: 'Complete' if isStep4Complete == true else "Incomplete" 
+          },
+          actions: {
+            items: [
+              {
+                href: "?csv-upload-status=&series=&transfer-status=&dta-review-status=",
+                text: "Delete",
+                visuallyHiddenText: "Step 4 progress",
+                classes: 'govuk-link--disable' if isStep4Complete == false
+              },
+              {
+                href: "?csv-upload-status=success",
+                text: 'Complete',
+                visuallyHiddenText: "Step 4",
+                classes: 'govuk-link--disable' if isStep3Complete == false or isStep4Complete == true 
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Request a metadata review
+"
+          },
+          value: {
+            text: 'Complete' if isStep5Complete == true else "Incomplete" 
+          },
+          actions: {
+            items: [
+              {
+                href: "?series=&transfer-status=&dta-review-status=",
+                text: "Delete",
+                visuallyHiddenText: "Step 5 progress",
+                classes: 'govuk-link--disable' if isStep5Complete == false and isStep5Rejected == false
+              },
+              {
+                href: "?dta-review-status=rejected",
+                text: 'Reject',
+                visuallyHiddenText: "Step 5",
+                classes: 'govuk-link--disable' if isStep4Complete == false or isStep5Complete == true or isStep5Rejected == true 
+              },
+              {
+                href: "?dta-review-status=complete",
+                text: 'Approve',
+                visuallyHiddenText: "Step 5",
+                classes: 'govuk-link--disable' if isStep4Complete == false  or isStep5Complete == true or isStep5Rejected == true
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Transfer"
+          },
+          value: {
+            text: 'Complete' if isStep6Complete == true else "Incomplete" 
+          },
+          actions: {
+            items: [
+              {
+                href: "?series=&transfer-status=",
+                text: "Delete",
+                visuallyHiddenText: "Step 6 progress",
+                classes: 'govuk-link--disable' if isStep6Complete == false
+              },
+              {
+                href: "?series=xx&transfer-status=confirmed",
+                text: 'Complete',
+                visuallyHiddenText: "Step 5",
+                classes: 'govuk-link--disable' if isStep5Complete == false or isStep6Complete == true 
+              }
+            ]
+          }
+        }
+      ]
+    }) }}   
+  </div>
+</div>
+{% endblock %}

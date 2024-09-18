@@ -1,0 +1,54 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Upload records - MOCK-TDR-1294 - Transfer Digital Records
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./transfer-tasks" class="govuk-back-link">Back to Consignment</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+      <h1 class="govuk-heading-l">Upload your records</h1>
+
+      <p class="govuk-body">Before uploading, all records (files and folders) you wish to transfer must be put into a <strong>single, top-level folder</strong>.</p>
+
+      <h2 class="govuk-heading-m">Choose a folder to upload</h2>
+
+      <p class="govuk-body">The ‘Choose folder’ button below will cause your browser to open a dialog box to find and select a folder. Once selected, you will be prompted to confirm your choice.</p>
+
+      <form class="form" action="upload-records-progress" method="post" id="file-upload-form" data-consignment-id="@consignmentId">
+
+        <div class="drag-and-drop govuk-!-margin-bottom-6" data-tdr-module="folder-upload">
+          <div class="drag-and-drop__dropzone js-drag-and-drop-zone">
+            <input type="file" id="file-selection" name="files" class="js-drag-and-drop-input input govuk-file-upload drag-and-drop__input" webkitdirectory="" accept="*">
+            <span class="govuk-body drag-and-drop__hint-text">Drag and drop a single top-level folder here or &nbsp;</span>
+            <label for="file-selection" class="govuk-button govuk-button--secondary drag-and-drop__button">
+              Choose folder
+            </label>
+          </div>
+
+          <div class="js-drag-and-drop-selected drag-and-drop__selected {% block dragDrop %}govuk-visually-hidden{% endblock %}">
+            <p aria-live="assertive" aria-atomic="true" class="govuk-!-margin-bottom-3 drag-and-drop__selected__description">The folder <strong id="files-selected-folder-name" class="js-drag-and-drop-folder-name">Recipes for Cakes</strong> (containing <span class="js-drag-and-drop-no-of-files">6</span> files) has been selected.</p>
+            <a href="" aria-describedby="files-selected-folder-name" class="govuk-link govuk-link--no-visited-state govuk-!-font-size-19 govuk-body govuk-!-font-weight-bold">Remove<span class="govuk-visually-hidden">&nbsp; selected files</span></a>
+          </div>
+        </div>
+
+        <p class="govuk-body">For information on what metadata will be captured during upload, visit the <a target="_blank" rel="noopener noreferrer" href="/faq" class="govuk-link">FAQ (opens in new tab)</a>.</p>
+
+        <div class="govuk-button-group">
+          <button class="govuk-button" type="submit" data-module="govuk-button" role="button">
+            Start upload
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
