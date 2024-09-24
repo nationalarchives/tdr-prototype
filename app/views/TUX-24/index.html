@@ -1,0 +1,59 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+
+{% block pageTitle %}
+  Prototype journey selection
+{% endblock %}
+
+
+{% block content %}
+
+{% set html %}
+  <h3 class="govuk-notification-banner__heading">
+    This is not part of the user journey
+  </h3>
+  <p class="govuk-body">Use this to determine the prototype route.</p>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html,
+  type: "warning"
+}) }}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <form class="form" action="./has-closed-records" method="get">
+      {{ govukRadios({
+        name: "has-closed-records",
+        fieldset: {
+          legend: {
+            text: "Would you like to simulate a user journey with or without closed records?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: ""
+        },
+        items: [
+          {
+            value: "true",
+            text: "With closed records"
+          },
+          {
+            value: "false",
+            text: "Without closed records"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Start journey"
+      }) }}
+    </form>
+  </div>
+
+{% endblock %}

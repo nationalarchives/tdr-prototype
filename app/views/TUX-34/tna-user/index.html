@@ -1,0 +1,65 @@
+{% extends "layouts/main.html" %}
+{% from "macros/icon.njk" import daIcon %}
+
+{% block pageTitle %}
+  Metadata reviews
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <span class="govuk-caption-xl">Transfer Digital Records</span>
+      <h1 class="govuk-heading-xl">Metadata reviews</h1>
+    </div>
+    <div class="govuk-grid-column-full">
+      <table data-module="table-row-expander" class="govuk-table govuk-table--tdr-transfers govuk-!-margin-bottom-2">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header" style="width:200px">Consignment</th>
+            <th scope="col" class="govuk-table__header" style="width:200px">Status</th>
+            <th scope="col" class="govuk-table__header" style="width:200px">Department</th>
+            <th scope="col" class="govuk-table__header" style="width:200px">Series</th>
+            <th scope="col" class="govuk-table__header"><span class="govuk-visually-hidden">Actions</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1294</th>
+            <td class="govuk-table__cell">
+              <strong class="tdr-tag tdr-tag--green">Requested</strong>
+            </td>
+            <td class="govuk-table__cell">
+              Mock 2 Department	  
+            </td>
+            <td class="govuk-table__cell">
+              MOCK2 234
+            </td>
+            <td class="govuk-table__cell">
+              <div class="tdr-link-group">
+                <a href="view-request" class="govuk-link govuk-link--no-visited-state">View request</a>
+              </div>
+            </td>
+          </tr>
+          <tr class="govuk-table__row"></tr>
+            <th scope="row" class="govuk-table__header">MOCK-TDR-1276</th>
+            <td class="govuk-table__cell">
+              <strong class="tdr-tag tdr-tag--green">Requested</strong>
+            </td>
+            <td class="govuk-table__cell">
+              Mock 1 Department	  
+            </td>
+            <td class="govuk-table__cell">
+              MOCK2 123
+            </td>
+            <td class="govuk-table__cell">
+              <div class="tdr-link-group">
+                <a href="#" class="govuk-link govuk-link--no-visited-state">View request</a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

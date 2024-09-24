@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% block pageTitle %}
+  Results of CSV checks
+{% endblock %}
+
+{% block beforeContent %}
+  {# <a href="./transfer-tasks" class="govuk-back-link">Consignment: MOCK-TDR-1294</a> #}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Results of your metadata checks
+      </h1>
+      <p class="govuk-body">The metadata in your uploaded <abbr title="Comma Seperated Values">CSV</abbr> has been successfully imported.</p>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {  text: "Status" },
+            value: { html: "<strong class=\"govuk-tag govuk-tag--blue\">Imported</strong>" }
+          },
+          {
+            key: {  text: "Uploaded file" },
+            value: { html: "<code>transfer-metadata-11.09.24_v2.csv</code>" }
+          }
+        ]
+      }) }}
+
+
+      <div class="govuk-button-group">
+        <a href="./request-a-review.html" class="govuk-button">Continue</a>
+        <a class="govuk-button govuk-button--secondary" href="./upload-csv">Re-upload a metadata CSV</a>
+      </div>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details open class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-TDR-1301
+        </div>
+      </details>
+    </div>
+  </div>
+
+
+{% endblock %}
