@@ -1,0 +1,107 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Provide a neutral citation number
+{% endblock %}
+
+{% block header %}
+  {% include "layouts/inc-header-no-view-transfer.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./provide-neutral-citation" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Check the information you provided before uploading your document</h1>
+
+      {# <h2 class="govuk-heading-m">Personal details</h2> #}
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        rows: [
+          {
+            key: {
+              text: "Document type"
+            },
+            value: {
+              text: "An update to a judgment"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "document type"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "What has changed"
+            },
+            value: {
+              text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque magna felis, finibus et mollis et, rutrum a arcu. Sed venenatis magna non justo iaculis, a egestas libero ultricies. Quisque tristique velit vulputate tempor fermentum. Nam varius eget nunc sit amet mattis. Nunc mollis non nisi eu fermentum. Nulla non sem."
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "What has changed"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Neutral Citation Number"
+            },
+            value: {
+              text: "[2022] EWHC 3213"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Neutral Citation Number"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Continue",
+          href: "./check-your-answers"
+        }) }}
+      </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" open="" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Transfer reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+      
+      <h4 class="govuk-heading-s">Problems with your transfer?</h4>
+      <p class="govuk-body">Email us and include the transfer reference:
+        <a href="mailto:tdr@nationalarchives.gov.uk" class="govuk-link">tdr@nationalarchives.gov.uk</a>
+      </p>
+    </div>
+  </div>
+
+{% endblock %}

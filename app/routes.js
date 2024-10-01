@@ -189,6 +189,19 @@ router.post('/judgments/*/tell-us-more-v5', function(request, response) {
   }
 })
 
+router.post('/judgments/*/tell-us-more-v6', function(request, response) {
+  var documentType = request.session.data['documentType'];
+  if (documentType == "original"){
+    response.redirect("upload");
+  } else if (documentType == "update"){
+    response.redirect("provide-neutral-citation");
+  } else if (documentType == "press-summary"){
+    response.redirect("provide-neutral-citation");
+  } else if (documentType == "something-else"){
+    response.redirect("something-else");
+  }
+})
+
 router.get(
   "/metadata/descriptive-metadata/confirm-delete-metadata",
   function (req, res) {
