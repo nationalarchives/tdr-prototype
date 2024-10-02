@@ -103,7 +103,7 @@
             <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#metadata-that-doesnt-fit">Providing metadata that doesn't fit the template</a>
           </li>
           <li class="da-contents-list__list-item da-contents-list__list-item--parent">
-            <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details">Column details</a>
+            <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details">All column headings</a>
             <ol class="da-contents-list__nested-list da-contents-list__list-item--numbered">
               <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
                 <span aria-hidden="true"></span>
@@ -175,7 +175,7 @@
       <h3 class="govuk-heading-m" id="required-fields">Required columns</h3>
 
 
-      <p>In order for us to process your metadata upload it must include the following columns exactly as they appeared in the downloadable template:</p>
+      <p>In order for us to process your metadata upload it must include the following columns exactly as they appear in the downloadable template:</p>
       <ul class="govuk-list govuk-list--bullet">
         <li>File name</li>
         <li>File path</li>
@@ -271,28 +271,22 @@
         ]
       }) }}
        
-      <div class="da-alert da-alert--info da-alert--with-icon">
-        <div class="da-alert__content">
-          <p>
-            Unlike the <a href="#metadata-we-extract-from-your-records">columns with metadata we extract from your records</a>, these columns can be edited.
-          </p>
-        </div>
-      </div>
+      <p class="govuk-body">These columns can be edited directly.</p>
+      <p class="govuk-body">Find the values we accept for these columns in the <a href="#column-details" class="govuk-link">details of all column headings</a>.</p>
 
-      
       <h2 id="completing-the-spreadsheet" class="govuk-heading-l">Completing the spreadsheet</h2>
       <p class="govuk-body">The template opens in Microsoft Excel and contains columns with prepopulated metadata and empty columns for you to provide metadata.</p>
 
-      <p class="govuk-body">The metadata values we extracted and set by default must be checked. You must also provide closed record metadata and any additional metadata for each record.</p>
+      <p class="govuk-body">The metadata values we extract and set by default must be checked. You must also provide closed record metadata and any additional metadata for each record.</p>
       
-      <p class="govuk-body">See a <a class="govuk-link" href="">full list of metadata column titles and descriptions</a>.</p>
+      <p class="govuk-body">See a <a class="govuk-link" href="#column-details">full list of column titles and descriptions</a>.</p>
       <p class="govuk-body">Below is a step-by-step guide to completing the template.</p>
 
       <h3 id="check-date-last-modified" class="govuk-heading-m">1. Check the <em>Date last modified</em> column</h3> 
       <p class="govuk-body">The <em>Date last modified</em> column was populated with values extracted from the records. Check that the date represents the last meaningful change to the record.</p>
 
       {{ govukWarningText({
-        html: "The <em>Date last modified</em> must not be edited directly.",
+        html: "The <em>Date last modified</em> column must not be edited directly.",
         iconFallbackText: "Warning"
       }) }}
 
@@ -447,6 +441,16 @@
       
       <h2 id="metadata-that-doesnt-fit" class="govuk-heading-l">Providing metadata that doesn't fit the template</h2> 
       <p class="govuk-body">If you have metadata that you would like to provide but it doesn't fit into the provided template columns, contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a> to speak to a Transfer Advisor.</p>
+    
+      <h2 id="column-details" class="govuk-heading-l">All column headings</h2> 
+      <p class="govuk-body">Find descriptions, formatting requirements and example values for all the columns accepted by Transfer Digtial Records.</p>
+      
+      <h3 id="column-details-uuid" class="govuk-heading-m">UUID</h3> 
+      <p class="govuk-body">?????</p>
+      
+      <h3 id="column-details-filepath" class="govuk-heading-m">Filepath</h3> 
+      <p class="govuk-body">?????</p>
+      
     </div>
   </div>
 
