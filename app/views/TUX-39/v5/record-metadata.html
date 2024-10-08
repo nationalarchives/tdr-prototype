@@ -27,7 +27,7 @@
        
     
     <h2 class="govuk-heading-l">Download the template</h2>
-    <p class="govuk-body">Download an Excel template that contains pre-populated metadata extracted from your records.</p>
+    <p class="govuk-body">Download an Excel template that contains pre-populated metadata extracted from your records or set by default.</p>
     
     <section class="da-attachment govuk-!-margin-bottom-4 govuk-!-margin-top-6 govuk-!-display-none-print">
       <div class="da-attachment__thumbnail">
@@ -51,12 +51,13 @@
         {# <p class="da-attachment__metadata da-attachment__metadata--compact">Includes pre-populated metadata that was extracted from your records.</p> #}
       </div>
     </section>
-    <p class="govuk-body">The template contains pre-populated metadata, which was extracted from your records or set by default:</p>
     
+    <p class="govuk-body">Read more about the prepopulated columns in the guidance:</p>
     <ul class="govuk-list">
       <li><a target="_blank" href="metadata-guidance#metadata-we-extract-from-your-records" class="govuk-link">Columns with metadata extracted from your records</a></li>
       <li><a target="_blank" href="metadata-guidance#columns-with-default-values" class="govuk-link">Columns with default values</a></li>
     </ul>
+            
             
     <h2 class="govuk-heading-l">Completing the metadata spreadsheet</h2>
 
@@ -66,7 +67,7 @@
       <li><a target="_blank" href="metadata-guidance#starting-with-your-own" class="govuk-link">Starting with your own spreadsheet</a></li>
     </ul>
 
-    <p class="govuk-body">Before uploading the metadata template, you must check the pre-populated columns, including <a target="_blank" href="metadata-guidance#check-date-last-modified" class="govuk-link">checking the values in the Date last modified column</a>.</p>
+    <p class="govuk-body">To complete the metadata template, you must check the pre-populated columns, including <a target="_blank" href="metadata-guidance#check-date-last-modified" class="govuk-link">checking the date last modified</a>, and add metadata in the available columns.</p>
 
     <h3 class="govuk-heading-m">Closed records</h3>
 
@@ -77,11 +78,12 @@
         </div>
       </div>
       <div class="da-alert__content">
-        <h2 class="da-alert__heading da-alert__heading--s">You must provide metadata about closed records</h2>
+        {# <h2 class="da-alert__heading da-alert__heading--s">You must provide metadata about closed records</h2> #}
+        <p class="govuk-body">You must provide metadata about closed records</p>
       </div>
     </div>
 
-    <p class="govuk-body">If you have closed records in your consignment you must <a class="govuk-link" target="_blank" href="metadata-guidance#provide-metadata-about-closed-records">provide metadata about those records</a>.</p>
+    <p class="govuk-body">If you have closed records in your consignment you must <a class="govuk-link" target="_blank" href="metadata-guidance#provide-metadata-about-closed-records">provide metadata about each closed record</a>.</p>
 
     <h2 class="govuk-heading-m">Exporting your spreadsheet as a CSV (UTF-8)</h2>
 
@@ -89,7 +91,18 @@
 
     <h2 class="govuk-heading-m">Further guidance and support</h2>
 
-    <p class="govuk-body">Before uploading the metadata, we strongly advise following the <a class="govuk-link" target="_blank" href="metadata-guidance#completing-the-spreadsheet">step-by-step guidance for completing the spreadsheet</a>.</p>
+    {# <p class="govuk-body">Before uploading the metadata, we strongly advise following the <a class="govuk-link" target="_blank" href="metadata-guidance#completing-the-spreadsheet">step-by-step guidance for completing the spreadsheet</a>.</p> #}
+
+    <div class="da-alert govuk-!-margin-top-4 govuk-!-margin-bottom-4">
+      {# <div class="da-alert__icon">
+        <div aria-hidden="true">
+          {{- daIcon({"iconType": 'warning', iconSize: "xl"})-}}
+        </div>
+      </div> #}
+      <div class="da-alert__content">
+        <p class="govuk-body">Before uploading, we strongly advise you follow the <a class="govuk-link" target="_blank" href="metadata-guidance#completing-the-spreadsheet">step-by-step guidance for completing the spreadsheet</a>.</p>
+      </div>
+    </div>
 
     <p class="govuk-body">You can also find a <a class="govuk-link" target="_blank" href="metadata-guidance#column-details">full list of all accepted column headings</a>, which includes descriptions, formatting requirements and example values.</p>
 
@@ -113,7 +126,7 @@
         </span>
       </summary>
       <div class="govuk-details__text">
-        <p class="govuk-body">We stongly encourage you to add additional metadata, which makes your records easier to find in our public catalogue. If you choose not to we will transfer the metadata extracted from your records during upload.</p>
+        <p class="govuk-body">We stongly encourage you to add metadata, which makes your records easier to find in our public catalogue. If you choose not to we will transfer the metadata extracted from your records during upload.</p>
 
         {# <p class="govuk-body">If you don't have any additioinal metadata we will transfer your consignment with the metadata we extracted during upload. Before we do this you complete confirm declare this.</p> #}
         {{ govukButton({
