@@ -28,7 +28,8 @@
             html: ''
           },
           id: "what-has-changed",
-          name: "whatHasChanged"
+          name: "whatHasChanged",
+          value: data["whatHasChanged"]
         }) }}
       {% endset -%}
 
@@ -48,18 +49,21 @@
           items: [
             {
               value: "original",
-              text: "It's a judgment being transferred for the first time"
+              text: "It's a judgment being transferred for the first time",
+              checked: (data['documentType'] == "original")
             },
             {
               value: "update",
               text: "It's an update to a judgment",
               conditional: {
                 html: updateHtml
-              }
+              },
+              checked: (data['documentType'] == "update")
             },
             {
               value: "press-summary",
-              text: "It's a press summary related to a judgment"
+              text: "It's a press summary related to a judgment",
+              checked: (data['documentType'] == "press-summary")
             },
             {
               divider: "or"

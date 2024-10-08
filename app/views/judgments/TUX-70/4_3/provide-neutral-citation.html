@@ -17,25 +17,27 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {{ govukInput({
-        label: {
-          text: "Provide a neutral citation number (NCN)",
-          classes: "govuk-label--l",
-          isPageHeading: true
-        },
-        hint: {
-          html: 'The judgment or decision this transfer relates to will have been registered with a unique NCN. Providing that NCN helps us find the original judgment. <br><br> Visit the <a class="govuk-link" target="_blank" href="https://nationalarchives.github.io/ds-caselaw-judiciary-guidance/ncn.html">Find Case Law guidance about NCNs (opens in a new tab)</a>.'
-        },
-        id: "neutral-citation",
-        name: "neutralCitation"
-      }) }}
-
-      <div class="govuk-button-group">
-        {{ govukButton({
-          text: "Continue",
-          href: "./check-your-answers"
+      <form action="./check-your-answers" method="post">
+        {{ govukInput({
+          label: {
+            text: "Provide a neutral citation number (NCN)",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            html: 'The judgment or decision this transfer relates to will have been registered with a unique NCN. Providing that NCN helps us find the original judgment. <br><br> Visit the <a class="govuk-link" target="_blank" href="https://nationalarchives.github.io/ds-caselaw-judiciary-guidance/ncn.html">Find Case Law guidance about NCNs (opens in a new tab)</a>.'
+          },
+          id: "neutral-citation",
+          name: "neutralCitation",
+          value: data['neutralCitation']
         }) }}
-      </div>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        </div>
+      </form>
     </div>
     <div class="govuk-grid-column-one-third">
       <details class="govuk-details" open="" data-module="govuk-details">

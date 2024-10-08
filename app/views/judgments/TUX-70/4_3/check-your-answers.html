@@ -16,72 +16,53 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Check the information you provided before uploading your document</h1>
+      <h1 class="govuk-heading-l">Check the information you provided</h1>
 
       {# <h2 class="govuk-heading-m">Personal details</h2> #}
 
-      {{ govukSummaryList({
-        classes: "govuk-!-margin-bottom-9",
-        rows: [
-          {
-            key: {
-              text: "Document type"
-            },
-            value: {
-              text: "An update to a judgment"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "document type"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "What has changed"
-            },
-            value: {
-              text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque magna felis, finibus et mollis et, rutrum a arcu. Sed venenatis magna non justo iaculis, a egestas libero ultricies. Quisque tristique velit vulputate tempor fermentum. Nam varius eget nunc sit amet mattis. Nunc mollis non nisi eu fermentum. Nulla non sem."
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "What has changed"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Neutral Citation Number"
-            },
-            value: {
-              text: "[2022] EWHC 3213"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Neutral Citation Number"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Document type
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{"Press summary" if data['documentType'] == "press-summary" else "An update to a judgment"}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="./tell-us-more">Change<span class="govuk-visually-hidden"> name</span></a>
+          </dd>
+        </div>
+        {% if data['documentType'] == 'update'%}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What has changed
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['whatHasChanged']}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="./tell-us-more">Change<span class="govuk-visually-hidden"> What has changed</span></a>
+          </dd>
+        </div>    
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Neutral Citation Number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['neutralCitation']|d("(Not provided)")}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="./provide-neutral-citation">Change<span class="govuk-visually-hidden"> Neutral Citation Number</span></a>
+          </dd>
+        </div>
+      </dl>
 
 
       <div class="govuk-button-group">
         {{ govukButton({
           text: "Continue",
-          href: "./check-your-answers"
+          href: "./upload"
         }) }}
       </div>
     </div>
