@@ -1,0 +1,73 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Is the document a judgment being transferred for the first time?
+{% endblock %}
+
+{% block header %}
+  {% include "layouts/inc-header-no-view-transfer.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="home" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="is-original-v2.2-2.4" method="post">
+        {{ govukRadios({
+          name: "isOriginalJudgment",
+          fieldset: {
+            legend: {
+              text: "Is this document a judgment being transferred for the first time?",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            }
+          },
+          hint: {
+            html: "If you are transferring an update to a judgment, a press summary, or any other document related to a judgment select 'No'."
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: true
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        </div>
+      
+      </form>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" open="" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Transfer reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+      
+      <h4 class="govuk-heading-s">Problems with your transfer?</h4>
+      <p class="govuk-body">Email us and include the transfer reference:
+        <a href="mailto:tdr@nationalarchives.gov.uk" class="govuk-link">tdr@nationalarchives.gov.uk</a>
+      </p>
+    </div>
+  </div>
+
+{% endblock %}

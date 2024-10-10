@@ -1,0 +1,76 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Transfer complete
+{% endblock %}
+
+{% block header %}
+  {% include "layouts/inc-header-no-view-transfer.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-6">
+        <h1 class="govuk-panel__title">Transfer complete</h1>
+        <div class="govuk-panel__body govuk-!-font-size-27">
+          Your file has now been transferred to The National Archives.
+        </div>
+        <div class="govuk-panel__body govuk-!-font-size-27 govuk-!-margin-top-5">
+          Consignment reference: <span class="govuk-!-font-weight-bold">MOCK-123-TDR</span>
+        </div>
+      </div>
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+
+      <p class="govuk-body">Your transfer will now be reviewed by the editorial team.</p>
+      <p class="govuk-body">You will be notified by email once the judgment has been reviewed and published.</p>
+      <p class="govuk-body">Do not delete the original file you uploaded until you have been notified.</p>
+      <p class="govuk-body">
+        <a href="https://www.smartsurvey.co.uk/s/5YDPSA/" class="govuk-link" rel="noreferrer noopener" target="_blank">
+        What did you think of this service? (opens in new tab)
+        </a>
+      </p>
+
+      {# <div class="da-alert">
+        <div class="da-alert__heading">
+          If this is an update to an existing judgment or decision
+        </div>
+        <p class="govuk-body">
+          If this transfer was an update or revision, email <a href="mailto:judgments@nationalarchives.gov.uk">judgments@nationalarchives.gov.uk</a> and include the following:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>the neutral citation</li>
+          <li>the consignment reference: <strong>MOCK-123-TDR</strong></li>
+          <li>tell us if this transfer was a revision or update</li>
+          <li>provide a short description of what has changed</li>
+        </ul>
+      </div> 
+
+      <h2 class="govuk-heading-m">If this is an update to an existing judgment or decision</h2>
+      <p class="govuk-body">
+        If this transfer was an update or revision, email <a href="mailto:judgments@nationalarchives.gov.uk">judgments@nationalarchives.gov.uk</a> and include the following:
+      </p>
+      <ul class="govuk-list govuk-list--number">
+        <li>the neutral citation</li>
+        <li>the consignment reference: <strong>MOCK-123-TDR</strong></li>
+        <li>tell us if this transfer was a revision or update</li>
+        <li>provide a short description of what has changed</li>
+      </ul>
+    #}
+      <h2 class="govuk-heading-m">Contact the publishing editors</h2>
+      <p class="govuk-body"><a href="mailto:judgments@nationalarchives.gov.uk">judgments@nationalarchives.gov.uk</a></p>
+  
+
+      {{ govukButton({
+        text: "Return to start",
+        href: "./home"
+      }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

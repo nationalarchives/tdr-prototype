@@ -491,3 +491,8 @@
   text-align: center;
 }
 
+.govuk-table__cell.govuk-table__cell--rowbreak,
+.govuk-table__header.govuk-table__header--rowbreak {
+  font-weight: normal;
+  background-color: govuk-colour("light-grey");
+}

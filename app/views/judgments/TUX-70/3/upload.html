@@ -1,0 +1,72 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Upload document
+{% endblock %}
+
+{% block header %}
+  {% include "layouts/inc-header-no-view-transfer.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./provide-neutral-citation" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Upload document
+      </h1>
+      <p class="govuk-body">You may now select and upload the document. You can only upload one file.</p>
+
+      {{ govukInsetText({
+        text: "We only accept Microsoft Word files ending in .docx."
+      }) }}
+
+      <div class="govuk-form-group govuk-!-margin-bottom-0">
+        <div class="drag-and-drop" data-tdr-module="folder-upload">
+          <div class="drag-and-drop__dropzone js-drag-and-drop-zone">
+            <input type="file" id="file-selection" name="files" class="js-drag-and-drop-input input govuk-file-upload drag-and-drop__input" webkitdirectory="" accept="*">
+            <span class="govuk-body drag-and-drop__hint-text">Drag and drop a single file here or&nbsp;</span><br/>
+            <label for="file-selection" class="govuk-button govuk-button--secondary drag-and-drop__button">
+              Choose file
+            </label>
+          </div>
+
+          <div class="js-drag-and-drop-selected drag-and-drop__selected {% block dragDrop %}govuk-visually-hidden{% endblock %}">
+            <p aria-live="assertive" aria-atomic="true" class="govuk-!-margin-bottom-3 drag-and-drop__selected__description">The folder <strong id="files-selected-folder-name" class="js-drag-and-drop-folder-name">Recipes for Cakes</strong> (containing <span class="js-drag-and-drop-no-of-files">6</span> files) has been selected.</p>
+            <a href="" aria-describedby="files-selected-folder-name" class="govuk-link govuk-link--no-visited-state govuk-!-font-size-19 govuk-body govuk-!-font-weight-bold">Remove<span class="govuk-visually-hidden">&nbsp; selected files</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Start upload",
+          href: "./uploading"
+        }) }}
+        <a class="govuk-link govuk-link--no-visited-state" href="/home">Cancel</a>
+      </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" open="" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Transfer reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+      
+      <h4 class="govuk-heading-s">Problems with your transfer?</h4>
+      <p class="govuk-body">Email us and include the transfer reference:
+        <a href="mailto:tdr@nationalarchives.gov.uk" class="govuk-link">tdr@nationalarchives.gov.uk</a>
+      </p>
+    </div>
+  </div>
+
+{% endblock %}

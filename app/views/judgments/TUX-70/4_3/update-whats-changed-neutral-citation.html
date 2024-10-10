@@ -1,0 +1,59 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Provide a neutral citation number
+{% endblock %}
+
+{% block header %}
+  {% include "layouts/inc-header-no-view-transfer.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="tell-us-more" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukInput({
+        label: {
+          text: "Provide a neutral citation number (NCN)",
+          classes: "govuk-label--l",
+          isPageHeading: true
+        },
+        hint: {
+          html: 'A unique NCN is required to register a judgment or decision. If this is a document related to a judgment (e.g. a press summary) provide the NCN for the related judgment. <br><br> Visit the <a class="govuk-link" target="_blank" href="https://nationalarchives.github.io/ds-caselaw-judiciary-guidance/ncn.html">Find Case Law guidance about NCNs (opens in a new tab)</a>.'
+        },
+        id: "neutral-citation",
+        name: "neutralCitation"
+      }) }}
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Continue",
+          href: "./upload"
+        }) }}
+      </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" open="" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Transfer reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+      
+      <h4 class="govuk-heading-s">Problems with your transfer?</h4>
+      <p class="govuk-body">Email us and include the transfer reference:
+        <a href="mailto:tdr@nationalarchives.gov.uk" class="govuk-link">tdr@nationalarchives.gov.uk</a>
+      </p>
+    </div>
+  </div>
+
+{% endblock %}
