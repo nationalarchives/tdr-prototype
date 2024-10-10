@@ -310,13 +310,7 @@
 
       <h3 id="check-date-last-modified" class="govuk-heading-m">1. Check the <em>Date last modified</em> column</h3> 
 
-      <div class="da-alert da-alert--info govuk-!-margin-top-4 govuk-!-margin-bottom-4">
-        <div class="da-alert__content">
-          <p class="govuk-body">You do not need to include the Date last modified column if you're creating your own spreadsheet.</p>
-        </div>
-      </div>
-
-      <p class="govuk-body">The <em>Date last modified</em> column is populated with values extracted from the records during upload. Check that the date represents the last meaningful change to the record.</p>
+      <p class="govuk-body">The <em>Date last modified</em> column in the template is pre-populated with values extracted from the records during upload. Check that the date represents the last meaningful change to the record.</p>
 
       {{ govukWarningText({
         html: "The <em>Date last modified</em> column must not be edited directly.",
@@ -324,7 +318,14 @@
       }) }}
 
       <p class="govuk-body">If you need to enter a different date use the <em>Date of the record</em> column in the format YYYY-MM-DD.</p>
+      <p class="govuk-body">If you're creating your own spreadsheet you don't need to include the <em>Date last modified</em> column but you must check that <em>Date last modified</em> values are accurate in the template. If they are not, use the <em>Date of the Record</em> column.</p>
+      {# <div class="da-alert da-alert--info govuk-!-margin-top-4 govuk-!-margin-bottom-4">
+        <div class="da-alert__content">
+        </div>
+      </div> #}
+
       <p class="govuk-body">The <em>Date last modified</em> or, if provided, the <em>Date of the record</em> value will be used as the closure start date for a closed record. See the section on <a href="#provide-metadata-about-closed-records">providing closed record metadata</a>.</p>
+
 
       <h3 id="provide-metadata-about-closed-records" class="govuk-heading-m">2. Provide metadata about closed records</h3> 
       
