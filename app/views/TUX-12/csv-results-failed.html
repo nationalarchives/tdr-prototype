@@ -1,0 +1,52 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% block pageTitle %}
+  Results of your metadata checks - Failed
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Step 5 of 7</span>
+      <h1 class="govuk-heading-l">
+        Results of your metadata checks
+      </h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {  text: "Status" },
+            value: { html: "<strong class=\"govuk-tag govuk-tag--red\">Failed</strong>" }
+          },
+          {
+            key: {  text: "Details" },
+            value: { html: "The uploaded file contained a virus" }
+          }
+        ]
+      }) }}
+
+      <p class="govuk-body">If you can fix the problem yourself try to upload again.</p>
+      <p class="govuk-body">If the problem persists or you're not sure how to progress contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>.</p>
+      <div class="govuk-button-group">
+        <a class="govuk-button" href="./upload-csv">Re-upload</a>
+      </div>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+    </div>
+  </div>
+
+{% endblock %}

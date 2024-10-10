@@ -1,0 +1,103 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% block pageTitle %}
+  Results of CSV checks
+{% endblock %}
+
+{% block beforeContent %}
+  {# <a href="./transfer-tasks" class="govuk-back-link">Consignment: MOCK-TDR-1294</a> #}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-xl">Step 5 of 7</span>
+      <h1 class="govuk-heading-xl">
+        Results of your metadata checks
+      </h1>
+
+      <p class="govuk-body">Your CSV has been successfully uploaded and the metadata has been imported.</p>
+      {{ govukSummaryList({
+
+        rows: [
+          {
+            key: {  text: "Status" },
+            value: { html: "<strong class=\"govuk-tag govuk-tag--blue\">Imported</strong>" }
+          },
+          {
+            key: {  text: "Closed records" },
+            value: { html: "11" if data.hasClosedRecords else "0" }
+          }
+        ]
+
+      }) }}
+
+      <hr class="govuk-section-break govuk-section-break--m">
+
+      {% if data.hasClosedRecords %}
+        <h2 class="govuk-heading-m">
+          We found closed records in your metadata
+        </h2>
+        {{ govukCheckboxes({
+          name: "confirm-closure-status",
+          fieldset: {
+            legend: {
+              text: "Has this closure been agreed with the Advisory Council and/or The National Archives?",
+              classes: ""
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes, this closure has been agreed"
+            }
+          ]
+        }) }}
+        <p class="govuk-body">If the answer is no, you cannot proceed and should consult the Access Team or contact <a href='mailto:tdr@nationalarchives.gov.uk'>tdr@nationalarchives.gov.uk</a>.</p>
+      {% else %}
+        <h2 class="govuk-heading-m">
+          We found no closed records in your metadata
+        </h2>
+        <p class="govuk-body">The metadata you provided contained no information about closed records.</p>
+        <p class="govuk-body">If there are closed records in the consignment you must re-upload a CSV with closed record metadata for each record. </p>
+        <div class="govuk-button-group">
+          <form action="./upload-csv" method="post">
+            <input type="hidden" name="csv-re-upload" value="true" />
+
+            {{ govukButton({
+              text: "Re-upload metadata"
+            }) }}
+
+          </form>
+        </div>
+        <p class="govuk-body">If this is correct and there are no closed records in the consignment continue to the next step.</p>
+
+      {% endif %}
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Continue",
+          href : "./download-metadata"
+        }) }}
+      </div>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+    </div>
+  </div>
+
+
+{% endblock %}

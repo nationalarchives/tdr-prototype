@@ -1,0 +1,74 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Prepare your records - MOCK-TDR-1294 - Transfer Digital Records
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./transfer-tasks" class="govuk-back-link">Back to Consignment</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <!-- See routes.js for this post route -->
+      <form class="form" action="transfer-tasks" method="post">
+
+        <span class="govuk-caption-l">Consignment: MOCK-TDR-1294</span>
+        <h1 class="govuk-heading-l">
+          Prepare your records
+        </h1>
+        <p class="govuk-body">
+          Before uploading, all records (files and folders) you wish to transfer must be put into a <strong>single, top-level folder</strong>.
+        </p>
+
+        <div class="govuk-form-group">
+          <div class="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="display-top-level-folder" name="display-top-level-folder" type="checkbox" value="true" {% if data['display-top-level-folder'] %}checked{%endif%}>
+              <label class="govuk-label govuk-checkboxes__label" for="display-top-level-folder">
+                Check the box if you want to display the name of your top-level folder in the public catalogue.
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="section-complete-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+              <h2 class="govuk-fieldset__heading">
+                Have you completed this section?
+              </h2>
+            </legend>
+            <div id="section-complete-hint" class="govuk-hint">
+              Once marked as complete you can still return to, and edit, this section.
+            </div>
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="prepare-records-section-complete-y" name="prepare-records-complete" type="radio" value="yes" {% if data['prepare-records-complete'] == "yes" %}checked{%endif%}>
+                <label class="govuk-label govuk-radios__label" for="prepare-records-section-complete-y">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="prepare-records-section-complete-n" name="prepare-records-complete" type="radio" value="no" {% if data['prepare-records-complete'] == "no" %}checked{%endif%}>
+                <label class="govuk-label govuk-radios__label" for="prepare-records-section-complete-n">
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="govuk-button-group">
+          <button class="govuk-button" data-module="govuk-button" name="redirect-to" value="upload-records">Save and continue</button>
+          {# <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Save and return to consignment</button> #}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
