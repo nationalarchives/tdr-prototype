@@ -1,0 +1,46 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Transfer complete
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">Transfer complete</h1>
+        <div class="govuk-panel__body govuk-!-font-size-27">
+          Your records have now been transferred to The National Archives.
+        </div>
+        <div class="govuk-panel__body govuk-!-font-size-27 govuk-!-margin-top-5">
+          Consignment reference: <span class="govuk-!-font-weight-bold">MOCK-1294-TDR</span>
+        </div>
+      </div>
+
+      <p class="govuk-body">
+        Your records are now transferred to The National Archives. <strong>They are not yet preserved so you must not delete the original records</strong>. We will notify you by email when we have preserved your records.
+      </p>
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+      <p class="govuk-body">We will contact you via email within 90 days. If you do not receive an email, contact <a href="mailto:tdr@nationalarchives.gov.uk.">tdr@nationalarchives.gov.uk</a>.</p>
+
+      <h2 class="govuk-heading-m">What would you like to do now?</h2>
+
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-link" href="transfer-tasks">Return to this transfer (MOCK-1294-TDR)</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="">View all transfers</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="">Start a new transfer</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+{% endblock %}

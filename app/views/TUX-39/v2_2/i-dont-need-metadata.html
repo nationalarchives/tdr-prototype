@@ -1,0 +1,92 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  I don't need to enter any metadata
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./record-metadata" class="govuk-back-link">Record metadata</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-xl">
+      I don't need to enter any metadata
+    </h1>
+    <p class="govuk-body">If you don't provide any metadata we will transfer the metadata we extracted from your during upload. You can download and view that in the template below:</p>
+    <section class="da-attachment govuk-!-margin-bottom-4 govuk-!-display-none-print">
+      <div class="da-attachment__thumbnail">
+        <a href="#" class="govuk-link" target="_self" tabindex="-1" aria-hidden="true">
+          <svg class="da-attachment__thumbnail-image da-attachment__thumbnail-image--spreadsheet" version="1.1" viewBox="0 0 99 140" width="99" height="140" aria-hidden="true">
+            <path d="M12 12h75v27H12zm0 47h18.75v63H12zm55 2v59H51V61h16m2-2H49v63h20V59z" stroke-width="0"></path>
+            <path d="M49 61.05V120H32.8V61.05H49m2-2H30.75v63H51V59zm34 2V120H69.05V61.05H85m2-2H67v63h20V59z" stroke-width="0"></path>
+            <path d="M30 68.5h56.5M30 77.34h56.5M30 112.7h56.5M30 95.02h56.5M30 86.18h56.5M30 103.86h56.5" fill="none" stroke-miterlimit="10" stroke-width="2"></path>
+          </svg>
+        </a>
+      </div>
+      <div class="da-attachment__details">
+        <h2 class="da-attachment__title">
+          <a href="#" class="govuk-link da-attachment__link" target="_self">
+            Metadata template for consignment: MOCK-123-TDR
+          </a>
+        </h2>
+        <p class="da-attachment__metadata da-attachment__metadata--compact">
+          <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet" class="gem-c-attachment__abbr">XLSX</abbr></span>, <span class="gem-c-attachment__attribute">19.5 KB</span>
+        </p>
+        {# <p class="da-attachment__metadata">
+          Includes extracted metadata (file name, file path, last modified date) and column headers for additional metadata.
+        </p> #}
+      </div>
+    </section>
+    <p class="govuk-body">Before continuing, all the following statements should be true to the best of your knowledge:</p>
+    
+       {{ govukSummaryList({
+        rows: [
+          {
+            key: {  text: "The extracted Date last modified values are accurate" },
+            value: { text: "✅" }
+          },
+          {
+            key: {  text: "All records are in English" },
+            value: { text: "✅" }
+          },
+          {
+            key: {  text: "There are no closed records in this consignment" },
+            value: { text: "✅" }
+          },
+          {
+            key: {  text: "I have added as much additional metadata as available to me" },
+            value: { text: "✅" }
+          }
+        ],
+        classes: "govuk-summary-list--extra-wide-key"
+      }) }}
+
+
+    <p class="govuk-body">If any of the previous statements are not true, return to the <a href="./record-metadata" class="govuk-link">Record metadata</a> page and follow the guidance.</p>
+
+    <div class="govuk-button-group">
+    {{ govukButton({
+      text: "Continue",
+      href: "./summary"
+    }) }}
+    </div>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <details open class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Consignment reference
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        MOCK-123-TDR
+      </div>
+    </details>
+  </div>
+</div>
+
+{% endblock %}

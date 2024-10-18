@@ -1,0 +1,99 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Transfer summary
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">Confirm transfer</h1>
+
+      <p class="govuk-body">Here is a summary of your consignment.</p>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-half">
+            Series reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            TEST123
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+           Consignment reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            MOCK-123-TDR
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Transferring body
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Test Department
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Records uploaded for transfer
+          </dt>
+          <dd class="govuk-summary-list__value">
+            227
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Closed records
+          </dt>
+          <dd class="govuk-summary-list__value">
+            21
+          </dd>
+        </div>
+      </dl>
+
+      <form class="form" action="/end-confirmation" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+            <div class="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
+                <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+                  By proceeding with this transfer, I confirm that I am agreeing to transfer legal custody of these records to The National Archives.
+                </label>
+              </div>
+            </div>
+
+          </fieldset>
+        </div>
+
+        <div class="govuk-button-group">
+          <a href="./download-metadata" role="button" draggable="false" class="govuk-button govuk-button--secondary"  data-module="govuk-button">
+            Back
+          </a>
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+            Transfer your records
+          </button>
+        </div>
+        {#
+        <nav class="govuk-pagination govuk-pagination--block" role="navigation" aria-label="results">
+          <div class="govuk-pagination__prev">
+            <a class="govuk-link govuk-pagination__link" href="/download-metadata" rel="prev">
+              <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+              </svg>
+              <span class="govuk-pagination__link-title">Previous</span>
+              <span class="govuk-visually-hidden">:</span>
+              <span class="govuk-pagination__link-label">Step 6: Download and review metadata</span></a>
+          </div>
+        </nav> #}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

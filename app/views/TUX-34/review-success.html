@@ -1,0 +1,30 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Digital Transfer Advisor review
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">Digital Transfer Advisor review</h1>
+
+      <div class="da-alert da-alert--success">
+        <h2 class="da-alert__heading">Review complete</h2>
+        <p>
+          The metadata you submitted has been reviewed and no issues were found. 
+        </p>
+      </div>
+      <p class="govuk-body">
+        Your metadata has been reviewed by a Digital Transfer Advisor and they found no issues. You can now continue to confirm your transfer. 
+      </p>
+      <div class="govuk-button-group">
+        <a href="./review-in-progress" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+          Continue
+        </a>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
