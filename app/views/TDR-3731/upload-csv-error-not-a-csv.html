@@ -15,6 +15,15 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "The selected file must be a CSV",
+            href: "#file-upload-1"
+          }
+        ]
+      }) }}
 
       <h1 class="govuk-heading-l">Upload a metadata CSV</h1>
 
@@ -36,40 +45,15 @@
         Download metadata Excel template
       </a>
 
-      {#<details class="govuk-details" data-module="govuk-details">
-        <summary class="govuk-details__summary">
-          <span class="govuk-details__summary-text">
-            What column titles should I use?
-          </span>
-        </summary>
-        <div class="govuk-details__text">
-          <p class="govuk-body">Other than the two mandatory columns, only include those necessary for your metadata</p>
-          <ul class="govuk-list govuk-list--bullet govuk-list--inline-pre">
-            <li><strong>identifier</strong> (mandatory)</li>
-            <li><strong>file_name</strong> (mandatory)</li>
-            <li><strong>description</strong></li>
-            <li><strong>end_date</strong></li>
-            <li><strong>foi_exemption_asserted</strong></li>
-            <li><strong>closure_period</strong></li>
-            <li><strong>closure_start_date</strong></li>
-            <li><strong>title_public</strong></li>
-            <li><strong>title_alternate</strong></li>
-            <li><strong>description_public</strong></li>
-            <li><strong>description_alternate</strong></li>
-            <!--<li><strong>date of the record</strong> - Date format as follows: <pre>DD/MM/YYYY</pre></li>
-            <li><strong>foi exemption code</strong> - One or more comma separated, for example <pre>22, 27(1), 24</pre></li>
-            <li><strong>closure period</strong> - Years as a number, for example <pre>80</pre></li>
-            <li><strong>closure start date</strong> - Date format as follows: <pre>DD/MM/YYYY</pre></li> -->
-          </ul>
-        </div>
-      </details> #}
-
       {{ govukFileUpload({
         id: "file-upload-1",
         name: "fileUpload",
         label: {
           text: "Select a CSV",
           classes: "govuk-!-font-weight-bold"
+        },
+        errorMessage: {
+          text: "The selected file must be a CSV"
         }
       }) }}
 
