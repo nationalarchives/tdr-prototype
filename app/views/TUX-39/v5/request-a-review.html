@@ -1,0 +1,45 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Request a Digital Transfer Advisor review
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./csv-results" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">Request a metadata review</h1>
+
+      <p class="govuk-body">Before you complete your transfer your metadata needs to be reviewed by a Digital Transfer Advisor. This helps us to ensure we preserve your records accurately.</p> 
+      <div class="govuk-inset-text">
+        If we find any issues with your metadata we will send guidance to <strong>jesse@ons.gov.uk</strong>. 
+      </div>
+
+      <p class="govuk-body">Once you have submitted your metadata for review we recommend you don't make any further changes to your metadata CSV.</p>
+      <p class="govuk-body">If you need to make any changes before requesting a review <a href="./record-metadata" class="govuk-link">return to Record metadata</a> to edit the metadata.</p>
+    
+      <div class="govuk-button-group">
+        <a href="./review-in-progress" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+          Submit metadata for review
+        </a>
+      </div>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details" open>
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+    </div>
+  </div>
+{% endblock %}

@@ -32,29 +32,25 @@
         ]
       }) }}
 
-      <h2 class="govuk-heading-m">
+{#      <h2 class="govuk-heading-m">
         Summary of your metadata
       </h2>
 
-      {# <p class="govuk-body">Below is a summary of the metadata we found in your CSV. We match each row in your metadata to a file you uploaded for transfer.</p> #}
+      <p class="govuk-body">Below is a summary of the metadata we found in your CSV. We match each row in your metadata to a file you uploaded for transfer.</p>
 
        {{ govukSummaryList({
         rows: [
           {
             key: {  text: "Records uploaded for transfer" },
             value: { text: "227" }
-          },
-          {
-            key: {  text: "Closed records in metadata" },
-            value: { text: "21" }
           }
         ],
         classes: "govuk-summary-list--wide-key"
       }) }}
-
+ #}
 
       <div class="govuk-button-group">
-        <a href="./download-metadata.html" class="govuk-button">Continue</a>
+        <a href="./request-a-review" class="govuk-button">Continue</a>
         <a class="govuk-button govuk-button--secondary" href="./upload-csv">Re-upload a metadata CSV</a>
       </div>
 
