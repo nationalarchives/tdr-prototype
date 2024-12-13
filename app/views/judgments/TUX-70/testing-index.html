@@ -1,6 +1,10 @@
 {% extends "layouts/main.html" %}
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
+{% block header %}
+  {% include "layouts/inc-header-no-sign-out.html" %}
+{% endblock %}
+
 {% block pageTitle %}
   TUX-70 Index
 {% endblock %}
