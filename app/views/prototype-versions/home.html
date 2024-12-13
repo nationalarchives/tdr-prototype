@@ -24,18 +24,32 @@
 
       {% set rows = [] %}
       {% for r in data %}
+        
+      {% set issues = '' %}
+      {% for i in r['Jira Tickets'] %}
+        {% set anchor = ['<a class="govuk-link" target="_blank" href="https://national-archives.atlassian.net/browse/', i.value,'">', i.value,'</a>']|join %}
+        
+        {% if loop.last %}
+        {% set issues = issues + anchor %}
+        {% else %}
+        {% set issues = issues + anchor  + ", "%}
+        {% endif %}
+      {% endfor %}
+
+      
+        {% set statusClass = ["gov-table__cell--", r.Status[0].value| replace(" ", "_") | replace("/", "") |lower ]|join%}
+        
         {% set rows = (rows.push([
-          { html: r['Github PR Number'] },
-          { html: r.Name },
+          { html: r.Name, classes: statusClass },
+          { html: issues, classes: statusClass },
           { html: ["<span style='white-space:nowrap'>",
             govukTag({
             text: r.Status[0].value,
             classes: ["govuk-tag--", r.Status[0].color]|join
-            }), "</span>"]|join
+            }), "</span>"]|join,
+            classes: statusClass
           },
-          { html: r['Date started']|formatDate|d("-", true) },
-          { html: r['Date completed']|formatDate|d("-", true) },
-          { html: ['<a href="/prototype-versions-api/', r.id, '">View details</a>']|join }
+          { html: ['<a href="/prototype-versions-api/', r.id, '">View version</a>']|join, classes: statusClass }
         ]), rows) %}
       {% endfor %}
 
@@ -43,20 +57,15 @@
         firstCellIsHeader: false,
         head: [
           {
-            text: "Version"
+            text: "Description"
           },
           {
-            text: "Description"
+            text: "Issues"
           },
           {
             text: "Status"
           },
-          {
-            text: "Date started"
-          },
-          {
-            text: "Date completed"
-          },
+
           {
             html: "<span class=\"govuk-visually-hidden\">Action</span>",
             classes: ""
