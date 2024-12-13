@@ -342,15 +342,53 @@
           <a target="_blank" href="https://lucid.app/lucidspark/bc9b81c3-7af0-4cc4-92aa-cd1d628ca5e4/edit?view_items=AN67tB6qxAca&invitationId=inv_c4979422-0a2b-4def-92ec-cbc0ccf18e9e" class="govuk-link">Full map in Lucid</a>
         </div>
       </div>
-      {# <div style="display: flex;gap:20px; width: 100%;">
-        <a style="flex-grow: 1; display: block;"  target="_blank" href="/public/images/journey-i.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/journey-i.png" /></a>
-        <div style="flex-shrink: 0;width:300px"> 
-          <p class="govuk-body">Version 4.3 is the same as 4.2, except that selecting 'original judgment' no longer asks for an NCN. It also has a 'Check your answers' page.</p>
-          <a target="_blank" href="https://lucid.app/lucidspark/bc9b81c3-7af0-4cc4-92aa-cd1d628ca5e4/edit?view_items=AN67tB6qxAca&invitationId=inv_c4979422-0a2b-4def-92ec-cbc0ccf18e9e" class="govuk-link">Full map in Lucid</a>
-        </div>
-      </div> #}
+      <hr>
+      <h3 id="journey-branch-3" class="govuk-heading-m govuk-!-margin-top-8">5. Design round 2 - Dec 2024 - Amending based on user research insights</h3>
+      <ul class="govuk-list govuk-list--number">
+        <li>List all options on the screen (1st time judgment, update to a judgment and press summary) and do not add an extra step asking is this a first time judgment</li>
+        <li>Ask users to select first what their document is, and if they select ‘It's a press summary related to a judgment' they should not see the page ‘Before you upload a judgment’</li>
+        <li>Remove the option to select ‘It's something else related to a judgment’ when asking users to tell us more about their document as it might give the impression it is something we are allowing</li>
+        <li>When a user selects the option 'it's an update to a judgment', provide them the opportunity to enter a description in a text box under</li>
+        <li>We should tell the users to describe what has changed and where in the judgment (paragraph number) the change is</li>
+        <li>When a user selects ‘It's a press summary related to a judgment’ or 'it's an update to a judgment',they should enter the NCN on the next page</li>
+        <li>Park the design idea where users can check their answers as it isn’t clear how useful it is for users. Potentially re-ask during another round of user testing</li>
+        <li>Do not ask users to enter the NCN when they transfer a first time judgment</li>
+        <li>However, when users need to enter the NCN (update to a judgment or press summary), use the content that appears in version 3: 'A unique NCN is required to register a judgment or decision. If this is a document related to a judgment (e.g. a press summary) provide the NCN for the related judgment.</li>
+      </ul>
 
-      
+      {{ govukTable({
+        caption: "Versions",
+        captionClasses: "govuk-table__caption--s",
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: ""
+          },
+          {
+            text: ""
+          },
+          {
+            text: ""
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "v5"
+            },
+            {
+              html: "This extends from the journey in v4.2 and incorporates the feedback from user research."
+            },
+            {
+              html: "<a target='_blank' href='./5/home'>View page</a>"
+            }
+          ]
+        ]
+      }) }}
+
+      <div style="display: flex;gap:20px; width: 100%;">
+        <a style="flex-grow: 1; display: block;"  target="_blank" href="/public/images/journey-j.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/journey-j.png" /></a>
+      </div>
     </div>
   </div>
 

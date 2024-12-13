@@ -188,6 +188,14 @@ router.post('/judgments/*/tell-us-more-v5', function(request, response) {
     response.redirect("something-else");
   }
 })
+router.post('/judgments/*/tell-us-more-v6', function(request, response) {
+  var documentType = request.session.data['documentType'];
+  if (["update", "press-summary"].indexOf(documentType) >= 0){
+    response.redirect("provide-neutral-citation");
+  } else if (documentType == "original"){
+    response.redirect("before-uploading");
+  }
+})
 
 router.post('/judgments/*/tell-us-more-v6', function(request, response) {
   var documentType = request.session.data['documentType'];
