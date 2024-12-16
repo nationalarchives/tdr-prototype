@@ -1,0 +1,125 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "macros/icon.njk" import daIcon %}
+
+{% block pageTitle %}
+  I don't need to enter any additional metadata
+{% endblock %}
+
+{% block header %}
+  {% include "./inc-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./prepare-your-metadata" class="govuk-back-link">Prepare your metadata</a>
+{% endblock %}
+
+{% block content %}
+
+
+{% set checkIcon %}
+<div aria-hidden="true" class="da-icon da-icon--xxl">
+  {{- daIcon({"iconType": 'question-mark', classes: "da-icon--info", iconSize: "xxl"})-}}
+</div>
+{% endset %}
+{% set infoIcon %}
+<span aria-hidden="true" class="da-icon da-icon--xl">
+  {{- daIcon({"iconType": 'info'})-}}
+</span>
+{% endset %}
+
+{{helpIcon|safe}}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-xl">
+      I don't need to provide any additional metadata
+    </h1>
+    <p class="govuk-body">If you don't provide any additonal metadata we will transfer the metadata we extracted from your records during upload. You can download and view that in the spreadsheet below.</p>
+    <section class="da-attachment govuk-!-margin-bottom-4 govuk-!-display-none-print">
+      <div class="da-attachment__thumbnail">
+        <a href="#" class="govuk-link" target="_self" tabindex="-1" aria-hidden="true">
+          <svg class="da-attachment__thumbnail-image da-attachment__thumbnail-image--spreadsheet" version="1.1" viewBox="0 0 99 140" width="99" height="140" aria-hidden="true">
+            <path d="M12 12h75v27H12zm0 47h18.75v63H12zm55 2v59H51V61h16m2-2H49v63h20V59z" stroke-width="0"></path>
+            <path d="M49 61.05V120H32.8V61.05H49m2-2H30.75v63H51V59zm34 2V120H69.05V61.05H85m2-2H67v63h20V59z" stroke-width="0"></path>
+            <path d="M30 68.5h56.5M30 77.34h56.5M30 112.7h56.5M30 95.02h56.5M30 86.18h56.5M30 103.86h56.5" fill="none" stroke-miterlimit="10" stroke-width="2"></path>
+          </svg>
+        </a>
+      </div>
+      <div class="da-attachment__details">
+        <h2 class="da-attachment__title">
+          <a href="#" class="govuk-link da-attachment__link" target="_self">
+            MOCK-TDR-1301-metadata.xlsx
+          </a>
+        </h2>
+        <p class="da-attachment__metadata">
+          <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet">XLSX</abbr></span>, <span class="da-attachment__attribute">15 records</span>
+        </p>
+        {# <p class="da-attachment__metadata da-attachment__metadata--compact">Metadata that will be transferred with this consignment.</p> #}
+      </div>
+    </section>
+    <p class="govuk-body">Before continuing, all the following statements should be true to the best of your knowledge.</p>
+    
+       {{ govukSummaryList({
+        rows: [
+          {
+            key: {  
+              html: '
+              <p class="govuk-heading-s govuk-!-margin-bottom-1">This consignment contains no closed records</p>
+              <p class="govuk-summary-list__key-hint govuk-body-s govuk-hint govuk-!-margin-bottom-0">If you have closed records in your consignment you must provide metadata about those records. <br><br>Follow the guidance for <a target="_blank" href="metadata-guidance#provide-metadata-about-closed-records">providing metadata about closed records (opens in a new tab)</a>.</p>' 
+            },
+            value: { html: checkIcon }
+          },
+          {
+            key: {  html: ['
+            <p class="govuk-heading-s govuk-!-margin-bottom-1">The date last modified values are accurate</p>',
+            '<p class="govuk-summary-list__key-hint">Check the extracted values in the <em>Date last modified</em> column are accurate in the downloadable spreadsheet. <br><br>Follow the guidance for <a target="_blank" href="metadata-guidance#check-date-last-modified">checking and correcting the date last modified (opens in a new tab)</a>.</p>' ]|join
+          },
+            value: { html: checkIcon }
+          },
+          {
+            key: {  
+              html: '
+              <p class="govuk-heading-s govuk-!-margin-bottom-1">Record descriptions have been added where possible</p>
+              <p class="govuk-summary-list__key-hint">If the file name is not descriptive or you have other descriptive information that makes the record easier to find in the public catalogue, you should add this to the <em>Description</em> column. <br><br>Follow the guidance for <a target="_blank" href="metadata-guidance#provide-record-descriptions">providing record descriptions (opens in a new tab)</a>.</p>' 
+            },
+            value: { html: checkIcon }
+          },
+          {
+            key: {  
+              html: '
+              <p class="govuk-heading-s govuk-!-margin-bottom-1">All records are in English</p>
+              <p class="govuk-summary-list__key-hint">We currently only accept metadata values of \'English\' and \'Welsh\'. If a record\'s main language is Welsh change the value in the <em>Language</em> column. <br><br>Follow the guidance for <a target="_blank" href="metadata-guidance#column-details-language">changing the record language (opens in a new tab)</a></p>' 
+            },
+            value: { html: checkIcon }
+          }          
+        ],
+        classes: "govuk-summary-list--extra-wide-key"
+      }) }}
+
+
+    <p class="govuk-body">If any of the previous statements are not true, return to the <a href="./prepare-your-metadata" class="govuk-link">Prepare your metadata</a> page and refer to the guidance.</p>
+    <p class="govuk-body">If you still want to transfer with only the extracted metadata shown in the spreadsheet above, continue to complete the transfer.</p>
+
+    <div class="govuk-button-group">
+      {{ govukButton({
+        text: "Continue",
+        href: "./summary"
+      }) }}
+
+    </div>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <details open class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Consignment reference
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        MOCK-TDR-1301
+      </div>
+    </details>
+  </div>
+</div>
+
+{% endblock %}
