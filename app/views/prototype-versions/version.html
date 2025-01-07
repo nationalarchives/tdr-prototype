@@ -1,0 +1,179 @@
+{% extends "layouts/no-sign-out.html" %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/tag/macro.njk" import govukTag %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+  Transfer Digital Records - Design Version {{data['Github PR Number']}}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="/prototype-versions/" class="govuk-back-link">All prototype versions</a>
+{% endblock %}
+
+{% block content %}
+
+
+  {% if data['Live prototype URL'] %}
+  {% set livePrototypeURL = data['Live prototype URL'] %}
+  {% else %}
+  {% set livePrototypeURL = ["https://tdr-prototype-pr-", data['Github PR Number'], ".herokuapp.com/" ]|join %}
+  {% endif %} 
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        {{index.data.title}}
+      </h1>
+    </div>
+  </div>
+
+  {% set issues = '' %}
+  {% for i in index.data.issues %}
+    {% set anchor = ['<a class="govuk-link" target="_blank" href="', i.url,'">', i.id,'</a>']|join %}
+  
+    {% if loop.last %}
+      {% set issues = issues + anchor %}
+      {% else %}
+      {% set issues = issues + anchor  + ", "%}
+    {% endif %}
+  {% endfor %}
+
+  {% set confluence_pages = '<ul class="govuk-list"><li>' %}
+  {% for i in index.data.confluence_pages %}
+    {% set anchor = ['<a class="govuk-link" target="_blank" href="', i.url,'">', i.title,'</a>']|join %}
+  
+    {% if loop.last %}
+      {% set confluence_pages = [confluence_pages, anchor, '</li><ul>']|join %}
+      {% else %}
+      {% set confluence_pages = [confluence_pages, anchor, '</li><li>']|join %}
+    {% endif %}
+  {% endfor %}
+
+  {% set statusTag = govukTag({
+    text: index.data.status.title,
+    classes: ["govuk-tag--", index.data.status.colour]|join
+  }) %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Status"
+            },
+            value: {
+              text: statusTag
+            }
+          },
+          {
+            key: {
+              text: "Jira issue"
+            },
+            value: {
+              html: issues
+            }
+          },
+          {
+            key: {
+              text: "Date started"
+            },
+            value: {
+              text: index.data.date_started|formatDate
+            }
+          },
+          {
+            key: {
+              text: "Date complete"
+            },
+            value: {
+              text: index.data.date_completed|formatDate|d("Ongoing", true)
+            }
+          },
+          {
+            key: {
+              text: "Design history"
+            },
+            value: {
+              html: confluence_pages
+            }
+          }
+        ]
+      }) }}
+    </div>
+  
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{index.content|d("(none)", true)| markdown|safe}}
+
+      <h2 id="journeys" class="govuk-heading-m">
+        Journeys and Pages
+      </h2>
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    
+      {% if data['Requires Session Clear'] %}
+      <p class="govuk-body">Using the 'Start journey' links below will set some variables behind the scene that determine the user journey.</p>
+        {{ govukWarningText({
+          text: "Before starting a new journey clear the prototype data.",
+          iconFallbackText: "Warning",
+          classes: "govuk-!-margin-bottom-4"
+        }) }}
+        <form class="form" action="{{"https://tdr-prototype-pr-64.herokuapp.com/prototype-versions/clear-data" if not GOVUKPrototypeKit.isDevelopment else "/prototype-versions/clear-data"}}" method="post">
+          <button class="govuk-button govuk-!-margin-bottom-9" data-module="govuk-button">Clear data</button>
+        </form>
+      {% else %}
+        <p class="govuk-body">Using the links below to access journeys or static pages showing particular features, journeys or pages of a design version.</p>
+      {% endif %}
+
+      {% for j in journeys %}
+        {% set statusTag = govukTag({
+            text: j.data.status.title|d("In progress"),
+            classes: ["govuk-tag--", j.data.status.colour]|join
+          })  %}
+        {{ govukSummaryList({
+          card: {
+            title: {
+              text: j.data.title 
+            },
+            actions: {
+              items: [
+                {
+                  href: j.data.starting_url,
+                  text: ("Start journey" if j.data.starting_url else "(Journey missing)")
+                }
+              ]
+            }
+          },
+          rows: [
+            {
+              key: {
+                text: "Description"
+              },
+              value: {
+                text: j.content|markdown|safe
+
+              }
+            },
+            {
+              key: {
+                text: "Status"
+              },
+              value: {
+                html: statusTag
+
+              }
+            }
+          ]
+      }) }}
+
+      {% endfor %}
+
+    </div>
+  </div>
+{% endblock %}
