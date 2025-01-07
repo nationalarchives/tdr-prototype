@@ -21,6 +21,22 @@ function findById(data, id) {
 
 filters.markdown = function (markdown, inline=false) {
 
+
+  // Override the `heading` method for `h1`, `h2`, and `h3`
+  marked.Renderer.prototype.heading = (text, level) => {
+    if (level === 1) {
+      return `<h1 class="govuk-heading-xl">${text}</h1>\n`;
+    }
+    if (level === 2) {
+      return `<h2 class="govuk-heading-l">${text}</h2>\n`;
+    }
+    if (level === 3) {
+      return `<h3 class="govuk-heading-m">${text}</h3>\n`;
+    }
+    // For other heading levels, return default
+    return `<h${level}>${text}</h${level}>\n`;
+  };
+
   marked.Renderer.prototype.paragraph = (text) => {
     return `<p class="govuk-body">${text}</p>\n`;
   };

@@ -14,8 +14,9 @@
 
 .gov-table__cell--blocked__on_hold, 
 .gov-table__cell--abandoned, 
+.gov-table__cell--superseded,
 .gov-table__cell--not_taken_forward {
-  opacity: 0.5;
+  opacity: 0.75;
 } 
   
 .gov-table__cell--in_progress {

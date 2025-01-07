@@ -1,0 +1,11 @@
+---
+status:
+  colour: "blue"
+  title: "Reviewed"
+title: "Version 4 - Sort by file name + filter file & dir name"
+starting_url: "/TDR-3581/v04"
+---
+
+Rows are sorted alphabetically by record name.
+
+Searching by file or directory name. Matches partial strings.

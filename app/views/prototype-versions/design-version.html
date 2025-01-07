@@ -168,7 +168,7 @@
         <div class="govuk-grid-column-full">
     
       {% if data['Requires Session Clear'] %}
-      <p class="govuk-body">Using the 'Start journey' links below will set some variables behind the scene that determine the user journey.</p>
+      <p class="govuk-body">Clicking the 'Start journey' links below will set some variables behind the scene that determine the user journey.</p>
       {{ govukWarningText({
         text: "Before starting a new journey clear the prototype data.",
         iconFallbackText: "Warning",
@@ -178,7 +178,7 @@
         <button class="govuk-button govuk-!-margin-bottom-9" data-module="govuk-button">Clear data</button>
       </form>
       {% else %}
-        <p class="govuk-body">Using the links below to access journeys or static pages showing particular features, journeys or pages of a design version.</p>
+        <p class="govuk-body">Use the links below to accesa specific features, journeys, pages or sub-versions of this design.</p>
       {% endif %}
 
       {% for f in features %}
