@@ -13,7 +13,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-         All prototype versions
+         Prototype versions
       </h1>
 
     </div>
@@ -21,87 +21,55 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
       {% from "govuk/components/table/macro.njk" import govukTable %}
+      {% set rows = [] %}
+      {% for r in data %}
+      
+      {% set issues = '' %}
+      {% for i in r.issues %}
+        {% set anchor = ['<a style="white-space:nowrap" class="govuk-link" target="_blank" href="', i.url,'">', i.id,'</a>']|join %}
+      
+        {% if loop.last %}
+          {% set issues = issues + anchor %}
+          {% else %}
+          {% set issues = issues + anchor  + ", "%}
+        {% endif %}
+      {% endfor %}
 
-      {% set currentTag %}
-        &nbsp; {{ govukTag({
-          text: "You are here",
-          classes: "govuk-tag--orange"
-        }) }}
-      {% endset %}
+        {% set statusClass = ["gov-table__cell--", r.status.title| replace(" ", "_") | replace("/", "") |lower ]|join%}
+
+        {% set rows = (rows.push([
+          { html: r.title, classes: statusClass },
+          { html: issues, classes: statusClass },
+          { html: ["<span style='white-space:nowrap'>",
+            govukTag({
+            text: r.status.title,
+            classes: ["govuk-tag--", r.status.colour]|join
+            }), "</span>"]|join,
+            classes: statusClass
+          },
+          { html: ['<a href="/prototype-version/', r.subfolder, '">View version</a>']|join, classes: statusClass }
+        ]), rows) %}
+      {% endfor %}
 
       {{ govukTable({
         firstCellIsHeader: false,
         head: [
           {
-            text: "Version"
-          },
-          {
             text: "Description"
           },
           {
-            text: "Date started"
+            text: "Issues"
           },
           {
-            text: "Date completed"
+            text: "Status"
           },
+
           {
             html: "<span class=\"govuk-visually-hidden\">Action</span>",
             classes: ""
           }
         ],
-        rows: [
-          [
-            {
-              html: (["66", currentTag if data.prototypeVersion == "66"]|join)
-            },
-            {
-              text: "Resuming an in-progress transfer (part 2)"
-            },
-            {
-              text: "25th Sept"
-            },
-            {
-              text: "Ongoing"
-            },
-            {
-              html: "<a href=\"/prototype-versions/66\">View details</a>"
-            }
-          ],
-          [
-            {
-              html: (["65", currentTag if data.prototypeVersion == "65"]|join)
-            },
-            {
-              text: "Resuming an in-progress transfer"
-            },
-            {
-              text: "1st Sep 2023"
-            },
-            {
-              text: "25th Sep 2023"
-            },
-            {
-              html: "<a href=\"/prototype-versions/65\">View details</a>"
-            }
-          ],
-          [
-            {
-              html: (["64", currentTag if data.prototypeVersion == "64"]|join)
-            },
-            {
-              text: "Manipulate large volumes of metadata "
-            },
-            {
-              text: "1st Sep 2023"
-            },
-            {
-              text: "Ongoing"
-            },
-            {
-              html: "<a href=\"/prototype-versions/64\">View details</a>"
-            }
-          ]
-        ]
+        rows: rows
       }) }}
     </div>
   </div>
