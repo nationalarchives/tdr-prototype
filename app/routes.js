@@ -477,14 +477,6 @@ router.get(
   }
 );
 
-router.post(
-  "/prototype-versions/clear-data",
-  function (req, res) {
-    req.session.data = {};
-    res.redirect("/prototype-versions/data-cleared");
-  }
-);
-
 router.use((req, res, next) => {
   req.session.data = {...req.session.data, ...tdrSettings};
   next()

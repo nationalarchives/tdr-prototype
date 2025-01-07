@@ -5,6 +5,7 @@ status:
 title: "Manipulate large volumes of metadata"
 date_started: "2023-09-01"
 date_completed: ""
+clear_session_url: "https://tdr-prototyp-tdr-2677-m-jqwt8o.herokuapp.com/prototype-versions/clear-data"
 issues:
   - id: "TDR-2677"
     url: "https://national-archives.atlassian.net/browse/TDR-2677"

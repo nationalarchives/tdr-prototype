@@ -117,18 +117,18 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
     
-      {% if data['Requires Session Clear'] %}
-      <p class="govuk-body">Using the 'Start journey' links below will set some variables behind the scene that determine the user journey.</p>
-        {{ govukWarningText({
-          text: "Before starting a new journey clear the prototype data.",
-          iconFallbackText: "Warning",
-          classes: "govuk-!-margin-bottom-4"
-        }) }}
-        <form class="form" action="{{"https://tdr-prototype-pr-64.herokuapp.com/prototype-versions/clear-data" if not GOVUKPrototypeKit.isDevelopment else "/prototype-versions/clear-data"}}" method="post">
-          <button class="govuk-button govuk-!-margin-bottom-9" data-module="govuk-button">Clear data</button>
-        </form>
+      {% if index.data.clear_session_url %}
+      <p class="govuk-body">Clicking the 'Start journey' links below will set some variables behind the scene that determine the user journey.</p>
+      {{ govukWarningText({
+        text: "Before starting a new journey clear the prototype data.",
+        iconFallbackText: "Warning",
+        classes: "govuk-!-margin-bottom-4"
+      }) }}
+      <form target="_blank" class="form" action="{{index.data.clear_session_url}}" method="post">
+        <button class="govuk-button govuk-!-margin-bottom-9" data-module="govuk-button">Clear data</button>
+      </form>
       {% else %}
-        <p class="govuk-body">Using the links below to access journeys or static pages showing particular features, journeys or pages of a design version.</p>
+        <p class="govuk-body">Use the links below to accesa specific features, journeys, pages or sub-versions of this design.</p>
       {% endif %}
 
       {% for j in journeys %}
@@ -145,7 +145,10 @@
               items: [
                 {
                   href: j.data.starting_url,
-                  text: ("Start journey" if j.data.starting_url else "(Journey missing)")
+                  text: ("Start journey" if j.data.starting_url else "(Journey missing)"),
+                  attributes: {
+                    "target": "_blank"
+                  }
                 }
               ]
             }

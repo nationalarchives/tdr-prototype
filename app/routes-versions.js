@@ -173,4 +173,12 @@ router.get("/prototype-versions-api/:pr_number", async (req, res) => {
   }
 });
 
+router.post(
+  "/prototype-versions/clear-data",
+  function (req, res) {
+    req.session.data = {};
+    res.redirect("/prototype-versions/data-cleared");
+  }
+);
+
 module.exports = { versionRoutes: router };
