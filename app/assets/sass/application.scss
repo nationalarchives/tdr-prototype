@@ -5,10 +5,14 @@
 
 // Add extra styles here
 @import './da-nested-navigation';
+@import './da-attachment.scss';
 @import './prototype-history.scss';
 @import './folder-upload.scss';
-@import './tna-da-success-summary.scss';
+@import './task-list.scss';
+@import './da-attachment.scss';
 @import './da-alert.scss';
+@import './da-icon.scss';
+@import './da-contents-list.scss';
 
 
 .tna-tree__radios-directory__label {
@@ -118,6 +122,11 @@
   margin: 0.1px;
   position: relative;
   width: 100%;
+}
+
+.hidden {
+  visibility: hidden;
+  height:0;
 }
 
 .showBanner {
@@ -346,6 +355,17 @@
   display: inline-block;
 }
 
+.tna-button-icon--download {
+  height: 1.1rem;
+  width: 1.1rem;
+  margin-right: 8px;
+}
+
+.tna-button-icon--download svg {
+  position: relative;
+  top: 2px;
+}
+
 .tna-button-icon svg {
   max-height: 100%;
 }
@@ -495,4 +515,56 @@
 .govuk-table__header.govuk-table__header--rowbreak {
   font-weight: normal;
   background-color: govuk-colour("light-grey");
+}
+
+.govuk-link--disable {
+  pointer-events: none;
+  color: darkgrey !important;
+}
+
+.tdr-aside {
+  border-top: 2px solid $govuk-link-colour;
+}
+
+.govuk-summary-list--wide-key .govuk-summary-list__key {
+  width: 60%;
+}
+
+.govuk-summary-list--extra-wide-key .govuk-summary-list__key {
+  width: 90%;
+}
+.govuk-summary-list__actions {
+  width: 40%;
+}
+
+
+.govuk-summary-list__key-hint {
+  // @include govuk-font-size($size: 16);
+  @include govuk-font($size: 16);
+  color: govuk-colour("dark-grey");
+  margin-bottom: 0;
+}
+
+.footnote-symbol {
+  font-size: 0.8em;
+  vertical-align: super;
+  cursor: pointer;
+  color: govuk-colour("blue");
+  text-decoration: none;
+}
+
+.footnote-text {
+  @include govuk-font($size: 16);
+  @include govuk-responsive-margin(2, "bottom");
+}
+
+.footnote-text__link {
+  text-decoration: none;
+}
+
+.govuk-table caption {
+  caption-side: bottom;
+  text-align: left;
+  @include govuk-responsive-margin(2, "top");
+  @include govuk-font($size: 16);
 }

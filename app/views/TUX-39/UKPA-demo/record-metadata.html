@@ -1,0 +1,155 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "macros/icon.njk" import daIcon %}
+
+{% block pageTitle %}
+  Record metadata
+{% endblock %}
+
+{% block header %}
+  {% include "./inc-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./upload-records-results" class="govuk-back-link">Results of your record checks</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-xl">
+      Record metadata
+    </h1>
+    <p class="govuk-body">As part of a digital transfer to The National Archives you or your department can provide metadata to ensure we preserve your records correctly.</p>
+    {# <h2 class="govuk-heading-s">
+      Closed record metadata
+    </h2> #}
+    <p class="govuk-body">If you have closed records in your consignment <strong>you must provide closed record metadata about those records</strong>.</p>
+
+    <h2 class="govuk-heading-l">Download a metadata template</h2>
+
+    <section class="da-attachment govuk-!-margin-bottom-4 govuk-!-display-none-print">
+      <div class="da-attachment__thumbnail">
+        <a download href="/public/downloads/MOCK-TDR-1301-template.xlsx" class="govuk-link" target="_self" tabindex="-1" aria-hidden="true">
+          <svg class="da-attachment__thumbnail-image da-attachment__thumbnail-image--spreadsheet" version="1.1" viewBox="0 0 99 140" width="99" height="140" aria-hidden="true">
+            <path d="M12 12h75v27H12zm0 47h18.75v63H12zm55 2v59H51V61h16m2-2H49v63h20V59z" stroke-width="0"></path>
+            <path d="M49 61.05V120H32.8V61.05H49m2-2H30.75v63H51V59zm34 2V120H69.05V61.05H85m2-2H67v63h20V59z" stroke-width="0"></path>
+            <path d="M30 68.5h56.5M30 77.34h56.5M30 112.7h56.5M30 95.02h56.5M30 86.18h56.5M30 103.86h56.5" fill="none" stroke-miterlimit="10" stroke-width="2"></path>
+          </svg>
+        </a>
+      </div>
+      <div class="da-attachment__details">
+        <h2 class="da-attachment__title">
+          <a download href="/public/downloads/MOCK-TDR-1301-template.xlsx" class="govuk-link da-attachment__link" tabindex="-1" aria-hidden="true">
+            Metadata template
+          </a>
+        </h2>
+        <p class="da-attachment__metadata">
+          <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet">XLSX</abbr></span>, <span class="da-attachment__attribute">16 records</span>
+        </p>
+        <p class="da-attachment__metadata da-attachment__metadata--compact">Includes pre-populated metadata that was extracted from your records.</p>
+        {# <p class="da-attachment__metadata">
+          Includes extracted metadata (file name, file path, last modified date) and column headers for additional metadata.
+        </p> #}
+      </div>
+    </section>
+    <h2 class="govuk-heading-m">Completing the template</h2>
+    <p class="govuk-body">The template has columns for additional and closed record metadata that we accept. It contains the following prepopulated columns with metadata extracted from your records:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>File name</li>
+      <li>File path</li>
+      <li>Date last modified</li>
+    </ul>
+    {{ govukWarningText({
+      html: "These columns must not be edited directly. There are additional columns for providing accurate date metadata.",
+      iconFallbackText: "Warning"
+    }) }}
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          A guide to completing the template 
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">The template opens in Microsoft Excel and contains columns with prepopulated metadata and empty columns for you to provide additional metadata.</p>
+        <p class="govuk-body">You will need to check metadata we have extracted and provide as much additional metadata about the records as possible.</p>
+        <ul class="govuk-list govuk-list--number">
+          <li>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Provide metadata about closed records</h3> 
+            <p>If you have closed records in your consignment you must provide metadata about those closed records in the columns provided.</p>
+          </li>
+          <li>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Check the <em>Date last modified</em> column</h3> 
+            <p>The date last modified was extracted from the records during upload. Check that the date represents the last meaningful change to the record. If you need to enter a different record date <strong>do not directly edit the <em>Date last modified</em> column</strong>. Instead use the <em>Date of the record</em> column.</p>
+            {# {{ govukWarningText({
+              html: "Do not edit the date last modified column.",
+              iconFallbackText: "Warning"
+            }) }} #}
+          </li>
+          <li>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Provide record descriptions</h3> 
+            <p>Whenever possible provide descriptive information about the record in the <em>Description</em> column. For example, if the file name is not descriptive.</p>
+          </li>
+          <li>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Provide additional metadata</h3> 
+            <p>The template also includes column headers for additional metadata, such as <em>Language</em> and <em>Former reference</em>.</p>
+          </li>
+          <li>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1">Export the template as a <abbr title="Comma Seperated Values">CSV</abbr></h3> 
+            <p>Once you have completed the template you will need to export a <abbr title="Comma Seperated Values">CSV</abbr> and upload it in the next step. You can do this within Excel following <a target="_blank" href="https://support.microsoft.com/en-gb/office/save-a-workbook-to-text-format-txt-or-csv-3e9a9d6c-70da-4255-aa28-fcacf1f081e6">guidance from Microsoft (opens in a new tab)</a>.</p>
+          </li>
+        </ul>
+        <p class="govuk-body">If you have metadata that doesn't fit into the available template columns contact <a href="mailto:tdr@nationalarchives.gov.uk" class="govuk-link">tdr@nationalarchives.gov.uk</a>.</p>
+
+      </div>
+    </details>
+    
+    {# <p class="govuk-body">You can leave and return to this transfer (MOCK-TDR-1301) from the <a class="govuk-link" href="">View Transfers</a> page at any time.</p> #}
+
+    <div class="da-alert da-alert--info da-alert--with-icon">
+      <div class="da-alert__icon">
+        <div aria-hidden="true" class="da-icon da-icon--m">
+          {{- daIcon({"iconType": 'exit'})-}}
+        </div>
+      </div>
+      <div class="da-alert__content">
+        <h3 class="da-alert__heading da-alert__heading--s">Leaving and returning to this transfer</h2>
+        <p class="govuk-body">You can leave this transfer and return to upload your metadata once you have completed your template.</p>
+        <p class="govuk-body">This in-progress transfer (<strong>MOCK-TDR-1301</strong>) is accessible from <a target="_blank" class="govuk-link" href="./transfers">View transfers (opens in a new tab)</a>.</p>
+      </div>
+    </div>
+
+    <div class="govuk-button-group">
+    {{ govukButton({
+      text: "Continue to upload metadata",
+      href: "./upload-csv"
+    }) }}
+    </div>
+
+    <p class="govuk-body">We stongly encourage you to add additional metadata to help us preserve your records. If you don't have any metadata you must declare this.</p>
+   <div class="govuk-button-group">
+    {{ govukButton({
+      text: "I don't need to enter any metadata",
+      href: "./i-dont-need-metadata",
+      classes: "govuk-button--secondary"
+    }) }}
+    </div>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <details open class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Consignment reference
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        MOCK-TDR-1301
+      </div>
+    </details>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Checking your metadata
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {# <span class="govuk-caption-l">Step 5 of 7</span> #}
+      <h1 class="govuk-heading-l">
+        Checking your metadata
+      </h1>
+
+      <p class="govuk-body">Please wait while we check your metadata.</p>
+      
+      <p class="govuk-body">The following checks are now being performed:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Checking your metadata matches the uploaded records</li>
+        <li>Checking there are no missing metadata columns</li>
+        <li>Checking the formatting of individual cells, for example, date formatting</li>
+
+      </ul>
+
+      <p class="govuk-body">This may take a few minutes. If your consignment has a large number of records it may take longer.</p>
+      
+      <div id="checks-banner" class="hidden">
+        <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+              Important
+            </h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+            <h3 class="govuk-notification-banner__heading">
+              Your metadata has been checked.
+            </h3>
+            <p class="govuk-body">Please click 'Continue' to see your results.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="govuk-button-group">
+        <a href="./metadata-results" id="next-step-btn" role="button" disabled="true" draggable="false" class="govuk-button"  data-module="govuk-button">
+          Continue
+        </a>
+      </div>
+
+    </div>
+     <div class="govuk-grid-column-one-third">
+    <details open class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Consignment reference
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        MOCK-TDR-1301
+      </div>
+    </details>
+  </div>
+</div>
+
+
+  <script type="text/javascript">
+    setTimeout(() => {
+      const banner = document.getElementById("checks-banner")
+      const button = document.getElementById("next-step-btn")
+      button.removeAttribute("disabled");
+      banner.classList.remove("hidden");
+    }, 5000);
+  </script>
+
+{% endblock %}

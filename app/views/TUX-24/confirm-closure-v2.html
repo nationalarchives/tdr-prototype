@@ -1,0 +1,100 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% block pageTitle %}
+  We found no closed record metadata
+{% endblock %}
+
+{% block beforeContent %}
+  {% if data.version == "3"%}
+  <a href="./download-metadata" class="govuk-back-link">Review metadata</a>
+  {% else %}
+  <a href="./csv-results" class="govuk-back-link">Results of your record checks</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        We found closed records in your metadata
+      </h1>
+
+      <p class="govuk-body">The metadata you provided contained information about closed records.</p>
+
+      {# {{ govukCheckboxes({
+        name: "confirmClosureStatus",
+        fieldset: {
+          legend: {
+            text: "Has this closure been agreed with the Advisory Council and/or The National Archives?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes, this closure has been agreed",
+            checked: true if data['confirmClosureStatus'] == true
+          }
+        ]
+      }) }}
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Continue",
+          href : ("./summary" if data.version == "3" else "./download-metadata")
+        }) }}
+      </div>
+      #}
+
+      <form method="post">
+        {{ govukRadios({
+          name: "confirmClosureStatus",
+          fieldset: {
+            legend: {
+              text: "Has this closure been agreed with the Advisory Council and/or The National Archives?",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "no-1",
+              text: "No"
+            },
+            {
+              value: ("summary" if data.version == "3" else "download-metadata"),
+              text: "Yes, this closure has been agreed"
+            }
+          ]
+        }) }}
+
+        {# <p class="govuk-body">If the answer is no, you cannot proceed and should contact <a href='mailto:tdr@nationalarchives.gov.uk'>tdr@nationalarchives.gov.uk</a> providing the consignment reference: <strong>MOCK-123-TDR</strong>.</p>
+
+        <p>You can return to this transfer at any time from the <a href='mailto:tdr@nationalarchives.gov.uk'>View transfers</a> page.</p> #}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        </div>
+      </form>
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+    </div>
+  </div>
+
+
+{% endblock %}

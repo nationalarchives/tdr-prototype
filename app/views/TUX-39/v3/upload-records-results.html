@@ -1,0 +1,99 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% block header %}
+  {% include "./inc-header.html" %}
+{% endblock %}
+
+{% macro taskListItem(name, href, status, hint, linkActive) %}
+  {% set safeName = name|replace("[^A-Za-z0-9 ]","")|replace(" ", "-")|lower %}
+  <li class="govuk-task-list__item govuk-task-list__item--with-link">
+    <div class="govuk-task-list__task-name-and-hint">
+      {% if linkActive %}
+      <a href="{{href}}"
+        {% if hint or status -%}
+        aria-describedby="{% if hint %}hint-{{safeName}}{%endif%} {% if status %}status-{{safeName}}{%endif%}"
+        {%- endif %}
+        class="govuk-link govuk-task-list__link">
+        {{name}}
+      </a>
+      {% else %}
+        <div>{{name}}</div>
+      {% endif %}
+      {% if hint %}
+      <div id="hint-{{safeName}}" class="govuk-task-list__task_hint">
+        {{hint}}
+      </div>
+      {% endif %}
+    </div>
+    {% if status %}
+    <div class="govuk-task-list__status" id="status-{{safeName}}">
+      {% if status == "Complete" or status == "Cannot start yet" %}
+        {{status}}
+      {% else %}
+      <strong class="govuk-tag {% if status == "Incomplete" %}govuk-tag--blue{%elseif status == 'There is a problem'%}govuk-tag--red{%endif%}">
+        {{status}}
+      </strong>
+      {% endif %}
+    </div>
+    {% endif %}
+  </li>
+{% endmacro %}
+
+{% block pageTitle %}
+  Results of your record checks
+{% endblock %}
+
+{% block beforeContent %}
+  {# <a href="./transfer-tasks" class="govuk-back-link">Consignment: MOCK-TDR-1294</a> #}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {# <span class="govuk-caption-l">Upload records</span> #}
+      <h1 class="govuk-heading-l">
+        Results of your record checks
+      </h1>
+      <p class="govuk-body">Your records have been successfully uploaded.</p>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {  text: "Status" },
+            value: { html: "<strong class=\"govuk-tag govuk-tag--blue\">Uploaded</strong>" }
+          },
+          {
+            key: {  text: "Records uploaded" },
+            value: { text: "16" }
+          },
+          {
+            key: {  text: "Errors" },
+            value: { text: "0" }
+          }
+        ]
+      }) }}
+
+      <div class="govuk-button-group">
+        <a href="./record-metadata" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+          Continue
+        </a>
+      </div>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details open class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-TDR-1301
+        </div>
+      </details>
+    </div>
+  </div>
+
+{% endblock %}

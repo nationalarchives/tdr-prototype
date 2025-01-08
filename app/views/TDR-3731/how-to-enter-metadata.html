@@ -1,0 +1,74 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  How would you like to enter record metadata?
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./upload-records-results" class="govuk-back-link">Results of your record checks</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <form class="form" action="/TDR-3731/metadata-route" method="post">
+      {{ govukRadios({
+        name: "metadata-route",
+        fieldset: {
+          legend: {
+            text: "How would you like to enter record metadata?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: ""
+        },
+        items: [
+          {
+            value: "website",
+            text: "Select records and add metadata",
+            hint: {
+              text: "Better for small amounts of metadata"
+            }
+          },
+          {
+            value: "csv",
+            text: "Add metadata to a CSV and upload",
+            hint: {
+              text: "Better for large amounts of metadata"
+            }
+          },
+          {
+            value: "none",
+            text: "I don't have any metadata",
+            hint: {
+              text: ""
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Consignment reference
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        MOCK-123-TDR
+      </div>
+    </details>
+  </div>
+</div>
+
+{% endblock %}

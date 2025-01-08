@@ -210,6 +210,82 @@ router.post('/judgments/*/tell-us-more-v6', function(request, response) {
   }
 })
 
+router.post('/TUX-106/*/transfer-tasks-series', (req, res, next) => {
+  if(req.session.data['csv-upload-status'] == "success"){
+    const redirectTo = req.session.data['redirect-to'];
+    delete req.session.data['redirect-to'];
+    res.redirect(redirectTo);
+  } else {
+    res.redirect('/TUX-106/1-metadata-upload/transfer-tasks');
+  }
+})
+
+router.post('/*/transfer-tasks', (req, res, next) => {
+
+  const fieldChecks = req.body['prepare-records-complete'];
+
+  let fieldComplete = false;
+  const possibleFields = ['prepare-records-complete'];
+  possibleFields.forEach(fieldName => {
+    if(req.body[fieldName] !== undefined){
+      fieldComplete = req.body[fieldName] == 'yes';
+    }
+  })
+
+  if(req.session.data['redirect-to'] ){
+
+    if (fieldComplete === true) {
+      const redirectTo = req.session.data['redirect-to'];
+      delete req.session.data['redirect-to'];
+      res.redirect(redirectTo);
+    } else {
+      res.render(req.path)
+    }
+  } else {
+    res.render(req.path)
+  }
+})
+
+
+/*
+ * When confirm closure has a radio button that redirects user to
+ * an info page if they select 'no' which provides further info
+ */
+router.post(
+  "/:ticketId/confirm-closure-v2",
+  function(req, res){
+    if(req.session.data["confirmClosureStatus"] == "no-1"){
+      res.redirect(`/${req.params.ticketId}/confirm-closure-no-1`)
+    } else if(req.session.data["confirmClosureStatus"] == "no-2"){
+      res.redirect(`/${req.params.ticketId}/confirm-closure-no-2`);
+    } else {
+      res.redirect(`/${req.params.ticketId}/${req.session.data["confirmClosureStatus"]}`);
+    }
+  })
+
+router.get(
+  "/:ticketId/has-closed-records",
+  function(req, res){
+
+    // req.session.data[req.params.ticketId] = req.session.data[req.params.ticketId] || [];
+    req.session.data['hasClosedRecords'] = req.session.data["has-closed-records"] == "true"
+
+    res.redirect(`/${req.params.ticketId}/upload-checks`)
+  })
+
+router.post(
+  "/:ticketId/metadata-route",
+  function(req, res){
+
+    const route = req.session.data['metadata-route']
+    if(["TUX-53", "TUX-39"].includes(req.params.ticketId) || route == "csv"){
+      res.redirect(`/${req.params.ticketId}/download-template`)
+    } else if (route == "csv"){
+      res.redirect(`/${req.params.ticketId}/upload-csv`)
+    }
+
+})
+
 router.get(
   "/metadata/descriptive-metadata/confirm-delete-metadata",
   function (req, res) {

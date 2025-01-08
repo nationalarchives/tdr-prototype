@@ -1,0 +1,35 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Download and review metadata
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Step 6 of 7</span>
+      <h1 class="govuk-heading-l">Download and review metadata</h1>
+      {% include "../banner-leave-return.html" %}
+
+      <p class="govuk-body">You can review the metadata added to your records by downloading the CSV file. If you would like to add or amend the metadata, return to the previous step.</p>
+      <button class="govuk-button govuk-!-margin-bottom-8" data-module="govuk-button">
+        <span aria-hidden="true" class="tna-button-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 21">
+            <path fill="#fff" d="M15.96 21V2.52h-1.68v16.8H2.52V21h13.44Z"/>
+            <path fill="#fff" d="M0 0h13.44v18.48H0z"/>
+          </svg>
+        </span>Download metadata CSV</button>
+      <br>
+      <div class="govuk-button-group">
+        <a href="./csv-results" role="button" draggable="false" class="govuk-button govuk-button--secondary"  data-module="govuk-button">
+          Back
+        </a>
+        <a href="./summary.html" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+          Next
+        </a>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
