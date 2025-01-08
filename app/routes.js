@@ -136,6 +136,79 @@ const populateWithClosureData = (req, res) => {
 };
 
 // Add your routes here
+router.post('/judgments/*/is-original-v2.1-2.3', function(request, response) {
+
+  var isOriginal = request.session.data['isOriginalJudgment'] == "yes"
+  if (isOriginal == true){
+    response.redirect("upload")
+  } else {
+    response.redirect("tell-us-more")
+  }
+})
+
+router.post('/judgments/*/is-original-v2.2-2.4', function(request, response) {
+
+  var isOriginal = request.session.data['isOriginalJudgment'] == "yes"
+  if (isOriginal == true){
+    response.redirect("before-uploading")
+  } else {
+    response.redirect("tell-us-more")
+  }
+})
+
+router.post('/judgments/*/tell-us-more', function(request, response) {
+
+  var documentType = request.session.data['documentType'];
+  if (documentType == "something-else"){
+    response.redirect("something-else");
+  } else if (documentType == "press-summary"){
+    response.redirect("provide-neutral-citation")
+  } else if (documentType == "update"){
+    response.redirect("what-has-changed")
+  }
+  
+})
+
+router.post('/judgments/*/tell-us-more-v4', function(request, response) {
+  var documentType = request.session.data['documentType'];
+  if (["original", 'update'].indexOf(documentType) >= 0){
+    response.redirect("before-uploading");
+  } else  if (documentType == "something-else"){
+    response.redirect("something-else");
+  } else if (documentType == "press-summary"){
+    response.redirect("upload")
+  }
+})
+
+router.post('/judgments/*/tell-us-more-v5', function(request, response) {
+  var documentType = request.session.data['documentType'];
+  if (["original", "update", "press-summary"].indexOf(documentType) >= 0){
+    response.redirect("provide-neutral-citation");
+  } else if (documentType == "something-else"){
+    response.redirect("something-else");
+  }
+})
+router.post('/judgments/*/tell-us-more-v6', function(request, response) {
+  var documentType = request.session.data['documentType'];
+  if (["update", "press-summary"].indexOf(documentType) >= 0){
+    response.redirect("provide-neutral-citation");
+  } else if (documentType == "original"){
+    response.redirect("before-uploading");
+  }
+})
+
+router.post('/judgments/*/tell-us-more-v6', function(request, response) {
+  var documentType = request.session.data['documentType'];
+  if (documentType == "original"){
+    response.redirect("upload");
+  } else if (documentType == "update"){
+    response.redirect("provide-neutral-citation");
+  } else if (documentType == "press-summary"){
+    response.redirect("provide-neutral-citation");
+  } else if (documentType == "something-else"){
+    response.redirect("something-else");
+  }
+})
 
 router.get(
   "/metadata/descriptive-metadata/confirm-delete-metadata",

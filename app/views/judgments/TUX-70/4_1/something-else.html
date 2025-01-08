@@ -1,0 +1,48 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  We can't accept this document
+{% endblock %}
+
+{% block header %}
+  {% include "layouts/inc-header-no-view-transfer.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./tell-us-more" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        We can't accept this document
+      </h1>
+
+      <p class="govuk-body">This service only accepts judgments and press summaries. </p>
+      
+      <p class="govuk-body">If you have any further questions contact  <a href="mailto:judgments@nationalarchives.gov.uk">judgments@nationalarchives.gov.uk</a>.</p>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" open="" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Transfer reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+      
+      <h4 class="govuk-heading-s">Problems with your transfer?</h4>
+      <p class="govuk-body">Email us and include the transfer reference:
+        <a href="mailto:tdr@nationalarchives.gov.uk" class="govuk-link">tdr@nationalarchives.gov.uk</a>
+      </p>
+    </div>
+  </div>
+
+{% endblock %}

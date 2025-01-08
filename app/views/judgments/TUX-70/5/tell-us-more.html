@@ -1,0 +1,95 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Tell us more about this document
+{% endblock %}
+
+{% block header %}
+  {% include "layouts/inc-header-no-view-transfer.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="home" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set updateHtml %}
+        {{ govukTextarea({
+          label: {
+            text: "Provide a short description of what has changed",
+            classes: "govuk-label--s",
+            isPageHeading: true
+          },
+          hint: {
+            html: 'Describe what has changed in the document, for example, tell us which paragraph number has been changed.'
+          },
+          id: "what-has-changed",
+          name: "whatHasChanged"
+        }) }}
+      {% endset -%}
+
+      <form action="tell-us-more-v6" method="post">
+        {{ govukRadios({
+          name: "documentType",
+          fieldset: {
+            legend: {
+              text: "Tell us about your document",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            }
+          },
+          hint: {
+            html: "This will help us to collect the right information from you about the transfer."
+          },
+          items: [
+            {
+              value: "original",
+              text: "It's a judgment being transferred for the first time"
+            },
+            {
+              value: "update",
+              text: "It's an update to a judgment",
+              conditional: {
+                html: updateHtml
+              }
+            },
+            {
+              value: "press-summary",
+              text: "It's a press summary related to a judgment"
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue",
+            href: ""
+          }) }}
+        </div>
+      
+      </form>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" open="" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Transfer reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+      
+      <h4 class="govuk-heading-s">Problems with your transfer?</h4>
+      <p class="govuk-body">Email us and include the transfer reference:
+        <a href="mailto:tdr@nationalarchives.gov.uk" class="govuk-link">tdr@nationalarchives.gov.uk</a>
+      </p>
+    </div>
+  </div>
+
+{% endblock %}

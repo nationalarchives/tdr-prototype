@@ -1,0 +1,399 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% block header %}
+  {% include "layouts/inc-header-no-sign-out.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  TUX-70 Index
+{% endblock %}
+
+{% block beforeContent %}
+  {# <a href="./transfer-tasks" class="govuk-back-link">Consignment: MOCK-TDR-1294</a> #}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <span class="govuk-caption-xl">Testing Index</span>
+      <h1 class="govuk-heading-xl">TUX-70 - Judgment User - User should declare if transfer is an amendment or press summary</h1>
+  
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    
+      <h2 class="govuk-heading-l">Context and Goal</h2>
+
+      <p class="govuk-body">There are a significant number of judgment users who are trying to transfer documents that we accept but are not <em>original judgments</em>. These include:</p>
+      <ul class="govuk-list govuk-list--number">
+        <li>Updates to judgments</li>
+        <li>Press summaries</li>
+        <li>Other documents, such as court orders or sentencing remarks</li>
+      </ul>
+
+      <p class="govuk-body">We are willing accept types 1 and 2 from the list above (and they are currently sent through TDR), but it is necessary for the user to tell us what type of document they are transferring. This helps the editors to know how to act.</p>
+
+      <p class="govuk-body">If it is type 3 (any other document) it should not go through TDR but can be emailed.</p>
+
+    </div>
+  </div>
+  {# <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+    
+      <h2 class="govuk-heading-l govuk-!-margin-top-4">User journey</h2>
+      <a target="_blank" href="/public/images/TUX-70 - Judgments - User should declare if transfer is an amendment or press summary - Page 1 Proposed journey 4.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/TUX-70 - Judgments - User should declare if transfer is an amendment or press summary - Page 1 Proposed journey 4.png" /></a>
+
+    </div>
+  </div>     #}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    
+      <h2 class="govuk-heading-l">Considerations for design</h2>
+
+      <p class="govuk-body">We do not want to disrupt the journey for the majority of users who are trying to transfer an judgment for the first.</p>
+      <p class="govuk-body">However, we need to offer a clear route for those users who have updates and press summaries to branch off into a more complex journey.</p>
+
+      <p class="govuk-body">There will be a question and form input that will branch users away from the most common journey. This question is complex, from a content design perspective, and can be presented in various ways. We need to test the copy/content for this. See <a href="#journey-branch-1">1 Branching question - Content design</a> below.</p>
+
+      <h2 class="govuk-heading-l">Versions</h2>
+
+      <h3 id="journey-branch-1" class="govuk-heading-m">1. Branching question - Content design</h3>
+      
+      <h4 class="govuk-heading-s">Context</h4>
+
+      <p class="govuk-body">The designs below are different formulations of the question and form input that will branch a user away from the most common journey toward a more complex set of questions. We should to test the copy/content for this.</a>
+
+      <p class="govuk-body">This element may be on the <a href="../before-uploading" target="_blank">existing 'Before uploading page'</a> or presented on a separate, new page with no other content. </p>
+      
+      <p class="govuk-body">In this first instance the versions only contain the question, no other design elements.</p>
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {{ govukTable({
+        caption: "Versions",
+        captionClasses: "govuk-table__caption--s",
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: ""
+          },
+          {
+            text: ""
+          },
+          {
+            text: ""
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "v1.1"
+            },
+            {
+              text: "Is this a document an update to a judgment you transferred previously, a press summary, or any other document related to a judgment?"
+            },
+            {
+              html: "<a target='_blank' href='./1_1/'>View page</a>"
+            }
+          ],
+          [
+            {
+              text: "v1.2"
+            },
+            {
+              text: "Is this document a judgment being transferred for the first time?"
+            },
+            {
+              html: "<a target='_blank' href='./1_2/'>View page</a>"
+            }
+          ]
+        ]
+      }) }}
+
+    </div>
+  </div>
+  
+  <h3 id="journey-branch-2" class="govuk-heading-m govuk-!-margin-top-6">2. Branching question - Combined or separate page</h3>
+  
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {# <h4 class="govuk-heading-s">Context</h4> #}
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      
+      {{ govukTable({
+        caption: "Versions",
+        captionClasses: "govuk-table__caption--s",
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: ""
+          },
+          {
+            text: ""
+          },
+          {
+            text: ""
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "Preferred v1.1",
+              colspan: 3,
+              classes: "govuk-table__header--rowbreak"
+            }
+          ],
+          [
+            {
+              text: "v2.1"
+            },
+            {
+              html: "Combines the journey branch question (v1.1) onto the Before you upload page."
+            },
+            {
+              html: "<a target='_blank' href='./2_1/home'>View page</a>"
+            }
+          ],
+          [
+            {
+              text: "v2.2"
+            },
+            {
+              html: "A separate page for the journey branch question (v1.1)</a>."
+            },
+            {
+              html: "<a target='_blank' href='./2_2/home'>View page</a>"
+            }
+          ],
+          [
+            {
+            
+              text: "Preferred v1.2",
+              colspan: 3,
+              classes: "govuk-table__header--rowbreak"
+            }
+          ],
+          [
+            {
+              text: "v2.3"
+            },
+            {
+              html: "Combines the journey branch question (v1.2) onto the Before you upload page."            },
+            {
+              html: "<a target='_blank' href='./2_3/home'>View page</a>"
+            }
+          ],
+          [
+            {
+              text: "v2.4"
+            },
+            {
+              html: "A separate page for the journey branch question (v1.2)</a>."
+            },
+            {
+              html: "<a target='_blank' href='./2_4/home'>View page</a>"
+            }
+          ]
+        ]
+      }) }}
+      <h4 class="govuk-heading-s">User journey</h4>
+
+      <div style="display: flex;gap:20px; width: 100%;">
+        <a style="flex-grow: 1; display: block;"  target="_blank" href="/public/images/journey-f.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/journey-f.png" /></a>
+        <div style="flex-shrink: 0;width:300px"> 
+          <p class="govuk-body">This version (2.1 & 2.3) reduces the number of pages by making the branching question available only from the existing 'Before you upload' page.</p>
+          <a target="_blank" href="https://lucid.app/lucidspark/bc9b81c3-7af0-4cc4-92aa-cd1d628ca5e4/edit?view_items=ZO67m1yt-w23&invitationId=inv_c4979422-0a2b-4def-92ec-cbc0ccf18e9e" class="govuk-link">Full map in Lucid</a>
+        </div>
+      </div>
+       
+      <div style="display: flex;gap:20px; width: 100%;">
+        <a style="flex-grow: 1; display: block;"  target="_blank" href="/public/images/journey-g.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/journey-g.png" /></a>
+        <div style="flex-shrink: 0; width:300px">
+          <p class="govuk-body">This version (2.2 & 2.4) separates the branching question page. 'Before you upload' page is positioned after this.</p>
+          <a target="_blank" href="https://lucid.app/lucidspark/bc9b81c3-7af0-4cc4-92aa-cd1d628ca5e4/edit?view_items=gR67qdasBqeg&invitationId=inv_c4979422-0a2b-4def-92ec-cbc0ccf18e9e" class="govuk-link">Full map in Lucid</a>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h3 id="journey-branch-3" class="govuk-heading-m govuk-!-margin-top-8">3. Full journey following 'one-thing-per-page' approach</h3>
+
+      <h4 class="govuk-heading-s">Context</h4>
+      <p class="govuk-body">Version 3 is the full journey with the shorted question and separated question/triage page.</p>
+
+      {{ govukTable({
+        caption: "Versions",
+        captionClasses: "govuk-table__caption--s",
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: ""
+          },
+          {
+            text: ""
+          },
+          {
+            text: ""
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "v3"
+            },
+            {
+              html: "Full journey starting from v2.4 (i.e. shorter branching question and separate page)."
+            },
+            {
+              html: "<a target='_blank' href='./3/home'>View page</a>"
+            }
+          ]
+        ]
+      }) }}
+      <h4 class="govuk-heading-s">User journey</h4>
+
+      <div style="display: flex;gap:20px; width: 100%;">
+        <a style="flex-grow: 1; display: block;"  target="_blank" href="/public/images/journey-g.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/journey-g.png" /></a>
+        <div style="flex-shrink: 0;width:300px"> 
+          <p class="govuk-body">Version 3 consists of the full journey but starts from v2.4, i.e. it uses the shorter branching question and a separate triaging page.</p>
+          <a target="_blank" href="https://lucid.app/lucidspark/bc9b81c3-7af0-4cc4-92aa-cd1d628ca5e4/edit?view_items=gR67qdasBqeg&invitationId=inv_c4979422-0a2b-4def-92ec-cbc0ccf18e9e" class="govuk-link">Full map in Lucid</a>
+        </div>
+      </div>
+
+
+      <h3 id="journey-branch-3" class="govuk-heading-m govuk-!-margin-top-8">4. Full journey combining more of the data collection</h3>
+
+      <h4 class="govuk-heading-s">Context</h4>
+      <p class="govuk-body">Version 4 reduces the amount of new pages and puts more emphasis on the decision-making and data collection happening in one place.</p>
+
+      {{ govukTable({
+        caption: "Versions",
+        captionClasses: "govuk-table__caption--s",
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: ""
+          },
+          {
+            text: ""
+          },
+          {
+            text: ""
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "v4.1"
+            },
+            {
+              html: "All form inputs on the triage page inside conditional radio buttons"
+            },
+            {
+              html: "<a target='_blank' href='./4_1/home'>View page</a>"
+            }
+          ],
+          [
+            {
+              text: "v4.2"
+            },
+            {
+              html: "NCN on a separate page and 'what has changed' field on the triage page"
+            },
+            {
+              html: "<a target='_blank' href='./4_2/home'>View page</a>"
+            }
+          ],
+          [
+            {
+              text: "v4.3"
+            },
+            {
+              html: "Same as 4.2, except that it includes a 'Check your answers' page when selecting 'update' or 'press summary'. Also, selecting 'original judgment' no longer asks for an NCN."
+            },
+            {
+              html: "<a target='_blank' href='./4_3/home'>View page</a>"
+            }
+          ]
+        ]
+      }) }}
+      <h4 class="govuk-heading-s">User journey</h4>
+
+      <div style="display: flex;gap:20px; width: 100%;">
+        <a style="flex-grow: 1; display: block;"  target="_blank" href="/public/images/journey-h.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/journey-h.png" /></a>
+        <div style="flex-shrink: 0;width:300px"> 
+          <p class="govuk-body">Version 4.1 includes all the branching triage/questions in one page with all form inputs within the conditional radio buttons.</p>
+          <a target="_blank" href="https://lucid.app/lucidspark/bc9b81c3-7af0-4cc4-92aa-cd1d628ca5e4/edit?view_items=8H67T2GHKI9E&invitationId=inv_c4979422-0a2b-4def-92ec-cbc0ccf18e9e" class="govuk-link">Full map in Lucid</a>
+        </div>
+      </div>
+      <div style="display: flex;gap:20px; width: 100%;">
+        <a style="flex-grow: 1; display: block;"  target="_blank" href="/public/images/journey-i.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/journey-i.png" /></a>
+        <div style="flex-shrink: 0;width:300px"> 
+          <p class="govuk-body">Version 4.2 includes all branching triage/questions in one page <em>but</em> only one form input in the conditional radio buttons. There is a separate page for collecting the NCN.</p>
+          <a target="_blank" href="https://lucid.app/lucidspark/bc9b81c3-7af0-4cc4-92aa-cd1d628ca5e4/edit?view_items=AN67tB6qxAca&invitationId=inv_c4979422-0a2b-4def-92ec-cbc0ccf18e9e" class="govuk-link">Full map in Lucid</a>
+        </div>
+      </div>
+      <hr>
+      <h3 id="journey-branch-3" class="govuk-heading-m govuk-!-margin-top-8">5. Design round 2 - Dec 2024 - Amending based on user research insights</h3>
+      <ul class="govuk-list govuk-list--number">
+        <li>List all options on the screen (1st time judgment, update to a judgment and press summary) and do not add an extra step asking is this a first time judgment</li>
+        <li>Ask users to select first what their document is, and if they select ‘It's a press summary related to a judgment' they should not see the page ‘Before you upload a judgment’</li>
+        <li>Remove the option to select ‘It's something else related to a judgment’ when asking users to tell us more about their document as it might give the impression it is something we are allowing</li>
+        <li>When a user selects the option 'it's an update to a judgment', provide them the opportunity to enter a description in a text box under</li>
+        <li>We should tell the users to describe what has changed and where in the judgment (paragraph number) the change is</li>
+        <li>When a user selects ‘It's a press summary related to a judgment’ or 'it's an update to a judgment',they should enter the NCN on the next page</li>
+        <li>Park the design idea where users can check their answers as it isn’t clear how useful it is for users. Potentially re-ask during another round of user testing</li>
+        <li>Do not ask users to enter the NCN when they transfer a first time judgment</li>
+        <li>However, when users need to enter the NCN (update to a judgment or press summary), use the content that appears in version 3: 'A unique NCN is required to register a judgment or decision. If this is a document related to a judgment (e.g. a press summary) provide the NCN for the related judgment.</li>
+      </ul>
+
+      {{ govukTable({
+        caption: "Versions",
+        captionClasses: "govuk-table__caption--s",
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: ""
+          },
+          {
+            text: ""
+          },
+          {
+            text: ""
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "v5"
+            },
+            {
+              html: "This extends from the journey in v4.2 and incorporates the feedback from user research."
+            },
+            {
+              html: "<a target='_blank' href='./5/home'>View page</a>"
+            }
+          ]
+        ]
+      }) }}
+
+      <div style="display: flex;gap:20px; width: 100%;">
+        <a style="flex-grow: 1; display: block;"  target="_blank" href="/public/images/journey-j.png"><img class="govuk-!-margin-bottom-6"  style="width: 100%" src="/public/images/journey-j.png" /></a>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
