@@ -1,0 +1,1289 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "macros/icon.njk" import daIcon %}
+
+{% block pageTitle %}
+  Metadata entry guidance - MOCK-TDR-1294 - Transfer Digital Records
+{% endblock %}
+
+{# {% block beforeContent %}
+  <a href="./transfer-tasks" class="govuk-back-link">Back to Consignment</a>
+{% endblock %} #}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Metadata guidance</h1>
+
+      <h2 class="da-contents-list__title">
+        Contents
+      </h2>
+      <nav class="da-contents-list govuk-!-margin-bottom-8">
+        <ol class="da-contents-list__list">
+          <li class="da-contents-list__list-item da-contents-list__list-item--parent">
+            <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#creating-a-metadata-spreadsheet">Creating a metadata spreadsheet</a>
+            <ol class="da-contents-list__nested-list">
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#starting-with-the-template">
+                  Starting with the generated template</a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#starting-with-your-own">
+                  Starting with your own spreadsheet</a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#required-fields">
+                  <span aria-hidden="true"></span>
+                  Required columns
+                </a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#export-the-template-csv">
+                  <span aria-hidden="true"></span>
+                  Save from Excel in CSV UTF-8 format
+                </a>
+              </li>
+            </ol>
+          </li>
+          <li class="da-contents-list__list-item da-contents-list__list-item--parent">
+            <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#metadata-provided-in-template">Metadata provided in the template</a>
+            <ol class="da-contents-list__nested-list da-contents-list__list-item--numbered">
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#metadata-we-extract-from-your-records">
+                  Columns with metadata extracted from your records</a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#columns-with-default-values">Columns with default values</a>
+              </li>
+            </ol>
+          </li>
+          <li class="da-contents-list__list-item da-contents-list__list-item--parent">
+            <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#completing-the-spreadsheet">Step-by-step guidance for completing the spreadsheet</a>
+            <ol class="da-contents-list__nested-list da-contents-list__list-item--numbered">
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#check-date-last-modified">
+                  <span class="da-contents-list__number">1. </span>
+                  <span class="da-contents-list__numbered-text">Check the <em>date last modified</em> column</span>
+                </a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#provide-metadata-about-closed-records">
+                  <span class="da-contents-list__number">2. </span>
+                  <span class="da-contents-list__numbered-text">Provide metadata about closed records</span>
+                </a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#provide-record-descriptions">
+                  <span class="da-contents-list__number">3. </span>
+                  <span class="da-contents-list__numbered-text">Provide record descriptions</span>
+                </a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#change-the-record-language">
+                  <span class="da-contents-list__number">4. </span>
+                  <span class="da-contents-list__numbered-text">Provide metadata in the other available columns</span>
+                </a>
+              </li>
+            </ol>
+          </li>
+          <li class="da-contents-list__list-item da-contents-list__list-item--parent">
+            <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#metadata-that-doesnt-fit">Metadata that doesn't fit into the available column heading</a>
+          </li>
+          <li class="da-contents-list__list-item da-contents-list__list-item--parent">
+            <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details">All column headings</a>
+            <ol class="da-contents-list__nested-list da-contents-list__list-item--numbered">
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details-uuid">uuid</a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details-filepath">filepath</a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details-filename">filename</a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details-dlm">date last modified</a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details-dateoftherecord">date of the record</a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details-description">description</a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details-formerref">former reference</a>
+              </li>              
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details-closurestatus">closure status</a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details-closureperiod">closure period</a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details-foiexemptioncode">foi exemption code</a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details-foidecisionasserted">foi schedule date</a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details-isfilenamesensitive">is filename closed</a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details-altfilename">alternative filename</a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details-isdescriptionsensitive">is description closed</a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details-altdescription">alternative description</a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details-language">language</a>
+              </li>
+              <li class="da-contents-list__list-item da-contents-list__list-item--dashed">
+                <span aria-hidden="true"></span>
+                <a class="da-contents-list__link govuk-link govuk-link--no-underline" href="#column-details-translatedtitle">translated filename</a>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </nav>
+
+      <p class="govuk-body">As part of a digital transfer to The National Archives your consignment of records must be transferred with metadata to assist preservation and make your records easier to find on Discovery, The National Archives' public catalogue.</p>
+
+
+      <h2 class="govuk-heading-l" id="creating-a-metadata-spreadsheet">Creating a metadata spreadsheet</h2>
+
+      
+      <p class="govuk-body">You provide metadata for each record by uploading a spreadsheet containing specific columns. You can start from the template generated by Transfer Digital Records or you can create your own spreadsheet that includes the required column headings and rows.</p>
+
+      <h3 class="govuk-heading-m" id="starting-with-the-template">Starting with the generated template</h3>
+      <p class="govuk-body">Transfer Digital Records generates a template containing a row for each uploaded record. Some columns contain pre-populated metadata, which were <a class="govuk-link" href="#metadata-we-extract-from-your-records">extracted from your records</a> or <a class="govuk-link" href="#columns-with-default-values">set by default</a>. </p>
+            
+      <p class="govuk-body">The template will be generated after you have uploaded your records.</p>
+      
+      <h3 class="govuk-heading-m" id="starting-with-your-own">Starting with your own spreadsheet</h3>
+
+      <p class="govuk-body">If you have an existing metadata spreadsheet, or can create one, you can use this to provide metadata for your records. The spreadsheet must contain a row for every record and include the <a class="govuk-link" href="#required-fields">required column headings</a>. Any extra column headers will be ignored.</p>
+      
+      <p class="govuk-body">The pre-populated columns in the template containing <a class="govuk-link" href="#metadata-we-extract-from-your-records">metadata extracted from you records</a> should be exactly the same in your spreadsheet.</p>
+      
+      <p class="govuk-body">You will still need to download the template to check the <em>date last modified</em> values extracted from your records are accurate.</p>
+
+      <h3 class="govuk-heading-m" id="required-fields">Required columns</h3>
+
+      <p>In order for us to process your metadata spreadsheet all the following column headers must be included:</p> 
+      <ul class="govuk-list govuk-list--bullet">
+        <li>uuid</li>
+        <li>filepath</li> 
+        <li>date of the record</li>
+        <li>description</li>
+        <li>former reference</li>
+        <li>closure status</li>
+        <li>closure period</li>
+        <li>foi exemption code</li>
+        <li>foi schedule date</li>
+        <li>is filename closed</li>
+        <li>alternative filename</li>
+        <li>is description closed</li>
+        <li>alternative description</li>
+        <li>language</li>
+        <li>translated filename</li>
+      </ul> 
+
+      <p>The values in the following columns must be identical to the generated template:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>filepath</li> 
+        <li>uuid</li>
+      </ul>
+
+      <p>The following column must have a value for every record:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>language</li>
+        <li>closure status</li>
+        <li>is filename closed</li>
+        <li>is description closed</li>
+      </ul>
+
+      <p>If a record is closed, the following columns must have a value for every record:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>closure period</li>
+        <li>foi exemption code</li>
+        <li>foi schedule date</li>
+      </ul> 
+
+
+{# 
+     <p>The following column headers must be included, but values are not required for every row:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>date of the record</li>
+        <li>description</li>
+        <li>former reference</li>
+        <li>language</li>
+        <li>translated filename of record</li>
+        <li>closure status</li>
+        <li>closure period</li>
+        <li>foi exemption code</li>
+        <li>foi schedule date</li>
+        <li>alternative filename</li>
+        <li>alternative description</li>
+      </ul>  #}
+
+      <p class="govuk-body">Find details of <a href="#column-details" class="govuk-link">the accepted formats for each column headings</a>.</p>
+
+      <h3 id="export-the-template-csv" class="govuk-heading-m">Save from Excel in CSV UTF-8 format</h3> 
+
+      <p class="govuk-body">Once you have finished adding metadata to your spreadsheet you must save from Excel in <abbr title="Comma Separated Values">CSV</abbr> UTF-8 format before uploading.</p>
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Why does the CSV need to be in UTF-8 format?
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p class="govuk-body">Saving a CSV file in UTF-8 encoding ensures the accurate representation of a wide range of characters, including accented letters, special symbols, and characters from different languages.
+          </p>
+        </div>
+      </details>
+
+      <p class="govuk-body">We recommend that you follow these steps: </p>
+      
+      <ol class="govuk-list govuk-list--number">
+        <li>Ensure that the spreadsheet is open in the Excel desktop app, not the browser.</li>
+        <li>With the metadata sheet active select 'File', then 'Save a copy'.</li>
+        <li>From the dropdown select 'CSV UTF-8 (Comma delimited) (*.csv)' and save.</li>
+      </ol>
+
+      
+      <p class="govuk-body">
+        <img style="max-width: 100%; height: auto" src="/public/images/saveas-csvutf8.png" />
+        <span class="govuk-hint"><a target="blank" href="/public/images/saveas-csvutf8.png">Open larger version of image in new tab</a></span>
+      </p>
+      <h2 id="metadata-provided-in-template" class="govuk-heading-l">Metadata provided in the template</h2>
+
+      <h3 class="govuk-heading-m" id="metadata-we-extract-from-your-records">Columns with metadata extracted from your records</h3>
+      
+      <p class="govuk-body">The template will contain the following columns with pre-populated metadata extrated from your records during upload:</p>
+      
+      <ul class="govuk-list govuk-list--bullet">
+        <li>filepath</li>
+        <li>filename</li>
+        <li>date last modified</li>
+        <li>UUID</li>
+      </ul>
+
+      {{ govukWarningText({
+        html: "These pre-populated columns must not be edited",
+        iconFallbackText: "Warning"
+      }) }}
+      
+      <p class="govuk-body">If the <em>date last modified</em> field is not accurate you can use the <a href='#column-details-dateoftherecord' class="govuk-link"><em>date of the record</em> column</a> to provide a more accurate date.</p>
+      
+      {# <p class="govuk-body">The template will also contain a <em>UUID</em> column, generated by Transfer Digital Records. <strong>This must not be edited</strong>.</p> #}
+
+      <h3 id="columns-with-default-values" class="govuk-heading-m">Columns with default values</h3>
+      <p class="govuk-body">The template will contain some columns with default pre-populated values.</p>
+
+      {{ govukTable({
+        caption: "",
+        captionClasses: "govuk-table__caption--m",
+        firstCellIsHeader: false,
+        head: [
+          {
+            text: "Column name"
+          },
+          {
+            text: "Default in template"
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "language"
+            },
+            {
+              html: "<pre style='margin:0'>English</pre>"
+            }
+          ],
+          [
+            {
+              text: "closure status"
+            },
+            {
+              html: "<pre style='margin:0'>Open</pre>"
+            }
+          ]
+        ]
+      }) }}
+       
+      <p class="govuk-body">These columns can be edited directly.</p>
+      <p class="govuk-body">Find the values we accept for these columns in the <a href="#column-details" class="govuk-link">details of all column headings</a>.</p>
+
+      <h2 id="completing-the-spreadsheet" class="govuk-heading-l">Step-by-step guidance for completing the spreadsheet</h2>
+      {# <p class="govuk-body">If you're using the template, open it in Microsoft Excel. It contains columns with pre-populated metadata and empty columns for you to provide metadata.</p> #}
+
+      {# <p class="govuk-body">If you are using the template, you must check and amend the pre-populated metadata.</p>
+      <p class="govuk-body">If you're completing the template or using your own spreadsheet, you must provide closed record metadata and any additional metadata for each record.</p> #}
+      
+      <p class="govuk-body">Below is a step-by-step guide to completing the template or your own spreadsheet.</p>
+
+      <h3 id="check-date-last-modified" class="govuk-heading-m">1. Check the <em>date last modified</em> column</h3> 
+
+      <p class="govuk-body">The <em>date last modified</em> column in the template is pre-populated with values extracted from the records during upload. Check that the date represents the last meaningful change to the record.</p>
+
+      {{ govukWarningText({
+        html: "The <em>date last modified</em> column must not be edited directly.",
+        iconFallbackText: "Warning"
+      }) }}
+
+      <p class="govuk-body">If you need to enter a more accurate date use the <em>date of the record</em> column in the format YYYY-MM-DD.</p>
+      <p class="govuk-body">If you're creating and populating your own spreadsheet you don't need to include the <em>date last modified</em> column but you must check that the extracted dates in the template are accurate. If they are not, use the <em>date of the record</em> column to enter a more accurate date.</p>
+      {# <div class="da-alert da-alert--info govuk-!-margin-top-4 govuk-!-margin-bottom-4">
+        <div class="da-alert__content">
+        </div>
+      </div> #}
+      <p class="govuk-body">The <em>date last modified</em> or, if provided, the <em>date of the record</em> will display in the file level entry in Discovery, the public catalgoue.</p>
+      <p class="govuk-body">The same date will be used as the closure start date for a closed record. See the next section for more information on closed record metadata.</p>
+
+
+      <h3 id="provide-metadata-about-closed-records" class="govuk-heading-m">2. Provide metadata about closed records</h3> 
+      
+      <div class="da-alert da-alert--error da-alert--with-icon">
+        <div class="da-alert__icon">
+          <div aria-hidden="true">
+            {{- daIcon({"iconType": 'warning', iconSize: "xl"})-}}
+          </div>
+        </div>
+        <div class="da-alert__content">
+          <h2 class="da-alert__heading da-alert__heading--s">Closed records</h2>
+          <p class="govuk-body">If you have closed records in your consignment you must provide metadata about those records.</p>
+         <p class="govuk-body">The closure status of the records must be approved by the Advisory Council before transfer.</p>
+        </div>
+      </div>
+      <p class="govuk-body">For every closed record in the consignment you must provide metadata in the following columns.</p>
+    
+      <p class="govuk-body">Find detailed information about <a href="#column-details" class="govuk-link">each of the columns headings</a>.</p>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Column</th>
+            <th scope="col" class="govuk-table__header">Value</th>
+            {# <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Example</th> #}
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">closure status</td>
+            <td class="govuk-table__cell"><pre style='margin:0'>Closed</pre></td>
+            {# <td class="govuk-table__cell"><pre style='margin:0'>Closed</pre></td> #}
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">foi schedule date</td>
+            <td class="govuk-table__cell">Date in format YYYY-MM-DD</td>
+            {# <td class="govuk-table__cell"><pre style='margin:0'>2024-08-14</pre></td> #}
+          </tr>          
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">foi exemption code <a href='#fn1-text' class='footnote-symbol' id='fn1-symbol' aria-describedby='fn1-text'>&#x2020;</a></td>
+            <td class="govuk-table__cell">One or more pipe separated codes</td>
+            {# <td class="govuk-table__cell"><pre style='margin:0'>22A | 23</pre></td> #}
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">closure period</td>
+            <td class="govuk-table__cell">Number of years the record is closed for</td>
+            {# <td class="govuk-table__cell"><pre style='margin:0'>80</pre></td> #}
+          </tr>
+        </tbody>
+        <caption>
+          <div>
+            <p class="footnote-text" id="fn1-text" role="note">
+                <a class="footnote-text__link" href="#fn1-symbol">Footnote &#x2020;:</a> For more information see this full list of <a  href="https://www.legislation.gov.uk/ukpga/2000/36/contents" class="govuk-link">FOI exemption codes and their designated exemptions</a>.
+            </p>
+        </div>
+        </caption>
+      </table>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p class="govuk-body">The opening date the record will be calculated using either the <em>date last modified</em>, or if provided, <em>date of the record</em>.</p>
+      
+
+      {{ govukWarningText({
+        html: "Ensuring the accuracy of the <em>date last modified</em> or providing a more accurate <em>date of the record</em> ensures records remain closed for the correct period.",
+        iconFallbackText: "Warning"
+      }) }}
+
+{# 
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">date of the record <a href='#fn2-text' class='footnote-symbol' id='fn2-symbol' aria-describedby='fn2-text'>&#x2020;&#x2020;</a></td>
+        <td class="govuk-table__cell">Date in format YYYY-MM-DD</td>
+      </tr> #}
+      <p class="govuk-body">If a record has a sensitive filename or description, you can use the <a href='#column-details-dateoftherecord' class="govuk-link"><em>alternative filename</em></a> and <a href='#column-details-dateoftherecord' class="govuk-link"><em>alternative description</em></a> columns, which will be shown on Discovery during the closure period.</p>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {# <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Column</th>
+            <th scope="col" class="govuk-table__header">Value</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">alternative filename</td>
+            <td class="govuk-table__cell">A file name excluding the file extension, which will be visible to the public during the closure period.</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">alternative description</td>
+            <td class="govuk-table__cell">
+              A description, which will be visible to the public during the closure period.
+            </td>
+          </tr>
+        </tbody>
+      </table> #}
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Transferring redacted records
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p class="govuk-body">If you are providing </p>
+        </div>
+      </details>
+
+      <h3 id="provide-record-descriptions" class="govuk-heading-m">3. Provide record descriptions</h3> 
+      <p>Whenever possible provide additional descriptive information about the record in the <em>description</em> column. For example, if the file name is not descriptive. You should not change the original filename of the record, which we seek to preserve.</p>
+      <div class="da-alert da-alert--info da-alert--with-icon">
+        <div class="da-alert__content">
+          <h2 class="da-alert__heading da-alert__heading--s">We strongly encourage the addition of descriptive metadata</h2>
+          <p class="govuk-body">Any descriptive metadata you provide helps to enrich the record, making it easier to find on Discovery, our public catalogue.</p>
+        </div>
+      </div>
+
+      <p class="govuk-body">If you have additional metadata fields that do not match columns in our spreadsheet, these can sometimes be included in the <em>description</em> column. Email a Digital Transfer Advisor at <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a> to find out more.</p>
+
+      <h3 id="change-the-record-language" class="govuk-heading-m">4. Provide metadata in the other available columns</h3> 
+      <p class="govuk-body">There are other optional columns available that may be useful to describe your records to the end user, for example <a class="govuk-link" href="#column-details-formerref">former reference</a> or <a class="govuk-link" href="#column-details-language">language</a>.</p>
+
+      <p class="govuk-body">See a <a class="govuk-link" href="#column-details">full list of available column headings</a>.</p>
+      
+    </div>
+  </div>
+  
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {# <h3 id="other-metadata-fields" class="govuk-heading-m">5. Add other additional metadata</h3> 
+      <p class="govuk-body">The template also includes column headers for additional metadata, such as <em>former reference</em> and <em>translated filename</em>.</p>
+      <p class="govuk-body">See a <a class="govuk-link" href="#column-details">full list of available column headings</a>.</p>
+       #}
+      <h2 id="metadata-that-doesnt-fit" class="govuk-heading-l govuk-!-margin-top-4">If you have metadata that doesn't fit into the available column heading</h2> 
+      <p class="govuk-body">If you have metadata that you would like to provide but it doesn't fit into the available columns, contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a> to speak to a Digital Transfer Advisor.</p>
+    
+      <h2 id="column-details" class="govuk-heading-l">All column headings</h2> 
+      <p class="govuk-body">Find descriptions, formatting requirements and example values for all the columns accepted by Transfer Digital Records.</p>
+      
+      <h3 id="column-details-uuid" class="govuk-heading-m">UUID</h3> 
+      <p class="govuk-body">?????</p>
+      
+      <h3 id="column-details-filepath" class="govuk-heading-m">filepath</h3> 
+      <div class="da-alert da-alert--error da-alert--with-icon govuk-!-margin-top-4 govuk-!-margin-bottom-4">
+        <div class="da-alert__icon">
+          <div aria-hidden="true">
+            {{- daIcon({"iconType": 'warning', iconSize: "xl"})-}}
+          </div>
+        </div>
+        <div class="da-alert__content">
+          <p class="govuk-body">If the values in this column are changed so they do not match the file and folder structure of your uploaded records, the metadata upload to fail.</p>
+        </div>
+      </div>
+      <p class="govuk-body">This is extracted from your records during upload. It includes the filename.</p>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Column title"
+            },
+            value: {
+              html: "<pre style='margin:0'>filepath</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Example"
+            },
+            value: {
+              html: "<pre style='margin:0; white-space:normal'>Direction of policy/Project management/FW_ X DEPT - inclusion in ISP (1).MSG</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Required"
+            },
+            value: {
+              html: "Yes"
+            }
+          },
+          {
+            key: {
+              text: "Must match template"
+            },
+            value: {
+              html: "Yes"
+            }
+          }
+        ]
+      }) }}
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h3 id="column-details-filename" class="govuk-heading-m">filename</h3> 
+      <p class="govuk-body">This is extracted from your records during upload.</p>
+      <p class="govuk-body">We will not process this column in your upload, so you do not need to add values to this column if you are <a class="govuk-link" href="metadata-guidance#starting-with-your-own">creating your own metadata spreadsheet</a>.</p>
+      <p class="govuk-body">This field should not be edited because we seek to preserve the file name as it was at the time of creation. Any changes to this column from the values provided in the template will therefore be ignored.</p>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Column title"
+            },
+            value: {
+              html: "<pre style='margin:0'>filename</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Example"
+            },
+            value: {
+              html: "<pre style='margin:0; white-space:normal'>FW_ X DEPT - inclusion in ISP (1).MSG</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Required"
+            },
+            value: {
+              html: "No"
+            }
+          }
+        ]
+      }) }}
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h3 id="column-details-dlm" class="govuk-heading-m">date last modified</h3> 
+      <p class="govuk-body">This is extracted from your records during upload and provided in the template.</p>
+
+
+      <p class="govuk-body">The dates in this column should not be edited. If the date last modified is not accurate you can enter a more accurate date in the <em><a href="metadata-guidance#column-details-dateoftherecord">date of the record</a></em> column.</p>
+
+
+      <p class="govuk-body">We will not process the values in this column, so you do not need to include this column if you are <a class="govuk-link" href="metadata-guidance#starting-with-your-own">creating your own metadata spreadsheet</a>.</p>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Column title"
+            },
+            value: {
+              html: "<pre style='margin:0'>date last modified</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Format"
+            },
+            value: {
+              html: "<pre style='margin:0; white-space:normal'>YYYY-MM-DD</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Example"
+            },
+            value: {
+              html: "<pre style='margin:0; white-space:normal'>2004-03-23</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Required"
+            },
+            value: {
+              html: "No"
+            }
+          }
+        ]
+      }) }}
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h3 id="column-details-dateoftherecord" class="govuk-heading-m">date of the record</h3> 
+      <p class="govuk-body">Use this field to provide a more accurate date, if the <em>date last modified</em> is not accurate. For example, because the file's date has been corrupted when files have been moved.</p>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Column title"
+            },
+            value: {
+              html: "<pre style='margin:0'>date of the record</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Format"
+            },
+            value: {
+              html: "<pre style='margin:0; white-space:normal'>YYYY-MM-DD</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Example"
+            },
+            value: {
+              html: "<pre style='margin:0; white-space:normal'>2005-12-21</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Required"
+            },
+            value: {
+              html: "No"
+            }
+          }
+        ]
+      }) }}
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h3 id="column-details-description" class="govuk-heading-m">description</h3> 
+      <p class="govuk-body">Use this field to describe of your file. This makes your records easier to find on Discovery, our public catalogue.</p>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Column title"
+            },
+            value: {
+              html: "<pre style='margin:0'>description</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Format"
+            },
+            value: {
+              html: "Text / Maximum 8000 characters"
+            }
+          },
+          {
+            key: {
+              text: "Required"
+            },
+            value: {
+              html: "No"
+            }
+          }
+        ]
+      }) }}
+      <div class="da-alert da-alert--info govuk-!-margin-top-4 govuk-!-margin-bottom-4">
+        <div class="da-alert__content">
+          <h4 class="da-alert__heading da-alert__heading--s">Best practice for description</h4>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>There should be no full stop at the end of your description</li>
+            <li>Any quotation marks used should be single not double quotes</li>
+          </ul>
+        </div>
+      </div>
+      <p class="govuk-body">If you have additional metadata fields that do not fit the available columns, these can sometimes be included in the <em>description</em> field. Email a Digital Transfer Advisor at <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a> to find out more.</p>
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h3 id="column-details-formerref" class="govuk-heading-m govuk-!-margin-top-2">former reference</h3> 
+      <p class="govuk-body">This field can be used to store any references that were previously used by the record creator.</p>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Column title"
+            },
+            value: {
+              html: "<pre style='margin:0'>former reference</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Format"
+            },
+            value: {
+              html: "Text / Maximum 8000 characters"
+            }
+          },
+          {
+            key: {
+              text: "Required"
+            },
+            value: {
+              html: "No"
+            }
+          }
+        ]
+      }) }}
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h3 id="column-details-closurestatus" class="govuk-heading-m">closure status</h3> 
+      <p class="govuk-body">This should be Open or Closed. If Closed, the closure status of each record must have been approved by the Advisory Council and/or The National Archives before transfer.</p>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Column title"
+            },
+            value: {
+              html: "<pre style='margin:0'>closure status</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Format"
+            },
+            value: {
+              html: "<pre style='margin:0;white-space: normal;display: inline;'>Open</pre> or <pre style='margin:0;white-space: normal;display: inline;'>Closed</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Default"
+            },
+            value: {
+              html: "<pre style='margin:0;white-space: normal;'>Open</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Required"
+            },
+            value: {
+              html: "Yes"
+            }
+          }
+        ]
+      }) }}
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h3 id="column-details-closureperiod" class="govuk-heading-m">closure period</h3> 
+      <p class="govuk-body">The number of years between 1 and 150 that the record will remain closed for. This must match closure period agreed with the Advisory Council.</p>
+      <p class="govuk-body">If <em>date of the record</em> is provided it will be used as the start of the closure period. If <em>date of the record</em> is not provided <em>date last modified</em> will be used.</p>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Column title"
+            },
+            value: {
+              html: "<pre style='margin:0'>closure period</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Format"
+            },
+            value: {
+              html: "Years / Number between 1 and 150"
+            }
+          },
+          {
+            key: {
+              text: "Example"
+            },
+            value: {
+              html: "
+              <ul class='govuk-list govuk-list--bullet'>
+                <li><pre style='margin:0;white-space: normal;display:inline;'>20</pre></li>
+                <li><pre style='margin:0;white-space: normal;display:inline;'>80</pre></li>
+              </ul>"
+            }
+          },
+          {
+            key: {
+              text: "Required"
+            },
+            value: {
+              html: "Yes (if closure status is Closed)"
+            }
+          }
+        ]
+      }) }}
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h3 id="column-details-foiexemptioncode" class="govuk-heading-m">foi exemption code</h3> 
+      <p class="govuk-body">This code or codes define the justification for closing a record.</p>
+      <p class="govuk-body"> A valid code or a pipe delimited list of codes must be provided. It must match the FOI code or codes agreed with the Advisory Council.</p>
+
+      {# <p class="govuk-body">See this full list of <a target="_blank" href="https://www.legislation.gov.uk/ukpga/2000/36/contents" class="govuk-link">FOI Exemption codes and their designated exemptions</a>.</p> #}
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            List of accepted FOI exemption codes
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <ul class="govuk-list govuk-list--bullet">
+            <li>23</li>
+            <li>23/24 - In the alternative</li>
+            <li>24</li>
+            <li>26</li>
+            <li>27(1)</li>
+            <li>27(2)</li>
+            <li>28</li>
+          </ul>
+        </div>
+      </details>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Column title"
+            },
+            value: {
+              html: "<pre style='margin:0'>foi exemption code</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Format"
+            },
+            value: {
+              html: "Pipe separated list of codes"
+            }
+          },
+          {
+            key: {
+              text: "Examples"
+            },
+            value: {
+              html: "
+              <ul class='govuk-list govuk-list--bullet'>
+            <li><pre style='margin:0;white-space: normal;display:inline;'>42</pre></li>
+            <li><pre style='margin:0;white-space: normal;display:inline;'>31 | 33</pre></li>
+            <li><pre style='margin:0;white-space: normal;display:inline;'>27(1)</pre></li>
+            </ul>
+            "
+            }
+          },
+          {
+            key: {
+              text: "Required"
+            },
+            value: {
+              html: "Yes (if closure status is Closed)"
+            }
+          }
+        ]
+      }) }}
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h3 id="column-details-foidecisionasserted" class="govuk-heading-m">foi schedule date</h3> 
+      <p class="govuk-body">This is the date that the Advisory Council approved the closure of the record.</p>
+      <p class="govuk-body">This date must match the one found on the closure schedule. It can be found on the bottom right hand corner of each page.</p>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Column title"
+            },
+            value: {
+              html: "<pre style='margin:0'>foi schedule date</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Format"
+            },
+            value: {
+              html: "<pre style='margin:0; white-space:normal'>YYYY-MM-DD</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Example"
+            },
+            value: {
+              html: "<pre style='margin:0; white-space:normal'>2024-08-14</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Required"
+            },
+            value: {
+              html: "Yes (if closure status is Closed)"
+            }
+          }
+        ]
+      }) }}
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h3 id="column-details-isfilenamesensitive" class="govuk-heading-m">is filename closed</h3> 
+      <p class="govuk-body">Use this field to indicate if the filename is sensitive to the public.</p>
+      <p class="govuk-body">If the filename is sensitive, you should provide a value in <em>alternative filename</em> that will be shown on Discovery during the closure period.</p>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Column title"
+            },
+            value: {
+              html: "<pre style='margin:0'>is filename closed</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Format"
+            },
+            value: {
+              html: "<pre style='margin:0;white-space: normal;display: inline;'>Yes</pre> or <pre style='margin:0;white-space: normal;display: inline;'>No</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Default"
+            },
+            value: {
+              html: "<pre style='margin:0; white-space:normal'>No</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Required"
+            },
+            value: {
+              html: "Yes"
+            }
+          }
+        ]
+      }) }}
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h3 id="column-details-altfilename" class="govuk-heading-m">alternative filename</h3> 
+      <p class="govuk-body">If the filename of a closed record is sensitive, use this field to provide an alternative that will be displayed on Discovery during the closure period.</p>
+      <p class="govuk-body">You must set <em>is filename closed</em> to Yes to use this field.</p>
+      {# <p class="govuk-body">If you do not provide an alternate title, we will assume the filename is open.</p> #}
+
+      <div class="da-alert da-alert--error da-alert--with-icon govuk-!-margin-top-4 govuk-!-margin-bottom-4">
+        <div class="da-alert__icon">
+          <div aria-hidden="true">
+            {{- daIcon({"iconType": 'warning', iconSize: "xl"})-}}
+          </div>
+        </div>
+        <div class="da-alert__content">
+          <p class="govuk-body">Do not include the file extension (e.g. '.docx' or '.xlsx') in this column</p>
+        </div>
+      </div>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Column title"
+            },
+            value: {
+              html: "<pre style='margin:0'>alternative filename</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Format"
+            },
+            value: {
+              html: "Text / Maximum 8000 characters. Excluding file extension."
+            }
+          },
+          {
+            key: {
+              text: "Required"
+            },
+            value: {
+              html: "Yes (if <em>is filename closed</em> is Yes)"
+            }
+          }
+        ]
+      }) }}
+      <div class="da-alert da-alert--info govuk-!-margin-top-4 govuk-!-margin-bottom-4">
+        <div class="da-alert__content">
+          <h4 class="da-alert__heading da-alert__heading--s">Best practice for alternative filename</h4>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>If it is not possible to provide a meaningful open title, you can enter 'Title withheld' in this field.</li>
+          </ul>
+        </div>
+      </div>      
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h3 id="column-details-isdescriptionsensitive" class="govuk-heading-m govuk-!-margin-top-2">is description closed</h3> 
+      <p class="govuk-body">Use this field to indicate if the description is sensitive to the public.</p>
+      <p class="govuk-body">You must set <em>is description closed</em> to Yes to use this field.</p>
+      <p class="govuk-body">If the description is sensitive, you should provide a value in <em>alternative description</em> that will be shown on Discovery during the closure period.</p>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Column title"
+            },
+            value: {
+              html: "<pre style='margin:0'>is description closed</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Format"
+            },
+            value: {
+              html: "<pre style='margin:0;white-space: normal;display: inline;'>Yes</pre> or <pre style='margin:0;white-space: normal;display: inline;'>No</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Default"
+            },
+            value: {
+              html: "<pre style='margin:0; white-space:normal'>No</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Required"
+            },
+            value: {
+              html: "Yes"
+            }
+          }
+        ]
+      }) }}
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h3 id="column-details-altdescription" class="govuk-heading-m">alternative description</h3> 
+
+      Expand this to make it clear that the value in the description field is what will become public once the description is no longer closed. I.e. it is the intended description for the record which will be made available once the description is deemed suitable for public access 
+
+      <p class="govuk-body">The value in the description field will be  a closed record is sensitive, use this field to provide an alternate description. To enter an alternative description you must also provide a value in the description field.</p>
+      <p class="govuk-body">If the description of a closed record is sensitive, use this field to provide an alternate description. To enter an alternative description you must also provide a value in the description field.</p>
+      {# <p class="govuk-body">If you do not provide an alternate description, we will assume the description is open, and it will be displayed on the public catalogue.</p> #}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Column title"
+            },
+            value: {
+              html: "<pre style='margin:0'>alternative description</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Format"
+            },
+            value: {
+              html: "Text / Maximum 8000 characters."
+            }
+          },
+          {
+            key: {
+              text: "Required"
+            },
+            value: {
+              html: "Yes (if <em>is description closed</em> is Yes)"
+            }
+          }
+        ]
+      }) }}
+      <div class="da-alert da-alert--info govuk-!-margin-top-4 govuk-!-margin-bottom-4">
+        <div class="da-alert__content">
+          <h4 class="da-alert__heading da-alert__heading--s">Best practice for alternative description</h4>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>If it is not possible to provide a meaningful description, you can enter 'Description withheld' in this field</li>
+          </ul>
+        </div>
+      </div>      
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h3 id="column-details-language" class="govuk-heading-m govuk-!-margin-top-2">language</h3> 
+      <p class="govuk-body">We currently only accept English and Welsh in this column. Change this column from the default (English) if the record contains Welsh or a mixture of English and Welsh. Each language needs to be separated by a pipe symbol (|).</p>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Column title"
+            },
+            value: {
+              html: "<pre style='margin:0'>language</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Format"
+            },
+            value: {
+              html: "Pipe separated list of languages"
+            }
+          },
+          {
+            key: {
+              text: "Default"
+            },
+            value: {
+              html: "<pre style='margin:0; white-space:normal'>English</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Examples"
+            },
+            value: {
+              html: "
+              <ul class='govuk-list govuk-list--bullet'>
+                <li><pre style='margin:0;white-space: normal;display:inline;'>English</pre></li>
+                <li><pre style='margin:0;white-space: normal;display:inline;'>Welsh</pre></li>
+                <li><pre style='margin:0;white-space: normal;display:inline;'>English | Welsh</pre></li>
+              </ul>"
+            }
+          },
+          {
+            key: {
+              text: "Required"
+            },
+            value: {
+              html: "Yes"
+            }
+          }
+        ]
+      }) }}
+
+      <p class="govuk-body">If you have records in other languages, email a Digital Transfer Advisor at <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a></p>
+
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h3 id="column-details-translatedtitle" class="govuk-heading-m  govuk-!-margin-top-2">translated filename</h3> 
+      <p class="govuk-body">If the language of the original filename is not English, please provide an English filename in this column. If the original language is English, but you would like this filename to be searchable in another language, please provide a translation here.</p>
+
+      <div class="da-alert da-alert--error da-alert--with-icon govuk-!-margin-top-4 govuk-!-margin-bottom-4">
+        <div class="da-alert__icon">
+          <div aria-hidden="true">
+            {{- daIcon({"iconType": 'warning', iconSize: "xl"})-}}
+          </div>
+        </div>
+        <div class="da-alert__content">
+          <p class="govuk-body">Do not include the file extension (e.g. '.docx' or '.xlsx') in the translation</p>
+        </div>
+      </div>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Column title"
+            },
+            value: {
+              html: "<pre style='margin:0'>translated filename</pre>"
+            }
+          },
+          {
+            key: {
+              text: "Format"
+            },
+            value: {
+              html: "Text / Maximum 8000 characters. Excluding file extension."
+            }
+          },
+          {
+            key: {
+              text: "Required"
+            },
+            value: {
+              html: "No"
+            }
+          }
+        ]
+      }) }}
+    </div>
+  </div>
+{% endblock %}

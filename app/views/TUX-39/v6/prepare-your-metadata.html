@@ -1,0 +1,151 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "macros/icon.njk" import daIcon %}
+
+{% block pageTitle %}
+  Prepare your metadata
+{% endblock %}
+
+{% block header %}
+  {% include "./inc-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./upload-records-results" class="govuk-back-link">Results of your record checks</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-xl">
+      Prepare your metadata  
+    </h1>
+    
+    <p class="govuk-body">As part of a digital transfer to The National Archives your consignment of records must be transferred with metadata to assist preservation and make them easier to find in Discovery, the public catalogue.</p>
+
+    <p class="govuk-body">Metadata can be added to your records by uploading a <abbr title="Comma Separated Values">CSV</abbr>.</p>
+
+    <div class="da-alert govuk-!-margin-top-4 govuk-!-margin-bottom-4">
+      <div class="da-alert__content">
+        <p class="govuk-body">See our detailed <a class="govuk-link" target="_blank" href="metadata-guidance">guidance page for more information</a>.</p>
+      </div>
+    </div>
+    
+    <h2 class="govuk-heading-l govuk-!-margin-top-6">Complete a metadata spreadsheet</h2>
+    <p class="govuk-body">Download an Excel template that contains pre-populated metadata. The metadata values in the template were either <a target="_blank" href="metadata-guidance#metadata-we-extract-from-your-records" class="govuk-link">extracted from your records</a> or <a target="_blank" href="metadata-guidance#columns-with-default-values" class="govuk-link">set by default</a>.</p>
+    
+    <section class="da-attachment govuk-!-margin-bottom-4 govuk-!-margin-top-6 govuk-!-display-none-print">
+      <div class="da-attachment__thumbnail">
+        <a download href="/public/downloads/MOCK-TDR-1301-template.xlsx" class="govuk-link" target="_self" tabindex="-1" aria-hidden="true">
+          <svg class="da-attachment__thumbnail-image da-attachment__thumbnail-image--spreadsheet" version="1.1" viewBox="0 0 99 140" width="99" height="140" aria-hidden="true">
+            <path d="M12 12h75v27H12zm0 47h18.75v63H12zm55 2v59H51V61h16m2-2H49v63h20V59z" stroke-width="0"></path>
+            <path d="M49 61.05V120H32.8V61.05H49m2-2H30.75v63H51V59zm34 2V120H69.05V61.05H85m2-2H67v63h20V59z" stroke-width="0"></path>
+            <path d="M30 68.5h56.5M30 77.34h56.5M30 112.7h56.5M30 95.02h56.5M30 86.18h56.5M30 103.86h56.5" fill="none" stroke-miterlimit="10" stroke-width="2"></path>
+          </svg>
+        </a>
+      </div>
+      <div class="da-attachment__details">
+        <h2 class="da-attachment__title">
+          <a download href="/public/downloads/MOCK-TDR-1301-template.xlsx" class="govuk-link da-attachment__link" tabindex="-1" aria-hidden="true">
+            MOCK-TDR-1301-template.xlsx
+          </a>
+        </h2>
+        <p class="da-attachment__metadata">
+          <span class="da-attachment__attribute"><abbr title="Microsoft Excel Spreadsheet">XLSX</abbr></span>, <span class="da-attachment__attribute">15 records</span>
+        </p>
+      </div>
+    </section>
+
+    <p class="govuk-body">To complete the metadata template, you must check the pre-populated columns and add metadata in the available empty columns.</p>
+
+    <p class="govuk-body">We strongly advise following the <a class="govuk-link" target="_blank" href="metadata-guidance#completing-the-spreadsheet">step-by-step guidance</a> for completing the spreadsheet.</p>
+
+    <p class="govuk-body">If you prefer you can <a target="_blank" href="metadata-guidance#starting-with-your-own" class="govuk-link">start with your own spreadsheet</a> instead of the template we provide.</p>
+
+    <h2 class="govuk-heading-l">Closed records</h3>
+
+    <div class="da-alert da-alert--error da-alert--with-icon govuk-!-margin-top-4 govuk-!-margin-bottom-4">
+      <div class="da-alert__icon">
+        <div aria-hidden="true">
+          {{- daIcon({"iconType": 'warning', iconSize: "xl"})-}}
+        </div>
+      </div>
+      <div class="da-alert__content">
+        <p class="govuk-body">You must provide metadata about closed records</p>
+      </div>
+    </div>
+
+    <p class="govuk-body">If you have closed records in your consignment you must <a class="govuk-link" target="_blank" href="metadata-guidance#provide-metadata-about-closed-records">provide metadata about each closed record</a>.</p>
+    
+    <p class="govuk-body">The closure status of the records must be approved by the Advisory Council before transfer.</p>
+
+    <h2 class="govuk-heading-l">Saving your spreadsheet as a CSV</h2>
+
+    <p class="govuk-body">Once you have completed the metadata spreadsheet you will need to <a class="govuk-link" target="_blank" href="metadata-guidance#export-the-template-csv">save from Excel in <abbr title="Comma Separated Values">CSV</abbr> UTF-8 format</a> before uploading.</p>
+
+    <p class="govuk-body">Saving a CSV file in UTF-8 encoding ensures the accurate representation of a wide range of characters, including accented letters, special symbols, and characters from different languages.</p>
+
+    <h2 class="govuk-heading-l">Further guidance and support</h2>
+
+    <p class="govuk-body">You can find a <a class="govuk-link" target="_blank" href="metadata-guidance#column-details">full list of all accepted column headings</a>, which includes descriptions, formatting requirements and example values.</p>
+
+    <p class="govuk-body">If you require any further support adding metadata to your spreadsheet contact <a class="govuk-link" target="_blank" href="mailto:">tdr@nationalarchives.gov.uk</a>, quoting the reference number: <strong>MOCK-TDR-1301</strong>.</p>
+      
+    <div class="da-alert da-alert--default">
+      <div class="da-alert__content">
+        <h2 class="da-alert__heading da-alert__heading--s">
+          Leaving and returning to this transfer
+        </h2>
+    
+        <p>
+          You can close this browser window and return at any time to upload the
+          metadata from the <a class="govuk-link" href="./transfers">View transfers</a>
+          page.
+        </p>
+      </div>
+    </div>
+    <p class="govuk-body">Once you have completed your metadata spreadsheet continue to upload a CSV.</p>
+
+    <div class="govuk-button-group">
+    {{ govukButton({
+      text: "Continue",
+      href: "./upload-csv",
+      classes: "govuk-!-margin-top-4"
+    }) }}
+    </div>
+
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          I don't need to provide any metadata
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">We stongly encourage you to add as much metadata as available to you. This makes your records easier to find in our public catalogue. If you choose not to, we will transfer the metadata extracted from your records during upload.</p>
+
+        {{ govukButton({
+          text: "I don't need to provide any metadata",
+          href: "./i-dont-need-metadata",
+          classes: "govuk-button--secondary"
+        }) }}
+      </div>
+    </details>
+
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <details open class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Consignment reference
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        MOCK-TDR-1301
+      </div>
+    </details>
+  </div>
+</div>
+
+{% endblock %}

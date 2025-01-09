@@ -1,0 +1,69 @@
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Upload a completed transfer metadata CSV - MOCK-TDR-1294 - Transfer Digital Records
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="./how-to-enter-metadata" class="govuk-back-link">How would you like to enter metadata?</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">Upload a metadata CSV</h1>
+
+      {% if data['csv-upload-status'] == "failed" %}
+      {{ govukWarningText({
+        text: "Uploading a new or amended CSV will overwrite any metadata imported from a previous CSV.",
+        iconFallbackText: "Warning"
+      }) }}
+      {% endif %}
+
+      <p class="govuk-body">In your CSV, include a header row for the column titles and one row for every record that requires metadata.</p>
+
+      <a class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8 download-metadata" href="/consignment/11698e33-4a14-41e9-a298-e87e857ac731/additional-metadata/download-metadata/csv" style="pointer-events: auto;">
+        <span aria-hidden="true" class="tna-button-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 23 23">
+            <path fill="#020202" d="m11.5 16.75-6.563-6.563 1.838-1.903 3.412 3.413V1h2.626v10.697l3.412-3.413 1.837 1.903L11.5 16.75ZM3.625 22c-.722 0-1.34-.257-1.853-.77A2.533 2.533 0 0 1 1 19.375v-3.938h2.625v3.938h15.75v-3.938H22v3.938c0 .722-.257 1.34-.77 1.855a2.522 2.522 0 0 1-1.855.77H3.625Z"></path>
+          </svg>
+        </span>
+        Download metadata Excel template
+      </a>
+
+      {{ govukFileUpload({
+        id: "file-upload-1",
+        name: "fileUpload",
+        label: {
+          text: "Select a CSV",
+          classes: "govuk-!-font-weight-bold"
+        }
+      }) }}
+
+      <div class="govuk-button-group">
+        <a href="./csv-checks"  role="button"draggable="false" class="govuk-button" data-module="govuk-button">
+          Upload
+        </a>
+      </div>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Consignment reference
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        MOCK-123-TDR
+      </div>
+    </details>
+  </div>
+  </div>
+
+{% endblock %}

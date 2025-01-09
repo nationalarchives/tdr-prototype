@@ -1,0 +1,89 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% block pageTitle %}
+  Results of CSV checks - Errors found
+{% endblock %}
+
+{% block header %}
+  {% include "./inc-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {# <a href="./transfer-tasks" class="govuk-back-link">Consignment: MOCK-TDR-1294</a> #}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Results of your metadata checks
+      </h1>
+      <p class="govuk-body">There was an issue with your uploaded metadata file.</p>
+
+      <p class="govuk-body"></p>
+       {{ govukSummaryList({
+        rows: [
+          {
+            key: {  text: "Status" },
+            value: { html: "<strong class=\"govuk-tag govuk-tag--orange\">Issues found</strong>" }
+          },
+          {
+            key: {  text: "Details" },
+            value: { html: "We found validation errors in the uploaded metadata." }
+          },
+          {
+            key: {  text: "Action" },
+            value: { html: "Download the report below for details on individual validation errors." }
+          }
+        ]
+      }) }}
+
+      <p class="govuk-body">The report below contains detailed errors with reference to the file path and column title, which caused the error.</p>
+
+      <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        <span aria-hidden="true" class="tna-button-icon tna-button-icon--download">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 23 23">
+            <path fill="#020202" d="m11.5 16.75-6.563-6.563 1.838-1.903 3.412 3.413V1h2.626v10.697l3.412-3.413 1.837 1.903L11.5 16.75ZM3.625 22c-.722 0-1.34-.257-1.853-.77A2.533 2.533 0 0 1 1 19.375v-3.938h2.625v3.938h15.75v-3.938H22v3.938c0 .722-.257 1.34-.77 1.855a2.522 2.522 0 0 1-1.855.77H3.625Z"/>
+          </svg>          
+        </span>
+        Download report
+      </button>
+      <p class="govuk-body">You may find it useful to refer to <a class="govuk-link" target="_blank" href="metadata-guidance#column-details">the list of column headings in the guidance</a>, which provide examples and accepted formats.</p>
+      <p class="govuk-body">Once you have addressed the errors, you can re-upload the metadata file.</p>
+
+      <div class="da-alert da-alert--default">
+        <div class="da-alert__content">
+          <h2 class="da-alert__heading da-alert__heading--s">
+            Leaving and returning to this transfer
+          </h2>
+          <p>
+            You can close this browser window and return at any time to continue this transfer from the <a class="govuk-link" href="./transfers">View transfers</a>
+            page.
+          </p>
+        </div>
+      </div>
+
+
+      <div class="govuk-button-group">
+        <a class="govuk-button" href="./upload-csv-no-errors">Re-upload metadata</a>
+      </div>
+
+    </div>
+     <div class="govuk-grid-column-one-third">
+      <details open class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-TDR-1301
+        </div>
+      </details>
+    </div>
+  </div>
+
+{% endblock %}
