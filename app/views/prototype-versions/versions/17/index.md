@@ -1,7 +1,7 @@
 ---
 id: 2
 status:
-  colour: "blue"
+  colour: "orange"
   title: "In Progress"
 title: "[Judgments] User should declare if transfer is an amendment or press summary"
 issues:

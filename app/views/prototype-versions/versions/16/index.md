@@ -1,7 +1,7 @@
 ---
 id: 1
 status:
-  colour: "blue"
+  colour: "orange"
   title: "In Progress"
 title: "Task List for Metadata Upload"
 date_started: "2024-08-23"
