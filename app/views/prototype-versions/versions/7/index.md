@@ -1,6 +1,6 @@
 ---
 status:
-  colour: "blue"
+  colour: "orange"
   title: "In progress"
 title: "Composite of reviewed design work"
 date_started: "2024-01-08"

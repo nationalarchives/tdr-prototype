@@ -1,7 +1,7 @@
 ---
 status:
-  colour: "green"
-  title: "Complete"
+  colour: "blue"
+  title: "Superseded"
 title: "[Metadata upload - Functional] Closed record status confirmation & metadata summary"
 date_started: "2024-03-06"
 date_completed: ""

@@ -1,7 +1,7 @@
 ---
 status:
-  colour: "green"
-  title: "Complete"
+  colour: "blue"
+  title: "Superseded"
 title: "[Metadata Upload] Download metadata template"
 date_started: "2024-04-29"
 date_completed: ""

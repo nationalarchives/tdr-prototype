@@ -1,11 +1,9 @@
 ---
 status:
-  colour: ""
-  title: "In Progress"
-title: "Metadata Upload task list"
-starting_url: "/TUX-106/1-metadata-upload/transfer-tasks"
+  colour: "blue"
+  title: "Reviewed"
+title: "List of error and validation pages"
+starting_url: "/TDRD-3/"
 ---
 
-Happy path (i.e. successful upload) for metadata upload. 
-
-Visit the [Task List manage page](/TUX-106/1-metadata-upload/transfer-tasks-manage) to go back and forward between steps.
+A list of error and validation pages needed for implementation.

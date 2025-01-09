@@ -1,7 +1,7 @@
 ---
 status:
-  colour: "green"
-  title: "Complete"
+  colour: "blue"
+  title: "Superseded"
 title: "[Metadata upload - Functional] Initial prototype, proof of concept for a CSV upload"
 date_started: "2024-01-30"
 date_completed: ""

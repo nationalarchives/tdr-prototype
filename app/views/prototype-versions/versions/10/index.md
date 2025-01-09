@@ -1,7 +1,7 @@
 ---
 status:
-  colour: "green"
-  title: "Complete"
+  colour: "blue"
+  title: "Superseded"
 title: "[Metadata upload - Functional] User is informed their metadata upload has failed"
 date_started: "2024-03-05"
 date_completed: ""

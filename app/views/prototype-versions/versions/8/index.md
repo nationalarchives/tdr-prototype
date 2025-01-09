@@ -1,7 +1,7 @@
 ---
 status:
-  colour: "green"
-  title: "Complete"
+  colour: "blue"
+  title: "Reviewed"
 title: "Composite design work with ONS data"
 date_started: "2024-01-29"
 date_completed: "2024-01-30"
