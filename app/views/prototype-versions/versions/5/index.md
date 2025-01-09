@@ -1,6 +1,6 @@
 ---
 status:
-  colour: "grey"
+  colour: "blue"
   title: "Superseded"
 title: "User needs to access last modified dates as separate sections to closure and descriptive metadata"
 date_started: "2023-11-23"

@@ -1,6 +1,6 @@
 ---
 status:
-  colour: "grey"
+  colour: "blue"
   title: "Superseded"
 title: "View and navigate many rows of metadata across many pages"
 date_started: "2023-11-06"

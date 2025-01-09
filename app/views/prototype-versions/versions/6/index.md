@@ -1,6 +1,6 @@
 ---
 status:
-  colour: "grey"
+  colour: "blue"
   title: "Superseded"
 title: "User needs to easily find and review last date modified"
 date_started: "2023-11-30"

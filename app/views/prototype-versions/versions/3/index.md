@@ -1,6 +1,6 @@
 ---
 status:
-  colour: "grey"
+  colour: "blue"
   title: "Superseded"
 title: "Resuming an in-progress transfer (Descriptive metadata)"
 date_started: "2023-09-10"

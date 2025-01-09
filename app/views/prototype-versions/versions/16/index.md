@@ -1,25 +1,30 @@
 ---
-id: 1
+id: 2
 status:
   colour: "orange"
   title: "In Progress"
-title: "Task List for Metadata Upload"
-date_started: "2024-08-23"
+title: "[Judgments] User should declare if transfer is an amendment or press summary"
+date_started: "2024-05-16"
 date_completed: ""
 issues:
-  - id: "TUX-106"
-    url: "https://national-archives.atlassian.net/browse/TUX-106"
-confluence_pages:
-  - title: "📈 2024-09 Metadata Upload - Separate guidance"
-    url: "https://national-archives.atlassian.net/wiki/spaces/DA/pages/789741569/2024-09+Metadata+Upload+-+Separate+guidance"
-  - title: "📈 2024-09 Metadata Upload - Separate guidance"
-    url: "https://national-archives.atlassian.net/browse/TUX-106"
+  - id: "TUX-70"
+    url: "https://national-archives.atlassian.net/browse/TUX-70"
 ---
 
 ### Motivations & Context
 
-See the [design history](https://national-archives.atlassian.net/wiki/spaces/DA/pages/136675329/Sprint+93+-+User+wants+to+manipulate+metadata+for+a+large+volume+of+files#Changing-the-linear-model-of-TDR) for work on [TDR-2677 (User wants to manipulate data for a large volume of files (CSV experimentation))](https://national-archives.atlassian.net/browse/TDR-2677)
+A significant number of judgment users are trying to transfer documents that we accept but are not original judgments. These include:
+
+1. Updates to judgments
+2. Press summaries
+3. Other documents, such as court orders or sentencing remarks
+
+We are willing accept types 1 and 2 from the list above (and they are currently sent through TDR), but it is necessary for the user to tell us what type of document they are transferring. This helps the editors to know how to act.
+
+If it is type 3 (any other document) it should not go through TDR but can be emailed.
 
 ### Design Changes
 
-The new work on the Task list follows the same model as the previous prototype. It includes updates to some tasks, task groupings and the individual linked pages. Some work has been done on the journeys between pages so that users don't need to always come back to the task list. The current idea is that at the end of each section the user will return to the task list.
+We do not want to disrupt the journey for most users trying to transfer a judgment for the first time.
+
+There will be a question and form input that will branch a user away from the most common journey toward a more complex set of questions. This question is complex and can be presented in various ways. We need to test the copy/content for this.
