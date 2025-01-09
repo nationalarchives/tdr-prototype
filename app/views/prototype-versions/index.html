@@ -35,11 +35,9 @@
         {% endif %}
       {% endfor %}
 
-        {% set statusClass = ["gov-table__cell--", r.status.title| replace(" ", "_") | replace("/", "") |lower ]|join%}
+        {% set statusClass = ["govuk-!-font-size-16 gov-table__cell--", r.status.title| replace(" ", "_") | replace("/", "") |lower ]|join%}
 
         {% set rows = (rows.push([
-          { html: r.title, classes: statusClass },
-          { html: issues, classes: statusClass },
           { html: ["<span style='white-space:nowrap'>",
             govukTag({
             text: r.status.title,
@@ -47,6 +45,9 @@
             }), "</span>"]|join,
             classes: statusClass
           },
+          { html: ["<span style='white-space:nowrap'>", r.date_started|formatDate, "</span>"]|join, classes: statusClass },
+          { html: r.title, classes: statusClass },
+          { html: issues, classes: statusClass },
           { html: ['<a href="/prototype-version/', r.subfolder, '">View version</a>']|join, classes: statusClass }
         ]), rows) %}
       {% endfor %}
@@ -55,15 +56,17 @@
         firstCellIsHeader: false,
         head: [
           {
+            text: "Status"
+          },
+          {
+            text: "Date started"
+          },
+          {
             text: "Description"
           },
           {
             text: "Issues"
           },
-          {
-            text: "Status"
-          },
-
           {
             html: "<span class=\"govuk-visually-hidden\">Action</span>",
             classes: ""
