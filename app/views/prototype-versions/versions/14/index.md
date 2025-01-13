@@ -1,6 +1,6 @@
 ---
 status:
-  colour: "orange"
+  colour: ""
   title: "In progress"
 title: "[Metadata Review] Department user-facing and TNA user-facing"
 date_started: "2024-05-02"

@@ -15,8 +15,8 @@ confluence_pages:
     url: https://national-archives.atlassian.net/wiki/spaces/DA/pages/136675329
 ---
 
-**This work has been added to:<br>
- _[Resuming an in-progress review (Composite)]()_**
+_**THIS WORK HAS BEEN ADDED TO**_:<br>
+[Composite of reviewed design work](/prototype-version/7)
 
 ### Motivations & Context
 

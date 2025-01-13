@@ -3,7 +3,10 @@ status:
   colour: "blue"
   title: "Ready for review"
 title: "All metadata pages included in recent design tasks"
-starting_url: "/TDR-3515/metadata"
+starting_url: "https://tdr-prototyp-tdr-3675-c-lvdtkx.herokuapp.com/TDR-3675/metadata/"
+alternate_prototype: 
+  pr: 71
+  url: https://github.com/nationalarchives/tdr-prototype/pull/71
 ---
 
 - New design for metadata landing page ("Records metadata") including 3 sections

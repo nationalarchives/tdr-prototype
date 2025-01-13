@@ -11,8 +11,8 @@ issues:
 confluence_pages:
 ---
 
-HIS WORK HAS BEEN CONTINUED IN:  
-[[Metadata Upload] Core journey & guidance](???)
+_**SUPERSEDED BY**_:<br>
+[[Metadata Upload] Core journey & guidance](/prototype-version/13)
 
 ### Motivations & Context
 

@@ -9,10 +9,12 @@ issues:
   - id: "TDR-3301"
     url: "https://national-archives.atlassian.net/browse/TDR-3301"
 confluence_pages:
+  - title: Sprint 90 - Resuming an in-progress transfer
+    url: https://national-archives.atlassian.net/wiki/spaces/DA/pages/102465542/Sprint+90+-+Resuming+an+in-progress+transfer
 ---
 
-**Superceded by:<br>
- _[Resuming an in-progress review (Composite)]()_**
+_**SUPERSEDED BY**_:<br>
+[Composite of reviewed design work](/prototype-version/7)
 
 ### Motivations & Context
 

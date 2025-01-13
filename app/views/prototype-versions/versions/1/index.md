@@ -14,7 +14,7 @@ confluence_pages:
     url: https://national-archives.atlassian.net/wiki/spaces/DA/pages/136675329
 ---
 
-**WORK CONTINUES ON THE TASK LIST IN:<br> _[Task List for Metadata Upload](/prototype-version/15)_**
+**UPDATE Aug 2024: The idea of changing the linear TDR model to a hub/spoke 'task list' originated here. See the more recent work (Aug 2024 onwards) on integrating the task list with metadata upload:**<br>[Task List for Metadata Upload](/prototype-version/17)
 
 ### Motivations & Context
 

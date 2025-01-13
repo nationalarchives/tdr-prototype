@@ -9,14 +9,16 @@ issues:
   - id: "TDR-3301"
     url: "https://national-archives.atlassian.net/browse/TDR-3301"
 confluence_pages:
+  - title: Sprint 95 - Resuming in-progress transfers (descriptive metadata)
+    url: https://national-archives.atlassian.net/wiki/spaces/DA/pages/169443337/Sprint+95+-+Resuming+in-progress+transfers+descriptive+metadata
 ---
 
-**Superceded by:<br>
- _[Resuming an in-progress review (Composite)]()_**
+_**SUPERSEDED BY**_:<br>
+[Composite of reviewed design work](/prototype-version/7)
 
 ### Motivations & Context
 
-Continuing from [work on closure metadata](/prototype-versions-api/2). Working on descriptive metadata using the same model. Also, incorporating insights from user testing on version 65.
+Continuing from work on [previous prototype relating to closure metadata](/prototype-version/2). Working on descriptive metadata using the same model. Also, incorporating insights from user testing on version 65.
 
 ### Design changes
 

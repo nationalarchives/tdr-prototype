@@ -17,6 +17,19 @@ issues:
   - id: "TDR-3486"
     url: "https://national-archives.atlassian.net/browse/TDR-3486"
 confluence_pages:
+  - title: 📋 2024-09 Transfer task list
+    url: https://national-archives.atlassian.net/wiki/spaces/DA/pages/790560796/2024-09+Transfer+task+list
+  - title: Sprint 100 - TDR-3515 - User needs to access last modified dates as separate sections to closure and descriptive metadata
+    url: https://national-archives.atlassian.net/wiki/spaces/DA/pages/199524371/Sprint+100+-+TDR-3515+-+User+needs+to+access+Closure+Descriptive+and+Dates+metadata+as+separate+section
+  - title: Sprint 97 - Reviewing last date modified
+    url: https://national-archives.atlassian.net/wiki/spaces/DA/pages/168099926/Sprint+97+-+Reviewing+last+date+modified
+  - title: Sprint 95 - Resuming in-progress transfers (descriptive metadata)
+    url: https://national-archives.atlassian.net/wiki/spaces/DA/pages/169443337/Sprint+95+-+Resuming+in-progress+transfers+descriptive+metadata
+  - title: Sprint 93 - User wants to manipulate metadata for a large volume of files
+    url: https://national-archives.atlassian.net/wiki/spaces/DA/pages/136675329
+  - title: Sprint 90 - Resuming an in-progress transfer
+    url: https://national-archives.atlassian.net/wiki/spaces/DA/pages/102465542/Sprint+90+-+Resuming+an+in-progress+transfer
+    
 ---
 
 ### Motivations & Context

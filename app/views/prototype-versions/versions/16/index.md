@@ -1,7 +1,6 @@
 ---
-id: 2
 status:
-  colour: "orange"
+  colour: ""
   title: "In Progress"
 title: "[Judgments] User should declare if transfer is an amendment or press summary"
 date_started: "2024-05-16"

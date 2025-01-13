@@ -3,7 +3,10 @@ status:
   colour: "pink"
   title: "Tested"
 title: "Version 1 - Sort by dir + filter alphabetical"
-starting_url: "/TDR-3515/metadata"
+starting_url: "https://tdr-prototyp-tdr-3515-u-egilff.herokuapp.com/TDR-3515/metadata"
+alternate_prototype: 
+  pr: 68
+  url: https://github.com/nationalarchives/tdr-prototype/pull/68
 ---
 
 A new ‘landing’ page is presented after the user has finished the upload journey successfully. 

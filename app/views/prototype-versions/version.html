@@ -132,10 +132,16 @@
       {% endif %}
 
       {% for j in journeys %}
+        {% set prURL = ['<a target="blank" href="', j.data.alternate_prototype.url, '">#',j.data.alternate_prototype.pr ,'</a>']|join %}
+        {% set hostingWarning = govukWarningText({
+          html: ["A <a target='blank' href='https://national-archives.atlassian.net/wiki/spaces/DA/pages/114360350/Prototypes'>password</a> is required.<br>", "Prototype hosted on separate Heroku instance (", prURL, ")."]|join,
+          iconFallbackText: "Warning"
+          }) %}
         {% set statusTag = govukTag({
             text: j.data.status.title|d("In progress"),
             classes: ["govuk-tag--", j.data.status.colour]|join
           })  %}
+
         {{ govukSummaryList({
           card: {
             title: {
@@ -159,8 +165,7 @@
                 text: "Description"
               },
               value: {
-                text: j.content|markdown|safe
-
+                html: [ j.content|markdown|safe, (hostingWarning if j.data.alternate_prototype)]|join
               }
             },
             {

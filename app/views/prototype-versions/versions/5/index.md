@@ -13,8 +13,8 @@ confluence_pages:
     url: https://national-archives.atlassian.net/wiki/spaces/DA/pages/199524371/Sprint+100+-+TDR-3515+-+User+needs+to+access+Closure+Descriptive+and+Dates+metadata+as+separate+section
 ---
 
-**This work has been added to:<br>
- _[Resuming an in-progress review (Composite)]()_**
+_**THIS WORK HAS BEEN ADDED TO**_:<br>
+[Composite of reviewed design work](/prototype-version/7)
 
 ### Motivations & Context
 

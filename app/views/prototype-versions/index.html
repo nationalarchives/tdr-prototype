@@ -41,7 +41,7 @@
           { html: ["<span style='white-space:nowrap'>",
             govukTag({
             text: r.status.title,
-            classes: ["govuk-tag--", r.status.colour]|join
+            classes: ["govuk-tag--small govuk-tag--", r.status.colour]|join
             }), "</span>"]|join,
             classes: statusClass
           },

@@ -1,6 +1,6 @@
 ---
 status:
-  colour: "blue"
+  colour: ""
   title: "In progress"
 title: "Fail type 1: Metadata upload page (form error)"
 starting_url: "/TUX-12/upload-csv-error"
