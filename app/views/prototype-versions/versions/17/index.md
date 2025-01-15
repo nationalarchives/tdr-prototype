@@ -3,17 +3,15 @@ id: 1
 status:
   colour: ""
   title: "In Progress"
-title: "Task List for Metadata Upload"
+title: "Task list for Metadata Upload"
 date_started: "2024-08-23"
 date_completed: ""
 issues:
   - id: "TUX-106"
     url: "https://national-archives.atlassian.net/browse/TUX-106"
 confluence_pages:
-  - title: "📈 2024-09 Metadata Upload - Separate guidance"
+  - title: "📋 2024-09 Transfer task list"
     url: "https://national-archives.atlassian.net/wiki/spaces/DA/pages/789741569/2024-09+Metadata+Upload+-+Separate+guidance"
-  - title: "📈 2024-09 Metadata Upload - Separate guidance"
-    url: "https://national-archives.atlassian.net/browse/TUX-106"
 ---
 
 ### Motivations & Context
