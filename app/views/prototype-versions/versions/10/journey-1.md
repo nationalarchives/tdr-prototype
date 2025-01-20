@@ -3,7 +3,7 @@ status:
   colour: ""
   title: "In progress"
 title: "Fail type 1: Metadata upload page (form error)"
-starting_url: "/TUX-12/upload-csv-error"
+starting_url: "https://tdr-prototyp-tux-12-upl-1ak7ry.herokuapp.com/TUX-12/upload-csv-error"
 single_page: true
 ---
 
