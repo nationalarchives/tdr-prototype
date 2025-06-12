@@ -9,6 +9,7 @@
   },
   "name": "govuk-prototype-kit",
   "dependencies": {
+    "@govuk-prototype-kit/common-templates": "2.0.1",
     "@govuk-prototype-kit/step-by-step": "^2.1.0",
     "@nationalarchives/tdr-components": "^1.0.41",
     "axios": "^1.7.1",
