@@ -1,0 +1,142 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Provide a neutral citation number
+{% endblock %}
+
+{% block header %}
+
+  {% include "layouts/inc-header-no-view-transfer.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="tell-us-more" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+<!--
+      {{ govukInput({
+        label: {
+          text: "Provide a neutral citation number (NCN)",
+          classes: "govuk-label--l",
+          isPageHeading: true
+        },
+        hint: {
+          html: '
+          If this is a document related to an existing judgment (e.g. an update to a judgment or a press summary) provide the NCN for the related judgment, if one is available. <br><br> Visit the <a class="govuk-link" target="_blank" href="https://nationalarchives.github.io/ds-caselaw-judiciary-guidance/ncn.html">Find Case Law guidance about NCNs (opens in a new tab)</a>.'
+        },
+        id: "neutral-citation",
+        name: "neutralCitation"
+      }) }}
+-->
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        Provide a neutral citation number (NCN)
+      </h1>
+    </legend>
+    <div id="passport-issued-hint" class="govuk-hint">
+      If this is a document related to an existing judgment (e.g. an update to a judgment or a press summary) provide the NCN for the related judgment, if one is available. <br /><br />
+      For example, 2022 - EWHC 3212 - Admin
+    </div>
+    <div class="govuk-date-input" id="passport-issued">
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="ncn-year">
+            Year
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="ncn-year" name="ncn-year" type="text" inputmode="numeric">
+        </div>
+
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+            Court/tribunal number
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-6" id="passport-issued-month" name="passport-issued-month" type="text" inputmode="numeric"> 
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+            Denomination
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-5" id="passport-issued-year" name="passport-issued-year" type="text" inputmode="numeric">
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+{% set noncnHtml %}
+{{ govukInput({
+  id: "no-ncnHtml",
+  name: "no",
+  classes: "govuk-!-width-two-thirds",
+  label: {
+    text: "Provide any details that would help us identify the document:"
+  }
+}) }}
+{% endset -%}
+
+
+<hr class="govuk-section-break govuk-section-break--m">
+
+{{ govukCheckboxes({
+  name: "no-ncn",
+  fieldset: {
+
+  },
+
+  items: [
+
+    {
+      value: "no-ncn-select",
+      text: "This document does not have an NCN number",
+      conditional: {
+        html: noncnHtml
+      }
+    }
+  ]
+}) }}
+
+{{ govukDetails({
+  summaryText: "Help with NCN numbers",
+  html: 'Visit the <a class="govuk-link" target="_blank" href="https://nationalarchives.github.io/ds-caselaw-judiciary-guidance/ncn.html">Find Case Law guidance about NCNs (opens in a new tab)</a>.'
+}) }}
+<hr class="govuk-section-break govuk-section-break--m">
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Continue",
+          href: "./upload"
+        }) }}
+      </div>
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" open="" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Transfer reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+      
+      <h4 class="govuk-heading-s">Problems with your transfer?</h4>
+      <p class="govuk-body">Email us and include the transfer reference:
+        <a href="mailto:tdr@nationalarchives.gov.uk" class="govuk-link">tdr@nationalarchives.gov.uk</a>
+      </p>
+    </div>
+  </div>
+
+{% endblock %}
