@@ -1,0 +1,153 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Guide to completing the metadata file
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Guide to completing the metadata file</h1>
+      
+   
+      <p class="govuk-body">  This guide provides a quick overview of how to complete the metadata file effectively. Below, you will find essential information on the metadata you need to fill in, ensuring that all necessary details are accurately captured. To assist you further, we have included a table that serves as a guide to filling in the spreadsheet. By following these instructions and using the table as a reference, you can efficiently complete the metadata file with ease. <i>This is generic text do not consider.</i></p>
+    </div>
+
+         <div class="govuk-width-container ">
+
+            <table class="govuk-table ">
+                <thead class="govuk-table__head ">
+                    <tr class="govuk-table__row">
+                        <th class="govuk-table__header" scope="col">Column title</th>
+                        <th class="govuk-table__header" scope="col">Details</th>
+                        <th class="govuk-table__header" scope="col">Format</th>
+                        <th class="govuk-table__header" scope="col">Requirement</th>
+
+                        <th class="govuk-table__header" scope="col">Example</th>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">filepath</th>
+                        <td class="govuk-table__cell">This is the file path/folder structure extracted upon upload, do not modify.</td>
+                        <td class="govuk-table__cell">Do not modify</td>
+                        <td class="govuk-table__cell">Mandatory</td>
+                        <td class="govuk-table__cell"></td>
+
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">filename</th>
+                        <td class="govuk-table__cell">This is the file name extracted upon upload, do not modify.</td>
+                        <td class="govuk-table__cell">Do not modify</td>
+                        <td class="govuk-table__cell">Mandatory</td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">date last modified</th>
+                        <td class="govuk-table__cell">This is the date last modified extracted upon upload, do not modify.</td>
+                        <td class="govuk-table__cell">Do not modify</td>
+                        <td class="govuk-table__cell">Mandatory</td>
+                        <td class="govuk-table__cell"></td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">date of the record</th>
+                        <td class="govuk-table__cell">If the date last modified is not meaningful, please provide the date of the record.</td>
+                        <td class="govuk-table__cell">YYYY-MM-DD</td>
+                        <td class="govuk-table__cell">Optional</td>
+                        <td class="govuk-table__cell">2020-03-01</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">description</th>
+                        <td class="govuk-table__cell">Provide a description which gives more context to the record.</td>
+                        <td class="govuk-table__cell">Text, max 8000 characters</td>
+                        <td class="govuk-table__cell">Recommended</td>
+                        <td class="govuk-table__cell">Draft business case for a Learning Resource Centre</td>
+                    </tr>
+
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">closure status</th>
+                        <td class="govuk-table__cell">Closed records must have been approved by the Advisory Council. Only the words 'Open' or 'Closed' will be accepted. This is case sensitive and variations on these words will not be accepted.</td>
+                        <td class="govuk-table__cell">Open or Closed, default: Open</td>
+                        <td class="govuk-table__cell">Mandatory for closed record</td>
+                        <td class="govuk-table__cell">Closed</td>
+                    </tr>
+
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">closure start date</th>
+                        <td class="govuk-table__cell">Closed record: Must match date of the record (if provided) else date last modified, must also align to date provided on closure application.</td>
+                        <td class="govuk-table__cell">YYYY-MM-DD</td>
+                        <td class="govuk-table__cell">Mandatory for closed record</td>
+                        <td class="govuk-table__cell">2020-03-01</td>
+                    </tr>
+
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">closure period</th>
+                        <td class="govuk-table__cell">Closed record: Provide a list of the number of years closure for each foi exemption code, in corresponding order</td>
+                        <td class="govuk-table__cell">Semi-colon separated list of numbers between 1 and 150 (with no spaces)</td>
+                        <td class="govuk-table__cell">Mandatory for closed record</td>
+                        <td class="govuk-table__cell">40;80</td>
+                    </tr>
+
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">foi exemption code</th>
+                        <td class="govuk-table__cell">Closed record: Provide the FOI exemption codes used to justify closure for the record, as approved by the Advisory Council This should be the same as the code(s) on the closure schedule for the record.</td>
+                        <td class="govuk-table__cell">Semi-colon separated list (with no spaces)</td>
+                        <td class="govuk-table__cell">Mandatory for closed record</td>
+                        <td class="govuk-table__cell">27(1);33</td>
+                    </tr>
+
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">foi schedule date</th>
+                        <td class="govuk-table__cell">Closed record: This date must match the one found on the closure schedule for the record.</td>
+                        <td class="govuk-table__cell">YYYY-MM-DD</td>
+                        <td class="govuk-table__cell">Mandatory for closed record</td>
+                        <td class="govuk-table__cell">2020-03-01</td>
+                    </tr>
+
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">is description closed</th>
+                        <td class="govuk-table__cell">Closed record: Yes means the description should also be closed.</td>
+                        <td class="govuk-table__cell">Yes or No, default: No</td>
+                        <td class="govuk-table__cell">Mandatory for closed record</td>
+                        <td class="govuk-table__cell">Yes</td>
+                    </tr>
+
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">former reference</th>
+                        <td class="govuk-table__cell">Provide any reference which may have been used during the life of the record (it must not contain any line breaks). If you have multiple former references, these should be separated by semi-colons.</td>
+                        <td class="govuk-table__cell">Text, max 255 characters</td>
+                        <td class="govuk-table__cell">Optional</td>
+                        <td class="govuk-table__cell">CRDA/12</td>
+                    </tr>
+
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">alternate description</th>
+                        <td class="govuk-table__cell">Closed record: If the description of this record is closed, please provide an alternate description to be displayed on Discovery while the record is closed.</td>
+                        <td class="govuk-table__cell">Text, max 8000 characters</td>
+                        <td class="govuk-table__cell">Mandatory if description is closed</td>
+                        <td class="govuk-table__cell">This is an alternative description</td>
+                    </tr>
+
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">language</th>
+                        <td class="govuk-table__cell">Indicate if the record is in English, Welsh or both (English;Welsh). This is case sensitive and variations on these words will not be accepted. If you have records in other languages, please contact your digital transfer advisor</td>
+                        <td class="govuk-table__cell">Semi-colon separated list (with no spaces)
+                    default: English</td>
+                        <td class="govuk-table__cell">Mandatory</td>
+                        <td class="govuk-table__cell">English;Welsh</td>
+                    </tr>
+
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">translated filename</th>
+                        <td class="govuk-table__cell">Provide a translation of the title (without the file extension)</td>
+                        <td class="govuk-table__cell">Text, max 8000 characters</td>
+                        <td class="govuk-table__cell">Optional</td>
+                        <td class="govuk-table__cell">filenameEnglish</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+   
+  </div>
+{% endblock %}
