@@ -1,0 +1,135 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Guide to completing the metadata file
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Guide to completing the metadata file</h1>
+      
+   
+      <p class="govuk-body">  This guide provides a quick overview of how to complete the metadata file effectively. Below, you will find essential information on the metadata you need to fill in, ensuring that all necessary details are accurately captured. To assist you further, we have included a table that serves as a guide to filling in the spreadsheet. By following these instructions and using the table as a reference, you can efficiently complete the metadata file with ease. <i>This is generic text do not consider.</i></p>
+    
+    <h2 class="govuk-heading-m">Mandatory attributes</h2>
+        <p class="govuk-body">These are mandatory attributes in the file and must not be edited.</p>
+
+<h3 class="govuk-heading-s"><i>filepath</i></h3>
+<ul class="govuk-list govuk-list--bullet">
+    <li>Details: This is the file path/folder structure extracted upon upload, do not modify.</li>
+    <li>Format: Mandatory</li>
+</ul>
+
+<h3 class="govuk-heading-s"><i>filename</i></h3>
+<ul class="govuk-list govuk-list--bullet">
+    <li>Details: This is the file name extracted upon upload, do not modify.</li>
+    <li>Format: Mandatory</li>
+</ul>
+
+
+<h3 class="govuk-heading-s"><i>date last modified</i></h3>
+<ul class="govuk-list govuk-list--bullet">
+    <li>Details: This is the date last modified extracted upon upload, do not modify.</li>
+    <li>Format: Mandatory</li>
+</ul>
+
+<h2 class="govuk-heading-m">Other attributes</h2>
+
+<h3 class="govuk-heading-s"><i>date of the record</i></h3>
+<ul class="govuk-list govuk-list--bullet">
+    <li>Details: If the date last modified is not meaningful, please provide the date of the record. <i>Optional</i></li>
+    <li>Format: YYYY-MM-DD (for example: 2020-03-01)</li>
+</ul>
+
+<h3 class="govuk-heading-s"><i>description</i></h3>
+<ul class="govuk-list govuk-list--bullet">
+    <li>Details: Provide a description which gives more context to the record. <i>Recommended.</i></li>
+    <li>Format: Text, max 8000 characters</li>
+</ul>
+
+<h3 class="govuk-heading-s"><i>former reference</i></h3>
+<ul class="govuk-list govuk-list--bullet">
+    <li>Details: Provide any reference which may have been used during the life of the record (it must not contain any line breaks). If you have multiple former references, these should be separated by semi-colons.<i>Optional.</i></li>
+    <li>Format: Text, max 255 characters. (For example: 'CRDA/12')</li>
+</ul>
+
+
+<h3 class="govuk-heading-s"><i>closure status</i></h3>
+<ul class="govuk-list govuk-list--bullet">
+    <li>Details: Closed records must have been approved by the Advisory Council. Only the words 'Open' or 'Closed' will be accepted. This is case sensitive and variations on these words will not be accepted. <i>Mandatory for closed record.</i></li>
+    <li>Format: Open or Closed, default: Open</li>
+</ul>
+
+
+
+<h3 class="govuk-heading-s"><i>closure start date</i></h3>
+<ul class="govuk-list govuk-list--bullet">
+    <li>Details: Closed record: Must match date of the record (if provided) else date last modified, must also align to date provided on closure application. <i>Mandatory for closed record.</i></li>
+    <li>Format: YYYY-MM-DD (For example: '2020-03-01')</li>
+</ul>
+
+<h3 class="govuk-heading-s"><i>closure period</i></h3>
+<ul class="govuk-list govuk-list--bullet">
+    <li>Details: Closed record: Provide a list of the number of years closure for each foi exemption code, in corresponding order.  <i>Mandatory for closed record.</i></li>
+    <li>Format: Semi-colon separated list of numbers between 1 and 150 (with no spaces). For example: '40;80'.</li>
+</ul>
+
+<h3 class="govuk-heading-s"><i>foi exemption code</i></h3>
+<ul class="govuk-list govuk-list--bullet">
+    <li>Details: Closed record: Provide the FOI exemption codes used to justify closure for the record, as approved by the Advisory Council This should be the same as the code(s) on the closure schedule for the record. <i>Mandatory for closed record.</i> </li>
+    <li>Format: Semi-colon separated list (with no spaces). For example: 27(1);33.</li>
+</ul>
+
+<h3 class="govuk-heading-s"><i>foi schedule date</i></h3>
+<ul class="govuk-list govuk-list--bullet">
+    <li>Details: Closed record: This date must match the one found on the closure schedule. It can be found on the bottom right hand corner of each page. <i>Mandatory for closed record.</i> </li>
+    <li>Format: YYYY-MM-DD (for example: 2020-03-01)</li>
+
+</ul>
+
+<h3 class="govuk-heading-s"><i>is filename closed</i></h3>
+<ul class="govuk-list govuk-list--bullet">
+    <li>Details: Closed record: Yes means the filename should also be closed. <i>Mandatory for closed record.</i> </li>
+    <li>Format: Yes or No, default: No </li>
+</ul>
+
+<h3 class="govuk-heading-s"><i>alternate filename</i></h3>
+<ul class="govuk-list govuk-list--bullet">
+    <li>Details: Closed record: If the filename of this record is closed, please provide an alternate filename (without the file extension) to be displayed on Discovery while the record is closed. <i>Mandatory if filename is closed</i>.    </li>
+    <li>Format: Text, max 8000 characters (For example: 'filename1')</li>
+</ul>
+
+
+<h3 class="govuk-heading-s"><i>is description closed</i></h3>
+<ul class="govuk-list govuk-list--bullet">
+    <li>Details: Closed record: Yes means the description should also be closed.<i>Mandatory for closed record.</i></li>
+    <li>Format: Yes or No, default: No.</li>
+</ul>
+
+
+
+<h3 class="govuk-heading-s"><i>alternate description</i></h3>
+<ul class="govuk-list govuk-list--bullet">
+    <li>Details: Closed record: If the description of this record is closed, please provide an alternate description to be displayed on Discovery while the record is closed.<i>Mandatory if description is closed.</i></li>
+    <li>Format: Text, max 8000 characters. (For example: 'This is an alternative description')</li>
+</ul>
+
+<h3 class="govuk-heading-s"><i>language</i></h3>
+<ul class="govuk-list govuk-list--bullet">
+    <li>Details: Indicate if the record is in English, Welsh or both (English;Welsh). This is case sensitive and variations on these words will not be accepted. If you have records in other languages, please contact your digital transfer advisor. <i>Mandatory</i></li>
+    <li>Format: Semi-colon separated list (with no spaces) default: English. (For example: 'English;Welsh')</li>
+</ul>
+
+<h3 class="govuk-heading-s"><i>translated filename</i></h3>
+<ul class="govuk-list govuk-list--bullet">
+    <li>Details: Provide a translation of the title (without the file extension). <i>Optional.</i></li>
+    <li>Format: Text, max 8000 characters. (For example: 'filenameEnglish')</li>
+</ul>
+
+
+
+        </div>
+   
+  </div>
+{% endblock %}
