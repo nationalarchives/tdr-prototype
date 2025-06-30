@@ -24,3 +24,4 @@ Configuration for pages in `servicePages` property of `config.json`. Requires th
 ```
 npm run export-static -- outputDirName=2022-09
 ```
+
