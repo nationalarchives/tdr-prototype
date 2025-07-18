@@ -1,0 +1,132 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Tell us more about this document
+{% endblock %}
+
+{% block header %}
+  {% include "layouts/inc-header-no-view-transfer.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="home" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set updateHtml %}
+<div class="govuk-form-group govuk-form-group--error">
+  <fieldset class="govuk-fieldset">
+                <p id="update-reasons-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Select at least one reason for the update
+            </p>
+    <legend class="govuk-fieldset__legend govuk-hint">
+      Select the reasons for the update:
+    </legend>
+
+    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+        <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="typo" name="typo" type="checkbox" value="typo">
+        <label class="govuk-label govuk-checkboxes__label" for="typo">
+          Text changes
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="Formatting" name="Formatting" type="checkbox" value="Formatting">
+        <label class="govuk-label govuk-checkboxes__label" for="Formatting">
+          Formatting
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="NCN" name="NCN" type="checkbox" value="NCN">
+        <label class="govuk-label govuk-checkboxes__label" for="NCN">
+          Amendment to NCN 
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="Anonymisation" name="Anonymisation" type="checkbox" value="Anonymisation">
+        <label class="govuk-label govuk-checkboxes__label" for="Anonymisation">
+          Anonymisation/redaction
+        </label>
+      </div>
+
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="Other" name="Other" type="checkbox" value="Other">
+        <label class="govuk-label govuk-checkboxes__label" for="Other">
+          Other 
+        </label>
+      </div>
+      <div class="govuk-form-group" style="clear: both;">
+        <label class="govuk-label" for="event-name" >
+          If Other, enter the reason (optional):
+        </label>
+        <input class="govuk-input  govuk-input--width-20" id="event-name" name="eventName" type="text">
+      </div>
+  </fieldset>
+</div>
+      {% endset -%}
+
+      <form action="tell-us-more-v6" method="post">
+        {{ govukRadios({
+          name: "documentType",
+          fieldset: {
+            legend: {
+              text: "Tell us about your document",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            }
+          },
+          hint: {
+            html: "This will help us to collect the right information from you about the transfer."
+          },
+          items: [
+            {
+              value: "original",
+              text: "It's a judgment being transferred for the first time"
+            },
+            {
+              value: "update",
+              text: "It's an update to a judgment",
+              conditional: {
+                html: updateHtml
+              }
+            },
+            {
+              value: "press-summary",
+              text: "It's a press summary related to a judgment"
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue",
+            href: ""
+          }) }}
+        </div>
+      
+      </form>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" open="" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Transfer reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+      
+      <h4 class="govuk-heading-s">Problems with your transfer?</h4>
+      <p class="govuk-body">Email us and include the transfer reference:
+        <a href="mailto:tdr@nationalarchives.gov.uk" class="govuk-link">tdr@nationalarchives.gov.uk</a>
+      </p>
+    </div>
+  </div>
+
+{% endblock %}
