@@ -57,10 +57,9 @@
       </div>
       <div class="govuk-form-group" style="clear: both;">
         <label class="govuk-label" for="event-name" >
-          If Other, enter the reason (optional):
+          Add more details about this update (optional):
         </label>
-        <input class="govuk-input  govuk-input--width-20" id="event-name" name="eventName" type="text">
-      </div>
+  <textarea class="govuk-textarea" id="event-name" name="event-name" rows="5" aria-describedby="more-detail-hint"></textarea>      </div>
   </fieldset>
 </div>
       {% endset -%}
@@ -81,7 +80,8 @@
           items: [
             {
               value: "original",
-              text: "It's a judgment being transferred for the first time"
+              text: "It's a judgment being transferred for the first time",
+      checked: true
             },
             {
               value: "update",
