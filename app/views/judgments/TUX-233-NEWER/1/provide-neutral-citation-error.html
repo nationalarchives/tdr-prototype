@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Provide a neutral citation number
+  Error: Provide a neutral citation number
 {% endblock %}
 
 {% block header %}
@@ -15,6 +15,17 @@
 
 {% block content %}
 
+{{ govukErrorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    
+    {
+      text: "Enter a valid NCN or select 'Original judgment to this update does not have an NCN'",
+      href: "#update-reasons-error"
+    }
+  ]
+}) }}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -22,8 +33,11 @@
       <h1 class="govuk-heading-l">
         Provide the neutral citation number (NCN) for the original judgment
       </h1>
-
-<div class="govuk-form-group">
+     
+<div class="govuk-form-group govuk-form-group--error">
+    <p id="update-reasons-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> Enter a valid NCN or select 'Original judgment to this update does not have an NCN'
+    </p>
 
       {{ govukInput({
         label: {
@@ -59,7 +73,6 @@
       text: "Original judgment to this update does not have an NCN ",
       classes: "govuk-visually-hidden"
     }
-
   },
 
   items: [

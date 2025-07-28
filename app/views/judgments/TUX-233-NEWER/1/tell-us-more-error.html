@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Tell us more about this document
+  Error: Tell us more about this document
 {% endblock %}
 
 {% block header %}
@@ -13,8 +13,19 @@
 {% endblock %}
 
 {% block content %}
+{{ govukErrorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    
+    {
+      text: "Select at least one reason for the update",
+      href: "#update-reasons-error"
+    }
+  ]
+}) }}
 
   <div class="govuk-grid-row">
+    
     <div class="govuk-grid-column-two-thirds">
 
       {% set updateHtml %}
