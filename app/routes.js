@@ -197,18 +197,59 @@ router.post('/judgments/*/tell-us-more-v6', function(request, response) {
   }
 })
 
-router.post('/judgments/*/tell-us-more-v6', function(request, response) {
+
+
+// test route 
+router.post('/judgments/*/tell-us-more-v7', function(request, response) {
   var documentType = request.session.data['documentType'];
-  if (documentType == "original"){
+  var updateReasons = request.session.data['updateReason']; // Assuming 'updateReason' contains the selected checkboxes
+
+  if (documentType == "original") {
     response.redirect("upload");
-  } else if (documentType == "update"){
+  } else if (documentType == "update") {
+    // Check if at least one checkbox is selected
+    if (updateReasons && updateReasons.length > 0) {
+      response.redirect("provide-neutral-citation");
+    } else {
+      // Redirect to an error page if no checkboxes are selected
+      response.redirect("tell-us-more-error");
+    }
+  } else if (documentType == "press-summary") {
     response.redirect("provide-neutral-citation");
-  } else if (documentType == "press-summary"){
-    response.redirect("provide-neutral-citation");
-  } else if (documentType == "something-else"){
+  } else if (documentType == "something-else") {
     response.redirect("something-else");
+  } else {
+    // Handle unexpected document types or redirect to a default page
+    response.redirect("default-page");
   }
 })
+
+
+router.post('/judgments/*/provide-neutral-citation-v1', function(request, response) {
+  // Capture the values from the form submission
+  var neutralCitation = request.body.neutralCitation;
+  var noNcnCheckbox = request.body['no-ncn']; // Get the actual value
+  
+  // Use console.log to print the values to the console
+  //console.log('Neutral Citation Value:', neutralCitation);
+  //console.log('No NCN Checkbox Raw Value:', noNcnCheckbox);
+  //console.log('No NCN Checkbox Selected:', noNcnCheckbox === 'no-ncn-select');
+  
+  // Check if the checkbox is selected (handle GDS checkbox array format)
+  var isCheckboxSelected = Array.isArray(noNcnCheckbox) ? noNcnCheckbox.includes('no-ncn-select') : noNcnCheckbox === 'no-ncn-select';
+  
+  //console.log('Checkbox Selected:', isCheckboxSelected);
+  
+  // Check if the checkbox is selected or if there is at least one character in the textbox
+  if (isCheckboxSelected || (neutralCitation && neutralCitation.trim().length >= 1)) {
+    // Redirect to the 'upload' page if either condition is met
+    response.redirect("upload");
+  } else {
+    // Redirect to the 'error' page if neither condition is met
+    response.redirect("provide-neutral-citation-error");
+  }
+})
+// end test 
 
 router.post('/TUX-106/*/transfer-tasks-series', (req, res, next) => {
   if(req.session.data['csv-upload-status'] == "success"){
