@@ -17,79 +17,72 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-
       <h1 class="govuk-heading-l">
         Provide the neutral citation number (NCN) for the original judgment
       </h1>
-
-<div class="govuk-form-group">
-
-      {{ govukInput({
-        label: {
-          html: '<p class="govuk-body">Enter the NCN for the judgment that this update relates to.</p>
-      <p class="govuk-body">An NCN is formatted as:<br /> 
-      <span class="govuk-hint">[YEAR] COURT/TRIBUNAL number (Denomination)</span></p>',
-          classes: "govuk-body",
-          isPageHeading: false
-        },
-        
-        id: "neutral-citation",
-        name: "neutralCitation"
-      }) }}
-
-
-{% set noncnHtml %}
-{{ govukInput({
-  id: "no-ncnHtml",
-  name: "no",
-  label: {
-    text: "Provide any details that would help us identify the document, such as a transfer reference number (optional):"
-  }
-}) }}
-{% endset -%}
+      <div class="govuk-form-group">
+        <form id="neutralCitationForm" action="provide-neutral-citation-v1" method="post">
+          {{ govukInput({
+            label: {
+              html: '<p class="govuk-body">Enter the NCN for the judgment that this update relates to.</p>
+                  <p class="govuk-body">An NCN is formatted as:<br>
+                  <span class="govuk-hint">[YEAR] COURT/TRIBUNAL number (Denomination)</span></p>',
+              classes: "govuk-body",
+              isPageHeading: false
+            },
+            id: "neutral-citation",
+            name: "neutralCitation"
+          }) }}
 
 
 
 
-{{ govukCheckboxes({
-  name: "no-ncn",
-  fieldset: {
-    legend: {
-      text: "Original judgment to this update does not have an NCN ",
-      classes: "govuk-visually-hidden"
-    }
+        {% set noncnHtml %}
+            {{ govukInput({
+              id: "no-ncnHtml",
+              name: "no",
+              label: {
+                text: "Provide any details that would help us identify the document, such as a transfer reference number (optional):"
+              }
+            }) }}
+          {% endset -%}
 
-  },
+          {{ govukCheckboxes({
+            name: "no-ncn",
+            fieldset: {
+              legend: {
+                text: "Original judgment to this update does not have an NCN ",
+                classes: "govuk-visually-hidden"
+              }
+            },
+            items: [
+              {
+                value: "no-ncn-select",
+                text: "Original judgment to this update does not have an NCN",
+                conditional: {
+                  html: noncnHtml
+                }
+              }
+            ]
+          }) }}
+        </div>
 
-  items: [
-
-    {
-      value: "no-ncn-select",
-      text: "Original judgment to this update does not have an NCN",
-      conditional: {
-        html: noncnHtml
-      }
-    }
-  ]
-}) }}
-</div>
-
-{{ govukInsetText({
-  html: 'Further guidance on NCN&#39;s can be found on the <a class="govuk-link" target="_blank" href="https://nationalarchives.github.io/ds-caselaw-judiciary-guidance/ncn.html">Find Case Law website</a> (opens in a new tab).'
-}) }}
 
 
-<hr class="govuk-section-break govuk-section-break--m">
-
-      <div class="govuk-button-group">
-        {{ govukButton({
-          text: "Continue",
-          href: "./upload"
+        {{ govukInsetText({
+          html: 'Further guidance on NCN&#39;s can be found on the <a class="govuk-link" target="_blank" href="https://nationalarchives.github.io/ds-caselaw-judiciary-guidance/ncn.html">Find Case Law website</a> (opens in a new tab).'
         }) }}
-      </div>
-    </div>
 
+        <hr class="govuk-section-break govuk-section-break--m">
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue",
+            id: "continueButton"
+          }) }}
+        </div>
+      </form>
+    </div>
     <div class="govuk-grid-column-one-third">
       <details class="govuk-details" open="" data-module="govuk-details">
         <summary class="govuk-details__summary">

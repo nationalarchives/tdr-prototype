@@ -40,32 +40,32 @@
 
     <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
         <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="typo" name="typo" type="checkbox" value="typo">
+        <input class="govuk-checkboxes__input" id="typo" name="updateReason" type="checkbox" value="typo">
         <label class="govuk-label govuk-checkboxes__label" for="typo">
           Text changes
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="Formatting" name="Formatting" type="checkbox" value="Formatting">
+        <input class="govuk-checkboxes__input" id="Formatting" name="updateReason" type="checkbox" value="Formatting">
         <label class="govuk-label govuk-checkboxes__label" for="Formatting">
           Formatting
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="NCN" name="NCN" type="checkbox" value="NCN">
+        <input class="govuk-checkboxes__input" id="NCN" name="updateReason" type="checkbox" value="NCN">
         <label class="govuk-label govuk-checkboxes__label" for="NCN">
           Amendment to NCN 
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="Anonymisation" name="Anonymisation" type="checkbox" value="Anonymisation">
+        <input class="govuk-checkboxes__input" id="Anonymisation" name="updateReason" type="checkbox" value="Anonymisation">
         <label class="govuk-label govuk-checkboxes__label" for="Anonymisation">
           Anonymisation/redaction
         </label>
       </div>
 
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="Other" name="Other" type="checkbox" value="Other">
+        <input class="govuk-checkboxes__input" id="Other" name="updateReason" type="checkbox" value="Other">
         <label class="govuk-label govuk-checkboxes__label" for="Other">
           Other 
         </label>
@@ -79,7 +79,7 @@
 </div>
       {% endset -%}
 
-      <form action="tell-us-more-v6" method="post">
+      <form action="tell-us-more-v7" method="post">
         {{ govukRadios({
           name: "documentType",
           fieldset: {

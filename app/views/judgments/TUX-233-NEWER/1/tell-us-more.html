@@ -6,6 +6,8 @@
 
 {% block header %}
   {% include "layouts/inc-header-no-view-transfer.html" %}
+
+  
 {% endblock %}
 
 {% block beforeContent %}
@@ -25,13 +27,13 @@
     </legend>
     <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
         <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="typo" name="typo" type="checkbox" value="typo">
+        <input class="govuk-checkboxes__input" id="updateReason" name="updateReason" type="checkbox" value="typo">
         <label class="govuk-label govuk-checkboxes__label" for="typo">
           Text changes
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="Formatting" name="Formatting" type="checkbox" value="Formatting">
+        <input class="govuk-checkboxes__input" id="updateReason" name="updateReason" type="checkbox" value="Formatting">
         <label class="govuk-label govuk-checkboxes__label" for="Formatting">
           Formatting
         </label>
@@ -64,7 +66,7 @@
 </div>
       {% endset -%}
 
-      <form action="tell-us-more-v6" method="post">
+      <form action="tell-us-more-v7" method="post">
         {{ govukRadios({
           name: "documentType",
           fieldset: {
@@ -98,10 +100,7 @@
         }) }}
 
         <div class="govuk-button-group">
-          {{ govukButton({
-            text: "Continue",
-            href: ""
-          }) }}
+          <button type="submit" class="govuk-button" data-module="govuk-button" id="continueButton">Continue</button>
         </div>
       
       </form>
@@ -124,5 +123,7 @@
       </p>
     </div>
   </div>
+
+
 
 {% endblock %}
