@@ -1,7 +1,7 @@
 ---
 status:
-  colour: ""
-  title: "In progress"
+  colour: "green"
+  title: "Implemented"
 title: "[Metadata Upload] Core journey & guidance"
 date_started: "2024-05-02"
 date_completed: ""
