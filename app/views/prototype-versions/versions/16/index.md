@@ -1,7 +1,7 @@
 ---
 status:
-  colour: ""
-  title: "In Progress"
+  colour: "blue"
+  title: "Superseded"
 title: "[Judgments] User should declare if transfer is an amendment or press summary"
 date_started: "2024-05-16"
 date_completed: ""
