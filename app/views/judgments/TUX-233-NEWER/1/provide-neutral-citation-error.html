@@ -39,15 +39,14 @@
         <form id="neutralCitationForm" action="provide-neutral-citation-v1" method="post">
           {{ govukInput({
             label: {
-              html: '<p class="govuk-body">Enter the NCN for the judgment that this update relates to.</p>
-                  <p class="govuk-body">An NCN is formatted as:<br>
-                  <span class="govuk-hint">[YEAR] COURT/TRIBUNAL number (Denomination)</span></p>',
+              html: '<p class="govuk-body">Enter the NCN for the judgment that this update relates to:</p>',
               classes: "govuk-body",
               isPageHeading: false
             },
             id: "neutral-citation",
             name: "neutralCitation"
           }) }}
+
 
 
 
@@ -84,9 +83,18 @@
 
 
 
-        {{ govukInsetText({
-          html: 'Further guidance on NCN&#39;s can be found on the <a class="govuk-link" target="_blank" href="https://nationalarchives.github.io/ds-caselaw-judiciary-guidance/ncn.html">Find Case Law website</a> (opens in a new tab).'
+          {{ govukDetails({
+          summaryText: "Help with neutral citation numbers",
+          html: '<p class="govuk-body">A neutral citation number will look like:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>[2021] EWCA Civ 1847</li>
+            <li>[2025] EWHC 2084 (Ch)</li>
+            <li>[[2019] UKSC 38</li>
+          </ul>
+
+          <p class="govuk-body">Further guidance on NCN&#39;s can be found on the <a class="govuk-link" target="_blank" href="https://nationalarchives.github.io/ds-caselaw-judiciary-guidance/ncn.html">Find Case Law website</a> (opens in a new tab).</p>'
         }) }}
+
 
         <hr class="govuk-section-break govuk-section-break--m">
 

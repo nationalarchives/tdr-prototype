@@ -27,13 +27,18 @@
       <h2 class="govuk-heading-m">What happens next</h2>
 
       <p class="govuk-body">Your transfer will now be reviewed by the editorial team.</p>
-      <p class="govuk-body">You will be notified by email once the judgment has been reviewed and published.</p>
+      <p class="govuk-body">You will be notified by email once the judgment/update has been reviewed and published.</p>
       <p class="govuk-body">Do not delete the original file you uploaded until you have been notified.</p>
-      <p class="govuk-body">
+
+      {{ govukInsetText({
+  html: '
+  <p class="govuk-body">
         <a href="https://www.smartsurvey.co.uk/s/5YDPSA/" class="govuk-link" rel="noreferrer noopener" target="_blank">
-        What did you think of this service? (opens in new tab)
-        </a>
-      </p>
+        Give your feedback on this service</a> (opens in new tab)
+        
+      </p>'
+}) }}
+
 
       {# <div class="da-alert">
         <div class="da-alert__heading">
@@ -48,9 +53,11 @@
           <li>tell us if this transfer was a revision or update</li>
           <li>provide a short description of what has changed</li>
         </ul>
-      </div> 
+      </div> #}
 
-      <h2 class="govuk-heading-m">If this is an update to an existing judgment or decision</h2>
+         <h2 class="govuk-heading-m">Further support </h2>
+
+      <h3 class="govuk-heading-s">If this is an update to an existing judgment or decision</h3>
       <p class="govuk-body">
         If this transfer was an update or revision, email <a href="mailto:judgments@nationalarchives.gov.uk">judgments@nationalarchives.gov.uk</a> and include the following:
       </p>
@@ -60,9 +67,9 @@
         <li>tell us if this transfer was a revision or update</li>
         <li>provide a short description of what has changed</li>
       </ul>
-    #}
-      <h2 class="govuk-heading-m">Contact the publishing editors</h2>
-      <p class="govuk-body"><a href="mailto:judgments@nationalarchives.gov.uk">judgments@nationalarchives.gov.uk</a></p>
+    
+      <h3 class="govuk-heading-s">Contact the publishing editors</h3>
+      <p class="govuk-body govuk-!-margin-bottom-6"><a href="mailto:judgments@nationalarchives.gov.uk">judgments@nationalarchives.gov.uk</a></p>
   
 
       {{ govukButton({
@@ -72,5 +79,6 @@
 
     </div>
   </div>
+
 
 {% endblock %}
