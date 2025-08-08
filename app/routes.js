@@ -205,22 +205,20 @@ router.post('/judgments/*/tell-us-more-v7', function(request, response) {
   var updateReasons = request.session.data['updateReason']; // Assuming 'updateReason' contains the selected checkboxes
 
   if (documentType == "original") {
-    response.redirect("upload");
+    response.redirect("before-uploading");
   } else if (documentType == "update") {
     // Check if at least one checkbox is selected
     if (updateReasons && updateReasons.length > 0) {
-      response.redirect("provide-neutral-citation");
+      response.redirect("before-uploading");
     } else {
       // Redirect to an error page if no checkboxes are selected
       response.redirect("tell-us-more-error");
     }
   } else if (documentType == "press-summary") {
-    response.redirect("provide-neutral-citation");
-  } else if (documentType == "something-else") {
-    response.redirect("something-else");
+    response.redirect("before-uploading");
   } else {
     // Handle unexpected document types or redirect to a default page
-    response.redirect("default-page");
+    response.redirect("home");
   }
 })
 
