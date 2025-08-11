@@ -89,7 +89,7 @@
           <ul class="govuk-list govuk-list--bullet">
             <li>[2021] EWCA Civ 1847</li>
             <li>[2025] EWHC 2084 (Ch)</li>
-            <li>[[2019] UKSC 38</li>
+            <li>[2019] UKSC 38</li>
           </ul>
 
           <p class="govuk-body">Further guidance on NCN&#39;s can be found on the <a class="govuk-link" target="_blank" href="https://nationalarchives.github.io/ds-caselaw-judiciary-guidance/ncn.html">Find Case Law website</a> (opens in a new tab).</p>'
@@ -125,5 +125,69 @@
       </p>
     </div>
   </div>
+<script>
+  
+  // Get references to the checkbox and input elements
+const checkbox = document.querySelector('#no-ncn'); // Adjust selector as needed
+const textInput = document.querySelector('#neutral-citation'); // Adjust selector as needed
 
+// Function to handle checkbox state change
+function handleCheckboxChange() {
+    if (checkbox.checked) {
+        // Checkbox is selected - clear input and disable it
+        textInput.value = '';
+        textInput.disabled = true;
+        textInput.setAttribute('aria-disabled', 'true');
+    } else {
+        // Checkbox is deselected - enable input
+        textInput.disabled = false;
+        textInput.removeAttribute('aria-disabled');
+        // Optionally focus the input when it becomes available
+        textInput.focus();
+    }
+}
+
+// Add event listener to checkbox
+checkbox.addEventListener('change', handleCheckboxChange);
+
+// Alternative version with more explicit selectors and additional features
+function initConditionalInput(checkboxSelector, inputSelector) {
+    const checkbox = document.querySelector(checkboxSelector);
+    const textInput = document.querySelector(inputSelector);
+    
+    if (!checkbox || !textInput) {
+        console.error('Checkbox or input element not found');
+        return;
+    }
+    
+    function toggleInput() {
+        if (checkbox.checked) {
+            // Clear and disable input
+            textInput.value = '';
+            textInput.disabled = true;
+            textInput.setAttribute('aria-disabled', 'true');
+            
+            // Add visual styling for disabled state
+            textInput.classList.add('govuk-input--disabled');
+        } else {
+            // Enable input
+            textInput.disabled = false;
+            textInput.removeAttribute('aria-disabled');
+            textInput.classList.remove('govuk-input--disabled');
+            
+            // Focus input for better UX
+            textInput.focus();
+        }
+    }
+    
+    // Set initial state based on checkbox
+    toggleInput();
+    
+    // Add event listener
+    checkbox.addEventListener('change', toggleInput);
+}
+
+// Usage example:
+// initConditionalInput('#no-ncn-checkbox', '#ncn-input');
+</script>
 {% endblock %}
