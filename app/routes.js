@@ -209,13 +209,13 @@ router.post('/judgments/*/tell-us-more-v7', function(request, response) {
   } else if (documentType == "update") {
     // Check if at least one checkbox is selected
     if (updateReasons && updateReasons.length > 0) {
-      response.redirect("before-uploading");
+      response.redirect("provide-neutral-citation");
     } else {
       // Redirect to an error page if no checkboxes are selected
       response.redirect("tell-us-more-error");
     }
   } else if (documentType == "press-summary") {
-    response.redirect("before-uploading");
+    response.redirect("provide-neutral-citation");
 
   } else {
     // Handle unexpected document types or redirect to a default page
@@ -242,7 +242,7 @@ router.post('/judgments/*/provide-neutral-citation-v1', function(request, respon
   // Check if the checkbox is selected or if there is at least one character in the textbox
   if (isCheckboxSelected || (neutralCitation && neutralCitation.trim().length >= 1)) {
     // Redirect to the 'upload' page if either condition is met
-    response.redirect("before-uploading");
+    response.redirect("upload");
   } else {
     // Redirect to the 'error' page if neither condition is met
     response.redirect("provide-neutral-citation-error");
