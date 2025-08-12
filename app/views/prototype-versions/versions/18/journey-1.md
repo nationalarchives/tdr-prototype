@@ -1,7 +1,7 @@
 ---
 status:
   colour: ""
-  title: "Completed"
+  title: "In progress"
 title: "V5.2 of Judgment journey"
 starting_url: "/judgments/TUX-233/1/home"
 ---

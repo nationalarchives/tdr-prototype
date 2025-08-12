@@ -1,11 +1,11 @@
 ---
 id: 1
 status:
-  colour: "green"
-  title: "Complete"
+  colour: ""
+  title: "In Progress"
 title: "Update Design for FCL Press Summaries & Amendments"
 date_started: "2025-06-06"
-date_completed: "2025-07-31"
+date_completed: ""
 issues:
   - id: "TUX-233"
     url: "https://national-archives.atlassian.net/browse/TUX-233"
