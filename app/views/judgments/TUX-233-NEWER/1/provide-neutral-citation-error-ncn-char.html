@@ -20,7 +20,7 @@
   errorList: [
     
     {
-      text: "Enter a valid NCN, or select 'Original judgment to this update does not have an NCN'",
+      text: "Neutral citation number must be between 10 and 100 characters",
       href: "#update-reasons-error"
     }
   ]
@@ -34,7 +34,7 @@
       <div class="govuk-form-group govuk-form-group--error">
 
 <p id="update-reasons-error" class="govuk-error-message">
-      <span class="govuk-visually-hidden">Error:</span> Enter a valid NCN, or select 'Original judgment to this update does not have an NCN'
+      <span class="govuk-visually-hidden">Error:</span>Neutral citation number must be between 10 and 100 characters
     </p>
         <form id="neutralCitationForm" action="provide-neutral-citation-v1" method="post">
           {{ govukInput({
@@ -44,7 +44,8 @@
               isPageHeading: false
             },
             id: "neutral-citation",
-            name: "neutralCitation"
+            name: "neutralCitation",
+            classes: "govuk-input--error"
           }) }}
 
 
