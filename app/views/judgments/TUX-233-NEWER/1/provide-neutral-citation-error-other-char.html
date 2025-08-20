@@ -20,7 +20,7 @@
   errorList: [
     
     {
-      text: "Enter a valid NCN, or select 'Original judgment to this update does not have an NCN'",
+      text: "'Provide any details...' must be 500 characters or less",
       href: "#update-reasons-error"
     }
   ]
@@ -31,11 +31,9 @@
       <h1 class="govuk-heading-l">
         Provide the neutral citation number (NCN) for the original judgment
       </h1>
-      <div class="govuk-form-group govuk-form-group--error">
+      <div class="govuk-form-group">
 
-<p id="update-reasons-error" class="govuk-error-message">
-      <span class="govuk-visually-hidden">Error:</span> Enter a valid NCN, or select 'Original judgment to this update does not have an NCN'
-    </p>
+
         <form id="neutralCitationForm" action="provide-neutral-citation-v1" method="post">
           {{ govukInput({
             label: {
@@ -57,7 +55,10 @@
               name: "no",
               label: {
                 text: "Provide any details that would help us identify the document, such as a transfer reference  (optional):"
-              }
+              },
+  errorMessage: {
+    text: "This field must be 500 characters or less"
+  }
             }) }}
           {% endset -%}
 
@@ -73,6 +74,7 @@
               {
                 value: "no-ncn-select",
                 text: "Original judgment to this update does not have an NCN",
+                checked: true,
                 conditional: {
                   html: noncnHtml
                 }
