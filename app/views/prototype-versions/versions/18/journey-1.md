@@ -3,7 +3,7 @@ status:
   colour: ""
   title: "In progress"
 title: "V5.2 of Judgment journey"
-starting_url: "/judgments/TUX-233/1/home"
+starting_url: "/judgments/TUX-233-NEWER/1/home"
 ---
 
 Hit 'Start journey' for the whole user journey. 
