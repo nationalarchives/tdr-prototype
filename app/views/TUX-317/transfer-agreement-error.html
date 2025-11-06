@@ -1,0 +1,95 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Transfer agreement (part 1)
+{% endblock %}
+
+{% block content %}
+
+ <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        
+<h1 class="govuk-heading-l govuk-!-margin-bottom-3">Transfer agreement (part 1)</h1>
+
+        <p class="govuk-hint">You must confirm all statements before proceeding.</p>
+        
+<div class="govuk-warning-text">
+    <span class="govuk-warning-text__icon" aria-hidden="true">!</span> <!-- "aria-hidden" was added by GDS to prevent screen reader from saying "exclamation mark"-->
+    <strong class="govuk-warning-text__text">
+      <span class="govuk-warning-text__assistive">Warning</span>
+      This service is in beta. During this time, only records that&nbsp;are Public Records will be accepted.&nbsp;For more information, visit the <a href="/faq" target="_blank" rel="noopener noreferrer" class="govuk-link">FAQ (opens in new tab)</a>. If you need to transfer records that do not meet this criteria, contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>.
+    </strong>
+</div>
+
+        
+
+
+         
+<form>
+    
+        
+
+<div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+{{ govukRadios({
+  name: "transfer-ag-pt1",
+  fieldset: {
+    legend: {
+      text: "I confirm that all records are:",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [
+    {
+      value: "public-records",
+      text: "Public Records"
+    },
+    {
+      value: "not-public",
+      text: "Not Public Records"
+    },
+    {
+      value: "welsh-public-records",
+      text: "Welsh Public Records"
+    }
+  ],
+  errorMessage: {
+    text: "Select the appropriate option for your records"
+  }
+}) }}
+        
+    </fieldset>
+</div>
+
+        <div class="govuk-button-group">
+  <button data-prevent-double-click="true" class="govuk-button" type="submit" data-module="govuk-button" role="button">
+    Agree and continue
+  </button>
+
+  <a class="govuk-button govuk-button--secondary" href="/homepage">Cancel transfer</a>
+</div>
+
+        
+</form>
+
+    </div>
+    
+<div class="govuk-grid-column-one-third">
+    <details open="" class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+                
+                    Consignment reference
+                
+            </span>
+        </summary>
+        <div class="govuk-details__text">
+            TDR-2025-KSLK
+        </div>
+    </details>
+    
+</div>
+
+</div>
+
+{% endblock %}
