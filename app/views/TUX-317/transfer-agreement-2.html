@@ -1,0 +1,76 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Transfer agreement (part 2
+  )
+{% endblock %}
+
+{% block content %}
+
+ <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-3">Transfer agreement (part 2)</h1>
+
+<form>
+
+        
+{{ govukCheckboxes({
+  name: "dro",
+  fieldset: {
+    legend: {
+      html: '<span style="color: #505a5f;">You must confirm all statements before proceeding. If you cannot, please close your browser and contact your transfer advisor.</span>',
+      isPageHeading: false,
+      classes: "govuk-hint govuk-!-margin-bottom-6"
+    }
+  },
+  hint: {
+    html: '<span class="govuk-fieldset__legend govuk-fieldset__legend--s">I confirm that the Departmental Records Officer (DRO) has signed off on the following:</span>'
+  },
+  items: [
+    {
+      value: "carcasses",
+      text: "The appraisal and selection decision"
+    },
+    {
+      value: "farm",
+      text: "The sensitivity review"
+    }
+  ]
+}) }}
+
+<div class="govuk-button-group">
+  <button data-prevent-double-click="true" class="govuk-button" type="submit" data-module="govuk-button" role="button">
+    Agree and continue
+  </button>
+
+  <a class="govuk-button govuk-button--secondary" href="/homepage">Cancel transfer</a>
+</div>
+
+        
+</form>
+
+    </div>
+    
+<div class="govuk-grid-column-one-third">
+    <details open="" class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+                
+                    Consignment reference
+                
+            </span>
+        </summary>
+        <div class="govuk-details__text">
+            TDR-2025-KSLK
+        </div>
+    </details>
+    
+</div>
+
+</div>
+<script>
+    
+    
+</script>
+
+{% endblock %}
