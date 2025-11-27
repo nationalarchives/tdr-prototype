@@ -13,26 +13,19 @@
 
         <p class="govuk-hint">You must confirm all statements before proceeding.</p>
         
-<div class="govuk-warning-text">
-    <span class="govuk-warning-text__icon" aria-hidden="true">!</span> <!-- "aria-hidden" was added by GDS to prevent screen reader from saying "exclamation mark"-->
-    <strong class="govuk-warning-text__text">
-      <span class="govuk-warning-text__assistive">Warning</span>
-      This service is in beta. During this time, only records that&nbsp;are Public Records will be accepted.&nbsp;For more information, visit the <a href="/faq" target="_blank" rel="noopener noreferrer" class="govuk-link">FAQ (opens in new tab)</a>. If you need to transfer records that do not meet this criteria, contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>.
-    </strong>
-</div>
 
         
 
 
          
-<form>
+<form action="transfer-agreement-2">
     
         
 
 <div class="govuk-form-group">
     <fieldset class="govuk-fieldset">
 {{ govukRadios({
-  name: "transfer-ag-pt1",
+  name: "transfer-pt1",
   fieldset: {
     legend: {
       text: "I confirm that all records are:",
@@ -45,13 +38,14 @@
       text: "Public Records"
     },
     {
-      value: "not-public",
-      text: "Not Public Records"
-    },
-    {
       value: "welsh-public-records",
       text: "Welsh Public Records"
+    },
+    {
+      value: "not-public",
+      text: "Not Public Records"
     }
+
   ]
 }) }}
         
@@ -59,11 +53,11 @@
 </div>
 
         <div class="govuk-button-group">
-  <button data-prevent-double-click="true" class="govuk-button" type="submit" data-module="govuk-button" role="button">
+  <button class="govuk-button" type="submit" data-module="govuk-button" role="button">
     Agree and continue
   </button>
 
-  <a class="govuk-button govuk-button--secondary" href="/homepage">Cancel transfer</a>
+  <a class="govuk-button govuk-button--secondary" href="#">Cancel transfer</a>
 </div>
 
         
@@ -88,5 +82,6 @@
 </div>
 
 </div>
+
 
 {% endblock %}

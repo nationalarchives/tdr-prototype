@@ -8,31 +8,33 @@
 
  <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+        {{ govukErrorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    {
+      text: " Select the appropriate option for your records ",
+      href: "#transferpt1-error"
+    }
+  ]
+}) }}
         
 <h1 class="govuk-heading-l govuk-!-margin-bottom-3">Transfer agreement (part 1)</h1>
 
         <p class="govuk-hint">You must confirm all statements before proceeding.</p>
         
-<div class="govuk-warning-text">
-    <span class="govuk-warning-text__icon" aria-hidden="true">!</span> <!-- "aria-hidden" was added by GDS to prevent screen reader from saying "exclamation mark"-->
-    <strong class="govuk-warning-text__text">
-      <span class="govuk-warning-text__assistive">Warning</span>
-      This service is in beta. During this time, only records that&nbsp;are Public Records will be accepted.&nbsp;For more information, visit the <a href="/faq" target="_blank" rel="noopener noreferrer" class="govuk-link">FAQ (opens in new tab)</a>. If you need to transfer records that do not meet this criteria, contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>.
-    </strong>
-</div>
 
         
 
 
          
-<form>
+<form action="transfer-agreement-2">
     
         
 
 <div class="govuk-form-group">
     <fieldset class="govuk-fieldset">
 {{ govukRadios({
-  name: "transfer-ag-pt1",
+  name: "transferpt1",
   fieldset: {
     legend: {
       text: "I confirm that all records are:",
@@ -45,12 +47,12 @@
       text: "Public Records"
     },
     {
-      value: "not-public",
-      text: "Not Public Records"
-    },
-    {
       value: "welsh-public-records",
       text: "Welsh Public Records"
+    },
+    {
+      value: "not-public",
+      text: "Not Public Records"
     }
   ],
   errorMessage: {
