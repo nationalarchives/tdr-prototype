@@ -1,0 +1,95 @@
+{% extends "layouts/main-tux-386.html" %}
+
+{% block pageTitle %}
+  Transfer agreement
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+        
+<h1 class="govuk-heading-l govuk-!-margin-bottom-3">Transfer agreement (part 1)</h1>
+         
+<form action="transfer-agreement-continued">
+<div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+
+        <div class="govuk-form-group">
+
+          <fieldset class="govuk-fieldset">
+            
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+            
+              Select the legal status of these records:
+            
+            </legend>
+            
+          
+            <div class="govuk-radios" data-module="govuk-radios" data-govuk-radios-init="">
+
+              
+              
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="transfer-pt1" name="transfer-pt1" type="radio" value="public-records">
+                <label class="govuk-label govuk-radios__label" for="transfer-pt1">
+                  Public Record(s)
+                </label>
+                
+              </div>
+              
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="transfer-pt1-2" name="transfer-pt1" type="radio" value="welsh-public-records">
+                <label class="govuk-label govuk-radios__label" for="transfer-pt1-2">
+                  Welsh Public Record(s)
+                </label>
+                
+              </div>
+              
+            
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="transfer-pt1-3" name="transfer-pt1" type="radio" value="not-public">
+                <label class="govuk-label govuk-radios__label" for="transfer-pt1-3">
+                  Not Public Record(s)
+                </label>
+                
+              </div>
+         
+            </div>
+          
+          </fieldset>
+
+        </div>
+
+        
+    </fieldset>
+</div>
+
+        <div class="govuk-button-group">
+  <button class="govuk-button" type="submit" data-module="govuk-button" role="button" data-govuk-button-init="">
+    Agree and continue
+  </button>
+
+  <a class="govuk-button govuk-button--secondary" href="#">Cancel transfer</a>
+</div>
+
+        
+</form>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" open data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+    </div>
+  </div>
+
+{% endblock %}

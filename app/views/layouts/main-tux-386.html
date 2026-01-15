@@ -1,5 +1,20 @@
-{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{#
+For guidance on how to use layouts see:
+https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+#}
 
+{% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}
+
+{# {% import "metadata/files_data_sml.html" as globals %} #}
+{% import "metadata/files_data_med.html" as globals %}
+{# {% import "./metadata/files_data_lrg.html" as globals %} #}
+
+{% block stylesheets %}
+  {{ super() }}
+{% endblock %}
+
+{% block header %}
+ 
 <header class="govuk-header " role="banner" data-module="govuk-header">
   <div class="govuk-header__container govuk-width-container tna-header">
 <div class="govuk-header__logo">
@@ -18,7 +33,7 @@
       </a>
     </div>
     <div class="govuk-header__content">
-      <a href="/" class="govuk-header__link govuk-header__service-name">
+      <a href="/TUX-386/home" class="govuk-header__link govuk-header__service-name">
         {{serviceName}}
       </a>
       {% block nav %}
@@ -54,4 +69,50 @@
     html: (['This is not a real service. It is for testing purposes only. ', prototypeVersion ]| join)
   }) }}
 </div>
+{% endblock %}
+
+{% endblock %}
+
+{% set tdrFooterItems = [
+  {
+    href: "/faq",
+    text: "FAQ"
+  }, {
+    href: "/contact",
+    text: "Contact"
+  }, {
+    href: "/cookies",
+    text: "Cookies"
+  }, {
+    href: "/accessibility-statement",
+    text: "Accessibility statement"
+  }, {
+    href: "/manage-prototype/clear-data",
+    text: "Clear data"
+  }, {
+    href: "https://tdr-prototype.herokuapp.com/prototype-versions-api/",
+    text: "Prototype versions"
+  }
+] %}
+
+{% if (GOVUKPrototypeKit.isDevelopment) %}
+  {% set tdrFooterItems = (tdrFooterItems.push({href: "/manage-prototype", text: "Manage your prototype"}), tdrFooterItems) %}
+{% endif %}
+
+{% block footer %}
+  {{ govukFooter({
+  meta: {
+    items: tdrFooterItems,
+    visuallyHiddenTitle: "Footer links"
+  }
+}) }}
+{% endblock %}
+
+{% block bodyEnd %}
+  {% block scripts %}
+    {% include "govuk-prototype-kit/includes/scripts.html" %}
+    {% block pageScripts %}
+      <script src="/public/javascripts/main.js"></script>
+    {% endblock %}
+  {% endblock %}
 {% endblock %}

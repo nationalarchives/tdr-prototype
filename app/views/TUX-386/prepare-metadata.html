@@ -1,0 +1,139 @@
+{% extends "layouts/main-tux-386.html" %}
+
+{% block pageTitle %}
+  Results of checks
+{% endblock %}
+
+{% block content %}
+<a href="javascript:history.back()" class="govuk-back-link" style="display:block;margin-top:-25px;margin-bottom:55px;">Result of your checks</a>
+<div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds-from-desktop">
+            <h1 class="govuk-heading-l">Prepare your metadata</h1>
+
+            <p class="govuk-body">As part of a digital transfer to The National Archives your consignment of records must be transferred with metadata to assist preservation and make them easier to find in Discovery, the public catalogue.</p>
+
+            <p class="govuk-body">Metadata can be added to your records by uploading a <abbr title="Comma Separated Values">CSV</abbr>.</p>
+
+            <div class="da-alert da-alert--error da-alert--with-icon govuk-!-margin-top-4 govuk-!-margin-bottom-4">
+                <div class="da-alert__icon">
+                    <div aria-hidden="true"><svg class="da-icon da-icon--xl" viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg" focusable="false" fill="currentColor" role="img" title="da-icon-warning">
+                        <g clip-path="url(#a)">
+                            <path d="M11.5 0C17.851 0 23 5.149 23 11.5S17.851 23 11.5 23 0 17.851 0 11.5 5.149 0 11.5 0Zm0 2.3a9.2 9.2 0 1 0 0 18.4 9.2 9.2 0 0 0 0-18.4Z"></path>
+                            <path d="M11.5 4c-.208 0-.414.046-.605.135-.19.09-.362.221-.502.385-.141.164-.248.358-.315.568-.066.21-.09.434-.072.655l.6 7.01a.982.982 0 0 0 .293.613.87.87 0 0 0 .602.246.87.87 0 0 0 .602-.246.982.982 0 0 0 .293-.612l.598-7.011a1.697 1.697 0 0 0-.072-.654 1.623 1.623 0 0 0-.314-.568 1.506 1.506 0 0 0-.502-.385A1.421 1.421 0 0 0 11.5 4Zm0 14c.35 0 .684-.148.93-.41.246-.263.385-.619.385-.99s-.139-.727-.385-.99a1.274 1.274 0 0 0-.93-.41c-.348 0-.682.148-.928.41a1.448 1.448 0 0 0-.385.99c0 .371.138.727.385.99.246.262.58.41.929.41Z"></path>
+                        </g>
+                        <defs>
+                            <clipPath>
+                                <path fill="#fff" d="M0 0h23v23H0z"></path>
+                            </clipPath>
+                        </defs>
+                    </svg></div>
+                </div>
+                <div class="da-alert__content">
+                    <p class="govuk-body">Closed records must be approved by the Advisory Council before transfer. You must provide metadata about closed records.</p>
+                </div>
+            </div>
+
+            <h2 class="govuk-heading-m">Download your metadata template</h2>
+
+            <p class="govuk-body">Download an Excel template that contains pre-populated metadata. The metadata values in the template were either extracted from your records or set by default. See 'Quick Guide' tab in template for guidance.</p>
+
+            <a class="govuk-button govuk-button--secondary download-metadata" href="https://github.com/nationalarchives/tdr-prototype/raw/refs/heads/main/app/assets/downloads/MOCK-TDR-1301-template.xlsx">
+    <span aria-hidden="true" class="tna-button-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 23 23">
+            <path fill="#020202" d="m11.5 16.75-6.563-6.563 1.838-1.903 3.412 3.413V1h2.626v10.697l3.412-3.413 1.837 1.903L11.5 16.75ZM3.625 22c-.722 0-1.34-.257-1.853-.77A2.533 2.533 0 0 1 1 19.375v-3.938h2.625v3.938h15.75v-3.938H22v3.938c0 .722-.257 1.34-.77 1.855a2.522 2.522 0 0 1-1.855.77H3.625Z"></path>
+        </svg>
+    </span>
+    Download metadata template (Excel)
+</a>
+
+
+            <h2 class="govuk-heading-m">Saving your spreadsheet as a CSV</h2>
+            <p class="govuk-body">Once you have completed your metadata template, you will need to save it as a <abbr title="Comma Separated Values">CSV</abbr> file before you upload it to TDR.</p>
+
+            <details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">How to save an Excel file as CSV</span>
+  </summary>
+  <div class="govuk-details__text">
+    
+                           When you have finished entering metadata:
+                           <ol class="govuk-list govuk-list--number">
+                             <li>Save your file as Excel first (File &gt; Save) before you save as CSV</li>
+                             <li>Click File &gt; Save As
+                             </li><li>From the ‘Save as type’ dropdown, choose <span class="govuk-!-font-weight-bold">CSV UTF-8 (Comma delimited) (*.csv)</span></li>
+                             <li>Click Save</li>
+                             <li>Close the file, you are ready to upload</li>
+                           </ol>
+                           If you need to make more changes to metadata, we recommend that you open the Excel file you saved first, make changes, and then save again as CSV. Opening a CSV file in Excel can cause formats to be converted.
+                       
+  </div>
+</details>
+
+
+            <div class="da-alert da-alert--default">
+    <div class="da-alert__content">
+        <h2 class="da-alert__heading da-alert__heading--s">
+            Leaving and returning to this transfer
+        </h2>
+        <p class="govuk-body">
+            You can sign out and return to continue working on this transfer at any time from <a class="govuk-link" href="transfers">View transfers</a>.
+        </p>
+    </div>
+</div>
+
+
+            <p class="govuk-body">Once you have completed your metadata spreadsheet continue to upload a CSV.</p>
+
+
+             
+<form >
+    
+                <input type="hidden" name="csrfToken" value="f42b68759ced075274eb872d9245fe19c954ae90-1768321821764-2b0cab8b64d597b500000acd">
+                <button type="submit" role="button" draggable="false" class="govuk-button govuk-!-margin-top-4" data-module="govuk-button" data-govuk-button-init="">
+                    Continue
+                </button>
+            
+</form>
+
+
+            <details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">I don't need to provide any metadata</span>
+  </summary>
+  <div class="govuk-details__text">
+    
+                        Transfers will need additional metadata unless:
+                        <ul class="govuk-list govuk-list--bullet">
+                          <li>All dates last modified are accurate</li>
+                          <li>All filenames are descriptive</li>
+                          <li>All records are Open</li>
+                          <li>All records are in English</li>
+                        </ul>
+                        <a href="/consignment/03282525-fa31-47ca-bab1-e98ae85b19e9/additional-metadata/download-metadata" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button" data-govuk-button-init="">
+                            I don't need to provide any metadata
+                        </a>
+                    
+  </div>
+</details>
+
+        </div>
+        
+<div class="govuk-grid-column-one-third">
+    <details open="" class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+                
+                    Consignment reference
+                
+            </span>
+        </summary>
+        <div class="govuk-details__text">
+            MOCK-123-TDR 
+        </div>
+    </details>
+    
+</div>
+
+    </div>
+
+{% endblock %}
