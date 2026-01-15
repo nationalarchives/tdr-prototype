@@ -22,13 +22,13 @@
               I confirm that the Departmental Records Officer (DRO) has signed off on the following:
             </legend>
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="waste-4" name="waste" type="checkbox" value="barn">
+              <input class="govuk-checkboxes__input" id="waste-4" name="dro" type="checkbox" value="barn">
               <label class="govuk-label govuk-checkboxes__label" for="waste-4">
                   The appraisal and selection decision
                 </label>
             </div>
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="waste-5" name="waste" type="checkbox" value="sarb">
+              <input class="govuk-checkboxes__input" id="waste-5" name="dro" type="checkbox" value="sarb">
               <label class="govuk-label govuk-checkboxes__label" for="waste-5">
                   The sensitivity review
                 </label>
@@ -59,4 +59,133 @@
     </div>
   </div>
 
+<script>
+// GDS Checkbox Validation Script
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('form');
+  const checkboxes = document.querySelectorAll('input[name="dro"]');
+  const checkboxContainer = document.querySelector('.govuk-checkboxes__item');
+  
+  form.addEventListener('submit', function(e) {
+    // Check if at least one checkbox is checked
+    const isChecked = Array.from(checkboxes).some(cb => cb.checked);
+    
+    if (!isChecked) {
+      e.preventDefault();
+      
+      // Remove existing error if present
+      removeError();
+      
+      // Add error styling to form group
+      const formGroup = checkboxContainer.closest('.govuk-form-group') || checkboxContainer.parentElement;
+      formGroup.classList.add('govuk-form-group--error');
+      
+      // Create and insert error message
+      const errorMessage = document.createElement('p');
+      errorMessage.id = 'dro-error';
+      errorMessage.className = 'govuk-error-message';
+      errorMessage.innerHTML = '<span class="govuk-visually-hidden">Error:</span> Select at least one confirmation';
+      
+      // Insert error message before the checkboxes
+      checkboxContainer.parentElement.insertBefore(errorMessage, checkboxContainer);
+      
+      // Update aria-describedby on checkboxes
+      checkboxes.forEach(cb => {
+        const existingDescribedBy = cb.getAttribute('aria-describedby') || '';
+        const newDescribedBy = existingDescribedBy ? `dro-error ${existingDescribedBy}` : 'dro-error';
+        cb.setAttribute('aria-describedby', newDescribedBy.trim());
+      });
+      
+      // Create error summary at top of page
+      createErrorSummary();
+      
+      // Scroll to error summary
+      document.getElementById('error-summary').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+  
+  // Remove error when user selects a checkbox
+  checkboxes.forEach(cb => {
+    cb.addEventListener('change', function() {
+      const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+      if (isAnyChecked) {
+        removeError();
+      }
+    });
+  });
+  
+  function removeError() {
+    // Remove error message
+    const errorMsg = document.getElementById('dro-error');
+    if (errorMsg) {
+      errorMsg.remove();
+    }
+    
+    // Remove error styling
+    const formGroup = checkboxContainer.closest('.govuk-form-group');
+    if (formGroup) {
+      formGroup.classList.remove('govuk-form-group--error');
+    }
+    
+    // Remove error summary
+    const errorSummary = document.getElementById('error-summary');
+    if (errorSummary) {
+      errorSummary.remove();
+    }
+    
+    // Reset aria-describedby
+    checkboxes.forEach(cb => {
+      const describedBy = cb.getAttribute('aria-describedby');
+      if (describedBy) {
+        const newDescribedBy = describedBy.replace('dro-error', '').trim();
+        if (newDescribedBy) {
+          cb.setAttribute('aria-describedby', newDescribedBy);
+        } else {
+          cb.removeAttribute('aria-describedby');
+        }
+      }
+    });
+  }
+  
+  function createErrorSummary() {
+    // Check if error summary already exists
+    if (document.getElementById('error-summary')) {
+      return;
+    }
+    
+    const errorSummary = document.createElement('div');
+    errorSummary.id = 'error-summary';
+    errorSummary.className = 'govuk-error-summary';
+    errorSummary.setAttribute('aria-labelledby', 'error-summary-title');
+    errorSummary.setAttribute('role', 'alert');
+    errorSummary.setAttribute('tabindex', '-1');
+    
+    errorSummary.innerHTML = `
+      <h2 class="govuk-error-summary__title" id="error-summary-title">
+        There is a problem
+      </h2>
+      <div class="govuk-error-summary__body">
+        <ul class="govuk-list govuk-error-summary__list">
+          <li>
+            <a href="#dro">Select at least one confirmation</a>
+          </li>
+        </ul>
+      </div>
+    `;
+    
+    // Insert before the h1
+    const h1 = document.querySelector('.govuk-heading-l');
+    h1.parentElement.insertBefore(errorSummary, h1);
+    
+    // Add click handler to error summary link
+    const errorLink = errorSummary.querySelector('a');
+    errorLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      checkboxContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      checkboxes[0].focus();
+    });
+  }
+});  
+
+</script>
 {% endblock %}
