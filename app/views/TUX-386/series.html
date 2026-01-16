@@ -46,4 +46,140 @@
     </div>
   </div>
 
+  <script>
+    
+    // GDS Select Dropdown Validation Script
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('form');
+  const selectElement = document.getElementById('choose-series');
+  const formGroup = selectElement.closest('.govuk-form-group');
+  
+  form.addEventListener('submit', function(e) {
+    // Check if a valid option has been selected
+    // The first option "Select reference" has no value attribute, so it's invalid
+    const selectedValue = selectElement.value;
+    const isValid = selectedValue && selectedValue !== 'Select reference';
+    
+    if (!isValid) {
+      e.preventDefault();
+      
+      // Remove existing errors
+      removeErrors();
+      
+      // Add error styling to form group
+      formGroup.classList.add('govuk-form-group--error');
+      
+      // Add error to select
+      addErrorToSelect();
+      
+      // Create error summary
+      createErrorSummary();
+      
+      // Scroll to error summary
+      document.getElementById('error-summary').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      // Valid selection, remove any existing errors
+      removeErrors();
+    }
+  });
+  
+  function addErrorToSelect() {
+    const errorId = 'choose-series-error';
+    
+    // Check if error already exists
+    if (document.getElementById(errorId)) {
+      return;
+    }
+    
+    // Create error message
+    const errorMessage = document.createElement('p');
+    errorMessage.id = errorId;
+    errorMessage.className = 'govuk-error-message';
+    errorMessage.innerHTML = '<span class="govuk-visually-hidden">Error:</span> Select a series reference';
+    
+    // Insert error before the select element
+    selectElement.parentElement.insertBefore(errorMessage, selectElement);
+    
+    // Update aria-describedby
+    const existingDescribedBy = selectElement.getAttribute('aria-describedby') || '';
+    const newDescribedBy = existingDescribedBy ? `${errorId} ${existingDescribedBy}` : errorId;
+    selectElement.setAttribute('aria-describedby', newDescribedBy.trim());
+    
+    // Add error styling to select
+    selectElement.classList.add('govuk-select--error');
+  }
+  
+  function removeErrors() {
+    const errorId = 'choose-series-error';
+    const errorMsg = document.getElementById(errorId);
+    
+    if (errorMsg) {
+      errorMsg.remove();
+    }
+    
+    // Remove error styling from form group
+    formGroup.classList.remove('govuk-form-group--error');
+    
+    // Remove error styling from select
+    selectElement.classList.remove('govuk-select--error');
+    
+    // Update aria-describedby
+    const describedBy = selectElement.getAttribute('aria-describedby');
+    if (describedBy) {
+      const newDescribedBy = describedBy.replace(errorId, '').trim();
+      if (newDescribedBy) {
+        selectElement.setAttribute('aria-describedby', newDescribedBy);
+      } else {
+        selectElement.removeAttribute('aria-describedby');
+      }
+    }
+    
+    // Remove error summary
+    const errorSummary = document.getElementById('error-summary');
+    if (errorSummary) {
+      errorSummary.remove();
+    }
+  }
+  
+  function createErrorSummary() {
+    // Remove existing error summary if present
+    const existingSummary = document.getElementById('error-summary');
+    if (existingSummary) {
+      existingSummary.remove();
+    }
+    
+    const errorSummary = document.createElement('div');
+    errorSummary.id = 'error-summary';
+    errorSummary.className = 'govuk-error-summary';
+    errorSummary.setAttribute('aria-labelledby', 'error-summary-title');
+    errorSummary.setAttribute('role', 'alert');
+    errorSummary.setAttribute('tabindex', '-1');
+    
+    errorSummary.innerHTML = `
+      <h2 class="govuk-error-summary__title" id="error-summary-title">
+        There is a problem
+      </h2>
+      <div class="govuk-error-summary__body">
+        <ul class="govuk-list govuk-error-summary__list">
+          <li>
+            <a href="#choose-series">Select a series reference</a>
+          </li>
+        </ul>
+      </div>
+    `;
+    
+    // Insert before the form
+    form.parentElement.insertBefore(errorSummary, form);
+    
+    // Add click handler to error summary link
+    const errorLink = errorSummary.querySelector('a');
+    errorLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      selectElement.focus();
+      selectElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+});
+  </script>
+
 {% endblock %}

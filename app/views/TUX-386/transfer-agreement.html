@@ -138,15 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  // Remove error when user selects a checkbox
-  checkboxes.forEach(cb => {
-    cb.addEventListener('change', function() {
-      const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-      if (isAnyChecked) {
-        removeError();
-      }
-    });
-  });
+
   
   function removeError() {
     // Remove error message
