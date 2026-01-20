@@ -1,0 +1,750 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  User Help Guide
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-l">User Help Guide</h1>
+
+            <h2 class="govuk-heading-m">This user help guide includes:</h2>
+            <nav aria-label="List">
+                <ul class="govuk-list govuk-list--bullet">
+                    <li><a href="#about">About Transfer Digital Records</a></li>
+                    <li><a href="#current-tdr-service">The current TDR service</a></li>
+                    <li><a href="#before-you-begin">Before you begin</a></li>
+                    <ul class="govuk-list govuk-list--bullet">
+                        <li><a href="#appraisal-selection-sensitivity-review">Appraisal, Selection and Sensitivity Review</a></li>
+                        <li><a href="#redacted-records">Redacted records</a></li>
+                        <li><a href="#before-web-browsers">Web browsers</a></li>
+                        <li><a href="#secured-access">Secured access</a></li>
+                        <li><a href="#file-formats">File formats</a></li>
+                        <li><a href="#contact">Contact us</a></li>
+                    </ul>
+                    <li><a href="#registering-new-account">Registering for a new account</a></li>
+                    <ul class="govuk-list govuk-list--bullet">
+                        <li><a href="#new-user-email">Requesting a new account</a></li>
+                        <li><a href="#set-up-two-step-auth">How to set up your OTP (one time password)</a></li>
+                        <li><a href="#set-password">Set your password</a></li>
+                    </ul>
+                    <li><a href="#using-existing-account-holder">Using the service as an existing account holder</a></li>
+                    <ul class="govuk-list govuk-list--bullet">
+                        <li><a href="#access-tdr">Accessing TDR</a></li>
+                        <li><a href="#sign-in-mfa">Sign in to your account using Multi-Factor Authentication</a></li>
+                    </ul>
+                    <li><a href="#step-by-step-guide">A step-by-step guide to transferring your record</a></li>
+                    <ul class="govuk-list govuk-list--bullet">
+                        <li><a href="#select-series">Step 1: Select series reference</a></li>
+                        <li><a href="#transfer-agreement">Step 2: Transfer agreement</a></li>
+                        <li><a href="#upload-records">Step 3: Upload your records</a></li>
+                        <li><a href="#file-checks">Step 4: File checks</a></li>
+                        <li><a href="#upload-metadata">Step 5: Providing metadata for your records</a></li>
+                        <li><a href="#submit-metadata">Step 6: Submit Metadata to be checked by experts at TNA</a></li>
+                        <li><a href="#download-metadata">Step 7: Download and review metadata</a></li>
+                        <li><a href="#confirm-transfer">Step 8: Confirm transfer</a></li>
+                        <li><a href="#transfer-complete">Transfer complete</a></li>
+                    </ul>
+                    <li><a href="#transfer-history">View the progress of your transfers and transfer history</a></li>
+                    <li><a href="#glossary">Glossary</a></li>
+                </ul>
+            </nav>
+
+            <h2 class="govuk-heading-m" id="about">About Transfer Digital Records</h2>
+            <p class="govuk-body">
+                Transfer Digital Records (TDR) is a secure digital transfer service from The National Archives (TNA)
+                that helps Public Record Bodies prepare and transfer selected digital public records to TNA
+                for permanent preservation and publication.
+            </p>
+            <p class="govuk-body">
+                Under the 20-year rule, transferring bodies must transfer selected and sensitivity-reviewed digital Public Records within 20 years of the date of the record, or the last modified date where this has not been set.
+                This is usually determined by the record's date last modified.
+                Until then, you must safeguard the records and actively manage their digital continuity to ensure you can find, open, understand and trust them over time and through change.
+            </p>
+            <p class="govuk-body">
+                We are very happy to accept early transfers of digital records and encourage you to transfer digital records prior to the 20-year deadline.
+                An advantage of transferring early is that once records are transferred, you will no longer need to manage their digital continuity.
+                We also advise taking a 'little and often' approach to transferring digital records to The National Archives.
+            </p>
+
+            <h2 class="govuk-heading-m" id="current-tdr-service">The current TDR service</h2>
+            <p class="govuk-body">
+                We have created a product which provides a preparation area where records are uploaded to prepare for transfer to TNA.
+                When uploaded to TDR, the records are still owned by the transferring body.
+                While your records are in TDR, you will still be responsible for handling any requests such as Freedom Of Information (FOI).
+                The records and their legal custody are only transferred to TNA during the final stage of the TDR process.
+            </p>
+            <p class="govuk-body">
+                TDR is currently in beta, an early agile stage of development where limited features are available.
+                This means it does not yet offer the full range of features that we intend to support.
+            </p>
+            <p class="govuk-body">
+                At this stage of development, the service is only available to pre-approved users.
+                Over time, TDR will be made available to more Public Record Bodies and will continue to be developed in consultation with our users.
+            </p>
+
+            <h2 class="govuk-heading-m" id="before-you-begin">Before you begin</h2>
+            <p class="govuk-body">
+                Currently we can only accept records that are Public Records and from network shared drives.
+            </p>
+            <p class="govuk-body">
+                Over time, we will extend the service to accept a wider range of records.
+            </p>
+
+            <h3 class="govuk-heading-s" id="appraisal-selection-sensitivity-review">Appraisal, Selection and Sensitivity Review</h3>
+            <p class="govuk-body">
+                Transferring departments have a statutory responsibility to appraise, select and sensitivity review records prior to transferring records to The National Archives.
+            </p>
+            <p class="govuk-body">
+                Any records not identified as 'closed' will be open to the public on transfer to The National Archives.
+            </p>
+            <p class="govuk-body">
+                If there are any issues detected with the appraisal, selection and sensitivity review of records, The National Archives reserves the right to pause the transfer and refer to the Strategic Compliance team.
+            </p>
+            <p class="govuk-body">
+                If you would like more information about this, contact <a href="mailto:governmenthelppoint@nationalarchives.gov.uk">governmenthelppoint@nationalarchives.gov.uk</a>.
+            </p>
+
+            <h3 class="govuk-heading-s" id="redacted-records">Redacted records</h3>
+            <p class="govuk-body">
+                If redacted files are included within your transfer, to avoid failing checks, you must ensure that:
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>They are in the same subfolder as their parent document</li>
+                <li>They have the same name as their parent (excluding file extension) with '<b>_R</b>' added to the filename before the file extension e.g. <b>Parent</b>.docx and <b>Parent_R</b>.pdf</li>
+                <li>There is no other file type with the same name in the same subfolder as the parent and redacted version</li>
+            </ul>
+            <p class="govuk-body">
+                If your redacted records cannot conform to the above, contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>to arrange an alternative delivery method.
+            </p>
+            <h3 class="govuk-heading-s" id="before-web-browsers">Web browsers</h3>
+            <p class="govuk-body">
+                We do not support Internet Explorer.
+                We advise you to use the latest browser version of Edge, Chrome or Firefox to ensure you can use this service and all of its features.
+            </p>
+
+            <h3 class="govuk-heading-s" id="secured-access">Secured access</h3>
+            <p class="govuk-body">
+                In order to keep the service and your account secure, TDR uses Multi-Factor Authentication (MFA).
+                This means you must sign in each time using a unique generated 'one-time passcode' (OTP) that confirms your identity.
+                This can be set up using a free-to-download authenticator app on your smartphone, such as Google Authenticator, Microsoft Authenticator, or FreeOTP.
+                Other authenticators are also available.
+            </p>
+            <p class="govuk-body">
+                Free-to-download apps are available from the App Store for iPhone, or 'Google Play' and 'Play Store' for Android.
+            </p>
+            <p class="govuk-body">
+                (See section below on <a href="#set-up-two-step-auth">setting up an OTP account for MFA</a> for more information)
+            </p>
+
+            <h3 class="govuk-heading-s" id="file-formats">File formats</h3>
+            <p class="govuk-body">
+                To ensure that records can be successfully uploaded and pass TDR validation checks, read the following information about the file formats we do not accept before proceeding to upload your records:
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>We cannot accept files that are password protected or encrypted</li>
+                <li>During beta (early stage of development), we cannot accept zip files</li>
+                <li>We cannot accept files that contain slashes (/ and \) in the name</li>
+                <li>Files such as thumbnail images (thumbs.db), executable files (.exe) and system files are not usually selected for permanent preservation.
+                    We will accept these but strongly advise that you remove them prior to upload.</li>
+                <li>If uploaded, empty folders will not be transferred</li>
+            </ul>
+            <p class="govuk-body">
+                To identify file formats, search your folder for the file extensions (thumbs.db, .exe and .zip).
+                For password protected files, click to view folder options and select ‘hidden files and folders’.
+                These files are usually identified as part of your selection and sensitivity review process.
+            </p>
+            <p class="govuk-body">
+                We recommend that you check your files prior to upload to ensure that you upload only selected records intended for preservation.
+                During the upload and checking process, if we detect files we cannot accept, you will be notified on screen and you will be unable to proceed with your transfer.
+            </p>
+
+            <h3 class="govuk-heading-s" id="contact">Contact us</h3>
+            <p class="govuk-body">You can contact us directly through our Digital Transfer Advisers via <a href="mailto:tdr@nationalarchives.gov.uk">
+            tdr@nationalarchives.gov.uk</a>
+            </p>
+            <p class="govuk-body">You can also contact the Government Help Point via <a href="mailto:governmenthelppoint@nationalarchives.gov.uk">
+            governmenthelppoint@nationalarchives.gov.uk</a>
+            </p>
+            <p class="govuk-body">When contacting us, stipulate what the enquiry is about and, if possible, include any relevant attachments (e.g. screenshots, etc.)</p>
+            <p class="govuk-body">We aim to respond to queries within one week of first contact.</p>
+            <p class="govuk-body">If we cannot resolve an issue directly, we may offer to:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>Schedule a call via MS Teams</li>
+                <li>Schedule an office visit</li>
+                <li>Advise users on getting support from their DRO, more digitally confident colleagues, or their IT department</li>
+            </ul>
+
+            <h2 class="govuk-heading-m" id="registering-new-account">Registering for a new account</h2>
+            <h3 class="govuk-heading-s" id="new-user-email">Part 1: Requesting a new account</h3>
+            <ol class="govuk-body">
+                <li>
+                    If your department has not already requested an account for you, you can register by emailing <a href="mailto:tdr@nationalarchives.gov.uk">
+                tdr@nationalarchives.gov.uk</a> from your work email. In your email, clearly state your first name and surname, and ask to register as a new user.
+                    It may take up to 2 working days for your request to be processed.
+                </li>
+                <li>
+                    Once your account is ready, you'll receive an email with the subject <span class="govuk-!-font-weight-bold">"Register for your Transfer Digital Records (TDR) account - ACTION REQUIRED"</span>. This email will include important instructions on how to complete your registration.
+                </li>
+                <li>
+                    In addition, you’ll get another email with the subject <span class="govuk-!-font-weight-bold">"Update Your Account"</span>, which will contain a link. The link will expire in 12 hours, so click it as soon as possible to start your registration. If the link expires, email <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a> to ask for a new one.
+                </li>
+                <li>The registration link will take you to this page:</li>
+                <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/a2e1d042a9af67f7c5b8b54636995129-configure-otp-password-page.png" class="screenshots" alt="Sign in page with a link to setup MFA and password">
+            </ol>
+
+            <h3 class="govuk-heading-s" id="why-otp">What is two-step authentication and why do I need to use an OTP?</h3>
+            <p class="govuk-body">
+                An OTP (one-time password) is a unique code that confirms your identity. It’s generated by an authenticator app on your smartphone. You can download one of these free authenticator apps: Google Authenticator, Microsoft Authenticator, or FreeOTP. These apps are available on the App Store for iPhone, or Google Play for Android.
+            </p>
+            <p class="govuk-body">
+                To keep the service and your account secure, you must sign in to your TDR account using an OTP in addition to your personal password.
+            </p>
+
+            <h3 class="govuk-heading-s" id="set-up-two-step-auth">Part 2: How to set up your OTP (one time password)</h3>
+            <p class="govuk-body">
+                After clicking the <span class="govuk-!-font-weight-bold">"Configure OTP, Update Password"</span> link, you’ll be taken to the <span class="govuk-!-font-weight-bold">"Set up two-step authentication"</span> page.
+            </p>
+            <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/1756540e808c2dead5e17615e28c1084-set-up-mfa-page.png" class="screenshots" alt="Form to setup multi-factor authentication">
+            <h3 class="govuk-heading-s">Step 1: Install an authenticator app</h3>
+            <p class="govuk-body">
+                Before you continue, make sure you have an authenticator app installed on your smartphone. You can only use Google Authenticator, Microsoft Authenticator, or FreeOTP.
+            </p>
+            <h3 class="govuk-heading-s">Step 2: Set up your authenticator app</h3>
+            <p class="govuk-body">
+                Open the authenticator app on your smartphone.
+            </p>
+            <p class="govuk-body">
+                Create a new account in the app by scanning the QR code displayed on your computer screen.
+            </p>
+            <p class="govuk-body">
+                For Google Authenticator: Choose "Scan a QR code".
+            </p>
+            <p class="govuk-body">
+                For Microsoft Authenticator: Tap the '+' icon to add a new account. If you can’t see this, tap the three dots in the top right corner. Then select "Other (Google, Facebook, etc.)" to open the QR scanner.
+            </p>
+            <p class="govuk-body">
+                For FreeOTP: Tap the QR code icon at the top of your screen.
+            </p>
+
+            <p class="govuk-body">
+                Once you’ve scanned the QR code, the app will create a unique account to use with TDR and display a 6-digit code that refreshes regularly.
+            </p>
+            <h3 class="govuk-heading-s">Step 3: Enter the code</h3>
+            <p class="govuk-body">
+                Enter the 6-digit code from your app into the "One-time code" box on your computer without spaces.
+                Make sure you enter the code before it refreshes (every 30 to 60 seconds).
+            </p>
+            <p class="govuk-body">
+                Click "Submit" before the code changes in the app.
+            </p>
+
+            <h3 class="govuk-heading-s" id="set-password">Part 3: Set your password</h3>
+            <p class="govuk-body">You will then be taken to a 'Set new password' page in order to set your own unique password:</p>
+            <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/8f8305d9334a4a4c116d97a0173d9e93-set-password-page.png" class="screenshots" alt="Form to set a new password">
+            <ol class="govuk-body">
+                <li>
+                    Enter a unique password, using a minimum of eight characters and containing at least one capital letter and one number, into the 'New password' box.
+                    Enter the same password in the 'Confirm password' box. Do not share this password with anyone.</li>
+                <li>Click 'Submit' to be taken to the 'Sign in to your account' page:</li>
+                <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/4add97e675c268c12a5c28220ab72cf9-sign-in-link-page.png" class="screenshots" alt="Page with a link to sign in to your account">
+                <li>Click the 'sign in to your account' link to be taken to the standard 'Sign in to your account' page that you will see every time you sign in to use the service as an existing account holder.</li>
+                <li>You must complete your registration following the standard sign in procedure in section <a href="#sign-in-mfa">'Sign in to your account using Multi-Factor Authentication'</a></li>
+            </ol>
+
+            <h2 class="govuk-heading-m" id="using-existing-account-holder">Using the service as an existing account holder</h2>
+            <h3 class="govuk-heading-s" id="access-tdr">Accessing TDR</h3>
+            <p class="govuk-body">TDR is accessed through your web browser and can be found here: <a href="https://tdr.nationalarchives.gov.uk/">https://tdr.nationalarchives.gov.uk/</a></p>
+            <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/5aa02066ba2c69f5bc853bd35aa006df-home-page.png" class="screenshots" alt="TDR home page">
+            <p class="govuk-body">
+                Click 'Start now' to sign in and begin the transfer process.
+            </p>
+
+            <h3 class="govuk-heading-s" id="sign-in-mfa">Sign in to your account using Multi-Factor Authentication</h3>
+            <p class="govuk-body">
+                Before you can use the service, you must sign in using Multi-Factor Authentication (MFA) with the authenticator app that you set up on a smartphone that is available to you, which generates your unique 'one-time passcode' (OTP).
+            </p>
+            <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/563f108363bd75371bcf80ba3d00b9e1-sign-in.png" class="screenshots" alt="Form to enter an email and password">
+            <ol class="govuk-body">
+                <li>Sign in by entering your email address and password, then click 'Sign in' to be taken to the 'One-time code' section on this page:</li>
+                <img src="/assets/images/6bc12eb2c6907ef9c60b19c38bc8c009-enter-mfa-code-page.png" class="screenshots" alt="Form to enter the code from the MFA app">
+                <li>Open your authenticator app to get a 6-digit one-time code.
+                    Enter the code without any spaces and click 'Continue' before it refreshes.</li>
+            </ol>
+            <p class="govuk-body">
+                You will then be taken to the TDR Homepage:
+            </p>
+            <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/c8b7f51787be9ecbf66940c1c0c3cf46-standard-tdr-start-page.png" class="screenshots" alt="The TDR start page">
+            <ol class="govuk-body" start="3">
+                <li>Click 'Start transfer' to begin</li>
+            </ol>
+<div id="changed-content" style="background-color: beige;">
+            <h2 class="govuk-heading-m" id="step-by-step-guide">A step-by-step guide to transferring your records</h2>
+            <p class="govuk-body">
+                A 'Consignment reference' is a unique identifier assigned at the beginning of your transfer. This will be displayed in the top right corner of every page throughout the process. Quote this reference if you need to contact us about your transfer.
+            </p>
+
+            <h3 class="govuk-heading-s" id="select-series">Step 1: Select series reference</h3>
+            <ol class="govuk-body">
+                <li>Your series reference during beta will be pre-populated and will appear in the drop-down list.
+                    You should select the correct series reference from the drop-down menu and click 'Continue'.</li>
+                <li>If you cannot see the correct series reference or you need to add a new one, contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>.</li>
+                <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/35a19a406590f59ba1d1245d829868f8-standard-selected-series-page.png" class="screenshots" alt="TDR series selected page">
+            </ol>
+
+            <h3 class="govuk-heading-s" id="transfer-agreement">Step 2: Transfer agreement</h3>
+            <p class="govuk-body">
+                Before you upload records, you must confirm that, to the best of your knowledge, your records meet our criteria.
+            </p>
+            <p class="govuk-body">
+                During beta, records must meet the following criteria:
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>Records must be either Public Record(s), Welsh Public Record(s) or Not Public Record(s)</li>
+                <li>The Departmental Records Officer (DRO) must have signed off the appraisal and selection decision </li>
+                <li>The Departmental Records Officer (DRO) must have signed off the sensitivity review</li>
+            </ul>
+            <p class="govuk-body">
+                For more information on what is meant by the above terms, please see our <a href="#glossary">Glossary</a>
+            </p>
+            <p class="govuk-body">
+                The transfer agreement is in two parts.
+            </p>
+            <ol class="govuk-body">
+                <li>In the first part you must select the legal status of these records. The options are : Public Record(s), Welsh Public Record(s) or Not Public Record(s):<br />
+                  <img src="/public/images/transfer-screen1.png" class="screenshots" alt="Transfer 1"/><br />
+                    Select an option and then click 'Agree and continue' when you are ready to proceed.</li><br />
+    
+                <li>The second part, you must click each box to confirm that the Departmental Records Officer (DRO) has signed off the  appraisal and selection decision and sensitivity review. <br />
+                  <img src="/public/images/transfer-screen2.png" class="screenshots" alt="Transfer Agreement part 2 page"><br />
+                    Click ‘Agree and continue’ when you are ready to proceed. If you cannot confirm this information, you must close your browser and contact your transfer advisor.</li>
+                
+            </ol>
+</div>
+            <h3 class="govuk-heading-s" id="upload-records">Step 3: Upload your records</h3>
+            <p class="govuk-body">
+                Before you begin, ensure your internet connection is stable and strong.
+            </p>
+            <ol class="govuk-body">
+                <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/eb3f471d9084c46cf19c84eb4db3d008-standard-upload-records.png" class="screenshots" alt="Upload records page">
+                <li>To upload your records, you must put all files into a single top-level folder. This top-level folder may contain multiple files and sub-folders. You can then either drag and drop the folder or click 'Choose Folder' to browse and select the correct top-level folder for upload.
+                    <p>Confirmation is required if you want the name of the top-level folder to be displayed in the public catalogue as part of the system of arrangement.</p>
+                    <p>If the top-level folder title is to be included within the system of arrangement, check the box before you continue with your transfer. Failure to select the check box to clarify this will mean that the top-level folder will be omitted from the transfer's Public Record in the catalogue.</p>
+                    Before uploading, consider the following information:</li>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>You can upload one top-level folder per transfer, which can contain multiple files and sub-folders</li>
+                    <li>During the upload process, basic file-level metadata is captured, such as file path, file name, last date modified, and checksum</li>
+                </ul>
+                <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/94c5cfc2e2f37fed45f45af10a8965a7-standard-records-selected.png" class="screenshots" alt="Upload records with selected folder page">
+                <li>If you need to change the folder selected, click the blue 'Remove selected records' link next to the line confirming which folder has been selected and then start the selection again.</li>
+            </ol>
+            <p class="govuk-body">
+                At this stage, you still have legal custody of your records and are still responsible for any requests such as Freedom Of Information (FOI), until they have been acknowledged as received by TNA.
+            </p>
+            <ol class="govuk-body" start="3">
+                <li>Then click 'Start upload' to begin the upload into TDR.</li>
+                <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/767fe515a9287cc76cd2f45802e07b99-standard-uploading-records.png" class="screenshots" alt="Uploading records page">
+            </ol>
+
+            <h3 class="govuk-heading-s" id="file-checks">Step 4: File checks</h3>
+            <p class="govuk-body">
+                During upload, we will identify the format of your records.
+                If your records are in a format that is not known or cannot be identified, TNA may contact you post transfer to discuss these.
+            </p>
+            <ol class="govuk-body">
+                <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/2841565347e04204c5e26b3b6d7ed876-standard-checking-records.png" class="screenshots" alt="Checking records page">
+                <li>TDR runs a series of checks on the files to ensure they can be transferred.
+                    The following checks are performed:</li>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>Antivirus</li>
+                    <p class="govuk-body">
+                        A check performed to scan for viruses and other malware.
+                        We cannot accept infected files.
+                    </p>
+                    <li>File format identification</li>
+                    <p class="govuk-body">
+                        A check performed to identify the file format and confirm that the file is suitable for transfer.
+                        Knowing the format also aids TNA with preservation decisions about the record.
+                    </p>
+                    <li>Data integrity validation</li>
+                    <p class="govuk-body">
+                        A check performed to ensure files have not been corrupted as they move between your shared drive and TDR during the upload process.
+                        The data integrity check uses checksums which are like a digital fingerprint.
+                        For TDR we use SHA256.
+                    </p>
+                </ul>
+                <p class="govuk-body">The checking process may take several minutes.</p>
+                <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/265ccb292c1f286d11456910eca292f5-standard-checks-complete.png" class="screenshots" alt="Checks complete page">
+                <li>You will be informed on-screen. Once the checks have been completed.
+                    Click 'Continue' to see the results of your checks.</li>
+                <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/cdeecf4ab7c23225610f4605b6ab58df-standard-results-check.png" class="screenshots" alt="Results of checks page">
+                <li>You will then be informed on-screen of the results of your checks.</li>
+                <li>If your checks have been successful, click 'Next' to progress to the next step.</li>
+            </ol>
+            <p class="govuk-body">If your files fail TDR checks, we will inform you.
+                Failing checks may mean you cannot proceed with your transfer until the problems are resolved.
+            </p>
+
+            <h3 class="govuk-heading-s" id="upload-metadata">Step 5: Providing metadata for your records</h3>
+
+            <p class="govuk-body">Once your records have successfully uploaded to TDR you will need to provide closure and descriptive
+                metadata associated with your records. This can be done by uploading a metadata CSV (comma separated values) file via TDR.</p>
+
+            <p class="govuk-body"><b>Closed records and mandatory closure metadata</b></p>
+            <p class="govuk-body">If your transfer includes closed records, you MUST provide the following ‘closure metadata’ for these record(s):</p>
+            <ul class="govuk-body">
+                <li>Closure status</li>
+                <li>Closure start date</li>
+                <li>Closure Period</li>
+                <li>FOI exemption code(s)</li>
+                <li>FOI schedule date</li>
+                <li>Alternative filename (if filename is sensitive)</li>
+                <li>Alternative description (if description is sensitive)</li>
+            </ul>
+            <p class="govuk-body">Please refer to the <a href="/help/metadataquickguide">Metadata Quick Guide</a> for more details and guidance on mandatory and optional metadata, with examples of the correct format.</p>
+            <p class="govuk-body"><b>Descriptive metadata</b></p>
+            <p class="govuk-body">
+                You can also provide ’descriptive metadata’ for uploaded records. This will help provide context and meaning for your records and help end users of Discovery (our public catalogue) find your records.
+                For example; description, date of the record, former reference etc.
+            </p>
+            <p class="govuk-body">
+                If you do not wish to provide descriptive metadata (all records MUST be open),  select ‘I don’t need to provide any metadata’ at the bottom
+                of the page shown below. Check if your records meet all of the conditions displayed in the expanded text and, if so, click on the ‘I don’t
+                need to provide any metadata’ button to continue.
+            </p>
+            <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/181e6350b54ae6af4b191499f746b213-standard-prepare-your-metadata-full.png" class="screenshots" alt="Prepare your metadata">
+            <img src="/assets/images/f359f4583b3bb50be9b9b238863185e0-standard-prepare-your-metadata-continue.png" class="screenshots" alt="Prepare your metadata">
+
+            <ol class="govuk-body">
+                <li><b>Download your metadata template spreadsheet.</b></li>
+                <p class="govuk-body">Click on ‘Download metadata template (excel)’ to download the template.</p>
+                <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/2be7b922cb3440e4c30ff1893af1328e-standard-prepare-your-metadata.png" class="screenshots" alt="Prepare your metadata">
+
+                <p class="govuk-body">This template contains the following extracted from your records upon upload:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>Filepath</li>
+                    <li>Filename</li>
+                    <li>Date last modified</li>
+                </ul>
+                <li><b>Fill in the template with metadata associated with your records</b></li>
+                <p class="govuk-body">Open the template in an appropriate spreadsheet application. Make sure you DO NOT alter the values of extracted metadata
+                    in the template (filepath, filename, date last modified).</p>
+                <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/2479527baa8405e3c04d634a65e7080c-standard-metadata-template.png" class="screenshots" alt="Metadata template">
+
+                <p class="govuk-body">Click on the ‘Quick Guide’ tab within the metadata template spreadsheet for guidance on filling in the template.
+                    This provides an overview of mandatory and optional metadata, the correct format and examples.</p>
+                <p class="govuk-body">If you are copying metadata from your own spreadsheet into the template in bulk, please ensure the sort order
+                    is aligned. By default, the template is sorted by the extracted file path value alphabetically (A-Z). You may use ‘V-Lookup’(Excel) to
+                    copy across metadata in bulk from your own spreadsheet into the template or other ‘Lookup’ functions built into your spreadsheet application.
+                </p>
+                <li><b>Save your completed metadata template as a CSV file</b></li>
+                <p class="govuk-body">Once you have completed your template with metadata, save as a CSV file so that you can upload it to TDR.
+                    (Make sure you are viewing the correct sheet - i.e. you select the Metadata sheet tab within the spreadsheet and not the Quick Guide)
+                </p>
+                <p class="govuk-body">To do this:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>Save your file as Excel first (File &gt; Save) before you save as CSV</li>
+                    <li>Click File &gt; Save As</li>
+                    <li>From the ‘Save as type’ dropdown, choose CSV UTF-8 (Comma delimited) (*.csv)</li>
+                    <li>Click Save</li>
+                    <li>Close the file, you are ready to upload</li>
+                </ul>
+                <p class="govuk-body">
+                    <b><i>If you need to make more changes to your metadata, we recommend that you open the Excel file you saved first, make changes,
+                    and then save again as CSV. Opening a CSV file in Excel can cause formats to be converted.</i></b>
+                </p>
+
+                <li><b>Upload your metadata CSV file to TDR</b></li>
+                <p class="govuk-body">Click on ‘Choose file’ which will prompt you to upload a file from your local or shared network drives.</p>
+                <img src="https://tdr-staging.nationalarchives.gov.uk//assets/images/a05018bfdd05fc62d2935a0c3d8227cd-standard-upload-a-metadata.png" class="screenshots" alt="Upload a metadata CSV">
+                <p class="govuk-body">Select your saved metadata CSV file. Once the correct CSV file has been selected click ‘Upload’.</p>
+
+                <li><b>Automated checks on your metadata CSV file</b></li>
+                <p class="govuk-body">TDR will run some automated checks on the metadata CSV file.</p>
+
+                <p class="govuk-body">To make sure your file is successfully imported to TDR  please ensure your Metadata CSV file is:</p>
+                    <ul class="govuk-list govuk-list--bullet">
+                        <li>saved to CSV before upload (ideally UTF-8)</li>
+                        <li>includes ALL the columns provided in the template (can be hidden)</li>
+                        <li>the corresponding file path, filename and date last modified extracted by TDR upon upload have not been modified</li>
+                        <li>does not contain duplicate/extra rows or columns</li>
+                    </ul>
+                <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/9b2a4876c4bb6a610508d5fcc2268862-standard-checking-your-metadata.png" class="screenshots" alt="Checking your metadata">
+                <p class="govuk-body">Once the automated checks have been completed you will see a message on the screen confirming
+                    your metadata has been checked.
+                </p>
+                <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/d1cc297e10cf445f94ce61b5b20169b2-standard-checking-your-metadata-done.png" class="screenshots" alt="Checking your metadata">
+                <p class="govuk-body">Click ‘Continue’ to view the results of the automated checks. </p>
+
+                <li><b>Successful import of your metadata CSV file to TDR</b></li>
+                <p class="govuk-body">If your metadata file passes the automated checks it will be ‘imported’ to TDR.</p>
+                <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/8534bc6427389af47ce0b66b1d20e829-standard-results-of-your-metadata-checks.png" class="screenshots" alt="Results of your metadata checks">
+                <p class="govuk-body"><b>Changing the CSV file or amending metadata</b></p>
+                <p class="govuk-body">If you need to make any amendments to your metadata file, click on the link: ‘Upload a metadata CSV’
+                    to return to the ‘Upload a metadata CSV page’ and if you need to download the template again, then select the back arrow labeled
+                    ‘prepare your metadata’ to go back a step and start over.
+                </p>
+
+                <p class="govuk-body"><b>Download error report</b></p>
+                <p class="govuk-body">If the metadata values you provided for your uploaded records fail our automated validation checks, you will be provided
+                    with an error report. Click ‘Download error report’ to view the errors in Excel or your preferred spreadsheet application.
+                </p>
+                <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/f1f5d85712e3352344b9edacb1d16092-standard-results-of-your-metadata-checks-error.png" class="screenshots" alt="Results of your metadata checks">
+
+                <p class="govuk-body">Errors are reported at the error level per record. The corresponding filepath is listed with  ‘column heading’, ’ value’
+                    and ‘error message’. If a record has failed checks for 2 reasons, then these will be listed in 2 separate rows.
+                </p>
+                <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/f75621e2fb9ebdb4fb5b7e5ccf20e5f8-standard-error-file.png" class="screenshots" alt="Error report">
+
+                <p class="govuk-body">Please note, when correcting, we recommend you do this in your saved metadata excel file or by re-downloading the
+                    metadata template for your records from the ‘Prepare your metadata page’. If you open the CSV file to make corrections, re-save as a
+                    CSV and re-upload, it may alter some formatting and will fail the automated checks again.
+                </p>
+                <p class="govuk-body">There are other reasons as to why your metadata CSV file may fail the automated checks. Follow the instructions provided
+                    to fix the issue(s). If  you need support contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>
+                </p>
+                <p class="govuk-body">Once your metadata CSV file passes the automated checks and is imported, you will then be able to submit for a metadata
+                    review by one of our experts.
+                </p>
+            </ol>
+
+            <h3 class="govuk-heading-s" id="submit-metadata">Step 6: Submit your metadata to be reviewed by the Digital Archiving team</h3>
+            <p class="govuk-body">
+                Once you have added metadata to your uploaded records via Transfer Digital Records (TDR), you will be presented with the option to download and check the metadata TDR has captured against your records. This will include system metadata extracted by TDR from your uploaded records such as:
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>file path</li>
+                <li>file name</li>
+                <li>date last modified</li>
+            </ul>
+            <p class="govuk-body">
+                You can review this metadata by clicking on the grey ‘Download’ button and your metadata will be presented as a download in excel for you to view.
+            </p>
+            <p class="govuk-body">
+                Even if you did not provide any additional and closure metadata via TDR, you will still be presented with this option so that you can check the metadata which has been extracted. This gives you the opportunity to ensure the metadata is correct before you continue.
+            </p>
+            <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/9ec9d9eaf87935e6baa3fc99f1d0fed4-standard-review-metadata.png" class="screenshots" alt="Download and review metadata page">
+            <p class="govuk-body">
+                If you would like to make amendments to the metadata you have added, you can do this by clicking on the ‘Back’ link towards the top left corner of the page to return to the previous page to add ‘Record metadata’. Otherwise, select ‘Continue’ to proceed with your transfer.
+            </p>
+            <p class="govuk-body">
+                You will then be prompted to request a metadata review by our digital archiving team who will check the metadata we have captured for your records. This is to ensure that the metadata makes sense and provides meaning and context to your records so that they can be found by end users of Discovery.
+            </p>
+            <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/409dded0d91bf17fcff420693dd4ab61-standard-request-review.png" class="screenshots" alt="Request a metadata review page">
+            <p class="govuk-body">
+                After you submit your metadata for review, you will see that your metadata review is in progress.
+            </p>
+            <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/478ed45db3e5bc15d7be699acc4ebeb5-standard-review-progress.png" class="screenshots" alt="Metadata review in progress page">
+            <p class="govuk-body">
+                You can only continue with the transfer once you receive an email notification with further instructions.  At this stage you will need to log out and wait for the notification (or you may initiate another transfer if you are transferring multiple consignments).
+            </p>
+            <p class="govuk-body">
+                Once your metadata has been reviewed, you will receive a notification depending on one of the following outcomes:
+            </p>
+            <ol class="govuk-body">
+                <li>If issues are found with your metadata:
+                    <p class="govuk-body">
+                        You will receive two emails.
+                    </p>
+                    <p class="govuk-body">
+                        One from a Digital Transfer Advisor with recommendations for making the necessary amendments before submitting for another review. Another email will be sent with a link to your in progress transfer. This can also be accessed by signing into Transfer Digital Records, selecting the ‘View Transfers’ button and finding the transfer with the corresponding consignment reference. You will see that issues were found with your metadata.
+                    </p>
+                    <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/91d07c67301c241eb2b4f7ba3d4f44eb-standard-view-transfers-page.png" class="screenshots" alt="View transfers page">
+                    <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/dee03a898dc5c12b8449b76fcbcd1f7d-standard-review-issues.png" class="screenshots" alt="Issues found in metadata page">
+                    <p class="govuk-body">
+                        Select ‘Continue’ to return to the ‘Prepare your metadata’ page. This will give you the chance to download the metadata template again
+                        (if needed) or simply click ‘continue’ to upload the correct metadata as a CSV file.
+                    </p>
+                    <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/2be7b922cb3440e4c30ff1893af1328e-standard-prepare-your-metadata.png" class="screenshots" alt="Prepare your metadata">
+                    <p class="govuk-body">
+                        Once you have made the necessary changes, you will be prompted to repeat the steps described above to submit your metadata for review by the Digital Archiving team who will check it again and send you an email notification.
+                    </p>
+                </li>
+                <li>If everything appears to be OK with your metadata:
+                    <p class="govuk-body">
+                        You will receive an automated email confirming that you can proceed with your transfer. It will also contain a link to your in progress transfer.
+                    </p>
+                    <p class="govuk-body">
+                        The transfer can also be accessed by signing into Transfer Digital Records, selecting the ‘View Transfers’ button and finding the transfer with the corresponding consignment reference.
+                    </p>
+                    <p class="govuk-body">
+                        You will see a message confirming you can complete your transfer.
+                    </p>
+                    <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/4775031c6c98f4a816db19129754df39-standard-review-success.png" class="screenshots" alt="Metadata review successful page">
+                    <p class="govuk-body">
+                        Select ‘Continue’ to carry on with submitting your records for transfer.
+                    </p>
+                </li>
+            </ol>
+
+            <h3 class="govuk-heading-s" id="download-metadata">Step 7: Download and review metadata</h3>
+            <p class="govuk-body">
+                Once the metadata has been completed and automatically saved, you can download and review a .csv file which shows all the metadata added to your records.
+            </p>
+            <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/6cc3acd864c20bc050ac014e951e5899-download-and-review-metadata-page.png" class="screenshots" alt="Download and review metadata page">
+            <p class="govuk-body">
+                At this stage in the process, you may also return to the previous step to add, amend or delete metadata.
+            </p>
+            <p class="govuk-body">
+                When you have finished adding and amending metadata, click ‘Next’ to proceed to the final step of the process.
+            </p>
+
+            <h3 class="govuk-heading-s" id="confirm-transfer">Step 8: Confirm transfer</h3>
+            <p class="govuk-body">
+                At the final stage of TDR, you will be asked to confirm the transfer. On this screen you will see a summary of the records you have uploaded.
+                You may leave at any time and return to your transfer from the ‘View transfers’ page.
+            </p>
+            <ol class="govuk-body">
+                <li>If you wish to proceed, you must confirm that you understand you are transferring legal custody of your records to The National Archives.</li>
+                <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/8a789ce9d447ab4217865fb70d91a0e9-standard-confirm-transfer.png" class="screenshots" alt="Confirm transfer page">
+                <li>Once confirmed, both the records and their legal custody can be exported to TNA to complete your transfer.
+                    Click 'Transfer your records' send your transfer to TNA.</li>
+            </ol>
+
+            <h3 class="govuk-heading-s" id="transfer-complete">Transfer complete</h3>
+            <p class="govuk-body">
+                You will be notified on screen whether your transfer has been successful and your records have been received by TNA for processing.
+            </p>
+            <img src="https://tdr-staging.nationalarchives.gov.uk/assets/images/d6299e8210d2e8a3572540afd25b9078-standard-transfer-complete.png" class="screenshots" alt="Transfer complete page">
+            <p class="govuk-body">
+                Until you are notified by email that your records have been successfully transferred AND are live on the public catalogue, it is important that you keep your original records safe and do not delete them.
+            </p>
+            <p class="govuk-body">
+                If you do not receive an email after 90 days, contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>.
+            </p>
+
+            <h2 class="govuk-heading-m" id="transfer-history">View the progress of your transfers and transfer history</h2>
+            <p class="govuk-body">
+                You can view your transfer history and the progress of record transfers at any time by visiting the View transfers page.
+                You can access this page via the homepage. On this page you can see the following information:
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>Consignment reference</li>
+                <li>The date the TDR process started</li>
+                <li>The date the records were transferred</li>
+                <li>The status of your transfer</li>
+                <li>Any actions we advise you to take, such as resuming the transfer process</li>
+            </ul>
+
+            <h2 class="govuk-heading-m" id="glossary">Glossary</h2>
+            <p class="govuk-body">
+                Each of the following terms is defined within the context of Transfer Digital Records (TDR).
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-anti-virus">Anti-virus scan</h3>
+            <p class="govuk-body">
+                A check performed on digital files to detect the presence of computer viruses or other malware.
+                We do not accept files that contain viruses or malware and so if these are detected the upload will fail.
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-beta">Beta</h3>
+            <p class="govuk-body">
+                The Transfer Digital Records service is still being developed and is currently at a 'beta' stage.
+                At this stage in its development, TDR does not yet offer the full range of features which our users require (for example, TDR can currently only accept records which are Crown Copyright and Public Records).
+                The service is currently only available to an invited group of users.
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-checksums">Checksums</h3>
+            <p class="govuk-body">
+                The integrity check uses checksums which are like digital fingerprints used to verify that no changes have been made to the data.
+            </p>
+            <p class="govuk-body">
+                The checksum hash we use is SHA 256.
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-consignment">Consignment</h3>
+            <p class="govuk-body">
+                A consignment is a group of selected records being prepared and transferred to The National Archives.
+                Sometimes referred to as a batch.
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-consignment-reference">Consignment reference </h3>
+            <p class="govuk-body">
+                Each consignment (or batch) of digital records uploaded to TDR for transfer to The National Archives is assigned a Consignment reference which can be identified as a series of letters and numbers.
+                Quote this reference if you need to contact us about your records transfer.
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-creating-body">Creating body</h3>
+            <p class="govuk-body">
+                The government department or body that originally created the records being transferred.
+                This is often the same as the body that transfers the records.
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-crown-copyright">Crown Copyright </h3>
+            <p class="govuk-body">
+                Under section 163 of the Copyright, Designs and Patents Act 1988, Crown Copyright is defined as works made by officers or servants of the Crown in the course of their duties.
+                This includes material created by ministers, civil servants and government departments and agencies.
+                Copyright can also be assigned or transferred to the Crown by the legal owner of the copyright.
+                Most, though not all, Public Records are Crown Copyright.
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-data-integrity-check">Data integrity check</h3>
+            <p class="govuk-body">
+                When you upload your digital records to TDR, we carry out data integrity checks to help ensure that files have not been corrupted during the upload process.
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-departmental-records-officer">Departmental Records Officer</h3>
+            <p class="govuk-body">
+                A Departmental Records Officer (DRO) is a person appointed by a government department or agency as being responsible for the management of the records of that organisation.
+                The DRO must authorise any transfer of records to The National Archives and is responsible for ensuring that the records are properly sensitivity reviewed prior to transfer.
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-export">Export</h3>
+            <p class="govuk-body">
+                Once your records have been uploaded and checked, your records and legal custody is then given to TNA where they will be preserved.
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-foi-exemption">Freedom of Information (FOI) exemption</h3>
+            <p class="govuk-body">
+                FOI exemptions exist to protect information that should not be disclosed.
+                A list of exemptions can be found in Part II of the Freedom of Information Act, at sections 21 to 44.
+                Records transferred to The National Archives will be released to the public (‘opened’) unless you apply one or more FOI exemptions.
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-metadata">Metadata</h3>
+            <p class="govuk-body">
+                Data that provides additional information about digital records.
+                For example, information that could help a user find or understand a record, locate other related information or understand how the record was originally created or used.
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-public-records">Public Records</h3>
+            <p class="govuk-body">
+                Records of, or held in, any department of Her Majesty’s Government in the United Kingdom or records of any office, commission or other body or establishment whatsoever under Her Majesty’s Government in the United Kingdom, as defined in paragraph 2 of the First Schedule to the Public Records Act 1958.
+            </p>
+            <p class="govuk-body">
+                Most records held by the UK central government and related bodies are Public Records.
+            </p>
+            <p class="govuk-body">
+                Records held by local authorities, educational institutions, businesses or private individuals are not usually Public Records.
+                If you need advice on whether the records you hold are Public Records contact your transfer advisor.
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-records-selection">Records selection and appraisal</h3>
+            <p class="govuk-body">
+                The process of evaluating your records to determine which should be transferred to The National Archives for permanent preservation, in line with the Public Records Act.
+                Selection must be completed prior to using TDR.
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-records-transfer">Records transfer</h3>
+            <p class="govuk-body">
+                The process of formally transferring custody of public records that have been selected for permanent preservation to The National Archives (or another approved Place of Deposit for public records).
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-sensitivity-review">Sensitivity review</h3>
+            <p class="govuk-body">
+                Before you transfer records to The National Archives, you must review them to identify any sensitive information and apply the relevant FOI exemption(s).
+                Transferred records will be released to the public except where FOI exemptions have been applied.
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-series-reference">Series reference</h3>
+            <p class="govuk-body">
+                A reference assigned to a set of archived records.
+                Series references generally indicate the creating department and the subject matter of the records.
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-transfer">Transfer</h3>
+            <p class="govuk-body">
+                Once records have been uploaded, checked and exported, the legal custody of the records is then given to TNA. At this stage, the records are not yet preserved and so the original records should not be deleted until the user is notified of preservation.
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-transferring-body">Transferring body</h3>
+            <p class="govuk-body">
+                The government department or body that is transferring records for permanent preservation.
+                This is often the same as the body that originally created the records.
+            </p>
+            <h3 class="govuk-heading-s" id="glossary-upload">Upload</h3>
+            <p class="govuk-body">
+                At the start of the TDR process, a top-level folder containing files and sub-folders intended to be transferred to TNA are added by the user. These records are then checked to ensure they meet the correct criteria for transfer.
+            </p>
+        </div>
+    </div>
+
+<style>
+.screenshots {
+  width: 95%;
+  padding: 15px;
+}
+</style>
+{% endblock %}
