@@ -1,0 +1,842 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+                <h1 class="govuk-heading-l">Frequently Asked Questions</h1>
+
+                <h2 id="getting-started" class="govuk-heading-m">Getting started</h2>
+                <p class="govuk-body">
+                    Before reading the TDR FAQs, we recommend that you read through the TDR <a class="govuk-link" href="/help"> User Guide</a> first.
+                </p>
+
+                <h3 class="govuk-heading-s">What is TDR?</h3>
+                <p class="govuk-body">
+                    Transfer Digital Records (TDR) is a secure digital transfer service from The National Archives (TNA) that enables Public Record Bodies to upload, prepare and then transfer selected digital Public Records to TNA for permanent preservation and publication.
+                </p>
+                <p class="govuk-body">
+                    TDR is a preparation area where records are uploaded to prepare for transfer. Whilst records remain uploaded in TDR, they continue to be the responsibility of and owned by the transferring body. For example, while records are in TDR the transferring body will still be accountable for any requests such as Freedom Of Information (FOI). The custody of records is only transferred to TNA when exported during the final stage of the TDR process.
+                </p>
+
+                <h3 class="govuk-heading-s">What are selected digital public records?</h3>
+                <p class="govuk-body">
+                    These are records of historical value and enduring public interest that have been selected for permanent preservation.
+                </p>
+                <p class="govuk-body">
+                    Transferring departments have a statutory responsibility to appraise, select and sensitivity review records prior to transferring records to The National Archives.
+                </p>
+                <p class="govuk-body">
+                    If there are any issues detected with the appraisal, selection and sensitivity review of records, The National Archives reserves the right to pause the transfer and refer to the Strategic Compliance team.
+                </p>
+                <p class="govuk-body">
+                    If you would like more information about this, contact <a href="mailto:governmenthelppoint@nationalarchives.gov.uk">governmenthelppoint@nationalarchives.gov.uk</a>
+                    .
+                </p>
+
+                <h3 class="govuk-heading-s">How does TDR work?</h3>
+                <p class="govuk-body">A digital records transfer using TDR involves the following steps:</p>
+                <ol class="govuk-list govuk-list--number">
+                    <li>Users select the series reference for their transfer and confirm service agreement requirements.</li>
+                    <li>Users are asked to confirm that the records have been appraised, selected, and sensitivity reviewed, and meet TNA’s requirements for transfer via TDR.</li>
+                    <li>Users upload selected digital records to TDR</li>
+                    <li>TDR checks that the records are free of computer viruses or other malware</li>
+                    <li>Users add, edit or delete descriptive and closure metadata.</li>
+                    <li>If all checks have been passed, users can formally transfer custody of the records to TNA on the Confirm Transfer page by clicking 'Transfer your records'.</li>
+                    <li>On successful transfer to TNA the user is informed that they have arrived securely for onwards processing at TNA.</li>
+                </ol>
+                <p class="govuk-body">
+                    TNA takes formal custody and becomes legally responsible for the records at step 7 of the process.
+                </p>
+                <p class="govuk-body">
+                    Once received at The National Archives, the records will be preserved and where appropriate released on the public catalogue.
+                </p>
+
+                <h3 id="beta" class="govuk-heading-s">What is beta?</h3>
+                <p class="govuk-body">
+                    TDR is being built using an agile approach. Beta is an early agile stage where the service is still being developed and does not yet offer the full range of features that we intend to support.
+                </p>
+                <p class="govuk-body">
+                    At this development stage, the service is also only available to pre-approved users. Over time, we will make TDR available to more departments and will continue to develop the service in consultation with our users. If you would like to use TDR, contact our digital transfer advisors on <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>.
+                </p>
+
+                <h2 id="accessing-tdr-account" class="govuk-heading-m">Accessing my TDR account</h2>
+                <h3 id="browsers-supported" class="govuk-heading-s">What browsers are supported?</h3>
+                <p class="govuk-body">
+                    We do not support Internet Explorer. We advise you to use latest browser version of Edge, Chrome, or Firefox to ensure you can use this service and all its features.
+                </p>
+
+                <h3 id="sign-in-email" class="govuk-heading-s">Which email should I use to sign-in?</h3>
+                <p class="govuk-body">
+                    Use the email that you used to create your account. If your email address changes, send full details of the change to <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>.
+                    Further information on how to set up a new account can be found in the TDR<a class="govuk-link" href="/help">
+                    User Guide</a>.
+                </p>
+
+                <h3 id="password-not-working" class="govuk-heading-s">My password does not work</h3>
+                <p class="govuk-body">
+                    If you forget your password or need to reset it, click the ‘Forgot your password?’ link on the sign in page to request a reset and follow the on-screen instructions. For any other password issue, email <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>.
+                </p>
+
+                <h3 id="what-is-mfa" class="govuk-heading-s">What is Multi-Factor Authentication (MFA)?</h3>
+                <p class="govuk-body">
+                    To keep the service and your account secure, you are required to sign-in each time using Multi-Factor Authentication (MFA). This uses two separate pieces of information to authenticate and grant access to the service. In TDR you must sign in each time using your password and a unique generated 'one-time passcode' (OTP) that confirms who you are. This can be set up with a free-to-download authenticator app on your smartphone device, such as Google Authenticator, Microsoft Authenticator, or FreeOTP. Other authenticators are also available.
+                </p>
+                <p class="govuk-body">
+                    Free-to-download authenticator apps are available from the App Store for iPhone, or 'Google Play' and 'Play Store' for Android.
+                </p>
+
+                <h3 id="set-up-mfa-otp" class="govuk-heading-s">How do I set up MFA and my one-time password (OTP)?</h3>
+                <p class="govuk-body">
+                    When you register as a new TDR user, follow the registration steps in the TDR <a class="govuk-link" href="/help">User Guide</a>
+                    in order to scan a QR code which will link TDR to the authenticator app on your smartphone. You only need to configure this once for it to generate a code for each time you sign in.
+                </p>
+
+                <h3 id="where-to-get-otp-code" class="govuk-heading-s">Where do I get my OTP code?</h3>
+                <p class="govuk-body">
+                    In the authenticator app on your smartphone, click on the Transfer Digital Record linked account that you set up at registration to see the one-time passcode being generated. The one-time passcode gets refreshed every 30 to 60 seconds, so you need to ensure you have enough time to use the code to complete the sign-in process before it refreshes.
+                </p>
+
+                <h3 class="govuk-heading-s">
+                    When setting up the authenticator app, my configuration failed - what should I do?</h3>
+                <p class="govuk-body">
+                    If the authentication app fails to configure when adding a new linked account for TDR on your smartphone, delete the failed TDR account within the app and try again. For guidance on how to do this on each device, follow the instructions below.
+                </p>
+                <p class="govuk-body">
+                    For Android:
+                </p>
+                <ol class="govuk-list govuk-list--number">
+                    <li>Open the authenticator app on the device and tap 'Generate code'.</li>
+                    <li>In the 'Generate code' screen, press and hold the account you want to remove.</li>
+                    <li>When prompted, tap remove.</li>
+                </ol>
+                <p class="govuk-body">
+                    For iOS:
+                </p>
+                <ol class="govuk-list govuk-list--number">
+                    <li>Open the authenticator app on the device and tap 'Generate code'.</li>
+                    <li>On the Generate code screen, press the account you wish to remove and swipe it to the left.</li>
+                    <li>If you are using the Microsoft Authenticator, look for the settings cog in the top corner and tap it to see the option that says 'Remove account'</li>
+                </ol>
+                <p class="govuk-body">
+                    If you need further support on the app, your local IT support desk may be able to assist.
+                </p>
+
+                <h3 class="govuk-heading-s">I can’t use my phone camera to scan the QR code</h3>
+                <p class="govuk-body">
+                    Some smartphones may need to have access enabled to the camera in Settings.
+                </p>
+                <p class="govuk-body">
+                    Alternatively, a 9-digit key code, can be manually entered into the app. You can find guidance on how to get a 9-digit key code in 'Part 2: Step 2' of the TDR User Guide. Once you have the code, you can enter it into the app. To do this:
+                </p>
+                <ol class="govuk-list govuk-list--number">
+                    <li>First generate a code, by clicking on the 'I want to enter a key instead' link below the QR code displayed on the page.</li>
+                    <li>Within your authenticator app click the 'Enter a setup key' option.</li>
+                    <li>Enter the key code as shown into the app and it should create your unique OTP account for TDR sign-in.</li>
+                    <li>You should now be able to see a 6-digit code that will refresh at regular intervals.</li>
+                    <li>Continue to follow instructions from 'Part 2: Step 3' of the TDR <a class="govuk-link" href="/help">User Guide</a>.</li>
+                </ol>
+
+                <h3 class="govuk-heading-s">My link has expired</h3>
+                <p class="govuk-body">
+                    If your ‘Update Your Account’ link has expired before use, email <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>
+                    from your work email account and ask for a new link. Allow up to two working days for your request to be processed.
+                </p>
+
+                <h3 class="govuk-heading-s">Can I share my sign-in information?</h3>
+                <p class="govuk-body">
+                    No, never share your personal sign-in information with anyone else. Always keep your details safe and secure.</p>
+
+                <h2 id="upload-process" class="govuk-heading-m">The upload process</h2>
+                <h3 class="govuk-heading-s">What is a series reference?</h3>
+                <p class="govuk-body">
+                    A series reference is a reference assigned to a set of archived records. Series references generally contain letters that indicate the creating department followed by numbers referring to the series, for example 'DCMS-1234'. The Cataloguing Department at The National Archives allocates the series reference which you will find in the dropdown list on the ‘Series reference’ page in TDR.
+                </p>
+
+                <h3 class="govuk-heading-s">I cannot find my series reference in the dropdown list</h3>
+                <p class="govuk-body">
+                    If you cannot find your series reference in the dropdown list on the ‘Series reference’ page, or you are unsure what your series reference should be when you begin the transfer process, contact <a href="mailto:tdr@nationalarchives.gov.uk">
+                tdr@nationalarchives.gov.uk</a>.
+                </p>
+
+                <h3 class="govuk-heading-s">What is a consignment reference?</h3>
+                <p class="govuk-body">
+                    A Consignment reference is a unique reference assigned to each transfer (or batch) of digital records that have been uploaded to TDR, for example 'TDR-2020-ABC'. The View transfers page will list your corresponding Consignment reference against each transfer. It will also be displayed in the top right-hand corner of your screen once you have signed into TDR and begin a transfer.
+                </p>
+
+                <h3 class="govuk-heading-s">What are Public Records?</h3>
+                <p class="govuk-body">
+                    Public Records are records created or held by any UK government department or related body. The National Archives can usually only accept Public Records.
+                </p>
+
+                <h3 class="govuk-heading-s">How do I know if my records are Crown Copyright?</h3>
+                <p class="govuk-body">
+                    Works created by officers or servants of the Crown, during the course of their duties are Crown Copyright. This includes material created by ministers, civil servants, government departments and agencies. In the future The National Archives will accept Public Records that are not Crown Copyright, however during this initial development stage, you cannot use TDR to transfer them to us.
+                </p>
+<div style="background-color: beige;">
+                <h3 id="other-languages" class="govuk-heading-s">
+                    The records I wish to transfer are in another language (for example, Welsh)</h3>
+
+                <p class="govuk-body">These languages are supported in TDR:</p>   
+                {{ govukDetails({
+                  summaryText: "Reveal supported languages",
+                  html: '<ul>
+                            <li>Arabic</li>
+                            <li>Bengali</li>
+                            <li>Chinese</li>
+                            <li>English</li>
+                            <li>German</li>
+                            <li>Gujarati</li>
+                            <li>Hindi</li>
+                            <li>Irish Gaelic</li>
+                            <li>Italian</li>
+                            <li>Polish</li>
+                            <li>Punjabi</li>
+                            <li>Russian</li>
+                            <li>Scottish Gaelic</li>
+                            <li>Somali</li>
+                            <li>Ulster Scots</li>
+                            <li>Urdu</li>
+                            <li>Vietnamese</li>
+                            <li>Welsh</li>
+                        </ul>'
+                }) }} 
+
+                <p class="govuk-body">
+                Language(s) must be capitalised. If a record is in multiple languages you must use a semi-colon separated list, Eg. English;Welsh;Hindi</p>
+
+                <p class="govuk-body">
+                If your records are in a language not in this list, contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a> prior to transfer to discuss next steps.
+              </p>
+
+
+                <p class="govuk-body">
+                    The National Archives accepts records in any language.
+                </p>
+
+                <h3 class="govuk-heading-s" id="file-formats-not-accepted">What file formats are not accepted?</h3>
+                <p class="govuk-body">We cannot accept files that are password protected or encrypted.</p>
+                <p class="govuk-body">We cannot accept files with slashes (/ and \) in the name.</p>
+                <p class="govuk-body">
+                    We also cannot currently accept zip files via TDR. Contact <a href="mailto:tdr@nationalarchives.gov.uk">
+                tdr@nationalarchives.gov.uk</a> if you wish to transfer these.
+                </p>
+                <p class="govuk-body">If you upload an empty folder it will not be transferred.</p>
+                <p class="govuk-body">If you are able to run a DROID report on your files, check to see if you have any disallowed file types (PUID’s) in your uploads:</p>
+
+                {{ govukDetails({
+                  summaryText: "List of disallowed PUIDs",
+                  html: '        <table class="govuk-table">
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">PUID</th>
+                        <th scope="col" class="govuk-table__header">PUID Description</th>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1070</td>
+                        <td class="govuk-table__cell">Preferred Executable Format</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1071</td>
+                        <td class="govuk-table__cell">Apple Disk Image</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1087</td>
+                        <td class="govuk-table__cell">FAT Disk Image</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1095</td>
+                        <td class="govuk-table__cell">PEA Archive Format</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1096</td>
+                        <td class="govuk-table__cell">FreeArc Archive Format</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1097</td>
+                        <td class="govuk-table__cell">ZPAQ Archive Format</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1098</td>
+                        <td class="govuk-table__cell">XZ File Format</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1100</td>
+                        <td class="govuk-table__cell">yEnc Encoded File</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1102</td>
+                        <td class="govuk-table__cell">Uuencoded File</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1105</td>
+                        <td class="govuk-table__cell">Hierarchical File System</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/111</td>
+                        <td class="govuk-table__cell">OLE2 Compound Document Format</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1190</td>
+                        <td class="govuk-table__cell">Adobe SWC Package</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1242</td>
+                        <td class="govuk-table__cell">ZFO (Form) File</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1243</td>
+                        <td class="govuk-table__cell">ZFO (Message) File</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1244</td>
+                        <td class="govuk-table__cell">ZFO (Sent Message)</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1245</td>
+                        <td class="govuk-table__cell">ZFO (Proof of Delivery) File</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1251</td>
+                        <td class="govuk-table__cell">Electronically Certified Document (EDOC)</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1252</td>
+                        <td class="govuk-table__cell">Raw Flux Image</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1281</td>
+                        <td class="govuk-table__cell">WARC 1.1</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1340</td>
+                        <td class="govuk-table__cell">BDOC 1</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1341</td>
+                        <td class="govuk-table__cell">ASICS</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1355</td>
+                        <td class="govuk-table__cell">WARC 1.0</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1361</td>
+                        <td class="govuk-table__cell">Amiga Disk File</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1399</td>
+                        <td class="govuk-table__cell">DiskDoubler</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/1672</td>
+                        <td class="govuk-table__cell">Linux/i386 Binary Executable File ZMAGIC</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/289</td>
+                        <td class="govuk-table__cell">WARC Web ARChive file format</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/329</td>
+                        <td class="govuk-table__cell">Shell Archive Format</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/394</td>
+                        <td class="govuk-table__cell">DS_Store File (MAC)</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/473</td>
+                        <td class="govuk-table__cell">Microsoft Office Owner File</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/494</td>
+                        <td class="govuk-table__cell">Microsoft Office Encrypted Document</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/503</td>
+                        <td class="govuk-table__cell">AppleDouble Resource Fork</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/508</td>
+                        <td class="govuk-table__cell">Quarter Inch Cartridge Host Interchange Format</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/600</td>
+                        <td class="govuk-table__cell">eXtensible ARchive format</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/610</td>
+                        <td class="govuk-table__cell">ARJ File Format</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/613</td>
+                        <td class="govuk-table__cell">RAR Archive</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/614</td>
+                        <td class="govuk-table__cell">Windows Imaging Format</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/625</td>
+                        <td class="govuk-table__cell">Apple Disk Copy Image</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/626</td>
+                        <td class="govuk-table__cell">LHA File Format</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/639</td>
+                        <td class="govuk-table__cell">Stuffit Archive File</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/656</td>
+                        <td class="govuk-table__cell">KryoFlux</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/682</td>
+                        <td class="govuk-table__cell">Thumbs DB file</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/726</td>
+                        <td class="govuk-table__cell">Virtual Disk Image</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/754</td>
+                        <td class="govuk-table__cell">Microsoft Word Document</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/755</td>
+                        <td class="govuk-table__cell">Microsoft Word Document Template</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/842</td>
+                        <td class="govuk-table__cell">AccessData Custom Content Image</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/843</td>
+                        <td class="govuk-table__cell">AccessData Custom Content Image (Encrypted)</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/844</td>
+                        <td class="govuk-table__cell">Advanced Forensic Format</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/850</td>
+                        <td class="govuk-table__cell">NuFile Exchange Archival Library</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/866</td>
+                        <td class="govuk-table__cell">Apple Safari Webarchive</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/887</td>
+                        <td class="govuk-table__cell">SafeGuard Encrypted Virtual Disk</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/899</td>
+                        <td class="govuk-table__cell">Windows Portable Executable 32 bit</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/900</td>
+                        <td class="govuk-table__cell">Windows Portable Executable 64 bit</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">fmt/941</td>
+                        <td class="govuk-table__cell">Back Up File</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">nonJudgmentFormat</td>
+                        <td class="govuk-table__cell">No specific identifier for non judgment</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">x-fmt/157</td>
+                        <td class="govuk-table__cell">Interchange File</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">x-fmt/219</td>
+                        <td class="govuk-table__cell">Alexa Archive File</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">x-fmt/263</td>
+                        <td class="govuk-table__cell">ZIP Format</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">x-fmt/265</td>
+                        <td class="govuk-table__cell">Tape Archive Format</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">x-fmt/266</td>
+                        <td class="govuk-table__cell">GZIP Format</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">x-fmt/267</td>
+                        <td class="govuk-table__cell">BZIP Compressed Archive</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">x-fmt/268</td>
+                        <td class="govuk-table__cell">BZIP2 Compressed Archive</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">x-fmt/269</td>
+                        <td class="govuk-table__cell">ZOO Compressed Archive</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">x-fmt/409</td>
+                        <td class="govuk-table__cell">MS-DOS Executable</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">x-fmt/410</td>
+                        <td class="govuk-table__cell">Windows New Executable</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">x-fmt/411</td>
+                        <td class="govuk-table__cell">Windows Portable Executable</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">x-fmt/412</td>
+                        <td class="govuk-table__cell">Java Archive Format</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">x-fmt/416</td>
+                        <td class="govuk-table__cell">BinHex Binary Text</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">x-fmt/421</td>
+                        <td class="govuk-table__cell">Text Configuration file</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">x-fmt/426</td>
+                        <td class="govuk-table__cell">License file</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">x-fmt/428</td>
+                        <td class="govuk-table__cell">Microsoft Windows Shortcut</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">x-fmt/429</td>
+                        <td class="govuk-table__cell">MHTML</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">x-fmt/45</td>
+                        <td class="govuk-table__cell">Microsoft Word Document Template</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">x-fmt/454</td>
+                        <td class="govuk-table__cell">Microsoft Internet Shortcut</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">zeroByteFile</td>
+                        <td class="govuk-table__cell">Identifier for empty file not in PRONOM</td>
+                    </tr>
+                </tbody>
+            </table>'
+                }) }} 
+
+</div>
+                <h3 class="govuk-heading-s">
+                    Do you accept system files, password protected files, executable files, or zip files and folders and how do I identify them?</h3>
+                <p class="govuk-body">
+                    Before you begin a transfer, you can identify file formats by searching your folder for the file extensions (thumbs.db, .exe and .zip). For password protected files, click to view folder options and select 'hidden files and folders'. These files are usually identified as part of your selection and sensitivity review process.
+                </p>
+                <p class="govuk-body">
+                    System files, including 'thumbs.db' files, ds_store files, and .lnk files are not usually selected for permanent preservation. We advise you to remove these from your transfer.
+                </p>
+
+
+                <p class="govuk-body">Password protected files are not accepted and must be removed prior to transfer.</p>
+                <p class="govuk-body">
+                    Executable files, such as those with a .exe or .msi extension are not usually selected for transfer but there may be a good reason for selecting them. Ensure you are certain that you wish to upload such files prior to transfer.
+                </p>
+                <p class="govuk-body">
+                    Zips, and similar 'archival container' files including .rar, .7z, .gz and others must be unpacked prior to transfer. Failure to do so will likely cause the transfer to fail. Speak with your local IT Support team if you require assistance with this.
+                </p>
+                <p class="govuk-body">
+                    File format extensions can also be useful for determining file types, however this can be an unreliable approach, since they can be changed easily. Extensions are the end part of a filename that typically look similar to '.jpg' or '.docx'. They are often hidden by default, but can usually be made visible to help with determining file type. Speak with your local IT Support team if you require assistance with this.
+                </p>
+                <p class="govuk-body">
+                    Contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>
+                    if you are uncertain about the file formats you have selected for transfer.
+                </p>
+
+                <h3 class="govuk-heading-s">Why can’t I drag and drop or upload my records?</h3>
+                <p class="govuk-body">
+                    This may happen for several reasons. To try to resolve the issue, first check your internet connection is sufficient and stable. It may also help to refresh the page though this might mean you have to begin the transfer process again. You can also check your sub-folders and files are not corrupted or damaged by opening them on your computer. If you still cannot upload your files and sub-folders, contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>
+                    describing the issue and any steps taken.
+                </p>
+
+                <h3 class="govuk-heading-s">Can I upload multiple folders?</h3>
+                <p class="govuk-body">
+                    You can only upload one top-level content folder per transfer. However, that folder can contain multiple files and sub-folders of files.
+                </p>
+
+                <h3 class="govuk-heading-s">Is there an upload limit?</h3>
+                <p class="govuk-body">
+                    Individual files must be no bigger than 2GB and you must upload no more than 3000 files per transfer. The total size of all files for transfer must be no more than 5GB.
+                    Uploading more than the recommended size increases the likelihood of errors occurring and may take longer
+                    to be uploaded and checked. If your files are very large and cannot be uploaded, contact
+                    <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>.
+                </p>
+
+                <h3 class="govuk-heading-s">Can I upload a folder via OneDrive/ Google Drive/ SharePoint?</h3>
+                <p class="govuk-body">
+                    While we are developing the service (Beta stage), TDR can only accept records transferred from a hard or network drive. Contact <a href="mailto:tdr@nationalarchives.gov.uk">
+                tdr@nationalarchives.gov.uk</a>
+                    to discuss the best way to transfer records if they are not stored on a physical or networked drive.
+                </p>
+                <p class="govuk-body">
+                    In the future, TDR will accept transfers directly from the cloud.
+                </p>
+
+                <h3 class="govuk-heading-s">I’ve uploaded files or sub-folders that I do not wish to be transferred</h3>
+                <p class="govuk-body">
+                    TDR does not currently allow you to amend your files once the transfer process has begun.
+                    Prior to upload, check that each of the files and sub-folders are intended to be uploaded and transferred.
+                    If you upload files or sub-folders you do not wish to transfer you will need to contact <a href="mailto:tdr@nationalarchives.gov.uk">Messages("nationalArchives.email")</a> and begin the process again.
+                </p>
+
+                <h3 class="govuk-heading-s">The session timed out before I completed the upload process</h3>
+                <p class="govuk-body">
+                    A session can time out during the upload process if your internet connection is weak or if your files are very large. If so, you can continue with your transfer if your records were uploaded successfully via the View Transfers page. If your records were not uploaded successfully you must begin the process again. To avoid the session timing out, ensure you have a sufficiently stable and strong internet connection.
+                </p>
+
+                <h3 class="govuk-heading-s">What happens if I close my browser accidentally during upload?</h3>
+                <p class="govuk-body">
+                    If you close your browser during upload your records may not be uploaded successfully. You will need to return to the start and begin the upload process again.
+                </p>
+
+                <h3 id="progress-checks" class="govuk-heading-s">What checks are carried out?</h3>
+                <p class="govuk-body">
+                    During upload, files are checked to ensure they can be transferred. The following checks are performed:
+                </p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>Antivirus</li>
+                    <p class="govuk-body">
+                        A check performed to scan for viruses and other malware. We cannot accept infected files.
+                    </p>
+                    <li>File format identification</li>
+                    <p class="govuk-body">
+                        A check performed to identify the file format and confirm that the file is suitable for transfer. We accept most types of formats, but ones we haven’t seen before may need further investigation. You may be contacted if your transfer contains unidentified file formats. See <a href="#file-formats-not-accepted">'What file formats are accepted'</a> for guidance on what types of files we can accept.
+                    </p>
+                    <li>Data integrity validation</li>
+                    <p class="govuk-body">
+                        A check performed to ensure files have not been corrupted as they move between your shared drive and TDR during the upload process. The data integrity check uses checksums which are like a digital fingerprint. For TDR we use SHA256.
+                    </p>
+                    <p class="govuk-body">
+                        More information can be found in the <a class="govuk-link" href="/help#glossary">Glossary</a> of the TDR User Guide.
+                    </p>
+                </ul>
+
+                <h3 class="govuk-heading-s">What happens if my files fail?</h3>
+                <p class="govuk-body">
+                    If you receive a notification that your records have failed our checks, please check the following:
+                </p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>Your internet connection is stable and strong</li>
+                    <li>That your transfer does not contain records we cannot accept.</li>
+                </ul>
+                <p class="govuk-body">
+                    If you can confirm the above then try again. If your transfer has still failed, contact <a href="mailto:tdr@nationalarchives.gov.uk">
+                tdr@nationalarchives.gov.uk</a>.
+                </p>
+
+                <h3 class="govuk-heading-s">Once I have uploaded my records does that mean TNA now has them?</h3>
+                <p class="govuk-body">
+                    Upload and the final step of clicking ‘Transfer’ are two completely different stages within the transfer process. Uploading records into TDR <span class="govuk-!-font-weight-bold">
+                    does not</span>
+                    mean that The National Archives has them. When files have only been uploaded, checks are carried out on your records to help you confirm that they are suitable for transfer. At this point you are still responsible for them, including responsibility for Freedom Of Information (FOI) requests.
+                </p>
+                <p class="govuk-body">
+                    Once the checks are completed, you will be prompted to confirm that you wish to transfer custody of the records to The National Archives. This is the final step to transfer your records to The National Archives. We only take custody of your records once you confirm the transfer of custody at the final stage of the process.
+                </p>
+
+                <h3 class="govuk-heading-s">At what point have I transferred the records?</h3>
+                <p class="govuk-body">
+                    You will only have transferred your records once they have been uploaded and checked, you have confirmed that you wish to transfer them to The National Archives, and you have clicked ‘Transfer’ to complete the process. You should keep a copy of your records until we confirm preservation at The National Archives. We will endeavour to complete this within 90 days, however it could take longer. We will also notify you when your records have been released to the public.
+                </p>
+
+                <h3 id="metadata-captured" class="govuk-heading-s">What metadata will be captured in TDR?</h3>
+                <p class="govuk-body">
+                    During the upload process, TDR captures the following metadata from the transfer:
+                </p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>File path</li>
+                    <li>File name</li>
+                    <li>Date (usually last modified)</li>
+                    <li>Type (distinction between folder and file)</li>
+                    <li>Checksum</li>
+                </ul>
+                <p class="govuk-body">
+                    The format of the file is also identified using <a href="https://www.nationalarchives.gov.uk/information-management/manage-information/preserving-digital-records/droid/">
+                    DROID</a> which was developed by The National Archives.
+                </p>
+
+                <h3 class="govuk-heading-s">Why are you asking me to add descriptive metadata?</h3>
+                <p class="govuk-body">
+                    During the upload process, TDR captures basic file-level metadata. If you have additional information about your records, we recommend that you add this. It can include anything from descriptions to dates and any additional data that will provide context to the record and make it easier to find in the future. For further assistance, contact <a href="mailto:tdr@nationalarchives.gov.uk">
+                tdr@nationalarchives.gov.uk</a>.
+                </p>
+
+                <h3 class="govuk-heading-s">
+                    What do I do if the title or description of my record is sensitive to the public?</h3>
+                <p class="govuk-body">
+                    If the title or description of your record is sensitive to the public, you can provide an alternative when adding closure metadata. The alternative will be visible on the public catalogue. You may wish to do one of the following:
+                </p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>Redact - remove the sensitive words. For example: 'Correspondence with [name withheld]'.</li>
+                    <li>Sanitise - replace the sensitive word. For example: 'UK military exercises in...' (where 'military' has replaced 'Special Forces').</li>
+                    <li>Withhold the title or description without providing an alternative. For example, you can replace with '[Title withheld]' and or '[description withheld]'</li>
+                </ul>
+
+                <h3 class="govuk-heading-s">Can I include redacted records?</h3>
+                <p class="govuk-body">
+                    If redacted files are included within your transfer, to avoid failing checks, you must ensure that:
+                </p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>They are in the same sub-folder as their parent record</li>
+                    <li>They have the same name as their parent (excluding file extension) with '<b>_R</b>' added to the filename before the file extension e.g. <b>Parent</b>.docx and <b>Parent_R</b>.pdf</li>
+                    <li>There is no other file type with the same name in the same sub-folder as the parent and redacted version</li>
+                </ul>
+                <p class="govuk-body">
+                    If your redacted records cannot conform to the above, contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a> to arrange an alternative delivery method.
+                </p>
+        <div style="background-color:beige;">
+                <h3 class="govuk-heading-s">Which FOI codes are allowed in the metadata?</h3>
+                <p class="govuk-body">
+                  You should have approval for your FOI codes through the closure process. If you are getting errors on your metadata file, you may use this list to check if you are using an FOI code that may be causing a problem: 
+                </p>
+                {{ govukDetails({
+                  summaryText: "Reveal allowed FOI codes",
+                  html: '<ul>
+                          <li>23</li>
+                          <li>24</li>
+                          <li>26</li>
+                          <li>27(1)</li>
+                          <li>27(2)</li>
+                          <li>28</li>
+                          <li>29</li>
+                          <li>30(1)</li>
+                          <li>30(2)</li>
+                          <li>31</li>
+                          <li>32</li>
+                          <li>33</li>
+                          <li>34</li>
+                          <li>35(1)(a)</li>
+                          <li>35(1)(b)</li>
+                          <li>35(1)(c)</li>
+                          <li>35(1)(d)</li>
+                          <li>36</li>
+                          <li>37(1)(a)</li>
+                          <li>37(1)(aa)</li>
+                          <li>37(1)(ab)</li>
+                          <li>37(1)(ac)</li>
+                          <li>37(1)(ad)</li>
+                          <li>37(1)(b)</li>
+                          <li>38</li>
+                          <li>39</li>
+                          <li>40(2)</li>
+                          <li>41</li>
+                          <li>42</li>
+                          <li>43(1)</li>
+                          <li>43(2)</li>
+                          <li>44</li>
+                          <li>EIR 12(5)(a)</li>
+                          <li>EIR 12(5)(b)</li>
+                          <li>EIR 12(5)(c)</li>
+                          <li>EIR 12(5)(d)</li>
+                          <li>EIR 12(5)(e)</li>
+                          <li>EIR 12(5)(f)</li>
+                          <li>EIR 12(5)(g)</li>
+                      </ul>'
+                }) }} 
+
+</div>
+                <h3 class="govuk-heading-s">What is a Digital Transfer Advisor (DTA)?</h3>
+                <p class="govuk-body">
+                    A Digital Transfer Advisor (DTA) is your point of contact at The National Archives (TNA) who can provide you with advice and guidance with your selected born digital public record transfer to TNA.
+                </p>
+
+                <h3 class="govuk-heading-s">What is the purpose of a metadata review?</h3>
+                <p class="govuk-body">
+                    This step involves submitting your metadata for review by experts at The National Archives. The purpose is to ensure the metadata you have submitted meets TNA's standards for processing. Completing this accurately will ensure that we capture the information needed to add contextual value to the records. The review also ensures that necessary access/closure conditions are adhered to.
+                </p>
+                <p class="govuk-body">
+                    Records and metadata uploaded in TDR continue to be the responsibility of and owned by the transferring body. At the end of the preparation process, the transferring body agrees to transfer legal custody of the records and its metadata to The National Archives.
+                </p>
+
+                <h3 class="govuk-heading-s">
+                    Why do my records need to go through a metadata review when I have not provided any metadata?</h3>
+                <p class="govuk-body">
+                    TDR will automatically extract key technical metadata which becomes part of the catalogue entry for the record(s). This includes the filename, filepath, date last modified etc, and assumes some default values from the records you upload.
+                </p>
+                <p class="govuk-body">
+                    Our digital archiving team will check that the dates extracted are still meaningful and that the metadata provides context so that your records can be found and understood by end users of Discovery. If this is not the case, they will get back to you with recommendations on ways to improve the metadata. This will help make your records easier to access by our Discovery users.
+                </p>
+
+                <h3 class="govuk-heading-s">How long will the metadata review take?</h3>
+                <p class="govuk-body">
+                    The Digital Archiving team will attempt to complete the review and notify you of the outcome at their earliest convenience. It is difficult to say how long it will take as this is dependant on the number of reviews in progress, the volume of records within a file and the complexity of the metadata. If you are concerned that the metadata review has been ‘in progress’ for a while, please send an email to <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a> to get an update, quoting your consignment reference.
+                </p>
+
+                <h3 class="govuk-heading-s">
+                    Why do I need to transfer my records once I have already uploaded them to TDR?</h3>
+                <p class="govuk-body">
+                    TDR is a service that prepares records to be transferred. When you upload your records, you still have legal custody over them and are still responsible for any requests such as Freedom Of Information (FOI). At the final stage of the process within TDR, you will be asked to confirm that you wish to transfer custody of your records to TNA. When confirmed, both the records and legal custody will be exported out of TDR and transferred to TNA.
+                </p>
+                <p class="govuk-body">
+                    Until you are notified that your records have been successfully preserved and are live on the public catalogue, it is important that you keep your records safe and do not delete them or alternatively, keep a copy of your records.
+                </p>
+
+                <h3 class="govuk-heading-s">
+                    Do I need to wait for a notification before I can make another transfer?
+                </h3>
+                <p class="govuk-body">No, you do not need to wait. A new folder for transfer can be uploaded back to back.</p>
+
+                <h2 id="general" class="govuk-heading-m">General</h2>
+                <h3 class="govuk-heading-s">Who can I contact if I have a query?</h3>
+                <p class="govuk-body">Contact us via <a href="mailto:tdr@nationalarchives.gov.uk">
+                tdr@nationalarchives.gov.uk</a>
+                    if your query is regarding the transfer process, the status of your transfer or to report an error or issue you have encountered. You can also contact us if you have more general queries regarding the suitability of records for transfer, file format or transfer agreement criteria.
+                </p>
+
+                <p class="govuk-body">You can also contact the Government Help Point via <a href="mailto:governmenthelppoint@nationalarchives.gov.uk">
+                governmenthelppoint@nationalarchives.gov.uk</a>
+                </p>
+                <p class="govuk-body">When contacting us, stipulate what the enquiry is about and, if possible, include any relevant attachments (e.g. screenshots, etc.)</p>
+                <p class="govuk-body">We aim to respond to queries within one week of first contact.</p>
+                <p class="govuk-body">If we cannot resolve an issue directly, we may offer to:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>Schedule a call via MS Teams</li>
+                    <li>Schedule an office visit</li>
+                    <li>Advise users on getting support from their DRO, more digitally confident colleagues, or their IT department</li>
+                </ul>
+
+                <h3 class="govuk-heading-s">
+                    I have not received an email to notify me that my records are in the archive</h3>
+                <p class="govuk-body">
+                    We will notify you via email when your records have been transferred, preserved and released to the public. If you would like more information on this process contact <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>
+                </p>
+
+                <h3 class="govuk-heading-s">Can I view the progress of my transfers and their history?</h3>
+                <p class="govuk-body">
+                    You can view your transfer history and the progress of record transfers at any time by visiting the View transfers page. You can access this page via the homepage. On this page you can see the following information:
+                </p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>Consignment reference.</li>
+                    <li>The date the TDR process started.</li>
+                    <li>The date the records were transferred.</li>
+                    <li>The status of your transfer.</li>
+                    <li>Any actions we advise you to take, such as resuming the transfer process.</li>
+                </ul>
+
+                <h3 class="govuk-heading-s">When using TDR, how secure are my records?</h3>
+                <p class="govuk-body">
+                    Like all of TNA's services, TDR has undergone strict GDS assessments to meet established security and design standards.
+                </p>
+            </div>
+  </div>
+{% endblock %}
