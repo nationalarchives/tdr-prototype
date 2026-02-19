@@ -11,3 +11,4 @@ public
 node_modules/*
 .tmuxp.*
 .idea/vcs.xml
+.DS_Store
