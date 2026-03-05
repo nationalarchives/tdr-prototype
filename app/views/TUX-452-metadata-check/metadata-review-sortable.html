@@ -1,0 +1,153 @@
+{% extends "layouts/main-tux-admin-interface.html" %}
+
+{% block pageTitle %}
+  Transfer agreement
+{% endblock %}
+
+{% block head %}
+  {{ super() }}
+    <link rel="stylesheet" href="/stylesheets/govuk-frontend.min.css">
+  <link rel="stylesheet" href="/stylesheets/moj-frontend.min.css">
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+<div class="govuk-grid-column-full">
+        
+<h1 class="govuk-heading-l govuk-!-margin-bottom-3">Metadata review</h1>
+         
+{%- from "govuk/components/table/macro.njk" import govukTable -%}
+
+{{ govukTable({
+  attributes: {
+    "data-module": "moj-sortable-table"
+  },
+
+  head: [
+    {
+      text: "Consignment",
+      attributes: {
+        "aria-sort": "ascending"
+      }
+    },
+    {
+      text: "Status",
+      attributes: {
+        "aria-sort": "none"
+      }
+    },
+    {
+      text: "Department",
+      attributes: {
+        "aria-sort": "none"
+      }
+    },
+    {
+      text: "Series",
+      attributes: {
+        "aria-sort": "none"
+      }
+    },
+    {
+      text: "Last updated",
+      attributes: {
+        "aria-sort": "none"
+      }
+    }
+  ],
+  rows: [
+    [
+      {
+        html: '<a href="#" class="govuk-link">TDR-2024-ABCD</a>'
+      },
+      {
+        html: '<strong class=\"govuk-tag govuk-tag--red\">Requested</strong>'
+      },
+      {
+        text: "GovDept"
+      },
+      {
+        text: "Mock 123"
+      },
+      {
+        text: "5th July 2024, 12:14 (585 days ago)",
+        attributes: {
+          "data-sort-value": "585"
+        }
+      }
+    ],
+    [
+      {
+        html: '<a href="#" class="govuk-link">TDR-2024-NVC4</a>'
+      },
+      {
+        html: '<strong class=\"govuk-tag govuk-tag--yellow\">Rejected</strong>'
+      },
+      {
+        text: "GovDept"
+      },
+      {
+        text: "Mock 456"
+      },
+      {
+        text: "10th July 2024, 9:34 (580 days ago)",
+        attributes: {
+          "data-sort-value": "580"
+        }
+      }
+    ],
+    [
+      {
+        html: '<a href="#" class="govuk-link">TDR-2024-NDC5</a>'
+      },
+      {
+        html: '<strong class=\"govuk-tag govuk-tag--green\">Approved</strong>'
+      },
+      {
+        text: "GovDept"
+      },
+      {
+        text: "Mock 789"
+      },
+      {
+        text: "11th July 2024, 9:34 (579 days ago)",
+        attributes: {
+          "data-sort-value": "579"
+        }
+      }
+    ],
+    [
+      {
+        html: '<a href="#" class="govuk-link">TDR-2024-ND54</a>'
+      },
+      {
+        html: '<strong class=\"govuk-tag ">Complete</strong>'
+      },
+      {
+        text: "GovDept"
+      },
+      {
+        text: "Mock 101112"
+      },
+      {
+        text: "11th July 2024, 17:54 (579 days ago)",
+        attributes: {
+          "data-sort-value": "579.5"
+        }
+      }
+    ]
+  ]
+}) }}
+
+
+  
+
+    </div>
+
+  </div>
+
+
+
+{% endblock %}
