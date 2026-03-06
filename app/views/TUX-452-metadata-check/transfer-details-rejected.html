@@ -1,0 +1,96 @@
+{% extends "layouts/main-tux-admin-interface.html" %}
+
+{% block pageTitle %}
+  Transfer details
+{% endblock %}
+
+
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back();"
+  }) }}
+{% endblock %}
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <h1 class="govuk-heading-l">View transfer details for TDR-2024-NB5G</h1>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: { text: "Status" },
+          value: { html: '<strong class="govuk-tag govuk-tag--yellow">Rejected</strong>' }
+        },
+        {
+          key: { text: "Department" },
+          value: { text: "Mock 1 Department" }
+        },
+        {
+          key: { text: "Series" },
+          value: { text: "MOCK1 123" }
+        },
+        {
+          key: { text: "Total/Open/Closed Records" },
+          value: { text: "Total: 87  Open: 73  Closed: 14" }
+        },
+        {
+          key: { text: "Legal Status" },
+          value: { text: "Not Public Record(s)" }
+        },
+        {
+          key: { text: "Submission Number" },
+          value: {
+            html: '3'
+          },
+      actions: {
+        items: [
+          {
+            href: "review-history",
+            text: "View review history",
+            visuallyHiddenText: "View review history"
+          }
+        ]
+      }
+        },
+        {
+          key: { text: "Last Reviewed by" },
+          value: { text: "Michael Launchbury" }
+        },
+        {
+          key: { text: "Last Updated" },
+          value: { text: "5th July 2024, 10:34am" }
+        },
+        {
+          key: { text: "Top Level folder Name" },
+          value: { text: "content" }
+        },
+        {
+          key: { text: "Display Top Level folder" },
+          value: { text: "No" }
+        },
+        {
+          key: { text: "Contact email" },
+          value: {
+            html: '<a href="mailto:claire.driver@nationalarchives.gov.uk" class="govuk-link">claire.driver@nationalarchives.gov.uk</a>'
+          }
+        }
+      ]
+    }) }}
+
+   
+
+
+ 
+
+  </div>
+</div>
+
+<p class="govuk-body govuk-!-margin-top-5">
+  <a href="metadata-review-tabs" class="govuk-link">Back to metadata review</a>
+</p>
+
+
+{% endblock %}

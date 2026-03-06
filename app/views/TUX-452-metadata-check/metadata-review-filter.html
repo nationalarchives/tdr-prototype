@@ -4,12 +4,6 @@
   Transfer agreement
 {% endblock %}
 
-{% block head %}
-  {{ super() }}
-    <link rel="stylesheet" href="/stylesheets/govuk-frontend.min.css">
-  <link rel="stylesheet" href="/stylesheets/moj-frontend.min.css">
-{% endblock %}
-
 
 {% block content %}
 
@@ -29,6 +23,9 @@
     <option value="approved">Approved</option>
     <option value="Complete">Complete</option>
   </select>
+  <button type="submit" class="govuk-button" data-module="govuk-button">
+  Apply filter
+</button>
 </div>
          
 
