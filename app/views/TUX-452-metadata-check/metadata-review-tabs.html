@@ -1,0 +1,192 @@
+{% extends "layouts/main-tux-admin-interface.html" %}
+
+{% block pageTitle %}
+  Transfer agreement
+{% endblock %}
+
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+<div class="govuk-grid-column-full">
+        
+<h1 class="govuk-heading-l govuk-!-margin-bottom-5">Metadata review</h1>
+
+ 
+
+  <div class="govuk-tabs" data-module="govuk-tabs">
+    <h2 class="govuk-tabs__title">Contents</h2>
+    <ul class="govuk-tabs__list">
+      <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+        <a class="govuk-tabs__tab" href="#all">All</a>
+      </li>
+      <li class="govuk-tabs__list-item">
+        <a class="govuk-tabs__tab" href="#requested">Requested</a>
+      </li>
+      <li class="govuk-tabs__list-item">
+        <a class="govuk-tabs__tab" href="#rejected">Rejected</a>
+      </li>
+      <li class="govuk-tabs__list-item">
+        <a class="govuk-tabs__tab" href="#approved">Approved</a>
+      </li>
+      <li class="govuk-tabs__list-item">
+        <a class="govuk-tabs__tab" href="#complete">Complete</a>
+      </li>
+    </ul>
+
+    <!-- ALL TAB -->
+    <div class="govuk-tabs__panel" id="all">
+      <h2 class="govuk-heading-l">All</h2>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Consignment</th>
+            <th scope="col" class="govuk-table__header">Status</th>
+            <th scope="col" class="govuk-table__header">Department</th>
+            <th scope="col" class="govuk-table__header">Series</th>
+            <th scope="col" class="govuk-table__header">Last updated</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="transfer-details-requested" class="govuk-link">TDR-2024-ABCD</a></td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Requested</strong></td>
+            <td class="govuk-table__cell">GovDept</td>
+            <td class="govuk-table__cell">Mock 123</td>
+            <td class="govuk-table__cell">5th July 2024, 12:14 (585 days ago)</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="transfer-details-rejected" class="govuk-link">TDR-2024-NVC4</a></td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Rejected</strong></td>
+            <td class="govuk-table__cell">GovDept</td>
+            <td class="govuk-table__cell">Mock 456</td>
+            <td class="govuk-table__cell">10th July 2024, 9:34 (580 days ago)</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="transfer-details" class="govuk-link">TDR-2024-NDC5</a></td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Approved</strong></td>
+            <td class="govuk-table__cell">GovDept</td>
+            <td class="govuk-table__cell">Mock 789</td>
+            <td class="govuk-table__cell">11th July 2024, 9:34 (579 days ago)</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="#" class="govuk-link">TDR-2024-ND54</a></td>
+            <td class="govuk-table__cell"><strong class="govuk-tag">Complete</strong></td>
+            <td class="govuk-table__cell">GovDept</td>
+            <td class="govuk-table__cell">Mock 101112</td>
+            <td class="govuk-table__cell">11th July 2024, 17:54 (579 days ago)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- REQUESTED TAB -->
+    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="requested">
+      <h2 class="govuk-heading-l">Requested</h2>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Consignment</th>
+            <th scope="col" class="govuk-table__header">Status</th>
+            <th scope="col" class="govuk-table__header">Department</th>
+            <th scope="col" class="govuk-table__header">Series</th>
+            <th scope="col" class="govuk-table__header">Last updated</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="transfer-details-requested" class="govuk-link">TDR-2024-ABCD</a></td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Requested</strong></td>
+            <td class="govuk-table__cell">GovDept</td>
+            <td class="govuk-table__cell">Mock 123</td>
+            <td class="govuk-table__cell">5th July 2024, 12:14 (585 days ago)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- REJECTED TAB -->
+    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="rejected">
+      <h2 class="govuk-heading-l">Rejected</h2>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Consignment</th>
+            <th scope="col" class="govuk-table__header">Status</th>
+            <th scope="col" class="govuk-table__header">Department</th>
+            <th scope="col" class="govuk-table__header">Series</th>
+            <th scope="col" class="govuk-table__header">Last updated</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="transfer-details-rejected" class="govuk-link">TDR-2024-NVC4</a></td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Rejected</strong></td>
+            <td class="govuk-table__cell">GovDept</td>
+            <td class="govuk-table__cell">Mock 456</td>
+            <td class="govuk-table__cell">10th July 2024, 9:34 (580 days ago)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- APPROVED TAB -->
+    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="approved">
+      <h2 class="govuk-heading-l">Approved</h2>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Consignment</th>
+            <th scope="col" class="govuk-table__header">Status</th>
+            <th scope="col" class="govuk-table__header">Department</th>
+            <th scope="col" class="govuk-table__header">Series</th>
+            <th scope="col" class="govuk-table__header">Last updated</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="transfer-details" class="govuk-link">TDR-2024-NDC5</a></td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Approved</strong></td>
+            <td class="govuk-table__cell">GovDept</td>
+            <td class="govuk-table__cell">Mock 789</td>
+            <td class="govuk-table__cell">11th July 2024, 9:34 (579 days ago)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- COMPLETE TAB -->
+    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="complete">
+      <h2 class="govuk-heading-l">Complete</h2>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Consignment</th>
+            <th scope="col" class="govuk-table__header">Status</th>
+            <th scope="col" class="govuk-table__header">Department</th>
+            <th scope="col" class="govuk-table__header">Series</th>
+            <th scope="col" class="govuk-table__header">Last updated</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="#" class="govuk-link">TDR-2024-ND54</a></td>
+            <td class="govuk-table__cell"><strong class="govuk-tag">Complete</strong></td>
+            <td class="govuk-table__cell">GovDept</td>
+            <td class="govuk-table__cell">Mock 101112</td>
+            <td class="govuk-table__cell">11th July 2024, 17:54 (579 days ago)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  
+
+    </div>
+
+  </div>
+
+
+
+{% endblock %}
