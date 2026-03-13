@@ -16,6 +16,8 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
+    
+
     <h1 class="govuk-heading-l">View transfer details for TDR-2024-NB5G</h1>
 
     {{ govukSummaryList({
@@ -33,15 +35,15 @@
           value: { text: "MOCK1 123" }
         },
         {
-          key: { text: "Total/Open/Closed Records" },
-          value: { text: "Total: 87  Open: 73  Closed: 14" }
+          key: { text: "Total/open/closed records" },
+          value: { text: "Total: 87;  Open: 73;  Closed: 14;" }
         },
         {
-          key: { text: "Legal Status" },
+          key: { text: "Legal status" },
           value: { text: "Not Public Record(s)" }
         },
         {
-          key: { text: "Submission Number" },
+          key: { text: "Submission number" },
           value: {
             html: '3'
           },
@@ -56,27 +58,22 @@ actions: {
       }
         },
         {
-          key: { text: "Last Reviewed by" },
-          value: { text: "Michael Launchbury" }
+          key: { text: "Last reviewed by" },
+          value: { html: '<a href="mailto:claire.driver@nationalarchives.gov.uk" class="govuk-link">Claire Driver</a>' }
         },
         {
-          key: { text: "Last Updated" },
+          key: { text: "Last updated" },
           value: { text: "5th July 2024, 10:34am" }
         },
         {
-          key: { text: "Top Level folder Name" },
+          key: { text: "Top level folder name" },
           value: { text: "content" }
         },
         {
-          key: { text: "Display Top Level folder" },
+          key: { text: "Display top level folder" },
           value: { text: "No" }
-        },
-        {
-          key: { text: "Contact email" },
-          value: {
-            html: '<a href="mailto:claire.driver@nationalarchives.gov.uk" class="govuk-link">claire.driver@nationalarchives.gov.uk</a>'
-          }
         }
+        
       ]
     }) }}
 
@@ -107,7 +104,7 @@ actions: {
     {{ govukCharacterCount({
       name: "statusReason",
       id: "status-reason",
-      maxlength: 8000,
+      maxlength: 1300,
       label: {
         text: "Provide a reason for status",
         classes: "govuk-label--m"
@@ -115,7 +112,8 @@ actions: {
     }) }}
 
     {{ govukButton({
-      text: "Submit"
+      text: "Submit",
+      href: "transfer-details-requested-submitted"
     }) }}
 
   </div>
