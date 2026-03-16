@@ -72,6 +72,10 @@ actions: {
         {
           key: { text: "Display top level folder" },
           value: { text: "No" }
+        },
+        {
+          key: { text: "Contact email" },
+          value: { html: '<a href="mailto:johnsmith@nationalarchives.gov.uk" class="govuk-link">John Smith</a>'  }
         }
         
       ]
@@ -83,7 +87,8 @@ actions: {
       href: "#"
     }) }}
 
-    <h2 class="govuk-heading-m">Select status for this transfer</h2>
+<hr class="govuk-section-break govuk-section-break--m">
+ <!--   <h2 class="govuk-heading-m">Select status for this transfer</h2>
 
     {{ govukSelect({
       id: "transfer-status",
@@ -99,7 +104,30 @@ actions: {
         { value: "approved", text: "Approved" },
         { value: "complete", text: "Complete" }
       ]
-    }) }}
+    }) }}-->
+
+    {{ govukRadios({
+  classes: "govuk-radios--inline",
+  name: "changedName",
+  fieldset: {
+    legend: {
+      text: "Select status for this transfer",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  
+  items: [
+    {
+      value: "rejected",
+      text: "Rejected"
+    },
+    {
+      value: "approved",
+      text: "Approved"
+    }
+  ]
+}) }}
 
     {{ govukCharacterCount({
       name: "statusReason",
@@ -108,19 +136,24 @@ actions: {
       label: {
         text: "Provide a reason for status",
         classes: "govuk-label--m"
-      }
+      },
+  hint: {
+    text: "Do not include sensitive information as these will go into case files"
+  }
     }) }}
-
+<div class="govuk-button-group">
     {{ govukButton({
       text: "Submit",
       href: "transfer-details-requested-submitted"
     }) }}
+      <a class="govuk-link  govuk-link--no-visited-state" href="home">Cancel</a>
+</div>
 
   </div>
 </div>
 
-<p class="govuk-body govuk-!-margin-top-5">
-  <a href="metadata-review-tabs" class="govuk-link">Back to metadata review</a>
+<p class="govuk-body govuk-!-margin-top-8">
+  <a href="metadata-review-tabs" class="govuk-link  govuk-link--no-visited-state">Back to metadata review</a>
 </p>
 
 
