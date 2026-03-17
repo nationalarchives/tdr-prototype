@@ -59,7 +59,7 @@ actions: {
         },
         {
           key: { text: "Last reviewed by" },
-          value: { html: '<a href="mailto:claire.driver@nationalarchives.gov.uk" class="govuk-link">Claire Driver</a>' }
+          value: { html: '<a href="mailto:claire.driver@nationalarchives.gov.uk" class="govuk-link">claire.driver@nationalarchives.gov.uk</a>' }
         },
         {
           key: { text: "Last updated" },
@@ -72,6 +72,10 @@ actions: {
         {
           key: { text: "Display top level folder" },
           value: { text: "No" }
+        },
+        {
+          key: { text: "Contact email" },
+          value: { html: '<a href="mailto:john.smith@deptoffishmongery.gov.uk" class="govuk-link">john.smith@deptoffishmongery.gov.uk</a>'  }
         }
         
       ]
@@ -83,6 +87,7 @@ actions: {
       href: "#"
     }) }}
 
+<hr class="govuk-section-break govuk-section-break--m">
     <h2 class="govuk-heading-m">Select status for this transfer</h2>
 
     {{ govukSelect({
@@ -94,13 +99,13 @@ actions: {
       },
       items: [
         { value: "", text: "Select a status", selected: true },
-        { value: "requested", text: "Requested" },
         { value: "rejected", text: "Rejected" },
-        { value: "approved", text: "Approved" },
-        { value: "complete", text: "Complete" }
+        { value: "approved", text: "Approved" }
+      
       ]
     }) }}
 
+ 
     {{ govukCharacterCount({
       name: "statusReason",
       id: "status-reason",
@@ -108,19 +113,24 @@ actions: {
       label: {
         text: "Provide a reason for status",
         classes: "govuk-label--m"
-      }
+      },
+  hint: {
+    text: "Do not include sensitive information as these will go into case files"
+  }
     }) }}
-
+<div class="govuk-button-group">
     {{ govukButton({
       text: "Submit",
       href: "transfer-details-requested-submitted"
     }) }}
+      <a class="govuk-link  govuk-link--no-visited-state" href="home">Cancel</a>
+</div>
 
   </div>
 </div>
 
-<p class="govuk-body govuk-!-margin-top-5">
-  <a href="metadata-review-tabs" class="govuk-link">Back to metadata review</a>
+<p class="govuk-body govuk-!-margin-top-8">
+  <a href="home" class="govuk-link  govuk-link--no-visited-state">Back to manage transfers</a>
 </p>
 
 
