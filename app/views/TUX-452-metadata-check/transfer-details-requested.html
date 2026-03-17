@@ -59,7 +59,7 @@ actions: {
         },
         {
           key: { text: "Last reviewed by" },
-          value: { html: '<a href="mailto:claire.driver@nationalarchives.gov.uk" class="govuk-link">Claire Driver</a>' }
+          value: { html: '<a href="mailto:claire.driver@nationalarchives.gov.uk" class="govuk-link">claire.driver@nationalarchives.gov.uk</a>' }
         },
         {
           key: { text: "Last updated" },
@@ -75,7 +75,7 @@ actions: {
         },
         {
           key: { text: "Contact email" },
-          value: { html: '<a href="mailto:johnsmith@nationalarchives.gov.uk" class="govuk-link">John Smith</a>'  }
+          value: { html: '<a href="mailto:john.smith@deptoffishmongery.gov.uk" class="govuk-link">john.smith@deptoffishmongery.gov.uk</a>'  }
         }
         
       ]
@@ -88,7 +88,7 @@ actions: {
     }) }}
 
 <hr class="govuk-section-break govuk-section-break--m">
- <!--   <h2 class="govuk-heading-m">Select status for this transfer</h2>
+    <h2 class="govuk-heading-m">Select status for this transfer</h2>
 
     {{ govukSelect({
       id: "transfer-status",
@@ -99,36 +99,13 @@ actions: {
       },
       items: [
         { value: "", text: "Select a status", selected: true },
-        { value: "requested", text: "Requested" },
         { value: "rejected", text: "Rejected" },
-        { value: "approved", text: "Approved" },
-        { value: "complete", text: "Complete" }
+        { value: "approved", text: "Approved" }
+      
       ]
-    }) }}-->
+    }) }}
 
-    {{ govukRadios({
-  classes: "govuk-radios--inline",
-  name: "changedName",
-  fieldset: {
-    legend: {
-      text: "Select status for this transfer",
-      isPageHeading: false,
-      classes: "govuk-fieldset__legend--m"
-    }
-  },
-  
-  items: [
-    {
-      value: "rejected",
-      text: "Rejected"
-    },
-    {
-      value: "approved",
-      text: "Approved"
-    }
-  ]
-}) }}
-
+ 
     {{ govukCharacterCount({
       name: "statusReason",
       id: "status-reason",
@@ -153,7 +130,7 @@ actions: {
 </div>
 
 <p class="govuk-body govuk-!-margin-top-8">
-  <a href="metadata-review-tabs" class="govuk-link  govuk-link--no-visited-state">Back to metadata review</a>
+  <a href="home" class="govuk-link  govuk-link--no-visited-state">Back to manage transfers</a>
 </p>
 
 

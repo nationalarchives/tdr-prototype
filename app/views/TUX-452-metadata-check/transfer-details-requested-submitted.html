@@ -19,44 +19,89 @@
 <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
   <div class="govuk-notification-banner__header">
     <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-      Saved
+      Transfer details updated
     </h2>
   </div>
   <div class="govuk-notification-banner__content">
     <h3 class="govuk-notification-banner__heading">
-      Details saved to transfer review history
+      Saved to <a class="govuk-notification-banner__link" href="review-history">review history – TDR-2024-NB5G</a>
     </h3>
-
+      <p class="govuk-body">Go to <a class="govuk-notification-banner__link" href="home">manage transfers</a></p>
   </div>
 </div>
-  <h1 class="govuk-heading-l">Transfer review history – <strong>TDR-2024-NB5G</strong></h1>
+ <h1 class="govuk-heading-l">Transfer details for TDR-2024-NB5G</h1>
 
-{{ govukSummaryList({
-  classes: "govuk-grid-column-two-thirds",
-  rows: [
-    {
-      key: { text: "Department" },
-      value: { text: "Mock 1 Department" }
-    },
-    {
-      key: { text: "Series" },
-      value: { text: "MOCK1 123" }
-    },
-    {
-      key: { text: "Total/Open/Closed Records" },
-      value: { text: "Total: 87;  Open: 73;  Closed: 1" }
-    }
-  ]
-}) }}
-
-{% include "TUX-452-metadata-check/snippets/_transfer-history-table.html" %}
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: { text: "Status" },
+          value: { html: '<strong class="govuk-tag govuk-tag--green">Approved</strong>' }
+        },
+        {
+          key: { text: "Department" },
+          value: { text: "Mock 1 Department" }
+        },
+        {
+          key: { text: "Series" },
+          value: { text: "MOCK1 123" }
+        },
+        {
+          key: { text: "Total/open/closed records" },
+          value: { text: "Total: 87;  Open: 73;  Closed: 14;" }
+        },
+        {
+          key: { text: "Legal status" },
+          value: { text: "Not Public Record(s)" }
+        },
+        {
+          key: { text: "Submission number" },
+          value: {
+            html: '4'
+          },
+actions: {
+        items: [
+          {
+            href: "review-history",
+            text: "View review history",
+            visuallyHiddenText: "View review history"
+          }
+        ]
+      }
+        },
+        {
+          key: { text: "Last reviewed by" },
+          value: { html: '<a href="mailto:zoe.fullard@nationalarchives.gov.uk" class="govuk-link">zoe.fullard@nationalarchives.gov.uk</a>' }
+        },
+        {
+          key: { text: "Last updated" },
+          value: { text: "8th July 2024, 12:34pm" }
+        },
+        {
+          key: { text: "Top level folder name" },
+          value: { text: "content" }
+        },
+        {
+          key: { text: "Display top level folder" },
+          value: { text: "No" }
+        },
+        {
+          key: { text: "Contact email" },
+          value: { html: '<a href="mailto:john.smith@deptoffishmongery.gov.uk" class="govuk-link">john.smith@deptoffishmongery.gov.uk</a>'  }
+        },
+        {
+          key: { text: "Reason for review action" },
+          value: { text: 'Corrections reviewed confirmed'  }
+        }
+        
+      ]
+    }) }}
 
   </div>
 </div>
 
 
 <p class="govuk-body govuk-!-margin-top-8">
-  <a href="javascript:window.history.back();" class="govuk-link">Back to transfer details</a>
+  <a href="javascript:window.history.back();" class="govuk-link">Back to manage transfers</a>
 </p>
 
 {% endblock %}
