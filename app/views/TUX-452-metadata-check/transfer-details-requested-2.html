@@ -6,10 +6,12 @@
 
 
 
-
+ }
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
+
+
 
     <h1 class="govuk-heading-l">Transfer details for TDR-2024-ABCD</h1>
 
@@ -17,11 +19,11 @@
       rows: [
         {
           key: { text: "Status" },
-          value: { html: '<strong class="govuk-tag govuk-tag--grey">Transferred</strong>' }
+          value: { html: '<strong class="govuk-tag govuk-tag--red">Requested</strong>' }
         },
         {
           key: { text: "Date submitted" },
-          value: { text: '12th July 2024, 10:10am' }
+          value: { text: '5th July 2024, 08:00am' }
         },
         {
           key: { text: "Department" },
@@ -52,14 +54,57 @@
       ]
     }) }}
 
-
     {{ govukButton({
       text: "Download metadata",
       classes: "govuk-button--secondary",
       href: "#"
     }) }}
 
+
+
+
+
+
+
+<hr class="govuk-section-break govuk-section-break--m">
+    <h2 class="govuk-heading-m">Change status for this transfer</h2>
+
+    {{ govukSelect({
+      id: "transfer-status",
+      name: "transferStatus",
+      label: {
+        text: "Select a status",
+        classes: "govuk-visually-hidden"
+      },
+      items: [
+        { value: "", text: "Select a status", selected: true },
+        { value: "rejected", text: "Rejected" },
+        { value: "approved", text: "Approved" }
+      
+      ]
+    }) }}
+
  
+    {{ govukCharacterCount({
+      classes: "govuk-!-width-two-thirds",
+      name: "statusReason",
+      id: "status-reason",
+      maxlength: 1300,
+      label: {
+        text: "Provide a reason for status change",
+        classes: "govuk-label--m"
+      },
+  hint: {
+    text: "Do not include sensitive information as these will go into case files"
+  }
+    }) }}
+<div class="govuk-button-group">
+    {{ govukButton({
+      text: "Submit",
+      href: "transfer-details-requested-submitted-2"
+    }) }}
+</div>
+
   </div>
 </div>
 
@@ -76,13 +121,13 @@
         classes: "govuk-!-width-one-quarter"
       },
       value: {
-        html: '4',
+        html: '2',
         classes: "govuk-!-width-one-half"
       },
       actions: {
         items: [
           {
-            href: "review-history-4",
+            href: "review-history-3",
             text: "View review history",
             visuallyHiddenText: "View review history"
           }
@@ -95,25 +140,27 @@
         classes: "govuk-!-width-one-quarter"
       },
       value: { 
-        html: '<a href="mailto:zoe-fullard@nationalarchives.org.uk" class="govuk-link">john.briggs@nationalarchives.org.uk</a>',
+        html: '<a href="mailto:michael.launchbury@nationalarchives.org.uk" class="govuk-link">michael.launchbury@nationalarchives.org.uk</a>',
         classes: "govuk-!-width-one-half"
       }
     },
     {
       key: { 
-        text: "Last reviewed date",
+        text: "Last updated",
         classes: "govuk-!-width-one-quarter"
       },
       value: { 
-        text: "12th July 2024 4:30pm",
+        text: "5th July 2024, 10:34am",
         classes: "govuk-!-width-one-half"
       }
     }
   ]
 }) }}
 
+
 <p class="govuk-body govuk-!-margin-top-8">
-  <a href="metadata-review-tabs" class="govuk-link">Back to metadata review</a>
+  <a href="home" class="govuk-link  govuk-link--no-visited-state">Back to manage transfers</a>
 </p>
+
 
 {% endblock %}
