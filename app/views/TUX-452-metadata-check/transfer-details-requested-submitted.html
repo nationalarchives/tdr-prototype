@@ -19,23 +19,32 @@
   </div>
   <div class="govuk-notification-banner__content">
     <h3 class="govuk-notification-banner__heading">
-      Saved to <a class="govuk-notification-banner__link" href="review-history">review history – TDR-2024-NB5G</a>
+      Saved to <a class="govuk-notification-banner__link" href="review-history">review history – TDR-2024-ABCD</a>
     </h3>
   
   </div>
 </div>
- <h1 class="govuk-heading-l">Transfer details for TDR-2024-NB5G</h1>
+ <h1 class="govuk-heading-l">Transfer details for TDR-2024-ABCD</h1>
 
     {{ govukSummaryList({
       rows: [
         {
           key: { text: "Status" },
-          value: { html: '<strong class="govuk-tag govuk-tag--green">Approved</strong>' }
+          value: { html: '<strong class="govuk-tag govuk-tag--yellow">Rejected</strong>' }
+        },
+        {
+          key: { text: "Date submitted" },
+          value: { text: '5th July 2024, 8:00am' }
         },
         {
           key: { text: "Department" },
-          value: { text: "Mock 1 Department" }
+          value: { text: "GovDept" }
         },
+        {
+          key: { text: "Contact email" },
+          value: { html: '<a href="mailto:john.smith@deptoffishmongery.gov.uk" class="govuk-link">john.smith@deptoffishmongery.gov.uk</a>'  }
+        },
+        
         {
           key: { text: "Series" },
           value: { text: "MOCK1 123" }
@@ -48,12 +57,32 @@
           key: { text: "Legal status" },
           value: { text: "Not Public Record(s)" }
         },
+        
         {
-          key: { text: "Submission number" },
-          value: {
-            html: '4'
-          },
-actions: {
+          key: { text: "Display top level folder" },
+          value: { text: "No" }
+        }
+      ]
+    }) }}
+
+
+  </div>
+</div>
+<hr class="govuk-section-break govuk-section-break--m">
+<h2 class="govuk-heading-m">Review details</h2>
+
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: { 
+        text: "Submission number"
+      },
+      value: {
+        html: '1',
+        classes: "govuk-!-width-one-half"
+      },
+      actions: {
         items: [
           {
             href: "review-history",
@@ -62,33 +91,39 @@ actions: {
           }
         ]
       }
-        },
-        {
-          key: { text: "Last reviewed by" },
-          value: { html: '<a href="mailto:zoe.fullard@nationalarchives.gov.uk" class="govuk-link">zoe.fullard@nationalarchives.gov.uk</a>' }
-        },
-        {
-          key: { text: "Last updated" },
-          value: { text: "8th July 2024, 12:34pm" }
-        },
-        {
-          key: { text: "Display top level folder" },
-          value: { text: "No" }
-        },
-        {
-          key: { text: "Contact email" },
-          value: { html: '<a href="mailto:john.smith@deptoffishmongery.gov.uk" class="govuk-link">john.smith@deptoffishmongery.gov.uk</a>'  }
-        },
-        {
-          key: { text: "Reason for status change" },
-          value: { text: 'Corrections reviewed confirmed'  }
-        }
-        
-      ]
-    }) }}
-
-  </div>
-</div>
+    },
+    {
+      key: { 
+        text: "Reviewed by",
+        classes: "govuk-!-width-one-quarter"
+      },
+      value: { 
+        html: '<a href="mailto:john.briggs@nationalarchives.org.uk" class="govuk-link">john.briggs@nationalarchives.org.uk</a>',
+        classes: "govuk-!-width-one-half"
+      }
+    },
+    {
+      key: { 
+        text: "Reviewed date",
+        classes: "govuk-!-width-one-quarter"
+      },
+      value: { 
+        text: "6th July 2024, 10:34am",
+        classes: "govuk-!-width-one-half"
+      }
+    },
+    {
+      key: { 
+        text: "Reason for status change",
+        classes: "govuk-!-width-one-quarter"
+      },
+      value: { 
+        text: "1,300 CHARACTERS mmodo officia reprehenderit do minim quis do. Lorem eu tempor do mollit cupidatat do nulla ullamco ex occaecat in reprehenderit qui. Officia duis ipsum ad quis. Non ex mollit dolore quis veniam mollit excepteur sunt quis dolore. Aliquip nulla incididunt labore eu id quis ex laboris id cillum ipsum veniam. Labore mollit et nostrud incididunt. Deserunt adipisicing dolor velit veniam sunt aute veniam cupidatat. Eiusmod occaecat nulla officia aliqua id id mollit reprehenderit anim occaecat Lorem eiusmod fugiat duis. Eu enim eu duis. Do et sunt ex ex voluptate non. Id magna deserunt eiusmod mollit excepteur sit tempor aliqua tempor consectetur. Consequat culpa voluptate officia pariatur occaecat sit ad fugiat dolor mollit do in. Pariatur Lorem veniam sunt ex esse anim culpa. Dolor adipisicing proident duis duis mollit incididunt. Sint adipisicing eiusmod amet Lorem occaecat minim. Laboris amet sint duis cillum labore reprehenderit veniam aute velit consequat ipsum nisi voluptate exercitation. Irure consectetur tempor exercitation eu laboris qui incididunt excepteur dolore nulla qui consectetur sint nostrud incididunt. Proident enim esse anim cillum exercitation voluptate laboris. Consequat incididunt enim ex elit enim labore cillum mollit veniam exercitation non id. Te",
+        classes: "govuk-!-width-one-half"
+      }
+    }
+  ]
+}) }}
 
 
 <p class="govuk-body govuk-!-margin-top-8">

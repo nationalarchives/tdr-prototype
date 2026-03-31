@@ -11,7 +11,8 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    <h1 class="govuk-heading-l">Transfer details for TDR-2024-NB5G</h1>
+   
+    <h1 class="govuk-heading-l">Transfer details for TDR-2024-ABCD</h1>
 
     {{ govukSummaryList({
       rows: [
@@ -20,9 +21,18 @@
           value: { html: '<strong class="govuk-tag govuk-tag--yellow">Rejected</strong>' }
         },
         {
-          key: { text: "Department" },
-          value: { text: "Mock 1 Department" }
+          key: { text: "Date submitted" },
+          value: { text: '5th July 2024, 8:00am' }
         },
+        {
+          key: { text: "Department" },
+          value: { text: "GovDept" }
+        },
+        {
+          key: { text: "Contact email" },
+          value: { html: '<a href="mailto:john.smith@deptoffishmongery.gov.uk" class="govuk-link">john.smith@deptoffishmongery.gov.uk</a>'  }
+        },
+        
         {
           key: { text: "Series" },
           value: { text: "MOCK1 123" }
@@ -35,12 +45,35 @@
           key: { text: "Legal status" },
           value: { text: "Not Public Record(s)" }
         },
+        
         {
-          key: { text: "Submission number" },
-          value: {
-            html: '3'
-          },
-actions: {
+          key: { text: "Display top level folder" },
+          value: { text: "No" }
+        }
+      ]
+    }) }}
+
+    {{ govukButton({
+      text: "Download metadata",
+      classes: "govuk-button--secondary",
+      href: "#"
+    }) }}
+
+<hr class="govuk-section-break govuk-section-break--m">
+<h2 class="govuk-heading-m">Review details</h2>
+
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: { 
+        text: "Submission number"
+      },
+      value: {
+        html: '1',
+        classes: "govuk-!-width-one-half"
+      },
+      actions: {
         items: [
           {
             href: "review-history",
@@ -49,36 +82,29 @@ actions: {
           }
         ]
       }
-        },
-        {
-          key: { text: "Last reviewed by" },
-          value: { html: '<a href="mailto:claire.driver@nationalarchives.gov.uk" class="govuk-link">claire.driver@nationalarchives.gov.uk</a>' }
-        },
-        {
-          key: { text: "Last updated" },
-          value: { text: "5th July 2024, 10:34am" }
-        },
-
-        {
-          key: { text: "Display top level folder" },
-          value: { text: "No" }
-        },
-        {
-          key: { text: "Contact email" },
-          value: { html: '<a href="mailto:john.smith@deptoffishmongery.gov.uk" class="govuk-link">john.smith@deptoffishmongery.gov.uk</a>'  }
-        }
-      ]
-    }) }}
-
-   
-    {{ govukButton({
-      text: "Download metadata",
-      classes: "govuk-button--secondary",
-      href: "#"
-    }) }}
-
-
- 
+    },
+    {
+      key: { 
+        text: "Last reviewed by",
+        classes: "govuk-!-width-one-quarter"
+      },
+      value: { 
+        html: '<a href="mailto:john.briggs@nationalarchives.org.uk" class="govuk-link">john.briggs@nationalarchives.org.uk</a>',
+        classes: "govuk-!-width-one-half"
+      }
+    },
+    {
+      key: { 
+        text: "Last reviewed date",
+        classes: "govuk-!-width-one-quarter"
+      },
+      value: { 
+        text: "6th July 2024, 10:34am",
+        classes: "govuk-!-width-one-half"
+      }
+    }
+  ]
+}) }}
 
   </div>
 </div>
