@@ -15,45 +15,77 @@
 
     <h1 class="govuk-heading-l">Transfer details for TDR-2024-ABCD</h1>
 
-    {{ govukSummaryList({
-      rows: [
-        {
-          key: { text: "Status" },
-          value: { html: '<strong class="govuk-tag govuk-tag--green">Approved</strong>' }
-        },
-        {
-          key: { text: "Date submitted" },
-          value: { text: '12th July 2024, 10:10am' }
-        },
-        {
-          key: { text: "Department" },
-          value: { text: "GovDept" }
-        },
-        {
-          key: { text: "Contact email" },
-          value: { html: '<a href="mailto:john.smith@deptoffishmongery.gov.uk" class="govuk-link">john.smith@deptoffishmongery.gov.uk</a>'  }
-        },
-        
-        {
-          key: { text: "Series" },
-          value: { text: "MOCK1 123" }
-        },
-        {
-          key: { text: "Total/open/closed records" },
-          value: { text: "Total: 87;  Open: 73;  Closed: 14;" }
-        },
-        {
-          key: { text: "Legal status" },
-          value: { text: "Not Public Record(s)" }
-        },
-        
-        {
-          key: { text: "Display top level folder" },
-          value: { text: "No" }
-        }
-      ]
-    }) }}
+{{ govukSummaryList({
+  rows: [
+    {
+      key: { text: "Status" },
+      value: { html: '<strong class="govuk-tag govuk-tag--green">Approved</strong>' }
+    },
+    {
+      key: { text: "Submission number" },
+value: { text: '3' },
+actions: {
+  items: [
+    {
+      href: "review-history-3",
+      text: "View submission history",
+      visuallyHiddenText: "submission number"
+    }
+  ]
+}
+    },
+    {
+      key: { text: "Date submitted" },
+      value: { text: '12th July 2024, 08:00am' }
+    },
+    {
+      key: { text: "Department" },
+      value: { text: "GovDept" }
+    },
+    {
+      key: { text: "Contact email" },
+      value: { html: '<a href="mailto:john.smith@deptoffishmongery.gov.uk" class="govuk-link">john.smith@deptoffishmongery.gov.uk</a>' }
+    },
+    {
+      key: { text: "Series" },
+      value: { text: "MOCK1 123" }
+    },
+    {
+      key: { text: "Total/open/closed records" },
+      value: { text: "Total: 87;  Open: 73;  Closed: 14;" }
+    },
+    {
+      key: { text: "Legal status" },
+      value: { text: "Not Public Record(s)" }
+    },
+    {
+      key: { text: "Display top level folder" },
+      value: { text: "No" }
+    }
+  ]
+}) }}
 
+{{ govukSummaryList({
+  rows: [
+    {
+      key: { 
+        text: "Last reviewed by"
+      },
+      value: { 
+       html: '<a href="mailto:zoe-fullard@nationalarchives.org.uk" class="govuk-link">john.briggs@nationalarchives.org.uk</a>'
+      }
+    },
+    {
+      key: { 
+        text: "Last updated"
+      },
+      value: { 
+        text: "11th July 2024 10:37am "
+      }
+    }
+    
+  ]
+}) }}
 
     {{ govukButton({
       text: "Download metadata",
@@ -66,53 +98,7 @@
 </div>
 
 
-<hr class="govuk-section-break govuk-section-break--m">
-<h2 class="govuk-heading-m">Review details</h2>
 
-
-{{ govukSummaryList({
-  rows: [
-    {
-      key: { 
-        text: "Submission number",
-        classes: "govuk-!-width-one-quarter"
-      },
-      value: {
-        html: '3',
-        classes: "govuk-!-width-one-half"
-      },
-      actions: {
-        items: [
-          {
-            href: "review-history-3",
-            text: "View review history",
-            visuallyHiddenText: "View review history"
-          }
-        ]
-      }
-    },
-    {
-      key: { 
-        text: "Last reviewed by",
-        classes: "govuk-!-width-one-quarter"
-      },
-      value: { 
-        html: '<a href="mailto:zoe-fullard@nationalarchives.org.uk" class="govuk-link">john.briggs@nationalarchives.org.uk</a>',
-        classes: "govuk-!-width-one-half"
-      }
-    },
-    {
-      key: { 
-        text: "Last reviewed date",
-        classes: "govuk-!-width-one-quarter"
-      },
-      value: { 
-        text: "11th July 2024 10:37am",
-        classes: "govuk-!-width-one-half"
-      }
-    }
-  ]
-}) }}
 
 <p class="govuk-body govuk-!-margin-top-8">
   <a href="metadata-review-tabs" class="govuk-link">Back to metadata review</a>

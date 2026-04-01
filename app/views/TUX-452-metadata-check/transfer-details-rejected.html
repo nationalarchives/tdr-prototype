@@ -14,44 +14,77 @@
    
     <h1 class="govuk-heading-l">Transfer details for TDR-2024-ABCD</h1>
 
-    {{ govukSummaryList({
-      rows: [
-        {
-          key: { text: "Status" },
-          value: { html: '<strong class="govuk-tag govuk-tag--yellow">Rejected</strong>' }
-        },
-        {
-          key: { text: "Date submitted" },
-          value: { text: '5th July 2024, 8:00am' }
-        },
-        {
-          key: { text: "Department" },
-          value: { text: "GovDept" }
-        },
-        {
-          key: { text: "Contact email" },
-          value: { html: '<a href="mailto:john.smith@deptoffishmongery.gov.uk" class="govuk-link">john.smith@deptoffishmongery.gov.uk</a>'  }
-        },
-        
-        {
-          key: { text: "Series" },
-          value: { text: "MOCK1 123" }
-        },
-        {
-          key: { text: "Total/open/closed records" },
-          value: { text: "Total: 87;  Open: 73;  Closed: 14;" }
-        },
-        {
-          key: { text: "Legal status" },
-          value: { text: "Not Public Record(s)" }
-        },
-        
-        {
-          key: { text: "Display top level folder" },
-          value: { text: "No" }
-        }
-      ]
-    }) }}
+{{ govukSummaryList({
+  rows: [
+    {
+      key: { text: "Status" },
+      value: { html: '<strong class="govuk-tag govuk-tag--yellow">Rejected</strong>' }
+    },
+    {
+      key: { text: "Submission number" },
+value: { text: '1' },
+actions: {
+  items: [
+    {
+      href: "review-history",
+      text: "View submission history",
+      visuallyHiddenText: "submission number"
+    }
+  ]
+}
+    },
+    {
+      key: { text: "Date submitted" },
+      value: { text: '5th July 2024, 08:00am' }
+    },
+    {
+      key: { text: "Department" },
+      value: { text: "GovDept" }
+    },
+    {
+      key: { text: "Contact email" },
+      value: { html: '<a href="mailto:john.smith@deptoffishmongery.gov.uk" class="govuk-link">john.smith@deptoffishmongery.gov.uk</a>' }
+    },
+    {
+      key: { text: "Series" },
+      value: { text: "MOCK1 123" }
+    },
+    {
+      key: { text: "Total/open/closed records" },
+      value: { text: "Total: 87;  Open: 73;  Closed: 14;" }
+    },
+    {
+      key: { text: "Legal status" },
+      value: { text: "Not Public Record(s)" }
+    },
+    {
+      key: { text: "Display top level folder" },
+      value: { text: "No" }
+    }
+  ]
+}) }}
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: { 
+        text: "Last reviewed by"
+      },
+      value: { 
+        html: '<a href="mailto:john.briggs@nationalarchives.org.uk" class="govuk-link">john.briggs@nationalarchives.org.uk</a>'
+      }
+    },
+    {
+      key: { 
+        text: "Last updated"
+      },
+      value: { 
+        text: "6th July 2024, 10:34am "
+      }
+    }
+    
+  ]
+}) }}
 
     {{ govukButton({
       text: "Download metadata",
