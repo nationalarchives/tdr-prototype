@@ -93,51 +93,7 @@ actions: {
     }) }}
 
 <hr class="govuk-section-break govuk-section-break--m">
-<h2 class="govuk-heading-m">Review details</h2>
 
-
-{{ govukSummaryList({
-  rows: [
-    {
-      key: { 
-        text: "Submission number"
-      },
-      value: {
-        html: '1',
-        classes: "govuk-!-width-one-half"
-      },
-      actions: {
-        items: [
-          {
-            href: "review-history",
-            text: "View review history",
-            visuallyHiddenText: "View review history"
-          }
-        ]
-      }
-    },
-    {
-      key: { 
-        text: "Last reviewed by",
-        classes: "govuk-!-width-one-quarter"
-      },
-      value: { 
-        html: '<a href="mailto:john.briggs@nationalarchives.org.uk" class="govuk-link">john.briggs@nationalarchives.org.uk</a>',
-        classes: "govuk-!-width-one-half"
-      }
-    },
-    {
-      key: { 
-        text: "Last reviewed date",
-        classes: "govuk-!-width-one-quarter"
-      },
-      value: { 
-        text: "6th July 2024, 10:34am",
-        classes: "govuk-!-width-one-half"
-      }
-    }
-  ]
-}) }}
 
   </div>
 </div>
