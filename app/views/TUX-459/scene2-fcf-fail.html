@@ -1,0 +1,71 @@
+{% extends "layouts/main-tux-386.html" %}
+
+
+{% block head %}
+  {{ super() }}
+  <style>
+    .govuk-notification-banner {
+      border-color: #ca3535;
+    }
+    .govuk-notification-banner__header {
+      background: #ca3535;
+    }
+    .govuk-notification-banner__title {
+      color: #fff;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+{% set html %}
+  <h3 class="govuk-notification-banner__heading">
+We have a problem checking your records
+  </h3>
+    <p class="govuk-body">There may be a technical issue with this service.</p>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html,
+  titleText: 'File check error'
+}) }}
+
+<h1 class="govuk-heading-l">What to do next</h1>
+
+<p class="govuk-body">
+Contact your transfer advisor at <a href="mailto:tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a> with your consignment reference <strong>XXXX-9999-TDR</strong> and they will help you resolve the issue.</p>
+
+<hr class="govuk-section-break govuk-section-break--m">
+
+<div class="da-alert da-alert--default">
+    <div class="da-alert__content">
+        <h2 class="da-alert__heading da-alert__heading--s">
+Resuming your upload
+        </h2>
+        <p class="govuk-body" >
+        Once your transfer advisor confirms that the issues are resolved, you will need to start a new transfer.
+        </p>
+    </div>
+</div>
+
+ 
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" open data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+    </div>
+  </div>
+
+{% endblock %}

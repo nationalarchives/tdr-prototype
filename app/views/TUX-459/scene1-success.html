@@ -1,0 +1,55 @@
+{% extends "layouts/main-tux-386.html" %}
+
+{% block pageTitle %}
+  Results of checks
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+  
+
+      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <h3 class="govuk-notification-banner__heading">
+Your folder 'my-records' containing 200 records has been uploaded
+          </h3>
+
+
+        </div>
+      </div>
+    <h1 class="govuk-heading-l">
+What happens next
+      </h1>
+
+<p class="govuk-body">
+In the next step you will be able to add metadata to your records.
+</p>
+      <a href="" role="button" draggable="false" class="govuk-button  govuk-!-margin-top-3"  data-module="govuk-button">
+        Continue to prepare your metadata
+      </a>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      <details class="govuk-details" open data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Consignment reference
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          MOCK-123-TDR
+        </div>
+      </details>
+    </div>
+  </div>
+
+{% endblock %}
