@@ -1,0 +1,46 @@
+{% extends "layouts/main-tux-admin-interface.html" %}
+
+{% block pageTitle %}
+  Submission history
+{% endblock %}
+
+
+
+ }
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+   
+    <h1 class="govuk-heading-l">Submission history for TDR-2024-ABCD</h1>
+
+{{ govukSummaryList({
+  classes: "govuk-grid-column-two-thirds",
+  rows: [
+    {
+      key: { text: "Department" },
+      value: { text: "GovDept" }
+    },
+    {
+      key: { text: "Series" },
+      value: { text: "MOCK1 123" }
+    },
+    {
+      key: { text: "Total records" },
+      value: { text: "87 (Open: 73, Closed: 1)" }
+    }
+  ]
+}) }}
+
+
+{% include "TUX-452-metadata-check/snippets/_transfer-history-table_second.html" %}
+
+  </div>
+</div>
+
+
+<p class="govuk-body govuk-!-margin-top-8">
+  <a href="javascript:window.history.back();" class="govuk-link">Back to transfer details</a>
+</p>
+
+{% endblock %}

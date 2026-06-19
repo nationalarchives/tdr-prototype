@@ -1,0 +1,149 @@
+{% extends "layouts/main-tux-admin-interface.html" %}
+
+{% block pageTitle %}
+  Transfer details submitted
+{% endblock %}
+
+
+
+ }
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+
+ <h1 class="govuk-heading-l">Transfer details for TDR-2024-ABCD</h1>
+
+
+
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Submission 2"
+    },
+    actions: {
+      items: [
+        {
+          href: "review-history-3",
+          text: "View submission history"
+        }
+      ]
+    }
+  },
+  rows: [
+    {
+
+      key: {
+        text: "Status"
+      },
+      value: {
+        html: '<strong class="govuk-tag govuk-tag--green">Approved</strong>' 
+      }
+    },
+    {
+      
+      key: {
+        text: "Date submitted"
+      },
+      value: {
+        text: '5th July 2024, 08:00am'
+      }
+    },
+    {
+      
+      key: {
+        text: "Department" 
+      },
+      value: {
+        text: "GovDept"
+      }
+    },
+    {
+      
+      key: { text: "Contact email" },
+      value: { html: '<a href="mailto:john.smith@deptoffishmongery.gov.uk" class="govuk-link">john.smith@deptoffishmongery.gov.uk</a>' }
+    },{
+      
+      key: { text: "Series" },
+      value: { text: "MOCK1 123" }
+    },{
+      
+      key: { text: "Total records" },
+      value: { text: "87  (Open: 73, Closed: 14)" 
+    }
+    },
+    {
+      
+      key: { text: "Legal status" },
+      value: { text: "Not Public Record(s)" }
+    },
+    {
+      key: { text: "Display top level folder" },
+      value: { text: "No" }
+    }
+  ]
+}) }}
+
+
+{{ govukButton({
+  text: "Download metadata",
+  classes: "govuk-button--secondary",
+  href: "#"
+}) }}
+
+
+
+<hr class="govuk-section-break govuk-section-break--m">
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Review notes"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Reviewed by"
+      },
+      value: {
+        html: '<a href="#" class="govuk-link">John Briggs</a>'
+      }
+    },
+    {
+      key: {
+        text: "Review date"
+      },
+      value: {
+
+        html: "11 July 2026, 10:34am"
+      }
+    },
+    {
+      key: {
+        text: "Reason for status change"
+      },
+      value: {
+        html: "Ethical brunch biodiesel, in trust fund yes plz buy nothing nootropic kombucha shabby chic farm-to-table bandcamp swag focaccia stumptown. Shabby chic ottessa moshfegh VHS braun, banjo varda tonx four loko hot honey pug labore. Parasocial lorem bell hooks laborum zizek polycule anim twee indigo dye sustainable gentrify dolore zines monstera. "
+      }
+    }
+  ]
+}) }}
+
+
+
+  </div>
+</div>
+
+
+
+
+
+
+<p class="govuk-body govuk-!-margin-top-8">
+  <a href="javascript:window.history.back();" class="govuk-link">Back to metadata review</a>
+</p>
+
+{% endblock %}
