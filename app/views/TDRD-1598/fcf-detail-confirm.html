@@ -1,0 +1,104 @@
+{% extends "layouts/main-tux-admin-interface.html" %}
+
+{% block pageTitle %}
+  Fail check failure detail
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+<div class="govuk-grid-column-full">
+
+{% call govukNotificationBanner({
+  type: "success",
+  titleText: 'Consignment allowed'
+}) %}
+
+  <p class="govuk-body">TDR-2024-ABCD has been allowed.<a class="govuk-notification-banner__link" href="home"><br />Return to fail check failure review</a></p>
+{% endcall %}
+
+ <h1 class="govuk-heading-l">Failed consignment details </h1>
+
+
+ <div class="govuk-summary-card">
+  <div class="govuk-summary-card__title-wrapper">
+    <h2 class="govuk-summary-card__title">
+Consignment TDR-2024-ABCD   </h2>
+  </div>
+
+  <div class="govuk-summary-card__content">
+    <dl class="govuk-summary-list">
+
+
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Department
+        </dt>
+        <dd class="govuk-summary-list__value">
+          HM Land Registry
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Series
+        </dt>
+        <dd class="govuk-summary-list__value">
+          LAND 123
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Date uploaded
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <time datetime="2026-07-05T08:00:00">
+            5 July 2026, 08:00am
+          </time>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Contact email
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <a class="govuk-link" href="mailto:example@hmlandregistry.gov.uk">
+            example@hmlandregistry.gov.uk
+          </a>
+        </dd>
+      </div>
+
+    </dl>
+  </div>
+
+</div>
+
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "File check failure review notes"
+    }
+  },
+  rows: [
+
+
+    {
+      key: {
+        text: "Reason for allowing"
+      },
+      value: {
+        html: "Parasocial lorem bell hooks laborum zizek polycule anim twee indigo dye sustainable gentrify dolore zines monstera. "
+      }
+    }
+  ]
+}) }}
+
+
+
+ </div>
+</div>
+{% endblock %}
