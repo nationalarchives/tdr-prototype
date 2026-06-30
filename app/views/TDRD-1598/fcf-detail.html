@@ -2,6 +2,7 @@
 
 {% block pageTitle %}
   Failed consignment details
+
 {% endblock %}
 
 {% block content %}
@@ -145,9 +146,14 @@ Consignment TDR-2024-ABCD   </h2>
 }) }}
 
       <!-- Primary action -->
+<div class="govuk-button-group">
       <button type="submit" class="govuk-button" data-module="govuk-button">
         Allow consignment
       </button>
+      <a href="/home" class="govuk-link govuk-link--no-visited-state">
+          Cancel
+        </a>
+</div>
 
 <hr class="govuk-section-break govuk-section-break--m">
       <!-- Navigation link -->
