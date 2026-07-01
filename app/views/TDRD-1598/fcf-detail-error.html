@@ -130,10 +130,11 @@ Consignment TDR-2024-ABCD   </h2>
 
 
 
-{{ govukTextarea({
+{{ govukCharacterCount({
   name: "moreDetail",
   id: "more-detail",
   rows: "4",
+  maxlength: 1300,
   classes: 'govuk-!-width-two-thirds',
   label: {
     text: "Why are you allowing this consignment?",
