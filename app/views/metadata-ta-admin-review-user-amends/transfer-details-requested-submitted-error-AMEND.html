@@ -1,0 +1,169 @@
+{% extends "layouts/main-tux-admin-interface.html" %}
+
+{% block pageTitle %}
+  Transfer details submitted
+{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <style>
+    .govuk-notification-banner {
+      border-color: #ca3535;
+    }
+    .govuk-notification-banner__header {
+      background: #ca3535;
+    }
+    .govuk-notification-banner__title {
+      color: #fff;
+    }
+  </style>
+{% endblock %}
+
+
+ }
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+
+
+<div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+  <div class="govuk-notification-banner__header">
+    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+      Your submission has not saved
+    </h2>
+  </div>
+  <div class="govuk-notification-banner__content">
+    <!--<h1 class="govuk-notification-banner__heading">
+Transfer details for TDR-2024-ABCD updated
+    </h1>-->
+    Someone else has already made changes to this transfer. The current details are shown below: 
+
+      <a class="govuk-notification-banner__link" href="#"><br />Return to metadata review</a>.
+  </div>
+</div>
+ <h1 class="govuk-heading-l">Transfer details for TDR-2024-ABCD</h1>
+
+
+
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Submission 1"
+    },
+    actions: {
+      items: [
+        {
+          href: "review-history-3",
+          text: "View submission history"
+        }
+      ]
+    }
+  },
+  rows: [
+    {
+
+      key: {
+        text: "Status"
+      },
+      value: {
+        html: '<strong class="govuk-tag govuk-tag--yellow">Rejected</strong>' 
+      }
+    },
+    {
+      
+      key: {
+        text: "Date submitted"
+      },
+      value: {
+        text: '5th July 2024, 08:00am'
+      }
+    },
+    {
+      
+      key: {
+        text: "Department" 
+      },
+      value: {
+        text: "GovDept"
+      }
+    },
+    {
+      
+      key: { text: "Contact email" },
+      value: { html: '<a href="mailto:john.smith@deptoffishmongery.gov.uk" class="govuk-link">john.smith@deptoffishmongery.gov.uk</a>' }
+    },{
+      
+      key: { text: "Series" },
+      value: { text: "MOCK1 123" }
+    },{
+      
+      key: { text: "Total records" },
+      value: { text: "87  (Open: 73, Closed: 14)" 
+    }
+    },
+    {
+      
+      key: { text: "Legal status" },
+      value: { text: "Not Public Record(s)" }
+    },
+    {
+      key: { text: "Display top level folder" },
+      value: { text: "No" }
+    }
+  ]
+}) }}
+
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Review notes"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Reviewed by"
+      },
+      value: {
+        html: '<a href="#" class="govuk-link">Søme One-Else</a>'
+      }
+    },
+    {
+      key: {
+        text: "Review date"
+      },
+      value: {
+
+        html: "11 July 2026, 10:34am"
+      }
+    },
+    {
+      key: {
+        text: "Reason for status change"
+      },
+      value: {
+        html: "Some words another person has written about this review."
+      }
+    }
+  ]
+}) }}
+
+
+
+  </div>
+</div>
+
+
+
+
+
+
+<p class="govuk-body govuk-!-margin-top-8">
+  <a href="javascript:window.history.back();" class="govuk-link">Back to metadata review</a>
+</p>
+
+{% endblock %}
