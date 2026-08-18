@@ -1,0 +1,74 @@
+{% extends "layouts/main-tux-386.html" %}
+{% block pageTitle %}
+ There is a problem with your files 
+{% endblock %}
+
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "error-screen"
+  }) }}
+{% endblock %}
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <h1 class="govuk-heading-l">
+            Check long file paths
+        </h1>
+
+        <p class="govuk-body">
+            Identify the files that have too long filenames, by using the file checker below:
+        </p>
+
+<div class="drag-and-drop__dropzone">
+                                <input type="file" id="file-selection" name="files" class="govuk-file-upload drag-and-drop__input" webkitdirectory="" accept="*">
+                                <p class="govuk-body drag-and-drop__hint-text">Drag and drop a single top-level folder here&nbsp;</p>
+                                <label for="file-selection" class="govuk-button govuk-button--secondary drag-and-drop__button">
+                                    Select a folder
+                                </label>
+                            </div>
+
+        <p class="govuk-body">
+            No data will be sent to The National Archives using this tool.
+            The files will only be checked on your computer.
+        </p>
+
+        <p class="govuk-body">
+            You can bookmark this page and test your files to ensure all the issues are resolved.
+        </p>
+
+        <!-- GDS Collapse Component -->
+        <details class="govuk-details" data-module="govuk-details">
+
+            <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                    What is this issue?
+                </span>
+            </summary>
+
+            <div class="govuk-details__text">
+                Windows browsers may not be able to read files or folders when
+                the full file path exceeds 260 characters. This can cause files
+                to be silently omitted from your transfer.
+            </div>
+
+        </details>
+
+<div class="govuk-inset-text">
+  If you need help resolving these issues, contact your transfer advisor at
+  <a class="gov-link" href="tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>
+    
+  </a>
+</div>
+<form action="lfc-results"> 
+        <button class="govuk-button" data-module="govuk-button" type="submit" href="lfc-results">
+            Check files
+        </button>
+</form>
+
+</div></div>
+{% endblock %}
