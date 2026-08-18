@@ -1,0 +1,221 @@
+{% extends "layouts/main-tux-386.html" %}
+{% block head %}
+
+{{ super() }}
+
+<style>
+  /*body {
+    margin: 30px;
+  }*/
+
+  /* Scrollable wrapper for the table */
+  .file-results-table {
+    max-height: 70vh;
+overflow-y: auto;
+    /* border: 1px solid #b1b4b6; govuk-border-colour, gives the scroll area a visible edge */
+  }
+
+  /* Keep the header visible while the body scrolls */
+  .file-results-table .govuk-table__head {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #ffffff;
+  }
+
+  /* Optional: reinforce the header's bottom border, since it can look like
+     it's "floating" once it's sticky and rows scroll underneath it */
+  .file-results-table .govuk-table__head .govuk-table__header {
+    box-shadow: inset 0 -1px 0 #b1b4b6;
+  }
+
+  /* Prevent long unbroken file paths from forcing horizontal scroll */
+  .file-results-table .govuk-table__cell {
+    word-break: break-all;
+  }
+</style>
+
+
+{% endblock %}
+{% block pageTitle %}
+Long file paths found
+{% endblock %}
+
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+{% call govukNotificationBanner({
+  titleText: "1234 files checked with 100 issues found"
+}) %}
+100 files have been found with long file paths
+{% endcall %}
+
+<!-- What to show if it is all good?  -->
+  <h1 class="govuk-heading-l">
+    Long file paths have been found
+  </h1>
+
+
+
+  <h2 class="govuk-heading-m">
+    How to resolve these issues
+  </h2>
+
+  <ol class="govuk-list govuk-list--number">
+    <li>
+      Check the file paths in your folder.
+    </li>
+    <li>
+      Rename folders so that the total file path is beneath
+      250 characters or move your file into a folder closer
+      towards the parent folder.
+    </li>
+    <li>
+      Return to 'upload your records' and try to upload your
+      files again.
+    </li>
+  </ol>
+
+  <p class="govuk-body">
+    You can use this tool to recheck your files.
+  </p>
+
+
+  <!-- Summary 
+  <dl class="govuk-summary-list govuk-!-margin-bottom-7">
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Total files checked
+      </dt>
+      <dd class="govuk-summary-list__value">
+        3000
+      </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Issues to fix
+      </dt>
+      <dd class="govuk-summary-list__value">
+        100
+      </dd>
+    </div>
+
+  </dl>-->
+
+  <!-- Scrollable Table -->
+
+
+
+
+<hr class="govuk-section-break govuk-section-break--l ">
+
+  <h2 class="govuk-heading-l">
+    Files to be corrected
+  </h2>
+
+  <p class="govuk-body">
+
+These file paths exceed the maximum supported length and must be corrected before upload.
+
+</p>
+<div class="file-results-table">
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">
+          File path
+        </th>
+        <th scope="col" class="govuk-table__header govuk-table__header--numeric">
+          Over limit
+        </th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          /Desktop/document dump/my folder/AOI files/anotherfiles/compuservefolder/thisiswhereistorestuff/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/veryveryveryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Consultation/Survey.docx
+        </td>
+        <td class="govuk-table__cell govuk-table__cell--numeric">
+          26
+        </td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          /Desktop/document dump/my folder/AOI files/anotherfiles/compuservefolder/thisiswhereistorestuff/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Consultation/data.xls
+        </td>
+        <td class="govuk-table__cell govuk-table__cell--numeric">
+          24
+        </td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          /Desktop/document dump/my folder/AOI files/anotherfiles/compuservefolder/thisiswhereistorestuff/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Consultation/anotherdoc.doc
+        </td>
+        <td class="govuk-table__cell govuk-table__cell--numeric">
+          24
+        </td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          /Desktop/document dump/my folder/AOI files/anotherfiles/compuservefolder/thisiswhereistorestuff/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Consultation/data.xlsx
+        </td>
+        <td class="govuk-table__cell govuk-table__cell--numeric">
+          25
+        </td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          /Desktop/document dump/my folder/AOI files/anotherfiles/compuservefolder/thisiswhereistorestuff/veryveryverylongfoldername/example-extra-row-one.txt
+        </td>
+        <td class="govuk-table__cell govuk-table__cell--numeric">
+          15
+        </td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          /Desktop/document dump/my folder/AOI files/anotherfiles/compuservefolder/thisiswhereistorestuff/veryveryverylongfoldername/example-extra-row-two.txt
+        </td>
+        <td class="govuk-table__cell govuk-table__cell--numeric">
+          15
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h2 class="govuk-heading-m govuk-!-margin-top-3">What next?</h2>
+
+<p class="govuk-body">
+
+After correcting these file paths, run the file check again to confirm all issues have been resolved.
+
+</p>
+
+  <div class="govuk-button-group govuk-!-margin-top-9">
+<form action="check-long-file-paths"> 
+    <button class="govuk-button"  data-module="govuk-button" type="submit" href="check-long-file-paths">
+      Check file paths again
+    </button>
+
+  <a class="govuk-link  govuk-!-margin-top-2" href="#">Return to upload your records</a>
+</form>
+  </div>
+
+<div class="govuk-inset-text">
+  If you need help resolving these issues, contact your transfer advisor at
+  <a class="gov-link" href="tdr@nationalarchives.gov.uk">tdr@nationalarchives.gov.uk</a>
+    
+  </a>
+</div>
+
+
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "layouts/main-tux-386.html" %}
+{% block head %}
+{{ super() }}
+  <style>
+    .govuk-notification-banner {
+      border-color: #ca3535;
+    }
+    .govuk-notification-banner__header {
+      background: #ca3535;
+    }
+    .govuk-notification-banner__title {
+      color: #fff;
+    }
+  </style>
+
+{% endblock %}
+{% block pageTitle %}
+Long file paths found
+{% endblock %}
+
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+  <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+  <div class="govuk-notification-banner__header">
+    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+      There is a problem with your files
+    </h2>
+  </div>
+  <div class="govuk-notification-banner__content">
+  
+    <h3 class="govuk-notification-banner__heading">
+Some records could not be uploaded because their filepath is too long.      </h3>
+
+  
+  </div>
+</div>
+
+
+      <p class="govuk-body govuk-body">
+        This usually happens when a file is stored inside several nested
+        folders on a Windows computer.
+      </p>
+
+      <h2 class="govuk-heading-l">
+        What to do next
+      </h2>
+
+      <p class="govuk-body">
+        Trying one of these options should allow the files to be uploaded:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          Reopen TDR on an Apple Mac, or a Linux computer, and start your
+          transfer again.
+        </li>
+        <li>
+          Move the file closer to the top-level folder, shorten folder names,
+          or shorten the file name, then try again.
+          <a href="check-long-file-paths">
+            Identify these files with this tool
+          </a>.
+        </li>
+      </ul>
+
+      <p class="govuk-body">
+        If you need help resolving these issues, contact your transfer advisor
+        at
+        <a href="mailto:tdr@nationalarchives.gov.uk"
+          class="govuk-link">
+          tdr@nationalarchives.gov.uk</a>
+        <strong>XXX-9999-XXXX</strong>.
+      </p>
+
+    </div>
+  </div>
+
+
+{% endblock %}
