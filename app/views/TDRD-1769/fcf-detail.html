@@ -1,0 +1,172 @@
+{% extends "layouts/main-tux-admin-interface.html" %}
+
+{% block pageTitle %}
+  Failed consignment details
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+<div class="govuk-grid-column-full">
+        
+
+
+    <form action="fcf-detail-confirm" method="post" novalidate>
+
+      <!-- Error summary: only show this after validation fails 
+      <div class="govuk-error-summary" data-module="govuk-error-summary">
+        <div role="alert">
+          <h2 class="govuk-error-summary__title">
+            There is a problem
+          </h2>
+          <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+              <li>
+                <a href="#resolution-reason">
+                  Explain why this file check failure is being resolved
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>-->
+
+      <!-- Page title -->
+      <h1 class="govuk-heading-l">
+        Failed consignment details
+      </h1>
+
+
+
+<div class="govuk-summary-card">
+  <div class="govuk-summary-card__title-wrapper">
+    <h2 class="govuk-summary-card__title">
+Consignment TDR-2024-ABCD   </h2>
+  </div>
+
+  <div class="govuk-summary-card__content">
+    <dl class="govuk-summary-list">
+
+
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Department
+        </dt>
+        <dd class="govuk-summary-list__value">
+          HM Land Registry
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Series
+        </dt>
+        <dd class="govuk-summary-list__value">
+          LAND 123
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Date uploaded
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <time datetime="2026-07-05T08:00:00">
+            5 July 2026, 08:00am
+          </time>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Contact email
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <a class="govuk-link" href="mailto:example@hmlandregistry.gov.uk">
+            example@hmlandregistry.gov.uk
+          </a>
+        </dd>
+      </div>
+
+    </dl>
+  </div>
+
+</div>
+
+
+      <!-- Resolve section 
+      <h2 class="govuk-heading-m">
+        Resolve file check failure
+      </h2>
+
+      <p class="govuk-body">
+        Review the error report before deciding whether this file check failure can be resolved.
+      </p>-->
+
+      <p class="govuk-body">
+        <a href="/file-check-failures/TDR-2024-ABCD/error-report"
+           class="govuk-button govuk-button--secondary"
+           data-module="govuk-button">
+          Download error report
+        </a>
+      </p>
+
+      <!-- Textarea with validation, hint and character guidance 
+      <div class="govuk-form-group govuk-form-group--error">
+        <label class="govuk-label govuk-label--s" for="resolution-reason">
+          Why is this file check failure being resolved?
+        </label>
+
+        <div id="resolution-reason-hint" class="govuk-hint">
+          Explain why this consignment is safe to continue. Include enough detail for audit purposes.
+        </div>
+
+   <p id="resolution-reason-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span>
+          Explain why this file check failure is being resolved
+        </p>-->
+
+
+
+{{ govukCharacterCount({
+  name: "moreDetail",
+  id: "more-detail",
+  rows: "4",
+  maxlength: 1300,
+  classes: 'govuk-!-width-two-thirds',
+  label: {
+    text: "Why are you allowing this consignment?",
+    classes: "govuk-label--s",
+    isPageHeading: false
+  },
+  hint: {
+    text: "Explain why this consignment is safe to continue."
+  }
+}) }}
+
+      <!-- Primary action -->
+<div class="govuk-button-group">
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Allow consignment
+      </button>
+      <a href="/home" class="govuk-link govuk-link--no-visited-state">
+          Cancel
+        </a>
+</div>
+
+<hr class="govuk-section-break govuk-section-break--m">
+      <!-- Navigation link -->
+      <p class="govuk-body">
+        <a href="/file-check-failures" class="govuk-link">
+          Return to file check failure review
+        </a>
+      </p>
+
+    </form>
+
+</div></div>
+
+
+{% endblock %}

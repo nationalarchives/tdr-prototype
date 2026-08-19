@@ -1,0 +1,196 @@
+{% extends "layouts/main-tux-admin-interface.html" %}
+
+{% block pageTitle %}
+  Transfer details
+{% endblock %}
+
+
+
+ }
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+
+
+    <h1 class="govuk-heading-l">Transfer details for TDR-2024-ABCD</h1>
+
+
+
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Submission 2"
+    },
+    actions: {
+      items: [
+        {
+          href: "review-history-3",
+          text: "View submission history"
+        }
+      ]
+    }
+  },
+  rows: [
+    {
+
+      key: {
+        text: "Status"
+      },
+      value: {
+        html: '<strong class="govuk-tag govuk-tag--red">Requested</strong>' 
+      }
+    },
+    {
+      
+      key: {
+        text: "Date submitted"
+      },
+      value: {
+        text: '5th July 2024, 08:00am'
+      }
+    },
+    {
+      
+      key: {
+        text: "Department" 
+      },
+      value: {
+        text: "GovDept"
+      }
+    },
+    {
+      
+      key: { text: "Contact email" },
+      value: { html: '<a href="mailto:john.smith@deptoffishmongery.gov.uk" class="govuk-link">john.smith@deptoffishmongery.gov.uk</a>' }
+    },{
+      
+      key: { text: "Series" },
+      value: { text: "MOCK1 123" }
+    },{
+      
+      key: { text: "Total records" },
+      value: { text: "87  (Open: 73, Closed: 14)" 
+    }
+    },
+    {
+      
+      key: { text: "Legal status" },
+      value: { text: "Not Public Record(s)" }
+    },
+    {
+      key: { text: "Display top level folder" },
+      value: { text: "No" }
+    }
+  ]
+}) }}
+
+{{ govukButton({
+  text: "Download metadata",
+  classes: "govuk-button--secondary",
+  href: "#"
+}) }}
+
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Previous file check failure"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Reviewed by"
+      },
+      value: {
+        html: '<a href="mailto:anon@anon.gov.uk" class="govuk-link">Jayne Cumbria</a>'
+      }
+    },
+    {
+      key: {
+        text: "Date reviewed"
+      },
+      value: {
+        text: '8th July 2024, 08:00am'
+      }
+    },
+    {
+      key: {
+        text: "Reason for allowing"
+      },
+      value: {
+        html: "Parasocial lorem bell hooks laborum zizek polycule anim twee indigo dye sustainable gentrify dolore zines monstera. "
+      }
+    }
+  ]
+}) }}
+
+      <p class="govuk-body">
+        <a href="/file-check-failures/TDR-2024-ABCD/error-report"
+           class="govuk-button govuk-button--secondary"
+           data-module="govuk-button">
+          Download error report
+        </a>
+      </p>
+
+
+
+
+
+
+<hr class="govuk-section-break govuk-section-break--m">
+    <h2 class="govuk-heading-m">Change status for this transfer</h2>
+
+    {{ govukSelect({
+      id: "transfer-status",
+      name: "transferStatus",
+      label: {
+        text: "Select a status",
+        classes: "govuk-visually-hidden"
+      },
+      items: [
+        { value: "", text: "Select a status", selected: true },
+        { value: "rejected", text: "Rejected" },
+        { value: "approved", text: "Approved" }
+      
+      ]
+    }) }}
+
+ 
+    {{ govukCharacterCount({
+      classes: "govuk-!-width-two-thirds",
+      name: "statusReason",
+      id: "status-reason",
+      maxlength: 1300,
+      label: {
+        text: "Provide a reason for status change",
+        classes: "govuk-label--m"
+      },
+  hint: {
+    text: "Do not include sensitive information as these will go into case files"
+  }
+    }) }}
+<div class="govuk-button-group">
+    {{ govukButton({
+      text: "Submit",
+      href: "transfer-details-requested-submitted-2"
+    }) }}
+</div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+<p class="govuk-body govuk-!-margin-top-9">
+  <a href="home" class="govuk-link  govuk-link--no-visited-state">Back to metadata review</a>
+</p>
+
+
+{% endblock %}
