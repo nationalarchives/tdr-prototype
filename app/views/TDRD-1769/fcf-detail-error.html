@@ -14,7 +14,7 @@
 
     <form action="fcf-detail-confirm" method="post" novalidate>
 
-      <!-- Error summary: only show this after validation fails 
+      <!-- Error summary: only show this after validation fails -->
       <div class="govuk-error-summary" data-module="govuk-error-summary">
         <div role="alert">
           <h2 class="govuk-error-summary__title">
@@ -23,14 +23,14 @@
           <div class="govuk-error-summary__body">
             <ul class="govuk-list govuk-error-summary__list">
               <li>
-                <a href="#resolution-reason">
-                  Explain why this file check failure is being resolved
+                <a href="#more-detail">
+                  Explain why this file check failure is being allowed
                 </a>
               </li>
             </ul>
           </div>
         </div>
-      </div>-->
+      </div>
 
       <!-- Page title -->
       <h1 class="govuk-heading-l">
@@ -96,14 +96,14 @@ Consignment TDR-2024-ABCD   </h2>
 </div>
 
 
-      <!-- Resolve section 
+      <!-- Resolve section -->
       <h2 class="govuk-heading-m">
         Resolve file check failure
       </h2>
 
       <p class="govuk-body">
-        Review the error report before deciding whether this file check failure can be resolved.
-      </p>-->
+        Review the error report before deciding whether this file check failure can be allowed.
+      </p>
 
       <p class="govuk-body">
         <a href="/file-check-failures/TDR-2024-ABCD/error-report"
@@ -143,6 +143,9 @@ Consignment TDR-2024-ABCD   </h2>
   },
   hint: {
     text: "Explain why this consignment is safe to continue."
+  },
+  errorMessage: {
+    text: "Explain why this file check failure is being allowed"
   }
 }) }}
 
@@ -151,18 +154,18 @@ Consignment TDR-2024-ABCD   </h2>
       <button type="submit" class="govuk-button" data-module="govuk-button">
         Allow consignment
       </button>
-      <!--<a href="/home" class="govuk-link govuk-link--no-visited-state">
+      <a href="/home" class="govuk-link govuk-link--no-visited-state">
           Cancel
-        </a>-->
+        </a>
 </div>
 
 <hr class="govuk-section-break govuk-section-break--m">
       <!-- Navigation link -->
-      <!--<p class="govuk-body">
+      <p class="govuk-body">
         <a href="/file-check-failures" class="govuk-link">
           Return to file check failure review
         </a>
-      </p>-->
+      </p>
 
     </form>
 
