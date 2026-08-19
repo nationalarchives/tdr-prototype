@@ -1,5 +1,12 @@
 {% extends "layouts/no-sign-out.html" %}
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+{% set html %}
+  <p class="govuk-notification-banner__heading">
+    You should receive an email shortly with further instructions.
+  </p>
+{% endset %}
 
 {% block pageTitle %}
   Sign in
@@ -10,13 +17,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {{ govukNotificationBanner({
+        html: html
+      }) }}
+
       {{ govukWarningText({
         text: "Do not share your sign in details with anyone else",
         iconFallbackText: "Warning"
       }) }}
 
       <h1 class="govuk-heading-l">Sign in to your account</h1>
-
 
       <form class="form" action="/MFA" method="post">
 
