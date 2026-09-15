@@ -137,35 +137,39 @@ Consignment TDR-2024-ABCD   </h2>
   maxlength: 1300,
   classes: 'govuk-!-width-two-thirds',
   label: {
-    text: "Why are you allowing this consignment?",
+    text: "Why are you allowing or disallowing this consignment?",
     classes: "govuk-label--s",
     isPageHeading: false
   },
   hint: {
-    text: "Explain why this consignment is safe to continue."
+    text: " Include enough detail for audit purposes. "
   },
   errorMessage: {
-    text: "Explain why this file check failure is being allowed"
+    text: "Explain why you allowing or disallowing this consignment"
   }
 }) }}
 
       <!-- Primary action -->
 <div class="govuk-button-group">
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-        Allow consignment
+      <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button">
+        Allow
       </button>
+        {{ govukButton({
+    text: "Disallow",
+    href: 'fcf-detail-confirm-disallow',
+    classes: "govuk-button--secondary"
+  }) }}
       <!--<a href="/home" class="govuk-link govuk-link--no-visited-state">
           Cancel
         </a>-->
 </div>
+{{ govukWarningText({
+  text: "If you allow this consignment, the end user will be able to proceed with their transfer. You cannot undo your decision.",
+  iconFallbackText: "Warning",
+  classes: 'govuk-!-width-two-thirds'
+}) }}
 
-<hr class="govuk-section-break govuk-section-break--m">
-      <!-- Navigation link -->
-      <p class="govuk-body">
-        <!--<a href="/file-check-failures" class="govuk-link">
-          Return to file check failure review
-        </a>-->
-      </p>
+
 
     </form>
 
