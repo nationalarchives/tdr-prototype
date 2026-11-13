@@ -75,346 +75,183 @@ Check long file paths
 
 {% block content %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+          
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+  <h1 class="govuk-heading-l" id="top">
+    Check long file paths
+  </h1>
+        
 
-    <h1 class="govuk-heading-l" id="top">
-      Check long file paths
-    </h1>
+        <p class="govuk-body">
+             Windows browsers may not be able to read files or folders when the full file path if they are too long. This can cause files to be omitted from your transfer.
+ 
+        </p>
 
-    <p class="govuk-body">
-      Windows browsers may not be able to read files or folders when the full file path if they are too long. This can cause files to be omitted from your transfer.
-    </p>
+<p class="govuk-body">
+            No data will be sent to The National Archives using this tool.
+            The files will only be checked on your computer.
+        </p>
 
-    <p class="govuk-body">
-      No data will be sent to The National Archives using this tool.
-      The files will only be checked on your computer.
-    </p>
-
-    <h2 class="govuk-heading-m">
-      Select a folder to check
-    </h2>
-
-    <p class="govuk-body">
-      Either drag and drop your folder below, or use the 'Select a folder' button.
-    </p>
-
-    <div class="drag-and-drop__dropzone">
-
-      <input
-        type="file"
-        id="file-selection"
-        name="files"
-        class="govuk-file-upload drag-and-drop__input"
-        webkitdirectory=""
-        accept="*">
-
-      <p class="govuk-body drag-and-drop__hint-text">
-        Drag and drop a single top-level folder here&nbsp;
-      </p>
-
-      <label
-        for="file-selection"
-        class="govuk-button govuk-button--secondary drag-and-drop__button">
-        Select a folder
-      </label>
-
-    </div>
-
-    <div class="govuk-button-group govuk-!-padding-top-4">
-
-      <button
-        id="check-files-button"
-        class="govuk-button"
-        data-module="govuk-button"
-        type="button"
-        aria-controls="results-table">
-        Check your files
-      </button>
-
-      <a
-        href="#"
-        class="govuk-link--no-visited-state"
-        onclick="location.reload(); return false;">
-        Reset
-      </a>
-
-    </div>
-
-  </div>
-</div>
+  <h2 class="govuk-heading-m">
+    Select a folder to check
+  </h2>
+<p class="govuk-body">
+  Either drag and drop your folder below, or use the 'Select a folder' button.
+</p>
+<div class="drag-and-drop__dropzone">
+                                <input type="file" id="file-selection" name="files" class="govuk-file-upload drag-and-drop__input" webkitdirectory="" accept="*">
+                                <p class="govuk-body drag-and-drop__hint-text">Drag and drop a single top-level folder here&nbsp;</p>
+                                <label for="file-selection" class="govuk-button govuk-button--secondary drag-and-drop__button">
+                                    Select a folder
+                                </label>
+                            </div>
 
 
-<div
-  id="results-table"
-  class="govuk-grid-row govuk-!-padding-top-4"
-  hidden>
-
-  <div class="govuk-grid-column-full">
-
-    <div class="filepath-alert">
-
-      <h2 class="govuk-heading-l filepath-alert__heading">
-        12 long file paths found
-      </h2>
-
-      <!--<p class="govuk-body filepath-alert__body">
-        These filepaths cannot be uploaded until they are shortened.
-      </p>-->
-
-      <button
-        id="copy-filepaths-button"
-        class="govuk-button govuk-button--secondary govuk-!-margin-top-4 govuk-!-margin-bottom-0"
-        data-module="govuk-button"
-        type="button">
-        Copy results
-      </button>
-
-      <p
-        id="copy-confirmation"
-        class="govuk-body filepath-alert__body govuk-!-margin-top-2"
-        role="status"
-        aria-live="polite">
-      </p>
-
-    </div>
 
 
-    <div class="file-path-table">
-
-      <table class="govuk-table file-path-table__table">
-
-        <thead class="govuk-table__head">
-
-          <tr class="govuk-table__row">
-
-            <th
-              scope="col"
-              class="govuk-table__header"
-              style="width: 3rem;">
-              No.
-            </th>
-
-            <th
-              scope="col"
-              class="govuk-table__header">
-              Long file path
-            </th>
-
-            <th
-              scope="col"
-              class="govuk-table__header file-path-table__beware">
-              Further issues
-            </th>
-
-          </tr>
-
-        </thead>
-
-        <tbody class="govuk-table__body">
-
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">1</td>
-            <td class="govuk-table__cell file-path-table__path">
-              <code>document dump/my folder/AOI files/project documents/compuservefolder/archive/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Consultation/</code>
-            </td>
-            <td class="govuk-table__cell file-path-table__beware"><strong class="govuk-tag govuk-tag--orange">
-          <small>Hidden files</small>
-        </strong>
-      </td>
-          </tr>
-
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">2</td>
-            <td class="govuk-table__cell file-path-table__path">
-              <code>document dump/my folder/AOI files/project documents/researchfolder/working files/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Research/</code>
-            </td>
-            <td class="govuk-table__cell file-path-table__beware"><strong class="govuk-tag govuk-tag--orange">
-          <small>Hidden files</small>
-        </strong></td>
-          </tr>
-
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">3</td>
-            <td class="govuk-table__cell file-path-table__path">
-              <code>document dump/my folder/AOI files/anotherfiles/transferfolder/digital-records/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Metadata/Transfer-metadata.xlsx</code>
-            </td>
-            <td class="govuk-table__cell file-path-table__beware"></td>
-          </tr>
-
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">4</td>
-            <td class="govuk-table__cell file-path-table__path">
-              <code>document dump/my folder/AOI files/anotherfiles/archivefolder/previous versions/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Consultation/Draft-report.pdf</code>
-            </td>
-            <td class="govuk-table__cell file-path-table__beware"></td>
-          </tr>
-
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">5</td>
-            <td class="govuk-table__cell file-path-table__path">
-              <code>document dump/my folder/AOI files/project files/administration/meeting documents/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Meetings/Agenda.docx</code>
-            </td>
-            <td class="govuk-table__cell file-path-table__beware"></td>
-          </tr>
-
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">6</td>
-            <td class="govuk-table__cell file-path-table__path">
-              <code>document dump/my folder/AOI files/project files/research/user testing/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Research/Session-recording.mp4</code>
-            </td>
-            <td class="govuk-table__cell file-path-table__beware"></td>
-          </tr>
-
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">7</td>
-            <td class="govuk-table__cell file-path-table__path">
-              <code>document dump/my folder/AOI files/transfers/current transfer/supporting documents/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Evidence/Supporting-evidence.pdf</code>
-            </td>
-            <td class="govuk-table__cell file-path-table__beware"></td>
-          </tr>
-
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">8</td>
-            <td class="govuk-table__cell file-path-table__path">
-              <code>document dump/my folder/AOI files/project documents/final reports/published versions/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Reports/Final-report.docx</code>
-            </td>
-            <td class="govuk-table__cell file-path-table__beware"></td>
-          </tr>
-
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">9</td>
-            <td class="govuk-table__cell file-path-table__path">
-              <code>document dump/my folder/AOI files/project documents/data analysis/spreadsheets/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Analysis/Survey-results.xlsx</code>
-            </td>
-            <td class="govuk-table__cell file-path-table__beware"></td>
-          </tr>
-
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">10</td>
-            <td class="govuk-table__cell file-path-table__path">
-              <code>document dump/my folder/AOI files/anotherfiles/communications/correspondence/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Correspondence/Email-records.pdf</code>
-            </td>
-            <td class="govuk-table__cell file-path-table__beware"></td>
-          </tr>
-
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">11</td>
-            <td class="govuk-table__cell file-path-table__path">
-              <code>document dump/my folder/AOI files/archive documents/historical records/previous transfer/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Archive/Transfer-record.csv</code>
-            </td>
-            <td class="govuk-table__cell file-path-table__beware"></td>
-          </tr>
-
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">12</td>
-            <td class="govuk-table__cell file-path-table__path">
-              <code>document dump/my folder/AOI files/project documents/governance/approval documents/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Approvals/Signed-approval.pdf</code>
-            </td>
-            <td class="govuk-table__cell file-path-table__beware"></td>
-          </tr>
-
-        </tbody>
-
-      </table>
-
-    </div>
 
 
-    <p class="govuk-body govuk-!-margin-top-6">
-      <a href="#top" class="govuk-link back-to-top">
-        Back to top <span aria-hidden="true">^</span>
-      </a>
-    </p>
 
-  </div>
+<div class="govuk-button-group govuk-!-padding-top-4">
+  <button
+    id="check-files-button"
+    class="govuk-button"
+    data-module="govuk-button"
+    type="button"
+    aria-controls="results-table">
+    Check your files
+  </button>
+<a href='#' class="govuk-link--no-visited-state" onclick="location.reload(); return false;">Reset</a>
 
 </div>
 
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-
-    const checkButton = document.getElementById('check-files-button');
-    const results = document.getElementById('results-table');
-    const copyButton = document.getElementById('copy-filepaths-button');
-    const copyConfirmation = document.getElementById('copy-confirmation');
-
-    /*
-     * Show results
-     */
-    checkButton.addEventListener('click', function () {
-
-      results.hidden = false;
-
-      results.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-
-    });
+</div>
+</div>
 
 
-    /*
-     * Copy table as CSV
-     */
-    copyButton.addEventListener('click', async function () {
 
-      const table = document.querySelector('.file-path-table__table');
-      const rows = table.querySelectorAll('tr');
+  <div id="results-table" class="govuk-grid-row govuk-!-padding-top-4" hidden>
+    <div class="govuk-grid-column-full">
+<div class="filepath-alert">
+  <h2 class="govuk-heading-l filepath-alert__heading">
+    12 long filepaths found
+  </h2>
 
-      const csv = Array.from(rows).map(function (row) {
-
-        const cells = row.querySelectorAll('th, td');
-
-        return Array.from(cells).map(function (cell) {
-
-          /*
-           * Remove leading/trailing whitespace and escape
-           * quotation marks so the value is CSV-safe.
-           */
-          const value = cell.innerText
-            .trim()
-            .replace(/"/g, '""');
-
-          return '"' + value + '"';
-
-        }).join(',');
-
-      }).join('\n');
+  <p class="govuk-body filepath-alert__body">
+    These filepaths cannot be uploaded until they are shortened. 
+  </p>
+</div>
 
 
-      try {
+<div class="file-path-table">
+  <table class="govuk-table file-path-table__table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header" style="width: 3rem;">
+          No.
+        </th>
+        <th scope="col" class="govuk-table__header">
+          File path
+        </th>
+      </tr>
+    </thead>
 
-        await navigator.clipboard.writeText(csv);
+    <tbody class="govuk-table__body">
 
-        /*
-         * Give visual and screen-reader confirmation.
-         */
-        copyButton.textContent = 'Copied';
-        copyConfirmation.textContent =
-          'Table copied. You can now paste it into a CSV file.';
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell  ">1</td>
+        <td class="govuk-table__cell file-path-table__path">
+          <code>document dump/my folder/AOI files/project documents/compuservefolder/archive/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Consultation/Survey.docx</code>
+        </td>
+      </tr>
 
-        /*
-         * Reset the button after 5 seconds.
-         */
-        setTimeout(function () {
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell  ">2</td>
+        <td class="govuk-table__cell file-path-table__path">
+          <code>document dump/my folder/AOI files/project documents/researchfolder/working files/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Research/Interview-notes.docx</code>
+        </td>
+      </tr>
 
-          copyButton.textContent = 'Copy';
-          copyConfirmation.textContent = '';
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell  ">3</td>
+        <td class="govuk-table__cell file-path-table__path">
+          <code>document dump/my folder/AOI files/anotherfiles/transferfolder/digital-records/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Metadata/Transfer-metadata.xlsx</code>
+        </td>
+      </tr>
 
-        }, 5000);
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell  ">4</td>
+        <td class="govuk-table__cell file-path-table__path">
+          <code>document dump/my folder/AOI files/anotherfiles/archivefolder/previous versions/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Consultation/Draft-report.pdf</code>
+        </td>
+      </tr>
 
-      } catch (error) {
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell  ">5</td>
+        <td class="govuk-table__cell file-path-table__path">
+          <code>document dump/my folder/AOI files/project files/administration/meeting documents/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Meetings/Agenda.docx</code>
+        </td>
+      </tr>
 
-        copyConfirmation.textContent =
-          'Could not copy the table. Please try again.';
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell  ">6</td>
+        <td class="govuk-table__cell file-path-table__path">
+          <code>document dump/my folder/AOI files/project files/research/user testing/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Research/Session-recording.mp4</code>
+        </td>
+      </tr>
 
-      }
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell  ">7</td>
+        <td class="govuk-table__cell file-path-table__path">
+          <code>document dump/my folder/AOI files/transfers/current transfer/supporting documents/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Evidence/Supporting-evidence.pdf</code>
+        </td>
+      </tr>
 
-    });
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell  ">8</td>
+        <td class="govuk-table__cell file-path-table__path">
+          <code>document dump/my folder/AOI files/project documents/final reports/published versions/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Reports/Final-report.docx</code>
+        </td>
+      </tr>
 
-  });
-</script>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell  ">9</td>
+        <td class="govuk-table__cell file-path-table__path">
+          <code>document dump/my folder/AOI files/project documents/data analysis/spreadsheets/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Analysis/Survey-results.xlsx</code>
+        </td>
+      </tr>
 
-{% endblock %}
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell  ">10</td>
+        <td class="govuk-table__cell file-path-table__path">
+          <code>document dump/my folder/AOI files/anotherfiles/communications/correspondence/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Correspondence/Email-records.pdf</code>
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell  ">11</td>
+        <td class="govuk-table__cell file-path-table__path">
+          <code>document dump/my folder/AOI files/archive documents/historical records/previous transfer/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Archive/Transfer-record.csv</code>
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell  ">12</td>
+        <td class="govuk-table__cell file-path-table__path">
+          <code>document dump/my folder/AOI files/project documents/governance/approval documents/veryveryverylongfoldername/veryveryveryveryveryverylongfoldername/ImaginarySelectionPolicies/Approvals/Signed-approval.pdf</code>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<p class="govuk-body govuk-!-margin-top-6">
+  <a href="#top" class="govuk-link back-to-top">
+    Back to top <span aria-hidden="true">^</span>
+  </a>
+</p>
+
+
+
