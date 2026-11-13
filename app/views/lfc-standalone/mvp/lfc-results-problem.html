@@ -1,80 +1,81 @@
 {% extends "layouts/main-tux-386.html" %}
-{% block head %}
 
+{% block head %}
 {{ super() }}
 
 <style>
   .summary-panel {
-  background: #f3f2f1;
-  padding: 20px;
-  margin: 20px 0;
-}
+    background: #f3f2f1;
+    padding: 20px;
+    margin: 20px 0;
+  }
 
-.file-path-table {
-  max-height: 50rem;
-  padding: 20px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  background: #f3f2f1;
-  border: 1px solid #b1b4b6;
+  .file-path-table {
+    max-height: 30rem;
+    padding: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #f3f2f1;
+    border: 1px solid #b1b4b6;
+  }
 
-}
+  .file-path-table__table {
+    width: 100%;
+    margin-bottom: 0;
+    table-layout: fixed;
+  }
 
-.file-path-table__table {
-  width: 100%;
-  margin-bottom: 0;
-  table-layout: fixed;
-}
+  .file-path-table__path {
+    padding-right: 20px;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
 
-.file-path-table__path {
-  padding-right: 20px;
-  overflow-wrap: anywhere;
-  word-break: break-word;
-}
+  .file-path-table__path code {
+    font-family: monospace;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0b0c0c;
+    background: transparent;
+  }
 
-.file-path-table__path code {
-  font-family: monospace;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #0b0c0c;
-  background: transparent;
-}
+  .govuk-table__header--numeric {
+    width: 3rem;
+  }
 
-.govuk-table__header--numeric {
-  width: 3rem;
+  .filepath-alert {
+    margin-bottom: 30px;
+    padding: 25px 30px;
+    background-color: #1d70b8;
+    color: #ffffff;
+  }
 
-}
+  .filepath-alert__heading {
+    margin-bottom: 10px;
+    color: #ffffff;
+  }
 
+  .filepath-alert__body {
+    margin-bottom: 0;
+    color: #ffffff;
+  }
 
-
-.filepath-alert {
-  margin-bottom: 30px;
-  padding: 25px 30px;
-
-  background-color: #1d70b8;
-  color: #ffffff;
-}
-
-.filepath-alert__heading {
-  margin-bottom: 10px;
-  color: #ffffff;
-}
-
-.filepath-alert__body {
-  margin-bottom: 0;
-  color: #ffffff;
-}
+  .file-path-table__beware {
+    width: 5rem;
+    text-align: center;
+  }
 </style>
-
-
 {% endblock %}
+
+
 {% block pageTitle %}
 Check long file paths
 {% endblock %}
 
 
-
 {% block content %}
+
+          
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
   <h1 class="govuk-heading-l" id="top">
@@ -253,26 +254,4 @@ Check long file paths
 </p>
 
 
-</div>
-</div>
 
-
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const checkButton = document.getElementById('check-files-button');
-    const results = document.getElementById('results-table');
-
-    checkButton.addEventListener('click', function () {
-      results.hidden = false;
-
-      results.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    });
-  });
-</script>
-
-
-{% endblock %}
